@@ -1,4 +1,5 @@
 {
+  "id": "ihk-ap2-simulator",
   "name": "IHK AP2 Prüfungssimulator",
   "short_name": "IHK AP2",
   "description": "AP2 Fachinformatik Anwendungsentwicklung: GA1, GA2, WiSo — offline nutzbar.",
