@@ -341,9 +341,21 @@
 
   function antwortSetzen(t, z, key, wert) {
     const a = z.a[t.id] || (z.a[t.id] = {});
-    if (leer(wert)) delete a[key]; else a[key] = wert;
-    if (!Object.keys(a).length) delete z.a[t.id];
-    if (z.auf[t.id]) {
+    const alt = a[key];
+    const gleich = JSON.stringify(alt) === JSON.stringify(wert);
+    if (!gleich) {
+      if (leer(wert)) delete a[key]; else a[key] = wert;
+      if (!Object.keys(a).length) delete z.a[t.id];
+      if (z.beobachtet) delete z.beobachtet[t.id];
+      if ((z.auto || {})[t.id]) {
+        const r = pruefe(t, (z.a || {})[t.id]);
+        if (r.vorschlag != null) {
+          const p = z.p || (z.p = {});
+          p[t.id] = r.vorschlag;
+        }
+      }
+    }
+    if ((z.auf || {})[t.id]) {
       const hilfe = z.hilfe || (z.hilfe = {});
       const h = hilfe[t.id] || (hilfe[t.id] = {});
       h.nachLoesung = true;
