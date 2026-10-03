@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP2 · Проверка архива попыток</title>
+<link rel="stylesheet" href="../gen/azubi.css">
+<style>
+:root{--paper:#fcfcfa;--card:#fff;--ink:#14171c;--muted:#5e6570;--rule:#d5d8de;--rule-soft:#e8eaee;--pruefer:#12457e;--pruefer-soft:#eaf0f7;--red:#a8291f;--red-soft:#fdf4f3;--field:#f4f6f9;--ok:#1d6b4a;--ok-soft:#eaf5f0;--warn:#b4740e;--warn-soft:#fcf4e4;--body:"Segoe UI",sans-serif;--data:Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;padding:16px;background:var(--paper);color:var(--ink);font:15px/1.55 var(--body)}[hidden]{display:none!important}.seite{margin:auto}.btn{border:1px solid var(--rule);padding:8px 15px;background:var(--card);border-radius:9px;cursor:pointer}.primary{background:var(--pruefer);color:white}button,input,textarea{font:inherit}.steuer{display:flex;gap:8px;flex-wrap:wrap}h1{font-size:18px}
+</style>
+<h1>Тестовый бланк: архив, помощь и повтор</h1>
+<p>Авторские примеры для проверки интерфейса. Хранятся только в этой вкладке и не меняют учебный прогресс.</p>
+<button class="btn" onclick="document.getElementById('qaLog').textContent=JSON.stringify(GENLERNSTAND.list(),null,2)">Показать журнал проверок</button>
+<pre id="qaLog" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre>
+<div id="scStart" class="seite"></div>
+<script>
+// Isolated adapter: real player persistence, separate tab-local test data.
+Object.defineProperty(window, "localStorage", {value: {
+  getItem: key => sessionStorage.getItem("azubi-browser-test:" + key),
+  setItem: (key, value) => sessionStorage.setItem("azubi-browser-test:" + key, value)
+}});
+window.IHK_AZUBI = {bilder:{},module:[{id:"qa-archiv",bereich:"wiso",nr:1,art:"pruefung",kurz:"WiSo QA",titel:"Авторский тест истории",minuten:10,punkte:20/3,intro:"<p>Введите ответ, сравните с решением и начните новую попытку.</p>",aufgaben:[{nr:"1",titel:"Testaufgaben",teile:[
+  {id:"qa-wahl",nr:"1",label:"a",titel:"Auswahl",text:"<p>Welche Zahl ist gerade?</p>",punkte:10/3,global:true,eingabe:{typ:"mehrfach",optionen:["2","3"],soll:[1],anzahl:1},loesung:"<p>2 ist durch 2 teilbar.</p>"},
+  {id:"qa-text",nr:"1",label:"b",titel:"Begründung",text:"<p>Begründen Sie, warum 2 eine gerade Zahl ist.</p>",punkte:10/3,eingabe:{typ:"zeilen",zeilen:[{h:"Ihre Begründung",frei:"1",gross:true}]},loesung:"<p>2 ist ohne Rest durch 2 teilbar.</p>"}
+]}]}]};
+</script>
+<script src="../gen/lernstand.js"></script>
+<script src="../gen/azubi.js?qa=20261003"></script>
+</html>

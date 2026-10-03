@@ -1,0 +1,21 @@
+"use strict";
+const assert = require("assert");
+const W = require("../gen/lernweg.js");
+const units = [{id:"lesen",topic:"sprache"},{id:"code",topic:"algo"},{id:"sql",topic:"sql"}];
+assert.strictEqual(W.next(units, {done:{}}, []).id, "lesen", "begin with prerequisites");
+assert.strictEqual(W.next(units, {done:{lesen:123}}, []).id, "code", "resume first unfinished unit");
+assert.strictEqual(W.next(units, {done:{lesen:123,code:124,sql:125}}, [{topic:"algo",weak:true}]).id, "code", "completed route returns to observed difficulty");
+assert.strictEqual(W.next([], {done:{}}, []), null, "empty material does not crash");
+assert.strictEqual(W.next(units, {done:{lesen:1,code:1,sql:1}}, []), null, "no endless claim of new lessons");
+assert.strictEqual(W.next(units, {done:{lesen:1,code:1,sql:1},checks:{code:{correct:0,max:2}}}, []).id, "code", "self-reported gaps remain actionable");
+const data=require("../gen/lernweg-daten.js");
+const topics=require("../gen/lernen-daten.js");
+const praxis=require("../gen/praxis-daten.js");
+data.forEach(u=>{
+  if(u.theory)assert(topics.some(t=>t.id===u.theory),"missing theory route: "+u.theory);
+  if(u.practice)assert(praxis.some(t=>t.id===u.practice),"missing practice route: "+u.practice);
+});
+assert.strictEqual(W.sessionMinutes({minutes:10}), 10);
+assert.strictEqual(W.sessionMinutes({minutes:-30}), 20, "invalid imported preference is safe");
+assert.strictEqual(W.sessionMinutes({minutes:9999}), 20);
+console.log("Lernweg recommendation and recovery verified");

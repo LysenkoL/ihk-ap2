@@ -1,0 +1,846 @@
+/* ============================================================================
+   gen/blatt.css — Oberfläche des Aufgaben-Generators.
+   Nutzt die Variablen und Grundklassen aus index.html.
+   ========================================================================== */
+
+/* ---------- Startseite: Kachelübersicht der Arbeitsblätter ---------- */
+.gen-kopf{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.gen-hinweis{background:var(--card); border:1px solid var(--rule); border-radius:2px;
+  padding:12px 16px; font-size:13.5px; color:var(--muted); line-height:1.7; margin:10px 0 16px}
+.gen-hinweis b{color:var(--ink)}
+
+.gen-karte{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--pruefer);
+  padding:14px 16px 12px; border-radius:2px; display:flex; flex-direction:column; gap:8px}
+.gen-karte.fertig{border-top-color:var(--ok)}
+.gen-karte h3{font-family:var(--display); font-size:16px; margin:0; line-height:1.3}
+.gen-karte .meta{font-size:12.5px; color:var(--muted); line-height:1.5}
+.gen-karte .fuss{position:static; display:flex; justify-content:space-between; align-items:center;
+  border:0; box-shadow:none; background:none; padding:6px 0 0; border-top:1px solid var(--rule-soft); gap:8px}
+.gen-karte .fuss .datum{font-family:var(--data); font-size:12px; color:var(--muted)}
+
+/* ---------- Assistent ---------- */
+.gen-schritt{background:var(--card); border:1px solid var(--rule); border-radius:2px;
+  padding:20px 22px; max-width:900px; margin:0 auto}
+.gen-schritt h3{font-family:var(--display); font-size:19px; margin:0 0 2px}
+.gen-schritt > p{color:var(--muted); font-size:13.5px; margin:0 0 16px}
+
+.wahlzeile{display:flex; gap:12px; align-items:flex-start; border:1px solid var(--rule);
+  border-radius:3px; padding:11px 14px; margin-bottom:8px; cursor:pointer; background:var(--card);
+  transition:border-color .12s, background .12s}
+.wahlzeile:hover{border-color:var(--pruefer)}
+.wahlzeile.an{border-color:var(--pruefer); background:var(--pruefer-soft)}
+.wahlzeile.aus{opacity:.45}
+.wahlzeile input{margin-top:3px; flex:none; width:17px; height:17px; accent-color:var(--pruefer)}
+.wahlzeile .txt{min-width:0; flex:1}
+.wahlzeile .name{font-weight:600; font-size:15px; display:flex; gap:9px; align-items:center; flex-wrap:wrap}
+.wahlzeile .zahl{font-family:var(--data); font-size:11.5px; font-weight:600; color:var(--muted);
+  background:var(--field); border-radius:10px; padding:2px 9px}
+.wahlzeile .unter{font-size:13px; color:var(--muted); margin-top:2px}
+.gen-zaehler{font-size:13.5px; color:var(--muted); margin:14px 0 10px}
+.gen-knopfzeile{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.gen-knopfzeile .weit{flex:1}
+
+/* ---------- Assistent: Anzahl, Modus, Themenbaum ---------- */
+.gen-schnell{display:flex; gap:5px; margin-top:5px; flex-wrap:wrap}
+.gen-schnell .chip{padding:3px 10px; font-size:12px}
+
+.gen-modus{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:6px 0 20px}
+.gen-moduskarte{text-align:left; border:1px solid var(--rule); background:var(--card);
+  border-radius:3px; padding:14px 16px; cursor:pointer; font:inherit; color:inherit;
+  transition:border-color .12s, background .12s}
+.gen-moduskarte:hover{border-color:var(--pruefer)}
+.gen-moduskarte.an{border-color:var(--pruefer); background:var(--pruefer-soft);
+  box-shadow:inset 3px 0 0 var(--pruefer)}
+.gen-moduskarte .mt{font-family:var(--display); font-size:15.5px; font-weight:700; margin-bottom:4px}
+.gen-moduskarte .mx{font-size:13px; color:var(--muted); line-height:1.45}
+
+.gen-baum{margin-top:4px}
+.gen-werkzeug{display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap}
+
+.wahlzeile.gross{align-items:center; gap:10px}
+.wahlzeile .wz-haupt{display:flex; gap:12px; align-items:flex-start; flex:1; min-width:0; cursor:pointer}
+.wahlzeile .wz-auf{border:0; background:none; color:var(--muted); cursor:pointer; font:inherit;
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.1em; font-size:10px;
+  font-weight:700; white-space:nowrap; padding:4px 6px; border-radius:3px}
+.wahlzeile .wz-auf:hover{color:var(--pruefer); background:var(--field)}
+.wz-subs{margin:-4px 0 12px 26px; padding-left:12px; border-left:2px solid var(--rule-soft)}
+.wahlzeile.klein{padding:7px 12px; margin-bottom:5px}
+.wahlzeile.klein .name{font-size:13.5px; font-weight:500}
+.wahlzeile.klein input:disabled{opacity:.35}
+
+/* ---------- Arbeitsblatt ---------- */
+.gen-leiste{position:sticky; top:74px; z-index:30; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:10px 0 12px; margin-bottom:18px;
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.gen-leiste .stand{font-family:var(--data); font-size:14px; font-weight:600; white-space:nowrap}
+.gen-leiste .stand small{font-weight:400; color:var(--muted)}
+.gen-uhr{font-family:var(--data); font-size:20px; font-weight:600; min-width:74px}
+.gen-uhr.warn{color:var(--red)}
+
+.gaufgabe{border:1px solid var(--rule); border-top:0; background:var(--card); margin-bottom:0}
+.gaufgabe:first-of-type{border-top:1px solid var(--rule)}
+.gaufgabe.richtig{border-left:3px solid var(--ok)}
+.gaufgabe.teil{border-left:3px solid var(--warn)}
+.gaufgabe.falsch{border-left:3px solid var(--red)}
+.gaufgabe-in{display:grid; grid-template-columns:1fr 104px}
+@media (max-width:720px){ .gaufgabe-in{grid-template-columns:1fr} }
+.gaufgabe .haupt{padding:16px 20px 18px; min-width:0}
+.gaufgabe .rand{border-left:1px solid var(--rule); background:var(--field); padding:14px 8px;
+  display:flex; flex-direction:column; align-items:center; gap:8px; position:static}
+@media (max-width:720px){ .gaufgabe .rand{border-left:0; border-top:1px solid var(--rule);
+  flex-direction:row; justify-content:space-between; padding:10px 16px} }
+.gaufgabe .rand .wert{font-family:var(--data); font-size:19px; font-weight:600; line-height:1.1;
+  text-align:center}
+.gaufgabe .rand .wert small{display:block; font-size:11px; color:var(--muted); font-weight:400}
+.gaufgabe .rand.ok .wert{color:var(--ok)}
+.gaufgabe .rand.halb .wert{color:var(--warn)}
+.gaufgabe .rand.nein .wert{color:var(--red)}
+
+.gsituation{background:var(--field); border-left:3px solid var(--rule); padding:11px 14px;
+  font-size:14px; white-space:pre-wrap; margin:8px 0 12px; border-radius:0 2px 2px 0}
+.gfrage{font-size:15px; margin:0 0 14px; white-space:pre-wrap}
+.gfrage b{font-weight:600}
+
+table.gdaten{border-collapse:collapse; font-size:13.5px; margin:0 0 14px; min-width:min(100%,420px)}
+table.gdaten caption{font-family:var(--display); text-transform:uppercase; letter-spacing:.11em;
+  font-size:10px; font-weight:700; color:var(--muted); text-align:left; padding-bottom:5px}
+table.gdaten th{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:10px; color:var(--muted); font-weight:700; text-align:left; padding:6px 11px;
+  border-bottom:1px solid var(--rule); white-space:nowrap}
+table.gdaten td{padding:5px 11px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+table.gdaten td:nth-child(n+2){font-family:var(--data); font-variant-numeric:tabular-nums; white-space:nowrap}
+.gtab-rollen{overflow-x:auto}
+
+/* ---------- Antwortfelder ---------- */
+.gfeld{margin-bottom:13px}
+.gfeld > label.gl{display:block; font-size:13.5px; color:var(--muted); margin-bottom:4px; line-height:1.4}
+.gfeld > label.gl b{color:var(--ink); font-weight:600}
+.gfeld .be{font-family:var(--data); font-size:11.5px; color:var(--muted); white-space:nowrap}
+.geingabe{display:flex; align-items:center; gap:8px; max-width:520px}
+.geingabe input[type=text]{flex:1; min-width:0; background:var(--field); border:1px solid var(--rule);
+  border-radius:2px; padding:9px 11px; font-size:15px; font-family:var(--data)}
+.geingabe .einheit{font-family:var(--data); font-size:13.5px; color:var(--muted); white-space:nowrap}
+.gfeld textarea{min-height:44px}
+.gfeld input.richtig, .gfeld textarea.richtig{border-color:var(--ok); background:var(--ok-soft)}
+.gfeld input.falsch,  .gfeld textarea.falsch{border-color:var(--red); background:var(--red-soft)}
+.gfeld input.teil,    .gfeld textarea.teil{border-color:var(--warn); background:var(--warn-soft)}
+
+.gwahl{display:flex; flex-direction:column; gap:5px}
+.gwahl label{display:flex; gap:9px; align-items:flex-start; font-size:14.5px; cursor:pointer;
+  border:1px solid transparent; border-radius:2px; padding:5px 8px}
+.gwahl label:hover{background:var(--field)}
+.gwahl label.richtig{border-color:var(--ok); background:var(--ok-soft)}
+.gwahl label.falsch{border-color:var(--red); background:var(--red-soft)}
+/* Die richtige Option, die man NICHT angekreuzt hat: gestrichelt, damit sie
+   sich von „ich hatte recht“ unterscheidet, und mit einem Wort dahinter,
+   weil Farbe allein auf dem Telefon oft nicht ankommt.                   */
+.gwahl label.soll{border-color:var(--ok); border-style:dashed; background:var(--ok-soft)}
+.gwahl label.soll::after{content:"richtig"; margin-left:auto; align-self:center;
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:9.5px; font-weight:700; color:var(--ok); white-space:nowrap}
+
+/* Der Sollwert direkt an der eigenen Eingabe — nie an ihrer Stelle. */
+.gsoll{display:flex; flex-wrap:wrap; align-items:baseline; gap:5px; margin-top:4px}
+.gsoll-lbl{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:9px; font-weight:700; color:var(--muted)}
+.gsoll-wert{font-family:var(--data); font-size:12.5px; font-weight:700; color:var(--ok)}
+@media print{ .gsoll{display:none} }
+.gwahl input{margin-top:3px; accent-color:var(--pruefer)}
+
+table.gzuo, table.graster, table.gwf{border-collapse:collapse; font-size:13.5px; width:100%; max-width:760px}
+table.gzuo td, table.graster td, table.graster th, table.gwf td, table.gwf th{
+  padding:5px 9px; border-bottom:1px solid var(--rule-soft); vertical-align:middle}
+table.graster th, table.gwf th{font-family:var(--display); text-transform:uppercase;
+  letter-spacing:.08em; font-size:10px; color:var(--muted); font-weight:700; text-align:left;
+  border-bottom:1px solid var(--rule)}
+table.gzuo select, table.graster input{width:100%; background:var(--field); border:1px solid var(--rule);
+  border-radius:2px; padding:7px 8px; font-size:14px; color:var(--ink)}
+table.graster input{font-family:var(--data); text-align:right}
+table.gzuo select.richtig, table.graster input.richtig{border-color:var(--ok); background:var(--ok-soft)}
+table.gzuo select.falsch,  table.graster input.falsch{border-color:var(--red); background:var(--red-soft)}
+table.gwf .wf{display:flex; gap:14px; white-space:nowrap}
+table.gwf label{display:flex; gap:5px; align-items:center; font-size:13px; cursor:pointer}
+table.gwf tr.richtig td{background:var(--ok-soft)}
+table.gwf tr.falsch td{background:var(--red-soft)}
+
+.grueck{font-size:13px; margin-top:6px; line-height:1.6}
+.grueck .gut{color:var(--ok); font-weight:600}
+.grueck .schlecht{color:var(--red); font-weight:600}
+.grueck .mittel{color:var(--warn); font-weight:600}
+.gchips{display:flex; flex-wrap:wrap; gap:5px; margin-top:5px}
+.gchips span{font-size:12px; padding:2px 8px; border-radius:10px; font-family:var(--data)}
+.gchips .ja{background:var(--ok-soft); color:var(--ok)}
+.gchips .nein{background:var(--red-soft); color:var(--red)}
+.gchips .offen{background:var(--field); color:var(--muted)}
+
+/* Selbstbewertung bei Freitext: die Prüfung kann nicht jede Formulierung
+   kennen — hier korrigiert man wie mit dem Lösungsblatt in der Hand. */
+.gselbst{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:7px;
+  font-size:12px; color:var(--muted)}
+.gselbst-an{color:var(--warn); font-weight:600}
+.gselbst-k{font:inherit; font-size:12px; padding:3px 9px; min-height:28px;
+  border:1px solid var(--rule); border-radius:999px; background:var(--field);
+  color:var(--ink); cursor:pointer}
+.gselbst-k:hover{border-color:var(--accent); color:var(--accent)}
+
+.gwerkzeug{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; padding-top:12px;
+  border-top:1px dashed var(--rule)}
+.gmerksatz{border-left:3px solid var(--warn); background:var(--warn-soft); padding:9px 13px;
+  font-size:13.5px; margin-top:12px; line-height:1.6}
+.gmerksatz b{font-family:var(--display); text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; display:block; margin-bottom:3px}
+.gloesung{margin-top:12px}
+.gloesung summary{cursor:pointer; font-family:var(--display); text-transform:uppercase;
+  letter-spacing:.11em; font-size:11px; font-weight:700; color:var(--pruefer)}
+.gloesung .txt{white-space:pre-wrap; font-size:14px; margin-top:8px; background:var(--pruefer-soft);
+  padding:12px 14px; border-radius:2px; font-family:var(--data); line-height:1.65}
+
+.gzusammen{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--pruefer);
+  padding:18px 22px; border-radius:2px; margin:22px 0 0; display:flex; gap:30px;
+  align-items:baseline; flex-wrap:wrap}
+.gzusammen .zahl{font-family:var(--data); font-size:46px; font-weight:600; line-height:1}
+.gzusammen .txt{flex:1 1 260px; font-size:13.5px; color:var(--muted); line-height:1.65}
+.gzusammen .txt b{color:var(--ink)}
+
+/* ---------- Offene Wertungen -------------------------------------------
+   Freitext, den die Wortprüfung nicht voll anerkannt hat. Der Kasten steht
+   im Abschluss und nimmt die ganze Breite — er ist keine Randnotiz, sondern
+   der Schritt, ohne den die Prozentzahl darüber nichts wert ist.         */
+.gst-offen{color:var(--warn) !important}
+
+.goffen{flex:1 1 100%; margin-top:16px; padding-top:14px; border-top:1px solid var(--rule)}
+.goffen h4{margin:0 0 4px; font-family:var(--display); font-size:14px}
+.goffen-hin{margin:0 0 12px; font-size:12.5px; color:var(--muted); line-height:1.55}
+
+.goffen-zeile{display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start;
+  padding:10px 0; border-top:1px solid var(--rule-soft)}
+.goffen-txt{flex:1 1 240px; min-width:0}
+.goffen-frage{font-size:13px; font-weight:700}
+.goffen-meine{font-size:13px; line-height:1.55; margin-top:3px;
+  padding:5px 8px; border-left:2px solid var(--rule); background:var(--field);
+  white-space:pre-wrap; overflow-wrap:anywhere}
+.goffen-soll{font-size:12px; color:var(--muted); margin-top:3px; font-family:var(--data)}
+.goffen-knopfe{display:flex; gap:6px; flex-wrap:wrap; flex:0 0 auto}
+.goffen-k{min-height:40px; padding:6px 13px; cursor:pointer; font:inherit; font-size:12.5px;
+  font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--muted); background:var(--card); border:1px solid var(--rule); border-radius:3px}
+.goffen-k:hover{border-color:var(--pruefer); color:var(--pruefer)}
+.goffen-hinweg{text-transform:none; letter-spacing:0; font-weight:400}
+
+@media (max-width:700px){
+  .goffen-knopfe{width:100%}
+  .goffen-k{flex:1 1 22%}
+}
+@media print{ .goffen{display:none} }
+
+@media print{
+  .gen-leiste, .gwerkzeug, .gloesung, .gmerksatz, .grueck{display:none !important}
+  .gaufgabe{break-inside:avoid; page-break-inside:avoid; border:1px solid #999; margin-bottom:6pt}
+  .gsituation{background:#fff; border-left:2px solid #666}
+}
+
+/* ---------- Knotentabelle (Diagramme) ---------- */
+table.gknoten{border-collapse:collapse; font-size:13.5px; width:100%; min-width:620px}
+table.gknoten th{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:10px; color:var(--muted); font-weight:700; text-align:left; padding:5px 7px;
+  border-bottom:1px solid var(--rule)}
+table.gknoten td{padding:3px 5px; border-bottom:1px solid var(--rule-soft); vertical-align:middle}
+table.gknoten td.weg{width:34px; text-align:center}
+table.gknoten input, table.gknoten select{width:100%; background:var(--field);
+  border:1px solid var(--rule); border-radius:2px; padding:6px 8px; font-size:13.5px; color:var(--ink)}
+table.gknoten td:nth-child(1){width:30%}
+table.gknoten td:nth-child(2){width:20%}
+table.gknoten input.richtig, table.gknoten select.richtig{border-color:var(--ok); background:var(--ok-soft)}
+table.gknoten input.falsch,  table.gknoten select.falsch{border-color:var(--red); background:var(--red-soft)}
+table.gknoten input.teil{border-color:var(--warn); background:var(--warn-soft)}
+
+pre.gcode{background:var(--field); border-left:3px solid var(--pruefer); margin:0 0 12px;
+  padding:12px 15px; font-family:var(--data); font-size:13.5px; line-height:1.6;
+  overflow-x:auto; white-space:pre; border-radius:0 2px 2px 0}
+
+/* ---------- Modelltabelle (ER, Klasse, Use-Case) ---------- */
+table.gmodell{border-collapse:collapse; font-size:13.5px; width:100%; min-width:660px}
+table.gmodell th{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:10px; color:var(--muted); font-weight:700; text-align:left; padding:5px 7px;
+  border-bottom:1px solid var(--rule)}
+table.gmodell td{padding:3px 5px; border-bottom:1px solid var(--rule-soft); vertical-align:middle}
+table.gmodell td.weg{width:34px; text-align:center}
+table.gmodell input, table.gmodell select{width:100%; background:var(--field);
+  border:1px solid var(--rule); border-radius:2px; padding:6px 8px; font-size:13.5px; color:var(--ink)}
+table.gmodell input.richtig, table.gmodell select.richtig{border-color:var(--ok); background:var(--ok-soft)}
+table.gmodell input.falsch,  table.gmodell select.falsch{border-color:var(--red); background:var(--red-soft)}
+table.gmodell input.teil,    table.gmodell select.teil{border-color:var(--warn); background:var(--warn-soft)}
+.gmodell-regeln{font-size:12.5px; color:var(--muted); line-height:1.7; margin-top:8px;
+  border-left:3px solid var(--rule); padding:6px 12px}
+.gmodell-regeln b{font-family:var(--display); text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; color:var(--ink); display:block; margin-bottom:2px}
+
+/* ---------- Diagrammeingabe in echten Prüfungsaufgaben ---------- */
+.ex-dia{border:1px solid var(--rule); border-left:3px solid var(--pruefer); background:var(--card);
+  border-radius:2px; padding:12px 14px; margin:6px 0 12px}
+.ex-dia-kopf{display:flex; justify-content:space-between; align-items:center; gap:10px;
+  flex-wrap:wrap; margin-bottom:8px}
+.hero .zahl + small, .hero .neben + small{display:block; font-size:11px; color:var(--muted);
+  font-family:var(--body); margin-top:3px}
+
+/* ---------- Satzbau-Training ---------- */
+.satz-karte{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--pruefer);
+  border-radius:2px; padding:22px 24px; max-width:820px; margin:0 auto}
+.satz-kopf{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  margin-bottom:10px}
+.satz-frage{font-size:17px; line-height:1.5; font-weight:600; margin-bottom:14px}
+.satz-stich{background:var(--field); border-left:3px solid var(--warn); padding:10px 14px;
+  border-radius:0 2px 2px 0; margin-bottom:14px}
+.satz-stich > b{font-size:16px; display:block; margin:2px 0 6px}
+.satz-auftrag{font-size:13.5px; color:var(--muted); line-height:1.6}
+.satz-chips{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:10px 0 4px}
+.satz-chips .eyebrow{width:100%; margin-bottom:2px}
+.satz-chip{border:1px solid var(--rule); background:var(--card); border-radius:14px; padding:4px 11px;
+  font-size:12.5px; cursor:pointer; color:var(--ink)}
+.satz-chip:hover{border-color:var(--pruefer); background:var(--pruefer-soft)}
+.satz-rueck{margin-top:14px; border-top:1px dashed var(--rule); padding-top:12px}
+.satz-punkte{font-size:15px; margin-bottom:8px}
+.satz-punkte .gut{color:var(--ok)} .satz-punkte .mittel{color:var(--warn)} .satz-punkte .schlecht{color:var(--red)}
+ul.satz-kriterien{list-style:none; margin:0; padding:0; font-size:14px; line-height:1.75}
+ul.satz-kriterien li.ja{color:var(--ok)}
+ul.satz-kriterien li.nein{color:var(--red)}
+ul.satz-kriterien li b{color:var(--ink)}
+#scSatz textarea{font-size:15.5px; line-height:1.65}
+
+/* ---------- Rechenweg / Nebenrechnung ---------- */
+.gfeld.gweg{border-left:3px solid var(--pruefer); background:var(--pruefer-soft);
+  padding:11px 13px 12px; border-radius:2px; margin-top:16px}
+.gfeld.gweg > label.gl{margin-bottom:2px}
+.gfeld .be.weg{font-family:var(--display); text-transform:uppercase; letter-spacing:.09em;
+  font-size:9.5px; font-weight:700; color:var(--pruefer); background:var(--card);
+  border:1px solid var(--pruefer); border-radius:2px; padding:2px 6px}
+.gweg-hilfe{font-size:12.5px; color:var(--muted); line-height:1.5; margin:2px 0 8px}
+textarea.gweg-feld{font-family:var(--data); font-size:13.5px; line-height:1.75;
+  background:var(--card); min-height:96px;
+  background-image:repeating-linear-gradient(var(--card) 0 22px, var(--rule-soft) 22px 23px);
+  background-attachment:local}
+.gweg-spur{margin-top:10px; border-top:1px dashed var(--rule); padding-top:8px}
+.gweg-titel{font-family:var(--display); text-transform:uppercase; letter-spacing:.11em;
+  font-size:9.5px; font-weight:700; color:var(--muted); margin-bottom:6px}
+.gweg-kette{display:flex; flex-wrap:wrap; gap:5px}
+.gweg-wert{font-family:var(--data); font-size:12px; padding:2px 8px; border-radius:11px;
+  border:1px solid var(--rule); background:var(--card); white-space:nowrap}
+.gweg-wert.da{border-color:var(--ok); background:var(--ok-soft); color:var(--ok)}
+.gweg-wert.weg{border-color:var(--rule); color:var(--muted); opacity:.75}
+.gweg-wert.bruch{border-color:var(--red); background:var(--red-soft); color:var(--red);
+  font-weight:700; box-shadow:0 0 0 2px var(--red-soft)}
+.gweg-folge{margin-top:8px; border-left:3px solid var(--ok); background:var(--ok-soft);
+  padding:8px 11px; font-size:13px; line-height:1.5; border-radius:2px}
+.gweg-folge.warn{border-left-color:var(--warn); background:var(--warn-soft)}
+
+/* ---------- Operatorenhilfe im Antwortfeld ---------- */
+details.op-hilfe{margin-top:7px; border-left:2px solid var(--rule); padding-left:10px}
+details.op-hilfe summary{cursor:pointer; font-family:var(--display); text-transform:uppercase;
+  letter-spacing:.1em; font-size:10px; font-weight:700; color:var(--muted); list-style:none;
+  padding:3px 0}
+details.op-hilfe summary::-webkit-details-marker{display:none}
+details.op-hilfe summary::before{content:"▸ "; color:var(--pruefer)}
+details.op-hilfe[open] summary::before{content:"▾ "}
+details.op-hilfe summary:hover{color:var(--pruefer)}
+details.op-hilfe summary b{color:var(--ink)}
+.op-in{padding:6px 0 4px}
+.op-zeile{display:grid; grid-template-columns:74px 1fr; gap:9px; font-size:12.5px;
+  line-height:1.55; margin-bottom:5px}
+.op-lbl{font-family:var(--display); text-transform:uppercase; letter-spacing:.09em;
+  font-size:9.5px; font-weight:700; color:var(--muted); padding-top:2px}
+.op-zeile.op-falle{color:var(--red)}
+.op-zeile.op-falle .op-lbl{color:var(--red)}
+.op-mt{font-size:12px; color:var(--muted); margin:9px 0 5px}
+.op-muster{display:flex; flex-wrap:wrap; gap:5px}
+.op-chip{border:1px solid var(--rule); background:var(--card); color:var(--ink);
+  border-radius:13px; padding:4px 11px; font-size:12.5px; cursor:pointer; font-family:inherit;
+  text-align:left}
+.op-chip:hover{border-color:var(--pruefer); background:var(--pruefer-soft); color:var(--pruefer)}
+
+/* ---------- Prüfungssimulation ---------- */
+.sim-box{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--red);
+  border-radius:2px; padding:16px 18px; margin:0 0 18px}
+.sim-kopf{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
+.sim-kopf h3{font-family:var(--display); font-size:17px; margin:0 0 3px; letter-spacing:.02em}
+.sim-kopf p{margin:0; font-size:13.5px; color:var(--muted); line-height:1.6; max-width:62ch}
+.sim-balken{margin:14px 0 10px; display:flex; flex-direction:column; gap:4px}
+.sim-zeile{display:grid; grid-template-columns:170px 1fr 56px; gap:10px; align-items:center;
+  font-size:12.5px}
+.sim-name{color:var(--muted)}
+.sim-spur{height:9px; background:var(--rule-soft); border-radius:2px; overflow:hidden}
+.sim-spur i{display:block; height:100%; background:var(--pruefer)}
+.sim-be{font-family:var(--data); font-size:12px; text-align:right; color:var(--muted)}
+.sim-hinweis{font-size:12.5px; color:var(--muted); line-height:1.6;
+  border-left:3px solid var(--warn); background:var(--warn-soft); padding:8px 11px; border-radius:2px}
+.sim-hinweis b{color:var(--ink)}
+.hero .txt.sim-zeit{grid-column:1/-1; border-top:1px solid var(--rule); padding-top:10px; margin-top:4px}
+
+/* ---------- Fehlerjournal ---------- */
+.fj-box{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--warn);
+  border-radius:2px; padding:16px 18px; margin:0 0 18px}
+.fj-kopf{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
+.fj-kopf h3{font-family:var(--display); font-size:17px; margin:0 0 3px; letter-spacing:.02em}
+.fj-kopf p{margin:0; font-size:13.5px; color:var(--muted); line-height:1.6; max-width:66ch}
+.fj-balken{margin:14px 0 10px; display:flex; flex-direction:column; gap:4px}
+.fj-zeile{display:grid; grid-template-columns:150px 1fr 32px; gap:10px; align-items:center; font-size:12.5px}
+.fj-name{color:var(--muted)}
+.fj-spur{height:9px; background:var(--rule-soft); border-radius:2px; overflow:hidden}
+.fj-spur i{display:block; height:100%; background:var(--warn)}
+.fj-spur i.wissen{background:var(--pruefer)}
+.fj-n{font-family:var(--data); font-size:12px; text-align:right; color:var(--muted)}
+.fj-fazit{font-size:13px; line-height:1.6; color:var(--muted); border-left:3px solid var(--pruefer);
+  background:var(--pruefer-soft); padding:9px 12px; border-radius:2px; margin-bottom:12px}
+.fj-fazit b{color:var(--ink)}
+.fj-liste{display:flex; flex-direction:column; gap:9px}
+.fj-eintrag{border:1px solid var(--rule-soft); border-left:3px solid var(--rule); border-radius:2px;
+  padding:9px 12px; background:var(--paper)}
+.fj-ekopf{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+.fj-datum{font-family:var(--data); font-size:11.5px; color:var(--muted)}
+.fj-titel{font-weight:600; font-size:13.5px; flex:1; min-width:0}
+.fj-be{font-family:var(--data); font-size:12px; color:var(--red); white-space:nowrap}
+.fj-feld{font-size:12.5px; color:var(--muted); margin-top:2px; line-height:1.45}
+.fj-vgl{font-family:var(--data); font-size:12px; margin-top:4px; line-height:1.6}
+.fj-du{color:var(--red); font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:9.5px; font-weight:700}
+.fj-soll{color:var(--ok); font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:9.5px; font-weight:700}
+.fj-hinweis{font-size:12px; color:var(--warn); margin-top:4px; line-height:1.45}
+.fj-chips{display:flex; flex-wrap:wrap; gap:4px; margin-top:7px}
+.fj-chip{border:1px solid var(--rule); background:var(--card); color:var(--muted); border-radius:12px;
+  padding:3px 10px; font-size:11.5px; cursor:pointer; font-family:inherit}
+.fj-chip:hover{border-color:var(--pruefer); color:var(--pruefer)}
+.fj-chip.an{background:var(--pruefer); border-color:var(--pruefer); color:#fff; font-weight:600}
+.fj-wz{display:flex; gap:7px; align-items:center; margin-top:7px; flex-wrap:wrap}
+.fj-rat{font-size:12px; color:var(--muted); flex:1; min-width:180px; line-height:1.45}
+.fj-mehr{font-size:12.5px; color:var(--muted); margin-top:10px}
+
+/* ---------- Rechenweg in den echten Prüfungen ---------- */
+.exw-box{border-left:3px solid var(--pruefer); background:var(--pruefer-soft);
+  padding:11px 13px 12px; border-radius:2px; margin:14px 0 12px}
+.exw-kopf{display:flex; gap:9px; align-items:baseline; flex-wrap:wrap}
+.exw-lbl{font-weight:600; font-size:13.5px}
+.exw-hint{font-family:var(--display); text-transform:uppercase; letter-spacing:.09em;
+  font-size:9.5px; font-weight:700; color:var(--pruefer); background:var(--card);
+  border:1px solid var(--pruefer); border-radius:2px; padding:2px 6px}
+.exw-info{font-size:12.5px; color:var(--muted); line-height:1.5; margin:4px 0 8px}
+textarea.exw-feld{width:100%; font-family:var(--data); font-size:13.5px; line-height:1.75;
+  background:var(--card); border:1px solid var(--rule); border-radius:2px; padding:9px 11px;
+  min-height:92px; resize:vertical;
+  background-image:repeating-linear-gradient(var(--card) 0 22px, var(--rule-soft) 22px 23px);
+  background-attachment:local}
+textarea.exw-feld:focus{border-color:var(--pruefer); outline:none}
+.exw-spur:empty{display:none}
+.exw-spur{margin-top:9px; border-top:1px dashed var(--rule); padding-top:8px}
+.exw-titel{font-family:var(--display); text-transform:uppercase; letter-spacing:.11em;
+  font-size:9.5px; font-weight:700; color:var(--muted); margin-bottom:6px}
+.exw-kette{display:flex; flex-wrap:wrap; gap:5px}
+.exw-wert{font-family:var(--data); font-size:12px; padding:2px 8px; border-radius:11px;
+  border:1px solid var(--rule); background:var(--card); white-space:nowrap}
+.exw-wert.da{border-color:var(--ok); background:var(--ok-soft); color:var(--ok)}
+.exw-wert.weg{border-color:var(--rule); color:var(--muted); opacity:.75}
+.exw-wert.bruch{border-color:var(--red); background:var(--red-soft); color:var(--red); font-weight:700}
+.exw-fazit{margin-top:8px; font-size:12.5px; line-height:1.55; padding:8px 11px; border-radius:2px}
+.exw-fazit.gut{border-left:3px solid var(--ok); background:var(--ok-soft)}
+.exw-fazit.warn{border-left:3px solid var(--warn); background:var(--warn-soft)}
+.exw-zu{font-size:12px; color:var(--muted); font-style:italic}
+
+/* ============================================================================
+   Startseite: Kopf mit Countdown, Empfehlung und Kacheln (gen/start.js)
+   ========================================================================== */
+.st-kopf{border:1px solid var(--rule); border-radius:3px; background:var(--card);
+  padding:16px 18px; margin:0 0 26px}
+.st-count{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 12px;
+  padding-bottom:12px; border-bottom:1px solid var(--rule-soft)}
+.st-tage{font-family:var(--display); font-size:30px; font-weight:700; line-height:1;
+  letter-spacing:.01em; color:var(--pruefer)}
+.st-bis{font-size:13.5px; color:var(--muted)}
+.st-prog{margin-left:auto; font-size:13px; color:var(--muted); white-space:nowrap}
+.st-prog b{color:var(--ink); font-size:15px}
+
+.st-heute{display:flex; align-items:center; gap:16px; padding:14px 0 4px}
+.st-htxt{flex:1 1 auto; min-width:0}
+.st-hlabel{font-family:var(--display); text-transform:uppercase; letter-spacing:.14em;
+  font-size:10px; font-weight:700; color:var(--muted); margin-bottom:3px}
+.st-htitel{font-size:17px; font-weight:700; line-height:1.3}
+.st-hwarum{font-size:13px; color:var(--muted); line-height:1.5; margin-top:3px}
+.st-hknopf{flex:0 0 auto; white-space:nowrap}
+
+.st-kacheln{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px}
+.st-kachel{display:flex; flex-direction:column; align-items:flex-start; gap:2px;
+  text-align:left; padding:11px 12px; min-width:0; cursor:pointer;
+  border:1px solid var(--rule); border-radius:3px; background:var(--paper);
+  font:inherit; color:inherit; transition:border-color .12s, background .12s}
+.st-kachel:hover{border-color:var(--pruefer); background:var(--pruefer-soft)}
+.st-kn{font-weight:700; font-size:14px; line-height:1.25}
+.st-ku{font-size:11.5px; color:var(--muted); line-height:1.3}
+.st-kachel.warn{border-color:var(--warn); background:var(--warn-soft)}
+.st-kachel.warn .st-ku{color:var(--warn); font-weight:600}
+
+.st-fuss{margin-top:12px; text-align:right}
+.st-link{background:none; border:0; padding:0; cursor:pointer; font:inherit;
+  font-size:12.5px; color:var(--muted); text-decoration:underline}
+.st-link:hover{color:var(--pruefer)}
+
+/* --------------------------------------------- zuklappbare Abschnitte --- */
+details.st-block{border-top:1px solid var(--rule-soft); margin:0}
+details.st-block > summary{list-style:none; cursor:pointer; padding:13px 2px;
+  display:flex; align-items:baseline; gap:10px}
+details.st-block > summary::-webkit-details-marker{display:none}
+details.st-block > summary::before{content:"›"; font-size:17px; line-height:1;
+  color:var(--muted); transform:rotate(0deg); transition:transform .13s; flex:0 0 12px}
+details.st-block[open] > summary::before{transform:rotate(90deg)}
+details.st-block > summary:hover .st-name{color:var(--pruefer)}
+.st-name{font-family:var(--display); text-transform:uppercase; letter-spacing:.07em;
+  font-size:13.5px; font-weight:700}
+.st-zahl{margin-left:auto; font-size:12px; color:var(--muted); text-align:right}
+details.st-block > .abschnitt,
+details.st-block > div{margin-bottom:22px}
+details.st-block > .abschnitt > h2:first-child,
+details.st-block > div > h2:first-child{margin-top:4px}
+
+/* ============================================================================
+   Textmarker (gen/marker.js)
+   ========================================================================== */
+mark.mk{background:none; color:inherit; padding:0 1px; border-radius:2px;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact}
+mark.mk-gelb{background:#FFF07A}
+mark.mk-gruen{background:#B6F0C6}
+mark.mk-rot{background:#FFC2BC}
+[data-theme="dunkel"] mark.mk-gelb{background:#5C4F12; color:#F6EFC9}
+[data-theme="dunkel"] mark.mk-gruen{background:#1C4A32; color:#D8F2E3}
+[data-theme="dunkel"] mark.mk-rot{background:#5A2420; color:#F6DCD8}
+
+.mk-kasten{position:fixed; z-index:2400; display:flex; gap:3px; padding:4px;
+  background:var(--card); border:1px solid var(--rule); border-radius:4px;
+  box-shadow:0 6px 22px rgba(0,0,0,.22)}
+.mk-knopf{font:inherit; font-size:12.5px; font-weight:600; line-height:1;
+  border:1px solid transparent; border-radius:3px; padding:7px 10px; cursor:pointer;
+  color:#14171C; white-space:nowrap}
+.mk-knopf.mk-gelb{background:#FFF07A}
+.mk-knopf.mk-gruen{background:#B6F0C6}
+.mk-knopf.mk-rot{background:#FFC2BC}
+.mk-knopf.mk-weg{background:var(--paper); color:var(--muted); border-color:var(--rule)}
+.mk-knopf:hover{border-color:var(--ink)}
+
+.mk-hilfe{display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  font-size:12.5px; color:var(--muted); margin-top:10px}
+.mk-probe{padding:1px 7px; border-radius:2px; color:#14171C; font-weight:600}
+
+/* Musterlösungen mit Tabelle oder Struktogramm: feste Zeichenbreite */
+.loesung-txt.mono{font-family:var(--data); font-size:12.5px; line-height:1.6;
+  overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+/* ============================================================================
+   Tempo je Aufgabentyp (gen/zeit.js)
+   ========================================================================== */
+.zt-liste{margin:14px 0 4px}
+.zt-zeile{display:grid; grid-template-columns:190px 42px 1fr 96px; gap:10px;
+  align-items:center; padding:7px 0; border-bottom:1px solid var(--rule-soft)}
+.zt-zeile:last-child{border-bottom:0}
+.zt-name{font-size:13.5px; font-weight:600}
+.zt-n{font-size:12px; color:var(--muted); text-align:right}
+.zt-spur{position:relative; height:12px; background:var(--field);
+  border-radius:2px; overflow:hidden; display:block}
+.zt-spur i{display:block; height:100%; background:var(--ok); border-radius:2px}
+.zt-zeile.eng .zt-spur i{background:var(--red)}
+.zt-zeile.gut .zt-spur i{background:var(--ok)}
+.zt-marke{position:absolute; top:-3px; width:2px; height:18px;
+  background:var(--ink); opacity:.55}
+.zt-wert{font-family:var(--data); font-size:12.5px; text-align:right}
+.zt-fazit{margin-top:12px; font-size:13px; line-height:1.6; padding:9px 12px;
+  border-left:3px solid var(--pruefer); background:var(--pruefer-soft); border-radius:2px}
+.zt-fuss{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin-top:12px; font-size:12px; color:var(--muted); flex-wrap:wrap}
+
+/* ============================================================================
+   Lernplan bis zur Prüfung (gen/plan.js)
+   ========================================================================== */
+.pl-stell{display:flex; align-items:center; gap:7px; flex-wrap:wrap;
+  font-size:12.5px; color:var(--muted); margin:12px 0 14px}
+.pl-min{font:inherit; font-size:12.5px; padding:5px 11px; cursor:pointer;
+  border:1px solid var(--rule); border-radius:2px; background:var(--card); color:var(--ink)}
+.pl-min.an{border-color:var(--pruefer); background:var(--pruefer-soft);
+  color:var(--pruefer); font-weight:700}
+
+.pl-liste{display:flex; flex-direction:column; gap:10px}
+.pl-tag{border:1px solid var(--rule); border-radius:3px; background:var(--card);
+  padding:10px 12px}
+.pl-tag.heute{border-color:var(--pruefer); border-left:3px solid var(--pruefer)}
+.pl-tag.fertig{opacity:.55}
+.pl-kopf{display:flex; align-items:baseline; gap:10px; margin-bottom:8px}
+.pl-datum{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:11.5px; font-weight:700}
+.pl-rest{font-size:11.5px; color:var(--muted)}
+.pl-hak{margin-left:auto; font:inherit; font-size:11.5px; cursor:pointer;
+  border:1px solid var(--rule); border-radius:2px; padding:4px 9px;
+  background:var(--paper); color:var(--muted)}
+.pl-hak.an{border-color:var(--ok); color:var(--ok); background:var(--ok-soft); font-weight:700}
+
+.pl-block{display:flex; align-items:center; gap:12px; padding:8px 0;
+  border-top:1px solid var(--rule-soft)}
+.pl-block:first-of-type{border-top:0}
+.pl-btxt{flex:1 1 auto; min-width:0}
+.pl-btitel{font-size:13.5px; font-weight:700}
+.pl-bwarum{font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:2px}
+.pl-block .btn{flex:0 0 auto}
+.pl-simulation .pl-btitel, .pl-pruefung .pl-btitel{color:var(--pruefer)}
+.pl-fuss{margin-top:10px; text-align:right}
+.pl-mehr{background:none; border:0; padding:0; cursor:pointer; font:inherit;
+  font-size:12.5px; color:var(--muted); text-decoration:underline}
+.pl-mehr:hover{color:var(--pruefer)}
+
+/* ============================================================================
+   Pseudocode selbst schreiben (gen/pseudocode.js)
+   ========================================================================== */
+.ps-liste{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:14px 0}
+.ps-karte{display:flex; flex-direction:column; align-items:flex-start; gap:2px;
+  text-align:left; padding:10px 12px; cursor:pointer; font:inherit; color:inherit;
+  border:1px solid var(--rule); border-radius:3px; background:var(--card)}
+.ps-karte:hover{border-color:var(--pruefer)}
+.ps-karte.an{border-color:var(--pruefer); background:var(--pruefer-soft)}
+.ps-titel{font-weight:700; font-size:13.5px; line-height:1.25}
+.ps-herk{font-size:11px; color:var(--muted)}
+.ps-stand{font-family:var(--data); font-size:11.5px; color:var(--muted); margin-top:3px}
+
+.ps-uebung{border:1px solid var(--rule); border-top:3px solid var(--pruefer);
+  border-radius:3px; background:var(--card); padding:14px 16px; margin-top:6px}
+.ps-kopf{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  flex-wrap:wrap; margin-bottom:8px}
+.ps-kopf h3{margin:0; font-size:16px}
+.ps-modus{display:flex; gap:4px}
+.ps-mk{font:inherit; font-size:12px; padding:5px 10px; cursor:pointer;
+  border:1px solid var(--rule); border-radius:2px; background:var(--paper); color:var(--ink)}
+.ps-mk.an{border-color:var(--pruefer); background:var(--pruefer-soft); color:var(--pruefer); font-weight:700}
+.ps-text{font-size:13px; line-height:1.6; white-space:pre-wrap; color:var(--muted);
+  background:var(--field); border-radius:2px; padding:10px 12px; margin-bottom:12px}
+
+.ps-zeile{display:flex; align-items:center; gap:8px; padding:5px 8px; margin-bottom:4px;
+  border:1px solid var(--rule); border-radius:2px; background:var(--paper)}
+.ps-code{font-family:var(--data); font-size:12.5px; flex:1 1 auto; min-width:0;
+  overflow-x:auto; white-space:pre}
+.ps-wz{display:flex; gap:3px; flex:0 0 auto}
+.ps-pfeil{width:30px; height:30px; font:inherit; font-size:14px; cursor:pointer;
+  border:1px solid var(--rule); border-radius:2px; background:var(--card); color:var(--ink)}
+.ps-pfeil:disabled{opacity:.3; cursor:default}
+.ps-leiste{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+
+.ps-feld{width:100%; font-family:var(--data); font-size:13px; line-height:1.7;
+  background:var(--paper); border:1px solid var(--rule); border-radius:2px; padding:10px 12px}
+.ps-feld:focus{border-color:var(--pruefer); outline:none}
+
+.ps-erg{margin-top:12px}
+.ps-note{font-size:13.5px; font-weight:700; padding:8px 11px; border-radius:2px}
+.ps-note.gut{background:var(--ok-soft); color:var(--ok); border-left:3px solid var(--ok)}
+.ps-note.fast{background:var(--warn-soft); color:var(--warn); border-left:3px solid var(--warn)}
+.ps-note.schlecht{background:var(--red-soft); color:var(--red); border-left:3px solid var(--red)}
+.ps-bausteine{margin:10px 0}
+.ps-bs{display:flex; align-items:baseline; gap:8px; font-size:12.5px; padding:3px 0;
+  color:var(--muted); flex-wrap:wrap}
+.ps-bs.da{color:var(--ok)}
+.ps-bsmark{font-family:var(--data); width:14px}
+.ps-bsname{font-weight:600}
+.ps-bstipp{color:var(--muted); font-style:italic; flex:1 1 220px}
+.ps-titel2{font-family:var(--display); text-transform:uppercase; letter-spacing:.11em;
+  font-size:10px; font-weight:700; color:var(--muted); margin:12px 0 5px}
+.ps-loesung{font-family:var(--data); font-size:12.5px; line-height:1.65; margin:0;
+  background:var(--field); border-radius:2px; padding:11px 13px; overflow-x:auto}
+.ps-falle{margin-top:10px; font-size:12.5px; line-height:1.6; padding:8px 11px;
+  border-left:3px solid var(--warn); background:var(--warn-soft); border-radius:2px}
+
+/* --------------------------- Markierstift (gen/marker.js, Handy-Modus) --- */
+button.mk-stift{flex:0 0 auto; width:36px; height:34px; padding:0; cursor:pointer;
+  font:inherit; font-size:17px; line-height:1;
+  border:1px solid var(--rule); border-radius:3px;
+  background:var(--card); color:var(--ink)}
+button.mk-stift.an{border-color:#B8901A; background:#FFF07A; color:#14171C}
+body.mk-stift .tk-frage, body.mk-stift .gruppe-txt, body.mk-stift .tk-gintro,
+body.mk-stift .gfrage, body.mk-stift .gsituation, body.mk-stift .loesung-txt,
+body.mk-stift .katalog-hinweis, body.mk-stift .gmerksatz{
+  -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
+  cursor:crosshair; box-shadow:inset 3px 0 0 #FFF07A; padding-left:7px;
+  border-radius:2px}
+
+/* ============================================================================
+   Aktivitätsdiagramm als Bild (gen/flussbild.js)
+   ----------------------------------------------------------------------------
+   Eine Spalte von oben nach unten, Verzweigungen nebeneinander. Unter 640 px
+   stehen die Zweige untereinander mit Einzug — sonst wird jeder Kasten so
+   schmal, dass die Beschriftung abgeschnitten ist, und genau das war ja das
+   Problem an der Tabelle.
+   ========================================================================== */
+.fb{--fb-linie:var(--rule); margin:6px 0 10px; font-size:13.5px;
+  max-width:620px}
+.fb-reihe{display:flex; flex-direction:column; align-items:stretch}
+
+.fb-knoten{display:flex; align-items:center; gap:9px; background:var(--card);
+  border:1px solid var(--fb-linie); border-radius:6px; padding:8px 11px; min-height:44px}
+.fb-knoten .fb-sym{flex:none; font-size:15px; line-height:1; color:var(--muted)}
+.fb-knoten .fb-txt{flex:1; min-width:0}
+.fb-knoten .fb-name{font-weight:600}
+.fb-knoten .fb-typ{flex:none; max-width:46%}
+.fb-typname{font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:9.5px; font-weight:700; color:var(--muted); white-space:nowrap}
+
+/* Formen: die Bedeutung steckt in der Form, nicht nur in der Beschriftung */
+.fb-start{border-radius:999px; background:var(--field)}
+.fb-start .fb-sym{color:var(--ink); font-size:13px}
+.fb-ende{border-radius:999px; background:var(--field); border-width:2px}
+.fb-aktion{border-radius:8px}
+.fb-raute{border-color:var(--pruefer); background:var(--pruefer-soft);
+  clip-path:polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  padding-left:20px; padding-right:20px}
+.fb-merge{border-style:dashed; background:var(--field)}
+.fb-balken{background:var(--ink); color:var(--paper); border-color:var(--ink); border-radius:3px;
+  min-height:34px}
+.fb-balken .fb-sym, .fb-balken .fb-typname{color:var(--paper); opacity:.75}
+.fb-balken .fb-name{font-weight:600}
+
+/* Kante von Kasten zu Kasten */
+.fb-pfeil{align-self:center; width:0; height:18px; border-left:2px solid var(--fb-linie);
+  position:relative; flex:none}
+.fb-pfeil::after{content:""; position:absolute; left:-4px; bottom:-1px;
+  border:5px solid transparent; border-top-color:var(--fb-linie); border-bottom:0}
+
+/* Verzweigung */
+.fb-zweige{display:flex; gap:14px; align-items:flex-start; margin-top:2px}
+.fb-spalte{flex:1; min-width:0; border-top:2px solid var(--pruefer); padding-top:9px;
+  position:relative}
+.fb-bed{margin-bottom:7px}
+.fb-bedtext{font-family:var(--data); font-size:12px; font-weight:600; color:var(--pruefer);
+  background:var(--pruefer-soft); border-radius:10px; padding:2px 9px; display:inline-block}
+.fb-bedtext.fb-leer{color:var(--muted); background:var(--field)}
+.fb-weiter{font-size:12px; color:var(--muted); font-style:italic; padding:4px 0}
+.fb-sprung{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--warn);
+  background:var(--field); border:1px dashed var(--warn); border-radius:6px; padding:6px 10px}
+
+/* Lücken */
+.fb-luecke{font:inherit; font-size:13px; max-width:100%; width:100%;
+  background:var(--field); border:1px solid var(--pruefer); border-radius:4px;
+  padding:6px 7px; min-height:36px; color:var(--ink)}
+.fb-l-typ{font-family:var(--display); text-transform:uppercase; letter-spacing:.06em;
+  font-size:10.5px; font-weight:700; min-width:130px}
+.fb-l-bed{width:auto; min-width:120px; font-family:var(--data)}
+.fb-luecke.richtig{border-color:var(--ok); background:var(--ok-soft)}
+.fb-luecke.falsch{border-color:var(--red); background:var(--red-soft)}
+.fb-fest{font-weight:600}
+.fb-loesung .fb-fest{background:var(--ok-soft); border-radius:3px; padding:1px 5px}
+.fb-hinweis{font-size:12.5px; color:var(--muted); line-height:1.55; margin-top:2px}
+
+@media (max-width:640px){
+  .fb-zweige{flex-direction:column; gap:10px}
+  .fb-spalte{border-top:0; border-left:3px solid var(--pruefer); padding:0 0 0 12px; margin-left:8px}
+  .fb-knoten{flex-wrap:wrap; gap:6px 9px}
+  .fb-knoten .fb-typ{max-width:100%; flex:1 0 100%}
+  .fb-raute{clip-path:none; border-left:4px solid var(--pruefer); padding-left:11px; padding-right:11px}
+}
+
+/* Knoten mit noch offenem Typ: neutral, bis die Antwort steht */
+.fb-offen{border:2px dashed var(--pruefer); background:var(--field)}
+.fb-offen .fb-sym{color:var(--pruefer); font-weight:700}
+.fb-anonym{color:var(--muted); font-style:italic; font-weight:400}
+
+/* „Was trage ich wo ein?“ — die Spaltenbelegung je Beziehungsart.
+   Ohne diese Tabelle rät man, welche Felder eine Generalisierung braucht. */
+.ex-hilfe{margin-top:11px; border-top:1px dashed var(--rule); padding-top:9px}
+.ex-hilfe-titel{font-family:var(--display); text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; font-weight:700; color:var(--muted); margin-bottom:6px}
+.ex-hilfe-tab{border-collapse:collapse; width:100%; font-size:12.5px}
+.ex-hilfe-tab th{text-align:left; font-family:var(--display); text-transform:uppercase;
+  letter-spacing:.07em; font-size:9.5px; color:var(--muted); font-weight:700;
+  padding:3px 8px 5px; border-bottom:1px solid var(--rule)}
+.ex-hilfe-tab td{padding:5px 8px; border-bottom:1px solid var(--rule-soft); vertical-align:top;
+  line-height:1.45}
+.ex-hilfe-tab td.ex-hilfe-art{font-family:var(--data); font-weight:600; color:var(--pruefer);
+  white-space:nowrap}
+.ex-hilfe-tab code{font-family:var(--data); font-size:11.5px; background:var(--field);
+  border-radius:3px; padding:1px 5px}
+@media (max-width:640px){
+  .ex-hilfe-tab, .ex-hilfe-tab tbody, .ex-hilfe-tab tr, .ex-hilfe-tab td{display:block; width:auto}
+  .ex-hilfe-tab thead, .ex-hilfe-tab th{display:none}
+  .ex-hilfe-tab tr{border-bottom:1px solid var(--rule); padding:6px 0}
+  .ex-hilfe-tab td{border:0; padding:2px 0}
+  .ex-hilfe-tab td.ex-hilfe-art{color:var(--pruefer)}
+}
+
+/* „Generalisierung“ ist das längste Wort in der Auswahl — die Spalte muss es
+   ganz zeigen, sonst rät man, was da abgeschnitten steht. */
+.ex-dia table select{min-width:148px}
+@media (max-width:640px){ .ex-dia table select{min-width:130px} }
+
+/* ============================================================================
+   Archiv der Durchgänge (gen/archiv.js)
+   ========================================================================== */
+.ar-karte{border:1px solid var(--rule); border-left:3px solid var(--pruefer);
+  background:var(--card); border-radius:2px; padding:12px 14px; margin-bottom:10px}
+.ar-kopf{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:6px}
+.ar-label{font-family:var(--data); font-weight:700; font-size:13.5px}
+.ar-be{font-family:var(--data); font-size:12.5px; color:var(--muted); white-space:nowrap}
+.ar-be.besser{color:var(--ok); font-weight:600}
+.ar-be.schlechter{color:var(--red); font-weight:600}
+.ar-frage{font-size:13px; color:var(--muted); line-height:1.55; margin-bottom:7px}
+.ar-antwort{white-space:pre-wrap; font-size:14px; line-height:1.6; background:var(--field);
+  border-radius:3px; padding:9px 11px}
+.ar-antwort.leer, .ar-spalte.leer{color:var(--muted); font-style:italic}
+.ar-loesung{margin-top:8px}
+.ar-loesung summary{font-family:var(--display); text-transform:uppercase; letter-spacing:.1em;
+  font-size:10px; font-weight:700; color:var(--muted); cursor:pointer}
+.ar-loestxt{white-space:pre-wrap; font-size:13px; line-height:1.6; color:var(--muted);
+  margin-top:6px; padding-left:10px; border-left:2px solid var(--rule)}
+
+.ar-paar{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.ar-spalte{white-space:pre-wrap; font-size:13.5px; line-height:1.6; background:var(--field);
+  border-radius:3px; padding:9px 11px}
+.ar-vgl-kopf{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 8px;
+  font-family:var(--data); font-size:12.5px; color:var(--muted)}
+.ar-wahl{font:inherit; font-size:13px; padding:5px 7px; min-height:34px;
+  border:1px solid var(--rule); border-radius:4px; background:var(--field); color:var(--ink)}
+@media (max-width:640px){
+  .ar-paar, .ar-vgl-kopf{grid-template-columns:1fr}
+  .ar-spalte + .ar-spalte{border-top:2px solid var(--pruefer)}
+}
+.ar-warnung{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:10px 0;
+  border:1px solid var(--warn); background:var(--warn-soft, var(--field)); border-radius:4px;
+  padding:10px 12px; font-size:13.5px; line-height:1.55}
+.ar-warnung > div{flex:1; min-width:220px}
+
+/* Sichtbarer Rückweg im Kopf (gen/zurueck.js).
+   Die Marke links ist zwar klickbar, sieht aber wie eine Überschrift aus —
+   ein Knopf, der wie ein Knopf aussieht, erspart das Raten. */
+.kopf .btn.zurueck{flex:none; margin-right:4px; min-height:36px; padding:0 12px;
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:11px; font-weight:700}
+@media (max-width:700px){
+  .kopf .btn.zurueck{padding:0 9px; min-height:34px}
+  .kopf .btn.zurueck span{font-size:14px}
+}
+
+/* ---------------------------------------------------- Plan: Themenliste ---
+   Antwort auf „was ist eigentlich noch offen?“ — der Tagesplan zeigt nur
+   den heutigen Vorschlag, diese Liste zeigt alle Themen mit Stand und dem
+   Tag, an dem sie zuletzt dran waren.                                    */
+details.pl-themen{margin-top:14px; border:1px solid var(--rule); border-radius:4px;
+  background:var(--card)}
+details.pl-themen > summary{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline;
+  cursor:pointer; padding:11px 14px; font-family:var(--display); font-weight:700;
+  font-size:13.5px; list-style:none}
+details.pl-themen > summary::-webkit-details-marker{display:none}
+details.pl-themen > summary::before{content:"▸"; color:var(--muted); font-size:11px}
+details.pl-themen[open] > summary::before{content:"▾"}
+.pl-th-zahl{margin-left:auto; font-family:var(--data); font-size:11.5px; font-weight:400;
+  color:var(--muted)}
+.pl-th-liste{display:flex; flex-direction:column; gap:4px; padding:0 12px 12px}
+.pl-th{display:flex; align-items:center; gap:10px; width:100%; text-align:left;
+  min-height:44px; padding:8px 11px; cursor:pointer; font:inherit;
+  background:var(--field); border:1px solid var(--rule); border-radius:4px; color:var(--ink)}
+.pl-th:hover{border-color:var(--pruefer); background:var(--pruefer-soft)}
+.pl-th-txt{flex:1 1 auto; min-width:0}
+.pl-th-name{font-size:13.5px; font-weight:600; line-height:1.3}
+.pl-th-meta{font-size:11.5px; color:var(--muted); font-family:var(--data); margin-top:1px}
+.pl-th-los{flex:0 0 auto; font-family:var(--display); text-transform:uppercase;
+  letter-spacing:.08em; font-size:10.5px; font-weight:700; color:var(--pruefer)}
+/* heute schon dran gewesen — nicht verboten, nur nicht mehr dringend */
+.pl-th.frisch{opacity:.6}
+.pl-th.neu{border-left:3px solid var(--warn)}
+@media print{ details.pl-themen{display:none} }

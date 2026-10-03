@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AP2 · Проверка учебного маршрута</title>
+<link rel="stylesheet" href="../gen/lernweg.css">
+<style>:root{--card:#fff;--paper:#fcfcfa;--field:#f3f1f8;--ink:#24212b;--muted:#666;--rule:#ddd;--pruefer:#5B2A86}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Segoe UI",sans-serif}[hidden]{display:none!important}.btn{font:inherit;border:1px solid var(--rule);border-radius:8px;padding:10px;background:white;color:var(--ink)}.primary{background:var(--pruefer);color:white}.qa{padding:12px}</style>
+<div class="qa">Проверка в отдельной вкладке. Учебные данные приложения не меняются.</div>
+<div id="kopfTitel"><span id="kEyebrow"></span><h1 id="kTitel"></h1></div><div id="scStart" class="seite"><button class="btn" onclick="GENLERNWEG.oeffnen()">Мой маршрут</button></div>
+<script>Object.defineProperty(window,"localStorage",{value:{getItem:k=>sessionStorage.getItem("lernweg-qa:"+k),setItem:(k,v)=>sessionStorage.setItem("lernweg-qa:"+k,v)}});window.schirm=function(){};</script>
+<script src="../gen/lernstand.js"></script><script src="../gen/lernweg-daten.js"></script><script src="../gen/lernweg.js"></script>
+</html>

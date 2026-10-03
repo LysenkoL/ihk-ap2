@@ -1,0 +1,2071 @@
+/* ============================================================================
+   gen/azubi.js — Bogen-Player für die echten AP2-Prüfungen (Prüfungspaket)
+   ----------------------------------------------------------------------------
+   Übernommen aus dem AP1-Simulator (dort: Azubi-Navigator). Hier spielt er die
+   abgeschriebenen IHK-Bögen ab — WiSo, später GA1 und GA2: jederzeit
+   aufhören, später genau dort weitermachen, nichts geht verloren.
+
+   Daten: privat/ap2-paket.js (window.IHK_AZUBI), gebaut mit
+   tools/paket_bauen.py aus privat/quellen/*.json. Der Ordner privat/ geht
+   NICHT auf GitHub Pages (Prüfungsaufgaben der ZPA). Aufs Handy
+   kommt das Paket über „Paket laden“ — es liegt dann im Gerätespeicher
+   (IndexedDB), nicht im Netz.
+
+   Zwei Arten zu arbeiten:
+     Übung    — nach jeder Teilaufgabe „Lösung zeigen“, sofort bewerten.
+     Prüfung  — Uhr läuft (90 Min.), Lösungen erst nach „Abgeben“.
+
+   Geschlossene Aufgaben (Zahlen, Tabellen, Zuordnen, Ankreuzen) prüft die
+   App selbst und schlägt Punkte vor; offene bewertet man mit Musterlösung
+   und Bewertungshinweis selbst.
+
+   Speicher: ap2:azubi:<modul>  — wandert mit dem Export auf andere Geräte.
+   ========================================================================== */
+"use strict";
+
+(function (root) {
+  const hatDom = typeof document !== "undefined";
+  const $ = id => document.getElementById(id);
+  const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const ik = (n, g) => root.GENIKON ? root.GENIKON.svg(n, g || 16) : "";
+
+  const SK = "ap2:azubi:";
+  const SK_UI = "ap2:azubi:ui";
+  const lies = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } };
+  const schreib = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
+
+  /* ======================================================================
+     Bewertung — reine Funktionen (tests/azubi.test.js)
+     ====================================================================== */
+  function normText(s) {
+    return String(s == null ? "" : s).toLowerCase()
+      .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+      .replace(/[„“”"'`´‚‘’]/g, "").replace(/\s+/g, " ").replace(/[.;:!?]+$/, "").trim();
+  }
+
+  /** Alle plausiblen Lesarten einer eingetippten Zahl: 1.512 kann 1512 oder 1,512 sein.
+      Mit Rechenweg im Feld zählt das Ergebnis hinter dem letzten „=“, mit
+      Klammerzusatz („375 W (mit Puffer …)“) der Teil davor.               */
+  function zahlen(s) {
+    const roh = String(s == null ? "" : s);
+    const kandidaten = [roh];
+    if (roh.indexOf("=") >= 0) kandidaten.push(roh.slice(roh.lastIndexOf("=") + 1));
+    if (roh.indexOf("(") > 0) kandidaten.push(roh.slice(0, roh.indexOf("(")));
+    if (/[\u2248~]/.test(roh)) kandidaten.push(roh.slice(roh.search(/[\u2248~]/) + 1));
+    const out = [];
+    const add = v => { if (!isNaN(v) && out.indexOf(v) < 0) out.push(v); };
+    kandidaten.forEach(k => {
+      let t = k.replace(/[\s\u00a0\u202f]/g, "");
+      t = t.replace(/^[^\d-]+/, "").replace(/[^\d.,]+$/, "");
+      if (/^-?\d+([.,]\d+)?$/.test(t)) add(parseFloat(t.replace(",", ".")));
+      if (/^-?\d{1,3}(\.\d{3})+(,\d+)?$/.test(t)) add(parseFloat(t.replace(/\./g, "").replace(",", ".")));
+      if (/^-?\d{1,3}(,\d{3})+(\.\d+)?$/.test(t)) add(parseFloat(t.replace(/,/g, "")));
+    });
+    return out;
+  }
+
+  const leer = v => v == null || (typeof v === "string" && !v.trim()) || (Array.isArray(v) && !v.length);
+
+  function feldRichtig(f, wert) {
+    if (leer(wert) || !f || !f.soll || !f.soll.length) return false;
+    if (f.art === "zahl") {
+      const ist = zahlen(wert);
+      return f.soll.some(s => {
+        const b = zahlen(s)[0];
+        if (b == null) return false;
+        const nk = (String(s).split(/[.,]/)[1] || "").length;
+        const tol = nk ? Math.pow(10, -nk) + 1e-9 : 1e-9;
+        return ist.some(a => Math.abs(a - b) <= tol);
+      });
+    }
+    const ist = textVarianten(wert, true);
+    return f.soll.some(s => textVarianten(s, false).some(v => ist.indexOf(v) >= 0));
+  }
+
+  /** Lesarten einer Textantwort: ohne Leerzeichen und Klammerzeichen. Bei der
+      eigenen Antwort (locker) außerdem ohne „Netzadresse:“ davor, ohne
+      Präfix „/26“ hinter einer IP-Adresse und ohne Zusatz in Klammern.   */
+  function textVarianten(wert, locker) {
+    const n = normText(wert);
+    const v = [n];
+    const add = x => { x = x.trim(); if (x && v.indexOf(x) < 0) v.push(x); };
+    if (locker) {
+      add(n.replace(/^[a-z .-]{3,40}:\s*(?=\S)/, ""));                      /* „Netzadresse: …“ */
+      v.slice().forEach(x => add(x.replace(/\s*\/\s*\d{1,3}$/, "")));           /* 10.40.7.128/26 */
+      v.slice().forEach(x => add(x.replace(/\s*\([^)]*\)\s*$/, "")));          /* … (Hinweis)     */
+    }
+    v.slice().forEach(x => { add(x.replace(/\s/g, "")); add(x.replace(/[\s()]/g, "")); });
+    return v;
+  }
+
+  /** Alle automatisch prüfbaren Stellen einer Teilaufgabe: [{key, art, ...}] */
+  function stellen(t) {
+    const E = t.eingabe || {};
+    const out = [];
+    if (E.typ === "raster") (E.zellen || []).forEach(z => { if (z && z.f) out.push({ key: "f" + z.f.id, art: "feld", f: z.f }); });
+    else if (E.typ === "zeilen") (E.zeilen || []).forEach(z => (z.felder || []).forEach(f => out.push({ key: "f" + f.id, art: "feld", f })));
+    else if (E.typ === "zuordnung") (E.zeilen || []).forEach(z => out.push({ key: "z" + z.id, art: "zuordnung", soll: z.soll }));
+    else if (E.typ === "wahl") (E.zeilen || []).forEach(z => out.push({ key: "w" + z.id, art: "wahl", soll: z.soll }));
+    else if (E.typ === "mehrfach") out.push({ key: "m", art: "mehrfach", soll: E.soll || [], alt: E.alternativen || [] });
+    return out;
+  }
+  const hatFreitext = t => (t.eingabe || {}).typ === "zeilen" && (t.eingabe.zeilen || []).some(z => z.frei);
+
+  function hatAntwort(t, a) {
+    if (!a) return false;
+    return Object.keys(a).some(k => !leer(a[k]));
+  }
+
+  /** Ergebnis der automatischen Kontrolle. `vorschlag` nur, wenn alles prüfbar ist. */
+  function pruefe(t, a) {
+    a = a || {};
+    const st = stellen(t);
+    const marken = {};
+    let n = 0, k = 0;
+    st.forEach(s => {
+      const w = a[s.key];
+      if (s.art === "feld") { n++; marken[s.key] = feldRichtig(s.f, w); if (marken[s.key]) k++; }
+      else if (s.art === "zuordnung") { n++; marken[s.key] = !leer(w) && String(w) === String(s.soll); if (marken[s.key]) k++; }
+      else if (s.art === "wahl") { n++; marken[s.key] = w != null && w !== "" && Number(w) === s.soll; if (marken[s.key]) k++; }
+      else if (s.art === "mehrfach") {
+        const gew = Array.isArray(w) ? Array.from(new Set(w.map(Number))) : [];
+        /* AP2: Lösungsbogen kann mehrere Lösungen als richtig werten (s.alt) — die beste zählt */
+        const bewerte = soll => { const tp = gew.filter(x => soll.indexOf(x) >= 0).length; return { tp, fp: gew.length - tp, soll }; };
+        const r = [s.soll].concat(s.alt || []).map(bewerte)
+          .sort((x, y) => (y.tp - y.fp) / y.soll.length - (x.tp - x.fp) / x.soll.length)[0];
+        n += r.soll.length; k += Math.max(0, r.tp - r.fp);
+        marken.m = gew.length > 0 && r.tp === r.soll.length && r.fp === 0;
+      }
+    });
+    const offen = hatFreitext(t);
+    /* AP2-WiSo: „Globalbewertung“ = nur ganz richtig zählt (t.global) */
+    const quote = n ? (t.global ? (k === n ? 1 : 0) : k / n) : 0;
+    /* Bruchpunkte (WiSo: 100/30) erst bei der Anzeige der Summe runden. */
+    const pk = t.punkte || 0, ganzHalb = Number.isInteger(pk * 2);
+    return { n, k, quote, marken, offen, pruefbar: n > 0,
+             vorschlag: (n > 0 && !offen) ? (ganzHalb ? Math.round(quote * pk * 2) / 2 : quote * pk) : null };
+  }
+
+  const NOTEN = [[92, 1, "sehr gut"], [81, 2, "gut"], [67, 3, "befriedigend"], [50, 4, "ausreichend"], [30, 5, "mangelhaft"], [0, 6, "ungenügend"]];
+  function note(prozent) {
+    for (const [ab, n, text] of NOTEN) if (prozent >= ab) return { n, text };
+    return { n: 6, text: "ungenügend" };
+  }
+
+  const teileVon = m => (m.aufgaben || []).reduce((l, a) => l.concat(a.teile || []), []);
+
+  function punkteFuer(t, z) {
+    const p = (z.p || {})[t.id];
+    if (p == null || !(z.auto || {})[t.id] || Number.isInteger((t.punkte || 0) * 2)) return p;
+    const r = pruefe(t, (z.a || {})[t.id]);
+    /* Nur eindeutig erkennbare alte Auto-Rundung korrigieren. Manuelle
+       Punkte und inzwischen abweichende Antworten bleiben unverändert. */
+    return r.vorschlag != null && p === Math.round(r.vorschlag * 100) / 100 ? r.vorschlag : p;
+  }
+
+  function auswertung(m, z) {
+    const teile = teileVon(m);
+    let punkte = 0, max = 0, bewertet = 0, bearbeitet = 0;
+    const jeAufgabe = (m.aufgaben || []).map(a => {
+      let p = 0, mx = 0, bw = 0, bb = 0;
+      (a.teile || []).forEach(t => {
+        mx += t.punkte || 0;
+        const pt = punkteFuer(t, z);
+        if (pt != null) { p += pt; bw++; }
+        if (hatAntwort(t, z.a[t.id])) bb++;
+      });
+      punkte += p; max += mx; bewertet += bw; bearbeitet += bb;
+      return { nr: a.nr, titel: a.titel, p, max: mx, bewertet: bw, bearbeitet: bb, n: (a.teile || []).length };
+    });
+    const prozent = max ? Math.round(punkte / max * 1000) / 10 : 0;
+    return { punkte, max, bewertet, bearbeitet, n: teile.length, prozent, note: note(prozent),
+             fertig: teile.length > 0 && bewertet === teile.length, jeAufgabe };
+  }
+
+  const BISHER_PROZENT = { "sehr gut": 95, "gut": 85, "befriedigend": 73, "ausreichend": 58, "mangelhaft": 40, "ungenügend": 20 };
+
+  /** Reihenfolge der Empfehlung: angefangen → nie gemacht → schwach → Rest */
+  function einordnen(m, z, bisher) {
+    const s = auswertung(m, z);
+    if ((s.bearbeitet > 0 || s.bewertet > 0) && !s.fertig) return { g: "weiter", r: 0, s };
+    const letzte = s.fertig ? s.prozent : (z.versuche && z.versuche.length ? z.versuche[z.versuche.length - 1].prozent : null);
+    if (letzte == null && !bisher) return { g: "neu", r: 1, s };
+    const pr = letzte != null ? letzte : (BISHER_PROZENT[String(bisher).toLowerCase()] != null ? BISHER_PROZENT[String(bisher).toLowerCase()] : 50);
+    return pr < 50 ? { g: "schwach", r: 2, pr, s } : { g: "gemacht", r: 3, pr, s };
+  }
+
+  function sortiert(module, zustandVon, bisher) {
+    return module.map(m => {
+      const z = zustandVon(m.id);
+      return Object.assign({ m, z }, einordnen(m, z, (bisher || {})[m.id]));
+    }).sort((x, y) => x.r - y.r ||
+      (x.g === "weiter" ? (y.z.zuletzt || 0) - (x.z.zuletzt || 0) : 0) ||
+      ((x.pr != null && y.pr != null) ? x.pr - y.pr : 0) ||
+      (x.m.art === y.m.art ? 0 : x.m.art === "pruefung" ? -1 : 1) ||
+      x.m.nr - y.m.nr);
+  }
+
+  /* ======================================================================
+     Paket laden: Ordner (privat/azubi-daten.js) → Gerätespeicher → Datei
+     ====================================================================== */
+  let PAKET = null;
+  let QUELLE = "";          /* "ordner" | "geraet" */
+  const gueltig = p => !!(p && typeof p === "object" && Array.isArray(p.module) && p.module.length &&
+                         p.module.every(m => m && m.id && Array.isArray(m.aufgaben)) && p.bilder && typeof p.bilder === "object");
+  function paket() {
+    if (!PAKET && gueltig(root.IHK_AZUBI)) PAKET = root.IHK_AZUBI;
+    return PAKET;
+  }
+  /* Virtuelle Module: die Prognose-Prüfungen (gen/prognose-daten.js) laufen im
+     selben Bogen, brauchen aber kein Azubi-Paket. */
+  const virtuelle = () => ((root.IHK_PROGNOSE && root.IHK_PROGNOSE.pruefungen) || []).filter(m => m && m.id && Array.isArray(m.aufgaben));
+  const virt = id => virtuelle().find(m => m.id === id) || null;
+  const modul = id => { const v = virt(id); if (v) return v; const p = paket(); return p ? p.module.find(m => m.id === id) || null : null; };
+  /** Alle Module: Paket (falls geladen) + Prognose-Prüfungen */
+  const alleModule = () => (paket() ? paket().module : []).concat(virtuelle());
+
+  function idb() {
+    return new Promise((ok, nein) => {
+      if (!root.indexedDB) { nein(new Error("Kein Gerätespeicher (IndexedDB)")); return; }
+      const r = root.indexedDB.open("ap2-azubi", 1);
+      r.onupgradeneeded = () => { r.result.createObjectStore("paket"); };
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => nein(r.error);
+    });
+  }
+  function idbTu(modus, fn) {
+    return idb().then(db => new Promise((ok, nein) => {
+      let erg;
+      const tx = db.transaction("paket", modus);
+      const req = fn(tx.objectStore("paket"));
+      if (req) req.onsuccess = () => { erg = req.result; };
+      tx.oncomplete = () => { db.close(); ok(erg); };
+      tx.onerror = () => { db.close(); nein(tx.error); };
+      tx.onabort = () => { db.close(); nein(tx.error); };
+    }));
+  }
+
+  let ladeVersprechen = null;
+  function laden() {
+    if (paket()) { QUELLE = QUELLE || "ordner"; return Promise.resolve(PAKET); }
+    if (ladeVersprechen) return ladeVersprechen;
+    ladeVersprechen = new Promise(fertig => {
+      const ausGeraet = () => idbTu("readonly", st => st.get("aktuell"))
+        .then(p => { if (gueltig(p)) { root.IHK_AZUBI = p; QUELLE = "geraet"; } fertig(paket()); })
+        .catch(() => fertig(paket()));
+      if (!hatDom) { ausGeraet(); return; }
+      const s = document.createElement("script");
+      s.src = "privat/ap2-paket.js";
+      s.async = true;
+      s.onload = () => { if (paket()) { QUELLE = "ordner"; fertig(PAKET); } else ausGeraet(); };
+      s.onerror = () => { s.remove(); ausGeraet(); };
+      document.head.appendChild(s);
+    });
+    return ladeVersprechen;
+  }
+
+  function paketAusText(text) {
+    const a = text.indexOf("{"), b = text.lastIndexOf("}");
+    if (a < 0 || b < a) throw new Error("In der Datei stehen keine Daten.");
+    let p;
+    try { p = JSON.parse(text.slice(a, b + 1)); } catch (e) { throw new Error("Die Datei ist beschädigt oder unvollständig."); }
+    if (!gueltig(p)) throw new Error("Das ist kein AP2-Prüfungspaket (ap2-paket.js).");
+    return p;
+  }
+
+  function importieren(datei) {
+    const lesen = datei.text ? datei.text() : new Promise((ok, nein) => {
+      const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.onerror = () => nein(fr.error); fr.readAsText(datei);
+    });
+    return lesen.then(text => {
+      const p = paketAusText(text);
+      root.IHK_AZUBI = p; PAKET = p; QUELLE = "geraet";
+      paketGeaendert();
+      return idbTu("readwrite", st => st.put(p, "aktuell")).then(() => ({ p, gespeichert: true }))
+        .catch(() => ({ p, gespeichert: false }));
+    });
+  }
+  function paketVomGeraetEntfernen() {
+    return idbTu("readwrite", st => st.delete("aktuell")).catch(() => { });
+  }
+
+  /** Andere Bereiche nachziehen: der Katalog zählt Azubi-Aufgaben mit */
+  function paketGeaendert() {
+    Object.keys(KAT).forEach(k => delete KAT[k]);
+    try { if (root.GENKATALOG && root.GENKATALOG.neu) root.GENKATALOG.neu(); } catch (e) { console.error("Azubi/Katalog:", e); }
+    try { if (root.GENENDSPURT && root.GENENDSPURT.azubiDa) root.GENENDSPURT.azubiDa(); } catch (e) { console.error("Azubi/Endspurt:", e); }
+    try { if (root.GENWIEDER && root.GENWIEDER.block) root.GENWIEDER.block(); } catch (e) { }
+  }
+
+  /* ======================================================================
+     Zustand je Modul
+     ====================================================================== */
+  const leerZustand = () => ({ v: 1, modus: null, a: {}, auf: {}, p: {}, auto: {}, hilfe: {}, beobachtet: {}, zeit: 0, abgegeben: false,
+                               versuche: [], konflikte: [], start: 0, zuletzt: 0, pos: null });
+  function zustand(id) {
+    const z = lies(SK + id, null);
+    const n = leerZustand();
+    if (!z || typeof z !== "object") return n;
+    Object.keys(n).forEach(k => { if (z[k] != null && typeof z[k] === typeof n[k]) n[k] = z[k]; });
+    if (z.modus === "uebung" || z.modus === "pruefung") n.modus = z.modus;
+    if (typeof z.pos === "string") n.pos = z.pos;
+    return n;
+  }
+
+  const kopie = wert => JSON.parse(JSON.stringify(wert));
+
+  /** Erst den vollständigen alten Stand zusammen mit dem neuen speichern.
+      Ein voller Speicher darf weder Antworten löschen noch das Archiv kürzen. */
+  function neuerVersuch(m, z, ids) {
+    const alt = kopie(z);
+    if (!Array.isArray(alt.versuche)) alt.versuche = [];
+    archivieren(m, alt, auswertung(m, alt));
+    const n = ids ? alt : Object.assign(leerZustand(), { versuche: alt.versuche, konflikte: alt.konflikte || [] });
+    if (ids) {
+      ids.forEach(id => ["a", "auf", "p", "auto", "hilfe", "beobachtet"].forEach(k => { if (n[k]) delete n[k][id]; }));
+      n.modus = "uebung"; n.abgegeben = false; n.start = Date.now(); n.zeit = 0;
+      n.pos = ids[0] || null;
+    }
+    n.zuletzt = Date.now();
+    if (!schreib(SK + m.id, n)) return false;
+    Object.keys(z).forEach(k => { delete z[k]; });
+    Object.assign(z, n);
+    return true;
+  }
+
+  function loesungAnsehen(t, z, jetzt) {
+    const hilfe = z.hilfe || (z.hilfe = {});
+    if (!hilfe[t.id]) hilfe[t.id] = { loesungGezeigt: jetzt == null ? Date.now() : jetzt, vorAntwort: !hatAntwort(t, z.a[t.id]) };
+    z.auf[t.id] = 1;
+  }
+
+  function antwortSetzen(t, z, key, wert) {
+    const a = z.a[t.id] || (z.a[t.id] = {});
+    if (leer(wert)) delete a[key]; else a[key] = wert;
+    if (!Object.keys(a).length) delete z.a[t.id];
+    if (z.auf[t.id]) {
+      const hilfe = z.hilfe || (z.hilfe = {});
+      const h = hilfe[t.id] || (hilfe[t.id] = {});
+      h.nachLoesung = true;
+    }
+  }
+
+  /** Nur tatsächliche Kontrollen melden, niemals Rendern oder Speichern.
+      Der Stempel verhindert doppelte Beobachtungen nach erneutem Anklicken. */
+  function beobachten(m, t, z) {
+    const lernstand = root.GENLERNSTAND;
+    if (!lernstand || !lernstand.record || !(m.bereich === "wiso" || /^wiso/i.test(m.id))) return false;
+    const p = punkteFuer(t, z), max = t.punkte || 0;
+    if (!Number.isFinite(p) || !Number.isFinite(max) || max <= 0 || p < 0 || p > max) return false;
+    const h = (z.hilfe || {})[t.id];
+    const hilfe = h && (h.vorAntwort || h.nachLoesung) ||
+      (!h && (z.auf || {})[t.id] && !(z.modus === "pruefung" && z.abgegeben));
+    const auswahl = ["mehrfach", "wahl", "zuordnung"].includes((t.eingabe || {}).typ);
+    const event = { topic: "wiso", source: "azubi", task: m.id + ":" + t.id,
+      correct: p, max, support: hilfe ? "loesung" : "selbst",
+      kind: auswahl ? "recognition" : (z.auto || {})[t.id] ? "auto" : "selbst",
+      answers: kopie((z.a || {})[t.id] || {}) };
+    const signatur = JSON.stringify(event);
+    const stempel = z.beobachtet || (z.beobachtet = {});
+    let alt = stempel[t.id];
+    if (alt && alt.signatur === signatur && alt.ok) return true;
+    if (!alt || alt.signatur !== signatur) {
+      alt = stempel[t.id] = { signatur, id: "azubi-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2), ok: false };
+    }
+    event.id = alt.id;
+    try { const r = lernstand.record(event); alt.ok = !!(r && r.ok); } catch (e) { alt.ok = false; }
+    return alt.ok;
+  }
+
+  function neustart(m, z, ids, knopf) {
+    if (neuerVersuch(m, z, ids)) return true;
+    const h = el("p", "az-hinweisbox", "Не удалось сохранить историю: память заполнена или недоступна. Ответы оставлены на месте. Экспортируйте прогресс и освободите место перед новой попыткой.");
+    h.setAttribute("role", "alert");
+    knopf.parentNode.appendChild(h);
+    return false;
+  }
+
+  const fmt = p => (Math.round(p * 10) / 10).toString().replace(".", ",");
+  const plural = (n, a, b) => n + " " + (n === 1 ? a : b);
+  const minuten = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  const datum = ts => { const d = new Date(ts); return String(d.getDate()).padStart(2, "0") + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getFullYear()).slice(2); };
+
+  /* ======================================================================
+     Ab hier: Oberfläche (nur im Browser)
+     ====================================================================== */
+  const ERLAUBT = new Set(["p", "div", "br", "b", "strong", "i", "em", "u", "s", "sub", "sup", "ul", "ol", "li",
+    "table", "thead", "tbody", "tfoot", "tr", "td", "th", "pre", "code", "h3", "h4", "hr", "img"]);
+  const WEG = new Set(["script", "style", "iframe", "object", "embed", "link", "meta", "svg", "math", "form", "input", "button", "textarea", "select"]);
+
+  function bildSrc(k) {
+    const p = paket();
+    const v = p && p.bilder && p.bilder[k];
+    return (typeof v === "string" && /^data:image\/(png|jpe?g|gif|webp);base64,/.test(v)) ? v : null;
+  }
+
+  /** Paket-HTML → sicheres Fragment (Whitelist, keine Attribute außer colspan/rowspan) */
+  function sicher(html) {
+    const tpl = document.createElement("template");
+    tpl.innerHTML = String(html || "");
+    const geh = knoten => {
+      Array.from(knoten.childNodes).forEach(n => {
+        if (n.nodeType === 3) return;
+        if (n.nodeType !== 1) { n.remove(); return; }
+        const tag = n.tagName.toLowerCase();
+        if (WEG.has(tag)) { n.remove(); return; }
+        if (!ERLAUBT.has(tag)) { geh(n); n.replaceWith(...Array.from(n.childNodes)); return; }
+        Array.from(n.attributes).forEach(at => {
+          const an = at.name.toLowerCase();
+          const ok = ((tag === "td" || tag === "th") && (an === "colspan" || an === "rowspan") && /^\d{1,2}$/.test(at.value)) ||
+                     (tag === "img" && an === "data-bild");
+          if (!ok) n.removeAttribute(at.name);
+        });
+        if (tag === "img") {
+          const src = bildSrc(n.getAttribute("data-bild"));
+          if (!src) { n.replaceWith(el("span", "az-bild-fehlt", "Bild fehlt.")); return; }
+          n.setAttribute("src", src); n.setAttribute("alt", ""); n.setAttribute("loading", "lazy");
+          n.className = "az-bild";
+          return;
+        }
+        if (tag === "table") {
+          geh(n);
+          const huelle = el("div", "az-tabelle");
+          n.replaceWith(huelle); huelle.appendChild(n);
+          return;
+        }
+        geh(n);
+      });
+    };
+    geh(tpl.content);
+    return tpl.content;
+  }
+  function textAus(html) {
+    if (!hatDom) return String(html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    const tpl = document.createElement("template");
+    tpl.innerHTML = String(html || "");
+    return (tpl.content.textContent || "").replace(/\s+/g, " ").trim();
+  }
+  function htmlIn(ziel, html) { ziel.appendChild(sicher(html)); return ziel; }
+
+  /* ------------------------------------------------------------ Seite --- */
+  let VIEW = { art: "liste" };
+  let herkunft = "scStart";
+  let LAUF = null;          /* offener Bogen: {m, z, ...} */
+
+  function seite() {
+    let s = $("scAzubi");
+    if (s) return s;
+    s = el("div", "seite az-seite"); s.id = "scAzubi"; s.hidden = true;
+    const start = $("scStart");
+    if (start && start.parentNode) start.parentNode.insertBefore(s, start.nextSibling);
+    else document.body.appendChild(s);
+    s.addEventListener("click", ev => {
+      const img = ev.target.closest && ev.target.closest("img.az-bild");
+      if (img && typeof root.zeigeLupe === "function") root.zeigeLupe(img.src);
+    });
+    return s;
+  }
+
+  function zeigen() {
+    const s = seite();
+    const vorher = ["scBogen", "scAuswertung", "scKatalog", "scWieder", "scRadar"].find(id => $(id) && !$(id).hidden) || "scStart";
+    if (vorher !== "scAzubi") herkunft = vorher;
+    document.querySelectorAll("div.seite[id^='sc'], #scBogen").forEach(e => { if (e.id !== "scAzubi") e.hidden = true; });
+    s.hidden = false;
+    const f = $("fuss"); if (f) f.hidden = true;
+    const kt = $("kopfTitel"); if (kt) kt.hidden = false;
+    const vm = VIEW.id && virt(VIEW.id);
+    if ($("kTitel")) $("kTitel").textContent = vm ? "Prognose-Prüfung " + vm.nr : "Echte AP2-Prüfungen";
+    if ($("kEyebrow")) $("kEyebrow").textContent = vm ? "Themen-Radar" : "IHK · Teil 2 · WiSo, GA1, GA2";
+    if (root.GENZURUECK) {
+      try { root.GENZURUECK.hoeher && root.GENZURUECK.hoeher("scAzubi", (herkunft === "scKatalog" || herkunft === "scWieder") ? "scStart" : herkunft); } catch (e) { }
+      try { root.GENZURUECK.knopfPflegen(); } catch (e) { }
+    }
+  }
+
+  function verlauf(neu) {
+    try {
+      const st = { ihk: 1, seite: "scAzubi" };
+      if (VIEW.art !== "liste") { st.az = VIEW.id; st.azArt = VIEW.art; }
+      if (!history.state || !history.state.ihk) history.replaceState({ ihk: 1, seite: herkunft }, "");
+      const gleich = history.state && history.state.seite === "scAzubi" && history.state.az === st.az && history.state.azArt === st.azArt;
+      if (gleich) return;
+      if (neu === "ersetzen" && history.state && history.state.seite === "scAzubi") history.replaceState(st, "", location.hash || "");
+      else history.pushState(st, "", location.hash || "");
+    } catch (e) { }
+  }
+
+  /** Öffentlicher Einstieg: ohne id die Übersicht, mit id der Bogen */
+  function oeffnen(id, opt) {
+    laden().then(() => {
+      if (id && !modul(id)) id = null;
+      lauffStop();
+      VIEW = id ? { art: (opt && opt.ergebnis) ? "ergebnis" : "modul", id, ziel: opt && opt.ziel, modus: opt && opt.modus } : { art: "liste" };
+      zeichnen();
+      zeigen();
+      verlauf();
+      if (!VIEW.ziel) root.scrollTo(0, 0);
+    });
+  }
+
+  function zeichnen() {
+    const s = seite();
+    s.innerHTML = "";
+    const box = el("div", "az-wrap");
+    s.appendChild(box);
+    if (VIEW.art !== "modul" && LAUF) { lauffStop(); LAUF = null; }
+    const m = VIEW.id ? modul(VIEW.id) : null;
+    if (!paket() && !(m && m.virtuell)) { keinPaket(box); return; }
+    if (VIEW.art === "modul" && m) bogenZeichnen(box, m);
+    else if (VIEW.art === "ergebnis" && m) ergebnisZeichnen(box, m);
+    else { VIEW = { art: "liste" }; listeZeichnen(box); }
+  }
+
+  /* --------------------------------------------------------- kein Paket --- */
+  function ladeKnopf(text, klasse, danach) {
+    const lab = el("label", "btn " + (klasse || "primary") + " az-datei");
+    lab.appendChild(el("span", null, text));
+    const inp = el("input");
+    inp.type = "file";
+    inp.accept = ".js,.json,application/json,text/javascript,text/plain";
+    inp.onchange = () => {
+      const f = inp.files && inp.files[0];
+      if (!f) return;
+      lab.classList.add("laedt");
+      importieren(f).then(r => {
+        lab.classList.remove("laedt");
+        meldung(r.gespeichert ? "Paket geladen und auf diesem Gerät gespeichert." :
+          "Paket geladen — der Gerätespeicher ist voll oder gesperrt, nach dem Neuladen ist es wieder weg.");
+        if (danach) danach(); else { zeichnen(); block(); }
+      }).catch(e => { lab.classList.remove("laedt"); meldung(e.message || String(e), true); });
+      inp.value = "";
+    };
+    lab.appendChild(inp);
+    return lab;
+  }
+
+  function keinPaket(box) {
+    const k = el("div", "az-karte az-leer");
+    k.appendChild(el("h2", null, "Echte AP2-Prüfungen"));
+    k.appendChild(el("p", null, "Auf diesem Gerät ist noch kein Prüfungspaket. " +
+      "Die Aufgaben der IHK (ZPA) sind urheberrechtlich geschützt und liegen deshalb nicht im Netz, sondern nur bei dir."));
+    const ol = el("ol", "az-schritte");
+    ol.appendChild(el("li", null, "Auf dem Computer liegt das Paket im Ordner ap2-sim unter privat/ap2-paket.js."));
+    ol.appendChild(el("li", null, "Schick dir die Datei aufs Handy (z. B. Telegram „Gespeicherte Nachrichten“, Google Drive oder Mail an dich)."));
+    ol.appendChild(el("li", null, "Hier auf „Paket laden“ tippen und die Datei auswählen. Einmal reicht — danach bleibt sie auf dem Gerät."));
+    k.appendChild(ol);
+    const st = el("div", "steuer");
+    st.appendChild(ladeKnopf("Paket laden"));
+    k.appendChild(st);
+    box.appendChild(k);
+  }
+
+  let meldTimer = null;
+  function meldung(text, fehler) {
+    let m = $("azMeldung");
+    if (!m) { m = el("div", "az-meldung"); m.id = "azMeldung"; m.setAttribute("role", "status"); document.body.appendChild(m); }
+    m.textContent = text;
+    m.classList.toggle("fehler", !!fehler);
+    m.classList.add("an");
+    clearTimeout(meldTimer);
+    meldTimer = setTimeout(() => m.classList.remove("an"), fehler ? 6000 : 3200);
+  }
+
+  /* ------------------------------------------------------------- Liste --- */
+  const GRUPPEN = {
+    weiter: ["Weitermachen", "Angefangen — genau dort geht es weiter."],
+    neu: ["Noch nie gemacht", "Noch nicht bearbeitet."],
+    schwach: ["Schwach — wiederholen", "Unter 50 %."],
+    gemacht: ["Schon gemacht", "Zum Wiederholen, schwächste zuerst."]
+  };
+
+  function statusText(e) {
+    const s = e.s;
+    if (e.g === "weiter") return s.bearbeitet + "/" + s.n + " bearbeitet · " + fmt(s.punkte) + " P. bewertet";
+    if (s.fertig) return fmt(s.punkte) + " / " + fmt(s.max) + " P. · " + fmt(s.prozent) + " % · " + s.note.text;
+    const v = e.z.versuche && e.z.versuche[e.z.versuche.length - 1];
+    if (v) return "Letzter Versuch: " + fmt(v.prozent) + " % · " + v.note;
+    return plural(s.n, "Teilaufgabe", "Teilaufgaben") + " · noch nicht angefangen";
+  }
+
+  function modulKarte(e, bisher) {
+    const m = e.m;
+    const c = el("article", "az-mk g-" + e.g);
+    const kopf = el("div", "az-mk-kopf");
+    kopf.appendChild(el("span", "az-mk-nr " + (m.art === "pruefung" ? "p" : "v"), m.marke || (m.art === "pruefung" ? "P" + String(m.nr).padStart(2, "0") : "VÜ" + m.nr)));
+    const tt = el("div", "az-mk-titel");
+    tt.appendChild(el("b", null, m.titel));
+    tt.appendChild(el("span", null, (m.aufgaben || []).length + " Aufgaben · " + fmt(m.punkte) + " P. · " + m.minuten + " Min." +
+      (m.art === "vertiefung" ? " · Vertiefende Übung" : "")));
+    kopf.appendChild(tt);
+    c.appendChild(kopf);
+    const s = e.s;
+    const bar = el("div", "az-bar");
+    const i1 = el("i", "b"); i1.style.width = (s.n ? s.bearbeitet / s.n * 100 : 0) + "%";
+    bar.appendChild(i1);
+    c.appendChild(bar);
+    const zeile = el("div", "az-mk-status");
+    zeile.appendChild(el("span", null, statusText(e)));
+    if (bisher) zeile.appendChild(el("span", "az-chip n-" + normText(bisher).replace(/\s/g, ""), "Azubi-Navigator: " + bisher));
+    else if (e.g === "neu") zeile.appendChild(el("span", "az-chip neu", "neu"));
+    if (e.z.modus === "pruefung" && e.g === "weiter" && !e.z.abgegeben) zeile.appendChild(el("span", "az-chip uhr", "Uhr " + minuten(e.z.zeit)));
+    c.appendChild(zeile);
+    const st = el("div", "az-mk-knoepfe");
+    const haupt = el("button", "btn primary", e.g === "weiter" ? "Weiter" : (s.fertig ? "Ansehen" : "Starten"));
+    haupt.type = "button";
+    haupt.onclick = () => oeffnen(m.id);
+    st.appendChild(haupt);
+    if (s.bewertet > 0) {
+      const erg = el("button", "btn", "Auswertung");
+      erg.type = "button"; erg.onclick = () => oeffnen(m.id, { ergebnis: true });
+      st.appendChild(erg);
+    }
+    c.appendChild(st);
+    return c;
+  }
+
+  function listeZeichnen(box) {
+    const P = paket();
+    const liste = sortiert(P.module, zustand, P.bisher);
+    const kopf = el("div", "az-karte az-kopf");
+    const t = el("div", "az-kopf-titel");
+    t.appendChild(el("h2", null, "Echte AP2-Prüfungen"));
+    t.appendChild(el("p", "az-quelle", "Original-Bögen der IHK, abgeschrieben · Stand " +
+      (P.stand ? P.stand.split("-").reverse().join(".") : "–")));
+    kopf.appendChild(t);
+    const zahl = g => liste.filter(e => e.g === g).length;
+    const fakten = el("div", "az-fakten");
+    [[liste.filter(e => e.s.fertig).length, "fertig"], [zahl("weiter"), "angefangen"], [zahl("neu"), "nie gemacht"], [zahl("schwach"), "schwach"]]
+      .forEach(([n, txt]) => { const f = el("div", "az-fakt"); f.appendChild(el("b", null, String(n))); f.appendChild(el("span", null, txt)); fakten.appendChild(f); });
+    kopf.appendChild(fakten);
+    kopf.appendChild(el("p", "az-info", "Alles wird bei jeder Eingabe auf diesem Gerät gespeichert. Aufhören, App schließen, später genau dort weitermachen."));
+    const erst = liste[0];
+    if (erst) {
+      const b = el("button", "btn primary az-naechste");
+      b.type = "button";
+      b.innerHTML = ik("play", 16);
+      b.appendChild(el("span", null, (erst.g === "weiter" ? "Weiter: " : "Als Nächstes: ") + erst.m.kurz + " — " + erst.m.titel));
+      b.onclick = () => oeffnen(erst.m.id);
+      kopf.appendChild(b);
+    }
+    box.appendChild(kopf);
+
+    ["weiter", "neu", "schwach", "gemacht"].forEach(g => {
+      const teil = liste.filter(e => e.g === g);
+      if (!teil.length) return;
+      const sec = el("section", "az-gruppe");
+      const h = el("h3", null, GRUPPEN[g][0]);
+      h.appendChild(el("span", "n", String(teil.length)));
+      sec.appendChild(h);
+      sec.appendChild(el("p", "az-info", GRUPPEN[g][1]));
+      const gitter = el("div", "az-gitter");
+      teil.forEach(e => gitter.appendChild(modulKarte(e, (P.bisher || {})[e.m.id])));
+      sec.appendChild(gitter);
+      box.appendChild(sec);
+    });
+
+    /* Paket */
+    const pk = el("details", "az-paket");
+    pk.appendChild(el("summary", null, "Datenpaket · " + (QUELLE === "geraet" ? "im Gerätespeicher" : "aus dem Ordner privat/")));
+    const inn = el("div", "az-paket-in");
+    inn.appendChild(el("p", null, "Prüfungsaufgaben der IHK (ZPA) — nur für dich. Das Paket liegt nur auf deinen Geräten, " +
+      "nicht auf GitHub Pages. Dein Fortschritt steckt im normalen Export der App (Daten → Export) und wandert damit mit."));
+    const st = el("div", "steuer");
+    const speichern = el("button", "btn", "Paket fürs Handy speichern");
+    speichern.type = "button";
+    speichern.onclick = () => {
+      try {
+        const blob = new Blob(["window.IHK_AZUBI = " + JSON.stringify(paket()) + ";\n"], { type: "text/javascript" });
+        const a = el("a"); a.href = URL.createObjectURL(blob); a.download = "ap2-paket.js";
+        document.body.appendChild(a); a.click();
+        setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+      } catch (e) { meldung("Speichern ging nicht: " + e.message, true); }
+    };
+    st.appendChild(speichern);
+    st.appendChild(ladeKnopf("Anderes Paket laden", "ghost"));
+    if (QUELLE === "geraet") {
+      const weg = el("button", "btn ghost", "Paket vom Gerät entfernen");
+      weg.type = "button";
+      weg.onclick = () => bestaetigen(weg, "Wirklich entfernen? Dein Fortschritt bleibt.", () => {
+        paketVomGeraetEntfernen().then(() => { PAKET = null; root.IHK_AZUBI = null; ladeVersprechen = null; QUELLE = ""; paketGeaendert(); zeichnen(); block(); });
+      });
+      st.appendChild(weg);
+    }
+    inn.appendChild(st);
+    pk.appendChild(inn);
+    box.appendChild(pk);
+  }
+
+  /** Zweistufiger Knopf statt confirm(): erst tippen, dann „Ja“ */
+  function bestaetigen(knopf, frage, tun) {
+    if (knopf.dataset.frage) return;
+    const alt = knopf.textContent;
+    knopf.dataset.frage = "1";
+    const leiste = el("span", "az-frage");
+    leiste.appendChild(el("span", null, frage));
+    const ja = el("button", "btn warn klein", "Ja");
+    ja.type = "button";
+    const nein = el("button", "btn ghost klein", "Nein");
+    nein.type = "button";
+    leiste.append(ja, nein);
+    knopf.hidden = true;
+    knopf.insertAdjacentElement("afterend", leiste);
+    const zu = () => { leiste.remove(); knopf.hidden = false; delete knopf.dataset.frage; knopf.textContent = alt; };
+    ja.onclick = () => { zu(); tun(); };
+    nein.onclick = zu;
+  }
+
+  /* ------------------------------------------------------ Katalog-Bezug --- */
+  const KAT = {};
+  function katalogFuer(m) {
+    if (KAT[m.id]) return KAT[m.id];
+    const Kat = root.IHK_KATALOG_AP1, Kern = root.IHKKatalogKern;
+    const erg = {};
+    if (!Kat || !Kern) return (KAT[m.id] = erg);
+    try {
+      const teile = teileVon(m);
+      const A = Kern.abdeckung(Kat, { azubi: teile.map(t => ({ key: t.id, text: textAus(t.titel + " " + t.text + " " + t.loesung) })) });
+      teile.forEach(t => {
+        const ids = A.umgekehrt["azubi:" + t.id] || [];
+        const n = {};
+        ids.forEach(id => { const k = id.slice(0, 5); n[k] = (n[k] || 0) + 1; });
+        const kreise = Object.keys(n).sort((a, b) => n[b] - n[a] || (a < b ? -1 : 1)).slice(0, 2);
+        const nicht = Kern.nichtAP1(Kat, textAus(t.titel + " " + t.text)).filter(e => e.art === "gestrichen" || e.art === "ap2");
+        erg[t.id] = { kreise, nicht };
+      });
+    } catch (e) { console.error("Azubi/Katalog:", e); }
+    return (KAT[m.id] = erg);
+  }
+
+  /* -------------------------------------------------------------- Bogen --- */
+  function lauffStop() {
+    if (LAUF && LAUF.uhr) { clearInterval(LAUF.uhr); LAUF.uhr = null; }
+    if (LAUF) sichern(true);
+  }
+
+  let sicherTimer = null;
+  function sichern(sofort) {
+    if (!LAUF) return;
+    clearTimeout(sicherTimer);
+    const tu = () => {
+      if (!LAUF) return;
+      LAUF.z.zuletzt = Date.now();
+      const ok = schreib(SK + LAUF.m.id, LAUF.z);
+      const g = $("azGespeichert");
+      if (g) {
+        const d = new Date();
+        g.textContent = ok ? "✓ " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") : "Speicher voll!";
+        g.classList.toggle("fehler", !ok);
+      }
+    };
+    if (sofort) tu(); else sicherTimer = setTimeout(tu, 350);
+  }
+
+  function bogenZeichnen(box, m) {
+    if (LAUF) lauffStop();          /* Uhr anhalten und Stand sichern, bevor neu gelesen wird */
+    const z = zustand(m.id);
+    LAUF = { m, z, uhr: null, tick: Date.now() };
+    if (!z.start) z.start = Date.now();
+    /* Sprung aus Katalog/Suche auf eine bestimmte Teilaufgabe: gleich üben.
+       Aus dem Endspurt kommt nur eine Empfehlung — die Uhr startet erst,
+       wenn man selbst „Als Prüfung“ tippt. */
+    if (!z.modus && VIEW.ziel) {
+      z.modus = "uebung"; z.start = Date.now(); z.zeit = 0; z.abgegeben = false;
+      sichern(true);
+    }
+    const empfohlen = VIEW.modus; VIEW.modus = null;
+    if (!z.modus) { startKarte(box, m, z, empfohlen); return; }
+
+    box.appendChild(leiste(m, z));
+
+    /* Einleitung / Situation */
+    if ((m.einleitung || []).length) {
+      const d = el("details", "az-situation");
+      d.id = "azSituation";
+      d.open = !Object.keys(z.a).length;
+      d.appendChild(el("summary", null, m.art === "pruefung" ? "Ausgangssituation" : "Einleitung"));
+      m.einleitung.forEach(e => {
+        const b = el("div", "az-text");
+        if (m.einleitung.length > 1 && e.titel) b.appendChild(el("h4", null, textAus(e.titel)));
+        htmlIn(b, e.html);
+        d.appendChild(b);
+        (e.anlagen || []).forEach(an => d.appendChild(anlage(an)));
+      });
+      box.appendChild(d);
+    }
+
+    if (z.modus === "pruefung" && z.abgegeben) {
+      const s = auswertung(m, z);
+      const offen = s.n - s.bewertet;
+      if (offen) {
+        const h = el("div", "az-hinweisbox");
+        h.appendChild(el("b", null, "Abgegeben. "));
+        h.appendChild(document.createTextNode("Zahlen, Tabellen, Zuordnungen und leere Felder sind schon bewertet. Noch " +
+          plural(offen, "Textantwort", "Textantworten") + " mit der Musterlösung selbst bewerten — dann steht die Note."));
+        box.appendChild(h);
+      }
+    }
+
+    (m.aufgaben || []).forEach(a => {
+      const sec = el("section", "az-aufgabe");
+      sec.id = "aza-" + a.nr;
+      const h = el("h3", "az-aufgabe-kopf");
+      h.appendChild(el("span", null, a.titel));
+      const mx = (a.teile || []).reduce((s, t) => s + (t.punkte || 0), 0);
+      h.appendChild(el("span", "n", fmt(mx) + " P."));
+      sec.appendChild(h);
+      (a.teile || []).forEach(t => sec.appendChild(teilKarte(m, t, z)));
+      box.appendChild(sec);
+    });
+
+    const fuss = el("div", "az-bogen-fuss");
+    if (z.modus === "pruefung" && !z.abgegeben) fuss.appendChild(abgebenKnopf(m, z));
+    const erg = el("button", "btn" + (z.modus === "pruefung" && !z.abgegeben ? "" : " primary"), "Auswertung");
+    erg.type = "button"; erg.onclick = () => oeffnen(m.id, { ergebnis: true });
+    fuss.appendChild(erg);
+    fuss.appendChild(zurUebersicht(m));
+    box.appendChild(fuss);
+    box.appendChild(extraKnoepfe(m, z));
+    box.appendChild(historieZeichnen(m, z));
+
+    leisteAktualisieren();
+    uhrStarten();
+
+    const ziel = VIEW.ziel || z.pos, blink = !!VIEW.ziel;
+    if (ziel) setTimeout(() => springeZu(ziel, blink), 60);
+    VIEW.ziel = null;
+  }
+
+  /** „Zur Übersicht“ — bei den Prognose-Prüfungen ist das der Themen-Radar */
+  function zurUebersicht(m) {
+    const radar = m && m.virtuell && root.GENRADAR;
+    const b = el("button", "btn ghost", radar ? "Zum Themen-Radar" : "Zur Übersicht");
+    b.type = "button";
+    b.onclick = () => { if (radar) { lauffStop(); LAUF = null; root.GENRADAR.oeffnen("rdPruefungen"); } else oeffnen(null); };
+    return b;
+  }
+
+  function springeZu(teilId, blinken) {
+    const c = $("azt-" + teilId);
+    if (!c) return;
+    const y = c.getBoundingClientRect().top + root.scrollY - 128;
+    root.scrollTo({ top: Math.max(0, y), behavior: blinken ? "smooth" : "auto" });
+    if (blinken) { c.classList.add("az-blink"); setTimeout(() => c.classList.remove("az-blink"), 1600); }
+  }
+
+  function startKarte(box, m, z, empfohlen) {
+    const P = paket();
+    const k = el("div", "az-karte az-start");
+    k.appendChild(el("span", "az-eyebrow", m.kurz + (m.art === "vertiefung" ? " · Vertiefende Übung" : " · Prüfungssimulation")));
+    k.appendChild(el("h2", null, m.titel));
+    const intro = el("div", "az-text az-intro");
+    htmlIn(intro, m.intro);
+    k.appendChild(intro);
+    const b = ((P && P.bisher) || {})[m.id];
+    if (b) k.appendChild(el("p", "az-info", "Im Azubi-Navigator bisher: " + b + "."));
+    if (z.versuche.length) {
+      const v = z.versuche[z.versuche.length - 1];
+      k.appendChild(el("p", "az-info", "Hier zuletzt (" + datum(v.d) + "): " + fmt(v.prozent) + " % · " + v.note + "."));
+    }
+    const wahl = el("div", "az-modi");
+    const modus = (art, titel, text) => {
+      const c = el("button", "az-modus" + (empfohlen === art ? " empf" : ""));
+      c.type = "button";
+      if (empfohlen === art) c.appendChild(el("span", "az-chip az-empf", "laut Plan"));
+      c.appendChild(el("b", null, titel));
+      c.appendChild(el("span", null, text));
+      c.onclick = () => { z.modus = art; z.start = Date.now(); z.zeit = 0; z.abgegeben = false; LAUF = { m, z }; sichern(true); zeichnen(); root.scrollTo(0, 0); };
+      wahl.appendChild(c);
+    };
+    modus("uebung", "Als Übung", "Nach jeder Teilaufgabe die Lösung ansehen und dich bewerten. Ohne Uhr.");
+    modus("pruefung", "Als Prüfung", "Uhr läuft (" + m.minuten + " Min.), Lösungen erst nach „Abgeben“. Wie in der echten Prüfung.");
+    k.appendChild(wahl);
+    k.appendChild(el("p", "az-info", "Egal wie: Jede Eingabe wird sofort gespeichert. Du kannst jederzeit aufhören."));
+    box.appendChild(k);
+    box.appendChild(historieZeichnen(m, z));
+  }
+
+  function leiste(m, z) {
+    const l = el("div", "az-leiste");
+    l.id = "azLeiste";
+    const oben = el("div", "az-leiste-oben");
+    const t = el("div", "az-leiste-titel");
+    t.appendChild(el("b", null, m.kurz));
+    t.appendChild(el("span", null, m.titel));
+    oben.appendChild(t);
+    const werte = el("div", "az-leiste-werte");
+    const bb = el("span", "az-wert"); bb.id = "azBearbeitet"; werte.appendChild(bb);
+    const pp = el("span", "az-wert"); pp.id = "azPunkte"; werte.appendChild(pp);
+    if (z.modus === "pruefung" && !z.abgegeben) { const u = el("span", "az-wert uhr"); u.id = "azUhr"; werte.appendChild(u); }
+    const g = el("span", "az-wert gesp"); g.id = "azGespeichert"; g.title = "Automatisch gespeichert"; werte.appendChild(g);
+    oben.appendChild(werte);
+    l.appendChild(oben);
+    const nav = el("div", "az-nav");
+    nav.id = "azNav";
+    if ((m.einleitung || []).length) {
+      const s = el("button", "az-navk", m.art === "pruefung" ? "Situation" : "Einleitung");
+      s.type = "button";
+      s.onclick = () => { const d = $("azSituation"); if (d) { d.open = true; const y = d.getBoundingClientRect().top + root.scrollY - 128; root.scrollTo({ top: y, behavior: "smooth" }); } };
+      nav.appendChild(s);
+    }
+    (m.aufgaben || []).forEach(a => {
+      const b = el("button", "az-navk");
+      b.type = "button";
+      b.dataset.nr = a.nr;
+      b.onclick = () => { const s = $("aza-" + a.nr); if (s) { const y = s.getBoundingClientRect().top + root.scrollY - 124; root.scrollTo({ top: y, behavior: "smooth" }); } };
+      nav.appendChild(b);
+    });
+    l.appendChild(nav);
+    return l;
+  }
+
+  function leisteAktualisieren() {
+    if (!LAUF) return;
+    const { m, z } = LAUF;
+    const s = auswertung(m, z);
+    const bb = $("azBearbeitet"); if (bb) bb.textContent = s.bearbeitet + "/" + s.n + " bearbeitet";
+    const pp = $("azPunkte");
+    if (pp) pp.textContent = (z.modus === "pruefung" && !z.abgegeben) ? fmt(s.max) + " P. möglich" : fmt(s.punkte) + " P. bewertet";
+    const nav = $("azNav");
+    if (nav) s.jeAufgabe.forEach(a => {
+      const b = nav.querySelector('[data-nr="' + a.nr + '"]');
+      if (!b) return;
+      b.textContent = "A" + a.nr + " " + a.bearbeitet + "/" + a.n;
+      b.classList.toggle("fertig", a.bearbeitet === a.n);
+    });
+    uhrZeigen();
+  }
+
+  function uhrZeigen() {
+    const u = $("azUhr");
+    if (!u || !LAUF) return;
+    const z = LAUF.z, max = (LAUF.m.minuten || 90) * 60000;
+    u.textContent = minuten(z.zeit) + " / " + LAUF.m.minuten + ":00";
+    u.classList.toggle("knapp", z.zeit > max - 10 * 60000 && z.zeit <= max);
+    u.classList.toggle("vorbei", z.zeit > max);
+  }
+
+  function uhrStarten() {
+    if (!LAUF || LAUF.uhr) return;
+    const z = LAUF.z;
+    if (z.modus !== "pruefung" || z.abgegeben) return;
+    LAUF.tick = Date.now();
+    let zaehler = 0;
+    LAUF.uhr = setInterval(() => {
+      if (!LAUF) return;
+      const jetzt = Date.now();
+      if (document.visibilityState !== "hidden") LAUF.z.zeit += Math.min(5000, jetzt - LAUF.tick);
+      LAUF.tick = jetzt;
+      uhrZeigen();
+      if (++zaehler % 15 === 0) sichern(true);
+    }, 1000);
+  }
+
+  function abgebenKnopf(m, z) {
+    const b = el("button", "btn primary", "Abgeben");
+    b.type = "button";
+    b.onclick = () => bestaetigen(b, "Abgeben? Danach siehst du alle Lösungen.", () => {
+      z.abgegeben = true;
+      teileVon(m).forEach(t => {
+        z.auf[t.id] = 1;
+        const r = pruefe(t, z.a[t.id]);
+        /* Geschlossene Aufgaben bewertet die App, leere Aufgaben sind sicher 0 */
+        if (z.p[t.id] == null) {
+          if (r.vorschlag != null) { z.p[t.id] = r.vorschlag; z.auto[t.id] = 1; }
+          else if (!hatAntwort(t, z.a[t.id])) { z.p[t.id] = 0; z.auto[t.id] = 1; }
+        }
+        beobachten(m, t, z);
+      });
+      if (LAUF && LAUF.uhr) { clearInterval(LAUF.uhr); LAUF.uhr = null; }
+      sichern(true);
+      zeichnen();
+      root.scrollTo(0, 0);
+    });
+    return b;
+  }
+
+  /* --------------------------------------------------------- Teilaufgabe --- */
+  function anlage(an) {
+    const d = el("details", "az-anlage");
+    d.appendChild(el("summary", null, "Anlage: " + textAus(an.titel)));
+    const i = el("div", "az-text");
+    htmlIn(i, an.html);
+    d.appendChild(i);
+    return d;
+  }
+
+  function teilKarte(m, t, z) {
+    const a = z.a[t.id];
+    const auf = !!z.auf[t.id];
+    const p = z.p[t.id];
+    const c = el("article", "az-teil");
+    c.id = "azt-" + t.id;
+    c.dataset.id = t.id;
+    if (hatAntwort(t, a)) c.classList.add("bearbeitet");
+    if (p != null) c.classList.add("bewertet", p >= t.punkte ? "voll" : p > 0 ? "teils" : "null");
+
+    const kopf = el("header", "az-teil-kopf");
+    kopf.appendChild(el("span", "az-nr", t.nr + " " + t.label));
+    kopf.appendChild(el("h4", null, textAus(t.titel)));
+    kopf.appendChild(el("span", "az-p", (p != null ? fmt(p) + " / " : "") + fmt(t.punkte) + " P."));
+    c.appendChild(kopf);
+
+    const meta = el("div", "az-meta");
+    if (t.sek) meta.appendChild(el("span", "az-min", "≈ " + Math.max(1, Math.round(t.sek / 60)) + " Min."));
+    const kat = katalogFuer(m)[t.id];
+    if (kat) {
+      kat.kreise.forEach(k => {
+        const b = el("button", "kt-etikett klein", "Katalog " + k);
+        b.type = "button";
+        b.title = "Im Prüfungskatalog öffnen";
+        b.onclick = () => { if (root.GENKATALOG) { sichern(true); root.GENKATALOG.oeffnen(k); } };
+        meta.appendChild(b);
+      });
+      kat.nicht.forEach(e => meta.appendChild(el("span", "az-chip warn", (e.art === "ap2" ? "laut Katalog AP2: " : "gestrichen: ") + e.label)));
+    }
+    if (meta.childNodes.length) c.appendChild(meta);
+
+    const tx = el("div", "az-text");
+    htmlIn(tx, t.text);
+    c.appendChild(tx);
+    (t.anlagen || []).forEach(an => c.appendChild(anlage(an)));
+
+    c.appendChild(eingabe(m, t, z, c));
+
+    if (auf) {
+      c.appendChild(loesungTeil(m, t, z, c));
+      markenSetzen(c, t, z.a[t.id]);
+    } else if (z.modus === "uebung") {
+      const ak = el("div", "az-aktionen");
+      const zeig = el("button", "btn", hatAntwort(t, a) ? "Prüfen & Lösung zeigen" : "Lösung zeigen");
+      zeig.type = "button";
+      zeig.onclick = () => {
+        loesungAnsehen(t, z);
+        const r = pruefe(t, z.a[t.id]);
+        if (r.vorschlag != null && z.p[t.id] == null && hatAntwort(t, z.a[t.id])) { z.p[t.id] = r.vorschlag; z.auto[t.id] = 1; }
+        beobachten(m, t, z);
+        z.pos = t.id;
+        sichern(true);
+        ersetzeKarte(m, t, z);
+        leisteAktualisieren();
+      };
+      ak.appendChild(zeig);
+      c.appendChild(ak);
+    }
+    return c;
+  }
+
+  function ersetzeKarte(m, t, z) {
+    const alt = $("azt-" + t.id);
+    if (alt) alt.replaceWith(teilKarte(m, t, z));
+  }
+
+  /* Eingaben -------------------------------------------------------------- */
+  function eingabe(m, t, z, karte) {
+    const E = t.eingabe || { typ: "zeilen", zeilen: [] };
+    const box = el("div", "az-eingabe typ-" + E.typ);
+    const wert = k => (z.a[t.id] || {})[k];
+    const setze = (k, v) => {
+      antwortSetzen(t, z, k, v);
+      z.pos = t.id;
+      karte.classList.toggle("bearbeitet", hatAntwort(t, z.a[t.id]));
+      if (z.auf[t.id]) markenSetzen(karte, t, z.a[t.id]);
+      sichern();
+      leisteAktualisieren();
+    };
+    const feldInput = (f, klasse) => {
+      const i = el("input", "az-f" + (klasse ? " " + klasse : ""));
+      i.type = "text";
+      i.dataset.key = "f" + f.id;
+      i.autocomplete = "off"; i.spellcheck = false;
+      i.setAttribute("autocapitalize", "off");
+      if (f.art === "zahl") i.inputMode = "decimal";
+      const w = wert("f" + f.id); if (w != null) i.value = w;
+      i.addEventListener("input", () => setze("f" + f.id, i.value));
+      return i;
+    };
+
+    if (E.typ === "raster") {
+      const huelle = el("div", "az-tabelle");
+      const tab = el("table", "az-raster");
+      const tb = el("tbody");
+      const zellen = E.zellen || [];
+      for (let r = 0; r < E.zeilen; r++) {
+        const tr = el("tr");
+        for (let s = 0; s < E.spalten; s++) {
+          const zz = zellen[r * E.spalten + s];
+          const td = el(zz && zz.h && r === 0 ? "th" : "td");
+          if (zz && zz.f) {
+            const lab = el("label", "az-zelle");
+            lab.appendChild(feldInput(zz.f));
+            if (zz.f.einheit) lab.appendChild(el("span", "az-einheit", zz.f.einheit));
+            td.appendChild(lab);
+          } else if (zz && zz.h) htmlIn(td, zz.h);
+          tr.appendChild(td);
+        }
+        tb.appendChild(tr);
+      }
+      tab.appendChild(tb);
+      huelle.appendChild(tab);
+      box.appendChild(huelle);
+    } else if (E.typ === "zuordnung") {
+      const leg = el("div", "az-optionen");
+      leg.appendChild(el("b", null, textAus(E.otitel) || "Auswahl"));
+      const ol = el("ol");
+      E.optionen.forEach(o => ol.appendChild(htmlIn(el("li"), o)));
+      leg.appendChild(ol);
+      box.appendChild(leg);
+      (E.zeilen || []).forEach(zl => {
+        const r = el("div", "az-zuo");
+        htmlIn(r.appendChild(el("div", "az-zuo-text")), zl.h);
+        const sel = el("select", "az-sel");
+        sel.dataset.key = "z" + zl.id;
+        sel.appendChild(el("option", null, "–"));
+        sel.firstChild.value = "";
+        E.optionen.forEach((o, i) => { const op = el("option", null, (i + 1) + " – " + textAus(o)); op.value = String(i + 1); sel.appendChild(op); });
+        const w = wert("z" + zl.id); if (w != null) sel.value = String(w);
+        sel.addEventListener("change", () => setze("z" + zl.id, sel.value));
+        r.appendChild(sel);
+        box.appendChild(r);
+      });
+    } else if (E.typ === "wahl") {
+      if (E.ftitel) box.appendChild(el("div", "az-wahl-titel", textAus(E.ftitel)));
+      (E.zeilen || []).forEach(zl => {
+        const r = el("div", "az-wahl");
+        r.dataset.key = "w" + zl.id;
+        r.setAttribute("role", "radiogroup");
+        const txt = htmlIn(el("div", "az-wahl-text"), zl.h);
+        r.setAttribute("aria-label", textAus(zl.h));
+        r.appendChild(txt);
+        const reihe = el("div", "az-wahl-reihe");
+        zl.optionen.forEach((o, i) => {
+          const lab = el("label", "az-opt");
+          lab.dataset.i = String(i);
+          const inp = el("input");
+          inp.type = "radio"; inp.name = "azw-" + t.id + "-" + zl.id; inp.value = String(i);
+          if (String(wert("w" + zl.id)) === String(i)) inp.checked = true;
+          inp.addEventListener("change", () => setze("w" + zl.id, i));
+          lab.appendChild(inp);
+          htmlIn(lab.appendChild(el("span")), o);
+          reihe.appendChild(lab);
+        });
+        r.appendChild(reihe);
+        box.appendChild(r);
+      });
+    } else if (E.typ === "mehrfach") {
+      const f = el("fieldset", "az-mehr");
+      f.dataset.key = "m";
+      f.appendChild(el("legend", null, "Wähle " + E.anzahl + " aus."));
+      E.optionen.forEach((o, i) => {
+        const lab = el("label", "az-opt");
+        lab.dataset.i = String(i + 1);
+        const inp = el("input");
+        inp.type = "checkbox"; inp.value = String(i + 1);
+        const gew = wert("m") || [];
+        if (gew.indexOf(i + 1) >= 0) inp.checked = true;
+        inp.addEventListener("change", () => {
+          const neu = Array.from(f.querySelectorAll("input:checked")).map(x => Number(x.value));
+          setze("m", neu);
+        });
+        lab.appendChild(inp);
+        htmlIn(lab.appendChild(el("span")), o);
+        f.appendChild(lab);
+      });
+      box.appendChild(f);
+    } else {
+      (E.zeilen || []).forEach(zl => {
+        const r = el("div", "az-zeile");
+        if (zl.h) htmlIn(r.appendChild(el("div", "az-zeile-text")), zl.h);
+        if (zl.frei) {
+          const ta = el("textarea", "az-frei");
+          ta.dataset.key = "t" + zl.frei;
+          ta.rows = zl.gross ? 6 : 3;
+          ta.placeholder = "Deine Antwort …";
+          const w = wert("t" + zl.frei); if (w != null) ta.value = w;
+          ta.addEventListener("input", () => setze("t" + zl.frei, ta.value));
+          r.appendChild(ta);
+        }
+        if (zl.felder && zl.felder.length) {
+          const fz = el("div", "az-felder");
+          zl.felder.forEach(f => {
+            const lab = el("label", "az-feld");
+            lab.appendChild(feldInput(f));
+            if (f.einheit) lab.appendChild(el("span", "az-einheit", f.einheit));
+            fz.appendChild(lab);
+          });
+          r.appendChild(fz);
+        }
+        box.appendChild(r);
+      });
+      /* Rechenaufgaben: Platz für den Rechenweg — der bringt in der echten Prüfung Teilpunkte */
+      const zl = E.zeilen || [];
+      if (!zl.some(x => x.frei) && zl.some(x => x.felder && x.felder.length)) {
+        const ta = el("textarea", "az-frei az-rechenweg");
+        ta.dataset.key = "rw";
+        ta.rows = 2;
+        ta.placeholder = "Rechenweg (optional) — bringt in der echten Prüfung Teilpunkte";
+        const w = wert("rw"); if (w != null) ta.value = w;
+        ta.addEventListener("input", () => setze("rw", ta.value));
+        box.appendChild(ta);
+      }
+    }
+    return box;
+  }
+
+  const sollText = f => (f.soll || []).slice(0, 3).join(" / ");
+
+  /** Richtig/falsch an die Eingaben schreiben (nach „Lösung zeigen“) */
+  function markenSetzen(karte, t, a) {
+    const r = pruefe(t, a);
+    const E = t.eingabe || {};
+    karte.querySelectorAll(".az-soll").forEach(x => x.remove());
+    stellen(t).forEach(s => {
+      const ok = !!r.marken[s.key];
+      if (s.art === "feld") {
+        const i = karte.querySelector('input[data-key="' + s.key + '"]');
+        if (!i) return;
+        i.classList.toggle("ok", ok); i.classList.toggle("falsch", !ok);
+        if (!ok) { const h = el("span", "az-soll", "✓ " + sollText(s.f)); i.parentNode.appendChild(h); }
+      } else if (s.art === "zuordnung") {
+        const sel = karte.querySelector('select[data-key="' + s.key + '"]');
+        if (!sel) return;
+        sel.classList.toggle("ok", ok); sel.classList.toggle("falsch", !ok);
+        if (!ok) {
+          const o = E.optionen[Number(s.soll) - 1];
+          sel.parentNode.appendChild(el("span", "az-soll", "✓ " + s.soll + (o ? " – " + textAus(o) : "")));
+        }
+      } else if (s.art === "wahl") {
+        const fs = karte.querySelector('.az-wahl[data-key="' + s.key + '"]');
+        if (!fs) return;
+        fs.classList.toggle("ok", ok); fs.classList.toggle("falsch", !ok);
+        fs.querySelectorAll(".az-opt").forEach(l => {
+          const i = Number(l.dataset.i);
+          const gew = l.querySelector("input").checked;
+          l.classList.toggle("soll", i === s.soll);
+          l.classList.toggle("falsch", gew && i !== s.soll);
+        });
+      } else if (s.art === "mehrfach") {
+        const fs = karte.querySelector('fieldset[data-key="m"]');
+        if (!fs) return;
+        fs.querySelectorAll(".az-opt").forEach(l => {
+          const i = Number(l.dataset.i);
+          const gew = l.querySelector("input").checked;
+          l.classList.toggle("soll", s.soll.indexOf(i) >= 0);
+          l.classList.toggle("falsch", gew && s.soll.indexOf(i) < 0);
+        });
+      }
+    });
+    const zf = karte.querySelector(".az-auto");
+    if (zf) zf.textContent = autoText(t, r);
+  }
+
+  function autoText(t, r) {
+    if (!r.pruefbar) return "";
+    const E = t.eingabe || {};
+    const was = E.typ === "mehrfach" ? "Treffer (falsche ziehen ab)" : E.typ === "wahl" || E.typ === "zuordnung" ? "Zeilen richtig" : "Felder richtig";
+    return "Automatisch geprüft: " + r.k + " von " + r.n + " " + was +
+      (r.vorschlag != null ? " → Vorschlag " + fmt(r.vorschlag) + " P." : " — der Rest ist Text, den bewertest du selbst.");
+  }
+
+  function loesungTeil(m, t, z, karte) {
+    const box = el("div", "az-loesung");
+    const r = pruefe(t, z.a[t.id]);
+    if (r.pruefbar) box.appendChild(el("p", "az-auto", autoText(t, r)));
+    box.appendChild(el("h5", null, "Musterlösung"));
+    const l = el("div", "az-text");
+    if (t.loesung) htmlIn(l, t.loesung); else l.textContent = "Zu dieser Aufgabe gibt es keine Musterlösung.";
+    box.appendChild(l);
+    if (t.hinweis) {
+      const h = el("div", "az-hinweis");
+      h.appendChild(el("b", null, "So wird bewertet: "));
+      h.appendChild(sicher(t.hinweis));
+      box.appendChild(h);
+    }
+    if (t.vorbild) box.appendChild(el("p", "az-vorlage", "Vorlage: " + t.vorbild));
+    /* Textantworten: Kurzcheck und „Mit Claude prüfen“ (gen/pruefen.js) */
+    if (hatFreitext(t) && root.GENPRUEFEN) {
+      try {
+        /* Als Klartext mit Tabellen (|…|) und mit ALLEN Eingaben samt Beschriftung —
+           vorher gingen Zahlenfelder und die Zuordnung zu den Unterfragen verloren,
+           und Claude bewertete dann „fehlt“, obwohl es dastand. */
+        box.appendChild(root.GENPRUEFEN.kasten({
+          klartext: true,
+          frage: htmlZuMd(t.text) + (t.anlagen || []).map(x => "\n\nAnlage: " + textAus(x.titel) + "\n" + htmlZuMd(x.html)).join(""),
+          loesung: htmlZuMd(t.loesung), hinweis: htmlZuMd(t.hinweis), punkte: t.punkte,
+          gruppe: { id: "az:" + m.id, name: m.virtuell ? "Prognose-Prüfung " + m.nr : m.kurz },
+          antwort: () => antwortMd(t, z.a[t.id])
+        }));
+      } catch (e) { console.error("Azubi/Prüfen:", e); }
+    }
+    box.appendChild(bewerten(m, t, z, r));
+    const nochmal = el("button", "btn ghost klein az-nochmal", "Diese Teilaufgabe neu versuchen");
+    nochmal.type = "button";
+    nochmal.onclick = () => {
+      if (!neustart(m, z, [t.id], nochmal)) return;
+      ersetzeKarte(m, t, z); leisteAktualisieren();
+      const historie = $("azHistorie");
+      if (historie) historie.replaceWith(historieZeichnen(m, z));
+    };
+    if (z.modus === "uebung") box.appendChild(nochmal);
+    return box;
+  }
+
+  function bewerten(m, t, z, r) {
+    const box = el("div", "az-bewerten");
+    const kopf = el("div", "az-bew-kopf");
+    kopf.appendChild(el("b", null, "Deine Punkte"));
+    if (z.auto[t.id] && z.p[t.id] != null) kopf.appendChild(el("span", "az-chip", "automatisch — änderbar"));
+    else if (z.p[t.id] == null) kopf.appendChild(el("span", "az-chip warn", "noch nicht bewertet"));
+    box.appendChild(kopf);
+    const max = t.punkte || 0;
+    const setze = v => {
+      z.p[t.id] = Math.max(0, Math.min(max, v));
+      delete z.auto[t.id];
+      beobachten(m, t, z);
+      sichern(true);
+      ersetzeKarte(m, t, z);
+      leisteAktualisieren();
+    };
+    const wahl = el("div", "az-pwahl");
+    if (!Number.isInteger(max * 2)) {
+      /* Bruchpunkte (WiSo 3,33): 0 · Vorschlag · alle */
+      const knopf = (wert, text) => {
+        const b = el("button", "az-pk breit", text); b.type = "button";
+        if (z.p[t.id] != null && Math.abs(z.p[t.id] - wert) < 0.005) b.classList.add("an");
+        if (r.vorschlag != null && Math.abs(r.vorschlag - wert) < 0.005) b.classList.add("vorschlag");
+        b.onclick = () => setze(wert);
+        wahl.appendChild(b);
+      };
+      knopf(0, "0");
+      if (r.vorschlag != null && r.vorschlag > 0.005 && r.vorschlag < max - 0.005) knopf(r.vorschlag, fmt(r.vorschlag));
+      knopf(max, "alle " + fmt(max));
+    } else if (max <= 12) {
+      for (let i = 0; i <= max; i++) {
+        const b = el("button", "az-pk", String(i));
+        b.type = "button";
+        if (z.p[t.id] === i) b.classList.add("an");
+        if (r.vorschlag === i) b.classList.add("vorschlag");
+        b.onclick = () => setze(i);
+        wahl.appendChild(b);
+      }
+      const halb = z.p[t.id] != null && z.p[t.id] % 1 !== 0;
+      if (halb) wahl.appendChild(el("span", "az-pk an", fmt(z.p[t.id])));
+    } else {
+      const minus = el("button", "az-pk", "−"); minus.type = "button";
+      const wert = el("span", "az-pwert", z.p[t.id] != null ? fmt(z.p[t.id]) : "–");
+      const plus = el("button", "az-pk", "+"); plus.type = "button";
+      minus.onclick = () => setze((z.p[t.id] != null ? z.p[t.id] : (r.vorschlag || 0)) - 1);
+      plus.onclick = () => setze((z.p[t.id] != null ? z.p[t.id] : (r.vorschlag || 0)) + 1);
+      const null0 = el("button", "az-pk breit", "0"); null0.type = "button"; null0.onclick = () => setze(0);
+      const voll = el("button", "az-pk breit", "alle " + max); voll.type = "button"; voll.onclick = () => setze(max);
+      wahl.append(null0, minus, wert, plus, voll);
+      if (r.vorschlag != null) {
+        const v = el("button", "az-pk breit vorschlag", "Vorschlag " + fmt(r.vorschlag)); v.type = "button";
+        v.onclick = () => setze(r.vorschlag);
+        wahl.appendChild(v);
+      }
+    }
+    box.appendChild(wahl);
+    return box;
+  }
+
+  /* ---------------------------------------------------------- Auswertung --- */
+  function ergebnisZeichnen(box, m) {
+    lauffStop();
+    LAUF = null;
+    const z = zustand(m.id);
+    const s = auswertung(m, z);
+    const P = paket();
+    const k = el("div", "az-karte az-erg");
+    k.appendChild(el("span", "az-eyebrow", m.kurz + " · Auswertung"));
+    k.appendChild(el("h2", null, m.titel));
+    const gross = el("div", "az-erg-gross");
+    const pz = el("div", "az-erg-zahl");
+    pz.appendChild(el("b", null, fmt(s.punkte)));
+    pz.appendChild(el("span", null, "von " + fmt(s.max) + " P."));
+    gross.appendChild(pz);
+    const nt = el("div", "az-erg-note n" + s.note.n);
+    nt.appendChild(el("b", null, s.note.text));
+    nt.appendChild(el("span", null, fmt(s.prozent) + " %"));
+    gross.appendChild(nt);
+    k.appendChild(gross);
+    const info = [];
+    if (z.modus === "pruefung") info.push("Prüfungsmodus · Zeit " + minuten(z.zeit));
+    else if (z.modus === "uebung") info.push("Übungsmodus");
+    const b = ((P && P.bisher) || {})[m.id];
+    if (b) info.push("Azubi-Navigator bisher: " + b);
+    if (info.length) k.appendChild(el("p", "az-info", info.join(" · ")));
+    if (s.bewertet < s.n) {
+      const h = el("div", "az-hinweisbox");
+      h.appendChild(el("b", null, (s.n - s.bewertet) + " von " + s.n + " Teilaufgaben noch ohne Punkte "));
+      h.appendChild(document.createTextNode("— sie zählen hier als 0. " + (z.modus === "pruefung" && !z.abgegeben ?
+        "Erst abgeben, dann bewerten." : "Im Bogen „Lösung zeigen“ und bewerten.")));
+      k.appendChild(h);
+    }
+    /* je Aufgabe */
+    const jl = el("div", "az-je");
+    s.jeAufgabe.forEach(a => {
+      const r = el("button", "az-je-z");
+      r.type = "button";
+      r.appendChild(el("span", "az-je-n", "A" + a.nr));
+      const bar = el("span", "az-bar");
+      const i = el("i", a.max && a.p / a.max >= .67 ? "gut" : a.max && a.p / a.max >= .5 ? "mittel" : "schwach");
+      i.style.width = (a.max ? a.p / a.max * 100 : 0) + "%";
+      bar.appendChild(i);
+      r.appendChild(bar);
+      r.appendChild(el("span", "az-je-p", fmt(a.p) + "/" + fmt(a.max)));
+      r.onclick = () => { const t0 = (m.aufgaben.find(x => x.nr === a.nr) || {}).teile; if (t0 && t0[0]) oeffnen(m.id, { ziel: t0[0].id }); };
+      jl.appendChild(r);
+    });
+    k.appendChild(jl);
+    box.appendChild(k);
+
+    /* verlorene Punkte */
+    const verl = teileVon(m).map(t => ({ t, weg: (t.punkte || 0) - (punkteFuer(t, z) || 0), bew: z.p[t.id] != null, leer: !hatAntwort(t, z.a[t.id]) }))
+      .filter(x => x.bew && x.weg > 0).sort((a, b) => b.weg - a.weg);
+    if (verl.length) {
+      const v = el("div", "az-karte");
+      v.appendChild(el("h3", null, "Hier gingen Punkte verloren"));
+      const ul = el("ul", "az-verloren");
+      verl.slice(0, 10).forEach(x => {
+        const li = el("li");
+        const bt = el("button", "az-link");
+        bt.type = "button";
+        bt.appendChild(el("span", "az-nr", x.t.nr + " " + x.t.label));
+        bt.appendChild(el("span", null, textAus(x.t.titel) + (x.leer ? " · leer gelassen" : "")));
+        bt.appendChild(el("span", "az-weg", "−" + fmt(x.weg) + " P."));
+        bt.onclick = () => oeffnen(m.id, { ziel: x.t.id });
+        li.appendChild(bt);
+        ul.appendChild(li);
+      });
+      v.appendChild(ul);
+      box.appendChild(v);
+    }
+
+    /* Knöpfe */
+    const st = el("div", "az-karte steuer az-erg-knoepfe");
+    const zum = el("button", "btn primary", "Zum Bogen");
+    zum.type = "button"; zum.onclick = () => oeffnen(m.id);
+    st.appendChild(zum);
+    if (verl.length && s.bewertet) {
+      const fal = el("button", "btn", "Nur die mit Punktverlust nochmal");
+      fal.type = "button";
+      fal.onclick = () => bestaetigen(fal, "Diese " + verl.length + " Teilaufgaben leeren? Das Ergebnis kommt ins Archiv.", () => {
+        if (!neustart(m, z, verl.map(x => x.t.id), fal)) return;
+        oeffnen(m.id, { ziel: verl[0].t.id });
+      });
+      st.appendChild(fal);
+    }
+    const neu = el("button", "btn", "Neuer Versuch");
+    neu.type = "button";
+    neu.onclick = () => bestaetigen(neu, "Alles leeren und neu anfangen? Das Ergebnis kommt ins Archiv.", () => {
+      if (!neustart(m, z, null, neu)) return;
+      oeffnen(m.id);
+    });
+    st.appendChild(neu);
+    st.appendChild(zurUebersicht(m));
+    box.appendChild(st);
+    box.appendChild(extraKnoepfe(m, z));
+    box.appendChild(historieZeichnen(m, z));
+  }
+
+  function historieZeichnen(m, z) {
+    const h = el("div"); h.id = "azHistorie";
+    if (!z.versuche.length) return h;
+    h.className = "az-karte";
+    h.appendChild(el("h3", null, "Предыдущие попытки · Frühere Versuche"));
+    h.appendChild(el("p", "az-info", "Откройте попытку, чтобы сравнить свой ответ с решением и разобраться в ошибке. Просмотр не меняет текущий бланк."));
+    z.versuche.slice().reverse().forEach((v, i) => {
+      const d = el("details", "az-situation");
+      d.appendChild(el("summary", null, "Попытка " + (z.versuche.length - i) + " · " + datum(v.d) + " · " +
+        (v.modus === "pruefung" ? "Prüfung" : "Übung") + " · " + fmt(v.p) + "/" + fmt(v.max)));
+      let geladen = false;
+      d.addEventListener("toggle", () => {
+        if (!d.open || geladen) return;
+        geladen = true;
+        const stand = v.zustand;
+        if (!stand || !stand.a || !stand.p) {
+          d.appendChild(el("p", "az-info", "Старая запись содержит только итог. Ответы тогда не сохранялись, восстановить их из этой записи нельзя."));
+          return;
+        }
+        d.appendChild(el("p", "az-info", "Оценено заданий: " + v.bewertet + "/" + v.n +
+          (v.zeit ? " · Время на таймере: " + minuten(v.zeit) : " · Время не измерялось") +
+          ". Условия и решения показаны из текущего пакета заданий."));
+        const bekannte = new Set();
+        teileVon(m).forEach(t => {
+          bekannte.add(t.id);
+          const a = stand.a[t.id], p = punkteFuer(t, stand);
+          const karte = el("details", "az-situation");
+          karte.appendChild(el("summary", null, [t.nr, t.label, textAus(t.titel)].filter(Boolean).join(" ") +
+            " · " + (p == null ? "без оценки" : fmt(p) + "/" + fmt(t.punkte))));
+          const tx = el("div", "az-text"); htmlIn(tx, t.text); karte.appendChild(tx);
+          (t.anlagen || []).forEach(an => karte.appendChild(anlage(an)));
+          karte.appendChild(el("h4", null, "Ваш ответ"));
+          const antwort = el("pre", "az-text", hatAntwort(t, a) ? antwortMd(t, a) : "Ответ не записан.");
+          antwort.style.whiteSpace = "pre-wrap"; antwort.style.overflowWrap = "anywhere";
+          karte.appendChild(antwort);
+          if (p != null) karte.appendChild(el("p", "az-info", (stand.auto || {})[t.id] ? "Автоматическая проверка" : "Ваша ручная оценка"));
+          const hilfe = (stand.hilfe || {})[t.id];
+          const info = hilfe ? (hilfe.vorAntwort === true ? "Решение открыто до ответа." : hilfe.vorAntwort === false ? "Решение открыто после ответа." : "Решение просматривалось.") +
+            (hilfe.nachLoesung ? " Ответ менялся после просмотра решения." : "") :
+            ((stand.auf || {})[t.id] && stand.modus === "uebung" ? "Решение просматривалось; время просмотра в старой записи неизвестно." : "Использование помощи не зафиксировано.");
+          karte.appendChild(el("p", "az-info", info));
+          const loesung = el("details", "az-anlage");
+          loesung.appendChild(el("summary", null, "Сравнить с решением · Musterlösung"));
+          const l = el("div", "az-text"); htmlIn(l, t.loesung || "Решение в пакете отсутствует."); loesung.appendChild(l);
+          if (t.hinweis) { const hint = el("div", "az-hinweis"); htmlIn(hint, t.hinweis); loesung.appendChild(hint); }
+          karte.appendChild(loesung);
+          d.appendChild(karte);
+        });
+        Object.keys(stand.a).filter(id => !bekannte.has(id)).forEach(id => {
+          d.appendChild(el("p", "az-info", "Задание " + id + " отсутствует в текущем пакете. Сохранённый ответ:"));
+          const antwort = el("pre", "az-text", JSON.stringify(stand.a[id], null, 2));
+          antwort.style.whiteSpace = "pre-wrap"; antwort.style.overflowWrap = "anywhere";
+          d.appendChild(antwort);
+        });
+      });
+      h.appendChild(d);
+    });
+    return h;
+  }
+
+  function archivieren(m, z, s) {
+    if (!s.bewertet && !Object.keys(z.a || {}).length && !Object.keys(z.auf || {}).length && !z.zeit) return;
+    const stand = kopie(z);
+    delete stand.versuche;
+    z.versuche.push({ schema: 2, d: Date.now(), modus: z.modus, p: s.punkte, max: s.max, prozent: s.prozent, note: s.note.text,
+                      zeit: z.zeit, bewertet: s.bewertet, n: s.n, zustand: stand });
+  }
+
+  /* ======================================================================
+     Für Claude und fürs Papier: Markdown, Punkte zurück, Drucken
+     ====================================================================== */
+
+  /** Paket-HTML → Markdown: Tabellen als |…|, Code als ```, Listen mit - */
+  function htmlZuMd(html) {
+    const s = String(html || "");
+    if (!hatDom) {
+      return s.replace(/<pre[^>]*>([\s\S]*?)<\/pre>/gi, (x, c) => "\n```\n" + c.replace(/<[^>]+>/g, "") + "\n```\n")
+        .replace(/<\/(td|th)>\s*<(td|th)[^>]*>/gi, " | ").replace(/<tr[^>]*>/gi, "\n| ").replace(/<\/tr>/gi, " |")
+        .replace(/<li[^>]*>/gi, "\n- ").replace(/<br\s*\/?>/gi, "\n").replace(/<\/(div|p|h\d|ul|ol|table)>/gi, "\n")
+        .replace(/<\/?(b|strong)>/gi, "**").replace(/<[^>]+>/g, "")
+        .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+        .replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+    }
+    const tpl = document.createElement("template");
+    tpl.innerHTML = s;
+    const geh = n => {
+      if (n.nodeType === 3) return n.textContent.replace(/\s+/g, " ");
+      if (n.nodeType !== 1) return "";
+      const tag = n.tagName.toLowerCase();
+      const innen = () => Array.from(n.childNodes).map(geh).join("");
+      if (tag === "br") return "\n";
+      if (tag === "pre") return "\n```\n" + n.textContent.replace(/\n$/, "") + "\n```\n";
+      if (tag === "img") return "[Abbildung]";
+      if (tag === "table") {
+        const zeilen = Array.from(n.querySelectorAll("tr")).map(tr =>
+          "| " + Array.from(tr.children).map(c => geh(c).replace(/\n+/g, " ").replace(/\|/g, "/").trim()).join(" | ") + " |");
+        if (zeilen.length > 1) zeilen.splice(1, 0, zeilen[0].replace(/[^|]+/g, " --- "));
+        return "\n\n" + zeilen.join("\n") + "\n\n";
+      }
+      if (tag === "li") return "\n- " + innen().trim();
+      if (tag === "b" || tag === "strong" || tag === "i" || tag === "em") {
+        const c = innen(), z = /^(b|strong)$/.test(tag) ? "**" : "_";
+        if (!c.trim()) return c;
+        return c.match(/^\s*/)[0] + z + c.trim() + z + c.match(/\s*$/)[0];
+      }
+      if (tag === "sup") return "^" + innen();
+      if (/^(div|p|h\d|ul|ol|details|summary)$/.test(tag)) return "\n" + innen() + "\n";
+      return innen();
+    };
+    return Array.from(tpl.content.childNodes).map(geh).join("")
+      .replace(/[ \t]+\n/g, "\n").replace(/\n[ \t]+/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  /** Die eigene Antwort einer Teilaufgabe als lesbarer Text */
+  function antwortMd(t, a) {
+    a = a || {};
+    const E = t.eingabe || {};
+    const L = [];
+    const w = k => (a[k] == null || a[k] === "" ? "" : String(a[k]).trim());
+    if (E.typ === "raster") {
+      const z = E.zellen || [];
+      for (let r = 0; r < E.zeilen; r++) {
+        const cells = [];
+        for (let c = 0; c < E.spalten; c++) {
+          const x = z[r * E.spalten + c];
+          cells.push(!x ? "" : x.f ? (w("f" + x.f.id) || "…") + (x.f.einheit && w("f" + x.f.id) ? " " + x.f.einheit : "") : textAus(x.h));
+        }
+        L.push("| " + cells.join(" | ") + " |");
+        if (r === 0) L.push(L[0].replace(/[^|]+/g, " --- "));
+      }
+    } else if (E.typ === "zuordnung") {
+      (E.zeilen || []).forEach(zl => { const v = w("z" + zl.id); L.push("- " + textAus(zl.h) + " → " + (v ? v + " – " + textAus(E.optionen[Number(v) - 1]) : "…")); });
+    } else if (E.typ === "wahl") {
+      (E.zeilen || []).forEach(zl => { const v = a["w" + zl.id]; L.push("- " + textAus(zl.h) + " → " + (v != null && v !== "" ? textAus(zl.optionen[Number(v)]) : "…")); });
+    } else if (E.typ === "mehrfach") {
+      const gew = Array.isArray(a.m) ? a.m : [];
+      L.push(gew.length ? gew.map(i => "- " + textAus(E.optionen[i - 1])).join("\n") : "…");
+    } else {
+      (E.zeilen || []).forEach(zl => {
+        const titel = textAus(zl.h).replace(/:$/, "");
+        const teile = [];
+        if (zl.frei) teile.push(w("t" + zl.frei));
+        (zl.felder || []).forEach(f => { const v = w("f" + f.id); teile.push(v ? v + (f.einheit && !new RegExp(f.einheit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*$").test(v) ? " " + f.einheit : "") : ""); });
+        const inhalt = teile.filter(Boolean).join(" · ");
+        if (titel || inhalt) L.push((titel ? titel + ": " : "") + (inhalt || "…"));
+      });
+      if (w("rw")) L.push("Rechenweg: " + w("rw"));
+    }
+    return hatAntwort(t, a) ? L.join("\n").trim() : "";
+  }
+
+  /**
+   * Der ganze Bogen als Markdown für Claude.
+   * opt.nurText: nur Teilaufgaben mit Textantwort (Zahlenfelder prüft die App)
+   */
+  function markdown(m, z, opt) {
+    opt = opt || {};
+    const s = auswertung(m, z);
+    const L = [];
+    L.push("# " + (m.virtuell ? "Prognose-Prüfung " + m.nr : m.kurz) + ": " + m.titel, "");
+    L.push("- Stand: " + datum(Date.now()) + " · " + (z.modus === "pruefung" ? "Prüfungsmodus" + (z.zeit ? ", Zeit " + minuten(z.zeit) : "") : "Übungsmodus"));
+    L.push("- Maximal: " + fmt(s.max) + " Punkte · bisher bewertet: " + fmt(s.punkte) + " P. in " + s.bewertet + " von " + s.n + " Teilaufgaben");
+    L.push("");
+    L.push("> Du bist Prüfer der IHK-Abschlussprüfung Teil 1 (AP1) für Fachinformatiker Anwendungsentwicklung.");
+    L.push("> Bewerte jede Teilaufgabe so streng wie in der echten Prüfung — gegen Musterlösung und Bewertungshinweis.");
+    L.push("> Gib je Teilaufgabe: erreichte Punkte, was gefehlt hat, und eine verbesserte Antwort in kurzen, einfachen");
+    L.push("> deutschen Sätzen (Niveau B1); Fachbegriffe deutsch, dahinter in Klammern die russische Übersetzung.");
+    L.push("> Antworte ganz am Ende mit einem Block `PUNKTE`, eine Zeile je Teilaufgabe im Format `<id>: <punkte>`");
+    L.push("> (halbe Punkte erlaubt, z. B. `p1-1a: 5,5`) — den füge ich direkt in den Simulator ein.");
+    (m.einleitung || []).forEach(e => { L.push("", "## " + (textAus(e.titel) || "Ausgangssituation"), "", htmlZuMd(e.html)); });
+    let n = 0;
+    (m.aufgaben || []).forEach(a => {
+      const teile = (a.teile || []).filter(t => !opt.nurText || hatFreitext(t));
+      if (!teile.length) return;
+      const mx = (a.teile || []).reduce((x, t) => x + (t.punkte || 0), 0);
+      L.push("", "## Aufgabe " + a.nr + ": " + textAus(a.titel) + " (" + fmt(mx) + " Punkte)");
+      teile.forEach(t => {
+        n++;
+        const an = z.a[t.id];
+        L.push("", "### " + t.nr + " " + t.label + " " + textAus(t.titel) + " (" + fmt(t.punkte) + " P.)  `id: " + t.id + "`");
+        L.push("", "**Aufgabe**", "", htmlZuMd(t.text));
+        (t.anlagen || []).forEach(x => L.push("", "_Anlage: " + textAus(x.titel) + "_", "", htmlZuMd(x.html)));
+        L.push("", "**Meine Antwort**", "", antwortMd(t, an) || "_(keine Antwort)_");
+        const r = pruefe(t, an);
+        if (r.pruefbar) L.push("", "_Von der App geprüft: " + r.k + " von " + r.n + " Feldern richtig._");
+        L.push("", "**Musterlösung**", "", t.loesung ? htmlZuMd(t.loesung) : "_(keine hinterlegt)_");
+        if (t.hinweis) L.push("", "**Bewertungshinweis:** " + htmlZuMd(t.hinweis).replace(/\n+/g, " "));
+        if (z.p[t.id] != null) L.push("", "_Meine Selbstbewertung bisher: " + fmt(z.p[t.id]) + " von " + fmt(t.punkte) + " P._");
+      });
+    });
+    L.push("");
+    return { text: L.join("\n").replace(/\n{3,}/g, "\n\n"), anzahl: n };
+  }
+
+  /** „p1-1a: 5,5“ / „1 a): 3“ → {id: punkte}. Nur bekannte Teilaufgaben. */
+  function punkteLesen(m, roh) {
+    const teile = teileVon(m), out = {};
+    const byId = {}; teile.forEach(t => { byId[String(t.id).toLowerCase()] = t; });
+    String(roh || "").split(/\r?\n/).forEach(zeile => {
+      const z = zeile.replace(/[`*]/g, "").trim();
+      let t = null, wert = null;
+      let x = z.match(/^[-•\s]*([A-Za-z0-9_.-]+)\s*[:=]\s*(\d+(?:[.,]\d+)?)/);
+      if (x && byId[x[1].toLowerCase()]) { t = byId[x[1].toLowerCase()]; wert = x[2]; }
+      if (!t) {
+        x = z.match(/^[-•\s]*(?:Aufgabe\s*)?(\d+)\s*([a-z]{1,2})\)?\s*[:=–-]?\s*(\d+(?:[.,]\d+)?)/i);
+        if (x) { t = teile.find(y => String(y.nr) === x[1] && String(y.label).replace(/\)$/, "").toLowerCase() === x[2].toLowerCase()); wert = x[3]; }
+      }
+      if (!t || wert == null) return;
+      const v = Math.round(parseFloat(wert.replace(",", ".")) * 2) / 2;
+      if (!isNaN(v)) out[t.id] = Math.max(0, Math.min(t.punkte || 0, v));
+    });
+    return out;
+  }
+
+  /* ------------------------------------------------ Knöpfe unter dem Bogen */
+  function extraKnoepfe(m, z) {
+    const box = el("div", "az-extra");
+    box.appendChild(el("span", "az-extra-t", "Claude & Papier"));
+    const reihe = el("div", "az-extra-reihe");
+    const gruppe = { id: "az:" + m.id, name: m.virtuell ? "Prognose-Prüfung " + m.nr : m.kurz };
+    const md = (nurText) => {
+      const b = el("button", "btn", nurText ? "Nur Textantworten für Claude" : "Markdown für Claude");
+      b.type = "button";
+      b.title = "Kopiert Aufgaben, deine Antworten und Musterlösungen als Markdown — Claude bewertet und gibt einen PUNKTE-Block zurück.";
+      b.onclick = () => {
+        sichern(true);
+        const r = markdown(m, zustand(m.id), { nurText });
+        const los = root.GENPRUEFEN && root.GENPRUEFEN.senden ? root.GENPRUEFEN.senden(r.text, gruppe) : Promise.resolve({ ok: false });
+        los.then(x => meldung(x.ok ? r.anzahl + " Teilaufgaben kopiert — in Claude einfügen und senden. Den PUNKTE-Block danach mit „Punkte einfügen“ übernehmen."
+                                   : "Kopieren gesperrt — nimm „Als .md-Datei“.", !x.ok));
+      };
+      return b;
+    };
+    reihe.appendChild(md(false));
+    reihe.appendChild(md(true));
+    const datei = el("button", "btn ghost", "Als .md-Datei");
+    datei.type = "button";
+    datei.onclick = () => {
+      sichern(true);
+      const r = markdown(m, zustand(m.id), {});
+      try {
+        const blob = new Blob([r.text], { type: "text/markdown;charset=utf-8" });
+        const a = el("a"); a.href = URL.createObjectURL(blob);
+        a.download = m.id + "_" + new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-") + ".md";
+        document.body.appendChild(a); a.click();
+        setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+      } catch (e) { meldung("Speichern ging nicht: " + e.message, true); }
+    };
+    reihe.appendChild(datei);
+    const imp = el("button", "btn ghost", "Punkte einfügen");
+    imp.type = "button";
+    reihe.appendChild(imp);
+    const druck = el("button", "btn ghost", "Drucken");
+    druck.type = "button";
+    reihe.appendChild(druck);
+    box.appendChild(reihe);
+
+    /* Punkte aus Claudes Antwort übernehmen */
+    const pf = el("div", "az-import");
+    pf.hidden = true;
+    pf.appendChild(el("p", "az-info", "Claudes Antwort (oder nur den PUNKTE-Block) hier einfügen. Erkannt werden Zeilen wie „p1-1a: 5,5“ oder „1 a): 3“."));
+    const ta = el("textarea", "az-frei");
+    ta.rows = 6; ta.placeholder = "PUNKTE\n" + teileVon(m).slice(0, 2).map(t => t.id + ": " + t.punkte).join("\n");
+    pf.appendChild(ta);
+    const st = el("div", "steuer");
+    const ueb = el("button", "btn primary", "Übernehmen"); ueb.type = "button";
+    ueb.onclick = () => {
+      const p = punkteLesen(m, ta.value), ids = Object.keys(p);
+      if (!ids.length) { meldung("Keine Punkte erkannt — Format „id: Punkte“.", true); return; }
+      const zz = (LAUF && LAUF.m.id === m.id) ? LAUF.z : zustand(m.id);
+      ids.forEach(id => { zz.p[id] = p[id]; zz.auf[id] = 1; delete zz.auto[id]; });
+      teileVon(m).filter(t => ids.includes(t.id)).forEach(t => beobachten(m, t, zz));
+      if (LAUF && LAUF.m.id === m.id) sichern(true); else schreib(SK + m.id, zz);
+      meldung(ids.length + " Bewertungen übernommen.");
+      ta.value = ""; pf.hidden = true;
+      zeichnen();
+    };
+    const abb = el("button", "btn ghost", "Abbrechen"); abb.type = "button";
+    abb.onclick = () => { pf.hidden = true; };
+    st.append(ueb, abb);
+    pf.appendChild(st);
+    box.appendChild(pf);
+    imp.onclick = () => { pf.hidden = !pf.hidden; if (!pf.hidden) ta.focus(); };
+
+    /* Drucken: leer, mit Antworten, mit Lösungen */
+    const dw = el("div", "az-druckwahl");
+    dw.hidden = true;
+    [["leer", "Leer zum Schreiben", "Aufgaben mit Schreiblinien"], ["antworten", "Mit meinen Antworten", "zum Nacharbeiten"],
+     ["loesungen", "Mit Antworten und Lösungen", "Musterlösung und Punkte dazu"]].forEach(([art, t1, t2]) => {
+      const b = el("button", "az-druck-k"); b.type = "button";
+      b.appendChild(el("b", null, t1)); b.appendChild(el("span", null, t2));
+      b.onclick = () => { dw.hidden = true; drucken(m, (LAUF && LAUF.m.id === m.id) ? LAUF.z : zustand(m.id), art); };
+      dw.appendChild(b);
+    });
+    box.appendChild(dw);
+    druck.onclick = () => { dw.hidden = !dw.hidden; };
+    return box;
+  }
+
+  /* -------------------------------------------------------------- Drucken */
+  function drucken(m, z, art) {
+    sichern(true);
+    let d = $("azDruck");
+    if (d) d.remove();
+    d = el("div"); d.id = "azDruck";
+    const kopf = el("header", "azd-kopf");
+    kopf.appendChild(el("h1", null, (m.virtuell ? "Prognose-Prüfung " + m.nr : m.kurz) + " — " + m.titel));
+    kopf.appendChild(el("p", null, "Name: ______________________    Datum: ____________    Zeit: " + (m.minuten || 90) + " Min. · " + fmt(auswertung(m, z).max) + " Punkte" +
+      (art === "leer" ? "" : " · " + (art === "loesungen" ? "mit Antworten und Lösungen" : "mit meinen Antworten"))));
+    d.appendChild(kopf);
+    (m.einleitung || []).forEach(e => {
+      const s = el("section", "azd-sit");
+      s.appendChild(el("h2", null, textAus(e.titel) || "Ausgangssituation"));
+      htmlIn(s.appendChild(el("div", "azd-text")), e.html);
+      d.appendChild(s);
+    });
+    const s0 = auswertung(m, z);
+    (m.aufgaben || []).forEach((a, ai) => {
+      const sec = el("section", "azd-aufgabe");
+      const mx = (a.teile || []).reduce((x, t) => x + (t.punkte || 0), 0);
+      const h = el("h2", null, "Aufgabe " + a.nr + ": " + textAus(a.titel));
+      h.appendChild(el("span", "azd-p", (art === "loesungen" ? fmt(s0.jeAufgabe[ai].p) + " / " : "") + fmt(mx) + " P."));
+      sec.appendChild(h);
+      (a.teile || []).forEach(t => sec.appendChild(druckTeil(t, z.a[t.id] || {}, z, art)));
+      d.appendChild(sec);
+    });
+    if (art === "loesungen") {
+      const f = el("p", "azd-summe", "Gesamt: " + fmt(s0.punkte) + " von " + fmt(s0.max) + " Punkten · " + fmt(s0.prozent) + " % · " + s0.note.text +
+        (s0.bewertet < s0.n ? " (" + (s0.n - s0.bewertet) + " Teilaufgaben noch ohne Punkte)" : ""));
+      d.appendChild(f);
+    }
+    document.body.appendChild(d);
+    document.body.classList.add("az-druckt");
+    const weg = () => { document.body.classList.remove("az-druckt"); root.removeEventListener("afterprint", weg); };
+    root.addEventListener("afterprint", weg);
+    setTimeout(() => { try { root.print(); } catch (e) { } setTimeout(() => { if (!root.matchMedia || !root.matchMedia("print").matches) weg(); }, 1500); }, 60);
+  }
+
+  function linien(n) {
+    const b = el("div", "azd-linien");
+    for (let i = 0; i < n; i++) b.appendChild(el("div", "azd-linie"));
+    return b;
+  }
+
+  function druckTeil(t, a, z, art) {
+    const mit = art !== "leer";
+    const c = el("article", "azd-teil");
+    const k = el("h3", null, t.nr + " " + t.label + " " + textAus(t.titel));
+    const p = z.p[t.id];
+    k.appendChild(el("span", "azd-p", (art === "loesungen" && p != null ? fmt(p) + " / " : "") + fmt(t.punkte) + " P."));
+    c.appendChild(k);
+    htmlIn(c.appendChild(el("div", "azd-text")), t.text);
+    (t.anlagen || []).forEach(x => {
+      const an = el("div", "azd-anlage");
+      an.appendChild(el("b", null, "Anlage: " + textAus(x.titel)));
+      htmlIn(an.appendChild(el("div", "azd-text")), x.html);
+      c.appendChild(an);
+    });
+    const E = t.eingabe || {};
+    const box = el("div", "azd-antwort");
+    const wert = key => (a[key] == null ? "" : String(a[key]));
+    if (E.typ === "raster") {
+      const tab = el("table", "azd-raster"), zellen = E.zellen || [];
+      for (let r = 0; r < E.zeilen; r++) {
+        const tr = el("tr");
+        for (let s = 0; s < E.spalten; s++) {
+          const zz = zellen[r * E.spalten + s];
+          const td = el(zz && zz.h && r === 0 ? "th" : "td");
+          if (zz && zz.f) { td.className = "feld"; td.textContent = mit ? wert("f" + zz.f.id) : ""; }
+          else if (zz && zz.h) htmlIn(td, zz.h);
+          tr.appendChild(td);
+        }
+        tab.appendChild(tr);
+      }
+      box.appendChild(tab);
+    } else if (E.typ === "zuordnung" || E.typ === "wahl" || E.typ === "mehrfach") {
+      if (E.typ === "zuordnung") {
+        const ol = el("ol", "azd-opt"); E.optionen.forEach(o => htmlIn(ol.appendChild(el("li")), o)); box.appendChild(ol);
+        (E.zeilen || []).forEach(zl => {
+          const r = el("div", "azd-zeile");
+          htmlIn(r.appendChild(el("span", null)), zl.h);
+          r.appendChild(el("span", "azd-luecke", mit && wert("z" + zl.id) ? "→ " + wert("z" + zl.id) : "→ ____"));
+          box.appendChild(r);
+        });
+      } else if (E.typ === "wahl") {
+        (E.zeilen || []).forEach(zl => {
+          const r = el("div", "azd-zeile");
+          htmlIn(r.appendChild(el("span", null)), zl.h);
+          const opts = el("span", "azd-luecke");
+          zl.optionen.forEach((o, i) => opts.appendChild(el("span", "azd-o", (mit && String(a["w" + zl.id]) === String(i) ? "● " : "○ ") + textAus(o))));
+          r.appendChild(opts);
+          box.appendChild(r);
+        });
+      } else {
+        const gew = Array.isArray(a.m) ? a.m : [];
+        E.optionen.forEach((o, i) => box.appendChild(el("div", "azd-zeile", (mit && gew.indexOf(i + 1) >= 0 ? "☒ " : "☐ ") + textAus(o))));
+      }
+    } else {
+      const zl = E.zeilen || [];
+      const frei = zl.filter(x => x.frei).length || 0;
+      zl.forEach(x => {
+        const inline = !x.frei && (x.felder || []).length && textAus(x.h).length < 90;
+        const r = el("div", "azd-feldzeile" + (inline ? " inline" : ""));
+        if (x.h) htmlIn(r.appendChild(el(inline ? "span" : "div", "azd-label")), x.h);
+        if (x.frei) {
+          const v = wert("t" + x.frei);
+          if (mit && v) r.appendChild(el("div", "azd-eigen", v));
+          else r.appendChild(linien(Math.min(x.gross ? 14 : 8, Math.max(2, Math.round((x.gross ? 2 : 1.3) * (t.punkte || 1) / Math.max(1, frei)) + 1))));
+        }
+        (x.felder || []).forEach(f => {
+          const v = wert("f" + f.id);
+          r.appendChild(el("span", "azd-luecke", (mit && v ? v : "______________") + (f.einheit ? " " + f.einheit : "")));
+        });
+        box.appendChild(r);
+      });
+      if (!frei && zl.some(x => x.felder && x.felder.length)) {
+        const rw = wert("rw");
+        const r = el("div", "azd-feldzeile");
+        r.appendChild(el("div", "azd-label", "Rechenweg:"));
+        if (mit && rw) r.appendChild(el("div", "azd-eigen", rw)); else r.appendChild(linien(Math.min(5, Math.max(2, Math.round(t.punkte || 1)))));
+        box.appendChild(r);
+      }
+    }
+    c.appendChild(box);
+    if (art === "loesungen") {
+      const l = el("div", "azd-muster");
+      l.appendChild(el("b", null, "Musterlösung"));
+      if (t.loesung) htmlIn(l.appendChild(el("div", "azd-text")), t.loesung);
+      if (t.hinweis) { const h = el("div", "azd-hinweis"); h.appendChild(el("b", null, "Bewertung: ")); h.appendChild(sicher(t.hinweis)); l.appendChild(h); }
+      if (t.vorbild) l.appendChild(el("div", "azd-hinweis", "Vorlage: " + t.vorbild));
+      c.appendChild(l);
+    }
+    return c;
+  }
+
+  /* ------------------------------------------------------- Startseite --- */
+  function block() {
+    if (!hatDom) return;
+    const s = $("scStart");
+    if (!s) return;
+    let b = $("azubiBox");
+    if (!b) { b = el("div", "abschnitt"); b.id = "azubiBox"; s.appendChild(b); }
+    b.innerHTML = "";
+    b.appendChild(el("h2", null, "Echte AP2-Prüfungen"));
+    const P = paket();
+    if (!P) {
+      b.appendChild(el("p", null, "Die Original-Bögen der IHK (WiSo, GA1, GA2) — mit Uhr, Speichern und Auswertung. " +
+        "Auf diesem Gerät ist noch kein Prüfungspaket."));
+      const st = el("div", "steuer");
+      st.appendChild(ladeKnopf("Paket laden", "primary", () => { block(); }));
+      const wie = el("button", "btn ghost", "Wie?");
+      wie.type = "button"; wie.onclick = () => oeffnen(null);
+      st.appendChild(wie);
+      b.appendChild(st);
+      zahlSetzen("");
+      return;
+    }
+    const liste = sortiert(P.module, zustand, P.bisher);
+    const fertig = liste.filter(e => e.s.fertig).length;
+    b.appendChild(el("p", null, P.module.length + " Original-Bögen — angefangene Prüfungen gehen nicht verloren."));
+    const reihe = el("div", "az-start-reihe");
+    const k = (n, text, klasse) => { const c = el("div", "az-start-k" + (klasse ? " " + klasse : "")); c.appendChild(el("b", null, String(n))); c.appendChild(el("span", null, text)); reihe.appendChild(c); };
+    k(liste.filter(e => e.g === "neu").length, "noch nie gemacht", "rot");
+    k(liste.filter(e => e.g === "weiter").length, "angefangen");
+    k(fertig, "fertig", "gruen");
+    b.appendChild(reihe);
+    const st = el("div", "steuer");
+    const e0 = liste[0];
+    if (e0) {
+      const w = el("button", "btn primary", (e0.g === "weiter" ? "Weiter: " : "Als Nächstes: ") + e0.m.kurz);
+      w.type = "button"; w.onclick = () => oeffnen(e0.m.id);
+      st.appendChild(w);
+    }
+    const alle = el("button", "btn", "Alle ansehen");
+    alle.type = "button"; alle.onclick = () => oeffnen(null);
+    st.appendChild(alle);
+    b.appendChild(st);
+    zahlSetzen(fertig + "/" + P.module.length + " fertig");
+  }
+  function zahlSetzen(text) {
+    const d = document.querySelector('details.st-block[data-key="azubi"] .st-zahl');
+    if (d) d.textContent = text;
+  }
+
+  /* -------------------------------------------------------- Einhängen --- */
+  function einhaengen() {
+    const altStart = root.renderStart;
+    if (typeof altStart === "function" && !altStart.__az) {
+      const neu = function () {
+        const r = altStart.apply(this, arguments);
+        try { block(); } catch (e) { console.error("Azubi:", e); }
+        return r;
+      };
+      neu.__az = true; root.renderStart = neu;
+    }
+    const altSchirm = root.schirm;
+    if (typeof altSchirm === "function" && !altSchirm.__az) {
+      const neu = function (name) {
+        if (name === "scAzubi") {
+          const st = history.state || {};
+          VIEW = st.az ? { art: st.azArt || "modul", id: st.az } : { art: "liste" };
+          laden().then(() => { zeichnen(); zeigen(); });
+          return;
+        }
+        const s = $("scAzubi");
+        if (s && !s.hidden) { lauffStop(); LAUF = null; s.hidden = true; }
+        return altSchirm.apply(this, arguments);
+      };
+      neu.__az = true; root.schirm = neu;
+    }
+    /* Innerhalb des Bereichs: Zurück-Taste wechselt zwischen Übersicht, Bogen und Auswertung */
+    root.addEventListener("popstate", ev => {
+      const st = ev.state || {};
+      const s = $("scAzubi");
+      if (st.seite !== "scAzubi" || !s || s.hidden) return;
+      lauffStop();
+      VIEW = st.az ? { art: st.azArt || "modul", id: st.az } : { art: "liste" };
+      zeichnen();
+    });
+    /* Andere Bereiche blenden sich selbst ein — dann Bereich schließen, Uhr anhalten */
+    if (!root.__azWache && root.MutationObserver) {
+      root.__azWache = new MutationObserver(muts => {
+        const k = $("scAzubi");
+        if (!k || k.hidden) return;
+        for (const m of muts) {
+          const z = m.target;
+          if (z !== k && z.id && /^sc/.test(z.id) && z.classList &&
+              (z.classList.contains("seite") || z.classList.contains("blatt")) && !z.hidden) {
+            lauffStop(); LAUF = null; k.hidden = true; return;
+          }
+        }
+      });
+      root.__azWache.observe(document.body, { subtree: true, attributes: true, attributeFilter: ["hidden"] });
+    }
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") sichern(true); });
+    root.addEventListener("pagehide", () => sichern(true));
+    /* Speichern im Blick behalten: welche Teilaufgabe zuletzt angefasst wurde */
+    document.addEventListener("focusin", ev => {
+      if (!LAUF) return;
+      const k = ev.target.closest && ev.target.closest(".az-teil");
+      if (k && k.dataset.id && LAUF.z.pos !== k.dataset.id) { LAUF.z.pos = k.dataset.id; sichern(); }
+    });
+    try { block(); } catch (e) { console.error("Azubi:", e); }
+    setTimeout(() => laden().then(p => {
+      try { block(); } catch (e) { console.error("Azubi:", e); }
+      if (p) paketGeaendert();
+      const s = $("scAzubi");
+      if (s && !s.hidden) zeichnen();
+    }), 250);
+  }
+
+  /** Eine Teilaufgabe als Frage und Lösung — für „Fehler wiederholen“ */
+  function ansicht(mid, tid) {
+    const m = modul(mid);
+    if (!m || !hatDom) return null;
+    let t = null, a = null;
+    (m.aufgaben || []).forEach(x => (x.teile || []).forEach(y => { if (y.id === tid) { t = y; a = x; } }));
+    if (!t) return null;
+    const frage = document.createDocumentFragment();
+    const tx = el("div", "az-text"); htmlIn(tx, t.text); frage.appendChild(tx);
+    (t.anlagen || []).forEach(an => frage.appendChild(anlage(an)));
+    const loesung = document.createDocumentFragment();
+    const l = el("div", "az-text");
+    if (t.loesung) htmlIn(l, t.loesung); else l.textContent = "Keine Musterlösung hinterlegt.";
+    loesung.appendChild(l);
+    if (t.hinweis) {
+      const h = el("div", "az-hinweis");
+      h.appendChild(el("b", null, "So wird bewertet: "));
+      h.appendChild(sicher(t.hinweis));
+      loesung.appendChild(h);
+    }
+    if (t.vorbild) loesung.appendChild(el("p", "az-vorlage", "Vorlage: " + t.vorbild));
+    /* Ausgangssituation des Bogens — für „Fehler durchgehen“ (zugeklappt) */
+    let situation = null;
+    if ((m.einleitung || []).length) {
+      situation = document.createDocumentFragment();
+      m.einleitung.forEach(e => {
+        const b = el("div", "az-text");
+        if (m.einleitung.length > 1 && e.titel) b.appendChild(el("h4", null, textAus(e.titel)));
+        htmlIn(b, e.html);
+        situation.appendChild(b);
+        (e.anlagen || []).forEach(an => situation.appendChild(anlage(an)));
+      });
+    }
+    return { m, t, aufgabe: a, titel: textAus(t.titel), frage, loesung, situation };
+  }
+
+  const api = {
+    oeffnen, zeigen, block, laden, importieren, paket, modul, alleModule, zustand, ansicht, teileVon,
+    normText, zahlen, feldRichtig, textVarianten, pruefe, markdown, punkteLesen, htmlZuMd, antwortMd, stellen, hatAntwort, note, auswertung, einordnen, sortiert, paketAusText, neuerVersuch, loesungAnsehen, antwortSetzen, beobachten,
+    get VIEW() { return VIEW; }
+  };
+  root.GENAZUBI = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+
+  if (hatDom) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", einhaengen);
+    else einhaengen();
+  }
+})(typeof window !== "undefined" ? window : globalThis);

@@ -1,0 +1,92 @@
+/* ============================================================================
+   gen/algo.css — Sortieren & Suchen (gen/algo.js)
+   ========================================================================== */
+
+.al-seite{max-width:860px}
+.al-wrap{display:flex; flex-direction:column; gap:12px; min-width:0}
+.al-seite .btn{font-family:var(--body); text-transform:none; letter-spacing:0; font-size:14px; font-weight:650; border-radius:9px; padding:9px 15px; min-height:42px}
+.al-karte{background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:16px 18px; min-width:0;
+  box-shadow:0 1px 2px rgba(20,23,28,.05), 0 6px 18px rgba(18,69,126,.06)}
+.al-karte h2{font-family:var(--body); font-size:21px; font-weight:800; margin:0; color:var(--pruefer); line-height:1.25}
+.al-karte h3{font-family:var(--body); font-size:16px; font-weight:800; margin:0 0 8px; color:var(--ink)}
+.al-aktiv{border-color:var(--pruefer); border-width:1.5px}
+.al-info{font-size:14.5px; line-height:1.55; margin:8px 0 0; color:var(--ink)}
+.al-klein{font-size:12.5px; color:var(--muted); line-height:1.45; margin:0 0 8px}
+.al-knoepfe{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; align-items:center}
+.al-kopfzeile{display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap}
+.al-kopfknoepfe{display:flex; gap:6px; flex-wrap:wrap}
+.al-code{margin-top:10px}
+.al-code summary{cursor:pointer; font-weight:700; font-size:14px; color:var(--pruefer); padding:6px 0; min-height:32px}
+.al-code pre{font-family:var(--data, ui-monospace, Menlo, Consolas, monospace); font-size:13px; line-height:1.5; background:var(--field);
+  border:1px solid var(--rule); border-radius:9px; padding:10px 12px; margin:6px 0 0; overflow-x:auto; white-space:pre; color:var(--ink)}
+
+/* Einstellungen */
+.al-einst{display:flex; align-items:center; gap:8px 12px; flex-wrap:wrap; margin-top:8px}
+.al-e-titel{font-size:13px; font-weight:700; color:var(--muted); min-width:90px}
+.al-chips{display:flex; flex-wrap:wrap; gap:6px}
+.al-chip{border:1px solid var(--rule); background:var(--card); color:var(--ink); border-radius:99px; padding:5px 12px;
+  font:inherit; font-size:13px; cursor:pointer; min-height:34px}
+.al-chip.an{background:var(--pruefer); border-color:var(--pruefer); color:#fff}
+
+/* Verfahren */
+.al-gitter{display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:10px}
+.al-verf{display:flex; flex-direction:column; gap:4px; text-align:left; background:var(--card); color:var(--ink);
+  border:1px solid var(--rule); border-radius:12px; padding:12px 14px; font:inherit; cursor:pointer; min-width:0}
+.al-verf:hover{border-color:var(--pruefer)}
+.al-verf b{font-size:15.5px}
+.al-v-ru{font-size:12.5px; color:var(--pruefer); font-style:italic}
+.al-v-idee{font-size:13px; line-height:1.45; color:var(--ink)}
+.al-v-stand{font-size:12px; color:var(--muted); margin-top:4px}
+
+/* Feld */
+.al-zeilentitel{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; font-weight:700; color:var(--muted); margin:10px 0 4px}
+.al-zeilentitel:first-child{margin-top:0}
+.al-zaehler{font-weight:600}
+.al-feld{display:flex; flex-wrap:wrap; gap:6px}
+.al-zelle{position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:46px; height:52px;
+  border:1.5px solid var(--rule); border-radius:10px; background:var(--card); color:var(--ink); font:inherit; padding:2px 6px}
+button.al-zelle{cursor:pointer; touch-action:manipulation}
+button.al-zelle:hover{border-color:var(--pruefer)}
+.al-wert{font-family:var(--data, ui-monospace, monospace); font-size:18px; font-weight:800; line-height:1}
+.al-idx{font-size:10.5px; color:var(--muted); margin-top:4px; line-height:1}
+.al-feld.klein .al-zelle{min-width:38px; height:40px}
+.al-feld.klein .al-wert{font-size:15px}
+.al-zelle.fest{background:var(--ok-soft); border-color:var(--ok)}
+.al-zelle.sortiert{background:var(--pruefer-soft); border-color:var(--pruefer)}
+.al-zelle.wahl{background:var(--pruefer); border-color:var(--pruefer); color:#fff}
+.al-zelle.wahl .al-idx{color:#fff}
+.al-zelle.falsch{border-color:var(--red); background:var(--red-soft)}
+.al-zelle.markiert{background:var(--warn-soft); border-color:var(--warn)}
+.al-zelle.grau{opacity:.35}
+.al-erkl{font-size:13px; color:var(--muted); margin:4px 0 0; line-height:1.45}
+.al-feld.eingabe{gap:6px}
+.al-inp{width:52px; height:46px; border:1.5px solid var(--rule); border-radius:10px; background:var(--field); color:var(--ink);
+  font-family:var(--data, ui-monospace, monospace); font-size:18px; font-weight:700; text-align:center; padding:0}
+.al-inp:focus{outline:2px solid var(--pruefer); outline-offset:1px}
+.al-inp.falsch{border-color:var(--red); background:var(--red-soft)}
+
+/* Binäre Suche */
+.al-werte{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+.al-wert-feld{display:flex; flex-direction:column; gap:4px; font-size:12.5px; font-weight:700; color:var(--muted)}
+.al-wert-feld .al-inp{width:76px}
+.al-wert-feld.falsch .al-inp{border-color:var(--red); background:var(--red-soft)}
+.al-entscheid{flex-direction:column; align-items:stretch}
+.al-entscheid .btn{text-align:left; white-space:normal}
+.al-tab-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.al-tab{border-collapse:collapse; width:100%; font-size:13.5px; min-width:340px}
+.al-tab th, .al-tab td{border:1px solid var(--rule); padding:6px 8px; text-align:left}
+.al-tab th{background:var(--field); font-weight:800}
+
+.al-meldung{border-radius:10px; padding:9px 12px; margin:10px 0 0; font-size:14px; line-height:1.5}
+.al-meldung.schlecht{background:var(--red-soft); border:1px solid var(--red)}
+.al-meldung.gut{background:var(--ok-soft); border:1px solid var(--ok)}
+.al-ende{border-color:var(--ok)}
+
+@media (max-width: 560px){
+  .al-karte{padding:14px 14px}
+  .al-zelle{min-width:40px; height:48px}
+  .al-inp{width:44px; height:44px; font-size:17px}
+  .al-seite .btn{flex:1 1 auto}
+  .al-tab{font-size:12.5px}
+  .al-tab th, .al-tab td{padding:5px 5px}
+}

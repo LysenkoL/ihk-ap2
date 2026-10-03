@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+venv/
+ENV/
+
+# Cache & Temporary
+.cache/
+*.tmp
+*.log
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+index.html.bak-vor-generator
+*.bak*
+books/
+raw/
+_kb/
+Claude outputs/
+notion-export.json
+
+# Azubi-Navigator (u-form): lizenziertes Material, nur lokal — nie auf GitHub Pages
+privat/
+
+# AP2: Original-PDFs und Prüfungsdaten der ZPA nur lokal
+raw/
+privat/
+_tmp/
