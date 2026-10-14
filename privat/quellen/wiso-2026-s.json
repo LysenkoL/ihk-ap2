@@ -1,0 +1,563 @@
+{
+ "id": "wiso-2026-s",
+ "bereich": "wiso",
+ "termin": "Sommer 2026",
+ "kurz": "WiSo S26",
+ "datum": "29.04.2026",
+ "minuten": 60,
+ "quelle": "raw/ap2-2026-s-wiso.pdf",
+ "schluessel": "inoffizielle Musterlösung, jede Antwort nachgeprüft",
+ "situation": "Die CBA-IT-Service GmbH ist ein IT-Dienstleistungsunternehmen mit Sitz in Erfurt. Kunden sind klein- und mittelständische Unternehmen in ganz Deutschland. Die Aufgaben beziehen sich auf die CBA-IT-Service GmbH.",
+ "aufgaben": [
+  {
+   "nr": 1,
+   "thema": "Ausbildungsvertrag",
+   "text": "Frau Müller, 18 Jahre alt, möchte in der CBA-IT-Service GmbH eine Ausbildung zur Fachinformatikerin Fachrichtung Anwendungsentwicklung beginnen. Sie sollen folgende Vereinbarungen im Ausbildungsvertrag überprüfen.",
+   "frage": "Welche der folgenden Vereinbarungen ist zulässig?",
+   "typ": "eine",
+   "optionen": [
+    "Frau Müller muss keinen Ausbildungsnachweis führen.",
+    "Die Ausbildungsvergütung für den jeweils laufenden Kalendermonat wird in den ersten beiden Wochen des nächsten Monats gezahlt.",
+    "Frau Müller verpflichtet sich zum Stillschweigen über Betriebsgeheimnisse.",
+    "Ein Jobangebot zur Weiterbeschäftigung bei der CBA-IT-Service GmbH muss bei bestandener Prüfung angenommen werden.",
+    "Nach ihrer Ausbildung ist Frau Müller verpflichtet, mindestens zwei Jahre bei der CBA-IT-Service GmbH zu arbeiten."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Azubis müssen über Betriebsgeheimnisse schweigen (Schweigepflicht — обязанность хранить тайну, § 13 BBiG). Falsch: Der Ausbildungsnachweis (Berichtsheft — отчётный журнал) ist Pflicht. Die Vergütung kommt spätestens am letzten Arbeitstag des Monats (§ 18 BBiG). Eine Pflicht, nach der Ausbildung im Betrieb zu bleiben, ist nichtig (§ 12 BBiG)."
+  },
+  {
+   "nr": 2,
+   "thema": "Ausbildungsvertrag",
+   "frage": "Welche der nachstehenden rechtlichen Folgen hätte eine unzulässige Vereinbarung für den restlichen Berufsausbildungsvertrag von Frau Müller?",
+   "typ": "eine",
+   "optionen": [
+    "Der gesamte Berufsausbildungsvertrag ist nichtig.",
+    "Die betroffene Vereinbarung ist nichtig, der restliche Berufsausbildungsvertrag bleibt gültig.",
+    "Der Berufsausbildungsvertrag ist gültig, wenn die IHK damit einverstanden ist.",
+    "Der Berufsausbildungsvertrag ist gültig, wenn Frau Müller der fraglichen Vereinbarung ausdrücklich zustimmt.",
+    "Der Berufsausbildungsvertrag ist gültig, wenn die Eltern von Frau Müller der fraglichen Vereinbarung ausdrücklich zustimmen."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Nur die verbotene Klausel ist nichtig (unwirksam — недействительна). Der Rest des Vertrags gilt weiter (§ 12, § 25 BBiG). Zustimmung von Azubi, Eltern oder IHK macht eine verbotene Klausel nicht gültig."
+  },
+  {
+   "nr": 3,
+   "thema": "Ausbildungsvertrag",
+   "text": "Die Berufsausbildung für Frau Müller in der CBA-IT-Service GmbH soll am 01.09.2026 beginnen.",
+   "frage": "Zu welchem der folgenden Zeitpunkte muss der Vertrag spätestens abgeschlossen werden?",
+   "typ": "eine",
+   "optionen": [
+    "Am ersten Werktag im September 2026",
+    "Am 31.08.2026",
+    "Am 02.09.2026",
+    "Bis zum Beginn des Berufsschulunterrichts nach den Sommerferien",
+    "Nach Ablauf der Probezeit"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Der Vertrag muss vor Beginn der Ausbildung abgeschlossen sein. Auch der schriftliche Vertragsinhalt muss spätestens vor Beginn da sein (§ 11 BBiG). Beginn 01.09. → spätestens 31.08."
+  },
+  {
+   "nr": 4,
+   "thema": "Ende der Ausbildung",
+   "text": "Frau Müller wird ihre Berufsausbildung voraussichtlich am 13.07.2029 mit dem letzten Prüfungsteil abschließen.",
+   "frage": "Welche der folgenden Aussagen zur Beendigung des Ausbildungsverhältnisses trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "Das Ausbildungsverhältnis endet nach der schriftlichen Abschlussprüfung.",
+    "Mit der Bekanntgabe des positiven Prüfungsergebnisses der Abschlussprüfung endet das Ausbildungsverhältnis.",
+    "Der dreijährige Ausbildungsvertrag mit der CBA-IT-Service GmbH kann nur mit Fristablauf am 31.08.2029 beendet werden.",
+    "Das Ausbildungsverhältnis endet an einem von der IHK festgelegten Termin im September 2029.",
+    "Das Ausbildungsverhältnis endet mit Beginn der Sommerferien der Berufsschule."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Wer die Prüfung vor dem Vertragsende besteht: Die Ausbildung endet mit der Bekanntgabe des Ergebnisses durch den Prüfungsausschuss (§ 21 Abs. 2 BBiG). (Bekanntgabe — объявление результата)"
+  },
+  {
+   "nr": 5,
+   "thema": "Rechte und Pflichten in der Ausbildung",
+   "text": "In der CBA-IT-Service GmbH sollen zum 01.09.2026 zwei neue Auszubildende (Valentina Eberle, 21 Jahre und Robert Traber, 22 Jahre) eingestellt werden. Aus dem Ausbildungsvertrag sowie gesetzlichen Vorschriften ergeben sich sowohl für den Ausbildenden als auch für den Auszubildenden Pflichten und Rechte.",
+   "frage": "Welche der folgenden Aussagen sind in diesem Zusammenhang zutreffend?",
+   "typ": "mehrere",
+   "optionen": [
+    "Mit den Auszubildenden darf eine Probezeit von sechs Monaten vereinbart werden, da sie das 18. Lebensjahr bereits vollendet haben.",
+    "Die Ausbildungsvergütung muss von einem Ausbildungsjahr auf das nächste Ausbildungsjahr ansteigen.",
+    "Die CBA-IT-Service GmbH ist verpflichtet, den beiden Auszubildenden die monatliche Ausbildungsvergütung bis zum 15. eines Monats zu zahlen.",
+    "Den beiden Auszubildenden steht spätestens nach sechs Stunden Arbeitszeit eine Ruhepause zu.",
+    "Da die beiden Auszubildenden volljährig sind, müssen sie sich selbst um die Anmeldung zum Berufsschulunterricht kümmern.",
+    "Da die beiden Auszubildenden volljährig sind, sind sie nicht verpflichtet, ein Berichtsheft zu führen."
+   ],
+   "soll": [
+    2,
+    4
+   ],
+   "erkl": "Die Vergütung steigt jedes Ausbildungsjahr (§ 17 BBiG). Nach höchstens sechs Stunden Arbeit gibt es eine Pause (Ruhepause — перерыв, § 4 ArbZG). Falsch: Probezeit höchstens 4 Monate, auch für Erwachsene (§ 20 BBiG). Zahlung spätestens am letzten Arbeitstag des Monats (§ 18 BBiG). Anmeldung zur Berufsschule macht der Betrieb. Berichtsheft gilt für alle."
+  },
+  {
+   "nr": 6,
+   "thema": "Arbeitsunfall",
+   "kontext": "Situation zur 6. bis 8. Aufgabe: Frau Kermann ist bei der CBA-IT-Service GmbH angestellt. Sie rutscht während der Arbeit an einem Aufsteller aus und zieht sich dabei erhebliche Verletzungen zu.",
+   "frage": "Bringen Sie die folgenden Schritte nach dem Unfall von Frau Kermann in die richtige Reihenfolge.",
+   "typ": "reihenfolge",
+   "zeilen": {
+    "a": "Eine Arbeitskollegin leistet Erste Hilfe.",
+    "b": "Frau Kermann nimmt nach insgesamt sieben Wochen die Arbeit wieder auf.",
+    "c": "Spätestens nach Kenntniserlangung von dem Befund des Durchgangsarztes muss die CBA-IT-Service GmbH die Unfallmeldung an die Berufsgenossenschaft schicken.",
+    "d": "Wegen der Unfallfolgen muss Frau Kermann im Anschluss an die Zeit der Arbeitsunfähigkeit zu einer stationären Reha-Maßnahme in eine Klinik. Sie tritt diese fünfwöchige Reha-Maßnahme sofort an.",
+    "e": "Die CBA-IT-Service GmbH schickt Frau Kermann unverzüglich zu einem Durchgangsarzt. Dieser schreibt sie für zwei Wochen arbeitsunfähig."
+   },
+   "soll": {
+    "a": 1,
+    "e": 2,
+    "c": 3,
+    "d": 4,
+    "b": 5
+   },
+   "erkl": "a → e → c → d → b. Erst Erste Hilfe, dann zum Durchgangsarzt (D-Arzt — врач по производственным травмам), dann Unfallmeldung an die Berufsgenossenschaft, dann Reha, dann wieder arbeiten (2 + 5 = 7 Wochen)."
+  },
+  {
+   "nr": 7,
+   "thema": "Sozialversicherung",
+   "kontext": "Situation zur 6. bis 8. Aufgabe: Frau Kermann ist bei der CBA-IT-Service GmbH angestellt. Sie rutscht während der Arbeit an einem Aufsteller aus und zieht sich dabei erhebliche Verletzungen zu.",
+   "frage": "Welche der folgenden Versicherungen kommt für die Kosten der Reha-Maßnahme nach dem Arbeitsunfall von Frau Kermann auf?",
+   "typ": "eine",
+   "optionen": [
+    "Gesetzliche Unfallversicherung",
+    "Gesetzliche Pflegeversicherung",
+    "Betriebsunterbrechungsversicherung",
+    "Betriebshaftpflichtversicherung",
+    "Private Unfallversicherung von Frau Kermann"
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Nach einem Arbeitsunfall zahlt die gesetzliche Unfallversicherung (Träger: Berufsgenossenschaft — отраслевая страховая касса). Den Beitrag zahlt allein der Arbeitgeber."
+  },
+  {
+   "nr": 8,
+   "thema": "Gerichtsbarkeit",
+   "kontext": "Situation zur 6. bis 8. Aufgabe: Frau Kermann ist bei der CBA-IT-Service GmbH angestellt. Sie rutscht während der Arbeit an einem Aufsteller aus und zieht sich dabei erhebliche Verletzungen zu.",
+   "text": "Frau Kermann ist mit dem Bescheid zur Kostenübernahme der Reha-Maßnahme nicht einverstanden und möchte den Sachverhalt vor Gericht klären lassen.",
+   "frage": "Welches der folgenden Gerichte ist zunächst zuständig?",
+   "typ": "eine",
+   "optionen": [
+    "Familiengericht",
+    "Verwaltungsgericht",
+    "Arbeitsgericht",
+    "Amtsgericht",
+    "Sozialgericht"
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Streit mit einer Sozialversicherung (auch Unfallversicherung) → Sozialgericht (социальный суд). Streit mit dem Arbeitgeber → Arbeitsgericht."
+  },
+  {
+   "nr": 9,
+   "thema": "Sozialversicherung",
+   "text": "Die Fachinformatikerin Wiebke Völker ist seit dem 1. März 2023 bei der CBA-IT-Service GmbH angestellt. Ihr Bruttogehalt beträgt 4.200,00 EUR. Frau Völker ist Mitglied einer gesetzlichen Krankenkasse, die den Zusatzbeitrag auf 2,4 % erhöht hat. Der allgemeine Beitragssatz beträgt 14,6 %.",
+   "frage": "Berechnen Sie Frau Völkers Beitrag zur gesetzlichen Krankenversicherung.",
+   "typ": "zahl",
+   "soll": "357,00",
+   "einheit": "EUR",
+   "erkl": "14,6 % + 2,4 % = 17,0 %. Arbeitnehmer und Arbeitgeber zahlen je die Hälfte: 8,5 %. 4.200,00 EUR × 8,5 % = 357,00 EUR. (Zusatzbeitrag — дополнительный взнос, тоже пополам)"
+  },
+  {
+   "nr": 10,
+   "thema": "Mutterschutz",
+   "text": "Die Auszubildende der CBA-IT-Service GmbH, Paula Kaiser, 20 Jahre alt, ist schwanger. Der vom Arzt errechnete Geburtstermin ist der 1. Dezember 2026. Frau Kaiser hat den Arbeitgeber über die Schwangerschaft informiert.",
+   "frage": "Welche der folgenden Aussagen zum Ausbildungsvertrag von Frau Kaiser trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "Das Ausbildungsverhältnis endet mit der Bekanntgabe des Geburtstermins an den Arbeitgeber.",
+    "Das Ausbildungsverhältnis endet mit der Geburt des Kindes.",
+    "Für werdende Mütter gilt ein besonderer Kündigungsschutz.",
+    "Frau Kaiser steht für die Zeit der Schwangerschaft keine Ausbildungsvergütung zu.",
+    "Frau Kaiser muss Elterngeld als Lohnersatzleistung beantragen."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "In der Schwangerschaft und bis 4 Monate nach der Geburt darf der Arbeitgeber nicht kündigen (Kündigungsschutz — защита от увольнения, § 17 MuSchG). Die Ausbildung endet nicht durch Schwangerschaft oder Geburt."
+  },
+  {
+   "nr": 11,
+   "thema": "Mutterschutz",
+   "text": "Am 30. November 2026 bringt Frau Kaiser ihre Tochter Lara zur Welt. Am 27. Dezember 2026 meldet sich Frau Kaiser bei der CBA-IT-Service GmbH. Sie fühlt sich fit und möchte wieder zur Arbeit kommen.",
+   "frage": "Ab wann darf Frau Kaiser frühestens wieder arbeiten?",
+   "typ": "eine",
+   "optionen": [
+    "Frühestens sechs Wochen nach der Entbindung; vorher besteht ein Beschäftigungsverbot.",
+    "Frühestens acht Wochen nach der Entbindung; vorher besteht ein Beschäftigungsverbot.",
+    "Frühestens zwölf Wochen nach der Entbindung; vorher besteht ein Beschäftigungsverbot.",
+    "Sofort, wenn Frau Kaiser vom Arzt ihre Arbeitsfähigkeit bescheinigt wird",
+    "Sofort, sofern es die CBA-IT-Service GmbH erlaubt."
+   ],
+   "anlage": "<b>Auszug aus dem Mutterschutzgesetz (MuSchG)</b><br><b>§ 3 Beschäftigungsverbote für werdende Mütter</b> (…)<br>(2) Werdende Mütter dürfen in den letzten sechs Wochen vor der Entbindung nicht beschäftigt werden, es sei denn, dass sie sich zur Arbeitsleistung ausdrücklich bereit erklären; die Erklärung kann jederzeit widerrufen werden.<br><b>§ 6 Beschäftigungsverbote nach der Entbindung</b><br>(1) Mütter dürfen bis zum Ablauf von acht Wochen, bei Früh- und Mehrlingsgeburten bis zum Ablauf von zwölf Wochen nach der Entbindung nicht beschäftigt werden. (…)",
+   "soll": [
+    2
+   ],
+   "erkl": "Nach einer normalen Geburt gilt 8 Wochen Beschäftigungsverbot (запрет на работу) — auch wenn die Mutter arbeiten will. 30.11. + 8 Wochen = 25.01.2027. Zwölf Wochen nur bei Früh- oder Mehrlingsgeburt."
+  },
+  {
+   "nr": 12,
+   "thema": "Tarifrecht",
+   "text": "Die CBA-IT-Service GmbH ist Mitglied des Arbeitgeberverbandes.",
+   "frage": "In welchem der folgenden Bestandteile des Arbeitsvertrages ist die CBA-IT-Service GmbH an kollektives Arbeitsrecht gebunden?",
+   "typ": "eine",
+   "optionen": [
+    "Das Arbeitsverhältnis beginnt am 1. Juli 2026.",
+    "Mit Zustimmung des Vorgesetzten kann an einem Arbeitstag in der Woche mobil gearbeitet werden („Homeoffice“).",
+    "Der Mitarbeiter erhält eine individuelle Zulage von 200 EUR monatlich.",
+    "Der Mitarbeiter wird am Standort Erfurt eingesetzt.",
+    "Die wöchentliche Arbeitszeit beträgt laut Tarifvertrag 38,5 Stunden."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Kollektives Arbeitsrecht = Tarifvertrag und Betriebsvereinbarung (коллективное трудовое право). Als Mitglied im Arbeitgeberverband ist der Betrieb an den Tarifvertrag gebunden (Tarifbindung). Die anderen Punkte stehen individuell im Arbeitsvertrag."
+  },
+  {
+   "nr": 13,
+   "thema": "Betriebsrat und Mitbestimmung",
+   "text": "Die Geschäftsleitung der CBA-IT-Service GmbH arbeitet vertrauensvoll mit dem Betriebsrat zusammen.",
+   "frage": "In welchen der folgenden Angelegenheiten hat der Betriebsrat laut Betriebsverfassungsgesetz ein Mitbestimmungsrecht?",
+   "typ": "mehrere",
+   "optionen": [
+    "Beginn und Ende der täglichen Arbeitszeit",
+    "Planung des Fortbildungsbedarfs",
+    "Überwachung der Arbeitnehmer durch technische Einrichtungen",
+    "Bau einer neuen Lagerhalle",
+    "Anschaffung neuer Lagertechnik",
+    "Gründung einer neuen Filiale"
+   ],
+   "soll": [
+    1,
+    3
+   ],
+   "erkl": "Soziale Angelegenheiten nach § 87 BetrVG: Arbeitszeit und technische Überwachung — hier muss der Betriebsrat zustimmen (Mitbestimmung — право совместного решения). Bei Fortbildungsplanung, Bau und Investitionen hat er nur Informations- oder Beratungsrechte."
+  },
+  {
+   "nr": 14,
+   "thema": "Gewerkschaften",
+   "text": "Viele Mitarbeiter der CBA-IT-Service GmbH sind Mitglied einer Gewerkschaft.",
+   "frage": "Welche der folgenden Aussagen über gewerkschaftliche Aufgaben und Forderungen in der Bundesrepublik Deutschland trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "Das Grundgesetz räumt den Gewerkschaften lediglich ein Recht für den Abschluss von Lohntarifverträgen ein.",
+    "Die Gewerkschaften verhandeln u. a. mit Arbeitgeberverbänden über die Verbesserung von Arbeitsbedingungen.",
+    "Gewerkschaftsvertreter dürfen zu Betriebsversammlungen nicht eingeladen werden.",
+    "Die Gewerkschaften dürfen sich nicht für eine Humanisierung der Arbeitsbedingungen einsetzen.",
+    "Die Gewerkschaften dürfen ihren Mitgliedern keinen Rechtsschutz in arbeitsgerichtlichen Rechtsstreitigkeiten gewähren."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Gewerkschaften (профсоюзы) verhandeln mit Arbeitgeberverbänden Tarifverträge: Lohn, Arbeitszeit, Urlaub, Arbeitsbedingungen (Art. 9 Abs. 3 GG). Sie dürfen zu Betriebsversammlungen kommen und geben ihren Mitgliedern Rechtsschutz."
+  },
+  {
+   "nr": 15,
+   "thema": "Rechtsformen",
+   "text": "Die CBA-IT-Service GmbH wird in der Rechtsform einer GmbH geführt.",
+   "frage": "Welche der folgenden Aussagen trifft auf die Rechtsform der GmbH zu?",
+   "typ": "eine",
+   "optionen": [
+    "Die GmbH erzielt immer die beste Eigenkapitalrentabilität.",
+    "Die GmbH gehört zu den Personengesellschaften.",
+    "Die Gesellschafter der GmbH dürfen nicht gleichzeitig Geschäftsführer der GmbH sein.",
+    "Das Stammkapital muss mindestens 50.000 EUR betragen.",
+    "Die Gesellschafter der GmbH haften nur mit ihrer Stammeinlage."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "GmbH = Kapitalgesellschaft (общество с ограниченной ответственностью). Gesellschafter haften nur mit ihrer Einlage. Stammkapital mindestens 25.000 EUR — 50.000 EUR ist die AG. Ein Gesellschafter darf auch Geschäftsführer sein."
+  },
+  {
+   "nr": 16,
+   "thema": "Kennzahlen",
+   "text": "Die CBA-IT-Service GmbH erzielte im vergangenen Geschäftsjahr einen Reingewinn von 24.860,00 EUR. Das Eigenkapital betrug 220.000,00 EUR.",
+   "frage": "Berechnen Sie die Eigenkapitalrentabilität der CBA-IT-Service GmbH.",
+   "typ": "zahl",
+   "soll": "11,3",
+   "einheit": "%",
+   "erkl": "Eigenkapitalrentabilität (рентабельность собственного капитала) = Gewinn ÷ Eigenkapital × 100 = 24.860 ÷ 220.000 × 100 = 11,3 %."
+  },
+  {
+   "nr": 17,
+   "thema": "Unternehmensziele",
+   "text": "Die Geschäftsführung der CBA-IT-Service GmbH diskutiert verschiedene Maßnahmen, den Umsatz im nächsten Geschäftsjahr zu steigern.",
+   "frage": "Welche der folgenden Einzelmaßnahmen ist geeignet, diese Zielsetzung kurzfristig und unmittelbar zu erreichen?",
+   "typ": "eine",
+   "optionen": [
+    "Der Verkauf einer eigenen Software soll durch geeignete Marketingmaßnahmen gefördert werden.",
+    "Die CBA-IT-Service GmbH stellt einen weiteren Lageristen ein.",
+    "Zur Senkung der Lohnkosten werden vermehrt Dienstleistungen an andere Unternehmen vergeben.",
+    "Durch Umbaumaßnahmen wird das Versandlager um 20 % vergrößert.",
+    "Der Werbeetat wird um die Hälfte gekürzt."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Umsatz (выручка) = Menge × Preis. Mehr Marketing → mehr verkaufte Software → mehr Umsatz. Lagerist, Fremdvergabe und Umbau ändern Kosten, nicht direkt den Umsatz. Weniger Werbung senkt den Umsatz eher."
+  },
+  {
+   "nr": 18,
+   "thema": "Weiterbildung und Mobilität",
+   "text": "Nach ihrer Ausbildung möchte Frau Müller eine Zeitlang im Ausland arbeiten. In diesem Zusammenhang liest Frau Müller vom Dienst Europass.",
+   "frage": "Welche der folgenden Aussagen zum Europass trifft zu? Der Dienst Europass …",
+   "typ": "eine",
+   "optionen": [
+    "ist ein kostenpflichtiger Dienst der EU.",
+    "unterstützt Auszubildende, erworbene Qualifikationen, Fähigkeiten und Kompetenzen bei Bewerbungen europaweit verständlich darzustellen.",
+    "beglaubigt Ausbildungsabschnitte von Auszubildenden, die im europäischen Ausland durchgeführt wurden.",
+    "ist für eine Berufsausbildung im Ausland verpflichtend.",
+    "zertifiziert Fremdsprachkenntnisse im Europass-Sprachkenntnisse."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Der Europass ist ein kostenloses EU-Angebot (Lebenslauf, Sprachenpass, Mobilitätsnachweis). Er macht Qualifikationen in Europa verständlich. Er beglaubigt nichts und ist freiwillig."
+  },
+  {
+   "nr": 19,
+   "thema": "Arbeitsschutz",
+   "text": "Herr Korok soll die Aufgaben des Arbeitsschutzbeauftragten bei der CBA-IT-Service GmbH übernehmen.",
+   "frage": "Welche der folgenden Aufgaben hat der Arbeitsschutzbeauftragte in einem Betrieb? Der Arbeitsschutzbeauftragte …",
+   "typ": "eine",
+   "optionen": [
+    "ist für den Arbeitsschutz im Betrieb allein verantwortlich.",
+    "unterstützt den Arbeitgeber bei der Durchführung des Unfallschutzes.",
+    "ist ein selbstständiges Organ im Sinne des Betriebsverfassungsgesetzes.",
+    "prüft das Vorhandensein, nicht jedoch die ordnungsgemäße Benutzung von Schutzeinrichtungen.",
+    "ist automatisch Mitglied im Arbeitssicherheitsausschuss des Betriebsrates."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Der Beauftragte unterstützt und berät den Arbeitgeber (уполномоченный по охране труда). Verantwortlich für den Arbeitsschutz bleibt der Arbeitgeber. Er achtet auch darauf, dass Schutzeinrichtungen richtig benutzt werden."
+  },
+  {
+   "nr": 20,
+   "thema": "Brandschutz",
+   "text": "In einem Seminar bei der CBA-IT-Service GmbH werden Sofortmaßnahmen im Brandfall thematisiert.",
+   "frage": "Welche der folgenden Maßnahmen müssen im Falle eines Brandes bei der CBA-IT-Service GmbH sofort ergriffen werden?",
+   "typ": "mehrere",
+   "optionen": [
+    "Alle Fenster öffnen, damit der Rauch abziehen kann.",
+    "Notruf absetzen.",
+    "Die Sicherheitsbeauftragte informieren, da sie für die technischen Anlagen zuständig ist.",
+    "Den Vorgesetzten informieren, da dieser die Verantwortung für die Abteilung hat.",
+    "Gefährdete Personen evakuieren.",
+    "Alle erreichbaren Wasserstellen öffnen."
+   ],
+   "soll": [
+    2,
+    5
+   ],
+   "erkl": "Im Brandfall: Brand melden (Notruf 112), Menschen in Sicherheit bringen, dann löschen versuchen. Fenster öffnen gibt dem Feuer Sauerstoff (кислород)."
+  },
+  {
+   "nr": 21,
+   "thema": "Umweltschutz",
+   "text": "Das Lager der CBA-IT-Service GmbH soll auf Emissionen überprüft werden.",
+   "frage": "Welche der folgenden Darstellungen ist in diesem Zusammenhang richtig?",
+   "typ": "eine",
+   "optionen": [
+    "Emissionen entstehen in der CBA-IT-Service GmbH allein durch den Transport von Waren zwischen verschiedenen Lagerorten.",
+    "Zu den umweltbelastenden Emissionen gehören neben umweltschädlichen Abgasen auch mögliche Schallemissionen und Elektrosmog/Strahlung.",
+    "Emissionen können durch den Bau höherer Schornsteine für Abgase der CBA-IT-Service GmbH reduziert oder vermieden werden.",
+    "Für die Luftreinhaltung ist gemäß Bundesemissionsschutzgesetz der Sicherheitsbeauftragte der CBA-IT-Service GmbH zuständig.",
+    "Die Verringerung der Emissionen in der CBA-IT-Service GmbH ist wichtiger als deren Vermeidung."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Emissionen (выбросы) sind alles, was von einer Anlage in die Umwelt geht: Abgase, Lärm, Strahlung. Vermeiden kommt vor Verringern. Höhere Schornsteine verteilen die Abgase nur weiter."
+  },
+  {
+   "nr": 22,
+   "thema": "Gesundheit am Arbeitsplatz",
+   "text": "Die CBA-IT-Service GmbH sucht nach geeigneten Maßnahmen, um die Gesundheit der Mitarbeiter am Arbeitsplatz zu fördern. Nach einer betrieblichen Umfrage steht der Wunsch nach Stressreduzierung an erster Stelle.",
+   "frage": "Welche der folgenden Maßnahmen sind dafür <b>nicht</b> geeignet?",
+   "typ": "mehrere",
+   "optionen": [
+    "Kundenbeschwerden werden nicht mehr in persönlicher Gegenwart des Kunden, sondern ausschließlich am Telefon bearbeitet und am schwarzen Brett veröffentlicht.",
+    "Es werden Workshops zur Work-Life-Balance angeboten.",
+    "Es wird eine angenehme Arbeitsatmosphäre geschaffen.",
+    "Das Betriebssportangebot wird stark erweitert.",
+    "Misserfolge der Mitarbeiter werden für alle und nicht nur für die Vorgesetzten bekanntgegeben.",
+    "Die Möglichkeit zum Homeoffice wird offener und flexibler gestaltet."
+   ],
+   "soll": [
+    1,
+    5
+   ],
+   "erkl": "Gefragt ist „nicht geeignet“. Beschwerden und Misserfolge öffentlich zu machen erzeugt Druck und Scham — also mehr Stress (стресс). Workshops, gutes Klima, Sport und Homeoffice senken Stress."
+  },
+  {
+   "nr": 23,
+   "thema": "Nachhaltigkeit",
+   "text": "Die CBA-IT-Service GmbH formuliert für ein internes Audit Ziele zur Nachhaltigkeit und des Umweltschutzes im Unternehmen.",
+   "frage": "Welches der folgenden Ziele stellt ein ökologisches Ziel dar?",
+   "typ": "eine",
+   "optionen": [
+    "Alle Produkte sollen von ökologisch zertifizierten Lieferanten bezogen werden, ohne Abstriche bei der Qualität und Funktionalität hinzunehmen.",
+    "Hohe Investitionen zur Verringerung der Umweltbelastung führen zur Zielharmonie zwischen einem ökologischen und einem ökonomischen Ziel.",
+    "Die Verbesserung der Kundenzufriedenheit und damit der Kundenbindung.",
+    "Die Umstellung des Fuhrparks für die Geschäftsführung auf größere und leistungsstärkere Fahrzeuge mit Verbrennermotor stellt ein ökologisches Ziel dar.",
+    "Die Umsatzsteigerung durch stetige Erweiterung des Sortiments."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Ökologisches Ziel = Ziel für die Umwelt (экологическая цель). Hohe Investitionen kosten Geld → eher Zielkonflikt (конфликт целей), keine Harmonie. Kundenzufriedenheit und Umsatz sind ökonomische Ziele."
+  },
+  {
+   "nr": 24,
+   "thema": "Umweltzeichen",
+   "text": "In der CBA-IT-Service GmbH wird Drucker- und Kopierpapier verwendet, das mit dem „Blauen Engel“ ausgezeichnet ist. (Abbildung: Umweltzeichen „Blauer Engel“)",
+   "frage": "Welche der folgenden Aussagen zum Umweltzeichen „Blauer Engel“ ist zutreffend? Das Drucker- und Kopierpapier …",
+   "typ": "eine",
+   "optionen": [
+    "ist besonders haltbar.",
+    "ist besonders sicher in der Handhabung.",
+    "ist aus schadstoffarmen Rohstoffen und umweltschonend produziert worden.",
+    "hat bereits mehrere Umweltpreise gewonnen.",
+    "ist nach seiner Benutzung ausschließlich über das Duale System zu entsorgen."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Der Blaue Engel (экознак) ist das Umweltzeichen des Bundes: umweltschonend hergestellt, wenig Schadstoffe. Bei Papier: aus Altpapier."
+  },
+  {
+   "nr": 25,
+   "thema": "Wirtschaftsordnung",
+   "text": "Die Wirtschaftsordnung in der Bundesrepublik Deutschland wird als soziale Marktwirtschaft bezeichnet.",
+   "frage": "Welches der folgenden Merkmale beschreibt die soziale Marktwirtschaft?",
+   "typ": "eine",
+   "optionen": [
+    "Das Wirtschaftsgeschehen wird zentral vom Staat gelenkt.",
+    "Der Staat schützt die wirtschaftlich Schwächeren.",
+    "Die Produktionsmittel sind ausschließlich staatlich.",
+    "Es dürfen nur die Berufe ausgebildet werden, die auf dem Arbeitsmarkt auch nachgefragt werden.",
+    "Die staatliche Wettbewerbspolitik hat das Ziel, den Wettbewerb auszuschalten."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Soziale Marktwirtschaft (социальная рыночная экономика) = freier Markt + sozialer Ausgleich. Der Staat hilft den Schwachen und schützt den Wettbewerb. Zentrale Lenkung und Staatseigentum gibt es in der Planwirtschaft."
+  },
+  {
+   "nr": 26,
+   "thema": "Arbeitsteilung",
+   "text": "Die Arbeitsleistungen der CBA-IT-Service GmbH werden von verschiedenen Wirtschaftseinheiten erbracht.",
+   "frage": "In welchem der folgenden Fälle handelt es sich um eine betriebliche Arbeitsteilung (Arbeitszerlegung)? Die CBA-IT-Service GmbH …",
+   "typ": "eine",
+   "optionen": [
+    "gliedert einen Schritt des Arbeitsprozesses an die Byte GmbH aus.",
+    "gliedert einen Beschaffungsprozess für Hardware in mehrere Teilprozesse, die von mehreren Arbeitskräften ausgeführt werden.",
+    "lässt von einer Mitarbeiterin ein Produkt aus Komponenten zusammenbauen, die von verschiedenen externen Unternehmen hergestellt werden.",
+    "organisiert mehrere Prozesse als „supply chain“, in denen Lieferanten, Abteilungen der CBA-IT-Service GmbH und Kunden vernetzt sind.",
+    "schließt eine Filiale in Niedersachsen, deren Kunden zukünftig von der Hamburger Filiale beliefert werden."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Betriebliche Arbeitsteilung = Arbeitszerlegung (разделение труда внутри предприятия): eine Aufgabe wird im eigenen Betrieb in Teilschritte für mehrere Mitarbeiter zerlegt. Arbeit an andere Firmen geben ist überbetriebliche Arbeitsteilung."
+  },
+  {
+   "nr": 27,
+   "thema": "Wirtschaftssektoren und Unternehmensarten",
+   "text": "Ein Mitbewerber der CBA-IT-Service GmbH, die GROTHE AG, bietet Dienstleistungen für IT-Unternehmen an.",
+   "frage": "Welche der folgenden Angaben treffen auf die GROTHE AG zu?",
+   "typ": "mehrere",
+   "optionen": [
+    "Unternehmen des primären Sektors",
+    "Unternehmen des tertiären Sektors",
+    "Erwerbswirtschaftliches Unternehmen",
+    "Gemeinwirtschaftliches Unternehmen",
+    "Personengesellschaft",
+    "Gesellschaft bürgerlichen Rechts"
+   ],
+   "soll": [
+    2,
+    3
+   ],
+   "erkl": "Dienstleistungen = tertiärer Sektor (сфера услуг). Eine AG will Gewinn machen = erwerbswirtschaftlich (коммерческое). Eine AG ist eine Kapitalgesellschaft, keine Personengesellschaft und keine GbR."
+  },
+  {
+   "nr": 28,
+   "thema": "Globalisierung",
+   "text": "Die Volkswirtschaft der Bundesrepublik Deutschland profitiert von der Globalisierung.",
+   "frage": "Welche der folgenden Maßnahmen fördert die Globalisierung?",
+   "typ": "eine",
+   "optionen": [
+    "Die EU plant, für bestimmte Produkte aus China die Zölle zu erhöhen.",
+    "Die EU schließt ein Freihandelsabkommen mit den südamerikanischen Staaten ab.",
+    "Die Bundesregierung beschließt die Erhöhung der Steuern für Transportdienstleistungen.",
+    "Die GROTHE AG schließt ihre Niederlassung in den USA.",
+    "Ein deutsches Unternehmen zentralisiert seine weltweite Fertigung in Deutschland."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Globalisierung (глобализация) = mehr weltweiter Handel. Ein Freihandelsabkommen (соглашение о свободной торговле) baut Zölle ab. Höhere Zölle, Steuern auf Transport und Rückzug aus dem Ausland bremsen sie."
+  },
+  {
+   "nr": 29,
+   "thema": "Unternehmensverbindungen",
+   "text": "Die CBA-IT-Service GmbH arbeitet mit anderen Unternehmen zusammen. Daraus entstehen unterschiedliche Unternehmensverbindungen.",
+   "frage": "Ordnen Sie die folgenden Unternehmensverbindungen den nachstehenden Sachverhalten zu. Hinweis: Eine der Unternehmensverbindungen kann zwei Sachverhalten zugeordnet werden.",
+   "typ": "zuordnung",
+   "otitel": "Unternehmensverbindungen",
+   "optionen": [
+    "Fusion",
+    "Kartell",
+    "Konzern",
+    "Arbeitsgemeinschaft"
+   ],
+   "zeilen": {
+    "a": "Zwei Kunden der CBA-IT-Service GmbH, die Byte GmbH und die IT-Sec GmbH, schließen sich zur Byte-Sec GmbH zusammen.",
+    "b": "Die CBA-IT-Service GmbH führt gemeinsam mit zwei anderen Unternehmen einen Großauftrag aus.",
+    "c": "Die SecureSoft AG gründet in Düsseldorf und Stuttgart Tochtergesellschaften.",
+    "d": "Die CBA-IT-Service GmbH hat die Mehrheit an der SecureSoft AG übernommen.",
+    "e": "Die CBA-IT-Service GmbH vereinbart mit Wettbewerbern einheitliche Verkaufskonditionen."
+   },
+   "soll": {
+    "a": 1,
+    "b": 4,
+    "c": 3,
+    "d": 3,
+    "e": 2
+   },
+   "erkl": "a) Fusion (слияние): zwei Firmen werden eine. b) Arbeitsgemeinschaft (ARGE): Zusammenarbeit für einen Auftrag. c) und d) Konzern (концерн): Mutter- und Tochterfirmen unter einer Leitung, z. B. durch Mehrheitsbeteiligung. e) Kartell (картель): Absprache unter Wettbewerbern — meist verboten."
+  },
+  {
+   "nr": 30,
+   "thema": "Sozialstaat",
+   "text": "Die Bundesrepublik Deutschland ist ein sozialer und demokratischer Bundesstaat.",
+   "frage": "Welcher der folgenden Sachverhalte entspricht diesem Grundsatz?",
+   "typ": "eine",
+   "optionen": [
+    "Der Staat erhöht die Abschreibungen auf Gewerbeimmobilien.",
+    "Die Freibeträge bei der Erbschaftssteuer werden erhöht.",
+    "Der Erwerb von Immobilien durch Kapitalgesellschaften wird steuerlich gefördert.",
+    "Der Staat senkt die Steuersätze für Einkünfte aus Zinsen und Dividenden.",
+    "Das Wohngeld wird erhöht."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Sozialstaat (социальное государство, Art. 20 GG): Der Staat unterstützt Menschen mit wenig Geld, z. B. mit Wohngeld (жилищная субсидия). Die anderen Punkte helfen eher Unternehmen und Vermögenden."
+  }
+ ]
+}

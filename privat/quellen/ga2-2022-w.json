@@ -1,0 +1,326 @@
+{
+ "id": "ga2-2022-w",
+ "bereich": "ga2",
+ "termin": "Winter 2022/23",
+ "kurz": "GA2 W22/23",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2022/23)",
+ "situation": "<p>Ein bundesweit tätiger Bildungsträger bietet an acht attraktiven Standorten Tagungen, Seminare und Veranstaltungen an. An den Standorten stehen insgesamt 45 Seminarräume mit mehr als 600 IT-Arbeitsplätzen zur Verfügung. Die Trainings sind auch als Online-Trainings buchbar.</p><p>Alle IT-Services werden von zwei Rechenzentren ausgeführt.</p><p>Da derzeitig nicht alle Schulungs- und Büroräume ausgelastet sind, sollen zukünftig die Raumressourcen den Kunden für individuelle Bedürfnisse zur Verfügung gestellt werden.</p>",
+ "beleg": [
+  {
+   "id": "pseudocode",
+   "titel": "Belegsatz: Pseudocode",
+   "html": "<p>Die Darstellung soll in allgemein verständlichem Pseudocode erfolgen. Der Code soll für Dritte, ohne Kenntnis der verwendeten Programmiersprache, lesbar sein. Der Code muss nicht in der geschriebenen Sprache kompilierbar bzw. ausführbar sein.</p><p>Sie können gerne folgende Codefragmente verwenden:</p><table><tr><th>Pseudocode</th><th>Beschreibung</th></tr><tr><td><pre><b>wenn</b> [ Bedingung ] <b>dann</b>\n   [ Anweisung ]\n<b>sonst</b>\n   [ Anweisung ]\n<b>Ende wenn</b></pre></td><td>Verzweigung</td></tr><tr><td><pre><b>zähle</b> [ Variable ] <b>von</b> [ Startwert] <b>bis</b> [Endwert]\n   [ Schleifeninhalt ]\n<b>Ende zähle</b></pre></td><td>Zählschleife (Iteration)</td></tr><tr><td><pre><b>solange</b> [ Bedingung ]\n   [ Schleifeninhalt ]\n<b>Ende solange</b></pre></td><td>Kopfgesteuerte Schleife</td></tr><tr><td><pre><b>wiederhole</b>\n   [ Schleifeninhalt ]\n<b>solange</b> &lt; Bedingung &gt;</pre></td><td>Fußgesteuerte Schleife</td></tr><tr><td><pre>:=</pre></td><td>Zuweisung</td></tr><tr><td><pre>=; &lt;; &gt;; &lt;=; &gt;=; &lt; &gt;</pre></td><td>Vergleiche</td></tr><tr><td><pre><b>integer</b></pre></td><td></td></tr><tr><td><pre><b>double</b></pre></td><td></td></tr><tr><td><pre><b>string</b></pre></td><td></td></tr><tr><td><pre><b>array</b></pre></td><td></td></tr></table>"
+  },
+  {
+   "id": "struktogramm",
+   "titel": "Belegsatz: DIN 66261 Struktogramm",
+   "html": "<img data-bild=\"w22-ga2-bs-struktogramm\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<table><tr><th>Syntax</th><th>Beschreibung</th></tr><tr><td colspan=\"2\"><i>Tabelle</i></td></tr><tr><td><b>CREATE TABLE</b> Tabellenname(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spaltenname &lt; DATENTYP &gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüssel,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fremdschlüssel)</td><td>Erzeugt eine neue leere Tabelle mit der beschriebenen Struktur</td></tr><tr><td><b>ALTER TABLE</b> Tabellenname<br>&nbsp;&nbsp;&nbsp;<b>ADD COLUMN</b> Spaltenname<br>&nbsp;&nbsp;&nbsp;<b>DROP COLUMN</b> Spaltenname<br><br>&nbsp;&nbsp;&nbsp;<b>ADD FOREIGN KEY</b>(Spaltenname)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>REFERENCES</b> Tabellenname(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüsselspaltenname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td><td>Änderungen an einer Tabelle:<br>&nbsp;&nbsp;Hinzufügen einer Spalte<br>&nbsp;&nbsp;Entfernen einer Spalte<br><br>&nbsp;&nbsp;Definiert eine Spalte als Fremdschlüssel</td></tr><tr><td><b>CHARACTER</b></td><td>Textdatentyp</td></tr><tr><td><b>DECIMAL</b></td><td>Numerischer Datentyp (Festkommazahl)</td></tr><tr><td><b>DOUBLE</b></td><td>Numerischer Datentyp (Doppelte Präzision)</td></tr><tr><td><b>INTEGER</b></td><td>Numerischer Datentyp (Ganzzahl)</td></tr><tr><td><b>DATE</b></td><td>Datum (Format DD.MM.YYYY)</td></tr><tr><td><b>PRIMARY KEY</b> (Spaltenname)</td><td>Erstellung eines Primärschlüssels</td></tr><tr><td><b>FOREIGN KEY</b> (Spaltenname)<br>&nbsp;&nbsp;&nbsp;<b>REFERENCES</b> Tabellenname(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüsselspaltenname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td><td>Erstellung einer Fremdschlüssel-Beziehung</td></tr><tr><td><b>DROP TABLE</b> Tabellenname</td><td>Löscht eine Tabelle</td></tr><tr><td colspan=\"2\"><i>Befehle, Klauseln, Attribute</i></td></tr><tr><td><b>SELECT *</b> | Spaltenname1 [, Spaltenname2, …]</td><td>Wählt die Spalten einer oder mehrerer Tabellen, deren Inhalte in die Liste aufgenommen werden sollen; alle Spalten (*) oder die namentlich aufgeführten</td></tr><tr><td><b>FROM</b></td><td>Name der Tabelle oder Namen der Tabellen, aus denen die Daten der Ausgabe stammen sollen</td></tr><tr><td><b>SELECT …</b><br><b>FROM …</b><br>&nbsp;&nbsp;&nbsp;<b>(SELECT …</b><br>&nbsp;&nbsp;&nbsp;<b>FROM …</b><br>&nbsp;&nbsp;&nbsp;<b>WHERE …) AS</b> tbl<br><b>WHERE …</b></td><td>Unterabfrage (subquery), die in eine äußere Abfrage eingebettet ist.<br>Das Ergebnis der Unterabfrage wird wie eine Tabelle – hier mit Namen \"tbl\" – behandelt.</td></tr><tr><td><b>SELECT DISTINCT</b></td><td>Eliminiert Redundanzen, die in der Ausgabe auftreten können, Werte werden jeweils nur einmal angezeigt.</td></tr><tr><td><b>SELECT…INTO…FROM…WHERE</b></td><td>AAAAAAAAAAAAAAA.....</td></tr><tr><td><b>JOIN / INNER JOIN</b></td><td>Liefert nur die Datensätze zweier Tabellen, die gleiche Datenwerte enthalten</td></tr><tr><td><b>LEFT JOIN / LEFT OUTER JOIN</b></td><td>Liefert von der erstgenannten (linken) Tabelle alle Datensätze und von der zweiten Tabelle jene, deren Datenwerte mit denen der ersten Tabelle übereinstimmen</td></tr><tr><td><b>RIGHT JOIN / RIGHT OUTER JOIN</b></td><td>Liefert von der zweiten (rechten) Tabelle alle Datensätze und von der ersten Tabelle jene, deren Datenwerte mit denen der zweiten Tabelle übereinstimmen</td></tr><tr><td><b>WHERE</b></td><td>Bedingung, nach der Datensätze ausgewählt werden sollen</td></tr><tr><td><b>WHERE EXISTS</b> ( subquery )<br><b>WHERE NOT EXISTS</b> ( subquery )</td><td>Die Bedingungen EXISTS prüft, ob die Suchbedingung einer Unterabfrage mindestens eine Zeile zurückliefert. NOT EXIST negiert die Bedingung.</td></tr><tr><td><b>WHERE … IN</b> ( subquery )<br><b>WHERE NOT… IN</b> ( subquery )</td><td>Der Wert des Datenfelds ist in der auswählten Menge vorhanden.<br>Der Wert des Datenfelds ist in der auswählten Menge nicht vorhanden.</td></tr><tr><td><b>GROUP BY</b> Spaltenname1 [,Spaltenname2, …]</td><td>Gruppierung (Aggregation) nach Inhalt des genannten Feldes</td></tr><tr><td><b>ORDER BY</b> Spaltenname1 [,Spaltenname2, …]<br><b>ASC | DESC</b></td><td>Sortierung nach Inhalt des genannten Feldes oder der genannten Felder<br>ASC: aufsteigend; DESC: absteigend</td></tr><tr><td><b>LIMIT</b></td><td>Begrenzt die Anzahl der Ausgabezeilen</td></tr><tr><td colspan=\"2\"><i>Datenmanipulation</i></td></tr><tr><td><b>DELETE FROM</b> Tabellenname</td><td>Löschen von Datensätzen in der genannten Tabelle</td></tr><tr><td><b>UPDATE</b> Tabellenname <b>SET</b></td><td>Aktualisiert Daten in Feldern einer Tabelle</td></tr><tr><td><b>INSERT INTO</b> Tabellenname[(spalte1, spalte2, ...)]<br>&nbsp;&nbsp;<b>VALUES</b> (Wert für Spalte 1 [, Wert für Spalte 2, …])<br>oder<br>&nbsp;&nbsp;<b>SELECT</b> … <b>FROM</b> … <b>WHERE</b></td><td>Fügt Datensätze in die genannte Tabelle, die entweder mit festen Werten belegt oder Ergebnis eines SELECT-Befehls sind</td></tr><tr><td colspan=\"2\"><i>Berechtigungen kontrollieren</i></td></tr><tr><td><b>CREATE</b> Benutzer | Rolle <b>IDENTIFIED BY</b> 'Passwort'</td><td>Erzeugt einen neuen Benutzer oder eine neue Rolle mit einem Passwort</td></tr><tr><td><b>GRANT</b> Recht | Rolle <b>ON</b> *.* | Datenbank.* | Datenbank.Objekt<br><b>TO</b> Benutzer | Rolle [WITH GRANT OPTION]</td><td>Weist einem Benutzer oder einer Rolle ein Recht auf ein bestimmtes Datenbank-Objekt zu<br>Weist einem Benutzer eine Rolle zu</td></tr><tr><td><b>REVOKE</b> Rechte | Rollen <b>ON</b> *.* | Datenbank.* | Datenbank.Objekt<br><b>FROM</b> Benutzer | Rolle</td><td>Entzieht einem Benutzer oder einer Rolle ein Recht auf ein bestimmtes Datenbank-Objekt<br>Entzieht einem Benutzer eine Rolle</td></tr><tr><td colspan=\"2\"><b>Aggregatfunktionen</b></td></tr><tr><td><b>AVG</b>(Spaltenname)</td><td>Ermittelt das arithmetische Mittel aller Werte im angegebenen Feld</td></tr><tr><td><b>COUNT</b>(Spaltenname <b>| * )</b></td><td>Ermittelt die Anzahl der Datensätze mit Nicht-NULL-Werten im angegebenen Feld oder alle Datensätze der Tabelle (dann mit Operator *)</td></tr><tr><td><b>SUM</b>(Spaltenname | Formel)</td><td>Ermittelt die Summe aller Werte im angegebenen Feld oder der Formelergebnisse</td></tr><tr><td><b>MIN</b>(Spaltenname | Formel)</td><td>Ermittelt den kleinsten aller Werte im angegebenen Feld</td></tr><tr><td><b>MAX</b> (Spaltenname | Formel)</td><td>Ermittelt den größten aller Werte im angegebenen Feld</td></tr><tr><td colspan=\"2\"><i>Funktionen</i></td></tr><tr><td><b>LEFT</b>(Zeichenkette, Anzahlzeichen)</td><td>Liefert <i>Anzahlzeichen</i> der Zeichenkette von links.</td></tr><tr><td><b>RIGHT</b>(Zeichenkette, Anzahlzeichen)</td><td>Liefert <i>Anzahlzeichen</i> der Zeichenkette von rechts.</td></tr><tr><td><b>CURRENT</b></td><td>Liefert das aktuelle Datum mit der aktuellen Uhrzeit</td></tr><tr><td><b>CONVERT(time,[</b>DatumZeit<b>])</b></td><td>Liefert die Uhrzeit aus einer DatumZeit-Angabe</td></tr><tr><td><b>DATE</b>(Wert)</td><td>Wandelt einen Wert in ein Datum um</td></tr><tr><td><b>DAY</b>(Datum)</td><td>Liefert den Tag des Monats aus dem angegebenen Datum</td></tr><tr><td><b>MONTH</b>(Datum)</td><td>Liefert den Monat aus dem angegebenen Datum</td></tr><tr><td><b>TODAY</b></td><td>Liefert das aktuelle Datum</td></tr><tr><td><b>WEEKDAY</b>(Datum)</td><td>Liefert den Tag der Woche aus dem angegebenen Datum</td></tr><tr><td><b>YEAR</b>(Datum)</td><td>Liefert das Jahr aus dem angegebenen Datum</td></tr><tr><td><b>DATEADD</b>(Datumsteil, Intervall, Datum)</td><td>Fügt einem Datum ein Intervall (ausgedrückt in den unter Datumsteil angegebenen Einheiten) hinzu</td></tr><tr><td><b>DATEDIFF</b>(Datumsteil, Anfangsdatum, Enddatum)<br>Datumsteile: <b>DAY, MONTH, YEAR</b></td><td>Liefert Enddatum-Startdatum (ausgedrückt in den unter Datumsteil angegebenen Einheiten)</td></tr><tr><td colspan=\"2\"><i>Operatoren</i></td></tr><tr><td><b>AND</b></td><td>Logisches UND</td></tr><tr><td><b>LIKE</b></td><td>Überprüfung von Text auf Gleichheit, wenn Platzhalter (\"regular expressions\") eingesetzt werden.</td></tr><tr><td><b>NOT</b></td><td>Logische Negation</td></tr><tr><td><b>OR</b></td><td>Logisches ODER</td></tr><tr><td><b>IS NULL</b></td><td>Überprüfung auf NULL</td></tr><tr><td><b>=</b></td><td>Test auf Gleichheit</td></tr><tr><td><b>&gt;, &gt;=, &lt;, &lt;=, &lt; &gt;</b></td><td>Test auf Ungleichheit</td></tr><tr><td><b>*</b></td><td>Multiplikation</td></tr><tr><td><b>/</b></td><td>Division</td></tr><tr><td><b>+</b></td><td>Addition, positives Vorzeichen</td></tr><tr><td><b>-</b></td><td>Subtraktion, negatives Vorzeichen</td></tr></table><p>Stand 2021-09-30</p><p><i>Anmerkung: Bei SELECT…INTO…FROM…WHERE steht im Original-Belegsatz statt einer Beschreibung nur ein Platzhalter („AAAAAAAAAAAAAAA.....“).</i></p>"
+  }
+ ],
+ "bilder": {
+  "w22-ga2-3a": {
+   "seite": "w22/ga2-08",
+   "box": [
+    0.08,
+    0.174,
+    0.88,
+    0.29
+   ]
+  },
+  "w22-ga2-3a-l": {
+   "seite": "w22/l2-4",
+   "box": [
+    0.065,
+    0.098,
+    0.825,
+    0.418
+   ]
+  },
+  "w22-ga2-3b-l": {
+   "seite": "w22/l2-4",
+   "box": [
+    0.065,
+    0.475,
+    0.8,
+    0.602
+   ]
+  },
+  "w22-ga2-bs-struktogramm": {
+   "seite": "w22/beleg-4",
+   "box": [
+    0.06,
+    0.093,
+    0.88,
+    0.865
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Sortieralgorithmus, Vergleichsfunktion, Generics",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen",
+    "Programmierung/OOP"
+   ],
+   "text": "<p>Im Rahmen der Erstellung von Lernsoftware soll zunächst ein Sortieralgorithmus für ein Array von Raum-Objekten erstellt werden. Die Sortierung soll aufsteigend nach der Belegungszahl eines Raumes erfolgen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "pseudocode",
+      "struktogramm"
+     ],
+     "text": "<table><tr><th>Raum</th></tr><tr><td>…</td></tr><tr><td><code>+ getBelegung(): Integer</code><br>…</td></tr></table><p>Der Sortieralgorithmus kann beispielsweise nach folgendem Verfahren arbeiten:</p><ul><li>Vergleich der ersten beiden Elemente, gegebenenfalls tauschen</li><li>Vergleich des 2. und 3. Elementes, gegebenenfalls tauschen</li><li>Fortführen des n. und n+1. Elementes bis zum Ende des Arrays</li><li>Wiederholen, bis das Array sortiert ist</li></ul><p><b>Erstellen Sie einen Algorithmus, der ein Array von Raum-Objekten nach dem genannten oder einem alternativen Verfahren sortiert. Geben Sie den Algorithmus in Pseudocode, Struktogramm oder als PAP an.</b></p><pre>void sort (raeume: Array von Raum)</pre>",
+     "loesung": "<pre>void sort(raeume: Array von Raum)\n    für i = 0, i &lt; raeume.length-1; i++\n        für j = 0; j &lt; raeume.length - i -1; j++\n            wenn raeume[j].getBelegung() &gt;\n                    raeume[j+1].getBelegung()\n                Raum r = raeume[j]\n                raeume[j] = raeume[j+1]\n                raeume[j+1] = r\n            ende wenn\n        ende für\n    ende für\nende sort</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "pseudocode",
+      "struktogramm"
+     ],
+     "text": "<p>Zur Flexibilisierung des Sortieralgorithmus wird eine Funktion benötigt, die …</p><ul><li>den Wert 0 zurückgibt, wenn die zwei der Funktion übergebenen Objekte gleich („groß“) sind,</li><li>einen positiven Wert zurückgibt, wenn der erste Parameter größer als der zweite ist und</li><li>einen negativen Wert im verbleibenden Fall.</li></ul><p><b>Erstellen Sie eine Funktion vergleicheMitarbeiter(Mitarbeiter m1, Mitarbeiter m2), die zwei Mitarbeiter-Objekte als Parameter bekommt und einen entsprechenden Rückgabewert liefert. Der Vergleich der Mitarbeiter soll über das Gehalt vorgenommen werden.</b></p><p><b>Geben Sie den Algorithmus in Pseudocode, Struktogramm oder als PAP an.</b></p><table><tr><th>Mitarbeiter</th></tr><tr><td>…</td></tr><tr><td><code>+ getGehalt(): Double</code><br>…</td></tr></table><pre>vergleicheMitarbeiter(Mitarbeiter m1, Mitarbeiter m2): Integer</pre>",
+     "loesung": "<pre>vergleicheMitarbeiter(Mitarbeiter m1, Mitarbeiter m2): Integer\n    diff: Double\n    diff =m1.getGehalt() - m2.getGehalt()\n    wenn diff == 0\n        Rückgabe 0\n    Ende wenn\n    Wenn diff &gt; 0\n        Rückgabe 1\n    Sonst\n        Rückgabe -1\n    ende wenn\nende vergleicheMitarbeiter</pre>",
+     "hinweis": "Hinweis: Eine Lösung mit Rückgabe m1.getGehalt() – m2.getGehalt() führt zu einem Typkonflikt zwischen Integer und Double. Eine Typkonvertierung von Gehalt zu Integer zu nicht richtigen Ergebnissen!"
+    },
+    {
+     "nr": "c",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Da nicht nur Raum-Objekte sortiert werden sollen, wird zur Erstellung eines flexibleren Algorithmus die Verwendung von generischen Klassen vorgeschlagen.</p><p><b>Erläutern Sie den Begriff generische Klasse.</b></p>",
+     "loesung": "<p>Eine generische Klasse ist eine typparametrisierte Klasse, das heißt Methoden und Variablen werden für einen vorgegebenen, aber beliebigen Typ definiert. Für den vorgegebenen Typ können Einschränkungen formuliert werden.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 7,
+     "eingabe": "code",
+     "beleg": [
+      "pseudocode",
+      "struktogramm"
+     ],
+     "text": "<p>Zur Erstellung eines verbesserten Sortieralgorithmus soll die vorhandene generische Klasse Function&lt;T&gt; verwendet werden. Ein Function-Objekt kann eine Funktion speichern, die zwei Parameter vom Typ T erwartet und einen Integerwert zurückgibt.</p><p>Verwendung eines Function&lt;T&gt;-Objektes (Beispiel):</p><table><tr><td>Speichern einer Funktion in einem Function-Objekt:</td><td><b>Function&lt;Mitarbeiter&gt; f = vergleicheMitarbeiter;</b></td></tr><tr><td>Aufruf der gespeicherten Funktion:</td><td><b>f(mitarbeiter1, mitarbeiter2)</b></td></tr></table><p>Zusätzlich soll für den neuen Sortieralgorithmus die vorhandene generische Klasse List&lt;T&gt; verwendet werden, die Objekte von Typ T speichert.</p><table><tr><th>List&lt;T&gt;</th></tr><tr><td>…</td></tr><tr><td>+ get(index: Integer) : T<br>+ set(index: Integer, element: T) : void<br>+ size() : Integer<br>…</td></tr></table><p><b>Aktualisieren Sie Ihren Sortieralgorithmus so, dass dieser als Parameter ein List&lt;T&gt;-Objekt und ein Function&lt;T&gt;-Objekt erhält. Für den Vergleich im Sortieralgorithmus soll die im Function&lt;T&gt;-Objekt gespeicherte Funktion benutzt werden.</b></p><pre>sort(List&lt;T&gt; liste, Function&lt;T&gt; f): void</pre>",
+     "loesung": "<pre>void sort(liste: List&lt;T&gt;, Function&lt;T&gt; f)\n        für i = 0, i &lt; <b>liste.size()</b>-1; i++\n            für j = 0; j &lt; <b>liste.size()</b> - i -1; j++\n                wenn <b>f(liste.get(j), liste.get(j+1)) &gt; 0</b>\n                    <b>T r = liste.get(j)</b>\n                    <b>liste.set(j, liste.get(j+1))</b>\n                    <b>liste.set(j+1, r)</b>\n                ende wenn\n            ende für\n        ende für\n    ende sort</pre><p><i>Anmerkung: Fett = die in den Lösungshinweisen hervorgehobenen Änderungen gegenüber a).</i></p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Zu Aufgabe 1 a): Raum-Objekte und Sortierverfahren",
+       "html": "<p>Im Rahmen der Erstellung von Lernsoftware soll zunächst ein Sortieralgorithmus für ein Array von Raum-Objekten erstellt werden. Die Sortierung soll aufsteigend nach der Belegungszahl eines Raumes erfolgen.</p><table><tr><th>Raum</th></tr><tr><td>…</td></tr><tr><td><code>+ getBelegung(): Integer</code><br>…</td></tr></table><p>Der Sortieralgorithmus kann beispielsweise nach folgendem Verfahren arbeiten:</p><ul><li>Vergleich der ersten beiden Elemente, gegebenenfalls tauschen</li><li>Vergleich des 2. und 3. Elementes, gegebenenfalls tauschen</li><li>Fortführen des n. und n+1. Elementes bis zum Ende des Arrays</li><li>Wiederholen, bis das Array sortiert ist</li></ul><pre>void sort (raeume: Array von Raum)</pre>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Rekursion Dezimal→Binär, Schreibtischtest, iterativ",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen",
+    "Qualität & Test"
+   ],
+   "text": "<p>Für einen Kurs sollen Online-Lehrmittel erstellt werden. Sie erhalten die Aufgabe, einen vorgegebenen rekursiven Algorithmus zur Umrechnung einer Dezimalzahl in eine Binärzahl mit einem Schreibtischtest auf Korrektheit zu prüfen und gegebenenfalls zu korrigieren.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Testfall 1: Dezimalzahl 7 (erwartet 111) — Ergebnis Schreibtischtest",
+       "Testfall 2: Dezimalzahl 11 (erwartet 1011) — Ergebnis Schreibtischtest"
+      ]
+     },
+     "text": "<p>Folgender Algorithmus in Pseudocode ist vorgegeben:</p><pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    rest = dezimalzahl modulo 2;\n    AUSGABE(rest);\n    dezimalzahl = dezimalzahl div 2; //div ist Division\n    WENN dezimalzahl &gt; 0 DANN\n    Umrechnung(dezimalzahl);\n    ENDE\nENDE</pre><p><b>aa) Führen Sie den Schreibtischtest aus und tragen Sie das Ergebnis in die rechte Spalte „Ergebnis Schreibtischtest“ ein.</b></p><table><tr><th>Testfall</th><th>Dezimalzahl</th><th>Erwartetes Ergebnis</th><th>Ergebnis Schreibtischtest</th></tr><tr><td>1</td><td>7</td><td>111</td><td></td></tr><tr><td>2</td><td>11</td><td>1011</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Testfall</th><th>Dezimalzahl</th><th>Erwartetes Ergebnis</th><th>Ergebnis</th></tr><tr><td>1</td><td>7</td><td>111</td><td>111</td></tr><tr><td>2</td><td>11</td><td>1011</td><td>1101</td></tr></table>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>ab) Beschreiben Sie den Fehler und eine Korrekturmöglichkeit.</b></p>",
+     "loesung": "<p>Die Ausgabe „<code>Ausgabe(rest);</code>“ erfolgt vor dem rekursiven Aufruf „<code>Umrechnung(dezimalzahl);</code>“, beim Abstieg in die Rekursion. Daher ist das Ergebnis in der falschen Reihenfolge.<br>Korrektur: Ausgabe nach dem rekursiven Funktionsaufruf.</p>",
+     "hinweis": "Korrekte Alternativen sind ebenfalls als richtig zu werten.",
+     "anlagen": [
+      {
+       "titel": "Vorgegebener rekursiver Algorithmus (Pseudocode)",
+       "html": "<pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    rest = dezimalzahl modulo 2;\n    AUSGABE(rest);\n    dezimalzahl = dezimalzahl div 2; //div ist Division\n    WENN dezimalzahl &gt; 0 DANN\n    Umrechnung(dezimalzahl);\n    ENDE\nENDE</pre>"
+      }
+     ]
+    },
+    {
+     "nr": "ac",
+     "punkte": 3,
+     "eingabe": "gross",
+     "text": "<p>Der Algorithmus soll in einem White-Box-Test geprüft werden.</p><p><b>ac) Erklären Sie den Begriff Anweisungsüberdeckung und bestimmen Sie die mindestens benötigte Anzahl an Testfällen, um bei dem gegebenen Algorithmus Anweisungsüberdeckung zu erreichen.</b></p>",
+     "loesung": "<p>Um Anweisungsüberdeckung zu erreichen, muss durch die Auswahl der Testfälle sichergestellt werden, dass jede Anweisung mindestens 1-mal ausgeführt wird.<br>Beim gegebenen Programm genügt ein Testfall.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Vorgegebener rekursiver Algorithmus (Pseudocode)",
+       "html": "<pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    rest = dezimalzahl modulo 2;\n    AUSGABE(rest);\n    dezimalzahl = dezimalzahl div 2; //div ist Division\n    WENN dezimalzahl &gt; 0 DANN\n    Umrechnung(dezimalzahl);\n    ENDE\nENDE</pre>"
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil",
+       "Nachteil"
+      ]
+     },
+     "text": "<p><b>Beschreiben Sie je einen Vor- und Nachteil der rekursiven Lösung im Vergleich zu einer iterativen Lösung.</b></p>",
+     "loesung": "<p>z. B.:</p><p>Vorteil: Rekursive Lösungen sind zum passenden Problem einfacher oder eleganter zu schreiben.</p><p>Nachteil: Rekursive Lösungen benötigen mehr Speicher zur Laufzeit.</p>",
+     "hinweis": "Korrekte Alternativen sind ebenfalls als richtig zu werten.",
+     "anlagen": [
+      {
+       "titel": "Vorgegebener rekursiver Algorithmus (Pseudocode)",
+       "html": "<pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    rest = dezimalzahl modulo 2;\n    AUSGABE(rest);\n    dezimalzahl = dezimalzahl div 2; //div ist Division\n    WENN dezimalzahl &gt; 0 DANN\n    Umrechnung(dezimalzahl);\n    ENDE\nENDE</pre>"
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "pseudocode"
+     ],
+     "text": "<p>Der rekursive Algorithmus soll durch einen iterativen Algorithmus ersetzt werden. Eine Klasse <code>List</code> kann verwendet werden. Folgende Methoden der Klasse List stehen zur Verfügung:</p><table><tr><td><code>insert(Wert:int):void</code></td><td>Fügt den Wert „Wert“ am Ende der Liste ein</td></tr><tr><td><code>size():int</code></td><td>liefert die Anzahl der Listenelemente</td></tr><tr><td><code>element(Pos:int):int</code></td><td>Liefert das Listenelement an Position Pos, Position 0 ist das Listenende</td></tr><tr><td><code>List()</code></td><td>Konstruktor erzeugt eine leere Liste</td></tr></table><p><b>Erstellen Sie einen iterativen Algorithmus, der die Umrechnung korrekt ausführt.</b></p><pre>void Umrechnung(dezimalzahl: int)</pre>",
+     "loesung": "<pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    i: int;\n    List l();\n    SOLANGE (dezimalzahl &gt;0)\n    BEGINN\n        rest = dezimalzahl modulo 2;\n        l.insert(rest);\n        dezimalzahl = dezimalzahl div 2;\n    ENDE\n    ZÄHLE i VON l.size() BIS 0 SCHRITTWEITE -1\n    BEGINN\n        AUSGABE(l.element(i));\n    ENDE\n<b>ENDE</b></pre><p><i>Anmerkung: Die Zählschleife der Lösungshinweise beginnt bei l.size(); gültige Positionen sind aber 0 … l.size()-1, richtig wäre also „VON l.size()-1 BIS 0“. Außerdem hängt die Laufrichtung davon ab, wie man „Position 0 ist das Listenende“ liest: Ist Position 0 der zuletzt eingefügte Rest (höchstwertiges Bit), muss aufsteigend von 0 bis l.size()-1 ausgegeben werden; die absteigende Schleife passt zur Lesart „Position 0 = zuerst eingefügtes Element“.</i></p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Vorgegebener rekursiver Algorithmus (Pseudocode)",
+       "html": "<pre>void Umrechnung(dezimalzahl: int)\nBEGINN\n    rest: int;\n    rest = dezimalzahl modulo 2;\n    AUSGABE(rest);\n    dezimalzahl = dezimalzahl div 2; //div ist Division\n    WENN dezimalzahl &gt; 0 DANN\n    Umrechnung(dezimalzahl);\n    ENDE\nENDE</pre>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "ER-Modell Raumbuchung, relationales Modell, Datentypen",
+   "punkte": 25,
+   "themen": [
+    "Datenbank"
+   ],
+   "text": "<p>Wichtige Daten der Firma sollen in einer relationalen Datenbank gespeichert werden. Dazu liegt ein erstes ER-Modell vor, in dem schon die Entitätstypen Mitarbeiter und Serviceleistungen erfasst wurden. Dieses Modell soll nun um die Raumbuchungen von Kunden erweitert werden. Als Grundlage dafür steht Ihnen die nachfolgende Buchungsbestätigung und die danach aufgeführten Anforderungen zur Verfügung.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 12,
+     "eingabe": "zeichnen",
+     "text": "<p><b>Erweitern Sie das nachstehende ER-Modell zunächst nur um die notwendigen Entitätstypen und tragen Sie die Beziehung zwischen diesen mit den entsprechenden Kardinalitäten ein.</b> (Hinweis: Attribute müssen nicht eingetragen werden.)</p><img data-bild=\"w22-ga2-3a\"><p>(Buchungsbestätigung und zusätzliche Anforderungen: siehe Anlage „Abbildung zur 3. Aufgabe“)</p>",
+     "loesung": "<img data-bild=\"w22-ga2-3a-l\"><p>In Worten — neue Entitätstypen: <b>Buchung</b>, <b>Kunde</b>, <b>Raum</b>, <b>Standort</b>, <b>Art</b>, <b>Ressource</b>. Beziehungen:</p><ul><li>Mitarbeiter 1 — <i>betreut</i> — n Buchung</li><li>Ressource m — <i>gehört zu</i> — n Buchung</li><li>Buchung m — <i>hat</i> — n Raum</li><li>Buchung n — <i>hat</i> — 1 Kunde</li><li>Raum n — <i>hat</i> — 1 Standort</li><li>Raum n — <i>hat</i> — 1 Art</li><li>(vorgegeben: Mitarbeiter m — <i>erbringt</i> (Datum, Dauer) — n Serviceleistung)</li></ul>",
+     "hinweis": "1 Punkt für jeden richtigen Entitätstyp = 6 Punkte. 1 Punkt für jede richtige Beziehung = 6 Punkte. Korrekte Alternativen sind ebenfalls als richtig zu werten.",
+     "anlagen": [
+      {
+       "titel": "Abbildung zur 3. Aufgabe: Buchungsbestätigung und zusätzliche Anforderungen",
+       "html": "<p><b>Buchungsbestätigung</b></p><p>Buchungsnummer.: 103864<br>Datum der Buchung: 19. September 2022</p><table><tr><td>Max Mustermann<br>Hauptstraße 23<br>01129 Dresden<br>Tel: 0123456789<br>E-Mail: max@mustermann.de</td><td>Kundennummer: 122<br>Ansprechpartner: Christine Wald<br>Durchwahl: 012345-4789<br>E-Mail: cwald@bt-abc.de</td></tr></table><p>Sehr geehrter Herr Mustermann,</p><p>vielen Dank für Ihre Buchung. Nachfolgend finden Sie alle Informationen zu Ihrer Buchung:</p><p><b>Standort:</b> Berlin<br>Mietzeitraum: 4. Oktober 2022 bis 7. Oktober 2022</p><p>Bildungsträger ABC<br>Wasserstraße 1<br>11111 Berlin</p><p><b>Räume</b> am Standort:<br>1. Raum: 201 Art: Tagungsraum<br>2. Raum: 202 Art: Tagungsraum<br>3. Raum: 304 Art: Schulungsraum</p><p><b>Ressourcen:</b><br>1 x Laserdrucker<br>3 x Beamer<br>2 x Flipchart<br>1 x mobiles Whiteboard</p><p>Bei Fragen zu Ihrer Buchung wenden Sie sich direkt an unsere Mitarbeiterin Frau Wald, welche diese Buchung betreut.</p><p>Mit freundlichen Grüßen<br>Ihr Serviceteam</p><hr><p>Zusätzliche Anforderungen:</p><ul><li>Die Buchung soll in Verbindung zum betreuenden Mitarbeiter stehen.</li><li>Die Standorte der Räume sollen auch erfasst werden.</li></ul>"
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 10,
+     "eingabe": "zeichnen",
+     "text": "<p>Aus dem ER-Modell soll im Anschluss ein relationales Datenmodell erstellt werden.</p><p><b>Überführen Sie dazu <u>nur</u> die (in Aufgabe 3 a)) gegebenen <u>Entitätstypen Mitarbeiter und Serviceleistung</u>, deren Beziehung und alle Attribute in ein relationales Datenmodell, welches der 3. Normalform genügt.</b></p><p><b>Kennzeichnen Sie alle Primärschlüssel mit PK und alle Fremdschlüssel mit FK. Tragen Sie alle notwendigen Beziehungen mit den entsprechenden Kardinalitäten ein.</b></p><p>Hinweis: Die Daten der Anschrift müssen nicht in einer eigenen Tabelle ausgelagert werden.</p>",
+     "loesung": "<img data-bild=\"w22-ga2-3b-l\"><p>In Worten:</p><ul><li><b>Mitarbeiter</b> (MitarbeiterNr (PK), Name, Vorname, Ort, PLZ, Straße, Telefon)</li><li><b>Tätigkeit</b> (TätigkeitsID (PK), SLID (FK), MitarbeiterNr (FK), Datum, Dauer)</li><li><b>Serviceleistung</b> (SLID (PK), Bezeichnung)</li></ul><p>Beziehungen: Mitarbeiter 1 : n Tätigkeit · Serviceleistung 1 : n Tätigkeit</p>",
+     "hinweis": "Tabelle Mitarbeiter/Tätigkeit je 3 Punkte, Tabelle Serviceleistung 2 Punkte, je Beziehung 1 Punkt. Korrekte Alternativen sind ebenfalls als richtig zu werten.",
+     "anlagen": [
+      {
+       "titel": "ER-Modell aus Aufgabe 3 a) (Mitarbeiter – erbringt – Serviceleistung)",
+       "html": "<img data-bild=\"w22-ga2-3a\"><p>In Worten: Mitarbeiter (MitarbeiterNr, Name, Vorname, Anschrift, Telefon) m — <i>erbringt</i> (Datum, Dauer) — n Serviceleistung (SLID, Bezeichnung)</p>"
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "Dauer",
+       "PLZ",
+       "Name"
+      ]
+     },
+     "text": "<p>Bei der Eingabe des relationalen Datenmodells müssen allen Attributen Datentypen zugeordnet werden.</p><p><b>Legen Sie für nachfolgende Attribute sinnvolle Datentypen fest.</b></p><table><tr><th>Attribut</th><th>Datentyp</th></tr><tr><td>Dauer</td><td></td></tr><tr><td>PLZ</td><td></td></tr><tr><td>Name</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Attribut</th><th>Datentyp</th></tr><tr><td>Dauer</td><td>Integer</td></tr><tr><td>PLZ</td><td>VarChar (String ,Text)</td></tr><tr><td>Bezeichnung</td><td>VarChar (String ,Text)</td></tr></table><p><i>Anmerkung: Gefragt ist in der Aufgabe „Name“, die Lösungshinweise führen „Bezeichnung“ auf. Für Name gilt derselbe Datentyp (VarChar/String/Text).</i></p>",
+     "hinweis": "Korrekte Alternativen sind ebenfalls als richtig zu werten.",
+     "anlagen": [
+      {
+       "titel": "ER-Modell aus Aufgabe 3 a) (Mitarbeiter – erbringt – Serviceleistung)",
+       "html": "<img data-bild=\"w22-ga2-3a\"><p>In Worten: Mitarbeiter (MitarbeiterNr, Name, Vorname, Anschrift, Telefon) m — <i>erbringt</i> (Datum, Dauer) — n Serviceleistung (SLID, Bezeichnung)</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Urlaub je Mitarbeiter, Archivieren, LIKE",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Ein Auszug eines Datenbanksystems zu Mitarbeiterdaten liegt Ihnen wie folgt vor.</p><p>(Tabellen Mitarbeiter, Abteilung, FehlzeitArt und Fehlzeit: siehe Anlage)</p>",
+   "anlagen": [
+    {
+     "titel": "Tabellen Mitarbeiter, Abteilung, FehlzeitArt, Fehlzeit",
+     "html": "<p>Tabelle <i>Mitarbeiter</i></p><table><tr><th>Ma_ID</th><th>Nachname</th><th>Vorname</th><th>Strasse</th><th>PLZ</th><th>Ort</th><th>GebDat</th><th>ArbeitszeitTag</th><th>Abt_ID</th></tr><tr><td>1</td><td>Meier</td><td>Wilhelm</td><td>Musterstr. 22</td><td>50733</td><td>Köln</td><td>23.11.1997</td><td>8</td><td>3</td></tr><tr><td>2</td><td>Franz</td><td>Anja</td><td>Hauptstr. 333</td><td>50737</td><td>Köln</td><td>02.02.1964</td><td>4</td><td>3</td></tr><tr><td>3</td><td>Schmitt</td><td>Andrea</td><td>Aachener Str. 5</td><td>50968</td><td>Köln</td><td>02.08.1996</td><td>8</td><td>2</td></tr><tr><td>4</td><td>Kreuzer</td><td>Peter</td><td>Hauptstr. 155</td><td>50734</td><td>Köln</td><td>05.09.1977</td><td>8</td><td>1</td></tr><tr><td>5</td><td>Lang</td><td>Ina</td><td>Kölner Str. 221</td><td>52063</td><td>Aachen</td><td>11.11.2001</td><td>8</td><td>3</td></tr><tr><td>6</td><td>Kurz</td><td>Katrin</td><td>Klichstr. 3</td><td>50969</td><td>Köln</td><td>03.01.1979</td><td>8</td><td>1</td></tr><tr><td>7</td><td>Pfennig</td><td>Petra</td><td>Von Bern Str. 5</td><td>50999</td><td>Köln</td><td>08.10.1956</td><td>6</td><td>1</td></tr><tr><td>8</td><td>Krenz</td><td>Karin</td><td>Perterstr.</td><td>50997</td><td>Köln</td><td>19.12.1988</td><td>8</td><td>2</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table><p>Tabelle <i>Abteilung</i></p><table><tr><th>Abt_ID</th><th>Abteilung</th></tr><tr><td>1</td><td>Verwaltung</td></tr><tr><td>2</td><td>Produktion</td></tr><tr><td>3</td><td>Entwicklung</td></tr><tr><td>…</td><td></td></tr></table><p>Tabelle <i>FehlzeitArt</i></p><table><tr><th>FzA_ID</th><th>Fehlzeitart</th></tr><tr><td>1</td><td>AU</td></tr><tr><td>2</td><td>Urlaub</td></tr><tr><td>3</td><td>Dienstreise</td></tr><tr><td>…</td><td></td></tr></table><p>Tabelle <i>Fehlzeit</i></p><table><tr><th>Fz_ID</th><th>Ma_ID</th><th>FzA_ID</th><th>VonDat</th><th>BisDat</th><th>FehltageSum</th></tr><tr><td>1</td><td>2</td><td>1</td><td>10.05.2022</td><td>20.05.2022</td><td>9</td></tr><tr><td>2</td><td>5</td><td>2</td><td>16.05.2022</td><td>29.05.2022</td><td>10</td></tr><tr><td>3</td><td>3</td><td>1</td><td>18.05.2022</td><td>22.05.2022</td><td>3</td></tr><tr><td>4</td><td>1</td><td>1</td><td>19.05.2022</td><td>22.05.2022</td><td>2</td></tr><tr><td>5</td><td>1</td><td>2</td><td>23.05.2022</td><td>29.05.2022</td><td>5</td></tr><tr><td>6</td><td>7</td><td>2</td><td>30.05.2022</td><td>19.06.2022</td><td>15</td></tr><tr><td>7</td><td>6</td><td>3</td><td>25.05.2022</td><td>26.05.2022</td><td>2</td></tr><tr><td>8</td><td>6</td><td>3</td><td>06.06.2022</td><td>08.06.2022</td><td>3</td></tr><tr><td>9</td><td>1</td><td>1</td><td>27.06.2022</td><td>29.06.2022</td><td>3</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table><p><b>Jahresübergreifende Fehlzeiten werden getrennt nach Jahr eingetragen.<br>Bei FehltageSum werden Wochenenden und freie Tage nicht als Fehltage gezählt.</b></p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage, mit der alle Mitarbeiter mit Abteilungen, den summierten Urlaubstagen sowie der Anzahl der Urlaubseinträge im Jahr 2022 ausgegeben werden.</b></p><p>Die Ergebnistabelle soll wie folgt aussehen:</p><table><tr><th>ID</th><th>Nachname</th><th>Vorname</th><th>Abteilung</th><th>Urlaubstage</th><th>Urlaubseintraege</th></tr><tr><td>1</td><td>Meier</td><td>Wilhelm</td><td>Entwicklung</td><td>5</td><td>1</td></tr><tr><td>2</td><td>Franz</td><td>Anja</td><td>Entwicklung</td><td></td><td>0</td></tr><tr><td>3</td><td>Schmitt</td><td>Andrea</td><td>Produktion</td><td></td><td>0</td></tr><tr><td>4</td><td>Kreuzer</td><td>Peter</td><td>Verwaltung</td><td></td><td>0</td></tr><tr><td>5</td><td>Lang</td><td>Ina</td><td>Entwicklung</td><td>10</td><td>1</td></tr><tr><td>6</td><td>Kurz</td><td>Katrin</td><td>Verwaltung</td><td></td><td>0</td></tr><tr><td>7</td><td>Pfennig</td><td>Petra</td><td>Verwaltung</td><td>15</td><td>1</td></tr><tr><td>8</td><td>Krenz</td><td>Karin</td><td>Produktion</td><td></td><td>0</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>",
+     "loesung": "<pre>SELECT Ma.Ma_ID AS ID\n      ,Ma.Nachname\n      ,Ma.Vorname\n      ,Abt.Abteilung\n      ,SUM(Fz.FehltageSum) AS Urlaubstage\n      ,COUNT(Fz.Fz_ID) AS Urlaubseintraege\nFROM Mitarbeiter AS Ma\nLEFT JOIN Fehlzeit AS Fz ON Ma.Ma_ID = Fz.Ma_ID AND\n                            Fz.FzA_ID = 2 AND\n                            YEAR(Fz.VonDat) = 2022\nLEFT JOIN Abteilung AS Abt ON Ma.Abt_ID = Abt.Abt_ID\nGROUP BY Ma.Ma_ID, Ma.Nachname, Ma.Vorname, Abt.Abteilung;</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie die notwendigen SQL-Anweisungen, mit der Sie mit den Daten aus der Tabelle Fehlzeit vom Mitarbeiter Wilhelm Meier (Ma_ID: 1) in die Tabelle Fehlzeit_Archiv verschieben (kopieren und löschen) können.</b></p><p>Hinweis: Die Tabelle Fehlzeit_Archiv existiert und hat die gleiche Struktur wie die Tabelle Fehlzeit.</p>",
+     "loesung": "<pre>SELECT Fz_ID\n      ,Ma_ID\n      ,FzA_ID\n      ,VonDat\n      ,BisDat\n      ,FehltageSum\n  INTO Fehlzeit_Archiv\n  FROM Fehlzeit\n  WHERE Ma_ID = 1;\n\nDELETE\n    FROM Fehlzeit\n WHERE Ma_ID = 1;</pre><p><i>Anmerkung: SELECT … INTO legt in vielen Datenbanksystemen (z. B. SQL Server) eine neue Tabelle an. Da Fehlzeit_Archiv schon existiert, ist auch die Form aus dem Belegsatz üblich: <code>INSERT INTO Fehlzeit_Archiv SELECT * FROM Fehlzeit WHERE Ma_ID = 1;</code></i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage, mit der alle Mitarbeiter ausgegeben werden, welche an der vierten Stelle der Postleitzahl (als Zeichenkette angelegt) die Ziffer 3 enthalten.</b></p><p>Die Ergebnistabelle lautet wie folgt:</p><table><tr><th>Ma_ID</th><th>Nachname</th><th>PLZ</th><th>Ort</th></tr><tr><td>1</td><td>Meier</td><td>50733</td><td>Köln</td></tr><tr><td>2</td><td>Franz</td><td>50737</td><td>Köln</td></tr><tr><td>4</td><td>Kreuzer</td><td>50734</td><td>Köln</td></tr></table>",
+     "loesung": "<pre>SELECT Ma.Ma_ID\n      ,Ma.Nachname\n      ,Ma.PLZ\n      ,Ma.Ort\nFROM Mitarbeiter AS Ma\nWHERE Ma.PLZ LIKE '___3%'</pre>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}

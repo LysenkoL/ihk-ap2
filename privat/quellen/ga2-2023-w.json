@@ -1,0 +1,399 @@
+{
+ "id": "ga2-2023-w",
+ "bereich": "ga2",
+ "termin": "Winter 2023/24",
+ "kurz": "GA2 W23/24",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2023/24)",
+ "situation": "<p>Die AMAG Soft GmbH hat sich auf Software-Entwicklung im gesamten Umfeld vom Anbau bis zum Vertrieb von Weinprodukten spezialisiert.</p><p>Über lokale Messstellen im Weinberg und autonome Drohnen können Daten, wie zum Beispiel Niederschläge, Temperatur und Blattfärbungen ermittelt werden.</p>",
+ "beleg": [
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"w23-ga2-bs-klasse\">"
+  },
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"w23-beleg-akt\">"
+  },
+  {
+   "id": "seq",
+   "titel": "Belegsatz: UML-Sequenzdiagramm",
+   "html": "<img data-bild=\"w23-ga2-bs-seq\">"
+  },
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"w23-beleg-uc\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug, Stand 2021-09-30)",
+   "html": "<table><tr><th>Syntax</th><th>Beschreibung</th></tr><tr><td colspan=\"2\"><i>Tabelle</i></td></tr><tr><td><b>CREATE TABLE</b> Tabellenname<b>(</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spaltenname &lt; DATENTYP &gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüssel,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fremdschlüssel)</td><td>Erzeugt eine neue leere Tabelle mit der beschriebenen Struktur</td></tr><tr><td><b>ALTER TABLE</b> Tabellenname<br>&nbsp;&nbsp;&nbsp;<b>ADD COLUMN</b> Spaltenname Datentyp<br>&nbsp;&nbsp;&nbsp;<b>DROP COLUMN</b> Spaltenname Datentyp<br><br>&nbsp;&nbsp;&nbsp;<b>ADD FOREIGN KEY</b>(Spaltenname)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>REFERENCES</b> Tabellenname(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüsselspaltenname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td><td>Änderungen an einer Tabelle:<br>&nbsp;&nbsp;Hinzufügen einer Spalte<br>&nbsp;&nbsp;Entfernen einer Spalte<br><br>&nbsp;&nbsp;Definiert eine Spalte als Fremdschlüssel</td></tr><tr><td><b>CHARACTER</b></td><td>Textdatentyp</td></tr><tr><td><b>DECIMAL</b></td><td>Numerischer Datentyp (Festkommazahl)</td></tr><tr><td><b>DOUBLE</b></td><td>Numerischer Datentyp (Doppelte Präzision)</td></tr><tr><td><b>INTEGER</b></td><td>Numerischer Datentyp (Ganzzahl)</td></tr><tr><td><b>DATE</b></td><td>Datum (Format DD.MM.YYYY)</td></tr><tr><td><b>PRIMARY KEY</b> (Spaltenname)</td><td>Erstellung eines Primärschlüssels</td></tr><tr><td><b>FOREIGN KEY (</b>Spaltenname<b>)</b><br>&nbsp;&nbsp;&nbsp;<b>REFERENCES</b> Tabellenname(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primärschlüsselspaltenname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td><td>Erstellung einer Fremdschlüssel-Beziehung</td></tr><tr><td><b>DROP TABLE</b> Tabellenname</td><td>Löscht eine Tabelle</td></tr><tr><td colspan=\"2\"><i>Befehle, Klauseln, Attribute</i></td></tr><tr><td><b>SELECT *</b> | Spaltenname1 [, Spaltenname2, …]</td><td>Wählt die Spalten einer oder mehrerer Tabellen, deren Inhalte in die Liste aufgenommen werden sollen; alle Spalten (*) oder die namentlich aufgeführten</td></tr><tr><td><b>FROM</b></td><td>Name der Tabelle oder Namen der Tabellen, aus denen die Daten der Ausgabe stammen sollen</td></tr><tr><td><b>SELECT …</b><br><b>FROM</b> …<br>&nbsp;&nbsp;&nbsp;<b>(SELECT …</b><br>&nbsp;&nbsp;&nbsp;<b>FROM …</b><br>&nbsp;&nbsp;&nbsp;<b>WHERE …) AS</b> tbl<br><b>WHERE</b> …</td><td>Unterabfrage (subquery), die in eine äußere Abfrage eingebettet ist.<br>Das Ergebnis der Unterabfrage wird wie eine Tabelle – hier mit Namen \"tbl\" – behandelt.</td></tr><tr><td>SELECT <b>DISTINCT</b></td><td>Eliminiert Redundanzen, die in einer Tabellen auftreten können, Werte werden jeweils nur einmal angezeigt.</td></tr><tr><td><b>JOIN / INNER JOIN</b></td><td>Liefert nur die Datensätze zweier Tabellen, die gleiche Datenwerte enthalten</td></tr><tr><td><b>LEFT JOIN / LEFT OUTER JOIN</b></td><td>Liefert von der erstgenannten (linken) Tabelle alle Datensätze und von der zweiten Tabelle jene, deren Datenwerte mit denen der ersten Tabelle übereinstimmen</td></tr><tr><td><b>RIGHT JOIN / RIGHT OUTER JOIN</b></td><td>Liefert von der zweiten (rechten) Tabelle alle Datensätze und von der ersten Tabelle jene, deren Datenwerte mit denen der zweiten Tabelle übereinstimmen</td></tr><tr><td><b>WHERE</b></td><td>Bedingung, nach der Datensätze ausgewählt werden sollen</td></tr><tr><td><b>WHERE EXISTS (</b> subquery <b>)</b><br><b>WHERE NOT EXISTS</b> ( subquery )</td><td>Die Bedingungen EXISTS prüft, ob die Suchbedingung einer Unterabfrage mindestens eine Zeile zurückliefert. NOT EXIST negiert die Bedingung.</td></tr><tr><td><b>WHERE … IN (</b> subquery <b>)</b><br><b>WHERE NOT… IN (</b> subquery )</td><td>Der Wert des Datenfelds ist in der auswählten Menge vorhanden.<br>Der Wert des Datenfelds ist in der auswählten Menge nicht vorhanden.</td></tr><tr><td><b>GROUP BY</b> Spaltenname1 [,Spaltenname2, …]</td><td>Gruppierung (Aggregation) nach Inhalt des genannten Feldes</td></tr><tr><td><b>ORDER BY</b> Spaltenname1 [,Spaltenname2, …]<br><b>ASC | DESC</b></td><td>Sortierung nach Inhalt des genannten Feldes oder der genannten Felder<br>ASC: aufsteigend; DESC: absteigend</td></tr><tr><td colspan=\"2\"><i>Datenmanipulation</i></td></tr><tr><td><b>DELETE FROM</b> Tabellenname</td><td>Löschen von Datensätzen in der genannten Tabelle</td></tr><tr><td><b>UPDATE</b> Tabellenname <b>SET</b></td><td>Aktualisiert Daten in Feldern einer Tabelle</td></tr><tr><td><b>INSERT INTO</b> Tabellenname[(spalte1, spalte2, ...)]<br>&nbsp;&nbsp;<b>VALUES (</b>Wert für Spalte 1 [, Wert für Spalte 2, …]<b>)</b><br>oder<br>&nbsp;&nbsp;<b>SELECT</b> … <b>FROM</b> … <b>WHERE</b></td><td>Fügt Datensätze in die genannte Tabelle, die entweder mit festen Werten belegt oder Ergebnis eines SELECT-Befehls sind</td></tr><tr><td colspan=\"2\"><i>Berechtigungen kontrollieren</i></td></tr><tr><td><b>CREATE</b> Benutzer | Rolle <b>IDENTIFIED BY</b> 'Passwort'</td><td>Erzeugt einen neuen Benutzer oder eine neue Rolle mit einem Passwort</td></tr><tr><td><b>GRANT</b> Recht | Rolle <b>ON</b> *.* | Datenbank.* | Datenbank.Objekt<br><b>TO</b> Benutzer | Rolle [WITH GRANT OPTION]</td><td>Weist einem Benutzer oder einer Rolle ein Recht auf ein bestimmtes Datenbank-Objekt zu<br>Weist einem Benutzer eine Rolle zu</td></tr><tr><td><b>REVOKE</b> Rechte | Rollen <b>ON</b> *.* | Datenbank.* | Datenbank.Objekt<br><b>FROM</b> Benutzer | Rolle</td><td>Entzieht einem Benutzer oder einer Rolle ein Recht auf ein bestimmtes Datenbank-Objekt<br>Entzieht einem Benutzer eine Rolle</td></tr><tr><td colspan=\"2\"><b>Aggregatfunktionen</b></td></tr><tr><td><b>AVG(</b>Spaltenname<b>)</b></td><td>Ermittelt das arithmetische Mittel aller Werte im angegebenen Feld</td></tr><tr><td><b>COUNT(</b>Spaltenname <b>| * )</b></td><td>Ermittelt die Anzahl der Datensätze mit Nicht-NULL-Werten im angegebenen Feld oder alle Datensätze der Tabelle (dann mit Operator *)</td></tr><tr><td><b>SUM(</b>Spaltenname | Formel<b>)</b></td><td>Ermittelt die Summe aller Werte im angegebenen Feld oder der Formelergebnisse</td></tr><tr><td><b>MIN(</b>Spaltenname | Formel<b>)</b></td><td>Ermittelt den kleinsten aller Werte im angegebenen Feld</td></tr><tr><td><b>MAX (</b>Spaltenname | Formel<b>)</b></td><td>Ermittelt den größten aller Werte im angegebenen Feld</td></tr><tr><td colspan=\"2\"><i>Funktionen</i></td></tr><tr><td><b>LEFT(</b>Zeichenkette, Anzahlzeichen<b>)</b></td><td>Liefert <i>Anzahlzeichen</i> der Zeichenkette von links.</td></tr><tr><td><b>RIGHT(</b>Zeichenkette, Anzahlzeichen<b>)</b></td><td>Liefert <i>Anzahlzeichen</i> der Zeichenkette von rechts.</td></tr><tr><td><b>CURRENT | GETDATE</b></td><td>Liefert das aktuelle Datum mit der aktuellen Uhrzeit</td></tr><tr><td><b>CONVERT(time,[</b>DatumZeit<b>])</b></td><td>Liefert die Uhrzeit aus einer DatumZeit-Angabe</td></tr><tr><td><b>DATE(</b>Wert<b>)</b></td><td>Wandelt einen Wert in ein Datum um</td></tr><tr><td><b>DAY(</b>Datum<b>)</b></td><td>Liefert den Tag des Monats aus dem angegebenen Datum</td></tr><tr><td><b>MONTH(</b>Datum<b>)</b></td><td>Liefert den Monat aus dem angegebenen Datum</td></tr><tr><td><b>TODAY</b></td><td>Liefert das aktuelle Datum</td></tr><tr><td><b>WEEKDAY(</b>Datum<b>)</b></td><td>Liefert den Tag der Woche aus dem angegebenen Datum</td></tr><tr><td><b>YEAR(</b>Datum<b>)</b></td><td>Liefert das Jahr aus dem angegebenen Datum</td></tr><tr><td><b>DATEADD(</b>Datumsteil, Intervall, Datum)</td><td>Fügt einem Datum ein Intervall (ausgedrückt in den unter Datumsteil angegebenen Einheiten) hinzu</td></tr><tr><td><b>DATEDIFF(</b>Datumsteil, Anfangsdatum, Enddatum)<br>Datumsteile: <b>DAY, MONTH, YEAR</b></td><td>Liefert Enddatum-Startdatum (ausgedrückt in den unter Datumsteil angegebenen Einheiten)</td></tr><tr><td colspan=\"2\"><i>Operatoren</i></td></tr><tr><td><b>AND</b></td><td>Logisches UND</td></tr><tr><td><b>LIKE</b></td><td>Überprüfung von Text auf Gleichheit wenn Platzhalter (\"regular expressions\") eingesetzt werden.</td></tr><tr><td><b>NOT</b></td><td>Logische Negation</td></tr><tr><td><b>OR</b></td><td>Logisches ODER</td></tr><tr><td><b>IS NULL</b></td><td>Überprüfung auf NULL</td></tr><tr><td><b>=</b></td><td>Test auf Gleichheit</td></tr><tr><td><b>&gt;, &gt;=, &lt;, &lt;=, &lt; &gt;</b></td><td>Test auf Ungleichheit</td></tr><tr><td><b>*</b></td><td>Multiplikation</td></tr><tr><td><b>/</b></td><td>Division</td></tr><tr><td><b>+</b></td><td>Addition, positives Vorzeichen</td></tr><tr><td><b>-</b></td><td>Subtraktion, negatives Vorzeichen</td></tr></table><p>Stand 2021-09-30</p>"
+  }
+ ],
+ "bilder": {
+  "w23-ga2-bs-klasse": {
+   "seite": "w23/beleg-2",
+   "box": [
+    0.05,
+    0.08,
+    0.85,
+    0.495
+   ]
+  },
+  "w23-ga2-bs-seq": {
+   "seite": "w23/beleg-4",
+   "box": [
+    0.05,
+    0.08,
+    0.82,
+    0.64
+   ]
+  },
+  "w23-ga2-1": {
+   "seite": "w23/ga2-03",
+   "box": [
+    0.025,
+    0.05,
+    0.82,
+    0.17
+   ]
+  },
+  "w23-ga2-1l": {
+   "seite": "w23/l2-2",
+   "box": [
+    0.045,
+    0.053,
+    0.84,
+    0.685
+   ]
+  },
+  "w23-ga2-3al": {
+   "seite": "w23/l2-3",
+   "box": [
+    0.08,
+    0.4872,
+    0.815,
+    0.775
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "UML-Sequenzdiagramm Reifegrad",
+   "punkte": 25,
+   "themen": [
+    "UML"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "seq"
+     ],
+     "text": "<p>Um auf die Güte des Weins schließen zu können, soll eine App entwickelt werden, die anhand von Messungen an den Trauben vor der Weinlese über die Güte Auskunft geben kann.</p><p>Nach dem Aufruf der App kann der zuvor gemessene Säuregehalt der Trauben eingegeben werden (Methode einlesenSaeuregehalt() der Klasse GUI).</p><p>Ist der Säuregehalt zu hoch, werden keine weiteren Messungen mehr vorgenommen.<br>Es erfolgt die Ausgabe „Säuregehalt zu hoch“ (Methode ausgabe(\"…\") der Klasse GUI).<br>Wenn der Säuregehalt nicht zu hoch ist, wird der Oechslegrad eingegeben (einlesenOechslegrad() der Klasse GUI).</p><p>Anschließend erfolgt die Berechnung des Reifegrads durch die Methode berechneReifegrad(oechslegrad) der Klasse Ernterechner.<br>Falls der Reifegrad größer oder gleich 100 ist, erfolgt die Ausgabe „hoher Reifegrad“.<br>Falls der Reifegrad größer oder gleich 80 (und kleiner als 100) ist, erfolgt die Ausgabe „mittlerer Reifegrad“.<br>Falls der Reifegrad größer oder gleich 70 (und kleiner als 80) ist, erfolgt die Ausgabe „niedriger Reifegrad“.</p><p><b>Erstellen Sie auf der Folgeseite für den beschriebenen Sachverhalt ein Sequenzdiagramm.</b></p><p>Vorgabe auf der Folgeseite (oberer Ausschnitt; darunter ist der Rahmen „sd Weinernte“ leer):</p><img data-bild=\"w23-ga2-1\">",
+     "loesung": "<img data-bild=\"w23-ga2-1l\"><p>In Worten:</p><ul><li>Rahmen „sd Weinernte“ mit den Lebenslinien <b>:GUI</b> und <b>:Ernterechner</b></li><li>startseite() kommt von außen an :GUI (Aktivierungsbalken bis zum Ende)</li><li>:GUI → :GUI: einlesenSaeuregehalt() (Selbstaufruf mit Rückantwort)</li><li>Kombiniertes Fragment <b>alt</b>:<ul><li>[Saeuregehalt zu groß]: :GUI → :GUI: ausgabe(\"Säuregehalt zu groß\")</li><li>[sonst]: :GUI → :GUI: einlesenOechslegrad(); dann :GUI → :Ernterechner: berechneReifegrad(oechslegrad), Antwort <i>reifegrad</i> zurück an :GUI; danach verschachteltes Fragment <b>alt</b>:<ul><li>[reifegrad &gt; 100]: ausgabe(\"hoher Reifegrad\")</li><li>[reifegrad &gt; 80]: ausgabe(\"mittlerer Reifegrad\")</li><li>[reifegrad &gt; 70]: ausgabe(\"niedriger Reifegrad\")</li></ul>(jeweils Selbstaufruf der :GUI mit Rückantwort)</li></ul></li></ul><p><i>Anmerkung: Die Lösungshinweise schreiben „zu groß“ statt „zu hoch“ und in den Bedingungen „&gt;“; laut Aufgabentext ist „größer oder gleich“ (&gt;=) gemeint.</i></p>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Wichtige Bausteine: Selbstaufrufe der GUI (einlesenSaeuregehalt, ausgabe, einlesenOechslegrad) mit Rückantwort, alt-Fragment Säuregehalt zu hoch / sonst, Aufruf berechneReifegrad(oechslegrad) an :Ernterechner mit Antwort reifegrad, verschachteltes alt-Fragment mit drei Bedingungen und den drei Ausgaben.",
+     "pruefpunkte": [
+      {
+       "text": "Rahmen „sd“ und Lebenslinien :GUI und :Ernterechner",
+       "punkte": 2
+      },
+      {
+       "text": "Start: Aufruf an :GUI mit Aktivierungsbalken",
+       "punkte": 2
+      },
+      {
+       "text": "einlesenSaeuregehalt() als Selbstaufruf mit Rückgabe",
+       "punkte": 3
+      },
+      {
+       "text": "alt-Fragment: Säuregehalt zu hoch → Ausgabe / sonst",
+       "punkte": 4
+      },
+      {
+       "text": "einlesenOechslegrad() als Selbstaufruf",
+       "punkte": 2
+      },
+      {
+       "text": "berechneReifegrad(oechslegrad) an :Ernterechner, Antwort reifegrad zurück",
+       "punkte": 4
+      },
+      {
+       "text": "verschachteltes alt mit drei Bedingungen (>= 100, >= 80, >= 70)",
+       "punkte": 4
+      },
+      {
+       "text": "drei Ausgaben den Bedingungen richtig zugeordnet",
+       "punkte": 3
+      },
+      {
+       "text": "UML-Notation: Nachricht durchgezogen, Antwort gestrichelt",
+       "punkte": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Pseudocode: Flugreihenfolge der Drohne",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "code",
+     "text": "<p>Für den Flug der Drohnen soll die Reihenfolge bestimmt werden, in der vorgegebene Geopositionen angeflogen werden.</p><p>Ausgehend von der aktuellen Position soll immer die Position als nächstes angeflogen werden, die der aktuellen Position am nächsten liegt.</p><p>Die anzufliegenden Positionen liegen in einem eindimensionalen Array <i>geoPositions</i> als Objekte der Klasse <i>GeoPos</i> vor.</p><table><tr><th>GeoPos</th></tr><tr><td>- latitude: double<br>- longitude: double<br>- altitude: double</td></tr><tr><td></td></tr></table><p>Zu jedem Attribut sind öffentliche Zugriffsmethoden (set/get) vorhanden.</p><p>Für Entfernungsberechnungen zwischen Geopositionen kann die Methode <i>getDistance</i> der Klasse <i>GeoCalculator</i> verwendet werden:</p><table><tr><th>GeoCalculator</th></tr><tr><td></td></tr><tr><td>+ getDistance(pos1: GeoPos, pos2: GeoPos ): double { static }</td></tr></table><p>Der Algorithmus für den Drohnenflug soll sein Ergebnis in einem Array <i>flightPositions</i> speichern und zurückgeben. Die Arbeitsweise des Algorithmus <i>calculateFlight</i>() wird wie folgt beschrieben:</p><ul><li>Das Array <i>geoPositions</i> kann durch den Algorithmus verändert werden.</li><li>Die Geoposition mit dem Index 0 des Arrays <i>geoPositions</i> wird zur ersten aktuellen Position. Diese Position wird im Array <i>flightPositions</i> gespeichert (Startposition!) und kann dann aus dem Array der noch anzufliegenden Positionen (<i>geoPositions</i>) gelöscht werden. Hinweis: bereits implementiert, siehe Vorgabe.</li><li>Solange noch Geopositionen im Array <i>geoPositions</i> vorhanden sind:<br>Ermitteln der Position im Array <i>geoPositions</i> mit der kürzesten Entfernung zur aktuellen Position.<br>Diese Position wird im Array <i>flightPositions</i> gespeichert und zur neuen aktuellen Position.<br>Diese Position kann dann aus dem Array <i>geoPositions</i> gelöscht werden.</li></ul><p>Hinweis: Der größte Doublewert kann mit Double.<i>MAX_VALUE</i> abgerufen werden.</p><p><b>Vervollständigen Sie dahingehend den Pseudocode auf der gegenüberliegenden Seite.</b></p><p>Vorgabe (gegenüberliegende Seite, darunter Kästchenpapier für die Lösung):</p><pre>calculateFlight(geoPositions: GeoPos[] ) : GeoPos[]\n\n    flight_positions = new GeoPos[geoPositions.length] // Array der angeflogenen\n                                                       // Positionen\n    flightPositions[0] = geoPositions[0]               // Position 0 als Startposition\n    currentPos = geoPositions[0]\n    geoPositions.remove(0)                             // aus dem Array der noch\n                                                       // anzufliegenden Positionen\n                                                       // entfernen</pre>",
+     "loesung": "<pre>calculateFlight(geoPositions: GeoPos[] ) : GeoPos[]\n\nflight_positions = new GeoPos[geoPositions.length]  // Array der angeflogenen\n                                                    // Positionen\nflightPositions[0] = geoPositions[0]                // Position 0 als Startposition\ncurrentPos = geoPositions[0]\ngeoPositions.remove(0)                              // aus dem Array der noch\n                                                    // anzufliegenden Positionen\n                                                    // entfernen\n\nnext = 1                                     // nächster Index in flightPositions\nwhile (geoPositions.length &gt; 0)              // Solange noch Positionen anzufliegen sind\n        minDistance = Double.MAX_VALUE\n        minPos = 0\n        for i = 0 to geoPositions.length -1\n                distance = geoCalculator.getDistance(currentPos, geoPositions[i])\n                if distance &lt; minDistance\n                        minDistance = distance\n                        minPos = i\n                end if\n        end for\n\n        flightPositions[next] = geoPositions[minPos]\n        next = next + 1\n        currentPos = geoPositions[minPos]\n        geoPositions.remove(minPos)\nend while\n\nreturn flightPositions\n\nend calculateFlight</pre><p><i>Anmerkung: Die Vorgabe schreibt einmal flight_positions und sonst flightPositions — gemeint ist dasselbe Array. getDistance ist statisch (Klasse GeoCalculator); die Lösungshinweise schreiben geoCalculator.getDistance(…).</i></p>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Wichtige Bausteine: Index für flightPositions, Schleife solange geoPositions nicht leer, Minimumsuche mit Startwert Double.MAX_VALUE, innere Schleife über alle verbleibenden Positionen mit getDistance, nächste Position speichern, neue aktuelle Position, aus geoPositions entfernen, Rückgabe von flightPositions.",
+     "pruefpunkte": [
+      {
+       "text": "Index für flightPositions vorbereitet (nächste freie Stelle)",
+       "punkte": 2
+      },
+      {
+       "text": "Äußere Schleife: solange geoPositions nicht leer",
+       "punkte": 4
+      },
+      {
+       "text": "Startwert für das Minimum (z. B. Double.MAX_VALUE)",
+       "punkte": 3
+      },
+      {
+       "text": "Innere Schleife über alle verbleibenden Positionen",
+       "punkte": 3
+      },
+      {
+       "text": "Entfernung mit GeoCalculator.getDistance(currentPos, geoPositions[i])",
+       "punkte": 3
+      },
+      {
+       "text": "Kleinere Entfernung erkannt: minDistance und minPos merken",
+       "punkte": 3
+      },
+      {
+       "text": "Gefundene Position in flightPositions speichern, Index erhöhen",
+       "punkte": 3
+      },
+      {
+       "text": "currentPos neu setzen und Position aus geoPositions entfernen",
+       "punkte": 2
+      },
+      {
+       "text": "flightPositions zurückgeben",
+       "punkte": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Relationales Datenmodell, Speicherbedarf Drohnenbilder",
+   "punkte": 25,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 18,
+     "eingabe": "zeichnen",
+     "text": "<p>Für den Weinberg sollen die Messstellen sowie die Messgeräte und deren Messdaten in einer relationalen Datenbank verwaltet werden. Als Grundlage zur Entwicklung des relationalen Datenmodells liegen nachfolgende Angaben vor:</p><p>Die Messstellen sind an verschiedenen Stellen auf dem Weinberg verteilt. Die Position einer Messstelle wird genau durch ihre Geokoordinaten (Längen- und Breitengrad sowie die Höhe) beschrieben. Jede Messstelle liefert Messwerte von verschiedenen Messgrößen wie z. B. Messgröße = Temperatur, Messwert = 22, Einheit = °C. Für die einzelnen Messwerte sollen weiterhin auch noch der Zeitpunkt der Messung (Datum, Uhrzeit) und die Messstelle erfasst werden.</p><p>An jeder Messstelle können mehrere Messgeräte eingesetzt werden, welche die Messwerte erfassen und weiterleiten. Dabei ist nur relevant, welches Messgerät aktuell an welcher Messstelle eingesetzt wird. Historische Daten spielen keine Rolle. Für jedes Messgerät sollen folgende Angaben erfasst werden: Bezeichnung, Herstellungsdatum, Hersteller, Anschaffungsdatum und das Datum der letzten Überprüfung.</p><p><b>Erstellen Sie aus diesen Angaben für die Messwerterfassung ein relationales Datenmodell in der dritten Normalform. Geben Sie Kardinalitäten an und kennzeichnen Sie die Primärschlüssel mit PK und die Fremdschlüssel mit FK.</b></p>",
+     "loesung": "<img data-bild=\"w23-ga2-3al\"><p>In Worten:</p><ul><li><b>Messstelle</b> (MessstellenNr (PK), Längengrad, Breitengrad, Höhe)</li><li><b>Messwerte</b> (MesswertNr (PK), MessstellenNr (FK), Datum, Uhrzeit, MessgrößenNr (FK), Messwert)</li><li><b>Messgröße</b> (MessgrößenNr (PK), Bezeichnung, Einheit)</li><li><b>Messgerät</b> (MessgeräteNr (PK), letztePrüfung, Herstellungsdatum, Anschaffungsdatum, KDM_Nr (FK), MessstellenNr (FK))</li><li><b>Kenndaten_Messgerät</b> (KDM_Nr (PK), Bezeichnung, Hersteller)</li></ul><p>Beziehungen: Messstelle 1 : n Messwerte · Messgröße 1 : n Messwerte · Messstelle 1 : n Messgerät · Kenndaten_Messgerät 1 : n Messgerät</p>",
+     "hinweis": "Je Tabelle mit allen Attributen 1 Punkt (5 Punkte); je Primärschlüssel 1 Punkt (5 Punkte); je Beziehung mit Kardinalität 1 Punkt (4 Punkte); je Fremdschlüssel 1 Punkt (4 Punkte).",
+     "pruefpunkte": [
+      {
+       "text": "Tabellen Messstelle und Messwert mit allen Attributen",
+       "punkte": 2
+      },
+      {
+       "text": "Tabelle Messgröße mit Bezeichnung und Einheit",
+       "punkte": 1
+      },
+      {
+       "text": "Messgerät und ausgelagerte Gerätekenndaten (Bezeichnung, Hersteller)",
+       "punkte": 2
+      },
+      {
+       "text": "Primärschlüssel in allen fünf Tabellen (je 1)",
+       "punkte": 5
+      },
+      {
+       "text": "Kardinalitäten der vier 1:n-Beziehungen (je 1)",
+       "punkte": 4
+      },
+      {
+       "text": "Fremdschlüssel: MessstellenNr und MessgrößenNr in Messwert, MessstellenNr und Kenndaten in Messgerät (je 1)",
+       "punkte": 4
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 7,
+     "eingabe": "gross",
+     "text": "<p>Weiterhin sollen Bilder der autonomen Drohnen für die weitere Verarbeitung und Auswertung z. B. durch eine KI unkomprimiert in einem „Raw“-Format gespeichert werden. Die Drohnen fliegen einmal pro Woche über den Weinberg und machen pro Flug jeweils 200 Bilder. Die Kamera liefert Bilder mit 20 Megapixeln. Die Farben pro Pixel werden im RGB-Format abgespeichert, wobei pro Farbkanal 8 Bit verwendet werden.</p><p><b>Berechnen Sie den benötigten Speicherbedarf in GiB, welcher für die Bilder innerhalb eines Jahres (52 Wochen) anfällt. Runden Sie auf ganze GiB. Der Rechenweg ist anzugeben.</b></p>",
+     "loesung": "<p>20.000.000 Pixel/Bild * 8 Bit/Farbkanal * 3 Farbkanal/Pixel = 480.000.000 Bit/Bild</p><p>480.000.000 Bit/Bild / 8 Bit/Byte = 60.000.000 Byte/Bild / 1.024 / 1.024 /1.024<br>= 0,05587 GiB/Bild</p><p>0,05587 GiB/Bild * 200 Bilder/Woche * 52 Wochen = <b>581,14 GiB -&gt; 582 GiB</b></p><p><i>Anmerkung: Die Lösungshinweise runden auf (582 GiB, damit der Speicher sicher reicht); kaufmännisch gerundet wären es 581 GiB.</i></p>",
+     "hinweis": "Hinweis: Rundungsdifferenzen können im Ergebnis berücksichtigt werden.",
+     "pruefpunkte": [
+      {
+       "text": "Bit pro Bild: 20 Mio. × 3 × 8 = 480 Mio. Bit",
+       "punkte": 2
+      },
+      {
+       "text": "Umrechnung: / 8 in Byte, / 1024³ in GiB",
+       "punkte": 2
+      },
+      {
+       "text": "× 200 Bilder × 52 Wochen",
+       "punkte": 2
+      },
+      {
+       "text": "Ergebnis ≈ 581–582 GiB, ganzzahlig gerundet",
+       "punkte": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Kunden, Artikel, Rechnungen",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Für die Kundenverwaltung und die Warenwirtschaft sind folgende Tabellen vorhanden (siehe Anlage).</p>",
+   "anlagen": [
+    {
+     "titel": "Tabellen Kunde, Artikel, WeinArt, Rechnung, RechnungPosition",
+     "html": "<p><b>Tabelle: Kunde</b></p><table><tr><th>Kd_IdKey</th><th>Kd_Firma</th><th>Kd_Strasse</th><th>Kd_PLZ</th><th>Kd_Ort</th><th>Kd_Nummer</th></tr><tr><td>1</td><td>LikeLimo</td><td>Musterstr. 12</td><td>50778</td><td>Köln</td><td>012204</td></tr><tr><td>2</td><td>Gasthaus 'Die Perle'</td><td>Perlenstr. 22</td><td>50778</td><td>Köln</td><td>012201</td></tr><tr><td>3</td><td>Traberstübchen</td><td>Traberweg 1</td><td>50889</td><td>Köln</td><td>012205</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Artikel</b></p><table><tr><th>Art_IdKey</th><th>Art_Nummer</th><th>Art_Bezeichnung</th><th>Art_Preis</th><th>Art_VkEinheit</th><th>Art_MwStSatz</th><th>Art_Jahrgang</th><th>Art_WAIdKey</th></tr><tr><td>8</td><td>GB-12555</td><td>Grauburgunder</td><td>15.20</td><td>Flasche</td><td>19.00</td><td>2005</td><td>1</td></tr><tr><td>9</td><td>GB-12556</td><td>Grauburgunder</td><td>13.10</td><td>Flasche</td><td>19.00</td><td>2006</td><td>1</td></tr><tr><td>10</td><td>GB-12558</td><td>Grauburgunder</td><td>11.25</td><td>Flasche</td><td>19.00</td><td>2008</td><td>1</td></tr><tr><td>11</td><td>WH-23</td><td>Weißherbst</td><td>16.40</td><td>Flasche</td><td>19.00</td><td>2004</td><td>1</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: WeinArt</b></p><table><tr><th>WA_IdKey</th><th>WA_Weinart</th></tr><tr><td>1</td><td>Weißwein</td></tr><tr><td>2</td><td>Rotwein</td></tr><tr><td>3</td><td>Rosewein</td></tr><tr><td>4</td><td>Schaumwein</td></tr><tr><td>…</td><td></td></tr></table><p><b>Tabelle: Rechnung</b></p><table><tr><th>Rg_IdKey</th><th>Rg_KdIdKey</th><th>Rg_Nummer</th><th>Rg_Datum</th><th>Rg_ZahlFristTage</th></tr><tr><td>2223</td><td>2</td><td>RG-002249</td><td>2023-05-02</td><td>14</td></tr><tr><td>2224</td><td>3</td><td>RG-002250</td><td>2023-05-02</td><td>14</td></tr><tr><td>2225</td><td>3</td><td>RG-002251</td><td>2023-05-04</td><td>14</td></tr><tr><td>2226</td><td>1</td><td>RG-002252</td><td>2023-05-05</td><td>7</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: RechnungPosition</b></p><table><tr><th>RgPos_IdKey</th><th>RgPos_RgIdKey</th><th>RgPos_ArtIdKey</th><th>RgPos_Nr</th><th>RgPos_Mg</th><th>RgPos_EinzelPreis</th><th>RgPos_RabattProzent</th><th>RpPos_MwStSatz</th></tr><tr><td>555434</td><td>2223</td><td>14</td><td>1</td><td>4</td><td>13.80</td><td>0.00</td><td>19.00</td></tr><tr><td>555435</td><td>2223</td><td>19</td><td>2</td><td>12</td><td>17.20</td><td>0.00</td><td>19.00</td></tr><tr><td>555436</td><td>2223</td><td>10</td><td>3</td><td>6</td><td>11.25</td><td>5.00</td><td>19.00</td></tr><tr><td>555437</td><td>2223</td><td>11</td><td>4</td><td>12</td><td>16.40</td><td>5.00</td><td>19.00</td></tr><tr><td>555438</td><td>2224</td><td>14</td><td>1</td><td>8</td><td>13.80</td><td>0.00</td><td>19.00</td></tr><tr><td>555439</td><td>2225</td><td>10</td><td>1</td><td>6</td><td>11.25</td><td>0.00</td><td>19.00</td></tr><tr><td>555450</td><td>2225</td><td>11</td><td>2</td><td>6</td><td>16.40</td><td>0.00</td><td>19.00</td></tr><tr><td>555451</td><td>2225</td><td>12</td><td>3</td><td>12</td><td>15.40</td><td>8.00</td><td>19.00</td></tr><tr><td>555452</td><td>2225</td><td>13</td><td>4</td><td>6</td><td>16.40</td><td>0.00</td><td>19.00</td></tr><tr><td>555453</td><td>2226</td><td>19</td><td>1</td><td>6</td><td>17.20</td><td>0.00</td><td>19.00</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>Sie sollen eine Kundenliste erstellen, in der alle Kunden ausgegeben werden, welche aus dem PLZ-Gebiet 50800 – 51999 ansässig sind.</p><p><b>Erstellen Sie dazu eine SQL-Anweisung, welche eine Ergebnistabelle entsprechend dem folgenden Beispiel ausgibt.</b></p><table><tr><th>Kd_IdKey</th><th>Kd_Firma</th><th>Kd_Strasse</th><th>Kd_PLZ</th><th>Kd_Ort</th><th>Kd_Nummer</th></tr><tr><td>3</td><td>Traberstübchen</td><td>Traberweg 1</td><td>50889</td><td>Köln</td><td>012205</td></tr><tr><td>6</td><td>Rheinkneipe</td><td>Am Rhein 2</td><td>50888</td><td>Köln</td><td>014333</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>",
+     "loesung": "<pre>SELECT *\nFROM Kunde\nWHERE Kd_PLZ LIKE '508%' OR Kd_PLZ LIKE '509%' OR Kd_PLZ LIKE '51%'</pre>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "SELECT * FROM Kunde",
+       "punkte": 1
+      },
+      {
+       "text": "PLZ-Bereich 50800–51999 richtig eingegrenzt (BETWEEN oder LIKE)",
+       "punkte": 3
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>Sie möchten eine Auflistung mit dem niedrigsten und dem höchsten Artikelpreis sowie die Anzahl der Weine pro Jahrgang sortiert nach Jahrgang absteigend.</p><p><b>Erstellen Sie dazu eine SQL-Anweisung, welche eine Ergebnistabelle entsprechend dem folgenden Beispiel ausgibt.</b></p><table><tr><th>Jahrgang</th><th>NiedrigsterPreis</th><th>HöchsterPreis</th><th>Anzahl der Weine je Jahrgang</th></tr><tr><td>2008</td><td>11.25</td><td>13.80</td><td>2</td></tr><tr><td>2007</td><td>14.00</td><td>14.00</td><td>1</td></tr><tr><td>…</td><td></td><td></td><td></td></tr></table>",
+     "loesung": "<pre>SELECT Art_Jahrgang AS Jahrgang\n      ,MIN(Art_Preis) AS NiedrigsterPreis\n      ,MAX(Art_Preis) AS HöchsterPreis\n      ,COUNT(Art_IdKey) AS ‘Anzahl der Weine je Jahrgang‘\nFROM Artikel\nGROUP BY Art_Jahrgang\nORDER BY Jahrgang DESC;</pre>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "MIN und MAX des Preises mit Spaltennamen",
+       "punkte": 2
+      },
+      {
+       "text": "COUNT der Weine",
+       "punkte": 1
+      },
+      {
+       "text": "GROUP BY Jahrgang",
+       "punkte": 1
+      },
+      {
+       "text": "ORDER BY Jahrgang DESC",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>Fälschlicherweise wurden für Rotweine bei allen Kunden anstelle von 12 % Rabatt 0 % Rabatt berechnet.</p><p><b>Erstellen Sie eine SQL-Anweisung, mit der Sie für alle Rotweine, die im Zeitraum Mai 2023 berechnet wurden, den Rabatt von 0 % auf 12 % ändern.</b></p>",
+     "loesung": "<pre>Update     RechnungPosition Set RgPos_RabattProzent = 12\nFROM RechnungPosition AS RP\n           INNER JOIN Rechnung AS R\n                ON R.Rg_IdKey = RP.RgPos_RgIdKey\n           INNER JOIN Artikel AS A\n                ON A.Art_IdKey = RP.RgPos_ArtIdKey\n           INNER JOIN WeinArt AS WA\n                ON WA.WA_IdKey = A.Art_WAIdKey\nWHERE (Month(R.Rg_Datum) = 5 AND YEAR(R.Rg_Datum) = 2023) AND\n            RP.RgPos_RabattProzent = 0 AND\n            WA.WA_Weinart = 'Rotwein';</pre>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "UPDATE RechnungPosition SET Rabatt = 12",
+       "punkte": 2
+      },
+      {
+       "text": "Verbindung zu Rechnung, Artikel und WeinArt (JOIN oder Unterabfrage)",
+       "punkte": 3
+      },
+      {
+       "text": "Bedingung: Mai 2023",
+       "punkte": 1
+      },
+      {
+       "text": "Bedingung: Weinart Rotwein",
+       "punkte": 1
+      },
+      {
+       "text": "Bedingung: bisheriger Rabatt 0",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "d",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung mit der Sie den berechneten durchschnittlichen Umsatz je Kunde unabhängig der gewährten Rabatte erhalten.</b></p><p>Beispiel-Ergebnistabelle:</p><table><tr><th>Kd_IdKey</th><th>Kd_Firma</th><th>Kd_Strasse</th><th>Kd_PLZ</th><th>Kd_Ort</th><th>Kd_Nummer</th><th>Umsatz</th></tr><tr><td>1</td><td>LikeLimo</td><td>Musterstr. 12</td><td>50778</td><td>Köln</td><td>012204</td><td>149.520000</td></tr><tr><td>2</td><td>Gasthaus 'Die Perle</td><td>Perlenstr. 22</td><td>50778</td><td>Köln</td><td>012201</td><td>128.171250</td></tr><tr><td>999</td><td>Gasthaus zum Fass</td><td>Fassstraße 3</td><td>99900</td><td>Fasshausen</td><td>012203</td><td>0</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table><p><i>(Im Original sind die Firmennamen in der Spalte Kd_Firma abgeschnitten.)</i></p>",
+     "loesung": "<pre>SELECT Kd_IdKey, Kd_Firma, Kd_Strasse, Kd_PLZ, Kd_Ort, Kd_Nummer,\n       (SELECT AVG(RgPos_Einzelpreis * RgPos_Mg)\n            FROM RechnungPosition AS RP\n                                 INNER JOIN Rechnung AS R ON\n                                      R.Rg_IdKey = RP.RgPos_RgIdKey\n            WHERE Kd_IdKey = R.Rg_KdIdKey) AS Umsatz\nFROM Kunde;</pre><p><i>Anmerkung: Der Beispielwert 128.171250 für Kunde 2 entspricht dem Durchschnitt der Positionsbeträge nach Abzug des Rabatts; die Lösungshinweise rechnen ohne Rabatt (RgPos_Einzelpreis * RgPos_Mg). Für Kunden ohne Rechnung (Beispiel 999) liefert die Unterabfrage NULL statt 0.</i></p>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Kundenspalten in der Ausgabe",
+       "punkte": 1
+      },
+      {
+       "text": "AVG(Einzelpreis * Menge)",
+       "punkte": 3
+      },
+      {
+       "text": "je Kunde: korrelierte Unterabfrage oder JOIN mit GROUP BY",
+       "punkte": 3
+      },
+      {
+       "text": "auch Kunden ohne Rechnung (Unterabfrage oder LEFT JOIN)",
+       "punkte": 1
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

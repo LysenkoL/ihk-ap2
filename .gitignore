@@ -24,10 +24,7 @@ _kb/
 Claude outputs/
 notion-export.json
 
-# Azubi-Navigator (u-form): lizenziertes Material, nur lokal — nie auf GitHub Pages
-privat/
-
-# AP2: Original-PDFs und Prüfungsdaten der ZPA nur lokal
+# AP2: Original-PDFs und Rohdaten nur lokal
 raw/
-privat/
 _tmp/
+

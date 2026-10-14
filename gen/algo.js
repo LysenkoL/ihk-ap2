@@ -152,7 +152,8 @@
     if (root.GENLERNSTAND) root.GENLERNSTAND.record({ topic: "algo", source: "algo",
       task: lauf.modus + ":" + JSON.stringify(aufgabe) + ":" + (lauf.k || lauf.runde || 0) + ":" + phase,
       correct: ok ? 1 : 0, max: 1, support: lauf.support || "selbst", kind: phase === "entscheidung" ? "recognition" : "auto",
-      answers: { input, aufgabe, schritt: lauf.k || lauf.runde || 0, phase } });
+      answers: { input, aufgabe, schritt: lauf.k || lauf.runde || 0, phase },
+      snapshot: { type: "algo", modus: lauf.modus, aufgabe, schritt: lauf.k || lauf.runde || 0, phase, soll } });
     if (!ok && lauf.support !== "loesung") lauf.support = "hilfe";
     return ok;
   }

@@ -1,0 +1,215 @@
+{
+ "id": "ga2-2024-w",
+ "bereich": "ga2",
+ "termin": "Winter 2024/25",
+ "kurz": "GA2 W24/25",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2024/25)",
+ "situation": "<p>In Kiel soll das Nahverkehrssystem (KVAG) um eine neue Stadtbahn erweitert werden. In Zusammenhang mit dieser Erweiterung sollen die IT-Systeme der KVAG erweitert und erneuert werden. Dazu werden verschiedene Teilprojekte festgelegt. Diese betreffen unter anderem die Fahrplanauskunft, die Buchungssysteme, die Anzeigen und die Vernetzung. Alle Teilprojekte sollen auch hinsichtlich der Anforderungen von Datenschutz und Datensicherheit untersucht werden.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"bs24-uc\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"bs24-zustand\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "w24-ga2-1": {
+   "seite": "w24/ga2-02",
+   "box": [
+    0.035,
+    0.217,
+    0.52,
+    0.283
+   ]
+  },
+  "w24-ga2-3a-l": {
+   "seite": "w24/l2-3",
+   "box": [
+    0.075,
+    0.1015,
+    0.835,
+    0.3
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Pseudocode: Verspätungen je Strecke",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "code",
+     "text": "<p>Die KVAG möchte ihre Fahrpläne besser an den tatsächlich vorhandenen Fahrzeiten ausrichten. Dazu wurden die Abfahrtszeiten einer Bahn an den einzelnen Haltestellen für eine Fahrt einer Bahnlinie an mehreren Tagen gemessen.</p><p>Für jeden Tag ist festgehalten, wann die Bahn die nachfolgenden Haltestellen verlassen hat (siehe Array <i>zeiten</i>).</p><img data-bild=\"w24-ga2-1\"><p>Es existiert eine Klasse <code>Abfahrtszeit</code>, mit deren Attributen ein Datum, eine Haltestellennummer, die planmäßige Abfahrtszeit (in Minuten seit Mitternacht) und die tatsächliche Abfahrtszeit (ebenfalls in Minuten) gespeichert wird. Für die Endstation sind hier die planmäßigen bzw. tatsächlichen Ankunftszeiten gespeichert.</p><p>Klasse <code>Abfahrtszeit</code></p><table><tr><th>Abfahrtszeit</th></tr><tr><td>- datum : Date<br>- haltestellenNr : Integer<br>- planAbfahrt : Integer // planmäßige Abfahrtszeit in Minuten seit Mitternacht<br>- istAbfahrt : Integer // tatsächliche Abfahrtszeit in Minuten seit Mitternacht</td></tr></table><p>Für jedes Attribut ist eine öffentliche Get-Methode vorhanden.</p><p>In dem eindimensionalen Array <code>zeiten</code> vom Typ <code>Abfahrtszeit</code> sind die Daten des untersuchten Zeitraums gespeichert. In einer Zeile sind die Daten eines <code>Abfahrtszeit</code>-Objektes aufgeführt.</p><p>Auflistung der Daten des Arrays <code>zeiten</code></p><table><tr><th>Datum</th><th>Haltestellen Nummer</th><th>Planmäßige Abfahrt</th><th>Tatsächliche Abfahrt</th></tr><tr><td><b>1.9.2024</b></td><td>0</td><td>480</td><td>480</td></tr><tr><td>1.9.2024</td><td>1</td><td>483</td><td>483</td></tr><tr><td>1.9.2024</td><td>2</td><td>485</td><td>486</td></tr><tr><td>…</td><td></td><td></td><td></td></tr><tr><td>1.9.2024</td><td>15</td><td>579</td><td>583</td></tr><tr><td><b>2.9.2024</b></td><td>0</td><td>480</td><td>480</td></tr><tr><td>2.9.2024</td><td>1</td><td>483</td><td>484</td></tr><tr><td>…</td><td></td><td></td><td></td></tr><tr><td>2.9.2024</td><td>15</td><td>579</td><td>582</td></tr><tr><td>…</td><td></td><td></td><td></td></tr></table><p>Die Fahrzeit auf einer Strecke ist die Differenz zweier Abfahrtszeiten aufeinanderfolgender Haltestellen.<br>Eine Verspätung liegt vor, wenn die Fahrzeit auf einer Strecke mehr als zwei Minuten länger war als die planmäßige Fahrzeit.</p><p>Es soll ein Algorithmus für eine Funktion</p><pre>ermittleFahrzeiten(Abfahrtszeit[] zeiten) : Integer[]</pre><p>entwickelt werden, der für jede der 15 Strecken die Anzahl der Verspätungen ermittelt.</p><p>Die ermittelten Häufigkeiten sollen in einem eindimensionalen Array vom Typ Integer gespeichert und von der Funktion zurückgegeben werden.</p><p>Ergebnis-Array (Beispiel):</p><table><tr><th>Index</th><th>Anzahl Fahrzeiten &gt; 2</th><th colspan=\"2\">Kommentar</th></tr><tr><td>[0]</td><td>0</td><td>Anzahl Verspätungen (im Beispiel 0)</td><td>auf der Strecke 0</td></tr><tr><td>[1]</td><td>1</td><td>…</td><td>auf der Strecke 1</td></tr><tr><td>[2]</td><td>4</td><td>…</td><td>auf der Strecke 2</td></tr><tr><td>…</td><td>…</td><td>…</td><td></td></tr><tr><td>[14]</td><td>3</td><td>…</td><td>auf der Strecke 14</td></tr></table><p><b>Stellen Sie den Algorithmus in Pseudocode dar.</b></p><pre>ermittle_fahrzeiten(Abfahrtszeit[] zeiten) : Integer[]</pre>",
+     "loesung": "<pre>ermittle_fahrzeiten(Abfahrtszeit[] zeiten) : Integer[]\n     verspaetungen = new Integer[15]\n     für (i = 1; i &lt; zeiten.length; i++)\n           wenn zeiten[i].getDatum() == zeiten[i-1].getDatum()\n                 z1 = zeiten[i].getPlanAbfahrt() - zeiten[i-1].getPlanAbfahrt()\n                 z2 = zeiten[i].getIstAbfahrt() - zeiten[i-1].getIstAbfahrt()\n                 wenn z2-z1 &gt; 2\n                       verspaetungen[zeiten[i].getHaltestelleNr()-1]++\n                 ende wenn\n           ende wenn\n     ende für\n     Rückgabe verspaetungen\nende ermittle_fahrzeiten</pre><p><i>Anmerkung: Der Funktionsname steht in der Aufgabe einmal als ermittleFahrzeiten, einmal als ermittle_fahrzeiten. Die Get-Methode zum Attribut haltestellenNr hieße getHaltestellenNr() — die Lösungshinweise schreiben getHaltestelleNr().</i></p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "API-Endpunkt: Fehlerantwort, nächste Abfahrten",
+   "punkte": 25,
+   "themen": [
+    "Programmierung/OOP",
+    "Schnittstellen"
+   ],
+   "text": "<p>Die Fahrgäste sollen die Möglichkeit haben, in der App die aktuellen Abfahrtszeiten und Verspätungen einsehen zu können. Diese Daten sollen über eine API abgerufen werden. Ihre Aufgabe ist es, den API-Endpunkt zu implementieren.</p>",
+   "anlagen": [
+    {
+     "titel": "Klassendiagramm (Auszug) und Methode DateTime.compare",
+     "html": "<p>Folgender Auszug aus dem Klassendiagramm ist gegeben:</p><table><tr><th>FahrplanController</th></tr><tr><td>- fahrplanService: FahrplanService</td></tr><tr><td>+ handleAbfahrtenRequest(haltestellenId: int): HttpResponse<br>- createErrorResponse(nachricht: string, statusCode: int): HttpResponse<br>- getNaechsteAbfahrten(haltestellenId: int, maxAbfahrten: int): Abfahrt[]</td></tr></table><table><tr><th>FahrplanService</th></tr><tr><td></td></tr><tr><td>+ getAbfahrten(haltestellenId: int): Abfahrt[]</td></tr></table><table><tr><th>Abfahrt</th></tr><tr><td>+ verbindungsId: int<br>+ haltestellenId: int<br>+ abfahrtsZeit: DateTime</td></tr><tr><td></td></tr></table><table><tr><th>HttpResponse</th></tr><tr><td>- statusCode: int<br>- headers: HttpHeader[]<br>- body: string</td></tr><tr><td>+ HttpResponse(code: int)<br>+ addHeader(name: string, value: string): void<br>+ setBody(content: string): void</td></tr></table><table><tr><th>DateTime</th></tr><tr><td></td></tr><tr><td><u>+ now(): DateTime</u><br>+ compare(dt: DateTime): int</td></tr></table><p>Die Methode <code>compare</code> aus der Klasse <code>DateTime</code> gibt folgende Rückgabewerte zurück:</p><ul><li>Wenn der Datumswert des aktuellen Objekts vor dem des übergebenen Objekts ist: -1</li><li>Wenn beide Datumswerte gleich sind: 0</li><li>Wenn der Datumswert des aktuellen Objekts nach dem des übergebenen Objekts ist: 1</li></ul>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 10,
+     "eingabe": "code",
+     "text": "<p>In der Klasse <code>FahrplanController</code> soll zunächst die Methode <code>createErrorResponse(nachricht: string, statusCode: int): HttpResponse</code>. implementiert werden.</p><p>Die Nachricht und der Status-Code werden übergeben.</p><p>Die erzeugte HTTP-Antwort soll wie folgt aussehen.</p><pre>HTTP &lt; der übergebene Status-Code &gt;\nContent-Type: text/plain\nContent-Length: &lt; Anzahl der Bytes des Response Bodys &gt;\n&lt; Response Body: die übergebene Nachricht &gt;</pre><p><b>Implementieren Sie die Methode <code>createErrorResponse</code>.</b></p><pre>private createErrorResponse(nachricht: string, statusCode: int): HttpResponse</pre>",
+     "loesung": "<pre>response = new HttpResponse(statusCode)\nresponse.addHeader(„Content-Type“, „text/plain“)\nresponse.addHeader(„Content-Length“, String(Length(nachricht)))\nresponse.setBody(nachricht)\n\nreturn response</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 15,
+     "eingabe": "code",
+     "text": "<p>Die App soll die nächsten Abfahrten anzeigen.</p><p>Dazu soll in der Klasse <code>FahrplanController</code> die private Methode <code>getNaechsteAbfahrten(haltestellenId: int, maxAbfahrten: int): Abfahrt[]</code> erstellt werden.</p><p>Diese Methode soll die nächsten Abfahrten ab dem aktuellen Zeitpunkt zurückgeben. <code>maxAbfahrten</code> gibt an, wie viele Abfahrten maximal zurückgegeben werden sollen.</p><p>Die Methode soll das <code>Abfahrt</code> Array mit den ermittelten Abfahrten zurückgeben.</p><p>Mithilfe der Methode <code>FahrplanService.getAbfahrten</code> können die Abfahrten von einer Haltestelle abgerufen werden. <code>getAbfahrten</code> liefert ein aufsteigend nach Abfahrtszeit sortiertes Array von Abfahrten zurück.</p><p><b>Implementieren Sie die Methode <code>getNaechsteAbfahrten</code>.</b></p><pre>private getNaechsteAbfahrten (haltestellenId: int, maxAbfahrten: int):\nAbfahrt[]</pre>",
+     "loesung": "<pre>naechsteAbfahrten = new Abfahrt[maxAbfahrten]\nnaechsteAbfahrtenZaehler = 0\n\njetzt = DateTime.now()\n\nabfahrten = this.fahrplanService.getAbfahrten(haltestellenId)\n\nfor (i=0; i &lt; abfahrten.length &amp;&amp; naechsteAbfahrtenZaehler &lt; maxAbfahrten; i++) {\n\n    abfahrt = abfahrten[i]\n\n    if (jetzt.compare(abfahrt.abfahrtsZeit) &gt;= 0) {\n        naechsteAbfahrten[naechsteAbfahrtenZaehler] = abfahrt\n        naechsteAbfahrtenZaehler++\n    }\n}\n\nreturn naechsteAbfahrten</pre><p>Der Datumsvergleich ist mit der Methode <code>DateTime.compare</code> durchzuführen.</p><p><i>Anmerkung: Nach der Beschreibung von compare liefert <code>jetzt.compare(abfahrt.abfahrtsZeit)</code> den Wert -1, wenn jetzt vor der Abfahrtszeit liegt, die Abfahrt also noch kommt. Für die nächsten Abfahrten müsste die Bedingung daher <code>jetzt.compare(abfahrt.abfahrtsZeit) &lt;= 0</code> lauten (oder <code>abfahrt.abfahrtsZeit.compare(jetzt) &gt;= 0</code>). Mit „&gt;= 0“ wie in den Lösungshinweisen würden die schon vergangenen Abfahrten ausgewählt.</i></p>",
+     "hinweis": "Der Datumsvergleich ist mit der Methode DateTime.compare durchzuführen."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Datenmodell Kontrollen, Datenqualität beim Import",
+   "punkte": 29,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 16,
+     "eingabe": "zeichnen",
+     "text": "<p>Es sollen stichprobenartig Kontrollen von Mitarbeitern der Stadtbahn auf den Fahrten durchgeführt werden. Diese Daten sollen in einer relationalen Datenbank verwaltet werden. Für einen ersten Entwurf eines relationalen Datenmodells liegen Ihnen folgende Informationen vor:</p><ul><li>Jede Kontrolle findet immer auf einer bestimmten Fahrt statt.</li><li>Auf einer Fahrt können auch mehrere Kontrollen durchgeführt werden.</li><li>Zu jeder Kontrolle gehören mindestens zwei Mitarbeiter.</li><li>Bei jeder Kontrolle kann es zu verschiedenen Arten von Vorkommnissen kommen.</li><li>Jedem Vorkommnis wird die Art der Maßnahme zugordnet, welche ergriffen wurde.</li></ul><p><b>Erstellen Sie ein relationales Datenmodell, welches der 3. Normalform genügt. Tragen Sie in die Tabellen alle notwendigen Primär- und Fremdschlüssel ein und kennzeichnen Sie diese mit PK bzw. FK. Weitere Attribute können vernachlässigt werden. Tragen Sie alle Beziehungen zwischen den Tabellen mit den entsprechenden Kardinalitäten ein.</b></p>",
+     "loesung": "<img data-bild=\"w24-ga2-3a-l\"><p>In Worten:</p><ul><li><b>Fahrt</b> (FID (PK))</li><li><b>Kontrolle</b> (KID (PK), FID (FK))</li><li><b>Kontrolle_Mitarbeiter</b> (KID (PK)(FK), MID (PK)(FK))</li><li><b>Mitarbeiter</b> (MID (PK))</li><li><b>Vorkommnis</b> (VID (PK), KID (FK), VAID (FK), MAID (FK))</li><li><b>VorkommnisArt</b> (VAID (PK))</li><li><b>MaßnahmenArt</b> (MAID (PK))</li></ul><p>Beziehungen: Fahrt 1 : n Kontrolle · Kontrolle 1 : n Kontrolle_Mitarbeiter · Mitarbeiter 1 : n Kontrolle_Mitarbeiter · Kontrolle 1 : n Vorkommnis · VorkommnisArt 1 : n Vorkommnis · MaßnahmenArt 1 : n Vorkommnis</p>",
+     "hinweis": "Pro Tabelle mit Primärschlüssel 1 Punkt. Pro Beziehung mit Kardinalität 1 Punkt. Pro Fremdschlüssel 0,5 Punkte. (Im Lösungsbeispiel: 7 Tabellen, 6 Beziehungen, 6 Fremdschlüssel = 16 Punkte.)"
+    },
+    {
+     "nr": "ba",
+     "punkte": 9,
+     "eingabe": {
+      "zeilen": [
+       "1. Problem — Folge",
+       "2. Problem — Folge",
+       "3. Problem — Folge"
+      ]
+     },
+     "text": "<p>Im Vorfeld der Einführung des neuen Systems wurden bereits Daten manuell erfasst. Jetzt wird in Betracht gezogen, diese Daten ins System zu importieren. Folgender Auszug aus einer Tabelle mit den Daten wurde erstellt. Der Datenumfang beträgt über 1.000 Zeilen:</p><table><tr><th>Datum</th><th>Mitarbeiter</th><th>Fahrt</th><th>Vorkommnis</th><th>Maßnahme</th></tr><tr><td>1.7.</td><td>Müller, Meier</td><td>Linie 13</td><td>Kein Ticket</td><td>erhöhtes Beförderungsentgelt</td></tr><tr><td>3.8.23</td><td>Schmitt, Müller</td><td>1</td><td>Ohne Fahrkarte</td><td>60 EUR Strafe</td></tr><tr><td>31.4.</td><td>Mueller, Schmitt</td><td>L 4</td><td>Randalierer</td><td>Anzeige</td></tr><tr><td>4.7.</td><td>Müller; Meier</td><td>Linie 6</td><td>Kein Ticket</td><td>60 EUR</td></tr><tr><td>2023-4-13</td><td>Schmitt,</td><td>Linie17</td><td>Ticket nicht lesbar</td><td>Verwarnung</td></tr><tr><td>23.6.23</td><td>Schmitt; Hans</td><td>Linie 3</td><td>Kein Fahrschein</td><td>60 EUR erhöhtes Entgelt</td></tr></table><p>…</p><p>Die vorliegenden Daten sollen beurteilt werden.</p><p><b>Beschreiben Sie drei Probleme bezüglich der Qualität der Daten und nennen Sie jeweils eine Folge, die sich durch den Import der mangelhaften Daten ergeben würde.</b></p>",
+     "loesung": "<p>Vorgeschlagene Lösungsmöglichkeiten:</p><ul><li>Uneinheitliche Formatierung (Datum 2023-4-13, 31.7.23)<ul><li>Beim Importieren eines ungültigen Datums bzw. verschiedener Formate wird das Importprogramm abbrechen, oder wesentlich aufwendiger zu erstellen.</li></ul></li><li>Daten nicht eindeutig und Mängel in den Daten (Müller &lt;&gt; Mueller, 31.4.), generell Problem bei Mitarbeiternamen statt IDs.<ul><li>Mitarbeiter werden u. U. doppelt geführt (Müller – Mueller) oder falsch zugewiesen, da Namen nicht eindeutig sind.</li></ul></li><li>Verschiedene Texte für gleiche Vorkommnisse oder Maßnahmen<ul><li>Auswertungen werden erschwert (z. B. „wie oft kein Ticket“ – aufgrund verschiedener Texte)</li></ul></li><li>Fehlende Daten: 2023-4-13 fehlt der Name eines Mitarbeiters<ul><li>Mitarbeiter können nicht zugeordnet werden und die Nachvollziehbarkeit der Maßnahme ist nicht mehr gegeben.</li></ul></li></ul><p><i>Anmerkung: Das Datum „31.7.23“ aus den Lösungshinweisen steht nicht im abgedruckten Auszug (dort z. B. „3.8.23“, „23.6.23“ oder „1.7.“ ohne Jahr). „31.4.“ ist kein gültiges Datum, denn der April hat 30 Tage.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p><b>Zeigen Sie einen möglichen Weg auf, wie die Daten dennoch importiert werden können.</b></p>",
+     "loesung": "<ul><li>Die Daten manuell verbessern.</li><li>Das Importprogramm mit allen nötigen Fehlerbehandlungen erstellen.</li></ul>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Manuell erfasste Kontrolldaten (Auszug)",
+       "html": "<p>Im Vorfeld der Einführung des neuen Systems wurden bereits Daten manuell erfasst. Jetzt wird in Betracht gezogen, diese Daten ins System zu importieren. Folgender Auszug aus einer Tabelle mit den Daten wurde erstellt. Der Datenumfang beträgt über 1.000 Zeilen:</p><table><tr><th>Datum</th><th>Mitarbeiter</th><th>Fahrt</th><th>Vorkommnis</th><th>Maßnahme</th></tr><tr><td>1.7.</td><td>Müller, Meier</td><td>Linie 13</td><td>Kein Ticket</td><td>erhöhtes Beförderungsentgelt</td></tr><tr><td>3.8.23</td><td>Schmitt, Müller</td><td>1</td><td>Ohne Fahrkarte</td><td>60 EUR Strafe</td></tr><tr><td>31.4.</td><td>Mueller, Schmitt</td><td>L 4</td><td>Randalierer</td><td>Anzeige</td></tr><tr><td>4.7.</td><td>Müller; Meier</td><td>Linie 6</td><td>Kein Ticket</td><td>60 EUR</td></tr><tr><td>2023-4-13</td><td>Schmitt,</td><td>Linie17</td><td>Ticket nicht lesbar</td><td>Verwarnung</td></tr><tr><td>23.6.23</td><td>Schmitt; Hans</td><td>Linie 3</td><td>Kein Fahrschein</td><td>60 EUR erhöhtes Entgelt</td></tr></table><p>…</p>"
+      }
+     ]
+    },
+    {
+     "nr": "bc",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p><b>Beurteilen Sie abschließend die Importidee und argumentieren Sie für oder gegen den Import der Daten.</b></p>",
+     "loesung": "<p>Möglich entweder:<br>Beides ist sehr aufwendig, sodass der Import aufgrund der Datenqualität sich nicht lohnt.</p><p>Oder:<br>Wenn die erfassten Daten weiterhin wichtig sind, so muss der größere Aufwand zum Import in Kauf genommen werden.</p>",
+     "hinweis": "Andere Antworten mit passenden Begründungen können auch als richtig gewertet werden.",
+     "anlagen": [
+      {
+       "titel": "Manuell erfasste Kontrolldaten (Auszug)",
+       "html": "<p>Im Vorfeld der Einführung des neuen Systems wurden bereits Daten manuell erfasst. Jetzt wird in Betracht gezogen, diese Daten ins System zu importieren. Folgender Auszug aus einer Tabelle mit den Daten wurde erstellt. Der Datenumfang beträgt über 1.000 Zeilen:</p><table><tr><th>Datum</th><th>Mitarbeiter</th><th>Fahrt</th><th>Vorkommnis</th><th>Maßnahme</th></tr><tr><td>1.7.</td><td>Müller, Meier</td><td>Linie 13</td><td>Kein Ticket</td><td>erhöhtes Beförderungsentgelt</td></tr><tr><td>3.8.23</td><td>Schmitt, Müller</td><td>1</td><td>Ohne Fahrkarte</td><td>60 EUR Strafe</td></tr><tr><td>31.4.</td><td>Mueller, Schmitt</td><td>L 4</td><td>Randalierer</td><td>Anzeige</td></tr><tr><td>4.7.</td><td>Müller; Meier</td><td>Linie 6</td><td>Kein Ticket</td><td>60 EUR</td></tr><tr><td>2023-4-13</td><td>Schmitt,</td><td>Linie17</td><td>Ticket nicht lesbar</td><td>Verwarnung</td></tr><tr><td>23.6.23</td><td>Schmitt; Hans</td><td>Linie 3</td><td>Kein Fahrschein</td><td>60 EUR erhöhtes Entgelt</td></tr></table><p>…</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Haltestellen, Abfahrten, Verspätungen",
+   "punkte": 21,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Die Tabellenauszüge (siehe perforierte Anlage) stehen für die im Folgenden beschrieben SQL-Anweisungen zur Verfügung:</p>",
+   "anlagen": [
+    {
+     "titel": "Perforierte Anlage: Tabellen Haltestelle, Haltestelle_Plan, Haltestelle_Zeiten",
+     "html": "<p><b>Tabelle: Haltestelle</b></p><table><tr><th>HSt_IdKey</th><th>HSt_Name</th><th>HSt_Aktiv</th><th>HSt_Linie</th></tr><tr><td>1</td><td>Halfengasse</td><td>1</td><td>124</td></tr><tr><td>2</td><td>Nesselrodestr.</td><td>1</td><td>124</td></tr><tr><td>3</td><td>Amsterdamer Gürtel</td><td>1</td><td>124</td></tr><tr><td>4</td><td>Xantener Str.</td><td>1</td><td>124</td></tr><tr><td>5</td><td>Worringer Str.</td><td>1</td><td>124</td></tr><tr><td>6</td><td>Am Faulbach</td><td>1</td><td>250</td></tr><tr><td>7</td><td>Von-Lohe-Str.</td><td>1</td><td>250</td></tr><tr><td>8</td><td>Schützenhofstr.</td><td>0</td><td>250</td></tr><tr><td>9</td><td>Windmühlenstr.</td><td>1</td><td>250</td></tr><tr><td>10</td><td>Reichensberger Platz</td><td>1</td><td>124</td></tr><tr><td>11</td><td>Ebertplatz</td><td>1</td><td>250</td></tr><tr><td>12</td><td>Ebertplatz</td><td>1</td><td>140</td></tr><tr><td>… weitere</td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Haltestelle_Plan (Planzeiten der täglich geplanten Ankünfte und Abfahrten)</b></p><table><tr><th>HStP_IdKey</th><th>HStP_HStIdKey</th><th>HStP_Ankunft_Plan</th><th>HStP_Abfahrt_Plan</th></tr><tr><td>1</td><td>1</td><td>2024-12-01 10:01:00</td><td>2024-12-01 10:01:00</td></tr><tr><td>2</td><td>2</td><td>2024-12-01 10:04:00</td><td>2024-12-01 10:04:00</td></tr><tr><td>3</td><td>3</td><td>2024-12-01 10:08:00</td><td>2024-12-01 10:08:00</td></tr><tr><td>4</td><td>4</td><td>2024-12-01 10:09:00</td><td>2024-12-01 10:09:00</td></tr><tr><td>5</td><td>5</td><td>2024-12-01 10:13:00</td><td>2024-12-01 10:18:00</td></tr><tr><td>6</td><td>10</td><td>2024-12-01 10:22:00</td><td>2024-12-01 10:22:00</td></tr><tr><td>7</td><td>6</td><td>2024-12-01 10:03:00</td><td>2024-12-01 10:03:00</td></tr><tr><td>8</td><td>7</td><td>2024-12-01 10:06:00</td><td>2024-12-01 10:06:00</td></tr><tr><td>9</td><td>9</td><td>2024-12-01 10:11:00</td><td>2024-12-01 10:11:00</td></tr><tr><td>10</td><td>11</td><td>2024-12-01 10:12:00</td><td>2024-12-01 10:12:00</td></tr><tr><td>11</td><td>6</td><td>2024-12-01 11:12:00</td><td>2024-12-01 11:12:00</td></tr><tr><td>12</td><td>6</td><td>2024-12-01 12:12:00</td><td>2024-12-01 12:12:00</td></tr><tr><td>…weitere</td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Haltestelle_Zeiten (Istzeiten der täglichen Ankünfte und Abfahrten)</b></p><table><tr><th>HStZ_IdKey</th><th>HStZ_HStIdKey</th><th>HStZ_HStPIdKey</th><th>HStZ_Ankunft</th><th>HSt_Abfahrt</th></tr><tr><td>1</td><td>1</td><td>1</td><td>2024-12-01 10:01:00</td><td>2024-12-01 10:01:00</td></tr><tr><td>2</td><td>2</td><td>2</td><td>2024-12-01 10:05:00</td><td>2024-12-01 10:05:00</td></tr><tr><td>3</td><td>3</td><td>3</td><td>2024-12-01 10:09:00</td><td>2024-12-01 10:09:00</td></tr><tr><td>4</td><td>4</td><td>4</td><td>2024-12-01 10:10:00</td><td>2024-12-01 10:10:00</td></tr><tr><td>5</td><td>5</td><td>5</td><td>2024-12-01 10:15:00</td><td>2024-12-01 10:18:00</td></tr><tr><td>6</td><td>10</td><td>6</td><td>2024-12-01 10:22:00</td><td>2024-12-01 10:22:00</td></tr><tr><td>7</td><td>6</td><td>7</td><td>2024-12-01 10:03:00</td><td>2024-12-01 10:03:00</td></tr><tr><td>8</td><td>7</td><td>8</td><td>2024-12-01 10:06:00</td><td>2024-12-01 10:06:00</td></tr><tr><td>9</td><td>9</td><td>9</td><td>2024-12-01 10:11:00</td><td>2024-12-01 10:11:00</td></tr><tr><td>10</td><td>11</td><td>10</td><td>2024-12-01 10:12:00</td><td>2024-12-01 10:12:00</td></tr><tr><td>…weitere</td><td></td><td></td><td></td><td></td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, mit der Sie alle aktiven Haltestellen der Linie 250 erhalten.</b></p><p>Ergebnistabelle:</p><table><tr><th>Name der Haltestelle</th></tr><tr><td>Am Faulbach</td></tr><tr><td>Von-Lohe-Str.</td></tr><tr><td>Windmühlenstr.</td></tr><tr><td>Ebertplatz</td></tr></table>",
+     "loesung": "<pre>SELECT HSt_Name AS [Name der Haltestelle]\nFROM Haltestelle\nWHERE HSt_Aktiv = 1 AND HSt_Linie = 250;</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, mit der Sie alle Abfahrtzeiten der Haltestelle ‚Am Faulbach‘ absteigend nach Datum und Uhrzeit sortiert erhalten.</b></p><p>Ergebnistabelle:</p><table><tr><th>HSt_Name</th><th>HSt_Linie</th><th>HStP_Abfahrt_Plan</th></tr><tr><td>Am Faulbach</td><td>250</td><td>2024-12-01 12:12:00</td></tr><tr><td>Am Faulbach</td><td>250</td><td>2024-12-01 11:12:00</td></tr><tr><td>Am Faulbach</td><td>250</td><td>2024-12-01 10:03:00</td></tr></table>",
+     "loesung": "<pre>SELECT H.HSt_Name, H.HSt_Linie, HP.HStP_Abfahrt_Plan\nFROM Haltestelle AS H\nINNER JOIN Haltestelle_Plan AS HP ON H.HSt_IdKey = HP.HStP_HStIdKey\nWHERE HSt_Name = ‚Am Faulbach‘\nORDER BY HStP_Abfahrt_Plan DESC;</pre><p>Lösungen mit LEFT JOIN sind ebenfalls als richtig zu werten.</p><p><i>Anmerkung: Die Lösungshinweise setzen ‚Am Faulbach‘ in typografische Anführungszeichen; in SQL schreibt man gerade Hochkommas: 'Am Faulbach'.</i></p>",
+     "hinweis": "Lösungen mit LEFT JOIN sind ebenfalls als richtig zu werten."
+    },
+    {
+     "nr": "c",
+     "punkte": 12,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, mit der Sie alle Verspätungen aller Haltestellen erhalten.</b></p><p>Ergebnistabelle:</p><table><tr><th>HSt_Name</th><th>HSt_Linie</th><th>HStP_Ankunft_Plan</th><th>HStZ_Ankunft</th><th>Verspätung in Minuten</th></tr><tr><td>Nesselrodestr.</td><td>124</td><td>2024-12-01 10:04:00</td><td>2024-12-01 10:05:00</td><td>1</td></tr><tr><td>Amsterdamer Gürtel</td><td>124</td><td>2024-12-01 10:08:00</td><td>2024-12-01 10:09:00</td><td>1</td></tr><tr><td>Xantener Str.</td><td>124</td><td>2024-12-01 10:09:00</td><td>2024-12-01 10:10:00</td><td>1</td></tr><tr><td>Worringer Str.</td><td>124</td><td>2024-12-01 10:13:00</td><td>2024-12-01 10:15:00</td><td>2</td></tr></table>",
+     "loesung": "<pre>SELECT H.HSt_Name, H.HSt_Linie, HP.HStP_Ankunft_Plan, HZ.HStZ_Ankunft,\n    DATEDIFF(minute, HP.HStP_Ankunft_Plan, HZ.HStZ_Ankunft) AS [Verspätung in Minuten]\nFROM Haltestelle AS H\nINNER JOIN Haltestelle_Plan AS HP ON H.HSt_IdKey = HP.HStP_HStIdKey\nINNER JOIN Haltestelle_Zeiten AS HZ ON HP.HStP_IdKey = HZ.HStZ_HStPIdKey\nWHERE HP.HStP_Ankunft_Plan &lt; HZ.HStZ_Ankunft;</pre>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}

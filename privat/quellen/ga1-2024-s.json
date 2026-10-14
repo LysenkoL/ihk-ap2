@@ -1,0 +1,324 @@
+{
+ "id": "ga1-2024-s",
+ "bereich": "ga1",
+ "termin": "Sommer 2024",
+ "kurz": "GA1 S24",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Sommer 2024)",
+ "situation": "<p>Die AMAG Soft AG ist ein Hersteller von Batterien und Akkus für E-Bikes, E-Scooter, Pedelecs und E-Roller.</p><p>Zur jährlichen Aktionärsversammlung treffen sich die Aktionäre am Stammsitz.</p><p>Die AMAG Soft AG möchte ihren Aktionären zukünftig einen E-Service mit verschiedenen Anwendungsmöglichkeiten anbieten. Dabei sollen u. a. die folgenden Aufgaben in einem ersten Schritt über diese E-Service-Plattform zukünftig erfolgen:</p><ul><li>Komfortable Anschriftenänderung</li><li>Möglichkeit einer rein elektronischen Einladung zur Aktionärsversammlung</li><li>Virtuelle Teilnahme an Aktionärsversammlungen</li></ul><p>Zur Realisierung dieses Projekts „Aufbau einer E-Service-Plattform“ für Aktionäre der AMAG Soft AG wird eine Projektgruppe gegründet, in der Sie mitarbeiten.</p>",
+ "beleg": [],
+ "bilder": {
+  "s24-ga1-2e": {
+   "seite": "s24/x1-05",
+   "box": [
+    0.03,
+    0.21,
+    0.81,
+    0.71
+   ]
+  },
+  "s24-ga1-2e-l": {
+   "seite": "s24/l1-3",
+   "box": [
+    0.09,
+    0.48,
+    0.865,
+    0.865
+   ]
+  },
+  "s24-ga1-3a": {
+   "seite": "s24/l1-4",
+   "box": [
+    0.06,
+    0.065,
+    0.69,
+    0.569
+   ]
+  },
+  "s24-ga1-3b": {
+   "seite": "s24/x1-07",
+   "box": [
+    0.07,
+    0.118,
+    0.845,
+    0.437
+   ]
+  },
+  "s24-ga1-4a": {
+   "seite": "s24/x1-09",
+   "box": [
+    0.07,
+    0.245,
+    0.82,
+    0.695
+   ]
+  },
+  "s24-ga1-4a-l": {
+   "seite": "s24/l1-6",
+   "box": [
+    0.065,
+    0.07,
+    0.915,
+    0.585
+   ]
+  },
+  "s24-ga1-4ba": {
+   "seite": "s24/x1-10",
+   "box": [
+    0.075,
+    0.19,
+    0.775,
+    0.615
+   ]
+  },
+  "s24-ga1-4bb": {
+   "seite": "s24/x1-11",
+   "box": [
+    0.098,
+    0.082,
+    0.848,
+    0.535
+   ]
+  },
+  "s24-ga1-4bb-l": {
+   "seite": "s24/l1-7",
+   "box": [
+    0.09,
+    0.0805,
+    0.85,
+    0.52
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "E-Service-Plattform: Vorteile, Qualität, Sicherheit, Stakeholder",
+   "punkte": 23,
+   "themen": [
+    "Projektmanagement",
+    "Qualität & Test",
+    "IT-Sicherheit"
+   ],
+   "anlagen": [
+    {
+     "titel": "Ausgangssituation",
+     "html": "<p>Die AMAG Soft AG ist ein Hersteller von Batterien und Akkus für E-Bikes, E-Scooter, Pedelecs und E-Roller.</p><p>Zur jährlichen Aktionärsversammlung treffen sich die Aktionäre am Stammsitz.</p><p>Die AMAG Soft AG möchte ihren Aktionären zukünftig einen E-Service mit verschiedenen Anwendungsmöglichkeiten anbieten. Dabei sollen u. a. die folgenden Aufgaben in einem ersten Schritt über diese E-Service-Plattform zukünftig erfolgen:</p><ul><li>Komfortable Anschriftenänderung</li><li>Möglichkeit einer rein elektronischen Einladung zur Aktionärsversammlung</li><li>Virtuelle Teilnahme an Aktionärsversammlungen</li></ul><p>Zur Realisierung dieses Projekts „Aufbau einer E-Service-Plattform“ für Aktionäre der AMAG Soft AG wird eine Projektgruppe gegründet, in der Sie mitarbeiten.</p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 8,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie vier Vorteile, die sich aus der Bereitstellung einer E-Service-Plattform für die Aktionäre der AMAG Soft AG ergeben können.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zu Vorteilen, wie z. B.</p><ul><li>Sichere und schnelle Kommunikation mit den Aktionären</li><li>Kostengünstige Kommunikation durch Einsparung von Druck-, Papier- und Portokosten</li><li>Bereitstellung der Services auf mobilen Endgeräten</li><li>Bereitstellung zusätzlicher und kurzfristiger Informationen für den Aktionär</li><li>Zusätzliche Werbe-/Marketingplattform für das Unternehmen</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Aufgrund der hohen Bedeutung des Projekts entschließt sich das Projektteam, bei der Entwicklung der neuen Plattform qualitätssichernde Maßnahmen einzusetzen.</p><p><b>Beschreiben Sie drei qualitätssichernde Maßnahmen.</b></p>",
+     "loesung": "<p>Erwartet werden Erläuterungen zu Maßnahmen, wie z. B.</p><ul><li>Auswahl und Verwendung eines standardisierten Softwareentwicklungsmodells, wie z. B. Scrum o. Ä.Verwendung von üblichen Softwareentwicklungswerkzeugen (IDE, CI/CD …)</li><li>Definition und Verwendung standardisierter Testumgebungen, -verfahren und -daten</li><li>Zertifizierung von Mitarbeitern, die mit der Entwicklung und dem Testen beauftragt sind</li><li>Bereitstellung von Verfahrensanweisungen zur Dokumentation</li><li>Durchführung von Code-Reviews</li></ul><p><i>Anmerkung: Im ersten Punkt fehlt im Original offenbar ein Zeilenumbruch — „Verwendung von üblichen Softwareentwicklungswerkzeugen (IDE, CI/CD …)“ ist ein eigener Punkt.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Technisch muss die E-Service-Plattform sehr hohe Sicherheitsanforderungen erfüllen.</p><p><b>Beschreiben Sie zwei sicherheitstechnische Anforderungen an das System.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zu sicherheitstechnischen Anforderungen, wie z. B.</p><ul><li>Sichere Datenübertragung</li><li>Sichere Speicherung personenbezogener Daten</li><li>Sichere Authentifizierung der Benutzer</li><li>Begrenzung bei Inaktivität, Verbindungsabbruch</li><li>etc.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 5,
+     "eingabe": {
+      "zeilen": [
+       "Stakeholder",
+       "Befürchtungen",
+       "Maßnahmen"
+      ]
+     },
+     "text": "<p>Um Projektrisiken zu minimieren, ist eine Stakeholderanalyse durchzuführen.</p><p><b>Identifizieren Sie einen Stakeholder und beschreiben Sie dessen Befürchtungen sowie Maßnahmen, um diesen begegnen zu können.</b></p><table><tr><th>Stakeholder</th><th>Befürchtungen</th><th>Maßnahmen</th></tr><tr><td></td><td></td><td></td></tr></table>",
+     "loesung": "<p>Erwartet werden die Nennung eines Stakeholders und dessen Beschreibung zu Befürchtungen und Maßnahmen, wie z. B.</p><table><tr><th>Stakeholder</th><th>Befürchtungen</th><th>Maßnahmen</th></tr><tr><td>Aktionäre</td><td>Eigene personenbezogene Daten könnten unzulässig verwendet werden.</td><td>Erstellen eines umfassenden IT-Sicherheitskonzepts</td></tr><tr><td>Vorstand AMAG</td><td>Projekt läuft kostenmäßig aus dem vorgegebenen Rahmen</td><td>Mehrfach überprüfter Kostenplan</td></tr><tr><td>Geschäftsführung IT-Dienstleister</td><td>Verlust eines wichtigen Kunden und auch der Reputation des eigenen Unternehmens aufgrund von Nichteinhaltung von Terminen und Zusagen</td><td>Einplanung von Pufferzeiten sowie enges Termincontrolling</td></tr><tr><td>Mitarbeiter Projektgruppe</td><td>Fachliche Überforderung aufgrund der hohen Innovation des Projekts</td><td>Umfassende Sondierung der fachlichen Kompetenzen der Projektmitarbeiter im Projektvorfeld sowie gegebenenfalls Durchführung von Qualifizierungs- und Motivationsmaßnahmen</td></tr></table>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "REST-API, CRUD, HTTP, Sequenzdiagramm",
+   "punkte": 25,
+   "themen": [
+    "Schnittstellen",
+    "UML"
+   ],
+   "text": "<p>Die Adressdaten der Aktionäre der AMAG Soft AG sollen zukünftig mittels einer webbasierten Applikation verwaltet werden.</p><p>Der Zugriff auf die Daten soll über eine REST-API erfolgen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p><b>Beschreiben Sie das einer REST-API zugrunde liegende Konzept.</b></p>",
+     "loesung": "<p>Bei einer REST-API liegt das Konzept zugrunde, dass eine Ressource über einen Webserver verfügbar ist und eindeutig über eine URL identifiziert wird. Client und Server tauschen nur Daten aus und sind lose gekoppelt. Die REST-API ist zustandslos, damit sind alle API-Aufrufe voneinander unabhängig.</p><p>Andere sinnvolle Antworten sind möglich.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "C — Operation/Bedeutung / HTTP-Methode",
+       "R — Operation/Bedeutung / HTTP-Methode",
+       "D — Operation/Bedeutung / HTTP-Methode"
+      ]
+     },
+     "text": "<p>Für das Management digitaler Daten werden vier fundamentale Operationen benötigt, die oft in dem Akronym CRUD zusammengefasst sind.</p><p><b>Erläutern Sie in der nachfolgenden Tabelle die Bedeutung der Buchstaben des Akronyms und ordnen Sie den Operationen die entsprechenden HTTP-Methoden zu.</b></p><p>Die Erläuterung des Buchstabens „U“ ist bereits gegeben.</p><table><tr><th></th><th>Operation/Bedeutung</th><th>HTTP-Methode</th></tr><tr><th>C</th><td></td><td></td></tr><tr><th>R</th><td></td><td></td></tr><tr><th>U</th><td>Update/Ändern einer Ressource</td><td>PUT/PATCH</td></tr><tr><th>D</th><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th></th><th>Operation/Bedeutung</th><th>HTTP-Methode</th></tr><tr><th>C</th><td>CREATE, Anlegen einer Ressource</td><td>POST/PUT</td></tr><tr><th>R</th><td>READ, Auslesen einer Ressource</td><td>GET</td></tr><tr><th>U</th><td>UPDATE, Ändern einer Ressource</td><td>PUT/PATCH</td></tr><tr><th>D</th><td>DELETE, Löschen einer Ressource</td><td>DELETE</td></tr></table>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "https://amag.com/shareholders — Bedeutung",
+       "PUT — Bedeutung",
+       "{ „name“: … „id“: 25 } — Bedeutung"
+      ]
+     },
+     "text": "<p><b>Ergänzen Sie die Bedeutung der Bestandteile einer clientseitigen HTTP-Anforderung (Request) in der folgenden Tabelle.</b> Ein Bestandteil ist bereits gegeben.</p><table><tr><th>Bestandteil</th><th>Bedeutung</th></tr><tr><td><code>https://amag.com/shareholders</code></td><td></td></tr><tr><td>PUT</td><td></td></tr><tr><td><pre>content-type: application/json\naccept: application/json\nauthorization: Basic abase64string</pre></td><td>HTTP-Header für Metainformationen, Token, Cookies, API-Key</td></tr><tr><td><pre>{\n  „name“: „Hannah Müller“,\n  „address“: [\n    {\n      „street“: „Hauptstr. 12“,\n      „pc“: „76543“\n      „city“: „Baden-Baden“\n    }\n  ],\n  „id“: 25\n}</pre></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Bestandteil</th><th>Bedeutung</th></tr><tr><td><code>https://amag.com/shareholders</code></td><td>Endpoint-URL</td></tr><tr><td>PUT</td><td>HTTP-Methode</td></tr><tr><td><pre>content-type: application/json\naccept: application/json\nauthorization: Basic abase64string</pre></td><td>HTTP-Header für Metainformationen, Token, Cookies, API-Key</td></tr><tr><td><pre>{\n  ”name“: ”Hannah Müller“,\n  ”address“: [\n    {\n      ”street“: ”Hauptstr. 12“,\n      ”pc“: ”76543“\n      ”city“: ”Baden-Baden“\n    }\n  ],\n  ”id“: 25\n}</pre></td><td>HTTP-Body für Daten, oftmals als einzelner JSON-encodierter Datentext</td></tr></table>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "2XX",
+       "4XX",
+       "5XX"
+      ]
+     },
+     "text": "<p>In der HTTP-Antwort (Response) des Servers ist ein Statuscode mit enthalten.</p><p><b>Nennen Sie die Bedeutung der folgenden drei Statuscodes.</b></p><table><tr><th>Code</th><th>Bedeutung</th></tr><tr><th>2XX</th><td></td></tr><tr><th>4XX</th><td></td></tr><tr><th>5XX</th><td></td></tr></table>",
+     "loesung": "<table><tr><th>Code</th><th>Bedeutung</th></tr><tr><th>2XX</th><td>Request erfolgreich bearbeitet</td></tr><tr><th>4XX</th><td>Clientfehler – Fehler wurde durch eine fehlerhafte Anfrage des Clients verursacht</td></tr><tr><th>5XX</th><td>Serverfehler – Fehler wurde aufgrund eines Problems auf Serverseite verursacht</td></tr></table>",
+     "hinweis": ""
+    },
+    {
+     "nr": "e",
+     "punkte": 11,
+     "eingabe": "zeichnen",
+     "text": "<p>Es sollen die Daten aller Aktionäre mit dem Wohnort Köln vom Webservice abgefragt werden.</p><p>Der Ablauf ist wie folgt beschrieben:</p><ul><li>Die App führt eine GET-Anfrage (Request) an den Endpunkt <i>shareholders/</i> des Webservice mit dem gewünschten Wohnort im Query-Parameter (Attributname <i>city</i>) aus.</li><li>Wenn die gewünschten Daten (<i>data</i>) im Cache des Webservice sind, dann ruft der Webservice seine eigene Methode <i>getCache</i> mit dem Namen der Stadt als Übergabeparameter auf.</li><li>Befinden sich die Daten nicht im Cache, dann werden sie vom Webservice mit der Methode <i>getData</i> von der Datenbank abgefragt.</li><li>Abschließend erhält die App eine GET-Antwort (Response) mit dem Statuscode 200 und den Daten im Responsebody.</li></ul><p><b>Ergänzen Sie das gegebene Sequenzdiagramm gemäß dem oben beschriebenen Ablauf.</b></p><img data-bild=\"s24-ga1-2e\">",
+     "loesung": "<img data-bild=\"s24-ga1-2e-l\"><p>In Worten: Lebenslinien <b>:App</b>, <b>:Webservice</b>, <b>:Database</b>.</p><ul><li>:App → :Webservice: <code>GET /shareholders?city=Köln</code></li><li>Fragment <b>alt</b> mit zwei Bereichen:<ul><li>[Daten im Cache]: :Webservice ruft sich selbst auf: <code>getCache(city)</code>; Rückantwort (gestrichelt) <code>data</code></li><li>[Daten nicht im Cache]: :Webservice → :Database: <code>getData(city)</code>; Rückantwort (gestrichelt) <code>data</code></li></ul></li><li>:Webservice → :App (Antwort, gestrichelt): <code>Response 200 {data}</code></li></ul>",
+     "hinweis": "Je Pfeil mit Beschriftung 1,5 Punkte → 9 Punkte (Methodenbalken optional). Alternativfragment 1 Punkt. Bedingungen je 0,5 Punkte → 1 Punkt."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Anwendungsfalldiagramm, Pseudocode Versammlung",
+   "punkte": 29,
+   "themen": [
+    "UML",
+    "Programmierung/OOP"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "text": "<p>Für die E-Service-Plattform zur Vorbereitung einer Aktionärsversammlung ergeben sich folgende Anforderungen:</p><ul><li>Mit der E-Service-Plattform können Mitarbeiter und Aktionäre arbeiten.</li><li>Mitarbeiter können eine Aktionärsversammlung einrichten und Aktionäre zu einer Versammlung einladen. Beim Einladen wird eine Einladungsmail versendet. Zudem können Mitarbeiter eine Übersicht zum Status der Einladungen einsehen.</li><li>Aktionäre können ihre Einladung abrufen und sich für eine Versammlung registrieren. Ist der Aktionär ein eingeladener Teilnehmer, dann wird bei der Registrierung ein Zugangscode erzeugt.</li><li>Aktionäre können Dokumente zu der Aktionärsversammlung einsehen. Sind diese nicht öffentlich, muss der Zugangscode zum Öffnen der Dokumente eingegeben werden.</li></ul><p><b>Erstellen Sie ein Anwendungsfalldiagramm anhand der beschriebenen Anforderungen.</b></p>",
+     "loesung": "<img data-bild=\"s24-ga1-3a\"><p>In Worten: Systemgrenze „E-Service Plattform: Aktionärsversammlung“, Akteure <b>Mitarbeiter</b> und <b>Aktionär</b>. Anwendungsfälle: Versammlung einrichten, Aktionäre einladen, Einladungsmail versenden, Übersicht Status Einladungen, Einladung abrufen, für Versammlung registrieren, Zugangscode erzeugen, Einsicht Dokumente, Zugangscode eingeben.</p><ul><li>Mitarbeiter — Versammlung einrichten, Aktionäre einladen, Übersicht Status Einladungen</li><li>Aktionär — Einladung abrufen, für Versammlung registrieren, Einsicht Dokumente</li><li>Aktionäre einladen «include» Einladungsmail versenden</li><li>Zugangscode erzeugen «extend» für Versammlung registrieren (Notiz: wenn Aktionär eingeladen)</li><li>Zugangscode eingeben «extend» Einsicht Dokumente (Notiz: wenn Dokument nicht öffentlich)</li></ul>",
+     "hinweis": "Vorschlag für die Punktevergabe: 2 x je 1 Punkt pro Akteur mit geeigneter Rolle und Beziehung zu den Anwendungsfällen; 9 x je 1 Punkt pro Anwendungsfall; 3 x je 1 Punkt pro include- bzw. extend-Beziehung."
+    },
+    {
+     "nr": "ba",
+     "punkte": 5,
+     "eingabe": "code",
+     "anlagen": [
+      {
+       "titel": "Klassenentwurf zur Registrierung (Versammlung, Versammlungsteilnehmer, Aktionaer)",
+       "html": "<p>Für die Durchführung einer virtuellen Versammlung ist eine Liste aller angemeldeten Teilnehmer erforderlich. Zu einer Versammlung werden alle Aktionäre eingeladen. Ein Aktionär kann sich dann auf der E-Service-Plattform anmelden und für die Versammlung registrieren. Dann wird er der Liste der angemeldeten Teilnehmer hinzugefügt.</p><p>Zur Verarbeitung der Registrierung wurden bereits folgende Klassen entworfen:</p><img data-bild=\"s24-ga1-3b\"><table><tr><th>Versammlung</th></tr><tr><td>- eingeladeneTeilnehmer : List &lt;Aktionaer&gt;<br>- angemeldeteTeilnehmer: List &lt;Versammlungsteilnehmer&gt;<br>…</td></tr><tr><td>…<br>+ einladen (aktionaere : List &lt;Aktionaer&gt;) : void<br>+ anmelden (a : Aktionaer) : void<br>- istAngemeldeterTeilnehmer(a : Aktionaer) : Boolean<br>- erstelleCode () : String<br>- sendeEinladungsmail (emailAdresse : String)<br>…</td></tr></table><table><tr><th>Versammlungsteilnehmer</th></tr><tr><td>- aktionaer : Aktionaer<br>- code : String</td></tr><tr><td>+ Versammlungsteilnehmer (aktionaer : Aktionaer, code : String)<br>+ getAktionaer () : Aktionaer<br>…</td></tr></table><table><tr><th>Aktionaer</th></tr><tr><td>…<br>- emailAdresse : String<br>…</td></tr><tr><td>…<br>+ equals (Object) : Boolean<br>+ getEmailAdresse() : String<br>…</td></tr></table><p><b>Hinweis:</b> Jede Liste hat eine Methode <code>add(Object)</code>. Mit dieser Methode kann der Liste ein Element hinzugefügt werden.</p>"
+      }
+     ],
+     "text": "<p>Ausgangslage, Klassen und Hinweis stehen in der Anlage.</p><p>Die Einladung der Aktionäre zu einer Versammlung soll mit der Methode <code>einladen</code> der Klasse <code>Versammlung</code> erfolgen.</p><p>In dieser Methode soll für jeden Aktionär aus der übergebenen Liste eine Einladungsmail mithilfe der Methode <code>sendeEinladungsmail</code> erzeugt werden. Die eingeladenen Aktionäre sollen in der Liste <code>eingeladeneTeilnehmer</code> gespeichert werden.</p><p><b>ba) Implementieren Sie in Pseudocode die Methode <code>einladen</code>.</b></p><pre>+ einladen(aktionaere: List&lt;Aktionaer&gt;): void</pre>",
+     "loesung": "<pre>+ einladen(aktionaere: List&lt;Aktionaer&gt;): void\n{\n   for each(Aktionaer a : aktionaere) {\n      sendeEinladungsmail(a.getEmailAdresse())\n      eingeladeneTeilnehmer.add(a)\n   }\n}</pre><p>Andere Lösungen sind möglich.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 5,
+     "eingabe": "code",
+     "anlagen": [
+      {
+       "titel": "Klassenentwurf zur Registrierung (Versammlung, Versammlungsteilnehmer, Aktionaer)",
+       "html": "<p>Für die Durchführung einer virtuellen Versammlung ist eine Liste aller angemeldeten Teilnehmer erforderlich. Zu einer Versammlung werden alle Aktionäre eingeladen. Ein Aktionär kann sich dann auf der E-Service-Plattform anmelden und für die Versammlung registrieren. Dann wird er der Liste der angemeldeten Teilnehmer hinzugefügt.</p><p>Zur Verarbeitung der Registrierung wurden bereits folgende Klassen entworfen:</p><img data-bild=\"s24-ga1-3b\"><table><tr><th>Versammlung</th></tr><tr><td>- eingeladeneTeilnehmer : List &lt;Aktionaer&gt;<br>- angemeldeteTeilnehmer: List &lt;Versammlungsteilnehmer&gt;<br>…</td></tr><tr><td>…<br>+ einladen (aktionaere : List &lt;Aktionaer&gt;) : void<br>+ anmelden (a : Aktionaer) : void<br>- istAngemeldeterTeilnehmer(a : Aktionaer) : Boolean<br>- erstelleCode () : String<br>- sendeEinladungsmail (emailAdresse : String)<br>…</td></tr></table><table><tr><th>Versammlungsteilnehmer</th></tr><tr><td>- aktionaer : Aktionaer<br>- code : String</td></tr><tr><td>+ Versammlungsteilnehmer (aktionaer : Aktionaer, code : String)<br>+ getAktionaer () : Aktionaer<br>…</td></tr></table><table><tr><th>Aktionaer</th></tr><tr><td>…<br>- emailAdresse : String<br>…</td></tr><tr><td>…<br>+ equals (Object) : Boolean<br>+ getEmailAdresse() : String<br>…</td></tr></table><p><b>Hinweis:</b> Jede Liste hat eine Methode <code>add(Object)</code>. Mit dieser Methode kann der Liste ein Element hinzugefügt werden.</p>"
+      }
+     ],
+     "text": "<p>Ausgangslage, Klassen und Hinweis stehen in der Anlage.</p><p>Die Methode <code>istAngemeldeterTeilnehmer</code> soll prüfen, ob ein Aktionär bereits als angemeldeter Teilnehmer registriert wurde oder nicht. Das Ergebnis soll als Boolean-Wert zurückgegeben werden.</p><p><b>bb) Implementieren Sie in Pseudocode die Methode <code>istAngemeldeterTeilnehmer</code>.</b></p><pre>- istAngemeldeterTeilnehmer(a: Aktionaer): Boolean</pre>",
+     "loesung": "<pre>- istAngemeldeterTeilnehmer(a: Aktionaer): Boolean\n{\n   ergebnis: Boolean\n   ergebnis = False\n   for each (Versammlungsteilnehmer vTN : angemeldeteTeilnehmer) {\n      if(vTN.getAktionaer().equals(a)){\n         ergebnis = True\n      }\n   }\n   return ergebnis\n}</pre><p>Andere Lösungen sind möglich.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bc",
+     "punkte": 5,
+     "eingabe": "code",
+     "anlagen": [
+      {
+       "titel": "Klassenentwurf zur Registrierung (Versammlung, Versammlungsteilnehmer, Aktionaer)",
+       "html": "<p>Für die Durchführung einer virtuellen Versammlung ist eine Liste aller angemeldeten Teilnehmer erforderlich. Zu einer Versammlung werden alle Aktionäre eingeladen. Ein Aktionär kann sich dann auf der E-Service-Plattform anmelden und für die Versammlung registrieren. Dann wird er der Liste der angemeldeten Teilnehmer hinzugefügt.</p><p>Zur Verarbeitung der Registrierung wurden bereits folgende Klassen entworfen:</p><img data-bild=\"s24-ga1-3b\"><table><tr><th>Versammlung</th></tr><tr><td>- eingeladeneTeilnehmer : List &lt;Aktionaer&gt;<br>- angemeldeteTeilnehmer: List &lt;Versammlungsteilnehmer&gt;<br>…</td></tr><tr><td>…<br>+ einladen (aktionaere : List &lt;Aktionaer&gt;) : void<br>+ anmelden (a : Aktionaer) : void<br>- istAngemeldeterTeilnehmer(a : Aktionaer) : Boolean<br>- erstelleCode () : String<br>- sendeEinladungsmail (emailAdresse : String)<br>…</td></tr></table><table><tr><th>Versammlungsteilnehmer</th></tr><tr><td>- aktionaer : Aktionaer<br>- code : String</td></tr><tr><td>+ Versammlungsteilnehmer (aktionaer : Aktionaer, code : String)<br>+ getAktionaer () : Aktionaer<br>…</td></tr></table><table><tr><th>Aktionaer</th></tr><tr><td>…<br>- emailAdresse : String<br>…</td></tr><tr><td>…<br>+ equals (Object) : Boolean<br>+ getEmailAdresse() : String<br>…</td></tr></table><p><b>Hinweis:</b> Jede Liste hat eine Methode <code>add(Object)</code>. Mit dieser Methode kann der Liste ein Element hinzugefügt werden.</p>"
+      }
+     ],
+     "text": "<p>Ausgangslage, Klassen und Hinweis stehen in der Anlage.</p><p>Wenn sich ein Aktionär für eine Online-Teilnahme an der Veranstaltung registriert, wird die Methode <code>anmelden</code> der Klasse <code>Versammlung</code> aufgerufen, um den Aktionär als Versammlungsteilnehmer hinzuzufügen.</p><p>In der Methode <code>anmelden</code> soll zunächst mithilfe der Methode <code>istAngemeldeterTeilnehmer</code> geprüft werden, ob der Aktionär bereits angemeldet ist. Falls der Aktionär noch nicht angemeldet ist, wird mit der Methode <code>erstelleCode</code> der Zugangscode erstellt. Dann soll mithilfe des überladenen Konstruktors ein neues Objekt der Klasse <code>Veranstaltungsteilnehmer</code> erzeugt und der Liste <code>angemeldeteTeilnehmer</code> hinzugefügt werden.</p><p><b>bc) Implementieren Sie in Pseudocode die Methode <code>anmelden</code>.</b></p><pre>+ anmelden(a: Aktionaer): void</pre>",
+     "loesung": "<pre>+ anmelden(a: Aktionaer): void\n{\n   code: String\n   vTN: Versammlungsteilnehmer\n   if ( ! istAngemeldeterTeilnehmer(a)) {\n      code = erstelleCode()\n      vTN = new Versammlungsteilnehmer(a, code)\n      angemeldeterTeilnehmer.add(vTN)\n   }\n}</pre><p>Andere Lösungen sind möglich.</p><p><i>Anmerkung: In der Aufgabenstellung steht „Veranstaltungsteilnehmer“ — gemeint ist die Klasse Versammlungsteilnehmer. In den Lösungshinweisen steht angemeldeterTeilnehmer.add(vTN) — gemeint ist das Attribut angemeldeteTeilnehmer.</i></p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "ER-Modell erweitern, Mockup UI/UX",
+   "punkte": 23,
+   "themen": [
+    "Datenbank",
+    "Software-Ergonomie"
+   ],
+   "text": "<p>In der E-Service-Plattform sollen die Aktionäre auch virtuell an Versammlungen teilnehmen können.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 10,
+     "eingabe": "zeichnen",
+     "text": "<p>Dazu ist eine Erweiterung des aktuellen Datenmodells erforderlich.</p><p><b>Erweitern Sie das ER-Modell, sodass die folgenden Anforderungen abgedeckt sind.</b></p><ul><li>Fragen können während der Versammlung von Aktionären gestellt werden.</li><li>Die Fragen müssen in der Reihenfolge, in der sie gestellt werden, angezeigt werden.</li><li>Sobald eine Frage besprochen wurde, wird diese als beantwortet markiert. Der Zeitpunkt muss dokumentiert werden.</li><li>Der Aktionär kann seine Frage zurückziehen. Dies darf den Datensatz nicht aus der Datenbank löschen.</li><li>Den Aktionären werden die für die jeweilige Versammlung relevanten Dokumente angezeigt.</li><li>Ein Dokument kann für mehrere Versammlungen relevant sein.</li></ul><p>Hinweis: Die Dokumente sind bereits zentral gespeichert und den Aktionären im E-Service-Portal bereitgestellt.</p><img data-bild=\"s24-ga1-4a\">",
+     "loesung": "<img data-bild=\"s24-ga1-4a-l\"><p>In Worten:</p><ul><li>Bestehend: <b>Aktionär</b> (Vorname, Nachname, E-Mail) m — <i>nimmt teil an</i> (Anmeldezeitpunkt, Zugangs-Code) — n <b>Versammlung</b> (Name, Beginn); <b>Dokument</b> (Bezeichnung, Dateiname, DateiTyp, DateiPfad)</li><li>Neue Entität <b>VersammlungsFrage</b> mit den Attributen Frage, ErstellZeitpunkt, Beantwortungszeitpunkt, istZurückgezogen</li><li>Aktionär 1 — <i>stellt</i> — n VersammlungsFrage</li><li>Versammlung 1 — <i>wird gestellt</i> — n VersammlungsFrage</li><li>Versammlung m — <i>ist relevant für</i> — n Dokument</li></ul><p>Beispiele für mögliche Variationen:</p><ul><li><code>IstZurückgezogen</code> durch den entsprechenden Timestamp ersetzen (<code>ZurückgezogenZeitpunkt</code>)</li><li><code>ErstellZeitpunkt</code> durch einen Integer ersetzen, der für die Reihenfolge der Fragen steht</li></ul>",
+     "hinweis": "Bepunktungs-Vorschlag: 1,5 P je Entität (1,5 Punkte); 1 P je Attribut (4 Punkte); 1,5 P je Relation (4,5 Punkte). Der Prüfling soll bei dieser Aufgabe Anforderungen aus Stakeholder-Perspektive in eine geeignete Datenstruktur übertragen. Für die Anforderungen kann es verschiedene Lösungsmöglichkeiten geben."
+    },
+    {
+     "nr": "ba",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>In einer virtuellen Versammlung sollen folgende Funktionen verfügbar sein:</p><ul><li>Livestream der Hauptversammlung ansehen</li><li>Fragen an den Vorstand stellen</li><li>Schneller Zugriff auf relevante Dokumente (Tagesordnung, Jahresabschluss etc.)</li></ul><p>Ihnen wird das folgende Mockup für eine Benutzeroberfläche bei einer virtuellen Versammlung vorgelegt. Dieses wird aufgrund von Mängeln bei der Usability abgelehnt.</p><p><b>ba) Beschreiben Sie drei Mängel dieses Mockups aus UI/UX-Sicht.</b></p><img data-bild=\"s24-ga1-4ba\">",
+     "loesung": "<p>Erwartet wird, dass der Prüfling die Mängel im Mockup aus UI/UX Sicht beschreibt. Dazu gehören bspw.:</p><ul><li>Ungeeignete Positionierung von Elementen z. B.<ul><li>Überschrift zu weit links</li><li>Video links nicht bündig mit Navigation</li><li>Links platzraubend untereinander</li></ul></li><li>Links öffnen neuen Tab/neues Fenster</li><li>Der Link „Livestream“ ist auf der Seite, auf der sich der Livestream befindet, nicht erforderlich und kann den Nutzer verwirren.</li><li>Für den Nutzer ist ggf. unklar, wo der Unterschied zwischen den Dokumenten im Hauptmenü und dem Link „Dokumente“ über dem Livestream ist.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 7,
+     "eingabe": "zeichnen",
+     "anlagen": [
+      {
+       "titel": "Abgelehntes Mockup aus ba)",
+       "html": "<img data-bild=\"s24-ga1-4ba\">"
+      }
+     ],
+     "text": "<p>In einer virtuellen Versammlung sollen folgende Funktionen verfügbar sein:</p><ul><li>Livestream der Hauptversammlung ansehen</li><li>Fragen an den Vorstand stellen</li><li>Schneller Zugriff auf relevante Dokumente (Tagesordnung, Jahresabschluss etc.)</li></ul><p>Das in ba) vorgelegte Mockup (siehe Anlage) wurde wegen Mängeln bei der Usability abgelehnt.</p><p><b>bb) Skizzieren Sie nun ein Mockup für die Benutzeroberfläche, in der die beschriebenen Anforderungen besser umgesetzt werden.</b></p><img data-bild=\"s24-ga1-4bb\">",
+     "loesung": "<img data-bild=\"s24-ga1-4bb-l\"><p>In Worten: Browserfenster „HV 2024“ mit Navigation (Home, Aktuelles, Veranstaltungen, Dokumente, Meine Daten, Max Mustermann).</p><ul><li>Überschrift „Hauptversammlung 2024“ bündig mit der Navigation</li><li>Links darunter der Livestream (Videofläche mit Play-Taste und Lautstärke-Symbol)</li><li>Rechts neben dem Video ein Kasten „Dokumente“ mit den Links Satzung.pdf, Tagesordnung.pdf, Jahresabschluss 2022.pdf</li><li>Unter dem Video der Bereich „Frage stellen“: Eingabefeld „Geben Sie hier Ihre Frage an den Vorstand ein...“ und Schaltfläche „Frage absenden“</li></ul>",
+     "hinweis": "Der Prüfling soll bei dieser Aufgabe zeigen, dass er Anforderungen in eine einfach zu nutzende Benutzeroberfläche übersetzen kann. Dabei sollen die in Aufgabe ba) benannten Mängel berücksichtigt werden."
+    }
+   ]
+  }
+ ]
+}

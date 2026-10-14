@@ -1,0 +1,561 @@
+{
+ "id": "wiso-2023-w",
+ "bereich": "wiso",
+ "termin": "Winter 2023/24",
+ "kurz": "WiSo W23/24",
+ "minuten": 60,
+ "quelle": "raw/ap2-2023-w-wiso.pdf",
+ "schluessel": "offizielle vorläufige Lösungen der IHK, nachgeprüft",
+ "situation": "Sie sind Mitarbeiter der Ecotec GmbH. Die Ecotec GmbH ist ein IT-Dienstleistungsunternehmen in Erfurt. Die folgenden Aufgaben beziehen sich auf dieses Unternehmen.",
+ "aufgaben": [
+  {
+   "nr": 1,
+   "thema": "Einstellung",
+   "text": "Sabine Medstein hat sich nach erfolgreichem Abschluss ihrer Berufsausbildung zur Fachinformatikerin Anwendungsentwicklung bei der Ecotec GmbH beworben und soll zum 1. Oktober 2023 eingestellt werden.",
+   "frage": "Bringen Sie die folgenden Schritte bei der Einstellung von Frau Medstein in die richtige Reihenfolge.",
+   "typ": "reihenfolge",
+   "zeilen": {
+    "a": "Vorstellungsgespräch",
+    "b": "Digitale Bewerbung um einen Arbeitsplatz",
+    "c": "Abschluss des Arbeitsvertrages",
+    "d": "Erster Arbeitstag",
+    "e": "Ende der Probezeit",
+    "f": "Überweisung der ersten Vergütung"
+   },
+   "soll": {
+    "a": 2,
+    "b": 1,
+    "c": 3,
+    "d": 4,
+    "e": 6,
+    "f": 5
+   },
+   "erkl": "b → a → c → d → f → e: Bewerbung, Vorstellungsgespräch, Vertrag, erster Tag, erstes Gehalt nach dem ersten Monat, Ende der Probezeit (meist nach 6 Monaten)."
+  },
+  {
+   "nr": 2,
+   "thema": "Vorstellungsgespräch",
+   "text": "Frau Medstein hatte auch ein Vorstellungsgespräch bei der Leuchtturm-IT GmbH.",
+   "frage": "Welche der folgenden Fragen ist in einem solchen Gespräch <b>unzulässig</b>? Die Frage nach …",
+   "typ": "eine",
+   "optionen": [
+    "der Mitgliedschaft bei einer Gewerkschaft.",
+    "den Zusatzqualifikationen.",
+    "der Schulbildung.",
+    "den Vorbeschäftigungen und der letzten Tätigkeit.",
+    "der Gehaltsvorstellung."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Gewerkschaftsmitgliedschaft (членство в профсоюзе) geht den Arbeitgeber nichts an (Koalitionsfreiheit, Art. 9 GG). Ebenso unzulässig: Schwangerschaft, Religion, Partei."
+  },
+  {
+   "nr": 3,
+   "thema": "Arbeitspapiere",
+   "frage": "Welche der folgenden Unterlagen muss Frau Medstein ihrem neuen Arbeitgeber auf Anforderung zukommen lassen?",
+   "typ": "mehrere",
+   "optionen": [
+    "Nachweis über die private Unfallversicherung",
+    "Geburtsurkunde",
+    "Urlaubsbescheinigung des letzten Arbeitgebers",
+    "Nachweis über eine abgeschlossene Berufsunfähigkeitsversicherung",
+    "Steuerliche Identifikationsnummer (IdNr/TIN/eTIN)",
+    "Nachweis über private Krankenzusatzversicherung"
+   ],
+   "soll": [
+    3,
+    5
+   ],
+   "erkl": "Arbeitspapiere: Steuer-ID (налоговый номер) für die Lohnsteuer, Urlaubsbescheinigung (справка об отпуске), damit kein Urlaub doppelt gewährt wird, dazu Sozialversicherungsnummer. Private Versicherungen sind Privatsache."
+  },
+  {
+   "nr": 4,
+   "thema": "Lohnabrechnung",
+   "text": "Für den Monat November 2023 erhält Frau Medstein von der Personalabteilung der Ecotec GmbH die folgende Abrechnung:<br>– Der Stundenlohn beträgt 15,80 EUR.<br>– Im vergangenen Monat hat Frau Medstein 170 Stunden gearbeitet, davon zwölf Stunden an Samstagen.<br>– Für Samstagsarbeit erhält Frau Medstein zusätzliche 30 % auf den Stundenlohn.<br>– Zusätzlich erhält Frau Medstein eine freiwillige Sonderzahlung als Urlaubsgeld in Höhe von 250,00 EUR brutto.",
+   "frage": "Berechnen Sie a) den Bruttolohn von Frau Medstein für den Monat November 2023 und b) den Beitrag von Frau Medstein zur gesetzlichen Rentenversicherung (Beitragssatz 2023: 18,6 %).",
+   "typ": "zahlen",
+   "felder": [
+    {
+     "h": "a) Bruttolohn",
+     "soll": "2992,88",
+     "einheit": "EUR"
+    },
+    {
+     "h": "b) Arbeitnehmeranteil Rentenversicherung",
+     "soll": "278,34",
+     "einheit": "EUR"
+    }
+   ],
+   "erkl": "a) 170 h × 15,80 = 2.686,00 + Samstagszuschlag 12 h × 15,80 × 30 % = 56,88 + Urlaubsgeld 250,00 = 2.992,88 EUR (Bruttolohn — зарплата брутто). b) Arbeitnehmer zahlt die Hälfte: 18,6 % ÷ 2 = 9,3 %. 2.992,88 × 9,3 % = 278,34 EUR. Folgefehler zählt: Ergebnis a) × 9,3 %."
+  },
+  {
+   "nr": 5,
+   "thema": "Handelsregister",
+   "text": "Die Ecotec GmbH wird im Handelsregister geführt.",
+   "frage": "Welche der folgenden Aussagen über das Handelsregister trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "In der Abteilung A werden Großunternehmen, in Abteilung B alle anderen Unternehmen geführt.",
+    "Im Handelsregister werden nur Unternehmen geführt, die in Deutschland tätig sind.",
+    "In Abteilung A werden die Personengesellschaften, in Abteilung B die Kapitalgesellschaften geführt.",
+    "Das Handelsregister wird von der zuständigen Handelskammer verwaltet.",
+    "Kleinunternehmen können wählen, ob sie lieber in Abteilung A oder B eingetragen werden wollen."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Handelsregister (торговый реестр) beim Amtsgericht: Abteilung A = Einzelkaufleute und Personengesellschaften (OHG, KG), Abteilung B = Kapitalgesellschaften (GmbH, AG)."
+  },
+  {
+   "nr": 6,
+   "thema": "Arbeitsschutz",
+   "text": "Frau Medstein soll die Aufgabe einer Sicherheitsbeauftragten in ihrer Abteilung übernehmen.",
+   "frage": "An welche der folgenden für die Unfallverhütung zuständige Einrichtung muss sie sich wenden, um genauere Informationen zu diesem Thema zu erhalten?",
+   "typ": "eine",
+   "optionen": [
+    "Gewerbeaufsichtsbehörde",
+    "Berufsgenossenschaft",
+    "Fachverband",
+    "Deutschen Gewerkschaftsbund",
+    "Industrie- und Handelskammer"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Die Berufsgenossenschaft (отраслевая страховая касса) ist für Unfallverhütung zuständig und schult Sicherheitsbeauftragte."
+  },
+  {
+   "nr": 7,
+   "thema": "Betriebsratswahl",
+   "anlage": "<b>§ 7 Wahlberechtigung</b><br>Wahlberechtigt sind alle Arbeitnehmer des Betriebs, die das 16. Lebensjahr vollendet haben. Werden Arbeitnehmer eines anderen Arbeitgebers zur Arbeitsleistung überlassen, so sind diese wahlberechtigt, wenn sie länger als drei Monate im Betrieb eingesetzt werden.<br><b>§ 8 Wählbarkeit</b><br>(1) Wählbar sind alle Wahlberechtigten, die das 18. Lebensjahr vollendet haben und sechs Monate dem Betrieb angehören (…).<br><b>§ 9 Zahl der Betriebsratsmitglieder</b><br>Der Betriebsrat besteht in Betrieben mit in der Regel 5 bis 20 wahlberechtigten Arbeitnehmern aus einer Person, 21 bis 50 wahlberechtigten Arbeitnehmern aus 3 Mitgliedern, 51 wahlberechtigten Arbeitnehmern bis 100 Arbeitnehmern aus 5 Mitgliedern, 101 bis 200 Arbeitnehmern aus 7 Mitgliedern (…)",
+   "text": "In der Ecotec GmbH soll ein neuer Betriebsrat gewählt werden. Insgesamt sind dort 61 Arbeitnehmer beschäftigt, die sich wie folgt zusammensetzen:<br>– 45 volljährige Mitarbeiter (ohne Auszubildende)<br>– 8 volljährige Auszubildende<br>– 3 volljährige Mitarbeiter aus Arbeitnehmerüberlassung (Zeitarbeit), seit einem Monat in der Ecotec GmbH eingesetzt<br>– 3 jugendliche Auszubildende (16 Jahre alt)<br>– 2 jugendliche Auszubildende (17 Jahre alt)",
+   "frage": "Ermitteln Sie, wie viele Mitarbeiter der Ecotec GmbH insgesamt bei der Betriebsratswahl wählen können.",
+   "typ": "zahl",
+   "soll": "58",
+   "einheit": "Mitarbeiter",
+   "erkl": "Wählen darf, wer mindestens 16 ist: 45 + 8 + 3 + 2 = 58. Die 3 Zeitarbeiter sind erst einen Monat da — sie wählen erst nach mehr als drei Monaten mit (§ 7 BetrVG). (aktives Wahlrecht — право голоса)"
+  },
+  {
+   "nr": 8,
+   "thema": "Betriebsratswahl",
+   "text": "Die Betriebsratswahl soll zwei Monate nachdem Frau Medstein ihren neuen Arbeitsplatz bei der Ecotec GmbH angetreten hat, stattfinden. Frau Medstein überlegt, sich für die Wahlen aufstellen zu lassen. Sie ist sich aber nicht sicher, ob dies möglich ist. Sie fragt eine Kollegin, ob sie zu diesem Zeitpunkt in den Betriebsrat wählbar ist.",
+   "frage": "Welche der folgenden Aussagen über die Wählbarkeit von Frau Medstein trifft zu? Frau Medstein ist …",
+   "typ": "eine",
+   "optionen": [
+    "wählbar, weil jeder Arbeitnehmer sofort bei Eintritt in den Betrieb wählbar ist.",
+    "wählbar, weil sie volljährig ist.",
+    "wählbar, weil sie eine abgeschlossene Berufsausbildung hat.",
+    "nicht wählbar, weil sie noch keine sechs Monate bei der Ecotec GmbH beschäftigt ist.",
+    "nicht wählbar, weil sie kein Gewerkschaftsmitglied ist."
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Wählbar (может быть избранной) erst nach 6 Monaten im Betrieb (§ 8 BetrVG). Sie ist erst 2 Monate da."
+  },
+  {
+   "nr": 9,
+   "thema": "Betriebsrat",
+   "text": "In der Ecotec GmbH wurde der Betriebsrat gewählt.",
+   "frage": "Welche der folgenden Aussagen über die Wahl des Betriebsrats ist zutreffend?",
+   "typ": "eine",
+   "optionen": [
+    "Ein Betriebsrat muss alle vier Jahre neu gewählt werden.",
+    "Ein Betriebsrat muss je zur Hälfte aus Arbeitnehmern und Arbeitnehmerinnen gebildet werden.",
+    "In einen Betriebsrat können nur Arbeitnehmer gewählt werden, die mindestens eine zweijährige Betriebszugehörigkeit nachweisen können.",
+    "Ein Betriebsrat muss in Kapitalgesellschaften mit mehr als 500 Mitarbeitern gewählt werden.",
+    "Ein Betriebsrat kann von allen Arbeitnehmern eines Betriebs gewählt werden, die das 25. Lebensjahr vollendet haben."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Amtszeit des Betriebsrats: 4 Jahre (§ 21 BetrVG). Das Minderheitengeschlecht muss nur anteilig vertreten sein, nicht zur Hälfte. Wählen ab 16, wählbar nach 6 Monaten."
+  },
+  {
+   "nr": 10,
+   "thema": "Mitbestimmung",
+   "text": "Die Geschäftsleitung der Ecotec GmbH arbeitet eng mit dem Betriebsrat zusammen.",
+   "frage": "In welchen der folgenden Angelegenheiten hat der Betriebsrat laut Betriebsverfassungsgesetz ein Mitbestimmungsrecht?",
+   "typ": "mehrere",
+   "optionen": [
+    "Einführung von Überwachungskameras im Warenlager",
+    "Planung des Personalbedarfs",
+    "Festlegung von Beginn und Ende der täglichen Arbeitszeit",
+    "Errichtung einer neuen Lagerhalle",
+    "Gründung einer Filiale",
+    "Umwandlung der Rechtsform"
+   ],
+   "soll": [
+    1,
+    3
+   ],
+   "erkl": "Mitbestimmung (право совместного решения) in sozialen Angelegenheiten (§ 87 BetrVG): technische Überwachung, Arbeitszeit. Personalplanung: nur Information/Beratung. Bau, Filiale, Rechtsform: Unternehmerentscheidung."
+  },
+  {
+   "nr": 11,
+   "thema": "Jugendarbeitsschutz: Pausen",
+   "text": "Heiko Pateria, 17 Jahre alt, ist Auszubildender bei der Ecotec GmbH. Er erhält den folgenden Dienstplan. Er zeigt Frau Medstein seinen Dienstplan, da er der Meinung ist, dass an einem Tag der Beginn der ersten Pause gegen das Jugendarbeitsschutzgesetz verstößt.",
+   "anlage": "<b>Auszug Jugendarbeitsschutzgesetz – § 11 Ruhepausen, Aufenthaltsräume</b><br>(1) Jugendlichen müssen im voraus feststehende Ruhepausen von angemessener Dauer gewährt werden. Die Ruhepausen müssen mindestens betragen 1. 30 Minuten bei einer Arbeitszeit von mehr als viereinhalb bis zu sechs Stunden, 2. 60 Minuten bei einer Arbeitszeit von mehr als sechs Stunden. Als Ruhepause gilt nur eine Arbeitsunterbrechung von mindestens 15 Minuten.<br>(2) Die Ruhepausen müssen in angemessener zeitlicher Lage gewährt werden, frühestens eine Stunde nach Beginn und spätestens eine Stunde vor Ende der Arbeitszeit. Länger als viereinhalb Stunden hintereinander dürfen Jugendliche nicht ohne Ruhepause beschäftigt werden. (…)<br><br><table><tr><th>Kennziffer</th><th>Wochentag</th><th>Beginn und Ende der Arbeitszeit</th><th>Beginn der ersten Pause</th></tr><tr><td>1</td><td>Montag</td><td>08:00 bis 15:00 Uhr</td><td>11:30 Uhr</td></tr><tr><td>2</td><td>Dienstag</td><td>09:00 bis 17:00 Uhr</td><td>12:00 Uhr</td></tr><tr><td>3</td><td>Mittwoch</td><td>09:00 bis 17:00 Uhr</td><td>12:30 Uhr</td></tr><tr><td>4</td><td>Donnerstag</td><td>09:30 bis 17:00 Uhr</td><td>13:00 Uhr</td></tr><tr><td>5</td><td>Freitag</td><td>09:00 bis 17:30 Uhr</td><td>14:00 Uhr</td></tr></table>",
+   "frage": "An welchem der folgenden Wochentage verstößt die Pausenregelung gegen das JArbSchG?",
+   "typ": "eine",
+   "optionen": [
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag"
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Freitag: 09:00 bis 14:00 = 5 Stunden ohne Pause. Erlaubt sind höchstens 4,5 Stunden am Stück (§ 11 Abs. 2 JArbSchG). An den anderen Tagen beginnt die Pause nach 3 bis 3,5 Stunden."
+  },
+  {
+   "nr": 12,
+   "thema": "Ausbilder",
+   "text": "Die Ausbildungsleiterin der Ecotec GmbH, Sandra Wilke, schlägt vor, dass Frau Medstein mittelfristig als Ausbilderin arbeiten soll.",
+   "frage": "Welche der folgenden Voraussetzungen muss ein Ausbilder nach den gesetzlichen Regelungen u. a. erfüllen? Er muss …",
+   "typ": "eine",
+   "optionen": [
+    "Mitglied im zuständigen Prüfungsausschuss sein.",
+    "über eine notwendige persönliche und fachliche Eignung verfügen.",
+    "jährlich ein Weiterbildungsseminar der IHK besuchen.",
+    "Mitglied der Geschäftsleitung sein.",
+    "Mitglied einer Gewerkschaft sein."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Ausbilder (инструктор-наставник) brauchen persönliche und fachliche Eignung (§§ 28–30 BBiG), meist mit Ausbildereignungsprüfung (AEVO)."
+  },
+  {
+   "nr": 13,
+   "thema": "Fristlose Kündigung",
+   "text": "Sven Moritz, einem Mitarbeiter der Ecotec GmbH, wurde außerordentlich (fristlos) gekündigt.",
+   "frage": "Welche der folgenden Ursachen rechtfertigt eine außerordentliche (fristlose) Kündigung? Die außerordentliche (fristlose) Kündigung eines Arbeitnehmers kann u. a. erfolgen bei …",
+   "typ": "eine",
+   "optionen": [
+    "Arbeitsmangel.",
+    "Diebstahl von Eigentum der Ecotec GmbH.",
+    "eintägigem unentschuldigten Fehlen.",
+    "Tod eines Gesellschafters der Ecotec GmbH.",
+    "unverschuldeter Krankheit."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Fristlos nur aus wichtigem Grund (важная причина, § 626 BGB), z. B. Diebstahl. Einmal unentschuldigt fehlen → zuerst Abmahnung. Krankheit und Arbeitsmangel sind kein wichtiger Grund."
+  },
+  {
+   "nr": 14,
+   "thema": "Kündigungsgründe",
+   "text": "In der Ecotec GmbH sollen noch weiteren Mitarbeitern gekündigt werden. Nach Kündigungsschutzgesetz ist eine Kündigung nur möglich, wenn sie sozial gerechtfertigt ist.",
+   "frage": "Ordnen Sie die folgenden Fälle den Kündigungsgründen zu.",
+   "typ": "zuordnung",
+   "otitel": "Kündigungsgründe",
+   "optionen": [
+    "betriebsbedingte Kündigung",
+    "personenbedingte Kündigung",
+    "verhaltensbedingte Kündigung"
+   ],
+   "zeilen": {
+    "a": "Ein Mitarbeiter hat heimlich Kundendaten kopiert und an einen Konkurrenten der Ecotec GmbH weiterverkauft.",
+    "b": "Der Lohnbuchhalterin wird gekündigt, weil der Standort geschlossen und der Aufgabenbereich an das Steuerberatungsbüro der Ecotec GmbH abgegeben wird.",
+    "c": "Ein Programmierer erfüllt nicht mehr die Anforderungen an seine Stelle. Seine Arbeit ist häufig fehlerhaft. Eine Fortbildung lehnt er ab."
+   },
+   "soll": {
+    "a": 3,
+    "b": 1,
+    "c": 2
+   },
+   "erkl": "a) Fehlverhalten → verhaltensbedingt (по поведению). b) Arbeitsplatz fällt weg → betriebsbedingt. c) Er kann es nicht (mehr) → personenbedingt (по личным причинам)."
+  },
+  {
+   "nr": 15,
+   "thema": "Rechtsformen",
+   "kontext": "Situation zur 15. und 16. Aufgabe: Die Freunde Robert Meyer und Julia Dango wollen ein IT-Serviceunternehmen gründen. Beide wollen gleichberechtigte Geschäftsführer sein. Die Haftung soll sich auf das Gesellschaftsvermögen beschränken. Beide haben jeweils 20.000,00 EUR Eigenkapital, das sie in das Unternehmen einbringen können.",
+   "frage": "Welche der folgenden Rechtsformen ist für das Unternehmen als Rechtsform unter den genannten Bedingungen geeignet?",
+   "typ": "eine",
+   "optionen": [
+    "AG",
+    "KG",
+    "GmbH",
+    "eG",
+    "GbR"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Haftung nur mit Gesellschaftsvermögen + 40.000 EUR Kapital (mindestens 25.000 EUR) + zwei Geschäftsführer → GmbH. AG braucht 50.000 EUR; bei KG und GbR haften Personen privat."
+  },
+  {
+   "nr": 16,
+   "thema": "Kennzahlen",
+   "kontext": "Situation zur 15. und 16. Aufgabe: Robert Meyer und Julia Dango gründen ein IT-Serviceunternehmen mit zusammen 40.000,00 EUR Eigenkapital.",
+   "text": "Im ersten Geschäftsjahr hat das Unternehmen einen Gewinn von 3.140,00 EUR erzielt. Das eingesetzte Eigenkapital beträgt 40.000,00 EUR.",
+   "frage": "Ermitteln Sie die Eigenkapitalrentabilität in Prozent.",
+   "typ": "zahl",
+   "soll": "7,85",
+   "einheit": "%",
+   "erkl": "Eigenkapitalrentabilität (рентабельность собственного капитала) = Gewinn ÷ Eigenkapital × 100 = 3.140 ÷ 40.000 × 100 = 7,85 %."
+  },
+  {
+   "nr": 17,
+   "thema": "Kündigungsschutz",
+   "text": "Herr Meyer und Frau Dango haben Fragen bezüglich des gesetzlichen Kündigungsschutzes.",
+   "frage": "Welche der folgenden Personengruppen genießt keinen besonderen Kündigungsschutz?",
+   "typ": "eine",
+   "optionen": [
+    "Betriebsratsmitglieder",
+    "Schwerbehinderte",
+    "Werdende Mütter",
+    "Leitende Angestellte",
+    "Auszubildende nach der Probezeit"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Leitende Angestellte (руководящие сотрудники) haben sogar weniger Schutz. Besonderen Schutz haben Betriebsräte, Schwerbehinderte, Schwangere, Azubis nach der Probezeit."
+  },
+  {
+   "nr": 18,
+   "thema": "Mutterschutz",
+   "text": "Frau Dango bringt nach einer Schwangerschaft ein gesundes Kind zur Welt.",
+   "frage": "Wie viele Wochen Mutterschutz stehen Frau Dango nach der Entbindung laut Mutterschutzgesetz zu? (Zeitraum in Wochen)",
+   "typ": "zahl",
+   "soll": "8",
+   "einheit": "Wochen",
+   "erkl": "Nach der Geburt 8 Wochen Mutterschutz (декретный отпуск после родов), bei Früh- oder Mehrlingsgeburt 12 Wochen."
+  },
+  {
+   "nr": 19,
+   "thema": "GmbH",
+   "text": "Bei der Gründung des Unternehmens wurde von Herrn Meyer und Frau Dango die Rechtsform GmbH gewählt.",
+   "frage": "Welche der folgenden Aussagen trifft auf eine GmbH zu?",
+   "typ": "eine",
+   "optionen": [
+    "GmbH-Anteile werden an der Börse gehandelt.",
+    "Das Stammkapital der GmbH muss bei Gründung mindestens 25.000 EUR betragen.",
+    "Alle Gesellschafter der GmbH sind jederzeit zur Geschäftsführung berechtigt.",
+    "Die Gesellschafter der GmbH haften für Verbindlichkeiten mit ihrem Privatvermögen.",
+    "Der Aufsichtsrat leitet die GmbH."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Mindeststammkapital der GmbH: 25.000 EUR (минимальный уставный капитал). An der Börse sind Aktien (AG). Geleitet wird die GmbH vom Geschäftsführer."
+  },
+  {
+   "nr": 20,
+   "thema": "Wirtschaftlichkeit",
+   "text": "Für vier durchgeführten Aufträge des Unternehmens liegen folgende Zahlen vor:",
+   "anlage": "<table><tr><th>Auftrag Nr.</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><td>Aufwand (EUR)</td><td>300.000</td><td>80.000</td><td>80.000</td><td>100.000</td></tr><tr><td>Ertrag (EUR)</td><td>360.000</td><td>100.000</td><td>104.000</td><td>124.000</td></tr></table>",
+   "frage": "Welcher Auftrag wurde am wirtschaftlichsten abgewickelt? (Auftragsnummer)",
+   "typ": "eine",
+   "optionen": [
+    "Auftrag 1",
+    "Auftrag 2",
+    "Auftrag 3",
+    "Auftrag 4"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Wirtschaftlichkeit = Ertrag ÷ Aufwand: 1: 1,20 · 2: 1,25 · 3: 1,30 · 4: 1,24 → Auftrag 3."
+  },
+  {
+   "nr": 21,
+   "thema": "Organisation: Leitungssysteme",
+   "text": "Das Schema zeigt das Leitungssystem des neuen Unternehmens: oben drei Stellen, darunter fünf Stellen. Jede untere Stelle ist mit allen drei oberen Stellen verbunden.",
+   "frage": "Nach welchem der folgenden Leitungssysteme arbeitet das neue Unternehmen?",
+   "typ": "eine",
+   "optionen": [
+    "Einliniensystem",
+    "Matrixsystem",
+    "Mehrliniensystem",
+    "Stabliniensystem",
+    "Abteilungssystem"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Jede Stelle hat mehrere Vorgesetzte (Fachleute für verschiedene Bereiche) → Mehrliniensystem (многолинейная структура)."
+  },
+  {
+   "nr": 22,
+   "thema": "Existenzgründung",
+   "text": "Die finanzierende Bank erwartet von Existenzgründern die Vorlage eines Businessplanes.",
+   "frage": "Welche der folgenden Aussagen über einen Businessplan trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "Der Businessplan wird von der zuständigen IHK ausgestellt, in dem das Unternehmen gegründet wurde.",
+    "Der Businessplan wird im Handelsregister hinterlegt.",
+    "Der Businessplan muss nur bei der Gründung von Kapitalgesellschaften erstellt werden.",
+    "Der Businessplan ist nur bei der Aufnahme von Darlehen notwendig.",
+    "Im Businessplan werden u. a. die strategischen Ziele eines Unternehmens festgelegt."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Businessplan (бизнес-план): Idee, Markt, Ziele, Finanzplan — die Gründer schreiben ihn selbst."
+  },
+  {
+   "nr": 23,
+   "thema": "Kartelle",
+   "text": "Die Ecotec GmbH hat Probleme mit einem vermeintlichen Kartell.",
+   "frage": "Welche der folgenden Aussagen trifft auf Kartelle zu? Kartelle …",
+   "typ": "eine",
+   "optionen": [
+    "sind Absprachen auf gleicher Produktionsstufe, um durch Beschränkung des Wettbewerbs wirtschaftlich stärker zu sein.",
+    "schaffen günstigere Preise durch bessere Produktionsbedingungen.",
+    "sorgen für eine Sanierung des Betriebes durch eine innerbetriebliche Neuorganisation.",
+    "sorgen für eine völlige Haftungsbeschränkung.",
+    "werden von den zuständigen Handelskammern überprüft."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Kartell (картель): Firmen derselben Stufe sprechen sich ab und schränken den Wettbewerb ein. Die Firmen bleiben selbstständig. Kontrolle: Bundeskartellamt."
+  },
+  {
+   "nr": 24,
+   "thema": "Tarifvertrag",
+   "text": "Der Tarifvertrag für die IT-Branche wurde fristgemäß gekündigt. Es finden daraufhin Tarifverhandlungen statt.",
+   "frage": "Welche der folgenden Vertragsparteien schließen den Tarifvertrag ab?",
+   "typ": "mehrere",
+   "optionen": [
+    "Bundesministerium für Arbeit und Soziales",
+    "Arbeitgeberverband",
+    "Industrie- und Handelskammer",
+    "Berufsgenossenschaft",
+    "Gewerkschaft",
+    "Bundesagentur für Arbeit"
+   ],
+   "soll": [
+    2,
+    5
+   ],
+   "erkl": "Tarifparteien (стороны тарифного договора): Arbeitgeberverband (oder ein einzelner Arbeitgeber beim Haustarif) und Gewerkschaft."
+  },
+  {
+   "nr": 25,
+   "thema": "Tarifautonomie",
+   "text": "Die Tarifvertragsparteien haben das Recht, Löhne, Gehälter und andere Arbeitsbedingungen unter Beachtung der gesetzlichen Vorschriften selbstständig zu regeln.",
+   "frage": "Welcher der folgenden Fachbegriffe beschreibt dieses Recht zutreffend?",
+   "typ": "eine",
+   "optionen": [
+    "Generationenvertrag",
+    "Allgemeinverbindlichkeit",
+    "Freizügigkeit",
+    "Tarifautonomie",
+    "Tarifbindung"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Tarifautonomie (тарифная автономия): Arbeitgeber und Gewerkschaften verhandeln ohne Staat (Art. 9 Abs. 3 GG)."
+  },
+  {
+   "nr": 26,
+   "thema": "Tarifverhandlungen",
+   "text": "Eine Tarifvertragspartei beabsichtigt, nach verbindlicher Laufzeit des Tarifvertrages die Löhne neu zu verhandeln.",
+   "frage": "Bringen Sie die folgenden Schritte, die erfolgen müssen, damit ein Tarifvertrag zustande kommt, in die richtige Reihenfolge.",
+   "typ": "reihenfolge",
+   "zeilen": {
+    "a": "Schlichtung empfiehlt 3,5 % Lohnerhöhung",
+    "b": "Urabstimmung – Streik",
+    "c": "Ein Tarifvertragspartner kündigt den Gehaltstarifvertrag.",
+    "d": "Schlichter wird angerufen, Schlichtung",
+    "e": "Erste Tarifverhandlungen",
+    "f": "Der andere Tarifvertragspartner erklärt die Tarifverhandlungen für gescheitert.",
+    "g": "Schlichtung wird von den Tarifparteien angenommen"
+   },
+   "soll": {
+    "a": 6,
+    "b": 4,
+    "c": 1,
+    "d": 5,
+    "e": 2,
+    "f": 3,
+    "g": 7
+   },
+   "erkl": "c → e → f → b → d → a → g. Laut IHK-Lösung: Kündigung, Verhandlungen, Scheitern, Urabstimmung und Streik, dann Schlichtung (посредничество), Empfehlung, Annahme."
+  },
+  {
+   "nr": 27,
+   "thema": "Kündigungsfristen",
+   "text": "Ein Bekannter von Frau Medstein, Matthias Räwer, will sich beruflich verändern und hat sich daher bei der Ecotec GmbH beworben. Nach der Zusage seitens der Ecotec GmbH kündigt er sein altes Arbeitsverhältnis am <b>06.05.2023</b> schriftlich.",
+   "anlage": "<b>§ 622 BGB</b><br>(1) Das Arbeitsverhältnis eines Arbeiters oder eines Angestellten (Arbeitnehmers) kann mit einer Frist von vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats gekündigt werden.<br>(…)",
+   "frage": "Mit welchem Datum endet das alte Arbeitsverhältnis von Herrn Räwer frühestens? (Es gelten die gesetzlichen Regelungen.)",
+   "typ": "datum",
+   "soll": "15.06.2023",
+   "erkl": "06.05. + 4 Wochen = 03.06.2023. Nächster erlaubter Termin: der 15. oder das Monatsende → 15.06.2023. Für den Arbeitnehmer gilt immer nur die Grundfrist von 4 Wochen."
+  },
+  {
+   "nr": 28,
+   "thema": "Unfallversicherung",
+   "text": "Die gesetzliche Unfallversicherung bietet den Versicherten, wie auch Frau Medstein, verschiedene Leistungen.",
+   "frage": "Ordnen Sie die folgenden Beispiele den nachstehenden Leistungen der gesetzlichen Unfallversicherung zu.",
+   "typ": "zuordnung",
+   "otitel": "Beispiele",
+   "optionen": [
+    "Übernahme der Reha-Kosten nach einem Unfall auf dem direkten Weg zur Arbeit.",
+    "Finanzielle Unterstützung zum Lebensunterhalt des Versicherten im Fall der Arbeitsunfähigkeit wegen eines Arbeitsunfalls",
+    "Finanzielle Unterstützung der Pflegebedürftigkeit nach einem Arbeitsunfall",
+    "Rente bei einem dauerhaften Gesundheitsschaden durch einen Arbeitsunfall, wenn die Erwerbsfähigkeit um mindestens 20 % gemindert ist."
+   ],
+   "zeilen": {
+    "a": "Verletztengeld",
+    "b": "Heilbehandlungen",
+    "c": "Rente",
+    "d": "Pflegegeld"
+   },
+   "soll": {
+    "a": 2,
+    "b": 1,
+    "c": 4,
+    "d": 3
+   },
+   "erkl": "Verletztengeld (пособие пострадавшему) = Geld während der Arbeitsunfähigkeit. Heilbehandlung = Arzt, Reha. Rente bei dauerhaftem Schaden (ab 20 %). Pflegegeld bei Pflegebedürftigkeit."
+  },
+  {
+   "nr": 29,
+   "thema": "Nachhaltigkeit",
+   "text": "Auch für die Ecotec GmbH ist ein nachhaltiges Konzept wichtig.",
+   "frage": "Welche der folgenden Maßnahmen unterstützen Nachhaltigkeit?",
+   "typ": "mehrere",
+   "optionen": [
+    "Die Ecotec GmbH stellt für Mitarbeiter und Kunden Ladesäulen bereit.",
+    "Geschäftsreisen werden aufgrund der Zeitersparnis künftig nur noch mit dem Flugzeug erledigt.",
+    "Beim Einkauf werden die günstigsten Produkte bevorzugt, unabhängig von der Herkunft.",
+    "Dokumente sollen möglichst immer auf schweren Hochglanzpapieren ausgedruckt werden.",
+    "Bewerber werden nur eingestellt, wenn sie über 30 Jahre alt sind.",
+    "In der Kantine müssen Behälter für Getränke und Speisen „to go“ (zum Mitnehmen) aus nachwachsenden Rohstoffen hergestellt sein."
+   ],
+   "soll": [
+    1,
+    6
+   ],
+   "erkl": "Ladesäulen fördern E-Autos, Behälter aus nachwachsenden Rohstoffen (возобновляемое сырьё) schonen Ressourcen. Flugzeug, Hochglanzpapier und „nur billig“ belasten die Umwelt; Altersgrenze ist zudem diskriminierend."
+  },
+  {
+   "nr": 30,
+   "thema": "Umweltschutz",
+   "text": "Die Ecotec GmbH möchte nachhaltiger wirtschaften und die Umwelt weniger belasten.",
+   "frage": "Welche der folgenden Maßnahmen dient der Vermeidung bzw. Verringerung von Umweltbelastungen durch die Ecotec GmbH?",
+   "typ": "eine",
+   "optionen": [
+    "Die fällige Sanierung des Lagerdaches wird nicht zum Anlass genommen, eine moderne Photovoltaik-Anlage zu installieren.",
+    "Statt Kartons verwendet die Ecotec GmbH mehrlagiges Einwegplastik als Umverpackung.",
+    "Für den Konferenzraum wird extra flauschiger Teppich angeschafft, der hochwertig, aber nicht sehr robust oder langlebig ist.",
+    "Der Fuhrpark der Ecotec GmbH wird von Batterie-Elektrischen- und Hybrid-Fahrzeugen auf Dieselfahrzeuge umgestellt.",
+    "Die aus recyceltem Papier hergestellten Verpackungen werden nicht mehr aus dem europäischen Ausland bezogen, sondern von einem lokalen Hersteller."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Kurze Transportwege (короткие пути доставки) sparen Emissionen. Alle anderen Maßnahmen erhöhen die Umweltbelastung."
+  }
+ ]
+}

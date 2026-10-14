@@ -1,0 +1,274 @@
+{
+ "id": "ga1-2021-w",
+ "bereich": "ga1",
+ "termin": "Winter 2021/22",
+ "kurz": "GA1 W21/22",
+ "minuten": 90,
+ "schluessel": "u-form Lösungserläuterungen Winter 2021/22 (keine offiziellen ZPA-Lösungshinweise)",
+ "situation": "<p>Sie arbeiten im Projekt zur Entwicklung einer Software zur Terminvergabe in Arztpraxen mit. Dabei gehört es zu Ihren Aufgaben, bei der Planung Sicherheitsaspekte einzubeziehen sowie Teststrategien herauszuarbeiten.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"w21-ga1-bs-uc\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"w21-ga1-bs-klasse\">"
+  }
+ ],
+ "bilder": {
+  "w21-ga1-bs-uc": {
+   "seite": "w21/beleg-2",
+   "box": [
+    0.04,
+    0.055,
+    0.81,
+    0.3
+   ]
+  },
+  "w21-ga1-bs-klasse": {
+   "seite": "w21/beleg-3",
+   "box": [
+    0.03,
+    0.05,
+    0.795,
+    0.475
+   ]
+  },
+  "w21-ga1-2a": {
+   "seite": "w21/l-04",
+   "box": [
+    0.09,
+    0.105,
+    0.895,
+    0.655
+   ]
+  },
+  "w21-ga1-2b": {
+   "seite": "w21/l-05",
+   "box": [
+    0.11,
+    0.08,
+    0.93,
+    0.668
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Compiler/Interpreter, Bibliotheken, Versionsverwaltung",
+   "punkte": 20,
+   "themen": [
+    "Programmierung/OOP",
+    "Projektmanagement"
+   ],
+   "text": "<p>Bei der Vorbereitung des Projekts will das Projektteam grundlegende Fragen hinsichtlich der Programmierumgebung klären.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Zur Auswahl stehen Compiler- und Interpretersprachen. Sie sollen dem Projektteam die grundlegenden Unterschiede verdeutlichen.</p><p><b>aa) Nennen Sie je eine Programmiersprache für diese Kategorien.</b></p>",
+     "loesung": "<p>Compilersprachen: C, C++, Java, C#, Pascal<br>Interpretersprachen: APL, BASIC, Perl, Python, PHP, Ruby</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Zur Auswahl stehen Compiler- und Interpretersprachen. Sie sollen dem Projektteam die grundlegenden Unterschiede verdeutlichen.</p><p><b>ab) Beschreiben Sie den Unterschied zwischen diesen Kategorien.</b></p>",
+     "loesung": "<p>Der größte Unterschied zwischen Compiler- und Interpretersprachen ist der Zeitpunkt der Quellcode Übersetzung. Bei Interpretersprachen erfolgt die Übersetzung des Codes während der Laufzeit der Software und für jede Ausführung individuell. Bei Compilersprachen wird der Quellcode vor der Ausführung der Software übersetzt. Compilersprachen übersetzen hierbei den gesamten Code, während Interpreter zeilenbasiert übersetzen. Die Übersetzungseffizienz ist bei Interpretersprachen niedrig und bei Compilersprachen sehr hoch.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ac",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Zur Auswahl stehen Compiler- und Interpretersprachen. Sie sollen dem Projektteam die grundlegenden Unterschiede verdeutlichen.</p><p><b>ac) Nennen Sie jeweils einen Vorteil und einen Nachteil für die Verwendung eines Interpreters gegenüber einem Compiler.</b></p>",
+     "loesung": "<p><b>Vorteile eines Interpreters:</b></p><ul><li>Schnelles Testen der Software, da die Ausführung direkt erfolgt</li><li>Einfacher Entwicklungsprozess, Anpassungen können direkt ausgeführt werden und fehlerhafte Codestellen werden unmittelbar gefunden</li></ul><p><b>Nachteile eines Interpreters:</b></p><ul><li>Schlechte Performance während der Ausführung</li><li>Ineffizienter Übersetzungsprozess</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Ihr Entwicklungsteam hat sich für eine Programmiersprache entschieden. Für diese gibt es eine umfassende Klassenbibliothek, die Sie im Projekt auch einsetzen sollen.</p><p><b>ba) Beschreiben Sie einen Vorteil und einen Nachteil, der sich durch den Einsatz einer Bibliothek ergibt.</b></p>",
+     "loesung": "<p><b>Vorteile durch den Einsatz von Bibliotheken:</b></p><ul><li>Bestimmte Funktionen / Methoden / Konstruktoren zu benötigten Programmbestandteilen sind bereits vorhanden und können direkt genutzt werden. Hierdurch wird der Entwicklungsaufwand mitunter erheblich verringert.</li><li>Bei Änderungen an Bibliotheksbestandteilen muss die Anwendung nicht verändert werden. Bibliotheken können also unabhängig vom Hauptprogramm gewartet werden.</li></ul><p><b>Nachteile durch den Einsatz von Bibliotheken:</b></p><ul><li>Die zur Verfügung stehenden Bibliotheken müssen erst analysiert und bewertet werden. Außerdem muss eine Einarbeitung in die Bibliotheken erfolgen. Das Projektteam benötigt hierfür zusätzliche Zeit.</li><li>Bibliotheken verursachen ggf. einen Overhead im Programmablauf, die Laufzeit der Software wird hierdurch negativ beeinflusst.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Ihr Entwicklungsteam hat sich für eine Programmiersprache entschieden. Für diese gibt es eine umfassende Klassenbibliothek, die Sie im Projekt auch einsetzen sollen.</p><p>Sie planen, die Bibliothek um eigene Klassen zu erweitern.</p><p><b>bb) Beschreiben Sie drei Aspekte, die Sie in der Dokumentation dieser Erweiterung beachten müssen.</b></p>",
+     "loesung": "<ul><li>Zusammenfassende Beschreibung der Klasse</li><li>Auflistung der Konstruktoren und Methoden</li><li>Auflistung von vererbten Methoden</li><li>Benennung der implementierten Interfaces</li><li>Benennung der Anwendungsvoraussetzungen der Methoden</li><li>Beschreibung aller Methoden im Detail (Datentyp und Bedeutung der Parameter und Rückgabewerte, Wirkung der Methode)</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Ihr Entwicklungsteam besteht aus zehn Personen. Das Team schlägt vor, bei der Entwicklung mit einer Versionsverwaltung zu arbeiten.</p><p><b>Entscheiden Sie sich, ob Sie dem Vorschlag zustimmen, und geben Sie eine fachliche Begründung.</b></p>",
+     "loesung": "<p>Der Vorschlag des Teams ist zu befürworten. Besonders bei einem Entwicklungsteam von zehn Personen ist eine Versionsverwaltung essenziell für die gemeinschaftliche Entwicklung von Programmcode.</p><p>Hierdurch können einzelne Programmbestandteile unabhängig entwickelt und anschließend zu einer Hauptversion zusammengeführt werden. Änderungen werden protokolliert und individuelle Absprachen und Hinweise werden programmtechnisch unterstützt. Ohne eine Versionsverwaltung könnten außerdem widersprüchliche Änderungen am Programmcode nicht rückgängig gemacht werden.</p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Anwendungsfalldiagramm, ER-Modell",
+   "punkte": 30,
+   "themen": [
+    "UML",
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "uc"
+     ],
+     "text": "<p>Im Zuge des Projektes sollen Sie ein Anwendungsfalldiagramm erstellen, um eine übersichtliche Darstellung für das gesamte Team zu erhalten. Bei der Analyse ergeben sich folgende Anforderungen:</p><p><i>Mit dem Buchungssystem können Patienten und Angestellte der Ärzte arbeiten. Für das Buchungssystem ist ein vorheriger Login erforderlich. Patienten können Termine anfragen. Patienten können bei Bedarf aus einer Liste eine spezielle Terminart (Röntgen, EKG …) auswählen. Ein Angestellter muss eine Terminanfrage abschließen (bestätigen oder absagen). Hierzu muss dieser sich zuerst eine Liste aller Terminanfragen anzeigen lassen. Bei dem Abschließen der Terminanfrage muss der Angestellte, wenn eine spezielle Terminart ausgewählt wurde, die Ressourcen planen.</i></p><p><b>Erstellen Sie ein Anwendungsfalldiagramm anhand der beschriebenen Anforderungen.</b></p>",
+     "loesung": "<img data-bild=\"w21-ga1-2a\"><p>In Worten: Systemgrenze <b>Buchungssystem</b>; Akteure <b>Patient</b> und <b>Angestellter</b> (außerhalb der Systemgrenze).</p><ul><li>Patient — Termin anfragen</li><li>Angestellter — Terminanfrage abschließen</li><li>Termin anfragen «include» Login</li><li>Terminanfrage abschließen «include» Login</li><li>Terminanfrage abschließen «include» Anfrageliste anzeigen</li><li>Terminart auswählen «extend» Termin anfragen (Notiz: Wenn Spezialtermin)</li><li>Ressourcen planen «extend» Terminanfrage abschließen (Notiz: Wenn Spezialtermin)</li></ul><p>Mithilfe der Conditions kann angegeben werden, unter welchen Umständen eine Erweiterung des Anwendungsfalles erfolgt. Hierdurch werden die Erweiterungsbeziehungen (extend) genauer spezifiziert. Bei zwingenden Beziehungen bzw. Enthält-Beziehungen (include) sind Conditions nicht notwendig. In diesem Fall wurde auf Extension Points verzichtet. Die include-/ sowie extend-Assoziationen sind über gestrichelte Linien darzustellen. Die Pfeilspitze von extend-Assoziationen zeigt immer auf den Anwendungsfall der u. U. erweitert werden kann. Bei include-Assoziationen zeigt die Pfeilspitze immer auf den eingeschlossenen weiteren Anwendungsfall.</p><p>Die Akteure besitzen keine Vererbungsbeziehung.</p><p>Es ist darauf zu achten, dass alle Anwendungsfälle innerhalb der Systemgrenzen liegen. Die Akteure befinden sich außerhalb der Systemgrenze und greifen auf bestimmte Anwendungsfälle zu. Die Beziehung zwischen Akteur und Anwendungsfall wird mithilfe einer durchgezogenen Linie dargestellt.</p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Prüfe: Systemgrenze, 2 Akteure (ohne Vererbung), 6 Anwendungsfälle, 3 include- und 2 extend-Beziehungen (extend mit Bedingung), Verbindungen Akteur – Anwendungsfall."
+    },
+    {
+     "nr": "b",
+     "punkte": 16,
+     "eingabe": "zeichnen",
+     "text": "<p>Für die Terminverwaltung soll ein Datenbankmodell verwendet werden. Dazu soll zuerst die Terminbuchung dargestellt werden. Folgende Situationsbeschreibung liegt Ihnen vor.</p><p><i>In einer Gemeinschaftspraxis arbeiten Ärzte, von denen jeder die Betreuung mehrerer Patienten übernimmt. Dabei hat jeder Patient einen Arzt, der ihn für gewöhnlich betreut. Ärzte können sich gegenseitig vertreten. Für eine Vertretung wird das Start- und das Enddatum erfasst.</i></p><p><i>Ein Patient kann mehrere Termine vereinbaren, wobei zu einem Termin immer genau ein Patient zugeordnet wird. Zu einem geplanten Termin eines Patienten wird ein beliebiger Arzt zugewiesen. Generell kann ein Arzt aber mehrere Termine zugewiesen bekommen. Zu einem Termin wird die benötigte Terminart gespeichert. Eine Terminart kann mehreren Terminen zugewiesen werden. Zu jeder Terminart werden die entsprechenden Ressourcen hinterlegt. Dabei kann eine Ressource bei mehreren Terminarten ausgewählt werden.</i></p><p><b>Erstellen Sie ein ER-Modell für die Gemeinschaftspraxis. Verzichten Sie auf weitere Attribute außer den genannten.</b></p>",
+     "loesung": "<img data-bild=\"w21-ga1-2b\"><p>In Worten: Entitäten <b>Arzt</b>, <b>Patient</b>, <b>Termin</b>, <b>Terminart</b>, <b>Ressourcen</b>.</p><ul><li>Arzt m — <i>vertritt</i> — n Arzt (rekursive Beziehung) mit den Attributen Startdatum und Enddatum</li><li>Arzt 1 — <i>betreut</i> — n Patient</li><li>Arzt 1 — <i>wird zugewiesen</i> — n Termin</li><li>Patient 1 — <i>vereinbart</i> — n Termin</li><li>Terminart 1 — <i>hat</i> — n Termin</li><li>Terminart n — <i>hat</i> — m Ressourcen</li></ul><p>Entitäten (Geschäftsobjekte) werden durch Rechtecke gekennzeichnet. Eine Entität kann Beziehungen zu weiteren Entitäten besitzen. Die Beziehungen werden hierbei über Rauten dargestellt. Beziehungen spezifizieren die Art und Weise, wie Entitäten miteinander in Verbindung stehen und werden durch ein oder mehrere Schlüsselwörter beschrieben. Eine Beziehung kann unter Umständen Eigenschaften (Attribute) besitzen. Diese Eigenschaften enthalten - im Kontext der Entität - Informationen, die von Interesse sind (z. B. das Start- und Enddatum der Ärztevertretung).</p><p>Mithilfe der Kardinalitäten wird für jeden Beziehungstyp festgelegt, wie viele Entitäten eines Typs mit genau einer Entität des anderen Typs in Beziehung stehen können / müssen. Bei einer Kardinalität n:m können beliebig viele Entitäten auf beiden Seiten in Beziehung zueinanderstehen.</p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Prüfe: 5 Entitäten, 6 Beziehungen mit Kardinalitäten, davon die rekursive Beziehung „vertritt“ (n:m) mit den Attributen Startdatum und Enddatum."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Usability, Barrierefreiheit, Klassendiagramm, HTTP 404",
+   "punkte": 25,
+   "themen": [
+    "Software-Ergonomie",
+    "UML",
+    "Qualität & Test"
+   ],
+   "text": "<p>Die Webapplikation für die Terminbuchung soll nun entwickelt werden.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 8,
+     "eingabe": "gross",
+     "text": "<p>Wesentliche Kriterien für die Akzeptanz einer Website sind Usability und positive User Experience.</p><p><b>aa) Verdeutlichen Sie anhand von vier verschiedenen Punkten, was darunter zu verstehen ist.</b></p>",
+     "loesung": "<p>Eine Webapplikation weist eine gute Usability sowie eine positive User Experience auf, wenn:</p><ul><li>durch die Navigation und das Nachladen neuer Elemente keine oder nur sehr kurze Ladezeiten auftreten.</li><li>alle relevanten Inhalte auf der Website schnell und intuitiv auffindbar sind.</li><li>durch ein modernes und responsive gestaltetes Design die Benutzbarkeit auf unterschiedlichen Endgeräten gewährleistet wird (Abhängig von Bildschirmgröße und Auflösung passen sich die Inhalte der Webapplikation automatisch an).</li><li>anklickbare Elemente als solche erkennbar sind (z. B. Mithilfe von alternativen Cursors oder durch offensichtliche Hyperlinks).</li><li>die Corporate-Design-Anforderungen berücksichtigt wurden.</li><li>praktische Funktionen wie eine übergreifende Hilfe oder eine intelligente Autovervollständigung genutzt werden.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Wesentliche Kriterien für die Akzeptanz einer Website sind Usability und positive User Experience.</p><p>Die Benutzung soll außerdem barrierefrei möglich sein.</p><p><b>ab) Erläutern Sie den Begriff.</b></p>",
+     "loesung": "<p>Eine Webapplikation ist dann barrierefrei, wenn sich Einschränkungen beim Bewegen, Hören, Sehen oder Verarbeiten von Inhalten nicht negativ auf die Nutzung der Applikation ausüben. Menschen mit Behinderung sollen durch barrierefreie Inhalte ohne Probleme mit allen erforderlichen Funktionen arbeiten können. Um eine Webapplikation barrierefrei zu gestalten, sollte sich z. B. die Schriftfarbe klar erkennbar von der Hintergrundfarbe abheben, Videos und Bilder sollten über Alternativtexte erläutert werden und Buttons sowie Formulare sind textuell zu beschreiben und sollten ohne Zuhilfenahme einer Maus zu bedienen sein.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ac",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Wesentliche Kriterien für die Akzeptanz einer Website sind Usability und positive User Experience.</p><p>Im Verlauf der Entwicklung soll die Güte der Usability periodisch überprüft und verbessert werden.</p><p><b>ac) Beschreiben Sie zwei Möglichkeiten zum Test der Benutzerfreundlichkeit.</b></p>",
+     "loesung": "<ul><li>Dokumentation und Beobachtung von Testusern durch automatisierte Tools, hierbei werden z. B. Mausklicks und Navigationspfade aufgezeichnet</li><li>Einholung von Feedback mehrerer Testuser mittels Online-Fragebogen oder Benutzertagebuch</li><li>Stellen konkreter Aufgaben an Testuser unter Messung des Blickverlaufes (Eye-Tracking)</li><li>Auswertung verschiedener Web-Reports und Log-Files (Web Controlling)</li><li>Erstellung und Auswertung mehrerer Anwendungsfälle, Card Sorting, Personas etc.</li><li>Telefonische Interviews</li><li>Moderierte Testsitzungen (Remote Usability Testing)</li><li>Unmoderierte Testsitzungen (Unmoderated Remote Usability Testing)</li><li>Guerilla-UX-Testing: Unbeteiligte und zuvor nicht ausgewählte Personen(-kreise) werden in der Öffentlichkeit angesprochen und anhand eines Prototyps um deren Meinung gefragt</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 7,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Für den Login eines Benutzers <i>(User)</i> der Website ist das Klassenmodell wie folgt beschrieben:</p><ul><li>Der Benutzer meldet sich mit E-Mail-Adresse <i>(email)</i> und Passwort <i>(password)</i> an.</li><li>Das eingegebene Passwort wird verschlüsselt <i>(encryptPassword)</i> und zurückgegeben.</li><li>Das verschlüsselte Passwort wird mit dem in der Datenbank hinterlegten verglichen <i>(validatePassword)</i>. Bei Übereinstimmung wird true zurückgegeben.</li></ul><p><b>Erstellen Sie das entsprechende UML-Klassendiagramm. Verwenden Sie die vorgegebenen kursiv gedruckten Bezeichner und geben Sie passende Datentypen an.</b></p>",
+     "loesung": "<table><tr><th>User</th></tr><tr><td>email : String<br>password : String</td></tr><tr><td>encryptPassword(String) : String<br>validatePassword(String) : Boolean</td></tr></table><p>Die Sichtbarkeit der Attribute und Methoden muss gemäß Angabe nicht spezifiziert werden. Die Parameter der Methoden sind jeweils als String zu kennzeichnen, der Rückgabewert der Methode „validatePassword(String)“ muss Boolean sein, da gemäß Angabe der Rückgabewert „true“ erwartet wird.</p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Prüfe: Klassenname User, 2 Attribute mit Datentyp, 2 Methoden mit Parametertyp und Rückgabetyp (validatePassword liefert Boolean)."
+    },
+    {
+     "nr": "c",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Beim Test der Applikation wird im Browser <i>HTTP Error 404</i> angezeigt.</p><p><b>Beschreiben Sie eine mögliche Fehlerursache.</b></p>",
+     "loesung": "<ul><li>Der Domain-Namen der Applikation ist nicht (mehr) vorhanden</li><li>Die URL kann mittels DNS nicht in eine IP umgewandelt werden</li><li>Der Hostserver der Applikation ist nicht erreichbar</li><li>Der Tester hat die URL falsch in die Adresszeile des Browsers eingegeben</li><li>Die URL wurde beim Redesign fehlerhaft angelegt</li></ul>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Verschlüsselung, Code-Signierung, Qualitätssicherung, Tests",
+   "punkte": 25,
+   "themen": [
+    "IT-Sicherheit",
+    "Qualität & Test"
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Um Daten zwischen der Client-Anwendung und dem Server nicht unverschlüsselt zu übertragen, wird vom Projektleiter vorgeschlagen, diese mit dem Lizenzschlüssel der Software zu verschlüsseln.</p><p><b>aa) Beschreiben Sie das oben dargestellte Verschlüsselungsverfahren.</b></p>",
+     "loesung": "<p>Bei der Verschlüsselung mittels des Lizenzschlüssels wird eine <b>symmetrische Verschlüsselung</b> angewandt. Bei dieser wird ein identischer Schlüssel für die Ver- und Entschlüsselung der Daten verwendet. Alle Kommunikationsteilnehmer verwenden den gleichen Schlüssel.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Um Daten zwischen der Client-Anwendung und dem Server nicht unverschlüsselt zu übertragen, wird vom Projektleiter vorgeschlagen, diese mit dem Lizenzschlüssel der Software zu verschlüsseln.</p><p><b>ab) Beschreiben Sie ein alternatives Verschlüsselungsverfahren mit jeweils einem Vor- und Nachteil, welches die zuvor genannten Probleme löst.</b></p>",
+     "loesung": "<p>Alternative Verschlüsselungsverfahren wären hybride oder asymmetrische Verfahren.</p><p>Bei der <b>asymmetrischen Verschlüsselung</b> wird ein Schlüsselpaar erzeugt, welches aus einem öffentlichen sowie einem privaten Schlüssel besteht. Der öffentliche Schlüssel ist nicht geheim und kann verbreitet werden. Der private Schlüssel ist geheim zu halten und verbleibt beim Besitzer des Schlüsselpaares. Mithilfe des öffentlichen Schlüssels erfolgt die Verschlüsselung von Daten. Der private Schlüssel kann vom Besitzer genutzt werden, um Daten, die mit dem zugehörigen öffentlichen Schlüssel verschlüsselt wurden, zu entschlüsseln.</p><p><b>Vorteile:</b></p><ul><li>Alle beteiligten Einheiten können nur die für sie bestimmten Inhalte lesen (erhöhte Sicherheit)</li><li>Einfache Realisierung einer elektronischen Unterschrift</li></ul><p><b>Nachteile:</b></p><ul><li>Niedrige Geschwindigkeit</li><li>Es wird eine vertrauenswürdige Stelle (Trusted Third Party) benötigt, um die Authentizität des Senders / Empfängers zu verifizieren</li></ul><p>Bei der <b>hybriden Verschlüsselung</b> geht es darum die Vorteile der asymmetrischen und symmetrischen Verschlüsselung zu kombinieren. Der Schlüsselaustausch erfolgt durch asymmetrische Verfahren, während die eigentliche Verschlüsselung der Datenübertragung mit einem symmetrischen Verfahren durchgeführt wird.</p><p><b>Vorteile:</b></p><ul><li>Erhöhte Sicherheit durch asymmetrischen Schlüsselaustausch</li><li>Sehr hohe Effizienz da nur initial eine kleine Datenmenge asymmetrisch verschlüsselt werden muss</li></ul><p><b>Nachteile:</b></p><ul><li>Es wird eine vertrauenswürdige Stelle (Trusted Third Party) benötigt, um die Authentizität des Senders / Empfängers zu verifizieren</li><li>Im Gegensatz zu symmetrischen und asymmetrischen Verfahren entsteht ein relativ großer Overhead beim Handshake für die Übertragung</li></ul><p><i>Anmerkung: Die Aufgabe nennt vorher keine Probleme ausdrücklich; gemeint sind die Schwächen des Verfahrens aus aa) (alle Kommunikationsteilnehmer verwenden den gleichen Schlüssel).</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Bei Ihrem Test der Client-Anwendung bekommen Sie beim Start die Meldung „Das Programm stammt aus einer nicht vertrauenswürdigen Quelle. Wollen Sie dieses Programm trotzdem öffnen?“</p><p><b>ba) Beschreiben Sie, was diese Meldung bedeutet.</b></p>",
+     "loesung": "<p>Die Meldung entsteht, weil das Programm beim Kompilieren offenbar nicht signiert wurde. Hierdurch ist die Quelle des Programms kein verifizierter Herausgeber und das Betriebssystem stuft das Programm als nicht vertrauenswürdig ein.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Bei Ihrem Test der Client-Anwendung bekommen Sie beim Start die Meldung „Das Programm stammt aus einer nicht vertrauenswürdigen Quelle. Wollen Sie dieses Programm trotzdem öffnen?“</p><p><b>bb) Beschreiben Sie, wie Sie das Problem durch eine Änderung in den Kompilierungs-Einstellungen beheben können.</b></p>",
+     "loesung": "<p>Um dieses Problem zu beheben, muss das Programm im Rahmen der Kompilierung auch digital signiert werden. Das hierfür zu verwendende Zertifikat wird häufig vom Hersteller des Betriebssystems ausgegeben.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ca",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Die Geschäftsführung Ihres Unternehmens beauftragt Sie, sich über Möglichkeiten zur Qualitätssicherung von Software zu informieren und Vorschläge zu unterbreiten.</p><p>Bei Ihrer Recherche finden Sie die ISO Normen 9126 und 25010, welche Qualitätsmerkmale von Softwareanwendungen beschreiben. Zwei der darin beschriebenen Merkmale sind „Effizienz“ und „Änderbarkeit“.</p><p><b>ca) Beschreiben Sie, was unter diesen beiden Qualitätsmerkmalen zu verstehen ist.</b></p>",
+     "loesung": "<p><b>Effizienz:</b><br>Durch die Effizienz wird die Wirksamkeit und Wirtschaftlichkeit einer Softwareanwendung beschrieben. Die erwarteten Programmfunktionen sollten mit möglichst wenig Rechenleistung erreicht werden. Je effizienter eine Software ist, desto größer ist die Bandbreite an möglicher Hardwareunterstützung (bezogen auf die Hardwareressourcen).</p><p><b>Änderbarkeit:</b><br>Durch die Änderbarkeit wird die Eigenschaft einer Softwareanwendung beschrieben, geändert werden zu können bzw. änderbar zu sein. Änderbare Software muss durch individuelle Programmierung verändert werden können. Je strukturierter eine Software hierbei aufgebaut ist, umso leichter können spätere Änderungen umgesetzt werden.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 5,
+     "eingabe": "gross",
+     "text": "<p>Die Geschäftsführung Ihres Unternehmens beauftragt Sie, sich über Möglichkeiten zur Qualitätssicherung von Software zu informieren und Vorschläge zu unterbreiten.</p><p>Aus Ihrem Projektteam kommt der Vorschlag, zur Qualitätssicherung ausschließlich automatische Code-Reviews und Unit-Tests einzusetzen.</p><p><b>cb) Nehmen Sie Stellung zu diesem Vorschlag und begründen Sie fachlich Ihren Standpunkt.</b></p>",
+     "loesung": "<p>Für eine bestmögliche Testabdeckung sollten immer alle zur Verfügung stehenden Testarten genutzt werden. Neben White-Box-Tests sollten also auch funktionale und nicht-funktionale Testarten angewandt werden. Durch automatische Code-Reviews und Unit-Tests werden lediglich Fehlerzustände entdeckt und behoben. Mithilfe weiterer dynamischer Tests (Black-Box-Testverfahren, Erfahrungsbasierte Testverfahren) können Fehlerwirkungen auf allen Teststufen gefunden werden. Um die Qualität der Software weiter zu verbessern, sollten demnach noch intuitive, explorative sowie checklistenbasierte Tests durchgeführt werden. Außerdem könnten mittels der Äquivalenzklassenbildung, Grenzwertanalyse oder einem Zustandsübergangstest die funktionalen und nicht-funktionalen Spezifikationen des Testobjektes detailliert ausgewertet werden.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Sie schlagen Ihrem Projektteam vor, zusätzlich für jeden Release einen Black-Box- und White-Box-Test durchzuführen.</p><p><b>Beschreiben Sie diese beiden Testarten.</b></p>",
+     "loesung": "<p><b>Black-Box-Test:</b></p><p>Spezifikationsbasiertes Verfahren, um funktionale und nicht-funktionale Spezifikationen mit dem Testobjekt abzugleichen. Die interne Struktur des Testobjektes wird hierbei nicht berücksichtigt bzw. ist nicht bekannt. Der Test wird deshalb häufig von Testern durchgeführt, die nicht an der Entwicklung beteiligt sind. Ein beispielhaftes Verfahren hierfür wäre der anwendungsfallbasierte Test.</p><p><b>White-Box-Testverfahren:</b></p><p>Strukturbasiertes Verfahren, um die Abläufe innerhalb des Testobjektes zu testen. Der Test wird deshalb häufig von Entwicklern durchgeführt. Beispielhafte Verfahren hierfür wären der Entscheidungstest oder der Anweisungstest.</p>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}

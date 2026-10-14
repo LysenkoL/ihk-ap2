@@ -15,25 +15,25 @@
       why:"На бумаге приходится быть исполнителем программы. Переменная хранит текущее значение; присваивание заменяет его.",
       terms:[["Zuweisung","присваивание"],["Bedingung","условие"],["Rückgabewert","возвращаемое значение"],["ganzzahlig","целочисленный"]],
       prompt:"x = 4\ny = x + 3\nx = y * 2\nGib x und y aus.",
-      steps:["После первой строки x=4.","y получает 4+3=7. Это значение, а не постоянная связь с x.","Новый x=7×2=14. Значение y остаётся7.","Вывод: x=14, y=7."],
+      steps:["После первой строки x = 4.","y получает 4 + 3 = 7. Это значение, а не постоянная связь с x.","Новый x = 7 × 2 = 14. Значение y остаётся 7.","Вывод: x = 14, y = 7."],
       control:"a = 5; b = a + 2; a = b - 1. Запиши конечные a и b и объясни, почему b не меняется.",
       rubric:["a=6, b=7.","b получил значение в момент присваивания; изменение a не пересчитывает b."], answer:"a = 6; b = 7. Die Zuweisung speichert den berechneten Wert.",
       theory:"algo", practice:"test-trace"},
     {id:"schleifen", topic:"algo", area:"GA2 · основа", title:"Циклы, списки и RETURN", minutes:20,
       why:"Частая ошибка — понять отдельные строки, но потерять порядок повторений. Таблица состояния помогает увидеть весь проход.",
-      terms:[["Durchlauf","одна итерация"],["Index","позиция элемента, часто начиная с0"],["Abbruchbedingung","условие завершения"],["leeres Feld","пустой массив"]],
+      terms:[["Durchlauf","одна итерация"],["Index","позиция элемента, часто начиная с 0"],["Abbruchbedingung","условие завершения"],["leeres Feld","пустой массив"]],
       prompt:"summe = 0\nFÜR JEDEN wert IN [3, 8, 2]\n  WENN wert > 2: summe = summe + wert\nRÜCKGABE summe",
-      steps:["До цикла summe=0.","wert=3: условие истинно, summe=3.","wert=8: условие истинно, summe=11.","wert=2: 2>2 ложно, summe остаётся11.","RETURN после цикла возвращает11. Внутри цикла он завершил бы функцию слишком рано.","Для пустого списка тело не выполняется; результат0."],
+      steps:["До цикла summe = 0.","wert = 3: условие истинно, summe = 3.","wert = 8: условие истинно, summe = 11.","wert = 2: 2 > 2 ложно, summe остаётся 11.","RETURN после цикла возвращает 11. Внутри цикла он завершил бы функцию слишком рано.","Для пустого списка тело не выполняется; результат 0."],
       control:"Поменяй вход на [2, 5, 4]. Что вернётся? Что изменится при >= 2?",
-      rubric:["При >2 результат9.","При >=2 результат11.","Понимаю разницу на граничном значении2."], answer:"Mit > 2: 9. Mit >= 2: 11. Der Wert 2 wird nur im zweiten Fall addiert.",
+      rubric:["При > 2 результат 9.","При >= 2 результат 11.","Понимаю разницу на граничном значении 2."], answer:"Mit > 2: 9. Mit >= 2: 11. Der Wert 2 wird nur im zweiten Fall addiert.",
       theory:"algo", practice:"algo-return"},
     {id:"tests", topic:"tests", area:"GA2 · практика", title:"Проверять код, а не угадывать", minutes:20,
       why:"Тест состоит из входа и заранее ожидаемого результата. Удачный пример проверяет правило и его границы.",
       terms:[["Soll-Ergebnis","ожидаемый результат"],["Ist-Ergebnis","фактический результат"],["Grenzwert","граничное значение"],["Äquivalenzklasse","группа входов с одинаковым поведением"]],
       prompt:"Eine Bestellung ist ab 50 Euro versandkostenfrei. Darunter kostet der Versand 5 Euro. Nennen Sie Grenzwerttests.",
-      steps:["Граница —50. Предполагаем суммы с точностью до цента.","49,99 → доставка5. 50,00 → доставка0. 50,01 → доставка0.","Тест на50 отличает >=50 от >50.","Отрицательная сумма — отдельный вопрос валидации, которого условие не определяет. Не придумывай нужное поведение без требования."],
-      control:"Вход — целое число от1 до10 включительно. Назови минимальный набор для границ валидного диапазона и соседних невалидных значений.",
-      rubric:["0 — невалидно;1 — валидно.","10 — валидно;11 — невалидно.","Для каждого входа назван ожидаемый результат."], answer:"0: ungültig; 1: gültig; 10: gültig; 11: ungültig.",
+      steps:["Граница — 50. Предполагаем суммы с точностью до цента.","49,99 → доставка 5. 50,00 → доставка 0. 50,01 → доставка 0.","Тест на 50 отличает >= 50 от > 50.","Отрицательная сумма — отдельный вопрос валидации, которого условие не определяет. Не придумывай нужное поведение без требования."],
+      control:"Вход — целое число от 1 до 10 включительно. Назови минимальный набор для границ валидного диапазона и соседних невалидных значений.",
+      rubric:["0 — невалидно; 1 — валидно.","10 — валидно; 11 — невалидно.","Для каждого входа назван ожидаемый результат."], answer:"0: ungültig; 1: gültig; 10: gültig; 11: ungültig.",
       theory:"tests", practice:"test-grenzen"},
     {id:"sql", topic:"sql", area:"GA2 · данные", title:"SQL: сначала нужные строки", minutes:20,
       why:"Начни с результата: какие столбцы нужны, из каких таблиц и какие строки подходят. Только потом собирай запрос.",
@@ -66,7 +66,7 @@
       why:"Запрос — это не только URL. Нужны действие, вход, успешный результат и поведение при ошибке.",
       terms:[["Anfrage","запрос"],["Antwort","ответ"],["Statuscode","код результата"],["idempotent","повтор одинакового запроса не создаёт новый эффект"]],
       prompt:"Entwerfen Sie eine REST-Schnittstelle zum Abrufen einer Bestellung anhand ihrer ID.",
-      steps:["GET /bestellungen/{id}: чтение, без изменения заказа.","Успех:200 иJSON с данными заказа.","Нет заказа с такимid:404. Без входа в систему может потребоваться401.","Сервер проверяет право пользователя читать именно этот заказ. Скрыть кнопку в интерфейсе недостаточно."],
+      steps:["GET /bestellungen/{id}: чтение, без изменения заказа.","Успех: 200 и JSON с данными заказа.","Нет заказа с таким ID: 404. Без входа в систему может потребоваться 401.","Сервер проверяет право пользователя читать именно этот заказ. Скрыть кнопку в интерфейсе недостаточно."],
       control:"Почему нельзя считать скрытую кнопку удаления защитой API?",
       rubric:["К API можно обратиться напрямую.","Сервер должен проверять аутентификацию и право на действие/объект.","Проверка клиента нужна для удобства, не заменяет серверную."],
       answer:"Die API kann direkt aufgerufen werden. Deshalb prüft der Server bei jeder Anfrage die Identität und die Berechtigung für das betroffene Objekt.",
@@ -84,7 +84,7 @@
       why:"«Удобно» и «быстро» трудно проверить. Хорошее требование называет пользователя, действие, условия и наблюдаемый результат.",
       terms:[["Anforderung","требование"],["Akzeptanzkriterium","критерий приёмки"],["funktional","что делает система"],["nichtfunktional","с каким качеством/ограничениями"]],
       prompt:"Der Auftraggeber sagt: Die Suche soll schnell sein. Formulieren Sie ein prüfbares Kriterium.",
-      steps:["Нужно уточнить данные, нагрузку и способ измерения.","Пример согласуемого критерия: Bei100gleichzeitigen Nutzern und50.000Artikeln werden95%der Suchanfragen in höchstens2Sekunden beantwortet.","Числа в примере — предложение для согласования, не данные заказчика.","Укажи тестовую среду, иначе результаты несопоставимы."],
+      steps:["Нужно уточнить данные, нагрузку и способ измерения.","Пример согласуемого критерия: Bei 100 gleichzeitigen Nutzern und 50.000 Artikeln werden 95 % der Suchanfragen in höchstens 2 Sekunden beantwortet.","Числа в примере — предложение для согласования, не данные заказчика.","Укажи тестовую среду, иначе результаты несопоставимы."],
       control:"Пользователь должен сбрасывать пароль. Напиши один критерий приёмки, включая поведение одноразовой ссылки.",
       rubric:["Указан запрос сброса и ожидаемое действие.","Ссылка ограничена по времени и становится недействительной после использования.","Повторное использование отклоняется; конкретный срок согласуется."],
       answer:"Nach erfolgreichem Zurücksetzen lässt sich derselbe Link nicht erneut verwenden. Nach der vereinbarten Gültigkeitsdauer wird der Link ebenfalls abgelehnt.",
@@ -92,10 +92,10 @@
     {id:"wirtschaft", topic:"anforderungen", area:"GA1", title:"Обосновать техническое решение", minutes:20,
       why:"На экзамене важен ход решения: критерий → сравнение → вывод с учётом условия. Самая дешёвая покупка не всегда даёт минимальные общие расходы.",
       terms:[["einmalige Kosten","разовые затраты"],["laufende Kosten","регулярные затраты"],["Nutzwert","полезность по выбранным критериям"],["Amortisation","окупаемость"]],
-      prompt:"Lösung A kostet einmalig1.200Euro und monatlich40Euro. Lösung B kostet einmalig600Euro und monatlich70Euro. Vergleichen Sie die Kosten nach24Monaten.",
-      steps:["Один горизонт сравнения:24месяца.","A:1.200+24×40=2.160Euro.","B:600+24×70=2.280Euro.","Aдешевле на120Euro за24месяца. При другом горизонте вывод может измениться.","Если спрашивают рекомендацию, назови и другие заданные критерии: обслуживание, риски, функциональность."],
+      prompt:"Lösung A kostet einmalig 1.200 Euro und monatlich 40 Euro. Lösung B kostet einmalig 600 Euro und monatlich 70 Euro. Vergleichen Sie die Kosten nach 24 Monaten.",
+      steps:["Один горизонт сравнения: 24 месяца.","A: 1.200 + 24 × 40 = 2.160 Euro.","B: 600 + 24 × 70 = 2.280 Euro.","A дешевле на 120 Euro за 24 месяца. При другом горизонте вывод может измениться.","Если спрашивают рекомендацию, назови и другие заданные критерии: обслуживание, риски, функциональность."],
       control:"Через сколько месяцев расходы A и B сравняются? Покажи уравнение.",
-      rubric:["1200+40m=600+70m.","600=30m, m=20месяцев.","До20месяцев дешевлеB, после20—A (при этих расходах)."], answer:"Nach20Monaten: beide2.000Euro. Die Kostendifferenz beträgt600Euro, der monatliche Unterschied30Euro.",
+      rubric:["1200 + 40m = 600 + 70m.","600 = 30m, m = 20 месяцев.","До 20 месяцев дешевле B, после 20 — A (при этих расходах)."], answer:"Nach 20 Monaten: beide 2.000 Euro. Die Kostendifferenz beträgt 600 Euro, der monatliche Unterschied 30 Euro.",
       practice:"ga1-kosten"},
     {id:"wiso", topic:"wiso", area:"WiSo", title:"WiSo: разобраться в ситуации", minutes:10,
       why:"Начинай с пяти вопросов и разбирай каждую ошибку. Похожее слово в ответе — ещё не доказательство. Отмечай отдельно непонятный немецкий и незнакомое правило.",
@@ -108,12 +108,66 @@
     {id:"projekt", topic:"projekt", area:"Проект", title:"Проект и устное объяснение", minutes:20,
       why:"Проект проверяет твои решения и понимание. Полезно заранее учиться объяснять, почему выбран подход, как проверен результат и что сделала лично ты.",
       terms:[["Ausgangssituation","исходная ситуация"],["Projektziel","цель проекта"],["Abgrenzung","границы работ"],["Soll-Ist-Vergleich","сравнение плана и результата"]],
-      prompt:"Erklären Sie in90Sekunden: Welches Problem löst Ihr Projekt, welche Alternative haben Sie verworfen und wie überprüfen Sie den Erfolg?",
+      prompt:"Erklären Sie in 90 Sekunden: Welches Problem löst Ihr Projekt, welche Alternative haben Sie verworfen und wie überprüfen Sie den Erfolg?",
       steps:["1. Кому и чем мешала исходная проблема.","2. Что измеримо улучшится и что не входит в проект.","3. Какие варианты рассматривались и по какому критерию выбран один.","4. Как тесты, результаты и сравнение с целью подтверждают итог.","Сроки заявки, документации и требования оформления запиши по своей IHK. Дата письменной части не заменяет эти сроки."],
       control:"Запиши три предложения про свой проект: проблема, решение с причиной, проверка. Если проект ещё не выбран — запиши, какие данные нужно уточнить.",
       rubric:["Есть конкретная проблема и получатель результата.","Решение связано с причиной, названа альтернатива.","Есть способ проверить успех и границы собственной работы."],
       answer:"Unser Projekt löst … für … . Wir wählen …, weil …; die Alternative … erfüllt … nicht. Den Erfolg prüfen wir anhand von … ."}
   ];
+  /* «Что тренировать»: как часто тема встречается в 20 оригинальных GA
+     (10 GA1 + 10 GA2, W21/22–S26, privat/quellen). pruef — в скольких из 10
+     экзаменов есть задание с этой темой; punkte — сумма баллов таких заданий
+     за 10 экзаменов / 10 (задание с двумя темами считается в обеих).
+     units — занятия маршрута, praxis — задача практики, quiz — тема квиза,
+     satz — тема Kurzfragen, trainer — sql | algo, lern — темы наблюдений. */
+  const training = [
+    {id:"ga1-uml", bereich:"GA1", name:"UML-диаграммы", de:"Use-Case, Aktivität, Klassen, Sequenz, Zustand", pruef:10, punkte:41,
+      units:["uml"], praxis:"uml-usecase", quiz:"oop", lern:["oop"]},
+    {id:"ga1-pm", bereich:"GA1", name:"Управление проектом", de:"Projektmanagement, Netzplan, Vorgehensmodelle", pruef:10, punkte:31,
+      units:[], quiz:"vorgehen", satz:"Projektmanagement", lern:["vorgehen"]},
+    {id:"ga1-db", bereich:"GA1", name:"Базы данных: модель и нормализация", de:"ER-Modell, Normalisierung, Redundanz", pruef:8, punkte:23,
+      units:["sql"], trainer:"normal", quiz:"integritaet", satz:"Daten", lern:["normalisierung","integritaet"]},
+    {id:"ga1-sicher", bereich:"GA1", name:"ИТ-безопасность", de:"Verschlüsselung, Hash, Zugriffsschutz", pruef:8, punkte:20,
+      units:["sicherheit"], praxis:"ga1-sicherheit", quiz:"krypto", satz:"IT-Sicherheit", lern:["auth","krypto"]},
+    {id:"ga1-test", bereich:"GA1", name:"Качество и тесты", de:"Testarten, Testfälle, Qualitätsmerkmale", pruef:6, punkte:20,
+      units:["tests"], praxis:"test-klassen", quiz:"tests", satz:"Qualität & Test", lern:["tests"]},
+    {id:"ga1-oop", bereich:"GA1", name:"Программирование и ООП", de:"Klassen, Vererbung, Entwurfsmuster", pruef:7, punkte:18,
+      units:["oop"], praxis:"oop-kapselung", quiz:"oop", satz:"Programmierung", lern:["oop","muster"]},
+    {id:"ga1-englisch", bereich:"GA1", name:"Английский текст", de:"englischer Text → Antworten auf Deutsch", pruef:6, punkte:15,
+      units:[], hinweis:"Отдельного тренажёра нет. Тренируй на оригинальных бланках GA1: прочитай английский текст, выпиши 3–5 ключевых слов и отвечай короткими немецкими предложениями."},
+    {id:"ga1-ergo", bereich:"GA1", name:"Эргономика и доступность", de:"Softwareergonomie, Usability, Barrierefreiheit", pruef:6, punkte:14,
+      units:[], quiz:"ergonomie", lern:["ergonomie"]},
+    {id:"ga2-algo", bereich:"GA2", name:"Алгоритмы и псевдокод", de:"Pseudocode, Schleifen, Arrays, Rückgabewert", pruef:10, punkte:34,
+      units:["variablen","schleifen"], praxis:"algo-return", trainer:"code", quiz:"algo", satz:"Algorithmen", lern:["algo"]},
+    {id:"ga2-sql", bereich:"GA2", name:"SQL-запросы", de:"SELECT, JOIN, GROUP BY, INSERT/UPDATE/DELETE", pruef:10, punkte:26,
+      units:["sql"], trainer:"sql", lern:["sql"]},
+    {id:"ga2-db", bereich:"GA2", name:"Модель данных и 3NF", de:"relationales Modell, Schlüssel, 3. Normalform", pruef:7, punkte:20,
+      units:["sql"], trainer:"normal", quiz:"integritaet", satz:"Daten", lern:["normalisierung","integritaet"]},
+    {id:"ga2-uml", bereich:"GA2", name:"UML: поведение", de:"Aktivität, Sequenz, Zustand", pruef:7, punkte:17,
+      units:["uml"], praxis:"uml-sequenz", quiz:"oop", lern:["oop"]},
+    {id:"ga2-test", bereich:"GA2", name:"Тесты: Schreibtischtest, покрытие", de:"Schreibtischtest, Überdeckung, Testfälle", pruef:6, punkte:14,
+      units:["tests"], praxis:"test-trace", quiz:"tests", satz:"Qualität & Test", lern:["tests"]}
+  ];
+  /* Задания из 20 GA по темам (метки «themen» в privat/quellen): [модуль, номер задания, баллы, id частей].
+     Только ссылки — тексты заданий берутся из личного пакета во время работы. */
+  const aufgaben = {
+    "ga1-uml":[["ga1-2026-s","2",28,["ga1-2026-s-2a","ga1-2026-s-2ba","ga1-2026-s-2bb","ga1-2026-s-2bc"]],["ga1-2025-w","2",27,["ga1-2025-w-2a","ga1-2025-w-2ba","ga1-2025-w-2bb"]],["ga1-2025-s","3",29,["ga1-2025-s-3a","ga1-2025-s-3b"]],["ga1-2025-s","4",24,["ga1-2025-s-4aa","ga1-2025-s-4ab","ga1-2025-s-4b","ga1-2025-s-4c","ga1-2025-s-4d"]],["ga1-2024-w","3",25,["ga1-2024-w-3a","ga1-2024-w-3ba","ga1-2024-w-3bb","ga1-2024-w-3bc"]],["ga1-2024-w","4",25,["ga1-2024-w-4a","ga1-2024-w-4ba","ga1-2024-w-4bb","ga1-2024-w-4bc"]],["ga1-2024-s","2",25,["ga1-2024-s-2a","ga1-2024-s-2b","ga1-2024-s-2c","ga1-2024-s-2d","ga1-2024-s-2e"]],["ga1-2024-s","3",29,["ga1-2024-s-3a","ga1-2024-s-3ba","ga1-2024-s-3bb","ga1-2024-s-3bc"]],["ga1-2023-w","2",28,["ga1-2023-w-2aa","ga1-2023-w-2ab","ga1-2023-w-2ac","ga1-2023-w-2b","ga1-2023-w-2c"]],["ga1-2023-s","2",26,["ga1-2023-s-2a","ga1-2023-s-2ba","ga1-2023-s-2bb","ga1-2023-s-2bc","ga1-2023-s-2bd"]],["ga1-2023-s","3",26,["ga1-2023-s-3aa","ga1-2023-s-3ab","ga1-2023-s-3ac","ga1-2023-s-3ba","ga1-2023-s-3bb","ga1-2023-s-3c"]],["ga1-2022-w","4",30,["ga1-2022-w-4a","ga1-2022-w-4b","ga1-2022-w-4c"]],["ga1-2022-s","3",30,["ga1-2022-s-3a","ga1-2022-s-3ba","ga1-2022-s-3bb","ga1-2022-s-3bc","ga1-2022-s-3ca","ga1-2022-s-3cb"]],["ga1-2021-w","2",30,["ga1-2021-w-2a","ga1-2021-w-2b"]],["ga1-2021-w","3",25,["ga1-2021-w-3aa","ga1-2021-w-3ab","ga1-2021-w-3ac","ga1-2021-w-3b","ga1-2021-w-3c"]]],
+    "ga1-pm":[["ga1-2026-s","1",27,["ga1-2026-s-1a","ga1-2026-s-1b","ga1-2026-s-1c","ga1-2026-s-1d","ga1-2026-s-1e"]],["ga1-2025-w","1",24,["ga1-2025-w-1a","ga1-2025-w-1b","ga1-2025-w-1c"]],["ga1-2025-s","1",20,["ga1-2025-s-1a","ga1-2025-s-1b","ga1-2025-s-1c"]],["ga1-2025-s","3",29,["ga1-2025-s-3a","ga1-2025-s-3b"]],["ga1-2024-w","1",24,["ga1-2024-w-1a","ga1-2024-w-1b","ga1-2024-w-1c","ga1-2024-w-1d"]],["ga1-2024-s","1",23,["ga1-2024-s-1a","ga1-2024-s-1b","ga1-2024-s-1c","ga1-2024-s-1d"]],["ga1-2023-w","1",25,["ga1-2023-w-1a","ga1-2023-w-1b","ga1-2023-w-1c","ga1-2023-w-1d"]],["ga1-2023-s","1",24,["ga1-2023-s-1a","ga1-2023-s-1b","ga1-2023-s-1c","ga1-2023-s-1d","ga1-2023-s-1e"]],["ga1-2022-w","1",28,["ga1-2022-w-1a","ga1-2022-w-1b","ga1-2022-w-1ca","ga1-2022-w-1cb","ga1-2022-w-1d","ga1-2022-w-1e","ga1-2022-w-1f"]],["ga1-2022-w","2",22,["ga1-2022-w-2a","ga1-2022-w-2ba","ga1-2022-w-2bb","ga1-2022-w-2ca","ga1-2022-w-2cb","ga1-2022-w-2cc"]],["ga1-2022-s","1",20,["ga1-2022-s-1a","ga1-2022-s-1b"]],["ga1-2022-s","2",25,["ga1-2022-s-2a","ga1-2022-s-2b","ga1-2022-s-2c"]],["ga1-2021-w","1",20,["ga1-2021-w-1aa","ga1-2021-w-1ab","ga1-2021-w-1ac","ga1-2021-w-1ba","ga1-2021-w-1bb","ga1-2021-w-1c"]]],
+    "ga1-db":[["ga1-2025-w","4",24,["ga1-2025-w-4a","ga1-2025-w-4b","ga1-2025-w-4c"]],["ga1-2025-s","2",27,["ga1-2025-s-2a","ga1-2025-s-2b","ga1-2025-s-2c"]],["ga1-2024-s","4",23,["ga1-2024-s-4a","ga1-2024-s-4ba","ga1-2024-s-4bb"]],["ga1-2023-w","3",25,["ga1-2023-w-3a","ga1-2023-w-3b","ga1-2023-w-3ca","ga1-2023-w-3cb"]],["ga1-2023-w","4",22,["ga1-2023-w-4a","ga1-2023-w-4ba","ga1-2023-w-4bb","ga1-2023-w-4bc"]],["ga1-2023-s","4",24,["ga1-2023-s-4a","ga1-2023-s-4b","ga1-2023-s-4ca","ga1-2023-s-4cb"]],["ga1-2022-w","4",30,["ga1-2022-w-4a","ga1-2022-w-4b","ga1-2022-w-4c"]],["ga1-2022-s","2",25,["ga1-2022-s-2a","ga1-2022-s-2b","ga1-2022-s-2c"]],["ga1-2021-w","2",30,["ga1-2021-w-2a","ga1-2021-w-2b"]]],
+    "ga1-sicher":[["ga1-2026-s","3",22,["ga1-2026-s-3aa","ga1-2026-s-3ab","ga1-2026-s-3ba","ga1-2026-s-3bb","ga1-2026-s-3bc","ga1-2026-s-3bd"]],["ga1-2025-w","3",25,["ga1-2025-w-3aa","ga1-2025-w-3ab","ga1-2025-w-3ba","ga1-2025-w-3bb","ga1-2025-w-3bc","ga1-2025-w-3c"]],["ga1-2025-s","2",27,["ga1-2025-s-2a","ga1-2025-s-2b","ga1-2025-s-2c"]],["ga1-2024-s","1",23,["ga1-2024-s-1a","ga1-2024-s-1b","ga1-2024-s-1c","ga1-2024-s-1d"]],["ga1-2023-s","4",24,["ga1-2023-s-4a","ga1-2023-s-4b","ga1-2023-s-4ca","ga1-2023-s-4cb"]],["ga1-2022-w","1",28,["ga1-2022-w-1a","ga1-2022-w-1b","ga1-2022-w-1ca","ga1-2022-w-1cb","ga1-2022-w-1d","ga1-2022-w-1e","ga1-2022-w-1f"]],["ga1-2022-s","4",25,["ga1-2022-s-4a","ga1-2022-s-4b","ga1-2022-s-4c"]],["ga1-2021-w","4",25,["ga1-2021-w-4aa","ga1-2021-w-4ab","ga1-2021-w-4ba","ga1-2021-w-4bb","ga1-2021-w-4ca","ga1-2021-w-4cb","ga1-2021-w-4d"]]],
+    "ga1-test":[["ga1-2026-s","4",23,["ga1-2026-s-4a","ga1-2026-s-4b","ga1-2026-s-4ca","ga1-2026-s-4cb"]],["ga1-2025-w","3",25,["ga1-2025-w-3aa","ga1-2025-w-3ab","ga1-2025-w-3ba","ga1-2025-w-3bb","ga1-2025-w-3bc","ga1-2025-w-3c"]],["ga1-2024-s","1",23,["ga1-2024-s-1a","ga1-2024-s-1b","ga1-2024-s-1c","ga1-2024-s-1d"]],["ga1-2023-w","1",25,["ga1-2023-w-1a","ga1-2023-w-1b","ga1-2023-w-1c","ga1-2023-w-1d"]],["ga1-2023-s","1",24,["ga1-2023-s-1a","ga1-2023-s-1b","ga1-2023-s-1c","ga1-2023-s-1d","ga1-2023-s-1e"]],["ga1-2023-s","2",26,["ga1-2023-s-2a","ga1-2023-s-2ba","ga1-2023-s-2bb","ga1-2023-s-2bc","ga1-2023-s-2bd"]],["ga1-2021-w","3",25,["ga1-2021-w-3aa","ga1-2021-w-3ab","ga1-2021-w-3ac","ga1-2021-w-3b","ga1-2021-w-3c"]],["ga1-2021-w","4",25,["ga1-2021-w-4aa","ga1-2021-w-4ab","ga1-2021-w-4ba","ga1-2021-w-4bb","ga1-2021-w-4ca","ga1-2021-w-4cb","ga1-2021-w-4d"]]],
+    "ga1-oop":[["ga1-2025-s","4",24,["ga1-2025-s-4aa","ga1-2025-s-4ab","ga1-2025-s-4b","ga1-2025-s-4c","ga1-2025-s-4d"]],["ga1-2024-w","4",25,["ga1-2024-w-4a","ga1-2024-w-4ba","ga1-2024-w-4bb","ga1-2024-w-4bc"]],["ga1-2024-s","3",29,["ga1-2024-s-3a","ga1-2024-s-3ba","ga1-2024-s-3bb","ga1-2024-s-3bc"]],["ga1-2023-s","2",26,["ga1-2023-s-2a","ga1-2023-s-2ba","ga1-2023-s-2bb","ga1-2023-s-2bc","ga1-2023-s-2bd"]],["ga1-2022-w","2",22,["ga1-2022-w-2a","ga1-2022-w-2ba","ga1-2022-w-2bb","ga1-2022-w-2ca","ga1-2022-w-2cb","ga1-2022-w-2cc"]],["ga1-2022-s","3",30,["ga1-2022-s-3a","ga1-2022-s-3ba","ga1-2022-s-3bb","ga1-2022-s-3bc","ga1-2022-s-3ca","ga1-2022-s-3cb"]],["ga1-2021-w","1",20,["ga1-2021-w-1aa","ga1-2021-w-1ab","ga1-2021-w-1ac","ga1-2021-w-1ba","ga1-2021-w-1bb","ga1-2021-w-1c"]]],
+    "ga1-englisch":[["ga1-2026-s","3",22,["ga1-2026-s-3aa","ga1-2026-s-3ab","ga1-2026-s-3ba","ga1-2026-s-3bb","ga1-2026-s-3bc","ga1-2026-s-3bd"]],["ga1-2025-w","2",27,["ga1-2025-w-2a","ga1-2025-w-2ba","ga1-2025-w-2bb"]],["ga1-2025-s","4",24,["ga1-2025-s-4aa","ga1-2025-s-4ab","ga1-2025-s-4b","ga1-2025-s-4c","ga1-2025-s-4d"]],["ga1-2023-w","2",28,["ga1-2023-w-2aa","ga1-2023-w-2ab","ga1-2023-w-2ac","ga1-2023-w-2b","ga1-2023-w-2c"]],["ga1-2023-s","2",26,["ga1-2023-s-2a","ga1-2023-s-2ba","ga1-2023-s-2bb","ga1-2023-s-2bc","ga1-2023-s-2bd"]],["ga1-2022-s","2",25,["ga1-2022-s-2a","ga1-2022-s-2b","ga1-2022-s-2c"]]],
+    "ga1-ergo":[["ga1-2026-s","4",23,["ga1-2026-s-4a","ga1-2026-s-4b","ga1-2026-s-4ca","ga1-2026-s-4cb"]],["ga1-2025-s","2",27,["ga1-2025-s-2a","ga1-2025-s-2b","ga1-2025-s-2c"]],["ga1-2024-s","4",23,["ga1-2024-s-4a","ga1-2024-s-4ba","ga1-2024-s-4bb"]],["ga1-2023-w","4",22,["ga1-2023-w-4a","ga1-2023-w-4ba","ga1-2023-w-4bb","ga1-2023-w-4bc"]],["ga1-2022-w","3",20,["ga1-2022-w-3a","ga1-2022-w-3b","ga1-2022-w-3ca","ga1-2022-w-3cb","ga1-2022-w-3cc"]],["ga1-2021-w","3",25,["ga1-2021-w-3aa","ga1-2021-w-3ab","ga1-2021-w-3ac","ga1-2021-w-3b","ga1-2021-w-3c"]]],
+    "ga2-algo":[["ga2-2026-s","1",30,["ga2-2026-s-1a","ga2-2026-s-1b"]],["ga2-2025-w","1",30,["ga2-2025-w-1a","ga2-2025-w-1b"]],["ga2-2025-s","1",25,["ga2-2025-s-1a"]],["ga2-2024-w","1",25,["ga2-2024-w-1a"]],["ga2-2024-s","2",20,["ga2-2024-s-2a","ga2-2024-s-2b"]],["ga2-2023-w","2",25,["ga2-2023-w-2a"]],["ga2-2023-s","2",25,["ga2-2023-s-2a"]],["ga2-2023-s","3",25,["ga2-2023-s-3aa","ga2-2023-s-3ab","ga2-2023-s-3ba","ga2-2023-s-3bb","ga2-2023-s-3bc"]],["ga2-2022-w","1",25,["ga2-2022-w-1a","ga2-2022-w-1b","ga2-2022-w-1c","ga2-2022-w-1d"]],["ga2-2022-w","2",25,["ga2-2022-w-2aa","ga2-2022-w-2ab","ga2-2022-w-2ac","ga2-2022-w-2b","ga2-2022-w-2c"]],["ga2-2022-s","1",30,["ga2-2022-s-1a"]],["ga2-2021-w","1",25,["ga2-2021-w-1a","ga2-2021-w-1b","ga2-2021-w-1c"]],["ga2-2021-w","2",25,["ga2-2021-w-2a"]]],
+    "ga2-sql":[["ga2-2026-s","4",25,["ga2-2026-s-4a","ga2-2026-s-4b","ga2-2026-s-4ca","ga2-2026-s-4cb"]],["ga2-2025-w","4",25,["ga2-2025-w-4a","ga2-2025-w-4b","ga2-2025-w-4c","ga2-2025-w-4d","ga2-2025-w-4e"]],["ga2-2025-s","4",27,["ga2-2025-s-4a","ga2-2025-s-4b","ga2-2025-s-4c","ga2-2025-s-4d","ga2-2025-s-4e","ga2-2025-s-4f"]],["ga2-2024-w","4",21,["ga2-2024-w-4a","ga2-2024-w-4b","ga2-2024-w-4c"]],["ga2-2024-s","4",30,["ga2-2024-s-4a","ga2-2024-s-4b","ga2-2024-s-4c","ga2-2024-s-4d"]],["ga2-2023-w","4",25,["ga2-2023-w-4a","ga2-2023-w-4b","ga2-2023-w-4c","ga2-2023-w-4d"]],["ga2-2023-s","4",25,["ga2-2023-s-4a","ga2-2023-s-4b","ga2-2023-s-4c","ga2-2023-s-4d"]],["ga2-2022-w","4",25,["ga2-2022-w-4a","ga2-2022-w-4b","ga2-2022-w-4c"]],["ga2-2022-s","4",30,["ga2-2022-s-4aa","ga2-2022-s-4ab","ga2-2022-s-4ac","ga2-2022-s-4ba","ga2-2022-s-4bb","ga2-2022-s-4bc","ga2-2022-s-4bd"]],["ga2-2021-w","4",25,["ga2-2021-w-4a","ga2-2021-w-4b","ga2-2021-w-4c","ga2-2021-w-4d","ga2-2021-w-4e"]]],
+    "ga2-db":[["ga2-2026-s","3",25,["ga2-2026-s-3a","ga2-2026-s-3b"]],["ga2-2025-s","3",23,["ga2-2025-s-3a"]],["ga2-2024-w","3",29,["ga2-2024-w-3a","ga2-2024-w-3ba","ga2-2024-w-3bb","ga2-2024-w-3bc"]],["ga2-2023-w","3",25,["ga2-2023-w-3a","ga2-2023-w-3b"]],["ga2-2022-w","3",25,["ga2-2022-w-3a","ga2-2022-w-3b","ga2-2022-w-3c"]],["ga2-2022-s","3",20,["ga2-2022-s-3a"]],["ga2-2022-s","4",30,["ga2-2022-s-4aa","ga2-2022-s-4ab","ga2-2022-s-4ac","ga2-2022-s-4ba","ga2-2022-s-4bb","ga2-2022-s-4bc","ga2-2022-s-4bd"]],["ga2-2021-w","3",25,["ga2-2021-w-3a"]]],
+    "ga2-uml":[["ga2-2026-s","2",20,["ga2-2026-s-2a","ga2-2026-s-2ba","ga2-2026-s-2bb"]],["ga2-2025-w","2",25,["ga2-2025-w-2a"]],["ga2-2025-s","2",25,["ga2-2025-s-2a","ga2-2025-s-2ba","ga2-2025-s-2bb","ga2-2025-s-2bc"]],["ga2-2024-s","1",25,["ga2-2024-s-1a","ga2-2024-s-1ba","ga2-2024-s-1bb","ga2-2024-s-1ca","ga2-2024-s-1cb"]],["ga2-2023-w","1",25,["ga2-2023-w-1a"]],["ga2-2023-s","1",25,["ga2-2023-s-1a"]],["ga2-2021-w","1",25,["ga2-2021-w-1a","ga2-2021-w-1b","ga2-2021-w-1c"]]],
+    "ga2-test":[["ga2-2025-w","3",20,["ga2-2025-w-3aa","ga2-2025-w-3ab","ga2-2025-w-3ba","ga2-2025-w-3bb"]],["ga2-2025-s","2",25,["ga2-2025-s-2a","ga2-2025-s-2ba","ga2-2025-s-2bb","ga2-2025-s-2bc"]],["ga2-2024-s","3",25,["ga2-2024-s-3aa","ga2-2024-s-3ab","ga2-2024-s-3b","ga2-2024-s-3c"]],["ga2-2023-s","3",25,["ga2-2023-s-3aa","ga2-2023-s-3ab","ga2-2023-s-3ba","ga2-2023-s-3bb","ga2-2023-s-3bc"]],["ga2-2022-w","2",25,["ga2-2022-w-2aa","ga2-2022-w-2ab","ga2-2022-w-2ac","ga2-2022-w-2b","ga2-2022-w-2c"]],["ga2-2022-s","2",20,["ga2-2022-s-2aa","ga2-2022-s-2ab","ga2-2022-s-2ba","ga2-2022-s-2bb","ga2-2022-s-2bc"]]]
+  };
+  training.forEach(t => { t.aufgaben = aufgaben[t.id] || []; });
   root.AP2_LERNWEG = units;
+  root.AP2_TRAINING = training;
+  Object.defineProperty(units, "training", {value: training});
   if(typeof module === "object" && module.exports) module.exports = units;
 })(typeof window !== "undefined" ? window : globalThis);

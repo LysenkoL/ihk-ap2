@@ -110,7 +110,7 @@ window.GENSTART = (function () {
       name: "SQL-Trainer", info: "48 Aufgaben an einer echten Datenbank, mit Prüfung",
       worte: "sql select join group by having insert update delete create table datenbank abfrage ap2 view unterabfrage" },
     { key: "pseudo", id: "pseudoBox", gruppe: "ueben", ikon: "pseudo",
-      name: "Pseudocode selbst schreiben", info: "Algorithmen schreiben, prüfen lassen",
+      name: "Pseudocode selbst schreiben", info: "Schreiben, Hinweise prüfen und selbst vergleichen",
       worte: "pseudocode algorithmus schleife programmieren code schreibtischtest" },
     { key: "algo", id: "algoBox", gruppe: "ueben", ikon: "sortieren",
       name: "Sortieren & Suchen Schritt für Schritt", info: "Bubble, Selection, Insertion Sort, binäre und lineare Suche — jedes Mal neue Zahlen",
@@ -677,6 +677,9 @@ window.GENSTART = (function () {
     kachel("Gemischte Übung", "GA1/GA2 · 90 Min. · kein Prüfungsnachweis", simulation, "sim");
     if (window.GENLERNEN) kachel("Themen & Quiz", (window.AP2_THEMEN || []).length + " Themen · erklärt", () => window.GENLERNEN.oeffnen(), "lernen");
     if (window.GENALGO) kachel("Sortieren & Suchen", "Schritt für Schritt", () => window.GENALGO.oeffnen(), "sortieren");
+    if (window.GENCODE) kachel("Код с автопроверкой", "Entwickeln Sie eine Methode · 10 задач", () => window.GENCODE.oeffnen(), "pseudo");
+    if (window.GENNORMAL) kachel("Нормализация 1NF → 3NF", "Шаг за шагом · 4 примера", () => window.GENNORMAL.oeffnen(), "er");
+    if (window.GENOPUEB) kachel("Что от меня хотят?", "Operatoren: nennen, erläutern …", () => window.GENOPUEB.oeffnen(), "check");
     if (window.GENSATZ) kachel("Kurzfragen", z.satzKarten ? z.satzKarten + " Fragen · 5 Min." : "5 Minuten", satzbau, "satz");
     if (z.analyseOffen != null) kachel("Fehler durchgehen", z.analyseOffen ? z.analyseOffen + " offen" : "nichts offen", journal, "journal", z.analyseOffen >= 5);
     else kachel("Fehlerjournal", z.fehlerOffen ? z.fehlerOffen + " offen" : "nichts offen", journal, "journal", z.fehlerOffen >= 5);

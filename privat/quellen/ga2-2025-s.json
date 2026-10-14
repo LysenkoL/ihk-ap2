@@ -1,0 +1,239 @@
+{
+ "id": "ga2-2025-s",
+ "bereich": "ga2",
+ "termin": "Sommer 2025",
+ "kurz": "GA2 S25",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Sommer 2025)",
+ "situation": "<p>Die FIT Medical AG (FIT) ist Betreibergesellschaft mehrerer Kliniken. Der extreme Kostendruck im Gesundheitswesen zwang die FIT in der Vergangenheit zur Schließung mehrerer kleiner Kliniken und zur Bündelung der Ressourcen. Weiteres Potenzial zu Verbesserungen der Effizienz und der Rentabilität wird in den inhomogenen IT-Infrastrukturen (Hardware und Software) der Kliniken gesehen.<br>Im Zuge der jährlichen Diskussion der Risikostrategie zwischen Vorstand und Aufsichtsrat wurde eine strategische Neuausrichtung der FIT beschlossen.</p><p>Die AMAG Soft GmbH ist ein Anbieter von IT-Serviceleistungen sowie Cloud-Angeboten im Gesundheitswesen. Sie sind Mitarbeiter der AMAG Soft GmbH. Ihre Aufgabe besteht darin, in Projekten zur digitalen Transformation im Gesundheitswesen für die FIT AG mitzuarbeiten.</p>",
+ "beleg": [
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s25-beleg-akt\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "seq",
+   "titel": "Belegsatz: UML-Sequenzdiagramm",
+   "html": "<img data-bild=\"s25-beleg-seq\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s25-ga2-2a": {
+   "seite": "s25/x2-05",
+   "box": [
+    0.06,
+    0.02,
+    0.85,
+    0.13
+   ]
+  },
+  "s25-ga2-2al": {
+   "seite": "s25/l2-2",
+   "box": [
+    0.07,
+    0.565,
+    0.79,
+    0.912
+   ]
+  },
+  "s25-ga2-3l": {
+   "seite": "s25/l2-3",
+   "box": [
+    0.065,
+    0.205,
+    0.81,
+    0.675
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Algorithmus: Bettenauslastung einer Station",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "code",
+     "text": "<p>Als Mitarbeiter der AMAG Soft GmbH erstellen Sie statistische Auswertungen. Im Rahmen dieser Auswertungen soll eine Funktion die Auslastung der Betten einer Station ermitteln.</p><p>Dabei stehen die folgenden Klassen zur Verfügung:</p><table><tr><th>Belegung</th></tr><tr><td>- patientId : Integer<br>- datumVon : Date // Aufnahmetag<br>- datumBis : Date // Entlassungstag, zählt nicht als Belegungstag<br>- stationId : Integer</td></tr></table><p>In einem <code>Belegung</code>-Objekt ist für einen Krankenhausaufenthalt eines Patienten gespeichert, in welchem Zeitraum er auf einer Station war. Für jedes Attribut gibt es eine öffentliche <code>get</code>-Methode.</p><table><tr><th>Station</th></tr><tr><td>- stationId : Integer<br>- anzahlBetten : Integer</td></tr></table><p>In einem <code>Station</code>-Objekt ist für jede Station die Anzahl der zur Verfügung stehenden Betten gespeichert. Die Anzahl der Betten wird im betrachteten Zeitraum nicht verändert. Für jedes Attribut gibt es eine öffentliche <code>get</code>-Methode.</p><p>In einem eindimensionalen Array vom Typ Belegung ist gespeichert, auf welcher Station ein Patient ein Bett von datumVon bis datumBis belegt hat.</p><table><tr><th>Index</th><th>patientId</th><th>datumVon</th><th>datumBis</th><th>stationId</th></tr><tr><td>0</td><td>10342</td><td>01.02.24</td><td>08.02.24</td><td>143</td></tr><tr><td>1</td><td>10563</td><td>03.02.24</td><td>13.02.24</td><td>105</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr></table><p>Jede Zeile der Tabelle stellt die Daten eines Belegung-Objektes dar.</p><p>Hinweis: <code>Date</code>-Objekte können mit „&lt;“, „&lt;=“ bzw. „&gt;“, „&gt;=“ – Operatoren verglichen werden.<br><code>date = date + 1</code><br>liefert zu dem Objekt <code>date</code> das nachfolgende Datum (<code>Date</code>-Objekt)</p><p><b>Erstellen Sie eine Funktion in Pseudocode, die ermittelt, an wie vielen Tagen in dem vorgegebenen Zeitraum die vorgegebene Station zu mehr als 80 % ausgelastet war.</b></p><p><b>Das Array <code>belegung</code>, das Start- und Enddatum des Zeitraums und die Station werden als Parameter übergeben.</b></p><pre>ermittleAuslastungsTage(\n      belegung : Belegung[], startDatum : Date, endDatum : Date,\n      stationId : Integer, anzahlBetten : Integer) : Integer\n\n      DatumZaehler dz = new DatumZaehler(startDatum, endDatum)</pre>",
+     "loesung": "<pre>ermittleAuslastungsTage(belegung : Belegung[],\n      startDatum : Date, endDatum : Date,\n      station : Station) : Integer\n\n\n      Integer anzahlAuslastungsTage = 0\n\n      Date aktDatum = startDatum\n\n      solange aktDatum &lt;= endDatum\n\n            Integer anzahlBelegteBetten = 0\n\n            für i = 0; i &lt; belegung.length; i++\n\n                  wenn aktDatum &gt;= belegung[i].getDatum_von()\n                        und aktDatum &lt; belegung[i].getDatum_bis()\n                        und belegung[i].getStationId() ==\n                              station.getStationId()\n                        anzahlBelegteBetten++\n                  ende wenn\n\n            ende für\n\n            wenn anzahlBelegteBetten/station.getAnzahlBetten() &gt;= 0,8\n                  anzahlAuslastungsTage++\n            ende wenn\n\n            aktDatum = aktDatum + 1\n\n      ende solange\n\n      return anzahlAuslastungsTage\n\nende ermittleAuslastungsTage</pre><p><i>Anmerkung: Die Lösungshinweise verwenden eine andere Kopfzeile als der Aufgabenbogen: Parameter <code>station : Station</code> statt <code>stationId : Integer, anzahlBetten : Integer</code>; die vorgegebene Zeile <code>DatumZaehler dz = new DatumZaehler(startDatum, endDatum)</code> wird nicht benutzt (die Klasse DatumZaehler ist im Aufgabensatz nicht beschrieben). Mit der Kopfzeile aus der Aufgabe gilt einfach <code>stationId</code> statt <code>station.getStationId()</code> und <code>anzahlBetten</code> statt <code>station.getAnzahlBetten()</code>. Die Getter heißen laut Klasse eigentlich <code>getDatumVon()</code> und <code>getDatumBis()</code>.</i></p><p><i>Anmerkung: Die Aufgabe verlangt „mehr als 80 %“, die Lösung prüft <code>&gt;= 0,8</code> — streng nach Aufgabentext wäre <code>&gt; 0,8</code> richtig. Achtung: Sind beide Werte Integer, ist <code>anzahlBelegteBetten/anzahlBetten</code> in vielen Sprachen eine Ganzzahldivision; sicherer ist z. B. <code>anzahlBelegteBetten &gt; 0,8 * anzahlBetten</code>.</i></p>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Wichtige Bausteine: Zähler für die Auslastungstage, Schleife über alle Tage von startDatum bis endDatum (Datum + 1), je Tag Zähler für belegte Betten, innere Schleife über alle Belegungen mit Prüfung datumVon ≤ Tag < datumBis (Entlassungstag zählt nicht) und passender stationId, Vergleich mit 80 % der Bettenanzahl, Rückgabe der Anzahl."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Sequenzdiagramm Medikationsplan, Überdeckungstest",
+   "punkte": 25,
+   "themen": [
+    "UML",
+    "Qualität & Test"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 19,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "seq"
+     ],
+     "text": "<p>Die Krankenhaussoftware soll ein Modul zur Ausgabe eines Medikationsplans erhalten.</p><p>Hierzu soll die Methode <code>ausgabe_medikationsplan()</code> erstellt werden. Zur Vorbereitung werden Sie beauftragt, ein Sequenzdiagramm anzufertigen.</p><p>Folgende Klassen sind gegeben:</p><table><tr><th>UI</th></tr><tr><td>- patient : Patient</td></tr><tr><td>+ ausgabeMedikationsplan() : void<br>+ ausgabeMedikation(medikation : String) : void</td></tr></table><table><tr><th>Medikation</th></tr><tr><td></td></tr><tr><td>+ getEinnahme(medikament : Medikament, patient : Patient) : String</td></tr></table><table><tr><th>Verordnungen</th></tr><tr><td></td></tr><tr><td>+ getMedikamente(patient : Patient) : Medikament[ ]</td></tr></table><table><tr><th>MediDB</th></tr><tr><td></td></tr><tr><td>+ getStandardMedikation(medikament : Medikament) : String</td></tr></table><p>Hinweis: Die Klassen Patient und Medikament sind nicht dargestellt.</p><p>Vorgangsbeschreibung zur Ausgabe eines Medikationsplanes:</p><p>Die Methode <code>ausgabeMedikationsplan()</code> der Klasse UI wird aufgerufen. Diese Methode kann durch Aufruf von <code>getMedikamente(…)</code> mit dem passenden Parameter eine Liste der Medikamente für den Patienten erhalten.<br>Für alle Elemente dieser Liste ruft die Methode <code>ausgabeMedikationsplan()</code> dann <code>getEinnahme(…)</code> auf, um für das jeweilige Medikament die Einnahmevorgaben des Arztes zu erhalten.<br>Wenn diese Methode einen leeren String zurückgibt, hat der Arzt keine spezielle Einnahme vorgegeben. In diesem Fall liefert die Methode <code>getStandardMedikation(…)</code> die für das Medikament hinterlegte Vorgabe zur Einnahme.<br>Wenn die Einnahmevorgaben (Standard oder vom Arzt vorgegeben) ermittelt sind, wird diese innerhalb der Methode <code>ausgabeMedikationsplan()</code> mit der Methode <code>ausgabeMedikation(…)</code> für das Medikament ausgegeben.</p><p><b>Ergänzen Sie das UML-Sequenzdiagramm nach diesen Vorgaben.</b></p><p>Vorgabe im Aufgabensatz (Ausschnitt): Lebenslinien <code>:UI</code>, <code>:Verordnungen</code>, <code>:Medikation</code>, <code>:MediDB</code>; eingehende Nachricht <code>ausgabeMedikationsplan()</code> an <code>:UI</code>.</p><img data-bild=\"s25-ga2-2a\">",
+     "loesung": "<img data-bild=\"s25-ga2-2al\"><p>In Worten:</p><ul><li>Eingehende Nachricht <b>ausgabeMedikationsplan()</b> an :UI (Aktivierungsbalken auf :UI)</li><li>:UI → :Verordnungen: <b>getMedikamente(patient)</b>; Rückgabe (gestrichelt): <b>MedikamentenListe</b></li><li>Kombiniertes Fragment <b>loop [für alle Elemente in MedikamentenListe]</b> mit:<ul><li>:UI → :Medikation: <b>getEinnahme(medikament, patient)</b>; Rückgabe: <b>einnahme</b></li><li>Fragment <b>opt [einnahme = NULL]</b>: :UI → :MediDB: <b>getStandardMedikation(medikament)</b>; Rückgabe: <b>einnahme</b></li><li>Selbstaufruf :UI → :UI: <b>ausgabeMedikation(einnahme)</b> (mit Rückkehrpfeil)</li></ul></li></ul><p><i>Anmerkung: Laut Aufgabentext liefert getEinnahme(…) einen leeren String, wenn der Arzt nichts vorgegeben hat; die Bedingung [einnahme = \"\"] ist daher genauso richtig wie [einnahme = NULL].</i></p>",
+     "hinweis": "Hinweis: Statt „opt“ ist auch „alt“ verwendbar. Die Lösungshinweise nennen keine Punkteaufteilung. Zähle: Nachrichten getMedikamente(patient), getEinnahme(medikament, patient), getStandardMedikation(medikament) und Selbstaufruf ausgabeMedikation(einnahme) mit Rückgaben, loop-Fragment mit Bedingung, opt-Fragment mit Bedingung, Aktivierungsbalken."
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Da aufgrund des Medikationsplans im Krankenhaus die Tabletten für Patienten zusammengestellt werden, ist die erstellte Methode sorgfältig zu testen.</p><p>Der Projektleiter gibt den Einsatz von Überdeckungstests vor.</p><p><b>ba) Nennen Sie eine geeignete Art der Testüberdeckung (Coverage) und begründen Sie Ihre Auswahl.</b></p>",
+     "loesung": "<p>Angestrebt wird Zweigüberdeckung. Notwendig aufgrund der optionalen Anweisung. Pfadüberdeckung ist aufgrund der Schleife nicht realistisch erreichbar.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Aus Teil a): Klassen und Vorgangsbeschreibung Medikationsplan",
+       "html": "<p>Folgende Klassen sind gegeben:</p><table><tr><th>UI</th></tr><tr><td>- patient : Patient</td></tr><tr><td>+ ausgabeMedikationsplan() : void<br>+ ausgabeMedikation(medikation : String) : void</td></tr></table><table><tr><th>Medikation</th></tr><tr><td></td></tr><tr><td>+ getEinnahme(medikament : Medikament, patient : Patient) : String</td></tr></table><table><tr><th>Verordnungen</th></tr><tr><td></td></tr><tr><td>+ getMedikamente(patient : Patient) : Medikament[ ]</td></tr></table><table><tr><th>MediDB</th></tr><tr><td></td></tr><tr><td>+ getStandardMedikation(medikament : Medikament) : String</td></tr></table><p>Hinweis: Die Klassen Patient und Medikament sind nicht dargestellt.</p><p>Vorgangsbeschreibung zur Ausgabe eines Medikationsplanes:</p><p>Die Methode <code>ausgabeMedikationsplan()</code> der Klasse UI wird aufgerufen. Diese Methode kann durch Aufruf von <code>getMedikamente(…)</code> mit dem passenden Parameter eine Liste der Medikamente für den Patienten erhalten.<br>Für alle Elemente dieser Liste ruft die Methode <code>ausgabeMedikationsplan()</code> dann <code>getEinnahme(…)</code> auf, um für das jeweilige Medikament die Einnahmevorgaben des Arztes zu erhalten.<br>Wenn diese Methode einen leeren String zurückgibt, hat der Arzt keine spezielle Einnahme vorgegeben. In diesem Fall liefert die Methode <code>getStandardMedikation(…)</code> die für das Medikament hinterlegte Vorgabe zur Einnahme.<br>Wenn die Einnahmevorgaben (Standard oder vom Arzt vorgegeben) ermittelt sind, wird diese innerhalb der Methode <code>ausgabeMedikationsplan()</code> mit der Methode <code>ausgabeMedikation(…)</code> für das Medikament ausgegeben.</p>"
+      }
+     ]
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Da aufgrund des Medikationsplans im Krankenhaus die Tabletten für Patienten zusammengestellt werden, ist die erstellte Methode sorgfältig zu testen.</p><p>Überdeckungstests gehören zu den Whiteboxtests.</p><p><b>bb) Beschreiben Sie, was einen Whiteboxtest auszeichnet.</b></p>",
+     "loesung": "<p>Testdaten werden anhand der Struktur des Quelltextes ausgewählt.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bc",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Da aufgrund des Medikationsplans im Krankenhaus die Tabletten für Patienten zusammengestellt werden, ist die erstellte Methode sorgfältig zu testen.</p><p>Ein Kollege fragt, wie das Programm reagieren soll, wenn die vom Arzt hinterlegte Medikation nur aus Leerzeichen besteht.</p><p><b>bc) Beschreiben Sie eine geeignete Vorgehensweise.</b></p>",
+     "loesung": "<p>Sollten nur Leerzeichen vom Arzt eingegeben worden sein, ist dies wie eine leere Zeichenkette zu behandeln. In dem Fall sollte die Standardmedikation abgerufen werden, zusätzlich ein Hinweis, dass nur Leerzeichen vorgegeben waren.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Aus Teil a): Klassen und Vorgangsbeschreibung Medikationsplan",
+       "html": "<p>Folgende Klassen sind gegeben:</p><table><tr><th>UI</th></tr><tr><td>- patient : Patient</td></tr><tr><td>+ ausgabeMedikationsplan() : void<br>+ ausgabeMedikation(medikation : String) : void</td></tr></table><table><tr><th>Medikation</th></tr><tr><td></td></tr><tr><td>+ getEinnahme(medikament : Medikament, patient : Patient) : String</td></tr></table><table><tr><th>Verordnungen</th></tr><tr><td></td></tr><tr><td>+ getMedikamente(patient : Patient) : Medikament[ ]</td></tr></table><table><tr><th>MediDB</th></tr><tr><td></td></tr><tr><td>+ getStandardMedikation(medikament : Medikament) : String</td></tr></table><p>Hinweis: Die Klassen Patient und Medikament sind nicht dargestellt.</p><p>Vorgangsbeschreibung zur Ausgabe eines Medikationsplanes:</p><p>Die Methode <code>ausgabeMedikationsplan()</code> der Klasse UI wird aufgerufen. Diese Methode kann durch Aufruf von <code>getMedikamente(…)</code> mit dem passenden Parameter eine Liste der Medikamente für den Patienten erhalten.<br>Für alle Elemente dieser Liste ruft die Methode <code>ausgabeMedikationsplan()</code> dann <code>getEinnahme(…)</code> auf, um für das jeweilige Medikament die Einnahmevorgaben des Arztes zu erhalten.<br>Wenn diese Methode einen leeren String zurückgibt, hat der Arzt keine spezielle Einnahme vorgegeben. In diesem Fall liefert die Methode <code>getStandardMedikation(…)</code> die für das Medikament hinterlegte Vorgabe zur Einnahme.<br>Wenn die Einnahmevorgaben (Standard oder vom Arzt vorgegeben) ermittelt sind, wird diese innerhalb der Methode <code>ausgabeMedikationsplan()</code> mit der Methode <code>ausgabeMedikation(…)</code> für das Medikament ausgegeben.</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Datenmodell Operationen (3. NF)",
+   "punkte": 23,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 23,
+     "eingabe": "zeichnen",
+     "text": "<p>Sie sind Teil des Teams, das für die Entwicklung einer Cloud-Datenbank zur Verwaltung von Operationen im klinischen Bereich verantwortlich ist, welches die AMAG Soft GmbH potenziellen Kunden zur Verfügung stellen möchte.</p><p>Für einen ersten Entwurf stehen Ihnen nachfolgende Informationen zur Verfügung.</p><ul><li>Die Daten von den Ärzten, den Patienten, Medikamenten und den Operationssälen liegen schon in entsprechenden Tabellen vor.</li><li>Von jeder Operation soll der Patient, das Datum, die Uhrzeit, der Operationssaal, die beteiligten Ärzte mit deren Funktion bei der Operation und eventuelle Besonderheiten erfasst werden können.</li><li>Bei einer Operation übt jeder Arzt immer nur eine Funktion aus, z. B. Anästhesist.</li><li>Die einzelnen Funktionen sollen mit Bezeichnung und einer entsprechenden Kurzbeschreibung in einer extra Tabelle gespeichert werden.</li><li>Zusätzlich soll jeder Operation eine Operationsart zugewiesen werden. Zu jeder Operationsart soll eine Bezeichnung und eine Kurzbeschreibung in der Datenbank hinterlegt werden.</li><li>Des Weiteren sollen Informationen zur Anästhesieform (Narkose) für jede Operation erfasst werden. Zu diesen Informationen gehören die geplante Dauer der Anästhesie und das dafür verwendete Medikament. Pro Operation wird nur eine Anästhesieform verwendet. Allerdings kann die gleiche Anästhesieform auch bei mehreren Operationen zur Anwendung kommen.</li></ul><p><b>Erweitern Sie das vorhandene relationale Datenmodell so, dass die oben genannten Anforderungen erfüllt werden und dass es der dritten Normalform genügt. Kennzeichnen Sie alle Primärschlüssel mit PK und Fremdschlüssel mit FK, stellen Sie die Beziehungen zwischen den Tabellen her und tragen Sie die Kardinalitäten ein.</b></p><p>Vorhandenes Datenmodell (Vorgabe im Aufgabensatz):</p><table><tr><th>Patient</th></tr><tr><td>Pat_ID (PK)<br>Name<br>…</td></tr></table><table><tr><th>Arzt</th></tr><tr><td>Arzt_ID (PK)<br>Name<br>…</td></tr></table><table><tr><th>OP_Saal</th></tr><tr><td>OPS_ID (PK)<br>Bezeichnung<br>…</td></tr></table><table><tr><th>Medikament</th></tr><tr><td>Med_ID (PK)<br>Name<br>…</td></tr></table>",
+     "loesung": "<img data-bild=\"s25-ga2-3l\"><p>In Worten:</p><ul><li><b>Patient</b> (Pat_ID (PK), Name, …)</li><li><b>Arzt</b> (Arzt_ID (PK), Name, …)</li><li><b>OP_Saal</b> (OPS_ID (PK), Bezeichnung, …)</li><li><b>Medikament</b> (Med_ID (PK), Name, …)</li><li><b>Operation</b> (OP_ID (PK), Pat_ID (FK), OPS_ID (FK), OPA_ID (FK), AF_ID (FK), Datum, Uhrzeit, Besonderheiten)</li><li><b>Operation_Arzt</b> (Arzt_ID (FK)(PK), OP_ID (FK)(PK), Fkt_ID (FK))</li><li><b>Funktion</b> (Fkt_ID (PK), Bezeichnung, Kurzbeschreibung)</li><li><b>OP_Art</b> (OPA_ID (PK), Bezeichnung, Kurzbeschreibung)</li><li><b>Anästhesieform</b> (AF_ID (PK), Bezeichnung, Med_ID (FK), geplanteDauer)</li></ul><p>Beziehungen: Patient 1 : n Operation · OP_Saal 1 : n Operation · OP_Art 1 : n Operation · Anästhesieform 1 : n Operation · Medikament 1 : n Anästhesieform · Operation 1 : n Operation_Arzt · Arzt 1 : n Operation_Arzt · Funktion 1 : n Operation_Arzt</p>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Zähle: neue Tabellen Operation, Operation_Arzt, Funktion, OP_Art und Anästhesieform mit ihren Attributen, PK/FK richtig gekennzeichnet (zusammengesetzter PK in Operation_Arzt), alle 8 Beziehungen mit Kardinalitäten."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Datenbank NotaufnahmeManagement",
+   "punkte": 27,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Als Mitarbeiter der AMAG Soft GmbH sind Sie mit dem Management der Datenbank <i>NotaufnahmeManagement</i> der FIT betraut. Die nachfolgenden Tasks sollen in diesem Rahmen von Ihnen abgearbeitet werden.</p><p>Die Tabellenauszüge (siehe perforierte Anlage) stehen für die Bearbeitung der Tasks zur Verfügung.</p><p>Erstellen Sie die SQL-Anweisungen für folgende Teilaufgaben:</p>",
+   "anlagen": [
+    {
+     "titel": "Tabellenauszüge zur 4. Aufgabe (Patienten, Medikamente, Verschreibungen, Aerzte)",
+     "html": "<p>Tabelle <i>Patienten</i>:</p><table><tr><th>PID</th><th>Vorname</th><th>Nachname</th><th>…</th></tr><tr><td>1</td><td>Paul</td><td>Keller</td><td>…</td></tr><tr><td>2</td><td>Julia</td><td>Fischer</td><td>…</td></tr><tr><td>3</td><td>Markus</td><td>Schulz</td><td>…</td></tr><tr><td>4</td><td>Laura</td><td>Weber</td><td>…</td></tr><tr><td>5</td><td>Stefan</td><td>Meyer</td><td>…</td></tr><tr><td>6</td><td>Nina</td><td>Richter</td><td>…</td></tr><tr><td>7</td><td>Felix</td><td>Wagner</td><td>…</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td></tr></table><p>Tabelle <i>Medikamente</i>:</p><table><tr><th>MID</th><th>Name</th><th>…</th></tr><tr><td>1</td><td>Irodon</td><td>…</td></tr><tr><td>2</td><td>Paraneutral</td><td>…</td></tr><tr><td>3</td><td>Aronilin</td><td>…</td></tr><tr><td>4</td><td>Mecasyn</td><td>…</td></tr><tr><td>5</td><td>Algronalin</td><td>…</td></tr><tr><td>6</td><td>Limazynol</td><td>…</td></tr><tr><td>…</td><td>…</td><td>…</td></tr></table><p>Tabelle <i>Verschreibungen</i>:</p><table><tr><th>VID</th><th>PID</th><th>AID</th><th>MID</th><th>Dosis</th><th>Hinweis</th><th>Datum</th></tr><tr><td>1</td><td>1</td><td>4</td><td>1</td><td>200 mg</td><td>2x täglich nach dem Essen</td><td>2024-05-31 10:00:00</td></tr><tr><td>2</td><td>2</td><td>3</td><td>2</td><td>500 mg</td><td>1x täglich</td><td>2024-06-01 14:30:00</td></tr><tr><td>3</td><td>1</td><td>2</td><td>3</td><td>250 mg</td><td>3x täglich für 7 Tage</td><td>2024-06-02 09:00:00</td></tr><tr><td>4</td><td>4</td><td>3</td><td>4</td><td>500 mg</td><td>1x täglich morgens</td><td>2024-06-03 11:00:00</td></tr><tr><td>5</td><td>6</td><td>2</td><td>6</td><td>20 mg</td><td>1x täglich morgens</td><td>2024-06-05 16:30:00</td></tr><tr><td>6</td><td>1</td><td>3</td><td>1</td><td>200 mg</td><td>2x täglich nach dem Essen</td><td>2024-06-07 10:00:00</td></tr><tr><td>7</td><td>2</td><td>1</td><td>2</td><td>500 mg</td><td>1x täglich</td><td>2024-06-08 14:30:00</td></tr><tr><td>8</td><td>2</td><td>3</td><td>4</td><td>500 mg</td><td>1x täglich morgens</td><td>2024-05-20 11:00:00</td></tr><tr><td>9</td><td>6</td><td>1</td><td>6</td><td>20 mg</td><td>1x täglich morgens</td><td>2024-05-22 16:30:00</td></tr><tr><td>10</td><td>1</td><td>3</td><td>1</td><td>200 mg</td><td>2x täglich nach dem Essen</td><td>2024-05-24 10:00:00</td></tr><tr><td>11</td><td>2</td><td>4</td><td>2</td><td>500 mg</td><td>1x täglich</td><td>2024-05-25 14:30:00</td></tr><tr><td>12</td><td>3</td><td>2</td><td>3</td><td>250 mg</td><td>3x täglich für 7 Tage</td><td>2024-05-26 09:00:00</td></tr><tr><td>13</td><td>6</td><td>1</td><td>6</td><td>20 mg</td><td>1x täglich morgens</td><td>2024-05-29 16:30:00</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></table><p>Tabelle <i>Aerzte</i>:</p><table><tr><th>AID</th><th>Vorname</th><th>Nachname</th><th>Fachgebiet</th><th>Email</th><th>…</th></tr><tr><td>1</td><td>Thomas</td><td>Krüger</td><td>Allgemeinmedizin</td><td>t.krueger@fit.de</td><td>…</td></tr><tr><td>2</td><td>Jürgen</td><td>Walter</td><td>Kardiologie</td><td>j.walter@fit.de</td><td>…</td></tr><tr><td>3</td><td>Birgit</td><td>Schneider</td><td>Neurologie</td><td>NULL</td><td>…</td></tr><tr><td>4</td><td>Ralf</td><td>Neumann</td><td>Orthopädie</td><td>r.neumann@fit.de</td><td>…</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Fügen Sie einen neuen Arzt mit den Angaben „Horner, Hugo, Allgemeinmedizin“ in die Tabelle <i>Aerzte</i> hinzu.</b></p>",
+     "loesung": "<pre>INSERT INTO Aerzte (Vorname, Nachname, Fachgebiet)\nVALUES ('Hugo', 'Horner', 'Allgemeinmedizin');</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    },
+    {
+     "nr": "b",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Dem bereits existierenden Benutzer <i>hhorner</i> sollen Schreibrechte auf die Tabelle <i>Verschreibungen</i> der Datenbank <i>NotaufnahmeManagement</i> gewährt werden.</b></p>",
+     "loesung": "<pre>GRANT INSERT, UPDATE ON NotaufnahmeManagement.Verschreibungen\nTO 'hhorner';</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    },
+    {
+     "nr": "c",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Dem Benutzer <i>sklinkel</i> sollen die Schreibrechte für die Tabelle <i>Verschreibungen</i> der Datenbank <i>NotaufnahmeManagement</i> entzogen werden.</b></p>",
+     "loesung": "<pre>REVOKE INSERT, UPDATE ON NotaufnahmeManagement.Verschreibungen\nFROM 'sklinkel';</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    },
+    {
+     "nr": "d",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>In der bereits existierenden Tabelle <i>Aerzte</i> soll die Spalte <i>Email</i> jetzt zum Pflichtfeld werden. Die Tabelle ist bereits mit Datensätzen gefüllt. Eventuell fehlt bei manchen Ärzten der <i>Email</i>-Eintrag, für diese Fälle soll die E-Mail-Adresse „info@fit.de“ eingetragen werden.</p><p><b>Schreiben Sie die notwendigen Anweisungen, um bei Bedarf die E-Mail-Adresse zu ergänzen und die Spalte <i>Email</i> zum Pflichtfeld zu machen.</b></p>",
+     "loesung": "<pre>UPDATE Aerzte SET Email = 'info@fit.de' WHERE Email IS NULL;\nALTER TABLE Aerzte MODIFY Email VARCHAR(100) NOT NULL;</pre><p>Dieses Vorgehen stellt sicher, dass die Spalte Email in der Tabelle Aerzte zu einem Pflichtfeld wird und keine bestehenden Datensätze mit NULL-Werten in dieser Spalte verbleiben.</p>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    },
+    {
+     "nr": "e",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine Abfrage, die PID, <i>Nachname</i>, <i>Vorname</i> und die <i>Anzahl_Verschreibungen</i> von Patienten, die mindestens drei Verschreibungen erhalten haben, absteigend sortiert nach der <i>Anzahl_Verschreibungen</i> liefert.</b></p><p>Ergebnisbeispiel:</p><table><tr><th>PID</th><th>Nachname</th><th>Vorname</th><th>Anzahl_Verschreibungen</th></tr><tr><td>1</td><td>Keller</td><td>Paul</td><td>4</td></tr><tr><td>2</td><td>Fischer</td><td>Julia</td><td>4</td></tr><tr><td>6</td><td>Richter</td><td>Nina</td><td>3</td></tr></table>",
+     "loesung": "<pre>SELECT p.PID, p.Nachname, p.Vorname, COUNT(v.VID) AS\n  Anzahl_Verschreibungen\nFROM Patienten p\nJOIN Verschreibungen v ON p.PID = v.PID\nGROUP BY p.PID, p.Nachname, p.Vorname\nHAVING COUNT(v.VID) &gt;= 3\nORDER BY Anzahl_Verschreibungen DESC;</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    },
+    {
+     "nr": "f",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Lassen Sie den Durchschnitt der Anzahl der Verschreibungen pro Patienten berechnen.</b></p><p>Ergebnisbeispiel:</p><table><tr><th>Durchschnitt_Verschreibungen_pro_Patient</th></tr><tr><td>2.0</td></tr></table>",
+     "loesung": "<pre>SELECT AVG(Anzahl_Verschreibungen) AS\n  Durchschnitt_Verschreibungen_pro_Patient\nFROM (\n  SELECT COUNT(*) AS Anzahl_Verschreibungen\n  FROM Verschreibungen\n  GROUP BY PID\n) AS Verschreibungen_pro_Patient;</pre><p><i>Anmerkung: Das Ergebnisbeispiel 2.0 zeigt nur das Format. Mit den 13 abgedruckten Verschreibungen liefert die Abfrage 2.6 (13 Verschreibungen / 5 Patienten mit mindestens einer Verschreibung); Patienten ohne Verschreibung zählen bei dieser Lösung nicht mit.</i></p>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten!"
+    }
+   ]
+  }
+ ]
+}

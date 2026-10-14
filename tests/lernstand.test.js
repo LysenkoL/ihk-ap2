@@ -24,13 +24,16 @@ assert.strictEqual(a.api.list()[0].answers.code, "SELECT name FROM Kunde", "Rüc
 a.api.record({ topic: "sql", source: "sql", task: "select2", correct: 1, max: 2, support: "selbst", kind: "auto", answers: "SELECT *" });
 a.api.record({ topic: "sql", source: "sql", task: "select1", correct: 4, max: 4, support: "loesung", kind: "auto", answers: "Muster" });
 a.api.record({ topic: "sql", source: "quiz", task: "select3", correct: 1, max: 1, support: "selbst", kind: "recognition", answers: [1] });
-a.api.record({ topic: "sql", source: "rubrik", task: "select4", correct: 1, max: 1, support: "selbst", kind: "selbst", answers: "Ich glaube ja" });
+a.api.record({ topic: "sql", source: "rubrik", task: "select4", correct: 1, max: 2, support: "selbst", kind: "selbst", answers: "Ein Kriterium fehlt" });
 const s = a.api.summary()[0];
 assert.strictEqual(s.total, 5);
 assert.strictEqual(s.independent, 2);
 assert.strictEqual(s.assisted, 1);
 assert.strictEqual(s.recognition, 1);
 assert.strictEqual(s.selfRated, 1);
+assert.strictEqual(s.selfWeak, 1, "fehlende Selbstprüfkriterien erscheinen getrennt als Übungsbedarf");
+a.api.record({ topic: "sql", source: "rubrik", task: "select4", correct: 2, max: 2, support: "loesung", kind: "selbst", t: Date.now() + 1000 });
+assert.strictEqual(a.api.summary()[0].selfWeak, 1, "vollständige Selbstbewertung mit Lösung beseitigt eigenständige Lücke nicht");
 assert.strictEqual(s.ratio, 4 / 6, "nur selbständige automatische Prüfungen ergeben die Quote");
 assert.strictEqual(s.weak, 2, "Lösungskopie beseitigt vorherigen selbständigen Fehler nicht");
 assert.strictEqual(laden({ "ap2:lernstand": JSON.stringify([{ id: "q", t: 1, topic: "git", source: "quiz", task: "g1", correct: 1, max: 1, support: "selbst", kind: "recognition" }]) }).api.summary()[0].ratio, null);

@@ -1,0 +1,130 @@
+/* ============================================================================
+   gen/code-trainer.css — «Код с автопроверкой» (gen/code-trainer.js)
+   ========================================================================== */
+.cd-seite{max-width:880px; margin:0 auto; padding:16px; --cd-lh:22px; --cd-fs:15px}
+.cd-wrap{display:flex; flex-direction:column; gap:14px; min-width:0}
+.cd-seite .btn{font-family:var(--body); text-transform:none; letter-spacing:0; font-size:14.5px; font-weight:650;
+  border-radius:9px; padding:9px 15px; min-height:44px; white-space:normal; line-height:1.25}
+.cd-seite .btn.klein{min-height:40px; padding:6px 12px; font-size:13.5px}
+.cd-seite .btn:disabled{opacity:.5; cursor:not-allowed}
+.cd-karte{background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:16px 18px; min-width:0;
+  line-height:1.55; box-shadow:0 1px 2px rgba(20,23,28,.05)}
+.cd-karte h2{font-family:var(--body); font-size:20px; font-weight:800; margin:0 0 8px; color:var(--pruefer); line-height:1.3}
+.cd-karte h2.ok{color:var(--ok)}
+.cd-karte h3{font-family:var(--body); font-size:16px; font-weight:800; margin:14px 0 4px; color:var(--ink)}
+.cd-karte p{margin:8px 0}
+.cd-klein{font-size:13px; color:var(--muted); line-height:1.5}
+.cd-klein.fehler{color:var(--red); font-weight:600}
+.cd-alarm{background:var(--red-soft); color:var(--red); border:1px solid var(--red); border-radius:10px; padding:10px 14px; font-weight:600; margin:0}
+.cd-eyebrow{font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--muted); margin:0 0 4px !important}
+.cd-label{font-size:11.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:12px 0 2px !important}
+.cd-nav{display:flex; gap:8px}
+.cd-nav .btn{padding-left:6px}
+
+/* Deutsche Aufgabenstellung */
+.cd-de{border-left:3px solid var(--pruefer); padding-left:12px; margin:8px 0 4px}
+.cd-auftrag{font-weight:600}
+.cd-signatur code, .cd-a-sig, .cd-z-wert, .cd-tabelle code{font-family:var(--data); font-size:13.5px; overflow-wrap:anywhere}
+.cd-signatur code{background:var(--field); border:1px solid var(--rule); border-radius:6px; padding:2px 6px; display:inline-block; margin-top:2px}
+.cd-details{margin-top:10px; border-top:1px solid var(--rule-soft, var(--rule)); padding-top:4px}
+.cd-details > summary{cursor:pointer; font-weight:700; min-height:44px; display:flex; align-items:center; color:var(--pruefer)}
+.cd-details ol, .cd-details ul{padding-left:22px; margin:4px 0 8px}
+.cd-details li{margin:5px 0}
+.cd-spick li{font-size:14px}
+.cd-begriffe{display:grid; grid-template-columns:minmax(120px, 1fr) 2fr; gap:6px 16px; margin:6px 0 8px}
+.cd-begriffe dt{font-weight:700; overflow-wrap:anywhere}
+.cd-begriffe dd{margin:0}
+
+/* Klassentabelle */
+.cd-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%}
+.cd-tabelle{border-collapse:collapse; width:100%; font-size:14px; min-width:300px}
+.cd-tabelle th, .cd-tabelle td{border:1px solid var(--rule); padding:6px 8px; text-align:left; vertical-align:top}
+.cd-tabelle th{background:var(--field); font-size:12.5px}
+.cd-tabelle td:first-child{white-space:nowrap}
+
+/* Aufgabenliste */
+.cd-liste{list-style:none; padding:0; margin:4px 0 0; display:flex; flex-direction:column; gap:8px}
+.cd-aufgabe{display:flex; flex-direction:column; gap:4px; width:100%; text-align:left; background:var(--card); color:var(--ink);
+  border:1px solid var(--rule); border-left:4px solid var(--rule); border-radius:10px; padding:10px 12px; min-height:44px; cursor:pointer; font:inherit}
+.cd-aufgabe:hover{border-color:var(--pruefer)}
+.cd-aufgabe.fertig{border-left-color:var(--ok)}
+.cd-aufgabe.teil{border-left-color:var(--warn)}
+.cd-a-titel{font-weight:700; font-size:15.5px; line-height:1.3}
+.cd-a-sig{color:var(--muted); font-size:12.5px}
+.cd-a-status{font-size:13px; color:var(--muted)}
+.cd-a-status.fertig{color:var(--ok); font-weight:600}
+.cd-a-status.teil{color:var(--warn); font-weight:600}
+
+/* Beispiele und Testzeilen */
+.cd-beispiele{list-style:none; padding:0; margin:4px 0; display:flex; flex-direction:column; gap:8px}
+.cd-beispiele li{background:var(--field); border-radius:8px; padding:8px 10px}
+.cd-zeile{display:grid; grid-template-columns:92px minmax(0, 1fr); gap:2px 8px; margin:3px 0; align-items:start}
+.cd-z-label{font-size:12.5px; color:var(--muted); font-weight:700; padding-top:1px}
+.cd-z-wert{white-space:pre-wrap; word-break:break-word}
+
+/* Editor */
+.cd-support{font-size:13px; font-weight:700; margin:0 0 8px !important; color:var(--ok)}
+.cd-support.hilfe{color:var(--warn)}
+.cd-support.loesung{color:var(--red)}
+.cd-editor{position:relative}
+.cd-tasten{position:sticky; top:var(--cd-kopf, 0px); z-index:5; display:flex; gap:6px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  padding:6px 0 8px; background:var(--card); scrollbar-width:thin}
+.cd-taste{flex:none; min-width:44px; min-height:44px; padding:0 10px; font-family:var(--data); font-size:15px; font-weight:700;
+  border:1px solid var(--rule); background:var(--field); color:var(--ink); border-radius:8px; cursor:pointer; touch-action:manipulation}
+.cd-taste.wort{font-size:14px; color:var(--pruefer)}
+.cd-taste:active{background:var(--pruefer); color:#fff; border-color:var(--pruefer)}
+.cd-feld{display:flex; align-items:stretch; border:1px solid var(--rule); border-radius:10px; background:var(--field); overflow:hidden; min-width:0}
+.cd-feld:focus-within{border-color:var(--pruefer); box-shadow:0 0 0 2px var(--pruefer-soft, transparent)}
+.cd-nummern{flex:none; padding:10px 6px 10px 6px; min-width:2.4em; text-align:right; background:var(--card); border-right:1px solid var(--rule);
+  font-family:var(--data); font-size:calc(var(--cd-fs) - 2px); line-height:var(--cd-lh); color:var(--muted); user-select:none}
+.cd-nummern span{display:block; height:var(--cd-lh); padding:0 2px; border-radius:4px}
+.cd-nummern span.fehl{background:var(--red); color:#fff; font-weight:700}
+.cd-flaeche{position:relative; flex:1 1 auto; min-width:0}
+.cd-mark{position:absolute; left:0; right:0; background:var(--red-soft); border-left:3px solid var(--red); pointer-events:none}
+.cd-text{position:relative; display:block; box-sizing:border-box; width:100%; min-height:calc(var(--cd-lh) * 10 + 20px); margin:0;
+  border:0; outline:none; background:transparent; color:var(--ink); resize:none; padding:10px; overflow-x:auto; overflow-y:hidden;
+  font-family:var(--data); font-size:var(--cd-fs); line-height:var(--cd-lh); white-space:pre; tab-size:4; -moz-tab-size:4}
+.cd-speicher{margin:8px 0 0 !important}
+.cd-knoepfe{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.cd-knoepfe .btn.primary{min-width:140px}
+.cd-hilfe, .cd-loesung{margin-top:12px; border-radius:10px; padding:4px 12px 8px}
+.cd-hilfe{background:var(--warn-soft); border:1px solid var(--warn)}
+.cd-loesung{background:var(--field); border:1px solid var(--rule)}
+.cd-pre{font-family:var(--data); font-size:13.5px; line-height:1.5; background:var(--card); border:1px solid var(--rule); border-radius:8px;
+  padding:10px 12px; margin:6px 0; overflow-x:auto; white-space:pre; color:var(--ink); max-width:100%}
+
+/* Ergebnis */
+.cd-fehler{background:var(--red-soft); border:1px solid var(--red); border-radius:10px; padding:6px 12px 10px; margin:8px 0}
+.cd-f-text{color:var(--red); font-weight:650; overflow-wrap:anywhere}
+.cd-warnungen{background:var(--warn-soft); border:1px solid var(--warn); border-radius:10px; padding:4px 12px; margin:8px 0}
+.cd-warnungen ul{padding-left:20px; margin:4px 0 8px; font-size:14px}
+.cd-tests{list-style:none; padding:0; margin:10px 0 0; display:flex; flex-direction:column; gap:8px}
+.cd-test{border:1px solid var(--rule); border-left:4px solid var(--ok); border-radius:10px; padding:6px 10px 8px; min-width:0}
+.cd-test.nok{border-left-color:var(--red)}
+.cd-t-kopf{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px; margin:2px 0 4px !important}
+.cd-t-zeichen{font-weight:900; color:var(--ok); font-size:16px}
+.cd-test.nok .cd-t-zeichen{color:var(--red)}
+.cd-t-fall{font-size:13px; color:var(--muted)}
+.cd-t-hinweis{font-size:13.5px; color:var(--warn); font-weight:600}
+.cd-ausgabe{font-family:var(--data); font-size:13px; margin:0; padding:6px 8px; background:var(--field); border-radius:6px; overflow-x:auto; white-space:pre; max-width:100%}
+.cd-historie{list-style:none; padding:0; margin:4px 0}
+.cd-historie li{border-bottom:1px solid var(--rule-soft, var(--rule)); padding:2px 0}
+.cd-h-kopf{cursor:pointer; min-height:40px; display:flex; align-items:center; font-size:14px}
+.cd-h-kopf.ok{color:var(--ok); font-weight:600}
+.cd-seite :focus-visible{outline:3px solid var(--pruefer); outline-offset:2px}
+
+@media (max-width:540px){
+  .cd-seite{padding:10px; --cd-lh:24px; --cd-fs:16px}
+  .cd-karte{padding:14px}
+  .cd-karte h2{font-size:18.5px}
+  .cd-begriffe{grid-template-columns:1fr; gap:2px}
+  .cd-begriffe dd{margin-bottom:8px}
+  .cd-zeile{grid-template-columns:1fr}
+  .cd-knoepfe .btn{flex:1 1 calc(50% - 8px)}
+  .cd-knoepfe .btn.primary{flex-basis:100%}
+}
+@media print{
+  .cd-seite[hidden]{display:none}
+  .cd-tasten, .cd-knoepfe, .cd-nav{display:none}
+  .cd-karte{break-inside:avoid; box-shadow:none}
+}

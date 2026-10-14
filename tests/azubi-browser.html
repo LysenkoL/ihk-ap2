@@ -23,6 +23,8 @@ window.IHK_AZUBI = {bilder:{},module:[{id:"qa-archiv",bereich:"wiso",nr:1,art:"p
   {id:"qa-wahl",nr:"1",label:"a",titel:"Auswahl",text:"<p>Welche Zahl ist gerade?</p>",punkte:10/3,global:true,eingabe:{typ:"mehrfach",optionen:["2","3"],soll:[1],anzahl:1},loesung:"<p>2 ist durch 2 teilbar.</p>"},
   {id:"qa-text",nr:"1",label:"b",titel:"Begründung",text:"<p>Begründen Sie, warum 2 eine gerade Zahl ist.</p>",punkte:10/3,eingabe:{typ:"zeilen",zeilen:[{h:"Ihre Begründung",frei:"1",gross:true}]},loesung:"<p>2 ist ohne Rest durch 2 teilbar.</p>"}
 ]}]}]};
+// Short deadline only in this isolated test page; production modules are unchanged.
+if (location.search === "?strict") window.IHK_AZUBI.module[0].minuten = 1 / 6;
 </script>
 <script src="../gen/lernstand.js"></script>
 <script src="../gen/azubi.js?qa=20261003"></script>

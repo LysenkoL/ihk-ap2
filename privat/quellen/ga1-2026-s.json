@@ -1,0 +1,323 @@
+{
+ "id": "ga1-2026-s",
+ "bereich": "ga1",
+ "termin": "Sommer 2026",
+ "kurz": "GA1 S26",
+ "minuten": 90,
+ "schluessel": "eigene Musterlösung (keine offiziellen ZPA-Lösungshinweise)",
+ "situation": "<p>Ein landwirtschaftlicher Betrieb in Mecklenburg ist im Bereich der Produktion von Getreide, Ölfrüchten sowie Tierhaltung tätig. In vielen Bereichen des Betriebs werden IT-gestützte Verfahren verwendet, die aber nicht mehr auf dem aktuellen Stand sind. Daher soll in einem Projekt die Digitalisierung des Betriebs modernisiert werden. Sie arbeiten im Team des Systemhauses AMAG AG mit, das den Betrieb in diesem Projekt unterstützt.</p>",
+ "beleg": [
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s26-beleg-akt\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"s26-beleg-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s26-beleg-akt": {
+   "seite": "s26/beleg-2",
+   "box": [
+    0.06,
+    0.06,
+    0.83,
+    0.62
+   ]
+  },
+  "s26-beleg-sql1": {
+   "seite": "s26/beleg-4",
+   "box": [
+    0.05,
+    0.06,
+    0.93,
+    0.87
+   ],
+   "q": 70
+  },
+  "s26-ga1-4cb": {
+   "seite": "s26/ga1-12",
+   "box": [
+    0.27,
+    0.16,
+    0.64,
+    0.67
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Projekterfolg, Risiken, Netzplan",
+   "punkte": 27,
+   "themen": [
+    "Projektmanagement"
+   ],
+   "text": "<p>Sie arbeiten in der Projektplanung mit und sollen für das Teilprojekt „Satellitengestützte Navigation“ den Projektzeitplan ermitteln.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie zwei Aspekte, wie nach dem Projektende der Projekterfolg geprüft werden kann.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Zwei der folgenden Aspekte, jeweils mit kurzer Beschreibung:</p><ul><li><b>Soll-Ist-Vergleich von Zeit, Kosten und Qualität:</b> Man vergleicht den Plan mit dem Ergebnis. Wurde der Endtermin eingehalten? Wurde das Budget eingehalten? Erfüllt das System alle Anforderungen aus dem Lastenheft und dem Pflichtenheft?</li><li><b>Abnahme durch den Kunden:</b> Der Betrieb prüft das fertige System und bestätigt die Abnahme in einem Abnahmeprotokoll. Offene Mängel werden dort notiert.</li><li><b>Zufriedenheit der Nutzer und Stakeholder:</b> Man befragt den Landwirt und die Mitarbeiter, z. B. mit einem Fragebogen. Sind sie mit der Navigation zufrieden? Nutzen sie das System im Alltag?</li><li><b>Messbare Kennzahlen (KPIs):</b> Man misst nach einiger Zeit den Nutzen im Betrieb. Beispiele: weniger Überlappungen bei der Feldarbeit, weniger Verbrauch von Diesel und Saatgut, weniger Arbeitszeit.</li><li><b>Wirtschaftlichkeit:</b> Man prüft, ob sich die Investition lohnt, z. B. mit einer Amortisationsrechnung (Wann sind die Kosten wieder eingespielt?).</li><li><b>Projektabschlussbericht / Projektreview:</b> Das Team bewertet in einem Abschlussgespräch, ob die Projektziele erreicht wurden und was gut oder schlecht lief (Lessons Learned).</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Aspekt mit Beschreibung 2 Punkte. Andere fachlich richtige Aspekte zählen auch."
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Risiko",
+       "Gegenmaßnahme"
+      ]
+     },
+     "text": "<p><b>Identifizieren Sie neben dem genannten Risiko ein weiteres Risiko dieses Digitalisierungsprojekts und ordnen Sie diesem Risiko eine Gegenmaßnahme zu.</b></p><table><tr><th>Risiko</th><th>Gegenmaßnahme</th></tr><tr><td>Verzögerungen durch unklare Anforderungen</td><td>Klare Projektziele und Stakeholder-Workshops zu Projektbeginn</td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Ein weiteres Risiko mit passender Gegenmaßnahme, z. B.:</p><table><tr><th>Risiko</th><th>Gegenmaßnahme</th></tr><tr><td>Lieferverzögerung bei der Hardware (z. B. GPS-Empfänger, Terminals für die Maschinen)</td><td>Früh bestellen, Angebote von mehreren Lieferanten einholen, Liefertermine im Vertrag festlegen und einen Zeitpuffer einplanen.</td></tr><tr><td>Fehlende Akzeptanz bei den Mitarbeitern (sie wollen beim alten Verfahren bleiben)</td><td>Mitarbeiter früh einbinden, den Nutzen erklären und gute Schulungen anbieten.</td></tr><tr><td>Schlechter GPS- oder Mobilfunkempfang auf den Feldern</td><td>Den Empfang vorher vor Ort testen; einen Korrekturdienst (z. B. RTK) nutzen; die Software auch offline nutzbar machen.</td></tr><tr><td>Vorhandene Maschinen oder Altsysteme passen nicht zur neuen Software (Inkompatibilität)</td><td>Zu Projektbeginn eine Bestandsaufnahme der Technik machen; Schnittstellen früh mit einem Prototyp testen.</td></tr><tr><td>Die Kosten werden höher als geplant</td><td>Regelmäßiges Projektcontrolling (Soll-Ist-Vergleich der Kosten); eine Budgetreserve einplanen.</td></tr><tr><td>Wichtige Projektmitarbeiter fallen aus (Krankheit, Kündigung)</td><td>Wissen dokumentieren; Vertretungen festlegen.</td></tr><tr><td>Datenverlust bei der Übernahme der alten Daten</td><td>Vor der Datenübernahme ein Backup machen; die Übernahme vorher testen.</td></tr></table>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Risiko 2 Punkte, passende Gegenmaßnahme 2 Punkte. Das Risiko muss sich vom vorgegebenen Risiko unterscheiden."
+    },
+    {
+     "nr": "c",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "text": "<p>Es sind Ihnen folgende Informationen gegeben, um den Projektzeitplan zu ermitteln:</p><ul><li>Als erstes müssen die Anforderungen analysiert (A) werden. Hierfür sollen 10 Tage angesetzt werden.</li><li>Im Anschluss daran erfolgt die Planung des Softwaredesigns (B) mit einer Dauer von 15 Tagen.</li><li>Nachdem die Planung des Softwaredesigns abgeschlossen ist, kann zeitgleich mit den Themen Hardwarebeschaffung und Entwicklung der Module fortgefahren werden.</li><li>Es müssen die zwei Module Routenplanung (C) (45 Tage geplante Dauer) und GPS-Integration (D) (50 Tage geplante Dauer) parallel zueinander entwickelt werden.</li><li>Vor der Hardwarebeschaffung muss zuerst ein Angebotsvergleich (E) durchgeführt werden. Dieser wird 8 Tage dauern und kann ebenfalls parallel zu der Entwicklung der Module durchgeführt werden.</li><li>Die Beschaffung der Hardware (F) wird 12 Tage dauern, da es hier auch entsprechende Lieferzeiten gibt.</li><li>Die Testphase (G) und die Schulung (H) der Endanwender kann erst gestartet werden, wenn sowohl die Entwicklung der Module als auch die Hardwarebeschaffung durchgeführt wurde.</li><li>Die Schulungen finden zur gleichen Zeit wie die Testphase statt. Für die Schulung wurden 12 Tage und für die Testphase 22 Tage angesetzt.</li><li>Wenn diese beiden Themen abgeschlossen wurden, soll noch die Bereitstellung der Software (I) mit 4 Tagen geplant werden.</li></ul><p><b>Erweitern Sie den vorhandenen Netzplan auf Seite 5.</b> (Legende und vorhandener Netzplan: siehe unten)</p><h4>Netzplan zu Aufgabe 1 c) — Legende</h4><table><tr><td>FAZ</td><td></td><td>FEZ</td></tr><tr><th>Vorgang</th><th colspan=\"2\">Bezeichnung</th></tr><tr><td>Dauer</td><td>Gesamtpuffer</td><td>Freier Puffer</td></tr><tr><td>SAZ</td><td></td><td>SEZ</td></tr></table><p>FAZ = Frühester Anfangszeitpunkt<br>FEZ = Frühester Endzeitpunkt<br>SAZ = Spätester Anfangszeitpunkt<br>SEZ = Spätester Endzeitpunkt</p><h4>Vorhandener Netzplan</h4><table><tr><td>0</td><td></td><td>10</td></tr><tr><th>A</th><th colspan=\"2\">Anforderungsanalyse</th></tr><tr><td>10</td><td>0</td><td>0</td></tr><tr><td>0</td><td></td><td>10</td></tr></table><p>↓ (Pfeil von A nach B)</p><table><tr><td>10</td><td></td><td>25</td></tr><tr><th>B</th><th colspan=\"2\">Softwaredesign</th></tr><tr><td>15</td><td>0</td><td>0</td></tr><tr><td>10</td><td></td><td>25</td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p><b>Anordnung (Pfeile) im Netzplan:</b></p><ul><li>A → B</li><li>B → C, B → D, B → E</li><li>E → F</li><li>C → G, D → G, F → G</li><li>C → H, D → H, F → H</li><li>G → I, H → I</li></ul><p><b>Werte aller Vorgänge</b> (Dauer in Tagen, GP = Gesamtpuffer, FP = freier Puffer):</p><table><tr><th>Vorgang</th><th>Bezeichnung</th><th>Dauer</th><th>Vorgänger</th><th>FAZ</th><th>FEZ</th><th>SAZ</th><th>SEZ</th><th>GP</th><th>FP</th></tr><tr><td>A</td><td>Anforderungsanalyse</td><td>10</td><td>–</td><td>0</td><td>10</td><td>0</td><td>10</td><td>0</td><td>0</td></tr><tr><td>B</td><td>Softwaredesign</td><td>15</td><td>A</td><td>10</td><td>25</td><td>10</td><td>25</td><td>0</td><td>0</td></tr><tr><td>C</td><td>Routenplanung</td><td>45</td><td>B</td><td>25</td><td>70</td><td>30</td><td>75</td><td>5</td><td>5</td></tr><tr><td>D</td><td>GPS-Integration</td><td>50</td><td>B</td><td>25</td><td>75</td><td>25</td><td>75</td><td>0</td><td>0</td></tr><tr><td>E</td><td>Angebotsvergleich</td><td>8</td><td>B</td><td>25</td><td>33</td><td>55</td><td>63</td><td>30</td><td>0</td></tr><tr><td>F</td><td>Hardwarebeschaffung</td><td>12</td><td>E</td><td>33</td><td>45</td><td>63</td><td>75</td><td>30</td><td>30</td></tr><tr><td>G</td><td>Testphase</td><td>22</td><td>C, D, F</td><td>75</td><td>97</td><td>75</td><td>97</td><td>0</td><td>0</td></tr><tr><td>H</td><td>Schulung</td><td>12</td><td>C, D, F</td><td>75</td><td>87</td><td>85</td><td>97</td><td>10</td><td>10</td></tr><tr><td>I</td><td>Bereitstellung der Software</td><td>4</td><td>G, H</td><td>97</td><td>101</td><td>97</td><td>101</td><td>0</td><td>0</td></tr></table><p><b>Beispiel-Knoten D</b> (so wird jeder Knoten wie in der Legende eingetragen):</p><table><tr><td>25</td><td></td><td>75</td></tr><tr><th>D</th><th colspan=\"2\">GPS-Integration</th></tr><tr><td>50</td><td>0</td><td>0</td></tr><tr><td>25</td><td></td><td>75</td></tr></table><p><b>So wird gerechnet:</b></p><ul><li><b>Vorwärtsrechnung:</b> FEZ = FAZ + Dauer. Hat ein Vorgang mehrere Vorgänger, ist sein FAZ der <b>größte</b> FEZ der Vorgänger. Beispiel G: FAZ = max(70; 75; 45) = 75.</li><li><b>Rückwärtsrechnung:</b> SAZ = SEZ − Dauer. Hat ein Vorgang mehrere Nachfolger, ist sein SEZ der <b>kleinste</b> SAZ der Nachfolger. Beispiel B: SEZ = min(30; 25; 55) = 25.</li><li><b>Gesamtpuffer:</b> GP = SAZ − FAZ (oder SEZ − FEZ). Beispiel C: 30 − 25 = 5.</li><li><b>Freier Puffer:</b> FP = kleinster FAZ der Nachfolger − eigener FEZ. Beispiel E: 33 − 33 = 0. Beispiel F: 75 − 45 = 30.</li></ul><p>Projektdauer: <b>101 Tage</b>.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je neuem Vorgang C bis I 2 Punkte = 14 Punkte (richtige Vorgänger/Pfeile, FAZ und FEZ, SAZ und SEZ, Gesamtpuffer und freier Puffer). Folgefehler nicht doppelt abziehen."
+    },
+    {
+     "nr": "d",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p><b>Geben Sie den kritischen Pfad für Ihren Netzplan an.</b></p>",
+     "anlagen": [
+      {
+       "titel": "Angaben zum Projektzeitplan und vorhandener Netzplan (aus Teilaufgabe c)",
+       "html": "<p>Es sind Ihnen folgende Informationen gegeben, um den Projektzeitplan zu ermitteln:</p><ul><li>Als erstes müssen die Anforderungen analysiert (A) werden. Hierfür sollen 10 Tage angesetzt werden.</li><li>Im Anschluss daran erfolgt die Planung des Softwaredesigns (B) mit einer Dauer von 15 Tagen.</li><li>Nachdem die Planung des Softwaredesigns abgeschlossen ist, kann zeitgleich mit den Themen Hardwarebeschaffung und Entwicklung der Module fortgefahren werden.</li><li>Es müssen die zwei Module Routenplanung (C) (45 Tage geplante Dauer) und GPS-Integration (D) (50 Tage geplante Dauer) parallel zueinander entwickelt werden.</li><li>Vor der Hardwarebeschaffung muss zuerst ein Angebotsvergleich (E) durchgeführt werden. Dieser wird 8 Tage dauern und kann ebenfalls parallel zu der Entwicklung der Module durchgeführt werden.</li><li>Die Beschaffung der Hardware (F) wird 12 Tage dauern, da es hier auch entsprechende Lieferzeiten gibt.</li><li>Die Testphase (G) und die Schulung (H) der Endanwender kann erst gestartet werden, wenn sowohl die Entwicklung der Module als auch die Hardwarebeschaffung durchgeführt wurde.</li><li>Die Schulungen finden zur gleichen Zeit wie die Testphase statt. Für die Schulung wurden 12 Tage und für die Testphase 22 Tage angesetzt.</li><li>Wenn diese beiden Themen abgeschlossen wurden, soll noch die Bereitstellung der Software (I) mit 4 Tagen geplant werden.</li></ul><h4>Netzplan zu Aufgabe 1 c) — Legende</h4><table><tr><td>FAZ</td><td></td><td>FEZ</td></tr><tr><th>Vorgang</th><th colspan=\"2\">Bezeichnung</th></tr><tr><td>Dauer</td><td>Gesamtpuffer</td><td>Freier Puffer</td></tr><tr><td>SAZ</td><td></td><td>SEZ</td></tr></table><p>FAZ = Frühester Anfangszeitpunkt<br>FEZ = Frühester Endzeitpunkt<br>SAZ = Spätester Anfangszeitpunkt<br>SEZ = Spätester Endzeitpunkt</p><h4>Vorhandener Netzplan</h4><table><tr><td>0</td><td></td><td>10</td></tr><tr><th>A</th><th colspan=\"2\">Anforderungsanalyse</th></tr><tr><td>10</td><td>0</td><td>0</td></tr><tr><td>0</td><td></td><td>10</td></tr></table><p>↓ (Pfeil von A nach B)</p><table><tr><td>10</td><td></td><td>25</td></tr><tr><th>B</th><th colspan=\"2\">Softwaredesign</th></tr><tr><td>15</td><td>0</td><td>0</td></tr><tr><td>10</td><td></td><td>25</td></tr></table>"
+      }
+     ],
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Kritischer Pfad: <b>A → B → D → G → I</b></p><p>(Anforderungsanalyse → Softwaredesign → GPS-Integration → Testphase → Bereitstellung der Software)</p><p>Auf diesen Vorgängen ist der Gesamtpuffer 0. Jede Verzögerung auf diesem Pfad verschiebt das Projektende. Die Projektdauer beträgt 10 + 15 + 50 + 22 + 4 = <b>101 Tage</b>.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): richtiger kritischer Pfad 3 Punkte. Bei Fehlern im eigenen Netzplan zählt als Folgefehler der Pfad mit Gesamtpuffer 0."
+    },
+    {
+     "nr": "e",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p><b>Beschreiben Sie den Unterschied zwischen freiem Puffer und dem Gesamtpuffer einer Aktivität.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><ul><li><b>Freier Puffer:</b> So viel Zeit kann eine Aktivität später beginnen oder länger dauern, <b>ohne dass ein Nachfolger später anfangen muss</b> (der FAZ der Nachfolger bleibt gleich). Formel: FP = kleinster FAZ der Nachfolger − eigener FEZ.</li><li><b>Gesamtpuffer:</b> So viel Zeit kann eine Aktivität verschoben werden, <b>ohne dass sich das Projektende verschiebt</b>. Die Nachfolger fangen dann aber eventuell später an und verlieren ihren Puffer. Formel: GP = SAZ − FAZ.</li></ul><p>Beispiel aus dem Netzplan: Der Angebotsvergleich (E) hat einen Gesamtpuffer von 30 Tagen, aber einen freien Puffer von 0 Tagen. Verzögert sich E, beginnt die Hardwarebeschaffung (F) später. Das Projektende bleibt aber gleich, solange die Verzögerung höchstens 30 Tage beträgt.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je richtige Beschreibung 1 Punkt."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Aktivitätsdiagramm Bewässerung, REST-API",
+   "punkte": 28,
+   "themen": [
+    "UML",
+    "Schnittstellen"
+   ],
+   "text": "<p>Der landwirtschaftliche Betrieb bewässert seine Felder derzeit nach festen Zeitplänen, was häufig zu ineffizienter Wassernutzung und fehlerhafter Bewässerung führt. Um diesen Problemen entgegenzuwirken, soll die Prozesssteuerung für die Bewässerung automatisiert werden. Über Bodensensoren wird die Feuchtigkeit in unterschiedlichen Tiefen erfasst. Aktuelle Wetterdaten, sowie Vorhersagen (Temperatur, Niederschlag und Luftfeuchtigkeit) werden über eine API des Wetterdienstes abgerufen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 16,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "akt"
+     ],
+     "text": "<p>Für die Prozesssteuerung der Bewässerung wurde folgender Ablauf definiert:</p><ol><li>Zur Datenerfassung werden parallel die aktuellen Messwerte der Bodensensoren abgerufen und die aktuellen Wetterdaten und Vorhersagen abgefragt.</li><li>Nach Beendigung der Datenabfragen wertet das System die Boden- und Wetterdaten aus und ermittelt den Bewässerungsbedarf.</li><li>Ist keine Bewässerung erforderlich, wird der Prozess beendet.</li><li>Falls eine Bewässerung notwendig ist, berechnet das System die erforderliche Wassermenge und Bewässerungsdauer.</li><li>Anschließend wird der Füllstand des Bewässerungstanks abgefragt. Liegt dieser unter 30 %, erhält der Landwirt eine Warnmeldung.</li><li>Im Anschluss werden parallel die Bewässerung durchgeführt und der Landwirt über die Bewässerung informiert.</li><li>Nach Abschluss der Aktionen aus Punkt 6 werden alle Daten gespeichert und der Prozess beendet.</li></ol><p><b>Erstellen Sie für den Ablauf ein UML-Aktivitätsdiagramm.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>In Worten (von oben nach unten):</p><ol><li><b>Startknoten</b> (schwarzer Punkt)</li><li><b>Teilung (Fork)</b> in zwei parallele Abläufe:<ul><li>Aktion „Messwerte der Bodensensoren abrufen“</li><li>Aktion „Wetterdaten und Vorhersagen abfragen“ (über die API des Wetterdienstes)</li></ul></li><li><b>Synchronisation (Join):</b> Es geht erst weiter, wenn beide Abfragen fertig sind.</li><li>Aktion „Boden- und Wetterdaten auswerten und Bewässerungsbedarf ermitteln“</li><li><b>Entscheidung</b> (Raute):<ul><li>[keine Bewässerung erforderlich] → <b>Endknoten</b></li><li>[Bewässerung erforderlich] → weiter</li></ul></li><li>Aktion „Wassermenge und Bewässerungsdauer berechnen“</li><li>Aktion „Füllstand des Bewässerungstanks abfragen“</li><li><b>Entscheidung</b> (Raute):<ul><li>[Füllstand &lt; 30 %] → Aktion „Warnmeldung an den Landwirt senden“ → Zusammenführung</li><li>[Füllstand &gt;= 30 %] → direkt zur Zusammenführung</li></ul></li><li><b>Zusammenführung</b> (Raute)</li><li><b>Teilung (Fork)</b> in zwei parallele Abläufe:<ul><li>Aktion „Bewässerung durchführen“</li><li>Aktion „Landwirt über die Bewässerung informieren“</li></ul></li><li><b>Synchronisation (Join)</b></li><li>Aktion „Alle Daten speichern“</li><li><b>Endknoten</b></li></ol><p>Skizze (Aktionen in runden Klammern, &lt;&gt; = Raute, ==== = Balken für Teilung/Synchronisation):</p><pre>(●) Start\n |\n v\n======== Teilung (Fork) ========\n |                         |\n v                         v\n(Messwerte der         (Wetterdaten und\n Bodensensoren          Vorhersagen\n abrufen)               abfragen)\n |                         |\n v                         v\n==== Synchronisation (Join) ====\n |\n v\n(Boden- und Wetterdaten auswerten,\n Bewässerungsbedarf ermitteln)\n |\n v\n&lt;&gt;--[keine Bewässerung erforderlich]--&gt; (◉) Ende\n |\n | [Bewässerung erforderlich]\n v\n(Wassermenge und Bewässerungsdauer\n berechnen)\n |\n v\n(Füllstand des Bewässerungstanks\n abfragen)\n |\n v\n&lt;&gt;--[Füllstand &lt; 30 %]--&gt; (Warnmeldung an\n |                         Landwirt senden)\n | [Füllstand &gt;= 30 %]           |\n v                               |\n&lt;&gt; Zusammenführung &lt;-------------+\n |\n v\n======== Teilung (Fork) ========\n |                         |\n v                         v\n(Bewässerung           (Landwirt über\n durchführen)           Bewässerung\n |                      informieren)\n |                         |\n v                         v\n==== Synchronisation (Join) ====\n |\n v\n(Alle Daten speichern)\n |\n v\n(◉) Ende</pre><p>Hinweise: Für das Ende in Schritt 3 und in Schritt 7 nimmt man den <b>Endknoten</b> (Kreis mit Punkt), weil der ganze Prozess endet. Die Bedingungen an den Kanten stehen in eckigen Klammern. Ein gemeinsamer Endknoten (über eine Zusammenführung) ist auch richtig.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Start- und Endknoten 1 Punkt; Teilung und Synchronisation mit den zwei Abfragen 3 Punkte; Auswertung und Entscheidung mit Bedingungen und Ende-Zweig 3 Punkte; Wassermenge/Dauer berechnen und Füllstand abfragen 2 Punkte; Entscheidung Füllstand unter 30 % mit Warnmeldung und Zusammenführung 3 Punkte; Teilung und Synchronisation Bewässerung/Information 3 Punkte; Daten speichern und Endknoten 1 Punkt."
+    },
+    {
+     "nr": "ba",
+     "punkte": 3,
+     "eingabe": "gross",
+     "text": "<p>Die Bewässerungssoftware ruft die Wetterdaten über eine REST-API ab. Hierbei wird folgender Request ausgeführt:</p><pre>GET https://api.wetterdienst.com/weather?location=Rostock&amp;units=metric&amp;apikey=XYZ123</pre><p><b>ba) Erläutern Sie das Konzept einer REST-API (Representational State Transfer Application Programming Interface).</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>REST ist ein <b>Architekturstil</b> für Schnittstellen im Web. Ein Client (hier die Bewässerungssoftware) fragt über HTTP Daten bei einem Server (hier dem Wetterdienst) ab.</p><ul><li><b>Ressourcen mit eindeutiger Adresse:</b> Jede Ressource (z. B. das Wetter) hat eine eigene Adresse (URI), z. B. <code>/weather</code>.</li><li><b>HTTP-Methoden:</b> Was getan werden soll, steht in der HTTP-Methode: GET = lesen, POST = anlegen, PUT = ändern, DELETE = löschen.</li><li><b>Zustandslos (stateless):</b> Jede Anfrage enthält alle nötigen Informationen (z. B. Ort und API-Key). Der Server speichert zwischen zwei Anfragen keinen Sitzungszustand.</li><li><b>Repräsentation:</b> Der Server schickt eine Darstellung der Ressource zurück, meist im Format JSON (oder XML).</li></ul><p>Weitere Merkmale: Client und Server sind getrennt; Antworten können zwischengespeichert werden (Caching).</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je richtig erläutertes Merkmal 1 Punkt (z. B. Ressourcen mit URI, HTTP-Methoden, Zustandslosigkeit, Datenformat JSON/XML, Client-Server)."
+    },
+    {
+     "nr": "bb",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "location=Rostock",
+       "units=metric",
+       "apikey=XYZ123"
+      ]
+     },
+     "anlagen": [
+      {
+       "titel": "Request der Bewässerungssoftware (aus Teilaufgabe b)",
+       "html": "<p>Die Bewässerungssoftware ruft die Wetterdaten über eine REST-API ab. Hierbei wird folgender Request ausgeführt:</p><pre>GET https://api.wetterdienst.com/weather?location=Rostock&amp;units=metric&amp;apikey=XYZ123</pre>"
+      }
+     ],
+     "text": "<p><b>bb) Beschreiben Sie die Parameter der gegebenen URL.</b> (Ein Beispiel ist angegeben.)</p><table><tr><th>Parameter</th><th>Beschreibung</th></tr><tr><td>/weather</td><td>die abzufragende Ressource (in diesem Fall die Wettervorhersagen)</td></tr><tr><td>location=Rostock</td><td></td></tr><tr><td>units=metric</td><td></td></tr><tr><td>apikey=XYZ123</td><td></td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><table><tr><th>Parameter</th><th>Beschreibung</th></tr><tr><td>location=Rostock</td><td>Der Ort, für den die Wetterdaten abgefragt werden. Hier: Rostock.</td></tr><tr><td>units=metric</td><td>Das Einheitensystem der Antwort. „metric“ bedeutet metrische Einheiten, z. B. Temperatur in °C (nicht °F) und Niederschlag in Millimetern.</td></tr><tr><td>apikey=XYZ123</td><td>Der API-Schlüssel. Damit erkennt der Wetterdienst, wer die Anfrage stellt (Authentifizierung). Nur mit einem gültigen Schlüssel darf man die API nutzen. Der Schlüssel dient auch zur Abrechnung und zur Begrenzung der Anfragen.</td></tr></table><p>Allgemein: Nach dem <code>?</code> beginnt der Query-String. Die Parameter sind Name-Wert-Paare (<code>name=wert</code>) und werden mit <code>&amp;</code> getrennt.</p><p>Zusatz (für die Punkte nicht nötig): Ein API-Key in der URL kann in Logdateien landen. Sicherer ist die Übergabe im HTTP-Header.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je richtig beschriebener Parameter 1 Punkt."
+    },
+    {
+     "nr": "bc",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "1. HTTP-Methode und Beschreibung",
+       "2. HTTP-Methode und Beschreibung"
+      ]
+     },
+     "anlagen": [
+      {
+       "titel": "Request der Bewässerungssoftware (aus Teilaufgabe b)",
+       "html": "<p>Die Bewässerungssoftware ruft die Wetterdaten über eine REST-API ab. Hierbei wird folgender Request ausgeführt:</p><pre>GET https://api.wetterdienst.com/weather?location=Rostock&amp;units=metric&amp;apikey=XYZ123</pre>"
+      }
+     ],
+     "text": "<p>Im Beispiel wird die HTTP-Methode GET verwendet.</p><p><b>bc) Nennen und beschreiben Sie zwei weitere HTTP-Methoden, die mit einer REST-API verwendet werden können.</b></p><table><tr><th>HTTP-Methode</th><th>Beschreibung</th></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Zwei der folgenden Methoden:</p><table><tr><th>HTTP-Methode</th><th>Beschreibung</th></tr><tr><td>POST</td><td>Legt eine neue Ressource auf dem Server an. Die Daten stehen im Body der Anfrage. Beispiel: einen neuen Messwert speichern.</td></tr><tr><td>PUT</td><td>Ersetzt eine vorhandene Ressource vollständig durch die gesendeten Daten (oder legt sie unter dieser Adresse neu an). Beispiel: die Einstellungen eines Sensors komplett aktualisieren.</td></tr><tr><td>PATCH</td><td>Ändert nur einzelne Felder einer vorhandenen Ressource. Beispiel: nur den Grenzwert für den Füllstand ändern.</td></tr><tr><td>DELETE</td><td>Löscht eine Ressource auf dem Server. Beispiel: einen alten Bewässerungsplan löschen.</td></tr></table>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Methode 1 Punkt für den Namen und 2 Punkte für die Beschreibung."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "LoRa, Integrität, RSA",
+   "punkte": 22,
+   "themen": [
+    "Netzwerk",
+    "IT-Sicherheit",
+    "Englisch"
+   ],
+   "text": "<p>Für die automatische Bewässerung werden Bodensensoren benötigt. Die Daten der Sensoren müssen übertragen werden. Dabei muss berücksichtigt werden, dass die Sensoren auf der bewirtschafteten Fläche weiträumig verteilt werden und es keine feste Stromversorgung gibt.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Sie recherchieren, wie Sie die Übertragung der Bodenmesswerte umsetzen können. Dabei finden Sie den nachfolgenden Fachartikel:</p><p><i>LoRa is a wireless modulation technique derived from Chirp Spread Spectrum (CSS) technology. […] LoRa is ideal for applications that transmit small chunks of data with low bit rates. Data can be transmitted at a longer range compared to technologies like WiFi, Bluetooth or ZigBee. These features make LoRa well suited for sensors and actuators that operate in low power mode.</i></p><p>Quelle: https://www.thethingsnetwork.org/docs/lorawan/what-is-lorawan</p><p><b>aa) Nennen Sie drei Merkmale von LoRa.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Drei der folgenden Merkmale:</p><ul><li>drahtlose Funktechnik (wireless); Modulationsverfahren auf Basis von Chirp Spread Spectrum (CSS)</li><li>überträgt kleine Datenpakete (small chunks of data)</li><li>niedrige Datenrate (low bit rates)</li><li>große Reichweite (longer range) im Vergleich zu WLAN, Bluetooth oder ZigBee, oft mehrere Kilometer</li><li>geringer Energieverbrauch (low power mode) – gut geeignet für Sensoren und Aktoren mit Batterie</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Merkmal 1 Punkt."
+    },
+    {
+     "nr": "ab",
+     "punkte": 6,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 3 und Fachartikel zu LoRa",
+       "html": "<p>Für die automatische Bewässerung werden Bodensensoren benötigt. Die Daten der Sensoren müssen übertragen werden. Dabei muss berücksichtigt werden, dass die Sensoren auf der bewirtschafteten Fläche weiträumig verteilt werden und es keine feste Stromversorgung gibt.</p><p><i>LoRa is a wireless modulation technique derived from Chirp Spread Spectrum (CSS) technology. […] LoRa is ideal for applications that transmit small chunks of data with low bit rates. Data can be transmitted at a longer range compared to technologies like WiFi, Bluetooth or ZigBee. These features make LoRa well suited for sensors and actuators that operate in low power mode.</i></p><p>Quelle: https://www.thethingsnetwork.org/docs/lorawan/what-is-lorawan</p>"
+      }
+     ],
+     "text": "<p><b>ab) Erläutern Sie zwei Gründe, weshalb der Einsatz von LoRa für Ihr Projekt sinnvoll ist.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Zwei der folgenden Gründe, jeweils mit Bezug zum Projekt:</p><ul><li><b>Große Reichweite:</b> Die Sensoren sind weiträumig auf den Feldern verteilt. LoRa überträgt Daten über mehrere Kilometer. Darum reichen wenige Empfangsstationen (Gateways). Man braucht keine Kabel und kein WLAN auf dem Feld.</li><li><b>Geringer Energieverbrauch:</b> Auf den Feldern gibt es keine feste Stromversorgung. LoRa braucht sehr wenig Strom. Die Sensoren können deshalb lange (oft mehrere Jahre) mit einer Batterie oder einem kleinen Solarmodul arbeiten.</li><li><b>Kleine Datenmengen reichen aus:</b> Ein Bodensensor sendet nur wenige Messwerte (z. B. Feuchtigkeit und Tiefe). Dafür reicht die niedrige Datenrate von LoRa völlig aus.</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Grund 3 Punkte (Merkmal nennen 1 Punkt, Bezug zur Situation erläutern 2 Punkte)."
+    },
+    {
+     "nr": "ba",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>In einem Meeting erwähnt der Kunde, dass ihm die Sicherheit sehr wichtig ist. Eine manipulierte Übertragung der Sensorwerte kann zu einer fehlerhaften Bewässerung und somit einem großen wirtschaftlichen Schaden führen.</p><p><b>ba) Erläutern Sie das IT-Schutzziel nach BSI, das der Kunde angesprochen hat.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Gemeint ist die <b>Integrität</b>.</p><p>Integrität bedeutet: Daten sind korrekt und vollständig. Sie dürfen nicht unbemerkt oder unberechtigt verändert werden. Jede Veränderung muss erkennbar sein.</p><p>Im Projekt: Die Feuchtigkeitswerte müssen genau so beim System ankommen, wie der Sensor sie gemessen hat. Sonst berechnet das System eine falsche Wassermenge.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Schutzziel Integrität nennen 1 Punkt, richtig erläutern mit Bezug zur Situation 2 Punkte. Vertraulichkeit oder Verfügbarkeit sind hier nicht gemeint."
+    },
+    {
+     "nr": "bb",
+     "punkte": 4,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Teilaufgabe b",
+       "html": "<p>In einem Meeting erwähnt der Kunde, dass ihm die Sicherheit sehr wichtig ist. Eine manipulierte Übertragung der Sensorwerte kann zu einer fehlerhaften Bewässerung und somit einem großen wirtschaftlichen Schaden führen.</p>"
+      }
+     ],
+     "text": "<p><b>bb) Erläutern Sie ein Verfahren, welches sicherstellen kann, dass die Daten während der Übertragung nicht unbemerkt manipuliert werden können.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Ein passendes Verfahren ist ein <b>Message Authentication Code (MAC)</b>, z. B. <b>HMAC</b>.</p><ul><li>Sender (Sensor) und Empfänger (Server) haben einen gemeinsamen geheimen Schlüssel.</li><li>Der Sender berechnet aus den Messdaten und dem Schlüssel einen Prüfwert (MAC). Er schickt Daten und Prüfwert zusammen.</li><li>Der Empfänger berechnet den Prüfwert mit demselben Schlüssel noch einmal und vergleicht ihn mit dem empfangenen Prüfwert.</li><li>Sind beide gleich, sind die Daten unverändert. Sind sie verschieden, wurden die Daten verändert. Die Nachricht wird dann verworfen.</li><li>Ein Angreifer kann keinen passenden Prüfwert erzeugen, weil er den geheimen Schlüssel nicht kennt.</li></ul><p>Auch richtig: <b>digitale Signatur</b>. Der Sender bildet einen Hashwert der Daten und verschlüsselt ihn mit seinem privaten Schlüssel. Der Empfänger prüft die Signatur mit dem öffentlichen Schlüssel des Senders und vergleicht die Hashwerte.</p><p>Wichtig: Ein einfacher Hashwert ohne Schlüssel reicht nicht. Ein Angreifer könnte die Daten ändern und den Hashwert einfach neu berechnen. (LoRaWAN hängt an jede Nachricht einen solchen Prüfwert mit AES-Schlüssel an, den „Message Integrity Code“ (MIC).)</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Verfahren nennen 1 Punkt, Ablauf und Funktionsweise erläutern 3 Punkte."
+    },
+    {
+     "nr": "bc",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Ihr Kollege schlägt vor, den RSA-Algorithmus zur Verschlüsselung zu verwenden, um den Kundenanforderungen zu entsprechen.</p><p><b>bc) Erläutern Sie, was man unter einem RSA-Algorithmus versteht.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><ul><li>RSA ist ein <b>asymmetrisches</b> Verschlüsselungsverfahren (benannt nach Rivest, Shamir und Adleman).</li><li>Jeder Teilnehmer hat ein <b>Schlüsselpaar</b>: einen öffentlichen Schlüssel (Public Key) und einen privaten Schlüssel (Private Key).</li><li>Man verschlüsselt mit dem öffentlichen Schlüssel des Empfängers. Nur der Empfänger kann mit seinem privaten Schlüssel entschlüsseln.</li><li>RSA wird auch für <b>digitale Signaturen</b> genutzt: mit dem privaten Schlüssel signieren, mit dem öffentlichen Schlüssel prüfen.</li><li>Die Sicherheit beruht darauf, dass man sehr große Zahlen kaum in ihre Primfaktoren zerlegen kann.</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): asymmetrisches Verfahren 1 Punkt, Schlüsselpaar öffentlich/privat 1 Punkt, Funktionsweise (Ver- und Entschlüsselung oder Signatur, Primfaktorzerlegung) 1 Punkt."
+    },
+    {
+     "nr": "bd",
+     "punkte": 3,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 3 (Sensoren, LoRa, Kundenwunsch, Vorschlag RSA)",
+       "html": "<p>Für die automatische Bewässerung werden Bodensensoren benötigt. Die Daten der Sensoren müssen übertragen werden. Dabei muss berücksichtigt werden, dass die Sensoren auf der bewirtschafteten Fläche weiträumig verteilt werden und es keine feste Stromversorgung gibt.</p><p><i>LoRa is a wireless modulation technique derived from Chirp Spread Spectrum (CSS) technology. […] LoRa is ideal for applications that transmit small chunks of data with low bit rates. Data can be transmitted at a longer range compared to technologies like WiFi, Bluetooth or ZigBee. These features make LoRa well suited for sensors and actuators that operate in low power mode.</i></p><p>Quelle: https://www.thethingsnetwork.org/docs/lorawan/what-is-lorawan</p><p>In einem Meeting erwähnt der Kunde, dass ihm die Sicherheit sehr wichtig ist. Eine manipulierte Übertragung der Sensorwerte kann zu einer fehlerhaften Bewässerung und somit einem großen wirtschaftlichen Schaden führen.</p><p>Ihr Kollege schlägt vor, den RSA-Algorithmus zur Verschlüsselung zu verwenden, um den Kundenanforderungen zu entsprechen.</p>"
+      }
+     ],
+     "text": "<p><b>bd) Begründen Sie, ob die Verschlüsselung mittels RSA in Ihrem Projekt sinnvoll ist.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>RSA ist in diesem Projekt <b>eher nicht sinnvoll</b>.</p><ul><li><b>Hoher Rechenaufwand:</b> RSA braucht viel Rechenleistung. Die Bodensensoren haben wenig Rechenleistung und laufen mit Batterie. RSA würde viel Energie verbrauchen.</li><li><b>Große Datenmenge:</b> RSA-Schlüssel und verschlüsselte Daten sind groß (z. B. 2048 Bit = 256 Byte). LoRa überträgt aber nur kleine Datenpakete mit niedriger Datenrate.</li><li><b>Falsches Schutzziel:</b> Verschlüsselung schützt vor allem die Vertraulichkeit. Der Kunde möchte aber die Integrität schützen. Dafür ist ein MAC oder eine Signatur besser geeignet.</li></ul><p>Besser: ein <b>symmetrisches</b> Verfahren wie AES zusammen mit einem MAC (bei LoRaWAN schon eingebaut). RSA kann man höchstens für den einmaligen Austausch der Schlüssel nutzen.</p><p>Andere Antworten sind möglich, wenn sie gut begründet sind (z. B.: RSA-Signaturen sind auf einem leistungsstarken Gateway sinnvoll).</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Entscheidung 1 Punkt, Begründung mit Bezug zu LoRa und Sensoren 2 Punkte. Gewertet wird die Begründung, nicht das Ja oder Nein."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Softwarequalität, Barrierefreiheit, Mockup",
+   "punkte": 23,
+   "themen": [
+    "Qualität & Test",
+    "Software-Ergonomie"
+   ],
+   "text": "<p>Das Entwicklerteam soll eine Smartphone-App zur Überwachung und Steuerung des Bewässerungssystems entwickeln. Hierbei spielt das Thema Softwarequalität eine entscheidende Rolle.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 5,
+     "eingabe": {
+      "zeilen": [
+       "Zuverlässigkeit",
+       "weiteres Qualitätsmerkmal (Name und Beschreibung)"
+      ]
+     },
+     "text": "<p>Bei der Entwicklung der App sollen die Softwarequalitätsmerkmale gemäß der <i>ISO/IEC 25010</i> berücksichtigt werden.</p><p><b>Eines dieser Merkmale ist die Zuverlässigkeit. Beschreiben Sie dieses Qualitätsmerkmal. Nennen und beschreiben Sie ein weiteres Produktqualitätsmerkmal der ISO/IEC 25010.</b></p><table><tr><th>Qualitätsmerkmal</th><th>Beschreibung</th></tr><tr><td>Zuverlässigkeit</td><td></td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><table><tr><th>Qualitätsmerkmal</th><th>Beschreibung</th></tr><tr><td>Zuverlässigkeit</td><td>Die App erfüllt ihre Funktionen unter festgelegten Bedingungen über einen festgelegten Zeitraum ohne Fehler. Teilmerkmale: Fehlerfreiheit/Reife, Verfügbarkeit (die App ist da, wenn man sie braucht), Fehlertoleranz (sie arbeitet auch bei Störungen weiter, z. B. bei schlechtem Mobilfunk), Wiederherstellbarkeit (nach einem Absturz sind die Daten wieder da). Beispiel: Der Befehl „Bewässerung stoppen“ muss sicher ankommen.</td></tr></table><p>Ein weiteres Merkmal (eins davon reicht):</p><table><tr><th>Qualitätsmerkmal</th><th>Beschreibung</th></tr><tr><td>Funktionale Eignung</td><td>Die App hat alle geforderten Funktionen und liefert richtige Ergebnisse, z. B. den korrekten Füllstand.</td></tr><tr><td>Leistungseffizienz</td><td>Die App reagiert schnell und braucht wenig Ressourcen (Akku, Speicher, Datenvolumen).</td></tr><tr><td>Kompatibilität</td><td>Die App arbeitet mit anderen Systemen zusammen, z. B. mit der Bewässerungssteuerung und der Wetter-API.</td></tr><tr><td>Benutzbarkeit (Usability)</td><td>Die App ist leicht zu lernen und einfach zu bedienen.</td></tr><tr><td>Sicherheit (Security)</td><td>Nur berechtigte Personen sehen die Daten und steuern die Bewässerung (z. B. Login, verschlüsselte Übertragung).</td></tr><tr><td>Wartbarkeit</td><td>Der Code ist leicht zu verstehen, zu ändern und zu testen.</td></tr><tr><td>Übertragbarkeit (Portabilität)</td><td>Die App läuft auf verschiedenen Geräten und Betriebssystemen (Android, iOS) und lässt sich leicht installieren.</td></tr></table><p>Zusatz: Die neue Fassung ISO/IEC 25010:2023 nennt Benutzbarkeit „Interaktionsfähigkeit“ und Übertragbarkeit „Flexibilität“. Neu ist dort „Safety“ (Betriebssicherheit).</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Beschreibung Zuverlässigkeit 2 Punkte; weiteres Merkmal nennen 1 Punkt und beschreiben 2 Punkte."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "1. Anforderung / Maßnahme",
+       "2. Anforderung / Maßnahme"
+      ]
+     },
+     "text": "<p>Die Software soll darüber hinaus auch die Anforderungen für „Barrierefreie Software“ erfüllen.</p><p><b>Beschreiben Sie zwei Anforderungen an „Barrierefreie Software“ und geeignete Maßnahmen, um diese Anforderungen zu erfüllen.</b></p><table><tr><th>Anforderung an „Barrierefreie Software“</th><th>geeignete Maßnahme zur Erfüllung</th></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Zwei der folgenden Anforderungen mit passender Maßnahme:</p><table><tr><th>Anforderung an „Barrierefreie Software“</th><th>geeignete Maßnahme zur Erfüllung</th></tr><tr><td><b>Wahrnehmbar</b> auch für blinde und sehbehinderte Menschen: Alle Inhalte müssen auch ohne Sehen erfassbar sein.</td><td>Screenreader unterstützen (z. B. TalkBack, VoiceOver); Alternativtexte für Grafiken und Diagramme (z. B. „Füllstand 72 %“ als Text); alle Bedienelemente beschriften.</td></tr><tr><td><b>Gut lesbar:</b> ausreichender Kontrast und anpassbare Schriftgröße.</td><td>Kontrastverhältnis mindestens 4,5 : 1; die Schrift wächst mit der Systemeinstellung mit; Informationen nicht nur über Farbe zeigen (Warnung zusätzlich mit Symbol und Text).</td></tr><tr><td><b>Bedienbar</b> auch für Menschen mit motorischen Einschränkungen.</td><td>Große Schaltflächen mit genug Abstand (Empfehlung: 44 × 44 pt bei iOS, 48 × 48 dp bei Android); keine Zeitlimits; Bedienung auch per Sprachsteuerung oder Tastatur möglich.</td></tr><tr><td><b>Verständlich:</b> einfache Sprache und einheitliche Bedienung.</td><td>Kurze, klare Texte; gleiche Navigation auf allen Seiten; verständliche Fehlermeldungen mit Hinweis zur Lösung.</td></tr><tr><td><b>Robust:</b> funktioniert mit Hilfstechnologien.</td><td>Standard-Bedienelemente des Betriebssystems verwenden; mit Screenreader und Vergrößerung testen.</td></tr></table><p>Grundlage: WCAG 2.1 / BITV 2.0 mit den vier Prinzipien „wahrnehmbar, bedienbar, verständlich, robust“.</p>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Anforderung 2 Punkte und je passende Maßnahme 2 Punkte."
+    },
+    {
+     "nr": "ca",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Für die App des Bewässerungssystems sollen Mockups erstellt werden.</p><p><b>ca) Beschreiben Sie zwei Vorteile, die sich aus der Erstellung von Mockups in der App-Entwicklung ergeben.</b></p>",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Zwei der folgenden Vorteile:</p><ul><li><b>Frühes Feedback vom Kunden:</b> Der Landwirt sieht schon vor der Programmierung, wie die App aussehen wird. Missverständnisse und fehlende Anforderungen fallen früh auf. Änderungen sind in dieser Phase billig.</li><li><b>Gemeinsame Grundlage für alle:</b> Kunde, Designer und Entwickler sprechen über dasselbe Bild. Das verbessert die Kommunikation.</li><li><b>Klare Vorlage für die Entwicklung:</b> Die Entwickler wissen genau, welche Elemente auf welcher Seite sind. Das spart Zeit und Nacharbeit.</li><li><b>Frühe Prüfung der Bedienbarkeit:</b> Man kann Usability und Barrierefreiheit (z. B. Kontrast, Größe der Schaltflächen) schon am Entwurf prüfen.</li><li><b>Schnell und günstig:</b> Mockups sind mit Werkzeugen (z. B. Figma) schnell erstellt und leicht zu ändern.</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): je Vorteil mit Beschreibung 2 Punkte."
+    },
+    {
+     "nr": "cb",
+     "punkte": 6,
+     "eingabe": "zeichnen",
+     "text": "<p>Für die App des Bewässerungssystems sollen Mockups erstellt werden.</p><p>Auf einer Seite der Smartphone-App sollen folgende Daten des Bewässerungstanks angezeigt werden:</p><ul><li>aktueller Füllstand im Tank</li><li>grafische Darstellung der Wassermenge im zeitlichen Verlauf mit auswählbarem Start- und Enddatum</li></ul><p><b>cb) Ergänzen Sie den folgenden Entwurf für diese Seite.</b></p><img data-bild=\"s26-ga1-4cb\">",
+     "loesung": "<p><i>Eigene Musterlösung — keine offiziellen Lösungshinweise vorhanden.</i></p><p>Beispiel für einen ergänzten Entwurf:</p><pre>+--------------------------------+\n| &lt;-     Bewässerungstank        |\n|--------------------------------|\n| Aktueller Füllstand            |\n|  +--------------------+        |\n|  |##############      |  72 %  |\n|  +--------------------+        |\n|  7.200 l von 10.000 l          |\n|  Stand: 29.04.2026, 08:15      |\n|                                |\n| Wassermenge im Verlauf         |\n|  Startdatum: [01.04.2026 v]    |\n|  Enddatum:   [29.04.2026 v]    |\n|              [ Anzeigen ]      |\n|                                |\n|  Liter                         |\n|  10000 |*                      |\n|        | *  *                  |\n|   5000 |   *  * *   *          |\n|        |         * *  *        |\n|      0 +-------------------    |\n|         01.04.  15.04.  29.04. |\n|                        Datum   |\n+--------------------------------+</pre><p>In Worten (Elemente der Seite):</p><ul><li><b>Kopfzeile</b> (vorgegeben): Zurück-Pfeil und Titel „Bewässerungstank“.</li><li><b>Aktueller Füllstand:</b> Überschrift, grafische Anzeige (z. B. Tanksymbol oder Balken, der zu 72 % gefüllt ist) und der Wert als Zahl mit Einheit (z. B. „72 % – 7.200 l von 10.000 l“). Optional: Zeit der letzten Messung; Warnhinweis, wenn der Füllstand unter 30 % liegt.</li><li><b>Auswahl des Zeitraums:</b> zwei beschriftete Eingabefelder „Startdatum“ und „Enddatum“ mit Kalender-Auswahl (Datepicker) und ein Button „Anzeigen“.</li><li><b>Diagramm:</b> Liniendiagramm (oder Balkendiagramm) der Wassermenge im gewählten Zeitraum. x-Achse: Datum; y-Achse: Wassermenge in Litern. Die Achsen sind beschriftet.</li></ul>",
+     "hinweis": "Vorschlag (keine offizielle Punkteverteilung): Anzeige des aktuellen Füllstands (grafisch und/oder als Wert mit Einheit) 2 Punkte; auswählbares Start- und Enddatum 2 Punkte; Diagramm der Wassermenge über die Zeit mit beschrifteten Achsen 2 Punkte."
+    }
+   ]
+  }
+ ]
+}

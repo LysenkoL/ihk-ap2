@@ -73,6 +73,7 @@ window.GENSATZ = (function () {
   }
 
   /* --------------------------------------------------------- Stand je Karte */
+  const heuristikStand = erg => erg.punkte >= 1 ? "halb" : "nicht";
   /** gut | halb | nicht | neu — die letzte Einschätzung zählt */
   function stand(id) {
     const s = STAT[id];
@@ -344,6 +345,7 @@ window.GENSATZ = (function () {
     if (offen) loes.open = true;
     loes.appendChild(el("summary", null, "Musterantwort in einfachem Deutsch"));
     loes.appendChild(el("div", "txt satz-muster", item.muster));
+    /* GENVORLESEN */ if (root.GENVORLESEN) { try { const vk = root.GENVORLESEN.knopf(item.muster); if (vk) loes.appendChild(vk); } catch (e) { } }
     if (item.ru) { const r = el("p", "sz-ru"); r.appendChild(el("b", null, "По-русски: ")); r.appendChild(document.createTextNode(item.ru)); loes.appendChild(r); }
     if (item.tipp) { const t = el("div", "gmerksatz"); t.appendChild(el("b", null, "Worauf es ankommt")); t.appendChild(document.createTextNode(item.tipp)); loes.appendChild(t); }
     ziel.appendChild(loes);
@@ -417,18 +419,18 @@ window.GENSATZ = (function () {
       if (erg.leer) return;
       const s = STAT[item.id] || {};
       eintragen(item.id, { versuche: (s.versuche || 0) + 1, bestPunkte: Math.max(s.bestPunkte || 0, erg.punkte), letzte: erg.punkte,
-        stand: erg.punkte >= 2 ? "gut" : erg.punkte >= 1 ? "halb" : "nicht" });
-      LAUF.erg[LAUF.i] = { id: item.id, punkte: erg.punkte, max: 2 };
+        stand: heuristikStand(erg), pruefart: "wortfilter" });
+      LAUF.erg[LAUF.i] = { id: item.id, punkte: erg.punkte, max: 2, heuristik: true };
       zeile.hidden = true;
       loes.open = true;
       /* „Prüfen lassen“: Kurzcheck und Claude (gen/pruefen.js) */
       if (root.GENPRUEFEN) {
         try { rueck.appendChild(root.GENPRUEFEN.kasten({ frage: item.frage, loesung: item.muster, hinweis: item.tipp, punkte: 2, antwort: () => ta.value, gruppe: { id: "satz", name: "Kurzfragen" } })); } catch (e) { }
       }
-      if (erg.punkte < 2) {
-        const gl = el("button", "sz-link", "Meine Antwort war inhaltlich gleichwertig → als gewusst zählen"); gl.type = "button";
+      {
+        const gl = el("button", "sz-link", "Я сравнила смысл и причинную связь с образцом → отметь как понятное"); gl.type = "button";
         gl.onclick = () => {
-          eintragen(item.id, { bestPunkte: 2, letzte: 2, stand: "gut" });
+          eintragen(item.id, { bestPunkte: 2, letzte: 2, stand: "gut", pruefart: "selbst" });
           LAUF.erg[LAUF.i].punkte = 2; LAUF.erg[LAUF.i].selbst = true;
           gl.replaceWith(el("p", "sz-klein", "✓ als gewusst gezählt."));
         };
@@ -493,6 +495,7 @@ window.GENSATZ = (function () {
         });
         const m = el("p", richtig ? "sz-urteil ok" : "sz-urteil nein", richtig ? "✓ Richtig — das ist die Antwort mit vollen Punkten." : "✗ Nicht ganz — die volle Antwort ist grün markiert.");
         k.insertBefore(m, ul.nextSibling);
+        /* GENVORLESEN */ if (root.GENVORLESEN) { try { const vk = root.GENVORLESEN.knopf(item.muster); if (vk) k.insertBefore(vk, m.nextSibling); } catch (e) { } }
         if (item.ru) { const r = el("p", "sz-ru"); r.appendChild(el("b", null, "По-русски: ")); r.appendChild(document.createTextNode(item.ru)); k.appendChild(r); }
         if (item.tipp) { const t = el("div", "gmerksatz"); t.appendChild(el("b", null, "Worauf es ankommt")); t.appendChild(document.createTextNode(item.tipp)); k.appendChild(t); }
         knopfZeile(k, LAUF.i + 1 < LAUF.karten.length ? "weiter →" : "Ergebnis");
@@ -551,7 +554,7 @@ window.GENSATZ = (function () {
     if (LAUF.modus === "schreiben") {
       const p = E.reduce((s, e) => s + (e.punkte || 0), 0), m = E.reduce((s, e) => s + (e.max || 0), 0);
       proz = m ? Math.round(p / m * 100) : 0;
-      zeile2 = window.GEN.fmt.kurz(p) + " von " + m + " BE";
+      zeile2 = "Признаки формулировки: " + window.GEN.fmt.kurz(p) + " из " + m;
     } else if (LAUF.modus === "auswahl") {
       const ok = E.filter(e => e.ok).length; proz = E.length ? Math.round(ok / E.length * 100) : 0;
       zeile2 = ok + " von " + E.length + " richtig erkannt";
@@ -564,23 +567,22 @@ window.GENSATZ = (function () {
     const a = el("div"); a.appendChild(el("span", "eyebrow", "Ergebnis")); a.appendChild(el("div", "zahl", proz + " %"));
     const b = el("div"); b.appendChild(el("span", "eyebrow", MODI[LAUF.modus].name)); b.appendChild(el("div", "neben", zeile2));
     hero.append(a, b);
-    hero.appendChild(el("div", "txt", proz >= 80
-      ? "Das ist Prüfungsniveau. Morgen die nächste Runde — die Formulierungen sollen ohne Nachdenken kommen."
-      : proz >= 50
-        ? "Der Kern sitzt oft, die Begründung fehlt noch. Merksatz: nach jedem Fachbegriff ein „weil“ oder „dadurch“."
-        : "Genau hier liegen viele Punkte. Lies die Musterantworten der roten Fragen und mach die Runde gleich noch einmal."));
+    hero.appendChild(el("div", "txt", LAUF.modus === "schreiben"
+      ? "Проверка слов и формы не подтверждает правильность смысла. Сравни утверждение и причинную связь с образцом; затем попробуй другую задачу без помощи."
+      : LAUF.modus === "auswahl" ? "Ты потренировала узнавание ответа. Следующий шаг — сформулировать его самой без вариантов."
+      : "Это твоя самооценка. Проверь её самостоятельным ответом на другом примере в другой день."));
     k.appendChild(hero);
     const ul = el("ul", "sz-ergliste");
     LAUF.karten.forEach((x, i) => {
       const e = LAUF.erg[i];
-      const st = !e ? "offen" : e.punkte != null ? (e.punkte >= 2 ? "gut" : e.punkte >= 1 ? "halb" : "nicht") : e.ok != null ? (e.ok ? "gut" : "nicht") : e.selbst;
+      const st = !e ? "offen" : e.heuristik && !e.selbst ? heuristikStand(e) : e.punkte != null ? (e.punkte >= 2 ? "gut" : e.punkte >= 1 ? "halb" : "nicht") : e.ok != null ? (e.ok ? "gut" : "nicht") : e.selbst;
       const li = el("li", "sz-e-" + st);
       li.appendChild(el("span", "sz-e-p", st === "gut" ? "✓" : st === "halb" ? "½" : st === "offen" ? "–" : "✗"));
       li.appendChild(el("span", null, x.frage));
       ul.appendChild(li);
     });
     k.appendChild(ul);
-    const falsch = LAUF.karten.filter((x, i) => { const e = LAUF.erg[i]; return e && !(e.punkte >= 2 || e.ok || e.selbst === "gut"); });
+    const falsch = LAUF.karten.filter((x, i) => { const e = LAUF.erg[i]; return e && (e.heuristik && !e.selbst || !(e.punkte >= 2 || e.ok || e.selbst === "gut")); });
     const z = el("div", "gen-knopfzeile");
     const neu = el("button", "btn primary", "Noch eine Runde"); neu.type = "button";
     neu.onclick = () => starten(null, { modus: LAUF.modus, anzahl: LAUF.opt.anzahl, themen: LAUF.opt.themen, folge: LAUF.opt.folge });
@@ -638,6 +640,6 @@ window.GENSATZ = (function () {
   /** von außen (Fehler wiederholen): gut | halb | nicht */
   function setzeStand(id, wert) { if (["gut", "halb", "nicht"].includes(wert)) eintragen(id, { stand: wert }); }
 
-  return { starten, startBox, bewerte, einstellungen, optionen, runde, stand, zahlen, wackelig, setzeStand,
+  return { starten, startBox, bewerte, heuristikStand, einstellungen, optionen, runde, stand, zahlen, wackelig, setzeStand,
            get STAT() { return STAT; } };
 })();

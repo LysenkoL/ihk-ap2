@@ -545,7 +545,9 @@
     x.n = (x.n || 0) + 1; x.t = Date.now(); x.code = code;
     if (r.ok) x.ok = 1;
     if (root.GENLERNSTAND) root.GENLERNSTAND.record({ topic: "sql", source: "sql", task: a.id,
-      correct: r.ok ? 1 : 0, max: 1, support, kind: "auto", answers: { code }, reason: r.text });
+      correct: r.ok ? 1 : 0, max: 1, support, kind: "auto", answers: { code }, reason: r.text,
+      snapshot: { type: "sql", title: a.titel, question: a.text, solution: a.loesung, explanation: a.ru,
+        schema: zerlege(daten().SCHEMA).filter(s => /^CREATE\s+TABLE\b/i.test(s)).join(";\n"), before: a.vorher || "" } });
     r.support = support;
     /* Ein weiterer Versuch verwendet bereits die Rückmeldung dieser Prüfung. */
     x.feedback = 1; merken(true);
@@ -647,7 +649,7 @@
     const kopf = el("div", "sq-karte");
     kopf.appendChild(el("h2", null, "SQL-Trainer"));
     kopf.appendChild(el("p", "sq-info", D.AUFGABEN.length + " Aufgaben im IHK-Stil an einer echten Datenbank (Online-Shop: Kunden, Artikel, Bestellungen, Mitarbeiter). " +
-      "Du schreibst SQL, die App führt es aus und vergleicht dein Ergebnis mit der Musterlösung. SQL ist Kernthema der AP2 (GA2, in jeder Prüfung)."));
+      "Du schreibst SQL, die App führt es aus und vergleicht dein Ergebnis mit der Musterlösung. Hier übst du Datenbankabfragen und Datenänderungen für GA2."));
     const bar = el("div", "sq-balken"); const f = el("span"); f.style.width = Math.round(Z.geloest / Z.gesamt * 100) + "%"; bar.appendChild(f);
     kopf.appendChild(bar);
     kopf.appendChild(el("p", "sq-klein", Z.geloest + " von " + Z.gesamt + " gelöst" + (Z.versucht ? " · " + Z.versucht + " angefangen" : "")));
@@ -1028,7 +1030,7 @@
     b.appendChild(el("h2", null, "SQL-Trainer (AP2)"));
     const Z = zahlen();
     b.appendChild(el("p", null, Z.gesamt + " Aufgaben im IHK-Stil an einer echten Datenbank: SELECT, WHERE, GROUP BY, JOIN, Unterabfragen, INSERT/UPDATE/DELETE, CREATE TABLE. " +
-      "Dein SQL wird ausgeführt und mit der Musterlösung verglichen. SQL kommt in jeder GA2 dran."));
+      "Dein SQL wird ausgeführt und mit der Musterlösung verglichen. Übt Datenbankabfragen und Datenänderungen für GA2."));
     const st = el("div", "steuer");
     const o = el("button", "btn primary", Z.geloest ? "Weiter üben (" + Z.geloest + "/" + Z.gesamt + ")" : "SQL-Trainer öffnen"); o.type = "button";
     o.onclick = () => oeffnen(Z.geloest ? { weiter: true } : {});

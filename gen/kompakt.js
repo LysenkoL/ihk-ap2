@@ -227,6 +227,13 @@ window.GENKOMPAKT = (function () {
         try { zu(); pruefen(); } catch (e) { console.error("Kompakt:", e); }
       };
     }
+    /* Eigene AP2-Bildschirme (Lernweg, Praxis, Code, …) setzen die Zeile
+       über dem Titel selbst, ohne schirm() — die Kurzzeile mitziehen. */
+    const eb = $("kEyebrow");
+    if (eb && window.MutationObserver) {
+      new MutationObserver(() => { if (gebaut) kuerzen(); })
+        .observe(eb, { childList: true, subtree: true, characterData: true });
+    }
     /* Zähler aktualisieren, wenn index.html sie neu schreibt */
     const ziel = $("statBe");
     if (ziel && window.MutationObserver) {

@@ -1,0 +1,96 @@
+/* Нормализация шаг за шагом — префикс nf- */
+.nf-page{max-width:920px;margin:auto;padding:18px}
+.nf-wrap{display:grid;gap:16px;min-width:0}
+.nf-card{background:var(--card,#fff);border:1px solid var(--rule,#ddd);border-radius:14px;padding:20px;line-height:1.6;min-width:0}
+.nf-card h2{margin:0 0 10px;font-size:21px;line-height:1.3}
+/* Перекрыть общее «.seite h2 + p» (серый мелкий подзаголовок) — здесь это обычный текст */
+.nf-page .nf-card h2+p{color:var(--ink,#14171c);font-size:inherit;margin:8px 0}
+.nf-page .nf-card h2+p.nf-muted{color:var(--muted,#666);font-size:13px}
+.nf-card h3{margin:18px 0 6px;font-size:16px;line-height:1.35}
+.nf-card p{margin:8px 0}
+.nf-card summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.nf-card .btn{min-height:44px;white-space:normal;text-align:left;max-width:100%}
+.nf-card :focus-visible,.nf-schritte :focus-visible{outline:3px solid var(--pruefer,#12457E);outline-offset:2px}
+.nf-muted{display:block;color:var(--muted,#666);font-size:13px;line-height:1.5}
+.nf-alert{color:var(--red,#a62424);font-weight:600}
+.nf-ok{color:var(--ok,#1d6b4a)}
+.nf-fehler{color:var(--red,#a8291f)}
+.nf-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.nf-weiter:empty{display:none}
+
+/* Таблицы: прокрутка внутри блока, страница не шире экрана */
+.nf-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:8px 0 12px}
+.nf-tab{border-collapse:collapse;font-size:13.5px;line-height:1.4}
+.nf-tab caption{text-align:left;font-weight:700;padding:2px 0 6px;font-family:var(--data,monospace);white-space:nowrap}
+.nf-tab th,.nf-tab td{border:1px solid var(--rule,#ccc);padding:5px 8px;text-align:left;vertical-align:top;white-space:nowrap}
+.nf-tab th{background:var(--field,#f4f6f9);font-weight:700}
+.nf-tab th.nf-pk{text-decoration:underline;text-underline-offset:3px}
+.nf-marke{display:inline-block;margin-left:5px;padding:0 4px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;background:var(--pruefer-soft,#eaf0f7);color:var(--pruefer,#12457e);text-decoration:none}
+.nf-marke.nf-fk{background:var(--warn-soft,#fcf4e4);color:var(--warn,#b4740e)}
+.nf-wert+.nf-wert{border-top:1px dashed var(--rule,#ccc);margin-top:3px;padding-top:3px}
+
+/* Навигация по шагам */
+.nf-schritte,#nfSchritt{scroll-margin-top:72px}
+.nf-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.nf-schritte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.nf-schritte .btn{min-height:44px;white-space:normal;padding:8px 6px;text-align:center;line-height:1.25}
+.nf-schritte .btn[aria-current="step"]{border-color:var(--pruefer,#12457e);box-shadow:inset 0 -3px 0 var(--pruefer,#12457e)}
+.nf-schritte .nf-st-ok{color:var(--ok,#1d6b4a);border-color:var(--ok,#1d6b4a)}
+.nf-schritte .nf-st-ok-hilfe{color:var(--ok,#1d6b4a)}
+.nf-schritte .nf-st-fehler{color:var(--red,#a8291f)}
+.nf-schritte .nf-st-gezeigt{color:var(--warn,#b4740e)}
+@media(min-width:700px){.nf-schritte{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
+/* Пункты шага */
+.nf-items{margin-top:8px}
+.nf-item{padding:10px 0 10px 12px;border-left:3px solid transparent;border-bottom:1px solid var(--rule-soft,#e8eaee);min-width:0}
+.nf-item.ok{border-left-color:var(--ok,#1d6b4a)}
+.nf-item.falsch{border-left-color:var(--red,#a8291f);background:var(--red-soft,#fdf4f3)}
+.nf-feld{display:flex;flex-direction:column;gap:6px}
+.nf-frage{font-weight:600;overflow-wrap:anywhere;margin:0}
+.nf-item select{box-sizing:border-box;width:100%;max-width:100%;min-height:44px;font:inherit;color:var(--ink,#14171c);background:var(--field,#f4f6f9);border:1px solid var(--rule,#ccc);border-radius:8px;padding:8px 10px}
+.nf-check{display:flex;align-items:flex-start;gap:10px;min-height:44px;padding:6px 0;cursor:pointer;overflow-wrap:anywhere}
+.nf-check input{flex:none;width:20px;height:20px;margin-top:3px}
+.nf-feedback{margin-top:6px}
+.nf-feedback p{margin:4px 0}
+.nf-mark{font-weight:700}
+.nf-item.ok .nf-mark{color:var(--ok,#1d6b4a)}
+.nf-item.falsch .nf-mark{color:var(--red,#a8291f)}
+.nf-richtig{font-weight:600}
+.nf-erkl{font-size:14px;line-height:1.55}
+.nf-ergebnis{font-weight:700;margin-top:12px}
+.nf-ergebnis .nf-muted{font-weight:400;margin-top:4px}
+.nf-hinweis{background:var(--warn-soft,#fcf4e4);border-left:3px solid var(--warn,#b4740e);padding:6px 12px;margin:6px 0 12px}
+
+/* Решение и образцы */
+.nf-loesung:empty{display:none}
+.nf-loesung{margin-top:14px;padding-top:6px;border-top:2px solid var(--rule,#ddd)}
+.nf-satz{background:var(--pruefer-soft,#eaf0f7);padding:8px 12px;border-radius:8px;margin:8px 0}
+.nf-satz p{margin:3px 0}
+.nf-notation{font-family:var(--data,monospace);font-size:13.5px;background:var(--field,#f4f6f9);padding:12px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}
+.nf-rel{padding-left:20px}
+.nf-rel li{margin:8px 0}
+.nf-rel b{display:block;font-family:var(--data,monospace);font-size:14px}
+
+/* Справка */
+.nf-terms{display:grid;grid-template-columns:minmax(150px,1fr) 2fr;gap:6px 16px;margin:10px 0}
+.nf-terms dt{font-weight:700;overflow-wrap:anywhere}
+.nf-terms dd{margin:0}
+.nf-uebers,.nf-ausgang{margin-top:8px}
+.nf-uebers summary,.nf-ausgang summary{font-weight:600}
+
+/* Список сценариев */
+.nf-liste .btn{display:block;width:100%;text-transform:none;letter-spacing:normal;font-family:inherit;font-size:15px;line-height:1.35;padding:12px;margin:8px 0}
+.nf-liste .btn .nf-l-titel{display:block;font-weight:700}
+.nf-liste .btn .nf-muted{margin-top:3px;font-weight:400}
+.nf-liste .btn.nf-fertig{border-color:var(--ok,#1d6b4a)}
+
+@media(max-width:540px){
+  .nf-page{padding:10px}
+  .nf-card{padding:14px}
+  .nf-card h2{font-size:19px}
+  .nf-terms{grid-template-columns:1fr;gap:2px}
+  .nf-terms dd{margin-bottom:8px}
+  .nf-item{padding-left:9px}
+}
+@media print{.nf-page[hidden]{display:none}.nf-card{break-inside:avoid}.nf-card button,.nf-schritte{display:none}}

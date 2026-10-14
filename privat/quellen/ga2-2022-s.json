@@ -1,0 +1,311 @@
+{
+ "id": "ga2-2022-s",
+ "bereich": "ga2",
+ "termin": "Sommer 2022",
+ "kurz": "GA2 S22",
+ "minuten": 90,
+ "schluessel": "Lösungserläuterungen des u-form Verlags (Abschlussprüfung Teil 2 Sommer 2022) – keine offiziellen Lösungshinweise der ZPA",
+ "situation": "<p>Der Energieversorger Wind und Sonne AG möchte den Prozess zur Strom-Abrechnung weiter digitalisieren. Innerhalb dieses Projekts sollen mehrere Apps entwickelt werden. Dabei sollen Sie bei der Planung, Umsetzung und Einführung mitarbeiten und unterstützen.</p>",
+ "beleg": [
+  {
+   "id": "pseudo",
+   "titel": "Belegsatz: Pseudocode, prozedurale Programmierung",
+   "html": "<p>Schriftart: Courier New (12)</p><table><tr><th>Pseudocode</th><th>Beschreibung</th></tr><tr><td><pre><b>wenn</b> [ Bedingung ] <b>dann</b>\n   [ Anweisung ]\n<b>sonst</b>\n   [ Anweisung ]\n<b>Ende wenn</b></pre></td><td>Verzweigung</td></tr><tr><td><pre><b>zähle</b> [ Variable ] <b>von</b> [ Startwert] <b>bis</b> [Endwert]\n   [ Schleifeninhalt ]\n<b>Ende zähle</b></pre></td><td>Zählschleife (Iteration)</td></tr><tr><td><pre><b>solange</b> [ Bedingung ]\n   [ Schleifeninhalt ]\n<b>Ende solange</b></pre></td><td>Kopfgesteuerte Schleife</td></tr><tr><td><pre><b>wiederhole</b>\n   [ Schleifeninhalt ]\n<b>solange</b> &lt; Bedingung &gt;</pre></td><td>Fußgesteuerte Schleife</td></tr><tr><td><code>:=</code></td><td>Zuweisung</td></tr><tr><td><code>=; &lt;; &gt;; &lt;=; &gt;=; &lt; &gt;</code></td><td>Vergleiche</td></tr><tr><td><code><b>integer</b></code></td><td></td></tr><tr><td><code><b>double</b></code></td><td></td></tr><tr><td><code><b>string</b></code></td><td></td></tr><tr><td><code><b>array</b></code></td><td></td></tr></table>"
+  },
+  {
+   "id": "aktivitaet",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s22-ga2-bs-aktivitaet\">"
+  },
+  {
+   "id": "pap",
+   "titel": "Belegsatz: Programmablaufplan (PAP)",
+   "html": "<img data-bild=\"s22-ga2-bs-pap\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug, Stand 2021-09-30)",
+   "html": "<img data-bild=\"s22-ga2-bs-sql1\"><img data-bild=\"s22-ga2-bs-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s22-ga2-3-l": {
+   "seite": "s22/l2-2",
+   "box": [
+    0.07,
+    0.511,
+    0.675,
+    0.94
+   ]
+  },
+  "s22-ga2-bs-aktivitaet": {
+   "seite": "s22/beleg-4",
+   "box": [
+    0.04,
+    0.072,
+    0.835,
+    0.63
+   ]
+  },
+  "s22-ga2-bs-pap": {
+   "seite": "s22/beleg-6",
+   "box": [
+    0.025,
+    0.05,
+    0.975,
+    0.765
+   ],
+   "q": 70
+  },
+  "s22-ga2-bs-sql1": {
+   "seite": "s22/beleg-7",
+   "box": [
+    0.035,
+    0.05,
+    0.93,
+    0.81
+   ],
+   "q": 70
+  },
+  "s22-ga2-bs-sql2": {
+   "seite": "s22/beleg-8",
+   "box": [
+    0.03,
+    0.05,
+    0.93,
+    0.83
+   ],
+   "q": 70
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Algorithmus: Jahresstatistik Energieverbrauch",
+   "punkte": 30,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 30,
+     "eingabe": "code",
+     "beleg": [
+      "pseudo",
+      "aktivitaet",
+      "pap"
+     ],
+     "text": "<p>Für eine Statistik sollen die Energieverbräuche des jeweils letzten Jahres ausgewertet werden. Die Zählerstände zu jedem Monatsende eines Jahres liegen für alle Verbraucher in Zweipersonenhaushalten in einem zweidimensionalen Array <code>verbrauch</code> vor. In der Spalte 0 des Arrays ist die Verbrauchernummer und in der Spalte 1 der Zählerstand von Ende Dezember des Vorjahres eingetragen. Alle anderen Spalten enthalten die Zählerstände der einzelnen Monate des auszuwertenden Jahres. Die Zeile 0 enthält die Daten des ersten Verbrauchers.</p><p>Beispiel:</p><table><tr><th>VerbraucherNr</th><th>Vorjahr</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr><tr><td><b>1001</b></td><td>23</td><td>28</td><td>31</td><td>35</td><td>42</td><td>45</td><td>47</td><td>50</td><td>56</td><td>61</td><td>67</td><td>73</td><td>78</td></tr><tr><td><b>1002</b></td><td>25</td><td>29</td><td>33</td><td>37</td><td>42</td><td>46</td><td>49</td><td>53</td><td>58</td><td>62</td><td>66</td><td>72</td><td>78</td></tr><tr><td><b>…</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td><b>5999</b></td><td>24</td><td>30</td><td>34</td><td>40</td><td>44</td><td>48</td><td>55</td><td>62</td><td>66</td><td>71</td><td>77</td><td>82</td><td>88</td></tr></table><p>Für die Auswertung der Daten werden folgende statistische Werte benötigt:</p><ul><li>Minimaler Monatsverbrauch über alle Verbraucher hinweg</li><li>Maximaler Monatsverbrauch über alle Verbraucher hinweg</li><li>Für jeden Verbraucher, der in einem Monat einen vorgegebenen Schwellenwert (<code>limit</code>) überschritten hat, sind folgende Informationen in einem Objekt der Klasse <code>Monatsverbrauch</code> zu speichern:<br>die VerbraucherNr, die Monatsnummer (1 für Januar, …, 12 für Dezember), der Verbrauch<br>Dieses Objekt wird anschließend einer Liste hinzugefügt.</li></ul><p>Das zweidimensionale Array <code><i>verbrauch</i></code> steht innerhalb der Methode zur Verfügung, ebenso eine Variable <code><i>limit</i></code>, welche den vorgegebenen Schwellenwert enthält. Die Anzahl der Datensätze des Arrays kann durch <code><i>verbrauch.length</i></code> bestimmt werden. Für ein <code>List</code>-Objekt stehen folgende Methoden zur Verfügung:</p><table><tr><td><code>List()</code></td><td>Standardkonstruktor</td></tr><tr><td><code>add(Monatsverbrauch o)</code></td><td>Hinzufügen eines Objektes</td></tr></table><p><b>Erstellen Sie eine Methode <code>statistik(verbrauch: int[][], limit: int)</code> zur Auswertung der Verbrauchsdaten, welche alle geforderten Werte bestimmt.</b></p><p>Der Rückgabewert soll ein Objekt vom Typ <code>Jahresstatistik(minVerbrauch: int, maxVerbrauch: int, limitVerbraucher: List)</code> sein.</p><p>Geben Sie Ihre Lösung in Pseudocode, als Struktogramm, als Programmablaufplan oder als UML-Aktivitätsdiagramm an.</p>",
+     "loesung": "<p>Nachfolgend finden Sie ein Lösungsbeispiel als Pseudocode.</p><p><i>Weitere Lösungen in anderen Formen sind möglich.</i></p><pre>Jahresstatistik statistik(verbrauch: int [][], limit:int)\n{\n    int minMonat = Integer.MAX_VALUE;\n    int maxMonat = Integer.MIN_VALUE;\n    List&lt;Monatsverbrauch&gt; greaterLimit = new List&lt;Monatsverbrauch&gt;();\n\n    for (int vn = 0; vn &lt; verbrauch.length; vn++)\n        {\n        for (int m = 1; m &lt;= 12; m++)\n            {\n            int v = verbrauch[vn][m+1] - verbrauch[vn][m];\n            if (v &gt; limit)\n                {\n                greaterLimit.add(new Monatsverbrauch( verbrauch [vn][0], m, v));\n                }\n            if (v &lt; minMonat)\n                {\n                minMonat = v;\n                }\n            else if (v &gt; maxMonat)\n                {\n                maxMonat =v;\n                }\n            }\n        }\nreturn new Jahresstatistik (minMonat, maxMonat, greaterLimit);\n}</pre><p><i>Anmerkung: Der Monatsverbrauch von Monat m ist Spalte m+1 (Stand am Ende des Monats) minus Spalte m (Stand am Ende des Vormonats). Achtung: Durch „else if (v &gt; maxMonat)“ wird ein Wert, der gerade als neues Minimum übernommen wurde, nicht mehr mit maxMonat verglichen. Ist z. B. schon der allererste Monatsverbrauch der größte Wert, wird er nie als Maximum gespeichert. Sauberer sind zwei getrennte wenn-Abfragen (siehe unten).</i></p><p><i>Eigene Ergänzung — dieselbe Lösung (korrigiert) in Pseudocode nach Belegsatz:</i></p><pre>Jahresstatistik statistik(verbrauch: integer[][], limit: integer)\n   minVerbrauch := verbrauch[0][2] - verbrauch[0][1]\n   maxVerbrauch := minVerbrauch\n   limitVerbraucher := new List()\n   zähle zeile von 0 bis verbrauch.length - 1\n      zähle monat von 1 bis 12\n         v := verbrauch[zeile][monat + 1] - verbrauch[zeile][monat]\n         wenn v &lt; minVerbrauch dann\n            minVerbrauch := v\n         Ende wenn\n         wenn v &gt; maxVerbrauch dann\n            maxVerbrauch := v\n         Ende wenn\n         wenn v &gt; limit dann\n            limitVerbraucher.add(new Monatsverbrauch(verbrauch[zeile][0], monat, v))\n         Ende wenn\n      Ende zähle\n   Ende zähle\n   return new Jahresstatistik(minVerbrauch, maxVerbrauch, limitVerbraucher)\nEnde statistik</pre>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Variablen für Minimum, Maximum und Liste initialisieren 3 Punkte; äußere Schleife über alle Verbraucher 4 Punkte; innere Schleife über die 12 Monate 4 Punkte; Monatsverbrauch als Differenz zweier aufeinanderfolgender Zählerstände 6 Punkte; Minimum und Maximum bestimmen 6 Punkte; Schwellenwert prüfen, Objekt Monatsverbrauch (VerbraucherNr, Monat, Verbrauch) erzeugen und zur Liste hinzufügen 5 Punkte; Rückgabe eines Jahresstatistik-Objekts 2 Punkte. Struktogramm, PAP oder Aktivitätsdiagramm sind gleichwertig."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Unit-Test, Fehlerkorrektur, Äquivalenzklassen",
+   "punkte": 20,
+   "themen": [
+    "Qualität & Test"
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>a) Zum Testen der Methoden der zu entwickelnden Software kommen Unit-Tests zum Einsatz.</p><p><b>aa) Beschreiben Sie, was ein Unit-Test ist und wozu er verwendet wird.</b></p>",
+     "loesung": "<p>Unit-Tests können auch als Komponententests bezeichnet werden. Mithilfe dieser Tests wird überprüft, ob alle Einzel-Komponenten (Units) so funktionieren, wie dies beabsichtigt war. Unit-Tests sind voneinander unabhängig und isoliert, ein fehlgeschlagener Unit-Test darf deshalb nicht zu weiteren Fehlern in anderen Units führen. Außerdem sind gute Unit-Tests um eine sogenannte Test Fixture gruppiert und nicht um eine Klasse.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Was ist ein Unit-Test (Test einer einzelnen Komponente/Unit, isoliert) 2 Punkte, wozu (prüfen, ob die Unit wie beabsichtigt funktioniert) 1 Punkt."
+    },
+    {
+     "nr": "ab",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>a) Zum Testen der Methoden der zu entwickelnden Software kommen Unit-Tests zum Einsatz.</p><p><b>ab) Nennen und beschreiben Sie zwei Eigenschaften, welche ein Unit-Test erfüllen sollte.</b></p>",
+     "loesung": "<p>Unit-Tests folgen den F.I.R.S.T.-Prinzipien:</p><ul><li><b>F</b>ast: Die Ausführung der einzelnen Tests sollte schnell sein, damit möglichst oft getestet werden kann.</li><li><b>I</b>ndependent: Da Unit-Tests unabhängig voneinander sind, können sie in beliebiger Reihenfolge und Anzahl parallel oder einzeln ausgeführt werden.</li><li><b>R</b>epeatable: Unit-Tests müssen mehrfach ausführbar sein, während das Ergebnis jedoch immer gleich sein muss.</li><li><b>S</b>elf-Validating: Ein Unit-Test unterstützt nur die Status „fehlgeschlagen“ und „erfolgreich“. Der Status muss automatisch gesetzt werden. Eine manuelle Prüfung darf nicht notwendig sein.</li><li><b>T</b>imely: Unit-Tests sollten vor der Entwicklung des eigentlichen Codes geschrieben werden.</li></ul><p><i>Unit-Tests erfüllen weitere Eigenschaften, daher sind weitere Lösungen denkbar.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Eigenschaft mit Beschreibung 2 Punkte."
+    },
+    {
+     "nr": "ba",
+     "punkte": 5,
+     "eingabe": {
+      "zeilen": [
+       "Testfall 1",
+       "Testfall 2",
+       "Testfall 3",
+       "Testfall 4",
+       "Testfall 5"
+      ]
+     },
+     "text": "<p>b) Im Rahmen des Projektes wurde eine Methode entwickelt, welche folgende funktionalen Anforderungen erfüllen soll:</p><ul><li>Die Methode soll die positive Differenz zwischen einem alten und einem neuen Zählerstand, welche als Parameter übergeben werden, berechnen und diesen Wert zurückgeben.</li><li>Die Differenz soll nur dann berechnet werden, wenn die übergebenen Werte nicht negativ sind und der alte Zählerstand nicht größer als der neue Zählerstand ist. Ansonsten soll die Methode den Wert -1 zurückgeben.</li></ul><p>Quellcode der Funktion:</p><pre>int berechneDifferenz (int zaehlerstandAlt, int zaehlerstandNeu) {\n    int differenz = -1;\n    if (zaehlerstandAlt &gt;= 0 &amp;&amp; zaehlerstandNeu &gt; 0) {\n        if (zaehlerstandAlt &lt; zaehlerstandNeu) {\n            differenz = zaehlerstandNeu - zaehlerstandAlt;\n        }\n    }\n    return differenz;\n}</pre><p>ba) Zum Testen der Methode wurde folgender Unittest entwickelt.</p><pre>@Test\nvoid testeBerechneZahlungsdifferenz () {\n     assertEquals(20, berechneDifferenz(240, 260));     // Testfall 1\n     assertEquals(0, berechneDifferenz(120, 120));      // Testfall 2\n     assertEquals(0, berechneDifferenz(0, 0));          // Testfall 3\n     assertEquals(80, berechneDifferenz(0, 80));        // Testfall 4\n     assertEquals(-1, berechneDifferenz(440, 420));     // Testfall 5\n}</pre><table><tr><td><code>assertEquals(Expected, Actual)</code></td><td>Prüft, ob die Werte für <code>Actual</code> und <code>Expected</code> gleich sind. Ist dieses nicht der Fall, schlägt der Test fehl.</td></tr></table><p><b>Überprüfen Sie, ob der Unit-Test erfolgreich ist oder fehlschlägt. Tragen Sie dazu das Ergebnis von jedem Testfall in die Tabelle ein.</b> (OK – wenn der Test erfolgreich ist, Fehler – wenn der Test fehlschlägt.)</p><table><tr><th>Testfall</th><th>Ergebnis des Tests</th></tr><tr><td>1</td><td></td></tr><tr><td>2</td><td></td></tr><tr><td>3</td><td></td></tr><tr><td>4</td><td></td></tr><tr><td>5</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Test</th><th>Ergebnis des Tests</th></tr><tr><td>1.</td><td>OK</td></tr><tr><td>2.</td><td>Fehler</td></tr><tr><td>3.</td><td>Fehler</td></tr><tr><td>4.</td><td>OK</td></tr><tr><td>5.</td><td>OK</td></tr></table><p><i>Anmerkung (eigene Erläuterung): Testfall 2 liefert -1 statt 0, weil 120 &lt; 120 falsch ist. Testfall 3 liefert -1 statt 0, weil zaehlerstandNeu &gt; 0 bei 0 falsch ist.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Testfall 1 Punkt."
+    },
+    {
+     "nr": "bb",
+     "punkte": 4,
+     "eingabe": "code",
+     "text": "<p>bb) Der Unit-Test schlägt fehl.</p><p><b>Passen Sie den Quellcode so an, dass der Unit-Test erfolgreich durchlaufen wird.</b></p><pre>int berechneDifferenz (int zaehlerstandAlt, int zaehlerstandNeu) {\n\n    int differenz  =  -1;\n\n    if (zaehlerstandAlt  &gt;=  0  &amp;&amp;  zaehlerstandNeu  &gt;  0) {\n\n        if  (zaehlerstandAlt  &lt;  zaehlerstandNeu)  {\n            differenz  =  zaehlerstandNeu  -  zaehlerstandAlt;\n        }\n\n    }\n\n    return differenz;\n}</pre>",
+     "loesung": "<pre>int berechneDifferenz (int zaehlerstandAlt, int zaehlerstandNeu) {\n    int differenz = -1;\n    if (zaehlerstandAlt &gt;= 0 &amp;&amp; zaehlerstandNeu &gt;= 0) {\n        if (zaehlerstandAlt &lt;= zaehlerstandNeu) {\n        differenz = zaehlerstandNeu - zaehelerstandAlt;\n        }\n    }\n    return differenz;\n}</pre><p><i>Weitere Lösungen sind möglich.</i></p><p><i>Anmerkung: Die beiden Änderungen sind im Original grau hinterlegt: äußere Bedingung <code>zaehlerstandNeu &gt;= 0</code> statt <code>&gt; 0</code>, innere Bedingung <code>zaehlerstandAlt &lt;= zaehlerstandNeu</code> statt <code>&lt;</code>. „zaehelerstandAlt“ ist ein Tippfehler in den Lösungserläuterungen (richtig: zaehlerstandAlt).</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je korrigierte Bedingung 2 Punkte (zaehlerstandNeu größer gleich 0 und zaehlerstandAlt kleiner gleich zaehlerstandNeu).",
+     "anlagen": [
+      {
+       "titel": "Anforderungen und Quellcode der Methode berechneDifferenz",
+       "html": "<p>b) Im Rahmen des Projektes wurde eine Methode entwickelt, welche folgende funktionalen Anforderungen erfüllen soll:</p><ul><li>Die Methode soll die positive Differenz zwischen einem alten und einem neuen Zählerstand, welche als Parameter übergeben werden, berechnen und diesen Wert zurückgeben.</li><li>Die Differenz soll nur dann berechnet werden, wenn die übergebenen Werte nicht negativ sind und der alte Zählerstand nicht größer als der neue Zählerstand ist. Ansonsten soll die Methode den Wert -1 zurückgeben.</li></ul><p>Quellcode der Funktion:</p><pre>int berechneDifferenz (int zaehlerstandAlt, int zaehlerstandNeu) {\n    int differenz = -1;\n    if (zaehlerstandAlt &gt;= 0 &amp;&amp; zaehlerstandNeu &gt; 0) {\n        if (zaehlerstandAlt &lt; zaehlerstandNeu) {\n            differenz = zaehlerstandNeu - zaehlerstandAlt;\n        }\n    }\n    return differenz;\n}</pre>"
+      },
+      {
+       "titel": "Unit-Test aus ba)",
+       "html": "<p>ba) Zum Testen der Methode wurde folgender Unittest entwickelt.</p><pre>@Test\nvoid testeBerechneZahlungsdifferenz () {\n     assertEquals(20, berechneDifferenz(240, 260));     // Testfall 1\n     assertEquals(0, berechneDifferenz(120, 120));      // Testfall 2\n     assertEquals(0, berechneDifferenz(0, 0));          // Testfall 3\n     assertEquals(80, berechneDifferenz(0, 80));        // Testfall 4\n     assertEquals(-1, berechneDifferenz(440, 420));     // Testfall 5\n}</pre><table><tr><td><code>assertEquals(Expected, Actual)</code></td><td>Prüft, ob die Werte für <code>Actual</code> und <code>Expected</code> gleich sind. Ist dieses nicht der Fall, schlägt der Test fehl.</td></tr></table>"
+      }
+     ]
+    },
+    {
+     "nr": "bc",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "1: zaehlerstandAlt / zaehlerstandNeu / differenz",
+       "2: zaehlerstandAlt / zaehlerstandNeu / differenz"
+      ]
+     },
+     "text": "<p>bc) Im Unit-Test fehlen noch wichtige Testfälle.</p><p><b>Geben Sie Testdaten aus zwei weiteren Äquivalenzklassen an, für welche die Methode den Rückgabewert <code>-1</code> liefern sollte.</b></p><table><tr><th>Nr.</th><th>zaehlerstandAlt</th><th>zaehlerstandNeu</th><th>differenz</th></tr><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Nr.</th><th>zaehlerstandAlt</th><th>zaehlerstandNeu</th><th>differenz</th></tr><tr><td>1</td><td>-100</td><td>80</td><td>-1</td></tr><tr><td>2</td><td>-70</td><td>0</td><td>-1</td></tr><tr><td>3</td><td>-22</td><td>-5</td><td>-1</td></tr></table><p><i>Siehe Zeile 3 des Codes. Weitere Beispiele sind möglich.</i></p><p><i>Anmerkung: „Zeile 3“ ist die äußere if-Bedingung. Die Klasse „alter Stand größer als neuer Stand“ ist schon durch Testfall 5 abgedeckt. Neue Äquivalenzklassen für -1 sind daher: zaehlerstandAlt negativ und zaehlerstandNeu negativ.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Testfall aus einer neuen Äquivalenzklasse mit Ergebnis -1 2 Punkte.",
+     "anlagen": [
+      {
+       "titel": "Anforderungen und Quellcode der Methode berechneDifferenz",
+       "html": "<p>b) Im Rahmen des Projektes wurde eine Methode entwickelt, welche folgende funktionalen Anforderungen erfüllen soll:</p><ul><li>Die Methode soll die positive Differenz zwischen einem alten und einem neuen Zählerstand, welche als Parameter übergeben werden, berechnen und diesen Wert zurückgeben.</li><li>Die Differenz soll nur dann berechnet werden, wenn die übergebenen Werte nicht negativ sind und der alte Zählerstand nicht größer als der neue Zählerstand ist. Ansonsten soll die Methode den Wert -1 zurückgeben.</li></ul><p>Quellcode der Funktion:</p><pre>int berechneDifferenz (int zaehlerstandAlt, int zaehlerstandNeu) {\n    int differenz = -1;\n    if (zaehlerstandAlt &gt;= 0 &amp;&amp; zaehlerstandNeu &gt; 0) {\n        if (zaehlerstandAlt &lt; zaehlerstandNeu) {\n            differenz = zaehlerstandNeu - zaehlerstandAlt;\n        }\n    }\n    return differenz;\n}</pre>"
+      },
+      {
+       "titel": "Unit-Test aus ba)",
+       "html": "<p>ba) Zum Testen der Methode wurde folgender Unittest entwickelt.</p><pre>@Test\nvoid testeBerechneZahlungsdifferenz () {\n     assertEquals(20, berechneDifferenz(240, 260));     // Testfall 1\n     assertEquals(0, berechneDifferenz(120, 120));      // Testfall 2\n     assertEquals(0, berechneDifferenz(0, 0));          // Testfall 3\n     assertEquals(80, berechneDifferenz(0, 80));        // Testfall 4\n     assertEquals(-1, berechneDifferenz(440, 420));     // Testfall 5\n}</pre><table><tr><td><code>assertEquals(Expected, Actual)</code></td><td>Prüft, ob die Werte für <code>Actual</code> und <code>Expected</code> gleich sind. Ist dieses nicht der Fall, schlägt der Test fehl.</td></tr></table>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Datenbankmodell in 3. Normalform (Tarifübersicht)",
+   "punkte": 20,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 20,
+     "eingabe": "zeichnen",
+     "text": "<p>Die notwendigen Daten für eine Tarifübersicht sollen in einer relationalen Datenbank erfasst werden. Eine Tarifübersicht für ein Jahr sieht wie folgt aus:</p><table><tr><td colspan=\"2\"><b>Tarifübersicht</b></td></tr><tr><td colspan=\"2\"><b>Kundennummer:</b> 1234</td></tr><tr><td><b>Kunde:</b><br>Maier, Clara<br>Waldessaum 11<br>99999 Tannen</td><td><b>Ausstellungsdatum:</b> 21.04.2022<br><br><b>Ansprechpartner:</b><br>Müller, Hans<br>Telefon: 0111- 45678<br>Mail: hans.mueller@energieversorger.de</td></tr><tr><td colspan=\"2\">Sehr geehrter Kunde,<br><br>im Jahr 2021 haben Sie folgende Tarife gebucht:<br>Ökostrom normal: vom 01.01.2021 bis 03.04.2021<br>Ökostrom 3+: vom 04.04.2021 bis 31.10.2021<br>Ökostrom normal: vom 01.11.2021 bis 31.12.2021<br><br>Ihr Energieversorger</td></tr></table><p>Hinweise: Der in der Übersicht genannte Ansprechpartner ist der persönliche Ansprechpartner des Kunden beim Energieversorger. Das Ausstellungsdatum wird in der Datenbank nicht erfasst.</p><p><b>Erstellen Sie das entsprechende Datenbankmodell in der 3. Normalform.</b></p><ul><li>Geben Sie alle erforderlichen Tabellen und die entsprechenden Attribute an.</li><li>Kennzeichnen Sie Primärschlüssel mit PK und Fremdschlüssel mit FK.</li><li>Zeichnen Sie die Beziehungen zwischen den Tabellen mit deren Kardinalitäten ein.</li></ul>",
+     "loesung": "<img data-bild=\"s22-ga2-3-l\"><p><i>Weitere Lösungen sind möglich.</i></p><p>In Worten:</p><ul><li><b>Kunde</b> (KundenNr (PK), Name, Vorname, Strasse, Postleitzahl, Ort, AnsprechpartnerNr (FK))</li><li><b>Ansprechpartner</b> (AnsprechpartnerNr (PK), Name, Vorname, Telefonnummer, EMailAdresse)</li><li><b>Kunde_Tarif</b> (KTNr (PK), KundenNr (FK), TarifNr (FK), Beginn, Ende)</li><li><b>Tarif</b> (TarifNr (PK), Bezeichnung)</li></ul><p>Beziehungen: Ansprechpartner 1 : n Kunde · Kunde 1 : n Kunde_Tarif · Tarif 1 : n Kunde_Tarif (die m:n-Beziehung Kunde–Tarif wird über Kunde_Tarif mit Beginn und Ende aufgelöst).</p><p><i>Anmerkung: Im Original steht bei Ansprechpartner „PK AnsprechpartnerNr (PK)“ — doppelte Kennzeichnung. Streng genommen hängt Ort von der Postleitzahl ab (transitive Abhängigkeit); eine eigene Tabelle (Postleitzahl, Ort) ist daher ebenfalls eine saubere Lösung.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Tabelle mit vollständigen Attributen 2 Punkte (8 Punkte); je Primärschlüssel 1 Punkt (4 Punkte); je Fremdschlüssel 1 Punkt (3 Punkte); je Beziehung mit Kardinalität 1 Punkt (3 Punkte); Auflösung der m:n-Beziehung Kunde–Tarif über eine Zwischentabelle mit Beginn und Ende 2 Punkte."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Stored Procedure, Trigger, Index, SQL-Abfragen",
+   "punkte": 30,
+   "themen": [
+    "SQL",
+    "Datenbank"
+   ],
+   "text": "<p>Für die Verwaltung und Auswertung der Daten soll die Datenbankabfragesprache SQL zum Einsatz kommen.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>a) In einer Teambesprechung wurde beschlossen, dass u. a. auch Stored Procedures, Trigger und Indizes verwendet werden.</p><p><b>aa) Beschreiben Sie, was Sie unter dem Begriff „Stored Procedure“ verstehen.</b></p>",
+     "loesung": "<p>Wortwörtlich übersetzt, handelt es sich hierbei um eine gespeicherte Prozedur. Hierdurch können komplexe Abfolgen von SQL-Anweisungen unter einem Namen im Datenbank-Management-System (DBMS) abgespeichert werden. Diese Prozeduren können anschließend über den jeweiligen Namen aufgerufen und jederzeit ausgeführt werden.</p><p>Eine gespeicherte Prozedur kann von verschiedenen Datenbank-Clients genutzt werden. Änderungen an der Prozedur erfolgen zentral.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Folge von SQL-Anweisungen unter einem Namen im DBMS gespeichert 1 Punkt, Aufruf über den Namen / zentrale Nutzung 1 Punkt."
+    },
+    {
+     "nr": "ab",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>a) In einer Teambesprechung wurde beschlossen, dass u. a. auch Stored Procedures, Trigger und Indizes verwendet werden.</p><p><b>ab) Beschreiben Sie, was ein Trigger ist.</b></p>",
+     "loesung": "<p>Bei einem Trigger handelt es sich um eine spezielle Art einer Stored Procedure. Die Prozedur wird beim Trigger automatisch ausgeführt, sobald ein Ereignis auf dem Datenbankserver auftritt.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): spezielle gespeicherte Prozedur 1 Punkt, automatische Ausführung bei einem Ereignis (z. B. INSERT, UPDATE, DELETE) 1 Punkt."
+    },
+    {
+     "nr": "ac",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>a) In einer Teambesprechung wurde beschlossen, dass u. a. auch Stored Procedures, Trigger und Indizes verwendet werden.</p><p><b>ac) Beschreiben Sie, wozu Spalten in Tabellen indiziert werden.</b></p>",
+     "loesung": "<p>Bei einem Datenbankindex handelt es sich um eine Datenstruktur mit Hilfe derer die Abfragegeschwindigkeit gesteigert werden kann. Daher wird die Indizierung genutzt, um insbesondere die Suche nach Datensätzen zu erleichtern und zu beschleunigen. Vor allem bei großen Datenmengen wird hierdurch ein enormer Geschwindigkeitsvorteil ermöglicht.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): schnellere Suche bzw. Abfrage (Datenstruktur Index) 2 Punkte."
+    },
+    {
+     "nr": "ba",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Haushalte, Zaehler, Zaehlerstand",
+       "html": "<p>b) Im Zuge der Datenbankentwicklung wurden u. a. folgende Tabellen entwickelt.</p><p><b>Haushalte</b></p><table><tr><th>HH_ID</th><th>HH_Nachname</th><th>HH_Vorname</th><th>HH_StrasseHausnur</th><th>HH_PLZ</th><th>HH_Ort</th></tr><tr><td>1</td><td>Meier</td><td>Manni</td><td>Hauptstr. 5</td><td>50667</td><td>Köln</td></tr><tr><td>2</td><td>Hinz</td><td>Heiner</td><td>Bahnhofstr. 233</td><td>50679</td><td>Köln</td></tr><tr><td>3</td><td>Müller</td><td>Petra</td><td>Baumgasse 1</td><td>50667</td><td>Köln</td></tr><tr><td>4</td><td>Conrad</td><td>Heinz</td><td>Treppenstieg 2</td><td>50667</td><td>Köln</td></tr></table><p><b>Zaehler</b></p><table><tr><th>Z_ID</th><th>Z_HHID</th><th>Z_Nummer</th></tr><tr><td>1</td><td>2</td><td>0037890053</td></tr><tr><td>2</td><td>2</td><td>0037889999</td></tr><tr><td>3</td><td>1</td><td>1666856771</td></tr><tr><td>4</td><td>3</td><td>5658897888</td></tr><tr><td>5</td><td>1</td><td>8885688977</td></tr></table><p><b>Zaehlerstand</b></p><table><tr><th>ZST_ID</th><th>ZST_ZID</th><th>ZST_Datum</th><th>ZST_Stand</th></tr><tr><td>1</td><td>1</td><td>07.01.2021</td><td>450003</td></tr><tr><td>2</td><td>1</td><td>05.01.2022</td><td>458977</td></tr><tr><td>3</td><td>3</td><td>12.01.2020</td><td>453</td></tr><tr><td>4</td><td>3</td><td>13.02.2021</td><td>1988</td></tr><tr><td>5</td><td>3</td><td>04.01.2022</td><td>4022</td></tr><tr><td>6</td><td>2</td><td>12.01.2020</td><td>1588</td></tr><tr><td>7</td><td>2</td><td>13.02.2021</td><td>4298</td></tr><tr><td>8</td><td>2</td><td>04.01.2022</td><td>6999</td></tr><tr><td>9</td><td>5</td><td>13.01.2019</td><td>1</td></tr><tr><td>10</td><td>5</td><td>21.01.2020</td><td>1866</td></tr><tr><td>11</td><td>5</td><td>04.01.2021</td><td>3755</td></tr><tr><td>12</td><td>5</td><td>13.01.2022</td><td>6500</td></tr></table>"
+      }
+     ],
+     "text": "<p>Zur Abfrage und Pflege der Daten sollen nachfolgende SQL-Anweisungen erstellt werden. Die Tabellen Haushalte, Zaehler und Zaehlerstand stehen in der Anlage.</p><p><b>ba) Indizieren Sie in der Tabelle <i>Zaehlerstand</i> das Feld <i>ZSt_Datum</i>. Der Index soll die Bezeichnung <i>Idx_Datum</i> bekommen.</b></p>",
+     "loesung": "<pre>CREATE INDEX Idx_Datum ON Zaehlerstand (ZSt-Datum);</pre><p><i>Anmerkung: „ZSt-Datum“ ist ein Tippfehler in den Lösungserläuterungen — richtig ist ZSt_Datum. CREATE INDEX steht nicht im SQL-Auszug des Belegsatzes.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): CREATE INDEX Idx_Datum 1 Punkt, ON Zaehlerstand 1 Punkt, (ZSt_Datum) 1 Punkt."
+    },
+    {
+     "nr": "bb",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Haushalte, Zaehler, Zaehlerstand",
+       "html": "<p>b) Im Zuge der Datenbankentwicklung wurden u. a. folgende Tabellen entwickelt.</p><p><b>Haushalte</b></p><table><tr><th>HH_ID</th><th>HH_Nachname</th><th>HH_Vorname</th><th>HH_StrasseHausnur</th><th>HH_PLZ</th><th>HH_Ort</th></tr><tr><td>1</td><td>Meier</td><td>Manni</td><td>Hauptstr. 5</td><td>50667</td><td>Köln</td></tr><tr><td>2</td><td>Hinz</td><td>Heiner</td><td>Bahnhofstr. 233</td><td>50679</td><td>Köln</td></tr><tr><td>3</td><td>Müller</td><td>Petra</td><td>Baumgasse 1</td><td>50667</td><td>Köln</td></tr><tr><td>4</td><td>Conrad</td><td>Heinz</td><td>Treppenstieg 2</td><td>50667</td><td>Köln</td></tr></table><p><b>Zaehler</b></p><table><tr><th>Z_ID</th><th>Z_HHID</th><th>Z_Nummer</th></tr><tr><td>1</td><td>2</td><td>0037890053</td></tr><tr><td>2</td><td>2</td><td>0037889999</td></tr><tr><td>3</td><td>1</td><td>1666856771</td></tr><tr><td>4</td><td>3</td><td>5658897888</td></tr><tr><td>5</td><td>1</td><td>8885688977</td></tr></table><p><b>Zaehlerstand</b></p><table><tr><th>ZST_ID</th><th>ZST_ZID</th><th>ZST_Datum</th><th>ZST_Stand</th></tr><tr><td>1</td><td>1</td><td>07.01.2021</td><td>450003</td></tr><tr><td>2</td><td>1</td><td>05.01.2022</td><td>458977</td></tr><tr><td>3</td><td>3</td><td>12.01.2020</td><td>453</td></tr><tr><td>4</td><td>3</td><td>13.02.2021</td><td>1988</td></tr><tr><td>5</td><td>3</td><td>04.01.2022</td><td>4022</td></tr><tr><td>6</td><td>2</td><td>12.01.2020</td><td>1588</td></tr><tr><td>7</td><td>2</td><td>13.02.2021</td><td>4298</td></tr><tr><td>8</td><td>2</td><td>04.01.2022</td><td>6999</td></tr><tr><td>9</td><td>5</td><td>13.01.2019</td><td>1</td></tr><tr><td>10</td><td>5</td><td>21.01.2020</td><td>1866</td></tr><tr><td>11</td><td>5</td><td>04.01.2021</td><td>3755</td></tr><tr><td>12</td><td>5</td><td>13.01.2022</td><td>6500</td></tr></table>"
+      }
+     ],
+     "text": "<p>Zur Abfrage und Pflege der Daten sollen nachfolgende SQL-Anweisungen erstellt werden. Die Tabellen Haushalte, Zaehler und Zaehlerstand stehen in der Anlage.</p><p><b>bb) Löschen Sie alle Haushalte, bei denen kein Zähler hinterlegt wurde.</b></p>",
+     "loesung": "<pre>DELETE FROM Haushalte\nWHERE ( SELECT Count(Z_ID) FROM Zaehler WHERE Z_HHID = HH_ID ) = 0;</pre><p>Auch möglich:</p><pre>DELETE FROM Haushalte\nWHERE HH_ID NOT IN ( SELECT Z_HHID FROM Zaehler);</pre>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): DELETE FROM Haushalte 1 Punkt, WHERE-Bedingung mit Unterabfrage auf Zaehler (NOT IN bzw. Count = 0) 3 Punkte, richtige Verknüpfung HH_ID / Z_HHID 1 Punkt."
+    },
+    {
+     "nr": "bc",
+     "punkte": 6,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Haushalte, Zaehler, Zaehlerstand",
+       "html": "<p>b) Im Zuge der Datenbankentwicklung wurden u. a. folgende Tabellen entwickelt.</p><p><b>Haushalte</b></p><table><tr><th>HH_ID</th><th>HH_Nachname</th><th>HH_Vorname</th><th>HH_StrasseHausnur</th><th>HH_PLZ</th><th>HH_Ort</th></tr><tr><td>1</td><td>Meier</td><td>Manni</td><td>Hauptstr. 5</td><td>50667</td><td>Köln</td></tr><tr><td>2</td><td>Hinz</td><td>Heiner</td><td>Bahnhofstr. 233</td><td>50679</td><td>Köln</td></tr><tr><td>3</td><td>Müller</td><td>Petra</td><td>Baumgasse 1</td><td>50667</td><td>Köln</td></tr><tr><td>4</td><td>Conrad</td><td>Heinz</td><td>Treppenstieg 2</td><td>50667</td><td>Köln</td></tr></table><p><b>Zaehler</b></p><table><tr><th>Z_ID</th><th>Z_HHID</th><th>Z_Nummer</th></tr><tr><td>1</td><td>2</td><td>0037890053</td></tr><tr><td>2</td><td>2</td><td>0037889999</td></tr><tr><td>3</td><td>1</td><td>1666856771</td></tr><tr><td>4</td><td>3</td><td>5658897888</td></tr><tr><td>5</td><td>1</td><td>8885688977</td></tr></table><p><b>Zaehlerstand</b></p><table><tr><th>ZST_ID</th><th>ZST_ZID</th><th>ZST_Datum</th><th>ZST_Stand</th></tr><tr><td>1</td><td>1</td><td>07.01.2021</td><td>450003</td></tr><tr><td>2</td><td>1</td><td>05.01.2022</td><td>458977</td></tr><tr><td>3</td><td>3</td><td>12.01.2020</td><td>453</td></tr><tr><td>4</td><td>3</td><td>13.02.2021</td><td>1988</td></tr><tr><td>5</td><td>3</td><td>04.01.2022</td><td>4022</td></tr><tr><td>6</td><td>2</td><td>12.01.2020</td><td>1588</td></tr><tr><td>7</td><td>2</td><td>13.02.2021</td><td>4298</td></tr><tr><td>8</td><td>2</td><td>04.01.2022</td><td>6999</td></tr><tr><td>9</td><td>5</td><td>13.01.2019</td><td>1</td></tr><tr><td>10</td><td>5</td><td>21.01.2020</td><td>1866</td></tr><tr><td>11</td><td>5</td><td>04.01.2021</td><td>3755</td></tr><tr><td>12</td><td>5</td><td>13.01.2022</td><td>6500</td></tr></table>"
+      }
+     ],
+     "text": "<p>Zur Abfrage und Pflege der Daten sollen nachfolgende SQL-Anweisungen erstellt werden. Die Tabellen Haushalte, Zaehler und Zaehlerstand stehen in der Anlage.</p><p><b>bc) Erstellen Sie eine SQL-Abfrage, mit der Sie alle Haushalte mit der Anzahl der vorhandenen Zähler erhalten. Haushalte mit den wenigsten Zählern sollen unten aufgeführt werden.</b></p><p>Hinweis: Beachten Sie die Spaltenbezeichnungen.</p><p><b>Beispiel-Ergebnistabelle:</b></p><table><tr><th>Nachname</th><th>AnzZaehler</th></tr><tr><td>Meier</td><td>2</td></tr><tr><td>Hinz</td><td>2</td></tr><tr><td>Müller</td><td>1</td></tr><tr><td>Conrad</td><td>0</td></tr></table>",
+     "loesung": "<pre>SELECT HH.HH_Nachname AS Nachname, Count(Z.Z_ID) AS AnzZaehler\nFROM Haushalte AS HH LEFT JOIN Zaehler AS Z ON HH.HH_ID = Z.Z_HHID\nGROUP BY HH.HH_Nachname\nORDER BY Count(Z.Z_ID) DESC;</pre><p><i>Anmerkung: Der LEFT JOIN sorgt dafür, dass auch Conrad (ohne Zähler) mit 0 erscheint. Bei gleichen Nachnamen verschiedener Haushalte wäre GROUP BY HH.HH_ID, HH.HH_Nachname genauer.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Spalten mit Aliasen Nachname und AnzZaehler 1 Punkt, LEFT JOIN Haushalte–Zaehler 2 Punkte, COUNT(Z_ID) 1 Punkt, GROUP BY 1 Punkt, ORDER BY … DESC 1 Punkt."
+    },
+    {
+     "nr": "bd",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Haushalte, Zaehler, Zaehlerstand",
+       "html": "<p>b) Im Zuge der Datenbankentwicklung wurden u. a. folgende Tabellen entwickelt.</p><p><b>Haushalte</b></p><table><tr><th>HH_ID</th><th>HH_Nachname</th><th>HH_Vorname</th><th>HH_StrasseHausnur</th><th>HH_PLZ</th><th>HH_Ort</th></tr><tr><td>1</td><td>Meier</td><td>Manni</td><td>Hauptstr. 5</td><td>50667</td><td>Köln</td></tr><tr><td>2</td><td>Hinz</td><td>Heiner</td><td>Bahnhofstr. 233</td><td>50679</td><td>Köln</td></tr><tr><td>3</td><td>Müller</td><td>Petra</td><td>Baumgasse 1</td><td>50667</td><td>Köln</td></tr><tr><td>4</td><td>Conrad</td><td>Heinz</td><td>Treppenstieg 2</td><td>50667</td><td>Köln</td></tr></table><p><b>Zaehler</b></p><table><tr><th>Z_ID</th><th>Z_HHID</th><th>Z_Nummer</th></tr><tr><td>1</td><td>2</td><td>0037890053</td></tr><tr><td>2</td><td>2</td><td>0037889999</td></tr><tr><td>3</td><td>1</td><td>1666856771</td></tr><tr><td>4</td><td>3</td><td>5658897888</td></tr><tr><td>5</td><td>1</td><td>8885688977</td></tr></table><p><b>Zaehlerstand</b></p><table><tr><th>ZST_ID</th><th>ZST_ZID</th><th>ZST_Datum</th><th>ZST_Stand</th></tr><tr><td>1</td><td>1</td><td>07.01.2021</td><td>450003</td></tr><tr><td>2</td><td>1</td><td>05.01.2022</td><td>458977</td></tr><tr><td>3</td><td>3</td><td>12.01.2020</td><td>453</td></tr><tr><td>4</td><td>3</td><td>13.02.2021</td><td>1988</td></tr><tr><td>5</td><td>3</td><td>04.01.2022</td><td>4022</td></tr><tr><td>6</td><td>2</td><td>12.01.2020</td><td>1588</td></tr><tr><td>7</td><td>2</td><td>13.02.2021</td><td>4298</td></tr><tr><td>8</td><td>2</td><td>04.01.2022</td><td>6999</td></tr><tr><td>9</td><td>5</td><td>13.01.2019</td><td>1</td></tr><tr><td>10</td><td>5</td><td>21.01.2020</td><td>1866</td></tr><tr><td>11</td><td>5</td><td>04.01.2021</td><td>3755</td></tr><tr><td>12</td><td>5</td><td>13.01.2022</td><td>6500</td></tr></table>"
+      }
+     ],
+     "text": "<p>Zur Abfrage und Pflege der Daten sollen nachfolgende SQL-Anweisungen erstellt werden. Die Tabellen Haushalte, Zaehler und Zaehlerstand stehen in der Anlage.</p><p><b>bd) Erstellen Sie eine SQL-Abfrage, mit der Sie die Haushalte mit den vorhandenen Zählern und dem jeweiligen Verbrauch zwischen den beiden Ablesungen in den Jahren 2021 und 2022 erhalten. Die Ergebnisse sollen nach Nachnamen sortiert werden. Es findet pro Jahr nur eine Eintragung statt.</b></p><p>Hinweis: Beachten Sie die Spaltenbezeichnungen.</p><p><b>Beispiel-Ergebnistabelle:</b></p><table><tr><th>Nachname</th><th>Zaehlernummer</th><th>Verbrauch</th></tr><tr><td>Hinz</td><td>0037889999</td><td>2701</td></tr><tr><td>Hinz</td><td>0037890053</td><td>8974</td></tr><tr><td>Meier</td><td>8885688977</td><td>2745</td></tr><tr><td>Meier</td><td>1666856771</td><td>2034</td></tr><tr><td>Müller</td><td>5658897888</td><td>NUL</td></tr></table>",
+     "loesung": "<pre>SELECT HH.HH_Nachname AS Nachname, Z.Z_Nummer AS Zaehlernummer,\n(( SELECT ZSt.ZSt_Stand FROM ZaehlerStand AS ZSt\nWHERE Z.Z_ID = ZSt.ZSt_ZID AND YEAR(ZSt.ZSt_Datum) = 2022) -\n(( SELECT ZSt.ZSt_Stand FROM ZaehlerStand AS ZSt\nWHERE Z.Z_ID = ZSt.ZSt_ZID AND YEAR(ZSt.ZSt_Datum) = 2021)\n) AS Verbrauch\nFROM Haushalte AS HH INNER JOIN Zaehler AS Z ON HH.HH_ID = Z.Z_HHID\nORDER BY HH_Nachname;</pre><p>Ebenfalls denkbar:</p><pre>SELECT HH_Nachname AS Nachname, Z_Nummer AS Zaehlernummer,\n        (Stand2022- Stand2021) AS Verbrauch\n\nFROM Haushalte INNER JOIN Zaehler ON HH_ID = Z_HHID\n        INNER JOIN\n        (       SELECT ZSt_ZID, ZSt_Stand AS Stand2022\n                FROM ZaehlerStand\n                WHERE YEAR(ZSt_Datum) = 2022\n        )AS qry22 ON Z_ID =qry22.ZSt_ZID\n        INNER JOIN\n        (       SELECT ZSt_ZID, ZSt_Stand AS Stand2021\n                FROM ZaehlerStand\n                WHERE YEAR(ZSt_Datum) = 2021\n        )AS qry21 ON Z_ID =qry21.ZSt_ZID\nORDER BY HH_Nachname;</pre><p><i>Anmerkung: In der ersten Lösung steht vor der zweiten Unterabfrage eine öffnende Klammer zu viel; gemeint ist <code>(( SELECT … = 2022) - ( SELECT … = 2021)) AS Verbrauch</code>. Die zweite Lösung mit INNER JOIN liefert Müller (Zähler ohne Zählerstände) nicht; die Zeile mit NULL im Beispiel entsteht nur mit Unterabfragen (oder LEFT JOIN). „NUL“ in der Beispiel-Ergebnistabelle ist abgeschnitten — gemeint ist NULL.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Spalten mit Aliasen Nachname und Zaehlernummer 1 Punkt, Verknüpfung Haushalte–Zaehler 2 Punkte, Zählerstand 2022 ermitteln (YEAR = 2022) 2 Punkte, Zählerstand 2021 ermitteln (YEAR = 2021) 2 Punkte, Differenz als Verbrauch 2 Punkte, ORDER BY Nachname 1 Punkt."
+    }
+   ]
+  }
+ ]
+}

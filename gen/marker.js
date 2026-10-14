@@ -42,7 +42,7 @@ window.GENMARKER = (function () {
 
   /* Wo darf markiert werden */
   const SELEKTOR = ".tk-frage, .gruppe-txt, .tk-gintro, .gfrage, .gsituation, " +
-                   ".loesung-txt, .katalog-hinweis, .gmerksatz";
+                   ".loesung-txt, .katalog-hinweis, .gmerksatz, #scAzubi .az-text, #scAzubi .az-zeile-text, #scAzubi .az-zuo-text, #scAzubi .az-wahl-text";
 
   const $ = id => document.getElementById(id);
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
@@ -366,7 +366,7 @@ window.GENMARKER = (function () {
   function knopfPflegen() {
     const b = stiftKnopf();
     if (!b) return;
-    const etwas = !!document.querySelector(".tk-frage, .gfrage, .gruppe-txt, .gsituation");
+    const etwas = !!document.querySelector(".tk-frage, .gfrage, .gruppe-txt, .gsituation, #scAzubi:not([hidden]) .az-text");
     b.hidden = !etwas;
     if (!etwas && malmodus) document.body.classList.remove("mk-stift");
     else document.body.classList.toggle("mk-stift", malmodus);
@@ -403,7 +403,7 @@ window.GENMARKER = (function () {
   function tipp() {
     try {
       if (localStorage.getItem("ap2:marker:tip")) return;
-      if (!document.querySelector(".tk-frage, .gfrage")) return;
+      if (!document.querySelector(".tk-frage, .gfrage, #scAzubi:not([hidden]) .az-text")) return;
       localStorage.setItem("ap2:marker:tip", "1");
       if (window.toast) window.toast("Neu: Text in der Aufgabe auswählen — dann erscheint der Textmarker.");
     } catch (e) { }

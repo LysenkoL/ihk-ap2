@@ -5,10 +5,12 @@ const base = path.join(__dirname, "..", "gen");
 assert(fs.existsSync(path.join(base, "praxis.js")), "Der Praxis-Trainer muss vorliegen");
 const memory = {};
 const records = [];
+let now = 1000, failRecord = false, failStorage = false;
 function laden() {
-  const root = { console, Date, setTimeout, clearTimeout,
-    localStorage: { getItem: k => memory[k] || null, setItem: (k, v) => { memory[k] = v; } },
-    GENLERNSTAND: { record: x => records.push(x) } };
+  const Clock = class extends Date { static now() { return now; } };
+  const root = { console, Date: Clock, setTimeout, clearTimeout,
+    localStorage: { getItem: k => memory[k] || null, setItem: (k, v) => { if (failStorage) throw new Error("Quota"); memory[k] = v; } },
+    GENLERNSTAND: { record: x => { records.push(x); return { ok: !failRecord }; } } };
   root.globalThis = root;
   vm.createContext(root);
   for (const file of ["praxis-daten.js", "praxis.js"]) vm.runInContext(fs.readFileSync(path.join(base, file), "utf8"), root);
@@ -20,7 +22,9 @@ assert.strictEqual(new Set(P.liste().map(t => t.id)).size, 16);
 
 // Hand-calculated trace: sum positive values [3, -2, 4] -> 3, 3, 7.
 P.start("test-trace", "pruefung");
+now = 2000;
 P.entwurf("test-trace", { verlauf: "3, 3, 7", ergebnis: "7" });
+assert.strictEqual(P.stand("test-trace").draft.updatedAt, 2000, "Spätere Eingaben brauchen eine eigene Änderungszeit für den Abgleich");
 assert.strictEqual(P.abgeben("test-trace").correct, 3);
 const first = P.speichern("test-trace", [], "aufmerksamkeit");
 assert.strictEqual(first.support, "selbst");
@@ -111,5 +115,36 @@ for (const info of P.liste()) {
 assert(auto >= 12 && rubric >= 6);
 assert.throws(() => P.start("unbekannt"), /Unbekannte/);
 assert.throws(() => P.start("test-trace", "invalid", true), /Modus/);
+
+// A saved attempt must be retryable when the shared progress journal was full.
+P.start("test-zweige", "pruefung");
+P.entwurf("test-zweige", { zweige: "4", prozent: "100" });
+P.abgeben("test-zweige");
+failRecord = true;
+const failedRecordAttempt = P.speichern("test-zweige");
+const failedPayload = records[records.length - 1];
+assert.strictEqual(failedPayload.id, "praxis:" + failedRecordAttempt.id);
+assert.strictEqual(failedRecordAttempt.recorded, false);
+failRecord = false;
+P = laden();
+const countBeforeRetry = records.length;
+const retried = P.speichern("test-zweige");
+assert.strictEqual(records.length, countBeforeRetry + 1, "Wiederholung muss das noch fehlende Lernereignis schreiben");
+assert.strictEqual(records[records.length - 1].id, failedPayload.id, "Stabile ID verhindert Doppelzählung");
+assert.strictEqual(retried.recorded, true);
+assert.strictEqual(P.stand("test-zweige").attempts.length, 1);
+
+P.start("ga1-kosten", "pruefung");
+P.entwurf("ga1-kosten", { eigen: "5760" });
+failStorage = true;
+assert.throws(() => P.entwurf("ga1-kosten", { eigen: "999" }), /сохранить/);
+assert.strictEqual(P.stand("ga1-kosten").draft.answers.eigen, "5760", "Fehlgeschlagene Speicherung verändert keinen gespeicherten Entwurf");
+failStorage = false;
+const backup = memory["ap2:praxis"];
+memory["ap2:praxis"] = "{kaputt";
+const broken = laden();
+assert.throws(() => broken.start("test-trace"), /без изменения/);
+assert.strictEqual(memory["ap2:praxis"], "{kaputt", "Beschädigte Daten werden nicht durch einen leeren Stand ersetzt");
+memory["ap2:praxis"] = backup;
 
 console.log("praxis: 16 Aufgaben, genaue Vergleiche, Varianten, Entwürfe, unveränderliche Versuche und Hilfe-Historie OK");

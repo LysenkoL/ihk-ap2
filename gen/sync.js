@@ -161,6 +161,105 @@
     return out;
   }
 
+  function lernwegStand(l, f, b) {
+    const fNeuer = (f.updated || 0) > (l.updated || 0);
+    const out = Object.assign({}, fNeuer ? l : f, fNeuer ? f : l);
+    const konfliktschluessel = x => istObj(x) ? inhalt({ feld: x.feld, id: x.id, wert: x.wert }) : inhalt(x);
+    const ohneQuittung = x => {
+      if (!istObj(x)) return inhalt(x);
+      const wert = Object.assign({}, x); delete wert.recorded; return inhalt(wert);
+    };
+    let konflikte = eindeutige(l.konflikte, f.konflikte, konfliktschluessel);
+    ["done", "drafts", "checks"].forEach(feld => {
+      const a = istObj(l[feld]) ? l[feld] : {}, z = istObj(f[feld]) ? f[feld] : {};
+      out[feld] = Object.assign({}, a);
+      Object.keys(z).forEach(id => {
+        if (!hat(a, id)) { out[feld][id] = z[id]; b.neu++; return; }
+        if (inhalt(a[id]) === inhalt(z[id])) return;
+        if (feld === "checks" && ohneQuittung(a[id]) === ohneQuittung(z[id])) {
+          if (z[id].recorded && !a[id].recorded) out[feld][id] = Object.assign({}, a[id], { recorded: true });
+          return;
+        }
+        if (feld === "done") out[feld][id] = Math.max(a[id] || 0, z[id] || 0);
+        else {
+          konflikte.push({ feld, id, wert: a[id] }, { feld, id, wert: z[id] }); b.konflikt++;
+          const neu = feld === "checks" ? ((z[id] || {}).time || 0) > ((a[id] || {}).time || 0) : fNeuer;
+          if (neu) out[feld][id] = z[id];
+        }
+        if (!gleich(out[feld][id], a[id])) b.geaendert++;
+      });
+    });
+    // Immutable history is merged by complete content. A journal receipt
+    // changes no answer and belongs only to its exact original snapshot.
+    const history = new Map();
+    eindeutige(l.history, f.history).forEach(entry => {
+      const key = ohneQuittung(entry), alt = history.get(key);
+      if (!history.has(key)) history.set(key, entry);
+      else if (entry && entry.recorded && !alt.recorded) history.set(key, Object.assign({}, alt, { recorded: true }));
+    });
+    out.history = Array.from(history.values()).sort((a, z) => ((a && a.time) || 0) - ((z && z.time) || 0));
+    Object.keys(out.checks).forEach(id => {
+      const h = history.get(ohneQuittung(out.checks[id]));
+      if (h && h.recorded && !out.checks[id].recorded) out.checks[id] = Object.assign({}, out.checks[id], { recorded: true });
+    });
+    const localSessions = istObj(l.sessions) ? l.sessions : {}, foreignSessions = istObj(f.sessions) ? f.sessions : {};
+    out.sessions = Object.assign({}, localSessions);
+    let sessions = eindeutige(l.sessionConflicts, f.sessionConflicts);
+    Object.keys(foreignSessions).forEach(id => {
+      const x = localSessions[id], y = foreignSessions[id];
+      if (!x) { out.sessions[id] = y; b.neu++; return; }
+      if (inhalt(x) === inhalt(y)) return;
+      // Keep each full session, including frozen answer and pending rubric.
+      sessions.push(Object.assign({ unit: id }, x), Object.assign({ unit: id }, y)); b.konflikt++;
+      const xt = x.updatedAt || x.createdAt || 0, yt = (y && (y.updatedAt || y.createdAt)) || 0;
+      out.sessions[id] = yt === xt ? (fNeuer ? y : x) : yt > xt ? y : x;
+      if (inhalt(out.sessions[id]) !== inhalt(x)) b.geaendert++;
+    });
+    out.sessionConflicts = eindeutige(sessions, []);
+    Object.keys(out.sessions).forEach(id => {
+      const s = out.sessions[id];
+      if (!s || typeof s.answer !== "string") return;
+      if (hat(out.drafts, id) && out.drafts[id] !== s.answer) {
+        // The legacy text mirror must follow the active session. Retain
+        // both originals now, so a repeated import creates no new conflict.
+        konflikte.push({ feld: "drafts", id, wert: out.drafts[id] }, { feld: "drafts", id, wert: s.answer });
+      }
+      out.drafts[id] = s.answer;
+    });
+    if (hat(l, "project") && hat(f, "project") && l.project !== f.project) {
+      konflikte.push({ feld: "project", wert: l.project }, { feld: "project", wert: f.project }); b.konflikt++;
+    }
+    out.konflikte = eindeutige(konflikte, [], konfliktschluessel);
+    out.updated = Math.max(l.updated || 0, f.updated || 0);
+    return out;
+  }
+
+  function praxisStand(l, f, fNeuer, b) {
+    const out = Object.assign({}, fNeuer ? l : f, fNeuer ? f : l, { tasks: Object.assign({}, l.tasks || {}) });
+    Object.keys(f.tasks || {}).forEach(id => {
+      const x = out.tasks[id], y = f.tasks[id];
+      if (!istObj(x)) { out.tasks[id] = y; b.neu++; return; }
+      if (!istObj(y) || inhalt(x) === inhalt(y)) return;
+      const z = Object.assign({}, fNeuer ? x : y, fNeuer ? y : x);
+      const versuche = new Map();
+      eindeutige(x.attempts, y.attempts).forEach(v => {
+        const wert = Object.assign({}, v); delete wert.recorded;
+        const key = inhalt(wert), alt = versuche.get(key);
+        if (!alt) versuche.set(key, v);
+        else if (v.recorded && !alt.recorded) versuche.set(key, Object.assign({}, alt, { recorded: true }));
+      });
+      z.attempts = Array.from(versuche.values()).sort((a, b) => ((a && a.t) || 0) - ((b && b.t) || 0));
+      z.drafts = eindeutige(x.drafts, y.drafts);
+      if (x.draft && y.draft && inhalt(x.draft) !== inhalt(y.draft)) {
+        z.drafts = eindeutige(z.drafts, [x.draft, y.draft]); b.konflikt++;
+        const xt = x.draft.updatedAt || x.draft.createdAt || 0, yt = y.draft.updatedAt || y.draft.createdAt || 0;
+        z.draft = yt === xt ? (fNeuer ? y.draft : x.draft) : yt > xt ? y.draft : x.draft;
+      } else z.draft = y.draft || x.draft || null;
+      out.tasks[id] = z; b.geaendert++;
+    });
+    return out;
+  }
+
   function wiederholen(l, f, b) {
     const out = { k: Object.assign({}, l.k || {}), tage: Object.assign({}, l.tage || {}) };
     Object.keys(f.k || {}).forEach(id => {
@@ -168,7 +267,9 @@
       if (!x) { out.k[id] = y; b.neu++; return; }
       if (gleich(x, y)) return;
       b.konflikt++;
-      if ((y.n || 0) > (x.n || 0) || ((y.n || 0) === (x.n || 0) && (y.t || 0) > (x.t || 0))) { out.k[id] = y; b.geaendert++; }
+      const neuer = (y.t || 0) > (x.t || 0) || ((y.t || 0) === (x.t || 0) && (y.n || 0) > (x.n || 0)) ? y : x;
+      const z = Object.assign({}, neuer, { n: Math.max(x.n || 0, y.n || 0) });
+      if (!gleich(z, x)) { out.k[id] = z; b.geaendert++; }
     });
     Object.keys(f.tage || {}).forEach(d => { out.tage[d] = Math.max(out.tage[d] || 0, f.tage[d] || 0); });
     return out;
@@ -235,7 +336,16 @@
     if (l === undefined || f === undefined) { b.konflikt++; if (fNeuer) { b.geaendert++; return fRoh; } return null; }
 
     let out;
-    if (LISTEN[k] && Array.isArray(l) && Array.isArray(f)) {
+    if (k === "ap2:lernstand" && Array.isArray(l) && Array.isArray(f)) {
+      /* Unveränderliche Beobachtungen: auch kollidierende IDs aufbewahren.
+         Das Lernjournal rechnet mehrdeutige IDs nicht als sichere Messung. */
+      out = eindeutige(l, f).sort((a, b) => ((a && a.t) || 0) - ((b && b.t) || 0));
+      b.neu += Math.max(0, out.length - l.length);
+    } else if (k === "ap2:lernweg" && istObj(l) && istObj(f)) {
+      out = lernwegStand(l, f, b);
+    } else if (k === "ap2:praxis" && istObj(l) && istObj(f)) {
+      out = praxisStand(l, f, fNeuer, b);
+    } else if (LISTEN[k] && Array.isArray(l) && Array.isArray(f)) {
       const id = LISTEN[k], pos = {};
       out = l.slice();
       out.forEach((x, i) => { if (x && x[id] != null) pos[x[id]] = i; });
@@ -329,6 +439,9 @@
     if (k.indexOf("ap2:komp") === 0 || k.indexOf("ap2:spick") === 0) return "Kompendium und Spickzettel";
     if (k.indexOf("ap2:sql") === 0) return "SQL-Trainer";
     if (k === "ap2:lernen") return "Themen und Quiz";
+    if (k === "ap2:lernstand") return "Lernbeobachtungen";
+    if (k === "ap2:lernweg") return "Lernweg";
+    if (k === "ap2:praxis") return "Selbständige Praxis";
     if (k === "ap2:algo") return "Sortieren & Suchen";
     if (k.indexOf("ap2:marker") === 0 || k === "ap2:lesezeichen") return "Markierungen und Lesezeichen";
     if (k === "ap2:zeit") return "Lernzeit";
@@ -418,10 +531,11 @@
       document.body.appendChild(a); a.click();
       setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
       meldung("Gespeichert: " + name + " (" + kb + " KB). Jetzt an dich selbst schicken und auf dem anderen Gerät „Stand holen“.");
+      /* GENHEUTE */ try { if (root.GENHEUTE) root.GENHEUTE.merkeSicherung(); } catch (e) { }
     };
     if (datei && navigator.canShare && navigator.canShare({ files: [datei] })) {
       navigator.share({ files: [datei], title: "IHK AP2 — mein Stand", text: "Auf dem anderen Gerät: Startseite → Daten → „Stand holen“." })
-        .then(() => meldung("Gesendet (" + kb + " KB). Auf dem anderen Gerät „Stand holen“."))
+        .then(() => { meldung("Gesendet (" + kb + " KB). Auf dem anderen Gerät „Stand holen“."); /* GENHEUTE */ try { if (root.GENHEUTE) root.GENHEUTE.merkeSicherung(); } catch (e) { } })
         .catch(e => { if (!e || e.name !== "AbortError") runter(); });
     } else runter();
     if (knopf) { knopf.textContent = "Stand senden ✓"; setTimeout(() => { knopf.textContent = "Stand senden"; }, 2500); }

@@ -1,0 +1,641 @@
+{
+ "id": "ga1-2023-w",
+ "bereich": "ga1",
+ "termin": "Winter 2023/24",
+ "kurz": "GA1 W23/24",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2023/24)",
+ "situation": "<p>Die AMAG Soft GmbH hat sich auf Software-Entwicklung im gesamten Umfeld vom Anbau bis zum Vertrieb von Weinprodukten spezialisiert.</p><p>Neue Entwicklungen sollen dem Unternehmen den Weg vom innovativen Start-up zum Global Player öffnen:</p><ul><li>Das Messgerät „Winemaster“ ermittelt den optimalen Erntezeitpunkt.</li><li>Über lokale Messstellen im Weinberg und autonome Drohnen können Daten, wie zum Beispiel Niederschläge, Temperatur, Feuchtigkeit und Blattfärbungen ermittelt werden.</li><li>Alle Daten werden mit Apps auf mobilen Geräten erfasst, in eine Cloud-Datenbank übertragen und über KI-Tools ausgewertet.</li></ul>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"w23-beleg-uc\">"
+  },
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"w23-beleg-akt\">"
+  }
+ ],
+ "bilder": {
+  "w23-beleg-uc": {
+   "seite": "w23/beleg-5",
+   "box": [
+    0.035,
+    0.083,
+    0.805,
+    0.315
+   ]
+  },
+  "w23-beleg-akt": {
+   "seite": "w23/beleg-3",
+   "box": [
+    0.025,
+    0.083,
+    0.8,
+    0.63
+   ]
+  },
+  "w23-ga1-2b": {
+   "seite": "w23/ga1-05",
+   "box": [
+    0.045,
+    0.083,
+    0.785,
+    0.415
+   ]
+  },
+  "w23-ga1-2c": {
+   "seite": "w23/l1-3",
+   "box": [
+    0.07,
+    0.36,
+    0.815,
+    0.78
+   ]
+  },
+  "w23-ga1-3b": {
+   "seite": "w23/ga1-07",
+   "box": [
+    0.045,
+    0.553,
+    0.69,
+    0.85
+   ]
+  },
+  "w23-ga1-4a": {
+   "seite": "w23/l1-6",
+   "box": [
+    0.05,
+    0.07,
+    0.73,
+    0.39
+   ]
+  },
+  "w23-ga1-4bc": {
+   "seite": "w23/l1-7",
+   "box": [
+    0.085,
+    0.07,
+    0.575,
+    0.585
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Stakeholder, Workshop, Green IT, Testkonzept",
+   "punkte": 25,
+   "themen": [
+    "Projektmanagement",
+    "Qualität & Test"
+   ],
+   "text": "<p>Neben der Geschäftsführung der AMAG Soft GmbH gibt es weitere Stakeholder.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 9,
+     "eingabe": {
+      "zeilen": [
+       "1. Stakeholder — Interesse",
+       "2. Stakeholder — Interesse",
+       "3. Stakeholder — Interesse"
+      ]
+     },
+     "text": "<p><b>Nennen Sie drei weitere Stakeholder und benennen Sie für jeden dieser Stakeholder ein Interesse, welches dieser während des Projekts verfolgt.</b></p><table><tr><th>Stakeholder</th><th>Interesse</th></tr><tr><td>Geschäftsführung der AMAG Soft GmbH</td><td>Entwicklung eines Referenz-Produkts, um die Position am Markt zu verbessern.</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<p>Erwartet wird die Nennung von Stakeholdern, wie z. B.:</p><table><tr><th>Stakeholder</th><th>Interesse</th></tr><tr><td><i>Geschäftsführung der AMAG Soft GmbH</i></td><td><i>Entwicklung eines Referenz-Produkts, um die Position am Markt zu verbessern.</i></td></tr><tr><td>Mitarbeiter der AMAG Soft GmbH</td><td>Sicherung des Arbeitsplatzes</td></tr><tr><td>Geschäftsführung des Weingutes</td><td>Kostensenkung durch Optimierung von Rebschutz- und Düngemitteln</td></tr><tr><td>Zuständige Behörde</td><td>Kontrolle der Drohneneinsätze</td></tr><tr><td>Geschäftsführung des Cloud-Anbieters</td><td>Gewinnung weiterer langfristiger Kunden</td></tr></table>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Stakeholder 1 genannt",
+       "punkte": 1
+      },
+      {
+       "text": "Interesse von Stakeholder 1 passend",
+       "punkte": 2
+      },
+      {
+       "text": "Stakeholder 2 genannt",
+       "punkte": 1
+      },
+      {
+       "text": "Interesse von Stakeholder 2 passend",
+       "punkte": 2
+      },
+      {
+       "text": "Stakeholder 3 genannt",
+       "punkte": 1
+      },
+      {
+       "text": "Interesse von Stakeholder 3 passend",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Bei der Einführung eines KI-gestützten Systems ist mit Widerständen der Mitarbeiter des Weingutes zu rechnen. Daher wird ein Workshop für die Mitarbeiter des Weingutes durchgeführt.</p><p><b>Erläutern Sie zwei Ziele, die mit diesem Workshop erreicht werden sollen.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen von Zielen, wie z. B.:</p><ul><li>Die Ziele des Vorhabens müssen den Teilnehmern vermittelt werden.</li><li>Die Konsequenzen und Risiken des Status quo müssen den Teilnehmern bewusst gemacht werden.</li><li>Vorteile des KI-gestützten Weinbaus sollen den Mitarbeitern bewusst werden.</li><li>Befürworter, Gegner und Unentschlossene müssen im Zuge des Workshops eindeutig identifiziert werden.</li><li>Die Befürworter müssen in ihrer Haltung bestärkt den Workshop verlassen.</li></ul>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Ziel 1 genannt",
+       "punkte": 1
+      },
+      {
+       "text": "Ziel 1 erläutert: was der Workshop damit bewirkt",
+       "punkte": 2
+      },
+      {
+       "text": "Ziel 2 genannt",
+       "punkte": 1
+      },
+      {
+       "text": "Ziel 2 erläutert",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Die Geschäftsführungen der AMAG Soft GmbH und des Weinberges legen großen Wert auf die Einhaltung ökologischer Standards in der IT. Die Grundsätze von Green-IT sollen daher erfüllt werden.</p><p><b>Beschreiben Sie, was unter Green IT zu verstehen ist und nennen Sie zwei Ziele, die damit verfolgt werden.</b></p>",
+     "loesung": "<p>Erwartet wird eine Erläuterung, wie z. B.:</p><ul><li>Green-IT bezeichnet den Einsatz von Informations- und Kommunikationstechnologien und deren Anwendung, die unter Berücksichtigung des gesamten Produktlebenszyklus im Vergleich zu bisherigen Lösungen zu einer deutlichen Entlastung der Umwelt führt.</li><li>Green-IT trägt also beispielsweise dazu bei, Energie effizienter zu nutzen, Ressourcen zu schonen und das Klima zu schützen.</li><li>Green-IT-Produkte benötigen für ihre Herstellung, ihren Betrieb und ihre Entsorgung weniger Energie und Ressourcen als herkömmliche Produkte der Informations- und Kommunikationstechnologie.</li><li>Green-IT-Lösungen tragen vor allem dazu bei, dass in anderen Branchen und Lebensbereichen Einsparungen erreicht werden.</li></ul>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Green IT beschrieben: IT, die die Umwelt über den ganzen Lebenszyklus entlastet",
+       "punkte": 2
+      },
+      {
+       "text": "Ziel 1, z. B. Energie effizient nutzen",
+       "punkte": 1
+      },
+      {
+       "text": "Ziel 2, z. B. Ressourcen schonen / Klima schützen",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "d",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Die Funktionalität der App ist in umfassenden Tests abzusichern.</p><p><b>Beschreiben Sie drei Inhalte eines Testkonzepts.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zu Inhalten eines Testkonzepts, wie z. B.:</p><ul><li>Teststrategie einschließlich der Testziele mit Auswahl angemessener Testmethoden</li><li>Umfang der Testdokumentation u. a. durch Bereitstellen von Templates</li><li>Art und Umfang der Testumgebung sowie der Testautomatisierung</li><li>Zusammenspiel der verschiedenen Teststufen</li><li>Integration der Testaktivitäten mit anderen Projektaktivitäten</li><li>Entscheidung, wie die Testergebnisse ausgewertet und evaluiert werden</li><li>Testplan wer, was, wann und in welchem Umfang testet</li><li>Schätzung des Testaufwandes und der Testkosten sowie Aktualisierung von Schätzungen und Plänen im Testverlauf</li></ul>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Inhalt 1 beschrieben (z. B. Teststrategie mit Testzielen und Methoden)",
+       "punkte": 2
+      },
+      {
+       "text": "Inhalt 2 beschrieben (z. B. Testumgebung, Testautomatisierung)",
+       "punkte": 2
+      },
+      {
+       "text": "Inhalt 3 beschrieben (z. B. Testplan: wer testet was, wann)",
+       "punkte": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "User-Stories, Aktivitätsdiagramm",
+   "punkte": 28,
+   "themen": [
+    "Englisch",
+    "UML"
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 1,
+     "eingabe": "frei",
+     "text": "<p>Das Projektteam soll die Anforderungen an die App ermitteln. Dazu soll jeder Anwendungsfall durch eine User-Story beschrieben werden. Zunächst wird besprochen, was eine User-Story ist. Dazu liegt die folgende Erläuterung vor.</p><p>(Text siehe Anlage „Definition of a user story“)</p><p>Bearbeiten Sie dazu die folgenden Aufgaben anhand des gegebenen Textes.</p><p><b>aa) Nennen Sie einen Ersteller einer User-Story.</b></p>",
+     "loesung": "<p>Produktverantwortlicher (Produktmanager) oder Teammitglied</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Definition of a user story (englisch)",
+       "html": "<p><b><i>Definition of a user story</i></b><br><i>A user story is a well-formed, short and simple description of a software requirement from the perspective of an end-user, written in an informal and natural language.</i></p><p><i>User stories are either written by a product manager or a team member on behalf of the end-user, explaining the expected functionality from the system being developed. User stories are written to capture the most important elements of a requirement following a predefined template. The most commonly used user story template is called the connextra template where a user describes his role, his capabilities, and what benefits he expects to receive from the system using a single sentence.</i></p><p><i>\"As a &lt;type of user&gt;, I want to &lt;perform some task&gt; so I can &lt;achieve some goal&gt;.\"</i></p><p><i>A good user story should be INVEST:</i></p><ul><li><i><b>I</b>ndependent</i></li><li><i><b>N</b>egotiable</i></li><li><i><b>V</b>aluable</i></li><li><i><b>E</b>stimable</i></li><li><i><b>S</b>mall</i></li><li><i><b>T</b>estable</i></li></ul><p>https://airfocus.com/glossary/what-is-a-user-story/, https://www.agile-academy.com/en/agile-dictionary/user-story/</p>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Produktverantwortlicher oder Teammitglied genannt",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "ab",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Bearbeiten Sie dazu die folgenden Aufgaben anhand des gegebenen Textes. (Text siehe Anlage „Definition of a user story“)</p><p><b>ab) Erläutern Sie den Aufbau einer User-Story.</b></p>",
+     "loesung": "<p>Zunächst wird die Anwenderrolle beschrieben, dann folgt die Aufgabe und schließlich das Ergebnis, das mit dem Anwendungsfall erreicht werden soll.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Definition of a user story (englisch)",
+       "html": "<p><b><i>Definition of a user story</i></b><br><i>A user story is a well-formed, short and simple description of a software requirement from the perspective of an end-user, written in an informal and natural language.</i></p><p><i>User stories are either written by a product manager or a team member on behalf of the end-user, explaining the expected functionality from the system being developed. User stories are written to capture the most important elements of a requirement following a predefined template. The most commonly used user story template is called the connextra template where a user describes his role, his capabilities, and what benefits he expects to receive from the system using a single sentence.</i></p><p><i>\"As a &lt;type of user&gt;, I want to &lt;perform some task&gt; so I can &lt;achieve some goal&gt;.\"</i></p><p><i>A good user story should be INVEST:</i></p><ul><li><i><b>I</b>ndependent</i></li><li><i><b>N</b>egotiable</i></li><li><i><b>V</b>aluable</i></li><li><i><b>E</b>stimable</i></li><li><i><b>S</b>mall</i></li><li><i><b>T</b>estable</i></li></ul><p>https://airfocus.com/glossary/what-is-a-user-story/, https://www.agile-academy.com/en/agile-dictionary/user-story/</p>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Rolle: „Als … (Anwender)“",
+       "punkte": 1
+      },
+      {
+       "text": "Aufgabe / Funktion: „will ich …“",
+       "punkte": 1
+      },
+      {
+       "text": "Ergebnis / Nutzen: „damit …“",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "ac",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Bearbeiten Sie dazu die folgenden Aufgaben anhand des gegebenen Textes. (Text siehe Anlage „Definition of a user story“)</p><p><b>ac) Erläutern Sie eines der genannten INVEST-Kriterien.</b></p>",
+     "loesung": "<table><tr><td>Independent</td><td>– soll nicht von anderen Fällen abhängen</td></tr><tr><td>Negotiable</td><td>– keine endgültige Festlegung, sondern kann nach Diskussionen verändert werden</td></tr><tr><td>Valuable</td><td>– muss einen Mehrwert für die Stakeholder erzielen</td></tr><tr><td>Estimable</td><td>– der Aufwand muss abschätzbar sein</td></tr><tr><td>Small</td><td>– der Umfang soll nicht zu groß sein</td></tr><tr><td>Testable</td><td>– das Ergebnis muss testbar sein</td></tr></table>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Definition of a user story (englisch)",
+       "html": "<p><b><i>Definition of a user story</i></b><br><i>A user story is a well-formed, short and simple description of a software requirement from the perspective of an end-user, written in an informal and natural language.</i></p><p><i>User stories are either written by a product manager or a team member on behalf of the end-user, explaining the expected functionality from the system being developed. User stories are written to capture the most important elements of a requirement following a predefined template. The most commonly used user story template is called the connextra template where a user describes his role, his capabilities, and what benefits he expects to receive from the system using a single sentence.</i></p><p><i>\"As a &lt;type of user&gt;, I want to &lt;perform some task&gt; so I can &lt;achieve some goal&gt;.\"</i></p><p><i>A good user story should be INVEST:</i></p><ul><li><i><b>I</b>ndependent</i></li><li><i><b>N</b>egotiable</i></li><li><i><b>V</b>aluable</i></li><li><i><b>E</b>stimable</i></li><li><i><b>S</b>mall</i></li><li><i><b>T</b>estable</i></li></ul><p>https://airfocus.com/glossary/what-is-a-user-story/, https://www.agile-academy.com/en/agile-dictionary/user-story/</p>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Ein INVEST-Kriterium richtig benannt",
+       "punkte": 1
+      },
+      {
+       "text": "Bedeutung richtig erklärt",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "User-Story „Zeit einstellen“",
+       "User-Story „Messung starten“"
+      ]
+     },
+     "beleg": [
+      "uc"
+     ],
+     "text": "<p>Ein heute abwesendes Mitglied des Projektteams hat bereits ein Use-Case-Diagramm mit einigen Anwendungsfällen erstellt. Die zugehörigen User-Stories liegen aber nicht vor.</p><img data-bild=\"w23-ga1-2b\"><p><b>Erstellen Sie für die Anwendungsfälle „Zeit einstellen“ und „Messung starten“ jeweils eine User-Story nach dem in Aufgabe a) beschriebenen Template.</b></p><p>(Text aus Aufgabe a) siehe Anlage „Definition of a user story“)</p>",
+     "loesung": "<p>Anwendungsfall „Zeit einstellen“<br>Als Nutzer will ich die Zeit am Gerät einstellen können, damit die Zeit korrekt ist. Dabei muss ich auch die Zeitzone festgelegen.</p><p>Anwendungsfall „Messung starten“<br>Als Nutzer möchte ich die Messung starten können, damit Daten erfasst werden. Falls der Standort nicht eingestellt ist, muss ich zuvor den Standort erfassen.</p><p><i>Anmerkung: „festgelegen“ steht so in den Lösungshinweisen — gemeint ist „festlegen“.</i></p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Definition of a user story (englisch)",
+       "html": "<p><b><i>Definition of a user story</i></b><br><i>A user story is a well-formed, short and simple description of a software requirement from the perspective of an end-user, written in an informal and natural language.</i></p><p><i>User stories are either written by a product manager or a team member on behalf of the end-user, explaining the expected functionality from the system being developed. User stories are written to capture the most important elements of a requirement following a predefined template. The most commonly used user story template is called the connextra template where a user describes his role, his capabilities, and what benefits he expects to receive from the system using a single sentence.</i></p><p><i>\"As a &lt;type of user&gt;, I want to &lt;perform some task&gt; so I can &lt;achieve some goal&gt;.\"</i></p><p><i>A good user story should be INVEST:</i></p><ul><li><i><b>I</b>ndependent</i></li><li><i><b>N</b>egotiable</i></li><li><i><b>V</b>aluable</i></li><li><i><b>E</b>stimable</i></li><li><i><b>S</b>mall</i></li><li><i><b>T</b>estable</i></li></ul><p>https://airfocus.com/glossary/what-is-a-user-story/, https://www.agile-academy.com/en/agile-dictionary/user-story/</p>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "„Zeit einstellen“: Rolle und Funktion",
+       "punkte": 2
+      },
+      {
+       "text": "„Zeit einstellen“: Nutzen (damit …)",
+       "punkte": 1
+      },
+      {
+       "text": "„Messung starten“: Rolle und Funktion",
+       "punkte": 2
+      },
+      {
+       "text": "„Messung starten“: Nutzen (damit …)",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 15,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "akt"
+     ],
+     "text": "<p>Der Anwendungsfall „Messergebnisse speichern“ soll beschrieben werden. In einem Gespräch mit dem Systemadministrator wurde auf die teilweise schlechte Internetverbindung in den Weinbergen hingewiesen. Daher wurde folgender Ablauf besprochen:</p><p>Zuerst soll die Internetverbindung geprüft werden. Falls keine Internetverbindung besteht, sollen die Ergebnisse der Messungen zwischengespeichert werden.</p><p>Bei bestehender Internetverbindung sollen parallel die folgenden Abläufe erfolgen:</p><ol><li>Die aktuellen Daten sollen an die Datenbank gesendet werden. Falls beim Senden ein Fehler auftritt, sollen die aktuellen Daten intern gespeichert werden.</li><li>Wenn alte Daten im internen Speicher vorhanden sind, sollen diese Daten gesendet und bei erfolgreichem Versenden aus dem internen Speicher gelöscht werden.</li></ol><p>Am Ende soll eine Meldung über das Ergebnis des Speichervorgangs angezeigt werden.</p><p><b>Stellen Sie die beschriebene Vorgehensweise des Anwendungsfalls „Messergebnisse speichern“ als Aktivitätsdiagramm dar.</b></p>",
+     "loesung": "<img data-bild=\"w23-ga1-2c\"><p>In Worten:</p><ul><li>Startknoten → Aktion <b>Verbindung prüfen</b> → Entscheidung</li><li>[keine Verbindung] → <b>Daten intern speichern</b> → Zusammenführung vor dem Ende</li><li>[Verbindung ok] → Teilung (Gabelung) in zwei parallele Abläufe:</li><li>Ablauf 1: <b>Prüfen, ob gespeicherte Daten vorhanden sind</b> → Entscheidung: [keine Daten vorhanden] → Zusammenführung; [gespeicherte Daten vorhanden] → <b>gespeicherte Daten senden</b> → Entscheidung: [Erfolg] → <b>gespeicherte Daten löschen</b> → Zusammenführung; [Fehler] → Zusammenführung</li><li>Ablauf 2: <b>aktuelle Daten senden</b> → Entscheidung: [Fehler] → <b>Daten intern speichern</b> → Zusammenführung; [Erfolg] → Zusammenführung</li><li>Synchronisation beider Abläufe → Zusammenführung mit dem Zweig [keine Verbindung]</li><li>→ <b>Ergebnismeldung anzeigen</b> → Endknoten</li></ul>",
+     "hinweis": "",
+     "pruefpunkte": [
+      {
+       "text": "Startknoten und Endknoten",
+       "punkte": 1
+      },
+      {
+       "text": "Aktion „Verbindung prüfen“ mit Entscheidung und Bedingungen",
+       "punkte": 2
+      },
+      {
+       "text": "Zweig ohne Verbindung: Daten intern speichern",
+       "punkte": 1
+      },
+      {
+       "text": "Gabelung und Synchronisation für die parallelen Abläufe",
+       "punkte": 3
+      },
+      {
+       "text": "Aktuelle Daten senden; bei Fehler intern speichern",
+       "punkte": 3
+      },
+      {
+       "text": "Alte Daten: prüfen, senden, bei Erfolg löschen",
+       "punkte": 3
+      },
+      {
+       "text": "Zusammenführung und Ergebnismeldung am Ende",
+       "punkte": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "ACID, Dokumentendatenbank, JSON",
+   "punkte": 25,
+   "themen": [
+    "Datenbank"
+   ],
+   "text": "<p>Die Informationen über Weingüter und deren Verkaufsstellen sind zurzeit in einer relationalen Datenbank gespeichert.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "Atomicity (Abgeschlossenheit)",
+       "Consistency (Konsistenz)",
+       "Isolation (Abgrenzung)",
+       "Durability (Dauerhaftigkeit)"
+      ]
+     },
+     "text": "<p>Für Datenbanktransaktionen in relationalen Datenbankmanagementsystemen sind folgende vier Eigenschaften (Akronym ACID) von besonderer Wichtigkeit:</p><p><b>Beschreiben Sie die jeweilige Bedeutung.</b></p><table><tr><th><b>A</b>tomicity<br>(Abgeschlossenheit)</th><td></td></tr><tr><th><b>C</b>onsistency<br>(Konsistenz)</th><td></td></tr><tr><th><b>I</b>solation<br>(Abgrenzung)</th><td></td></tr><tr><th><b>D</b>urability<br>(Dauerhaftigkeit)</th><td></td></tr></table>",
+     "loesung": "<table><tr><th><b>A</b>tomicity<br>(Abgeschlossenheit)</th><td>Eine Transaktion ist eine geschlossene unteilbare Einheit. Sie wird entweder ganz oder gar nicht ausgeführt. Tritt irgendwo in der Transaktion ein Fehler auf, so müssen bereits durchgeführte Änderungen wieder rückgängig gemacht werden.</td></tr><tr><th><b>C</b>onsistency<br>(Konsistenz)</th><td>Die für das jeweilige Datenbanksystem festgelegten Konsistenzregeln müssen sowohl vor als auch nach der Transaktion erfüllt sein. Kann die Einhaltung der Regeln nicht überprüft werden oder tritt ein Fehler auf, muss die gesamte Transaktion rückgängig gemacht werden.</td></tr><tr><th><b>I</b>solation<br>(Abgrenzung)</th><td>Es muss gewährleistet sein, dass gleichzeitig durchgeführte Transaktionen voneinander abgegrenzt sind. D. h. das Ergebnis muss das gleiche sein, als ob die Transaktionen hintereinander durchgeführt würden. Realisiert wird das z. B. durch Sperrverfahren.</td></tr><tr><th><b>D</b>urability<br>(Dauerhaftigkeit)</th><td>Die dauerhafte Speicherung der Daten muss auch nach einem Systemfehler (Software-Fehler oder Hardware-Ausfall) garantiert sein. Dauerhaftigkeit kann durch das Schreiben von Transaktionslogs sichergestellt werden.</td></tr></table>",
+     "hinweis": "Je Erläuterung 2 Punkte.",
+     "pruefpunkte": [
+      {
+       "text": "Atomicity: ganz oder gar nicht, bei Fehler zurücksetzen",
+       "punkte": 2
+      },
+      {
+       "text": "Consistency: Konsistenzregeln vor und nach der Transaktion erfüllt",
+       "punkte": 2
+      },
+      {
+       "text": "Isolation: parallele Transaktionen beeinflussen sich nicht",
+       "punkte": 2
+      },
+      {
+       "text": "Durability: Daten bleiben nach Systemfehler gespeichert",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "Table →",
+       "Record/Row →",
+       "Column →"
+      ]
+     },
+     "text": "<p>In verteilten Datenbanken kommt es zu Problemen, wenn alle ACID-Eigenschaften erfüllt werden sollen und gleichzeitig eine hohe Verfügbarkeit erreicht werden soll.</p><p>Deshalb soll vom relationalen auf ein dokumentenorientiertes Datenbanksystem umgestellt werden.</p><p><b>Ordnen Sie die jeweiligen relationalen und dokumentenorientierten Datenbankfachbegriffe richtig zu.</b></p><img data-bild=\"w23-ga1-3b\"><p><i>Im Bild: links (Relational Database) Database, Table, Record/Row, Column; rechts (Document Database) Collection, Field, Database, Document. Der Pfeil Database → Database ist vorgegeben.</i></p>",
+     "loesung": "<table><tr><th>Relational Database</th><th>Document Database</th></tr><tr><td>Database</td><td>Database (vorgegeben)</td></tr><tr><td>Table</td><td>Collection</td></tr><tr><td>Record/Row</td><td>Document</td></tr><tr><td>Column</td><td>Field</td></tr></table>",
+     "hinweis": "Je Pfeil 1 Punkt.",
+     "pruefpunkte": [
+      {
+       "text": "Table → Collection",
+       "punkte": 1
+      },
+      {
+       "text": "Record/Row → Document",
+       "punkte": 1
+      },
+      {
+       "text": "Column → Field",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "ca",
+     "punkte": 7,
+     "eingabe": "code",
+     "text": "<p>Das neue Datenbanksystem verwendet JSON-Dokumente.</p><p><b>ca) Wandeln Sie die gegebenen Tabellenentitäten in die JavaScript Objekt Notation (JSON) um.</b></p><p>Tabelle für Weingüter</p><table><tr><th>id</th><th>name</th><th>leitbild</th></tr><tr><td>1</td><td>Bioweine Brunner</td><td>Wir verwenden keine künstlichen Spritzmittel...</td></tr><tr><td>...</td><td>...</td><td>...</td></tr></table><p>Tabelle für Verkaufsstellen</p><table><tr><th>id</th><th>weingut_id</th><th>strasse</th><th>plz</th><th>ort</th></tr><tr><td>1</td><td>1</td><td>Hauptstr. 12</td><td>23456</td><td>Hahne</td></tr><tr><td>2</td><td>1</td><td>Am Markt 2</td><td>23457</td><td>Buchheim</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr></table><p>Hinweis: Nutzen Sie dafür die gegebene JSON-Syntax</p><pre>// JSON-Syntaxbeschreibung\n// wert kann sein: \"string\", zahl, true, false, null, objekt, array von objekten\n{\n        \"attributname\": wert,\n        ...,\n        \"arrayname\":\n        [\n                {\n                        \"attributname\": wert,\n                        \"objektname\":\n                        {\n                                \"attributname\": wert,\n                                ...\n                        },\n                        ...\n                },\n                ...\n        ],\n        ...\n}</pre><pre>// weingüter</pre><pre>// verkaufsstellen</pre>",
+     "loesung": "<pre>// weingüter\n[\n  {\n    \"id\": 1,\n    \"name\": \"Bioweine Brunner\",\n    \"leitbild\": \"Wir verwenden keine künstlichen Spritzmittel…\"\n  },\n  ...\n]</pre><pre>// verkaufsstellen\n[\n  {\n    \"id\": 1,\n    \"weingut_id\": 1,\n    \"strasse\": \"Hauptstr. 12\",\n    \"plz\": \"23456\",\n    \"ort\": \"Hahne\"\n  },\n  {\n    \"id\": 2,\n    \"weingut_id\": 1,\n    \"strasse\": \"Am Markt 2\",\n    \"plz\": \"23457\",\n    \"ort\": \"Buchheim\"\n  },\n  …\n]</pre>",
+     "hinweis": "3 Punkte für weingüter, 4 Punkte für verkaufsstellen.",
+     "pruefpunkte": [
+      {
+       "text": "weingüter: Array mit Objekt, Attribute id, name, leitbild",
+       "punkte": 3
+      },
+      {
+       "text": "verkaufsstellen: Array mit zwei Objekten",
+       "punkte": 2
+      },
+      {
+       "text": "alle Attribute der Verkaufsstellen; Texte in Anführungszeichen, Zahlen ohne",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "cb",
+     "punkte": 7,
+     "eingabe": "code",
+     "text": "<p>Das neue Datenbanksystem verwendet JSON-Dokumente. (Tabellen und JSON-Syntax siehe Anlage)</p><p>Auf die Weingut- und Verkaufsstellendaten wird meistens gemeinsam zugegriffen. Außerdem ist die Anzahl der Verkaufsstellen begrenzt. In solchen Fällen werden die Daten in einer Dokumenten-Datenbank auch gemeinsam gespeichert.</p><p><b>cb) Fügen Sie die beiden Verkaufsstellendokumente in ein Array ein, das Teil des Weingutdokuments ist.</b></p><pre>// weingüter</pre>",
+     "loesung": "<pre>// weingüter\n[\n  {\n    \"id\": 1,\n    \"name\": \"Bioweine Brunner\",\n    \"leitbild\": \"Wir verwenden keine künstlichen Spritzmittel…\",\n    \"verkaufsstellen\":\n    [\n      {\n        \"strasse\": \"Hauptstr. 12\",\n        \"plz\": \"23456\",\n        \"ort\": \"Hahne\"\n      },\n      {\n        \"strasse\": \"Am Markt 2\",\n        \"plz\": \"23457\",\n        \"ort\": \"Buchheim\"\n      }\n    ]\n  },\n  ...\n]</pre>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Tabellen für Weingüter und Verkaufsstellen",
+       "html": "<p>Tabelle für Weingüter</p><table><tr><th>id</th><th>name</th><th>leitbild</th></tr><tr><td>1</td><td>Bioweine Brunner</td><td>Wir verwenden keine künstlichen Spritzmittel...</td></tr><tr><td>...</td><td>...</td><td>...</td></tr></table><p>Tabelle für Verkaufsstellen</p><table><tr><th>id</th><th>weingut_id</th><th>strasse</th><th>plz</th><th>ort</th></tr><tr><td>1</td><td>1</td><td>Hauptstr. 12</td><td>23456</td><td>Hahne</td></tr><tr><td>2</td><td>1</td><td>Am Markt 2</td><td>23457</td><td>Buchheim</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr></table>"
+      },
+      {
+       "titel": "Gegebene JSON-Syntax",
+       "html": "<pre>// JSON-Syntaxbeschreibung\n// wert kann sein: \"string\", zahl, true, false, null, objekt, array von objekten\n{\n        \"attributname\": wert,\n        ...,\n        \"arrayname\":\n        [\n                {\n                        \"attributname\": wert,\n                        \"objektname\":\n                        {\n                                \"attributname\": wert,\n                                ...\n                        },\n                        ...\n                },\n                ...\n        ],\n        ...\n}</pre>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Array „verkaufsstellen“ im Weingut-Objekt",
+       "punkte": 2
+      },
+      {
+       "text": "zwei Objekte mit strasse, plz, ort",
+       "punkte": 3
+      },
+      {
+       "text": "JSON-Syntax korrekt: Klammern, Kommas, Anführungszeichen",
+       "punkte": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "ER-Diagramm, Benutzeroberfläche",
+   "punkte": 22,
+   "themen": [
+    "Datenbank",
+    "Software-Ergonomie"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "text": "<p>Für die Vorbereitung der neuen Anwendung, für die Erfassung von Sensordaten in den Weinbergen, werden Sie gebeten, folgende Anforderungen grafisch darzustellen.</p><ul><li>Jeder Weinberg hat eine Bezeichnung.</li><li>Ein Weinberg hat mehrere Sektoren, welche jeweils zu einem Weingut gehören.</li><li>Neben dem Namen werden Telefonnummer und E-Mail-Adresse des Weinguts gespeichert.</li><li>In jedem Sektor wächst eine Rebsorte, welche durch einen Namen beschrieben wird.</li><li>Zusätzlich wird zu einem Sektor die Bezeichnung und die Lage erfasst.</li><li>Zur Schädlingsbekämpfung werden Pflanzenschutzmittel eingesetzt.</li><li>Jeder Mitteleinsatz wird mit Menge, Datum und dem zugehörigen Sektor verknüpft.</li><li>Zu jedem Pflanzenschutzmittel werden der Name sowie die Anwendungs- und Gefahrenhinweise erfasst.</li></ul><p><b>Erstellen Sie ein ER-Diagramm mit Attributen anhand der beschriebenen Anforderungen. Die Angabe von Primärschlüsseln ist nicht erforderlich.</b></p>",
+     "loesung": "<img data-bild=\"w23-ga1-4a\"><p>In Worten:</p><ul><li>Entitätstypen mit Attributen: <b>Weingut</b> (Name, Telefon, Email), <b>Sektor</b> (Bezeichnung, Lage), <b>Weinberg</b> (Bezeichnung), <b>Rebsorte</b> (Name), <b>Pflanzenschutzmittel</b> (Name, Anwendungshinweise, Gefahrenhinweise)</li><li>Weingut 1 — „gehört zu“ — n Sektor</li><li>Sektor n — „liegt in“ — 1 Weinberg</li><li>Sektor n — „wächst“ — 1 Rebsorte</li><li>Sektor n — „erhält“ — m Pflanzenschutzmittel; Attribute der Beziehung: Menge, Datum</li></ul>",
+     "hinweis": "Vorschlag für die Bepunktung: 1 Punkt je Entitätstyp → 5 Punkte; 0,5 Punkte je Kardinalität → 2 Punkte; 0,5 Punkte je Attribut → 5 Punkte; 2 Punkte für Attribute an m:n Beziehung. Insgesamt 14 Punkte.",
+     "pruefpunkte": [
+      {
+       "text": "Entitätstyp Weingut",
+       "punkte": 1
+      },
+      {
+       "text": "Entitätstyp Sektor",
+       "punkte": 1
+      },
+      {
+       "text": "Entitätstyp Weinberg",
+       "punkte": 1
+      },
+      {
+       "text": "Entitätstyp Rebsorte",
+       "punkte": 1
+      },
+      {
+       "text": "Entitätstyp Pflanzenschutzmittel",
+       "punkte": 1
+      },
+      {
+       "text": "Kardinalitäten der vier Beziehungen (je 0,5)",
+       "punkte": 2
+      },
+      {
+       "text": "Attribute Weingut: Name, Telefon, E-Mail (je 0,5)",
+       "punkte": 1.5
+      },
+      {
+       "text": "Attribute Sektor: Bezeichnung, Lage (je 0,5)",
+       "punkte": 1
+      },
+      {
+       "text": "Attribut Weinberg: Bezeichnung",
+       "punkte": 0.5
+      },
+      {
+       "text": "Attribut Rebsorte: Name",
+       "punkte": 0.5
+      },
+      {
+       "text": "Attribute Pflanzenschutzmittel: Name, Anwendungs-, Gefahrenhinweise (je 0,5)",
+       "punkte": 1.5
+      },
+      {
+       "text": "Menge und Datum an der m:n-Beziehung Sektor – Pflanzenschutzmittel",
+       "punkte": 2
+      }
+     ]
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Um die Daten der eben erstellten Datenbank pflegen zu können, sollen Sie eine Benutzeroberfläche erstellen.</p><p><b>ba) Benennen Sie zwei mögliche Darstellungsformen für die Übersicht der Weinberg-Sektoren.</b></p>",
+     "loesung": "<p>Möglich könnten bspw. die nachfolgenden Darstellungsformen sein.</p><ul><li>Listen/Tabellen-Darstellung (ggf. mit Ausklappen der Einträge für Details)<br>Mögliche Begründung: einfache, schnelle und übersichtliche Darstellung</li><li>Kachel-Darstellung (ggf. auch mit Bild)<br>Mögliche Begründung: modernere Darstellung und Fokussierung auf das Wesentliche und optimiert für kleinere Bildschirme</li><li>Karten-Darstellung<br>Mögliche Begründung: geografische Einordnung macht das Bearbeiten von Gebieten leichter</li></ul>",
+     "hinweis": "ba) und bb) 4 Punkte (2 Punkte, 2 Punkte). Bei diesen Aufgaben soll der Prüfling zeigen, dass er Daten in eine geeignete Darstellungsform übertragen und seine Entscheidung begründen kann.",
+     "anlagen": [
+      {
+       "titel": "Anforderungen aus Aufgabe 4a (Datenbank der Weinberg-Sektoren)",
+       "html": "<p>Für die Vorbereitung der neuen Anwendung, für die Erfassung von Sensordaten in den Weinbergen, werden Sie gebeten, folgende Anforderungen grafisch darzustellen.</p><ul><li>Jeder Weinberg hat eine Bezeichnung.</li><li>Ein Weinberg hat mehrere Sektoren, welche jeweils zu einem Weingut gehören.</li><li>Neben dem Namen werden Telefonnummer und E-Mail-Adresse des Weinguts gespeichert.</li><li>In jedem Sektor wächst eine Rebsorte, welche durch einen Namen beschrieben wird.</li><li>Zusätzlich wird zu einem Sektor die Bezeichnung und die Lage erfasst.</li><li>Zur Schädlingsbekämpfung werden Pflanzenschutzmittel eingesetzt.</li><li>Jeder Mitteleinsatz wird mit Menge, Datum und dem zugehörigen Sektor verknüpft.</li><li>Zu jedem Pflanzenschutzmittel werden der Name sowie die Anwendungs- und Gefahrenhinweise erfasst.</li></ul>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Darstellungsform 1 (z. B. Liste/Tabelle)",
+       "punkte": 1
+      },
+      {
+       "text": "Darstellungsform 2 (z. B. Kacheln oder Karte)",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Um die Daten der eben erstellten Datenbank pflegen zu können, sollen Sie eine Benutzeroberfläche erstellen.</p><p>ba) Benennen Sie zwei mögliche Darstellungsformen für die Übersicht der Weinberg-Sektoren.</p><p><b>bb) Entscheiden Sie sich für eine der genannten Darstellungsformen und begründen Sie Ihre Entscheidung.</b></p>",
+     "loesung": "<p>Möglich könnten bspw. die nachfolgenden Darstellungsformen sein.</p><ul><li>Listen/Tabellen-Darstellung (ggf. mit Ausklappen der Einträge für Details)<br>Mögliche Begründung: einfache, schnelle und übersichtliche Darstellung</li><li>Kachel-Darstellung (ggf. auch mit Bild)<br>Mögliche Begründung: modernere Darstellung und Fokussierung auf das Wesentliche und optimiert für kleinere Bildschirme</li><li>Karten-Darstellung<br>Mögliche Begründung: geografische Einordnung macht das Bearbeiten von Gebieten leichter</li></ul>",
+     "hinweis": "ba) und bb) 4 Punkte (2 Punkte, 2 Punkte). Bei diesen Aufgaben soll der Prüfling zeigen, dass er Daten in eine geeignete Darstellungsform übertragen und seine Entscheidung begründen kann.",
+     "anlagen": [
+      {
+       "titel": "Anforderungen aus Aufgabe 4a (Datenbank der Weinberg-Sektoren)",
+       "html": "<p>Für die Vorbereitung der neuen Anwendung, für die Erfassung von Sensordaten in den Weinbergen, werden Sie gebeten, folgende Anforderungen grafisch darzustellen.</p><ul><li>Jeder Weinberg hat eine Bezeichnung.</li><li>Ein Weinberg hat mehrere Sektoren, welche jeweils zu einem Weingut gehören.</li><li>Neben dem Namen werden Telefonnummer und E-Mail-Adresse des Weinguts gespeichert.</li><li>In jedem Sektor wächst eine Rebsorte, welche durch einen Namen beschrieben wird.</li><li>Zusätzlich wird zu einem Sektor die Bezeichnung und die Lage erfasst.</li><li>Zur Schädlingsbekämpfung werden Pflanzenschutzmittel eingesetzt.</li><li>Jeder Mitteleinsatz wird mit Menge, Datum und dem zugehörigen Sektor verknüpft.</li><li>Zu jedem Pflanzenschutzmittel werden der Name sowie die Anwendungs- und Gefahrenhinweise erfasst.</li></ul>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Klare Entscheidung für eine Form",
+       "punkte": 1
+      },
+      {
+       "text": "Begründung passt zur Form und zur Situation",
+       "punkte": 1
+      }
+     ]
+    },
+    {
+     "nr": "bc",
+     "punkte": 4,
+     "eingabe": "zeichnen",
+     "text": "<p>Um die Daten der eben erstellten Datenbank pflegen zu können, sollen Sie eine Benutzeroberfläche erstellen.</p><p>ba) Benennen Sie zwei mögliche Darstellungsformen für die Übersicht der Weinberg-Sektoren.</p><p>bb) Entscheiden Sie sich für eine der genannten Darstellungsformen und begründen Sie Ihre Entscheidung.</p><p><b>bc) Skizzieren Sie Ihre gewählte Darstellungsform mit zwei beispielhaften Sektor-Datensätzen.</b></p>",
+     "loesung": "<img data-bild=\"w23-ga1-4bc\"><p>In Worten: drei Beispielskizzen, jeweils ein Fenster „Weinberg-Sektoren“:</p><ul><li>Tabellen-Darstellung: Spalten Bezeichnung und Lage; Zeilen „Nordhang“ und „Südhang“ (Lage: …)</li><li>Kachel-Darstellung: zwei Kacheln „Nordhang“ und „Südhang“, jeweils mit Kartensymbol</li><li>Karten-Darstellung: Einträge „Nordhang“ und „Südhang“, jeweils mit gestrichelter Linie zu ihrer Lage auf einer Karte</li></ul>",
+     "hinweis": "Die Skizze sollte der entsprechenden Darstellungsform angemessen sein.",
+     "anlagen": [
+      {
+       "titel": "Anforderungen aus Aufgabe 4a (Datenbank der Weinberg-Sektoren)",
+       "html": "<p>Für die Vorbereitung der neuen Anwendung, für die Erfassung von Sensordaten in den Weinbergen, werden Sie gebeten, folgende Anforderungen grafisch darzustellen.</p><ul><li>Jeder Weinberg hat eine Bezeichnung.</li><li>Ein Weinberg hat mehrere Sektoren, welche jeweils zu einem Weingut gehören.</li><li>Neben dem Namen werden Telefonnummer und E-Mail-Adresse des Weinguts gespeichert.</li><li>In jedem Sektor wächst eine Rebsorte, welche durch einen Namen beschrieben wird.</li><li>Zusätzlich wird zu einem Sektor die Bezeichnung und die Lage erfasst.</li><li>Zur Schädlingsbekämpfung werden Pflanzenschutzmittel eingesetzt.</li><li>Jeder Mitteleinsatz wird mit Menge, Datum und dem zugehörigen Sektor verknüpft.</li><li>Zu jedem Pflanzenschutzmittel werden der Name sowie die Anwendungs- und Gefahrenhinweise erfasst.</li></ul>"
+      }
+     ],
+     "pruefpunkte": [
+      {
+       "text": "Skizze passt zur gewählten Form",
+       "punkte": 2
+      },
+      {
+       "text": "zwei Sektor-Datensätze mit Bezeichnung und Lage",
+       "punkte": 2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

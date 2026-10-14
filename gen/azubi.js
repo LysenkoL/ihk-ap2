@@ -300,8 +300,8 @@
   /* ======================================================================
      Zustand je Modul
      ====================================================================== */
-  const leerZustand = () => ({ v: 1, modus: null, a: {}, auf: {}, p: {}, auto: {}, hilfe: {}, beobachtet: {}, zeit: 0, abgegeben: false,
-                               versuche: [], konflikte: [], start: 0, zuletzt: 0, pos: null });
+  const leerZustand = () => ({ v: 1, modus: null, uhrArt: "aktiv", a: {}, auf: {}, p: {}, auto: {}, hilfe: {}, beobachtet: {}, zeit: 0, abgegeben: false,
+                               versuche: [], konflikte: [], start: 0, zuletzt: 0, pos: null, zeitAbgelaufen: false });
   function zustand(id) {
     const z = lies(SK + id, null);
     const n = leerZustand();
@@ -313,6 +313,10 @@
   }
 
   const kopie = wert => JSON.parse(JSON.stringify(wert));
+  const bereichVon = m => {
+    const b = String(m.bereich || "").toLowerCase();
+    return ["ga1", "ga2", "wiso"].includes(b) ? b : (/^(ga1|ga2|wiso)[-:]/i.exec(m.id || "") || [])[1]?.toLowerCase() || "weitere";
+  };
 
   /** Erst den vollständigen alten Stand zusammen mit dem neuen speichern.
       Ein voller Speicher darf weder Antworten löschen noch das Archiv kürzen. */
@@ -323,7 +327,7 @@
     const n = ids ? alt : Object.assign(leerZustand(), { versuche: alt.versuche, konflikte: alt.konflikte || [] });
     if (ids) {
       ids.forEach(id => ["a", "auf", "p", "auto", "hilfe", "beobachtet"].forEach(k => { if (n[k]) delete n[k][id]; }));
-      n.modus = "uebung"; n.abgegeben = false; n.start = Date.now(); n.zeit = 0;
+      n.modus = "uebung"; n.uhrArt = "aktiv"; n.abgegeben = false; n.zeitAbgelaufen = false; n.start = Date.now(); n.zeit = 0;
       n.pos = ids[0] || null;
     }
     n.zuletzt = Date.now();
@@ -340,9 +344,10 @@
   }
 
   function antwortSetzen(t, z, key, wert) {
+    if (z.modus === "pruefung" && z.uhrArt === "streng" && z.abgegeben) return false;
     const a = z.a[t.id] || (z.a[t.id] = {});
     const alt = a[key];
-    const gleich = JSON.stringify(alt) === JSON.stringify(wert);
+    const gleich = JSON.stringify(alt) === JSON.stringify(leer(wert) ? undefined : wert);
     if (!gleich) {
       if (leer(wert)) delete a[key]; else a[key] = wert;
       if (!Object.keys(a).length) delete z.a[t.id];
@@ -352,28 +357,57 @@
         if (r.vorschlag != null) {
           const p = z.p || (z.p = {});
           p[t.id] = r.vorschlag;
-        }
+        } else { delete z.p[t.id]; delete z.auto[t.id]; }
       }
     }
-    if ((z.auf || {})[t.id]) {
+    if (!Object.keys(a).length) delete z.a[t.id];
+    if (!gleich && (z.auf || {})[t.id]) {
       const hilfe = z.hilfe || (z.hilfe = {});
       const h = hilfe[t.id] || (hilfe[t.id] = {});
       h.nachLoesung = true;
     }
+    return true;
+  }
+
+  function zeitFortschreiben(m, z, jetzt, delta, sichtbar) {
+    if (z.modus !== "pruefung" || z.abgegeben) return false;
+    if (z.uhrArt === "streng") {
+      z.zeit = Math.max(z.zeit || 0, Math.max(0, jetzt - z.start));
+      return z.zeit >= (m.minuten || 90) * 60000;
+    }
+    if (sichtbar) z.zeit = (z.zeit || 0) + Math.max(0, Math.min(5000, delta || 0));
+    return false;
+  }
+
+  function pruefungAbgeben(m, z, zeitAbgelaufen) {
+    if (z.abgegeben) return false;
+    z.abgegeben = true;
+    z.zeitAbgelaufen = !!zeitAbgelaufen;
+    teileVon(m).forEach(t => {
+      z.auf[t.id] = 1;
+      const r = pruefe(t, z.a[t.id]);
+      if (z.p[t.id] == null) {
+        if (r.vorschlag != null) { z.p[t.id] = r.vorschlag; z.auto[t.id] = 1; }
+        else if (!hatAntwort(t, z.a[t.id])) { z.p[t.id] = 0; z.auto[t.id] = 1; }
+      }
+      beobachten(m, t, z);
+    });
+    return true;
   }
 
   /** Nur tatsächliche Kontrollen melden, niemals Rendern oder Speichern.
       Der Stempel verhindert doppelte Beobachtungen nach erneutem Anklicken. */
   function beobachten(m, t, z) {
     const lernstand = root.GENLERNSTAND;
-    if (!lernstand || !lernstand.record || !(m.bereich === "wiso" || /^wiso/i.test(m.id))) return false;
+    const bereich = bereichVon(m);
+    if (!lernstand || !lernstand.record || !["ga1", "ga2", "wiso"].includes(bereich)) return false;
     const p = punkteFuer(t, z), max = t.punkte || 0;
     if (!Number.isFinite(p) || !Number.isFinite(max) || max <= 0 || p < 0 || p > max) return false;
     const h = (z.hilfe || {})[t.id];
     const hilfe = h && (h.vorAntwort || h.nachLoesung) ||
       (!h && (z.auf || {})[t.id] && !(z.modus === "pruefung" && z.abgegeben));
     const auswahl = ["mehrfach", "wahl", "zuordnung"].includes((t.eingabe || {}).typ);
-    const event = { topic: "wiso", source: "azubi", task: m.id + ":" + t.id,
+    const event = { topic: bereich, source: "azubi", task: m.id + ":" + t.id,
       correct: p, max, support: hilfe ? "loesung" : "selbst",
       kind: auswahl ? "recognition" : (z.auto || {})[t.id] ? "auto" : "selbst",
       answers: kopie((z.a || {})[t.id] || {}) };
@@ -461,6 +495,7 @@
 
   /* ------------------------------------------------------------ Seite --- */
   let VIEW = { art: "liste" };
+  let bereichFilter = "alle";
   let herkunft = "scStart";
   let LAUF = null;          /* offener Bogen: {m, z, ...} */
 
@@ -638,19 +673,31 @@
 
   function listeZeichnen(box) {
     const P = paket();
-    const liste = sortiert(P.module, zustand, P.bisher);
+    const alle = sortiert(P.module, zustand, P.bisher);
+    const liste = alle.filter(e => bereichFilter === "alle" || bereichVon(e.m) === bereichFilter);
     const kopf = el("div", "az-karte az-kopf");
     const t = el("div", "az-kopf-titel");
     t.appendChild(el("h2", null, "Echte AP2-Prüfungen"));
     t.appendChild(el("p", "az-quelle", "Original-Bögen der IHK, abgeschrieben · Stand " +
       (P.stand ? P.stand.split("-").reverse().join(".") : "–")));
     kopf.appendChild(t);
+    const filter = el("div", "steuer");
+    [["alle", "Все бланки"], ["ga1", "GA1"], ["ga2", "GA2"], ["wiso", "WiSo"]].forEach(([id, label]) => {
+      const n = alle.filter(e => id === "alle" || bereichVon(e.m) === id).length;
+      const b = el("button", "btn" + (bereichFilter === id ? " primary" : ""), label + " · " + n);
+      b.type = "button"; b.setAttribute("aria-pressed", String(bereichFilter === id));
+      b.onclick = () => { bereichFilter = id; zeichnen(); };
+      filter.appendChild(b);
+    });
+    kopf.appendChild(filter);
+    kopf.appendChild(el("p", "az-info", "Это бланки из загруженного пакета. Переписанные условия и ключи могут содержать ошибки; спорный пункт сверяй с оригиналом. Баллы открытых ответов оцениваешь сама по рубрике."));
+    if (!liste.length) kopf.appendChild(el("p", "az-info", "В этом пакете пока нет бланков выбранного раздела. После переноса нового пакета они появятся здесь; авторская практика доступна в учебном маршруте."));
     const zahl = g => liste.filter(e => e.g === g).length;
     const fakten = el("div", "az-fakten");
     [[liste.filter(e => e.s.fertig).length, "fertig"], [zahl("weiter"), "angefangen"], [zahl("neu"), "nie gemacht"], [zahl("schwach"), "schwach"]]
       .forEach(([n, txt]) => { const f = el("div", "az-fakt"); f.appendChild(el("b", null, String(n))); f.appendChild(el("span", null, txt)); fakten.appendChild(f); });
     kopf.appendChild(fakten);
-    kopf.appendChild(el("p", "az-info", "Alles wird bei jeder Eingabe auf diesem Gerät gespeichert. Aufhören, App schließen, später genau dort weitermachen."));
+    kopf.appendChild(el("p", "az-info", "Ответы сохраняются на этом устройстве. В учебном режиме можно продолжить позже; строгий таймер считает и время вне приложения."));
     const erst = liste[0];
     if (erst) {
       const b = el("button", "btn primary az-naechste");
@@ -787,6 +834,9 @@
     }
     const empfohlen = VIEW.modus; VIEW.modus = null;
     if (!z.modus) { startKarte(box, m, z, empfohlen); return; }
+    if (zeitFortschreiben(m, z, Date.now(), 0, false)) {
+      pruefungAbgeben(m, z, true); sichern(true);
+    }
 
     box.appendChild(leiste(m, z));
 
@@ -807,13 +857,16 @@
     }
 
     if (z.modus === "pruefung" && z.abgegeben) {
+      if (z.uhrArt === "streng") box.appendChild(el("p", "az-hinweisbox", z.zeitAbgelaufen
+        ? "Время закончилось. Ответы зафиксированы; теперь сравни их с решениями."
+        : "Ответы сданы и зафиксированы. Для изменений начни новую попытку."));
       const s = auswertung(m, z);
       const offen = s.n - s.bewertet;
       if (offen) {
         const h = el("div", "az-hinweisbox");
         h.appendChild(el("b", null, "Abgegeben. "));
         h.appendChild(document.createTextNode("Zahlen, Tabellen, Zuordnungen und leere Felder sind schon bewertet. Noch " +
-          plural(offen, "Textantwort", "Textantworten") + " mit der Musterlösung selbst bewerten — dann steht die Note."));
+          plural(offen, "Textantwort", "Textantworten") + " mit der Musterlösung selbst bewerten — so erkennst du, was noch fehlt."));
         box.appendChild(h);
       }
     }
@@ -880,19 +933,20 @@
       k.appendChild(el("p", "az-info", "Hier zuletzt (" + datum(v.d) + "): " + fmt(v.prozent) + " % · " + v.note + "."));
     }
     const wahl = el("div", "az-modi");
-    const modus = (art, titel, text) => {
+    const modus = (art, titel, text, uhrArt) => {
       const c = el("button", "az-modus" + (empfohlen === art ? " empf" : ""));
       c.type = "button";
       if (empfohlen === art) c.appendChild(el("span", "az-chip az-empf", "laut Plan"));
       c.appendChild(el("b", null, titel));
       c.appendChild(el("span", null, text));
-      c.onclick = () => { z.modus = art; z.start = Date.now(); z.zeit = 0; z.abgegeben = false; LAUF = { m, z }; sichern(true); zeichnen(); root.scrollTo(0, 0); };
+      c.onclick = () => { z.modus = art; z.uhrArt = uhrArt || "aktiv"; z.start = Date.now(); z.zeit = 0; z.abgegeben = false; z.zeitAbgelaufen = false; LAUF = { m, z }; sichern(true); zeichnen(); root.scrollTo(0, 0); };
       wahl.appendChild(c);
     };
     modus("uebung", "Als Übung", "Nach jeder Teilaufgabe die Lösung ansehen und dich bewerten. Ohne Uhr.");
-    modus("pruefung", "Als Prüfung", "Uhr läuft (" + m.minuten + " Min.), Lösungen erst nach „Abgeben“. Wie in der echten Prüfung.");
+    modus("pruefung", "Учебный таймер", m.minuten + " минут активной работы. Таймер останавливается, когда вкладка скрыта. Решения после сдачи.");
+    modus("pruefung", "Строгий таймер", m.minuten + " минут с момента старта, включая перерывы и закрытую вкладку. По истечении времени ответы фиксируются.", "streng");
     k.appendChild(wahl);
-    k.appendChild(el("p", "az-info", "Egal wie: Jede Eingabe wird sofort gespeichert. Du kannst jederzeit aufhören."));
+    k.appendChild(el("p", "az-info", "Ввод сохраняется на этом устройстве. Строгий таймер продолжает отсчёт после ухода из приложения."));
     box.appendChild(k);
     box.appendChild(historieZeichnen(m, z));
   }
@@ -952,7 +1006,7 @@
     const u = $("azUhr");
     if (!u || !LAUF) return;
     const z = LAUF.z, max = (LAUF.m.minuten || 90) * 60000;
-    u.textContent = minuten(z.zeit) + " / " + LAUF.m.minuten + ":00";
+    u.textContent = (z.uhrArt === "streng" ? "Строгий · " : "Учебный · ") + minuten(z.zeit) + " / " + LAUF.m.minuten + ":00";
     u.classList.toggle("knapp", z.zeit > max - 10 * 60000 && z.zeit <= max);
     u.classList.toggle("vorbei", z.zeit > max);
   }
@@ -966,8 +1020,9 @@
     LAUF.uhr = setInterval(() => {
       if (!LAUF) return;
       const jetzt = Date.now();
-      if (document.visibilityState !== "hidden") LAUF.z.zeit += Math.min(5000, jetzt - LAUF.tick);
+      const vorbei = zeitFortschreiben(LAUF.m, LAUF.z, jetzt, jetzt - LAUF.tick, document.visibilityState !== "hidden");
       LAUF.tick = jetzt;
+      if (vorbei) { pruefungAbgeben(LAUF.m, LAUF.z, true); clearInterval(LAUF.uhr); LAUF.uhr = null; sichern(true); zeichnen(); return; }
       uhrZeigen();
       if (++zaehler % 15 === 0) sichern(true);
     }, 1000);
@@ -977,17 +1032,8 @@
     const b = el("button", "btn primary", "Abgeben");
     b.type = "button";
     b.onclick = () => bestaetigen(b, "Abgeben? Danach siehst du alle Lösungen.", () => {
-      z.abgegeben = true;
-      teileVon(m).forEach(t => {
-        z.auf[t.id] = 1;
-        const r = pruefe(t, z.a[t.id]);
-        /* Geschlossene Aufgaben bewertet die App, leere Aufgaben sind sicher 0 */
-        if (z.p[t.id] == null) {
-          if (r.vorschlag != null) { z.p[t.id] = r.vorschlag; z.auto[t.id] = 1; }
-          else if (!hatAntwort(t, z.a[t.id])) { z.p[t.id] = 0; z.auto[t.id] = 1; }
-        }
-        beobachten(m, t, z);
-      });
+      const vorbei = zeitFortschreiben(m, z, Date.now(), 0, false);
+      pruefungAbgeben(m, z, vorbei);
       if (LAUF && LAUF.uhr) { clearInterval(LAUF.uhr); LAUF.uhr = null; }
       sichern(true);
       zeichnen();
@@ -1064,6 +1110,7 @@
       ak.appendChild(zeig);
       c.appendChild(ak);
     }
+    /* GENFOTOS */ if (root.GENFOTOS) { try { root.GENFOTOS.anhaengen(c, m, t); } catch (e) { console.error("Azubi/Fotos:", e); } }
     return c;
   }
 
@@ -1078,10 +1125,25 @@
     const box = el("div", "az-eingabe typ-" + E.typ);
     const wert = k => (z.a[t.id] || {})[k];
     const setze = (k, v) => {
+      if (zeitFortschreiben(m, z, Date.now(), 0, false)) {
+        pruefungAbgeben(m, z, true); sichern(true); zeichnen(); return;
+      }
+      if (z.modus === "pruefung" && z.uhrArt === "streng" && z.abgegeben) return;
       antwortSetzen(t, z, k, v);
       z.pos = t.id;
       karte.classList.toggle("bearbeitet", hatAntwort(t, z.a[t.id]));
-      if (z.auf[t.id]) markenSetzen(karte, t, z.a[t.id]);
+      if (z.auf[t.id]) {
+        markenSetzen(karte, t, z.a[t.id]);
+        const p = z.p[t.id];
+        karte.classList.toggle("bewertet", p != null);
+        karte.classList.toggle("voll", p != null && p >= t.punkte);
+        karte.classList.toggle("teils", p != null && p > 0 && p < t.punkte);
+        karte.classList.toggle("null", p === 0);
+        const punkte = karte.querySelector(".az-p");
+        if (punkte) punkte.textContent = (p != null ? fmt(p) + " / " : "") + fmt(t.punkte) + " P.";
+        const bewertung = karte.querySelector(".az-bewerten");
+        if (bewertung) bewertung.replaceWith(bewerten(m, t, z, pruefe(t, z.a[t.id])));
+      }
       sichern();
       leisteAktualisieren();
     };
@@ -1221,6 +1283,12 @@
         box.appendChild(ta);
       }
     }
+    if (z.modus === "pruefung" && z.uhrArt === "streng" && z.abgegeben) {
+      box.querySelectorAll("input,textarea,select").forEach(f => {
+        if (f.tagName === "TEXTAREA" || (f.tagName === "INPUT" && f.type === "text")) f.readOnly = true;
+        else f.disabled = true;
+      });
+    }
     return box;
   }
 
@@ -1287,6 +1355,7 @@
     const l = el("div", "az-text");
     if (t.loesung) htmlIn(l, t.loesung); else l.textContent = "Zu dieser Aufgabe gibt es keine Musterlösung.";
     box.appendChild(l);
+    /* GENVORLESEN */ if (root.GENVORLESEN && t.loesung && ["ga1", "ga2"].includes(bereichVon(m))) { try { const vk = root.GENVORLESEN.knopf(t.loesung); if (vk) box.appendChild(vk); } catch (e) { } }
     if (t.hinweis) {
       const h = el("div", "az-hinweis");
       h.appendChild(el("b", null, "So wird bewertet: "));
@@ -1314,11 +1383,40 @@
     nochmal.type = "button";
     nochmal.onclick = () => {
       if (!neustart(m, z, [t.id], nochmal)) return;
+      /* PRUEFPUNKTE */ try { const alle = lies(PP_KEY(m.id), {}) || {}; if (alle[t.id]) { delete alle[t.id]; schreib(PP_KEY(m.id), alle); } } catch (e) { }
       ersetzeKarte(m, t, z); leisteAktualisieren();
       const historie = $("azHistorie");
       if (historie) historie.replaceWith(historieZeichnen(m, z));
     };
     if (z.modus === "uebung") box.appendChild(nochmal);
+    return box;
+  }
+
+  /* Selbstbewertung nach Prüfpunkten (Teil.pruefpunkte: [{text, punkte}]).
+     Häkchen je Modul unter ap2:pruefpunkte:<modul>, getrennt vom Bogenstand. */
+  const PP_KEY = id => "ap2:pruefpunkte:" + id;
+  function pruefpunkteBox(m, t, setze) {
+    const an = new Set((() => { const a = (lies(PP_KEY(m.id), {}) || {})[t.id]; return Array.isArray(a) ? a : []; })());
+    const box = el("div", "az-pp");
+    box.appendChild(el("p", "az-pp-titel", "Что есть в твоём ответе? Отметь только то, что написала сама."));
+    const summe = el("p", "az-pp-summe");
+    const knopf = el("button", "btn klein az-pp-knopf", ""); knopf.type = "button";
+    const rechne = () => Math.round(t.pruefpunkte.reduce((s, x, i) => s + (an.has(i) ? x.punkte : 0), 0) * 100) / 100;
+    const zeige = () => { const s = rechne(); summe.textContent = "По пунктам: " + fmt(s) + " из " + fmt(t.punkte); knopf.textContent = "Поставить " + fmt(s); };
+    t.pruefpunkte.forEach((x, i) => {
+      const l = el("label", "az-pp-zeile"), c = el("input"); c.type = "checkbox"; c.checked = an.has(i);
+      c.onchange = () => {
+        if (c.checked) an.add(i); else an.delete(i);
+        const alle = lies(PP_KEY(m.id), {}) || {}; alle[t.id] = Array.from(an).sort((a, b) => a - b);
+        if (!schreib(PP_KEY(m.id), alle)) summe.textContent = "Не удалось сохранить отметки: память заполнена.";
+        else zeige();
+      };
+      const sp = el("span", null, x.text); sp.lang = "de";
+      l.append(c, sp, el("b", "az-pp-p", fmt(x.punkte)));
+      box.appendChild(l);
+    });
+    zeige(); knopf.onclick = () => setze(rechne());
+    box.append(summe, knopf, el("p", "az-pp-hinweis", "Пункты составлены по решению. Если выше в «So wird bewertet» есть официальная разбивка — она главнее. Другие верные решения тоже засчитываются."));
     return box;
   }
 
@@ -1338,6 +1436,7 @@
       ersetzeKarte(m, t, z);
       leisteAktualisieren();
     };
+    /* PRUEFPUNKTE */ if (Array.isArray(t.pruefpunkte) && t.pruefpunkte.length) box.appendChild(pruefpunkteBox(m, t, setze));
     const wahl = el("div", "az-pwahl");
     if (!Number.isInteger(max * 2)) {
       /* Bruchpunkte (WiSo 3,33): 0 · Vorschlag · alle */
@@ -2069,8 +2168,8 @@
   }
 
   const api = {
-    oeffnen, zeigen, block, laden, importieren, paket, modul, alleModule, zustand, ansicht, teileVon,
-    normText, zahlen, feldRichtig, textVarianten, pruefe, markdown, punkteLesen, htmlZuMd, antwortMd, stellen, hatAntwort, note, auswertung, einordnen, sortiert, paketAusText, neuerVersuch, loesungAnsehen, antwortSetzen, beobachten,
+    oeffnen, zeigen, block, laden, importieren, paket, modul, alleModule, zustand, ansicht, teileVon, bereichVon,
+    normText, zahlen, feldRichtig, textVarianten, pruefe, markdown, punkteLesen, punkteFuer, htmlZuMd, antwortMd, stellen, hatAntwort, note, auswertung, einordnen, sortiert, paketAusText, neuerVersuch, loesungAnsehen, antwortSetzen, beobachten, zeitFortschreiben, pruefungAbgeben,
     get VIEW() { return VIEW; }
   };
   root.GENAZUBI = api;

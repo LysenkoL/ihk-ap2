@@ -225,6 +225,95 @@ fall("Algo vereinigt unabhängige Verfahren und verdoppelt Zähler nicht", () =>
   assert.deepStrictEqual(abgleichen("ap2:algo", fremd, z), z);
 });
 
+fall("Lernbeobachtungen sind ein unveränderliches gemeinsames Ereignisarchiv", () => {
+  const x = { id: "pc-1", topic: "sql", t: 100, correct: 0, max: 1, answers: "A" };
+  const y = { id: "phone-1", topic: "sql", t: 200, correct: 1, max: 1, answers: "B" };
+  const z = abgleichen("ap2:lernstand", [x], [y]);
+  assert.deepStrictEqual(z, [x, y]);
+  assert.deepStrictEqual(abgleichen("ap2:lernstand", z, [y]), z);
+  const konflikt = Object.assign({}, x, { answers: "andere ursprüngliche Eingabe" });
+  assert.strictEqual(abgleichen("ap2:lernstand", z, [konflikt]).length, 3, "auch eine beschädigte doppelte ID vernichtet kein Original");
+});
+
+fall("Lernweg erhält verschiedene Kapitel und widersprüchliche Texte", () => {
+  const lokal = { done: { sql: 100 }, drafts: { sql: "mein SQL", git: "git alt" }, checks: {
+    sql: { time: 100, correct: 0, max: 2, answer: "mein SQL", assisted: false }
+  }, profile: { minutes: 20 }, project: "IHK fragen", updated: 100 };
+  const fremd = { done: { git: 200 }, drafts: { git: "git neu" }, checks: {
+    git: { time: 200, correct: 1, max: 2, answer: "git neu", assisted: true }
+  }, profile: { minutes: 10 }, project: "Termin merken", updated: 200 };
+  const z = abgleichen("ap2:lernweg", lokal, fremd);
+  assert.deepStrictEqual(z.done, { sql: 100, git: 200 });
+  assert.deepStrictEqual(z.drafts, { sql: "mein SQL", git: "git neu" });
+  assert.deepStrictEqual(Object.keys(z.checks).sort(), ["git", "sql"]);
+  assert(z.konflikte.some(k => k.wert === "git alt"));
+  assert(z.konflikte.some(k => k.wert === "IHK fragen"));
+  assert.deepStrictEqual(abgleichen("ap2:lernweg", z, fremd), z);
+  assert.deepStrictEqual(abgleichen("ap2:lernweg", z, lokal), z);
+});
+
+fall("Lernweg vereinigt Sitzungen und ganze Historien ohne Konfliktverlust", () => {
+  const snapshot={title:"Code",topic:"algo",control:"Aufgabe",answer:"Lösung",rubric:["Kriterium"]};
+  const alt={id:"s1",mode:"hilfe",createdAt:1,updatedAt:100,assisted:true,answer:"früher",submission:null};
+  const neu={id:"s1",mode:"hilfe",createdAt:1,updatedAt:300,assisted:true,answer:"abgegeben",submission:{answer:"abgegeben",assisted:true,time:290,selected:[0],snapshot}};
+  const anderes={id:"s2",mode:"pruefung",createdAt:20,updatedAt:200,assisted:false,answer:"anderes Kapitel",submission:null};
+  const a={id:"a",unit:"code",time:10,correct:0,max:1,answer:"erste Antwort",assisted:true,selected:[],snapshot,recorded:false};
+  const b={id:"b",unit:"sql",time:20,correct:1,max:1,answer:"zweite Antwort",assisted:false,selected:[0],snapshot,recorded:false};
+  const kollidiert=Object.assign({},a,{answer:"abweichendes Original",snapshot:Object.assign({},snapshot,{control:"andere Aufgabe"})});
+  const archiv={unit:"vorher",id:"archiv",updatedAt:1,answer:"Nicht verlieren"};
+  const lokal={updated:500,sessions:{code:alt},drafts:{code:alt.answer},history:[a],sessionConflicts:[archiv],checks:{code:a},done:{code:10}};
+  const fremd={updated:400,sessions:{code:neu,sql:anderes},drafts:{code:neu.answer,sql:anderes.answer},history:[b,kollidiert],sessionConflicts:[],checks:{sql:b},done:{sql:20}};
+  const z=abgleichen("ap2:lernweg",lokal,fremd);
+  assert.deepStrictEqual(z.sessions.code,neu,"Zeit je Sitzung gewinnt, nicht letzte Änderung einer anderen Lektion");
+  assert.deepStrictEqual(z.sessions.sql,anderes);
+  assert.strictEqual(z.drafts.code,neu.answer,"Aktiver Legacy-Entwurf passt zur gewählten Sitzung");
+  assert.strictEqual(z.history.length,3,"Auch gleiche ID mit verschiedenem Antwortsnapshot bleibt vollständig");
+  assert(z.history.some(x=>x.answer==="erste Antwort"));
+  assert(z.history.some(x=>x.snapshot.control==="andere Aufgabe"));
+  assert(z.sessionConflicts.some(x=>x.answer==="Nicht verlieren"));
+  assert(z.sessionConflicts.some(x=>x.unit==="code"&&x.answer==="früher"));
+  assert(z.sessionConflicts.some(x=>x.unit==="code"&&x.submission&&x.submission.selected[0]===0));
+  assert.deepStrictEqual(abgleichen("ap2:lernweg",z,fremd),z,"Wiederholter Import erzeugt keine neuen Konflikte");
+  assert.deepStrictEqual(abgleichen("ap2:lernweg",z,lokal),z,"Auch Rückimport des älteren Originals bleibt idempotent");
+  const quittung={updated:600,history:[Object.assign({},a,{recorded:true})]};
+  const mitQuittung=abgleichen("ap2:lernweg",z,quittung);
+  assert.strictEqual(mitQuittung.history.length,3,"Quittung ist kein neuer Versuch");
+  assert.strictEqual(mitQuittung.history.find(x=>x.answer==="erste Antwort").recorded,true);
+  assert.strictEqual(mitQuittung.history.find(x=>x.answer==="abweichendes Original").recorded,false,"Quittung gilt nur für genau diesen Snapshot");
+  assert.strictEqual(mitQuittung.checks.code.recorded,true);
+  assert.deepStrictEqual(abgleichen("ap2:lernweg",mitQuittung,quittung),mitQuittung);
+});
+
+fall("Praxis behält unabhängige Aufgaben, vollständige Versuche und beide Entwürfe", () => {
+  const alt = { id: "draft1", createdAt: 50, updatedAt: 100, answers: { f1: "alt" }, submission: null };
+  const neu = { id: "draft1", createdAt: 50, updatedAt: 200, answers: { f1: "neu" }, submission: null };
+  const a = { id: "a", t: 1, answers: { f1: "A" }, snapshot: { titel: "Aufgabe A" } };
+  const b = { id: "b", t: 2, answers: { f1: "B" }, snapshot: { titel: "Aufgabe A" } };
+  const lokal = { version: 1, tasks: { eins: { attempts: [a], drafts: [], draft: alt } } };
+  const fremd = { version: 1, tasks: { eins: { attempts: [b], drafts: [], draft: neu }, zwei: { attempts: [], drafts: [], draft: { id: "c", answers: { f1: "C" } } } } };
+  const z = abgleichen("ap2:praxis", lokal, fremd);
+  assert.deepStrictEqual(z.tasks.eins.attempts, [a, b]);
+  assert.deepStrictEqual(z.tasks.eins.draft, neu);
+  assert(z.tasks.eins.drafts.some(d => d.answers.f1 === "alt"));
+  assert(z.tasks.eins.drafts.some(d => d.answers.f1 === "neu"));
+  assert.strictEqual(z.tasks.zwei.draft.answers.f1, "C");
+  assert.deepStrictEqual(abgleichen("ap2:praxis", z, fremd), z);
+  assert.deepStrictEqual(abgleichen("ap2:praxis", z, lokal), z);
+  const quittiert = { version: 1, tasks: { eins: { attempts: [Object.assign({}, a, { recorded: true })], drafts: [], draft: null } } };
+  const mitQuittung = abgleichen("ap2:praxis", z, quittiert);
+  assert.strictEqual(mitQuittung.tasks.eins.attempts.length, 2, "Journal-Quittung erzeugt keine zweite tatsächliche Übung");
+  assert.strictEqual(mitQuittung.tasks.eins.attempts.find(v => v.id === "a").recorded, true);
+});
+
+fall("Neuere falsche Wiederholung wird nicht durch alte erledigte Serie versteckt", () => {
+  const lokal = { k: { "lq:git": { n: 8, l: 2, t: 100, raus: 1, gutTag: "2026-10-01" } }, tage: {} };
+  const fremd = { k: { "lq:git": { n: 1, l: 0, t: 300, f: "2026-10-04" } }, tage: {} };
+  const z = abgleichen("ap2:wieder", lokal, fremd);
+  assert(!z.k["lq:git"].raus);
+  assert.strictEqual(z.k["lq:git"].l, 0);
+  assert.strictEqual(z.k["lq:git"].n, 8, "historische Anzahl wird nicht zurückgesetzt oder doppelt addiert");
+});
+
 if (fehler.length) throw new Error("AP2-Abgleich:\n" + fehler.join("\n\n"));
 
 console.log("sync: zusammenführen ohne Verlust, neuere Fassung gewinnt, Zähler ohne Verdopplung OK");

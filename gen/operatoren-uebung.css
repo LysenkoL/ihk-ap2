@@ -1,0 +1,68 @@
+/* gen/operatoren-uebung.css — тренажёр операторов (префикс ou-) */
+.ou-page{max-width:920px;margin:auto;padding:18px;box-sizing:border-box}
+.ou-wrap{display:grid;gap:16px;min-width:0}
+.ou-card{color:var(--ink,#14171C);background:var(--card,#fff);border:1px solid var(--rule,#ddd);border-radius:14px;padding:22px;line-height:1.6;min-width:0;overflow-wrap:anywhere}
+.ou-card h2{margin:0 0 12px;font-size:22px;line-height:1.3}
+.ou-card h3{font-size:17px;line-height:1.35;margin:18px 0 6px}
+.ou-card p{margin:10px 0}
+.ou-page .ou-card h2 + p{color:var(--ink,#14171C)}
+.ou-page .ou-card h2 + p.ou-muted{color:var(--muted,#666)}
+.ou-card ul{padding-left:22px;margin:8px 0}
+.ou-card li{margin:6px 0}
+.ou-card summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.ou-muted{display:block;color:var(--muted,#666);font-size:13px;line-height:1.5}
+.ou-alert{color:var(--red,#a62424);font-weight:600;margin:0}
+.ou-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ou-card .btn{min-height:44px;white-space:normal;text-transform:none;letter-spacing:normal;font-size:15px;line-height:1.35;max-width:100%}
+.ou-card :focus-visible{outline:3px solid var(--pruefer,#12457E);outline-offset:3px}
+
+/* Вопрос */
+.ou-kopfzeile{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.ou-fortschritt{font-size:13px;font-weight:700;color:var(--pruefer,#12457E);letter-spacing:.02em}
+.ou-satz{color:var(--ink,#14171C);font-size:18px;line-height:1.55;background:var(--field,#f4f6f9);border-left:4px solid var(--pruefer,#12457E);padding:14px 16px;border-radius:8px;margin:12px 0 4px}
+.ou-satz mark{background:transparent;color:inherit;border-radius:3px;padding:0 2px}
+.ou-satz mark.ou-verb{background:var(--pruefer-soft,#EAF0F7);color:var(--pruefer,#12457E);font-weight:700;box-shadow:inset 0 -2px 0 var(--pruefer,#12457E)}
+.ou-satz mark.ou-verb2{box-shadow:inset 0 -2px 0 var(--muted,#888)}
+.ou-satz mark.ou-zahl{background:var(--warn-soft,#FCF4E4);color:var(--ink,#222);font-weight:700;box-shadow:inset 0 -2px 0 var(--warn,#B4740E)}
+.ou-quelle{font-size:13px;color:var(--muted,#666);margin:0 0 12px !important}
+.ou-antwort,.ou-muster{white-space:pre-wrap;background:var(--field,#f4f6f9);padding:12px 14px;border-radius:8px;font-size:15px}
+.ou-muster{border:1px dashed var(--rule,#ccc);font-family:inherit}
+.ou-lbl{font-weight:700;margin:14px 0 4px !important;font-size:14px}
+.ou-optionen{display:grid;gap:8px;margin:12px 0}
+.ou-card .btn.ou-opt{display:flex;justify-content:flex-start;align-items:flex-start;width:100%;text-align:left;padding:12px 14px;font-weight:600;font-family:inherit;border-radius:10px}
+.ou-card .btn.ou-opt[disabled]{opacity:1;cursor:default}
+.ou-card .btn.ou-opt[disabled]:not(.ou-richtig):not(.ou-falsch){opacity:.6}
+.ou-card .btn.ou-richtig{border:2px solid var(--ok,#1D6B4A);background:var(--ok-soft,#EAF5F0);color:var(--ink,#222)}
+.ou-card .btn.ou-falsch{border:2px solid var(--red,#A8291F);background:var(--red-soft,#FDF4F3);color:var(--ink,#222)}
+.ou-zeichen{font-weight:800;flex:none;margin-right:6px}
+.ou-feedback{border-radius:10px;padding:12px 16px;margin-top:6px;border:1px solid var(--rule,#ddd)}
+.ou-feedback.ok{border-color:var(--ok,#1D6B4A)}
+.ou-feedback.falsch{border-color:var(--red,#A8291F)}
+.ou-urteil{display:block;font-size:17px}
+.ou-feedback.ok .ou-urteil{color:var(--ok,#1D6B4A)}
+.ou-feedback.falsch .ou-urteil{color:var(--red,#A8291F)}
+.ou-leise{border-top:1px solid var(--rule,#ddd);padding-top:8px;margin-top:16px}
+.ou-leise .btn{font-size:13px;color:var(--muted,#666)}
+
+/* Статистика */
+.ou-tab{display:grid;gap:8px}
+.ou-zeile{display:grid;grid-template-columns:minmax(110px,1fr) auto minmax(80px,1.2fr);gap:4px 12px;align-items:center}
+.ou-bar{display:block;height:8px;border-radius:4px;background:var(--rule-soft,#E8EAEE);overflow:hidden}
+.ou-bar>span{display:block;height:100%;background:var(--ok,#1D6B4A)}
+.ou-paar{border-top:1px solid var(--rule,#ddd);padding-top:8px;margin-top:8px}
+.ou-paar p{margin:4px 0}
+
+/* Шпаргалка */
+.ou-spick-op{border-top:1px solid var(--rule,#ddd);padding:10px 0}
+.ou-spick-op h3{margin:4px 0}
+.ou-spick-op p{margin:6px 0}
+
+@media(max-width:540px){
+  .ou-page{padding:10px}
+  .ou-card{padding:16px}
+  .ou-card h2{font-size:20px}
+  .ou-satz{font-size:17px;padding:12px}
+  .ou-zeile{grid-template-columns:1fr auto}
+  .ou-zeile .ou-bar{grid-column:1/-1}
+}
+@media print{.ou-page[hidden]{display:none}.ou-card button{display:none}.ou-spick[open]{break-inside:auto}}

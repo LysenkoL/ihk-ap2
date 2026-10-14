@@ -1,0 +1,66 @@
+/* ============================================================================
+   gen/fotos.css — Foto der Papier-Antwort (gen/fotos.js)
+   Block unter dem Antwortfeld, Miniaturen, Vergleich bei der Musterlösung,
+   Vollbild. Farben aus dem Thema (hell/dunkel).
+   ========================================================================== */
+
+.fo-block{position:relative; margin-top:12px; padding:10px 12px; border:1px dashed var(--rule); border-radius:10px; background:var(--field)}
+.fo-zeile{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.fo-block .btn, .fo-frage .btn, .fo-voll .btn{font-family:var(--body); text-transform:none; letter-spacing:0; font-size:14px;
+  font-weight:650; border-radius:9px; min-height:44px; padding:8px 14px; white-space:normal; line-height:1.25}
+.fo-block .fo-knopf{background:var(--card); border-color:var(--pruefer); color:var(--pruefer)}
+.fo-block .btn[disabled]{opacity:.5}
+/* Dateifelder: unsichtbar, aber klickbar (display:none mögen manche Handys nicht) */
+.fo-datei{position:absolute; left:0; top:0; width:1px; height:1px; opacity:0; overflow:hidden; clip:rect(0 0 0 0); pointer-events:none}
+
+.fo-status{margin-top:6px; font-size:13px; color:var(--muted); line-height:1.4}
+.fo-status:empty{display:none}
+.fo-fehler{color:var(--red); font-weight:600}
+.fo-hinweis{margin:8px 0 0; font-size:12px; color:var(--muted); line-height:1.4}
+
+.fo-mini{display:flex; flex-wrap:wrap; gap:10px 12px; margin-top:10px}
+.fo-bild{position:relative; margin:0; width:96px}
+.fo-zeig{display:block; width:96px; height:96px; padding:0; border:1px solid var(--rule); border-radius:8px; overflow:hidden;
+  background:#fff; cursor:zoom-in}
+.fo-zeig img{display:block; width:100%; height:100%; object-fit:cover}
+.fo-bild figcaption{margin-top:2px; font-size:11px; color:var(--muted); text-align:center; font-family:var(--data); white-space:nowrap}
+.fo-x{position:absolute; top:-9px; right:-9px; width:34px; height:34px; padding:0; border-radius:50%; border:1px solid var(--rule);
+  background:var(--card); color:var(--red); font-size:15px; font-weight:800; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgba(0,0,0,.15)}
+
+.fo-frage{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:10px; padding:8px 10px; border:1px solid var(--red);
+  border-radius:9px; background:var(--red-soft); color:var(--ink); font-size:14px}
+.fo-frage > span{flex:1 1 100%; font-weight:650}
+.fo-frage .btn.fo-ja{background:var(--red); border-color:var(--red); color:#fff}
+.fo-frage .btn.ghost{color:var(--ink); border-color:var(--rule); background:var(--card)}
+
+.fo-vergleich{margin-top:10px; padding:8px 12px 10px; border-radius:10px; background:var(--field); border:1px solid var(--rule-soft)}
+.fo-vergleich-titel{margin:0; font-size:13px; font-weight:700}
+.fo-vergleich .fo-mini{margin-top:6px}
+
+/* ------------------------------------------------------------ Vollbild --- */
+html.fo-offen, html.fo-offen body{overflow:hidden}
+.fo-voll{position:fixed; inset:0; z-index:80; display:flex; flex-direction:column; background:rgba(0,0,0,.96); color:#fff}
+.fo-voll-kopf{display:flex; align-items:center; gap:8px; padding:8px 12px; padding-top:max(8px, env(safe-area-inset-top))}
+.fo-voll-info{flex:1 1 auto; min-width:0; font-size:13px; opacity:.85}
+.fo-voll-zu{flex:0 0 auto; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.45);
+  background:transparent; color:#fff; font-size:20px; line-height:1; cursor:pointer}
+.fo-voll-bilder{flex:1 1 auto; min-height:0; display:flex; flex-direction:column; gap:8px; padding:0 8px}
+.fo-voll-feld{flex:1 1 0; min-height:0; margin:0; display:flex; flex-direction:column}
+.fo-voll-feld figcaption{padding:2px 4px; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; opacity:.85}
+.fo-voll-scroll{flex:1 1 auto; min-height:0; overflow:auto; display:flex; align-items:center; justify-content:center;
+  -webkit-overflow-scrolling:touch; overscroll-behavior:contain}
+.fo-voll-scroll img{max-width:100%; max-height:100%; object-fit:contain; background:#fff; cursor:zoom-in}
+.fo-voll-scroll.gross{display:block}
+.fo-voll-scroll.gross img{max-width:none; max-height:none; width:220%; cursor:zoom-out}
+.fo-voll-fuss{display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 12px; padding-bottom:max(8px, env(safe-area-inset-bottom))}
+.fo-voll-tipp{flex:1 1 160px; font-size:12px; opacity:.75}
+.fo-voll .btn{background:transparent; color:#fff; border-color:rgba(255,255,255,.5)}
+.fo-voll .fo-frage{flex:1 1 100%}
+
+@media (min-width:760px){
+  .fo-voll.zwei .fo-voll-bilder{flex-direction:row}
+}
+@media print{
+  .fo-block, .fo-vergleich, .fo-voll{display:none !important}
+}

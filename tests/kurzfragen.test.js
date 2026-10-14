@@ -19,6 +19,8 @@ require(path.join(root, "gen", "satzbausteine2.js"));
 require(path.join(root, "gen", "satzbausteine-ap2.js"));
 require(path.join(root, "gen", "satzbau.js"));
 const S = global.GENSATZ, P = global.SATZ_POOL;
+assert.strictEqual(S.heuristikStand({ punkte: 2 }), "halb", "Schlüsselwörter allein bestätigen keinen beherrschten Inhalt");
+assert.strictEqual(S.heuristikStand({ punkte: 0 }), "nicht");
 
 assert(P.length >= 150, "Karten: " + P.length);
 const ids = new Set();

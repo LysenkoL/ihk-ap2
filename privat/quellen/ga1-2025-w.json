@@ -1,0 +1,300 @@
+{
+ "id": "ga1-2025-w",
+ "bereich": "ga1",
+ "termin": "Winter 2025/26",
+ "kurz": "GA1 W25/26",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2025/26)",
+ "situation": "<p>Die AMAG Soft GmbH hat sich durch ihre innovativen App-Entwicklungen in der Gastronomiebranche einen Namen gemacht. Angesichts des Erfolgs und der kontinuierlichen Nachfrage nach digitalen Lösungen in der Gastronomie möchte die AMAG Soft GmbH ihre bestehenden Lösungen erweitern.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"bs24-uc\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"bs24-zustand\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "bs24-uc": {
+   "seite": "w25/beleg-2",
+   "box": [
+    0.03,
+    0.06,
+    0.88,
+    0.34
+   ]
+  },
+  "bs24-klasse": {
+   "seite": "w25/beleg-3",
+   "box": [
+    0.03,
+    0.06,
+    0.98,
+    0.56
+   ]
+  },
+  "bs24-zustand": {
+   "seite": "w25/beleg-3",
+   "box": [
+    0.03,
+    0.62,
+    0.66,
+    0.83
+   ]
+  },
+  "bs24-sql1": {
+   "seite": "w25/beleg-4",
+   "box": [
+    0.04,
+    0.05,
+    0.98,
+    0.95
+   ],
+   "q": 70
+  },
+  "bs24-sql2": {
+   "seite": "w25/beleg-5",
+   "box": [
+    0.04,
+    0.05,
+    0.99,
+    0.96
+   ],
+   "q": 70
+  },
+  "w25-ga1-2a": {
+   "seite": "w25/l1-3",
+   "box": [
+    0.07,
+    0.16,
+    0.88,
+    0.55
+   ]
+  },
+  "w25-ga1-4c": {
+   "seite": "w25/l1-5",
+   "box": [
+    0.08,
+    0.395,
+    0.86,
+    0.645
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Machbarkeit, Vorgehen, Risiken",
+   "punkte": 24,
+   "themen": [
+    "Projektmanagement"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 8,
+     "eingabe": "gross",
+     "text": "<p>Sie sollen für das Projekt „Online-Reservierungssystem“ bei einer Machbarkeitsanalyse mitwirken. Ihre Aufgabe ist es, die Machbarkeit des Projekts anhand von zwei Kriterien zu prüfen.</p><p><b>Benennen Sie Ihre ausgewählten Kriterien und erläutern Sie diese.</b></p>",
+     "loesung": "<p>Erwartet werden die Nennung zweier Kriterien sowie die entsprechenden Erläuterungen dazu, wie z. B.:</p><ul><li><b>Marktanalyse:</b> Prognose zum Marktvolumen, Datenerhebung beim Gastronomieverband, Bedarfsanalyse</li><li><b>Konkurrenzanalyse:</b> Gibt es bereits Anbieter in diesem Marktsegment? Wer könnte als potenzieller zukünftiger Konkurrent infrage kommen?</li><li><b>Preisanalyse:</b> Welchen Preis sind potenzielle Kunden bereit zu bezahlen?</li><li><b>Technische Machbarkeit:</b> Ermitteln vorhandener und potenziell erforderlicher IT-Infrastrukturen im Gastro-Gewerbe. Eigen- oder Fremdhosting bei den Gastrobetrieben?</li><li><b>Organisatorische Machbarkeit:</b> aktuelle Auftragslage bei der AMAG Soft GmbH; Ressourcenverfügbarkeit über den geplanten Entwicklungszeitraum</li><li><b>Rechtliche Machbarkeit:</b> zu beachtende Rechtsgrundlagen im Bereich Gastro-IT, wie z. B. Datenschutzrecht</li><li><b>Wirtschaftliche Machbarkeit:</b> Investitionsrechnung, statisch oder dynamisch</li></ul>",
+     "hinweis": "Je Kriterium mit Erläuterung 4 Punkte."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "Klassisches Projektmanagement",
+       "Agiles Projektmanagement"
+      ]
+     },
+     "text": "<p>In Ihrem Projektteam werden geeignete Projektmanagementmethoden für das Projekt diskutiert. Sie erhalten die Aufgabe, die Projektmanagementmethoden, <b>klassisch und agil</b>, hinsichtlich der spezifischen Aspekte</p><ul><li>Projektplanung und Anforderungen</li><li>Flexibilität bei Änderungen</li></ul><p>zu beschreiben.</p><p><b>Ergänzen Sie die nachfolgende Tabelle.</b></p><table><tr><th></th><th>Projektplanung und Anforderungen</th><th>Flexibilität bei Änderungen</th></tr><tr><th>Klassisches Projektmanagement</th><td></td><td></td></tr><tr><th>Agiles Projektmanagement</th><td></td><td></td></tr></table>",
+     "loesung": "<p>Erwartet werden Beschreibungen, wie z. B.:</p><table><tr><th></th><th>Projektplanung und Anforderungen</th><th>Flexibilität bei Änderungen</th></tr><tr><th>Klassisches Projektmanagement</th><td>Die Anforderungen werden zu Beginn des Projekts detailliert festgelegt und dokumentiert. Die gesamte Planung wird im Vorfeld abgeschlossen, und Änderungen während des Projekts sind schwierig umzusetzen.</td><td>Wenig flexibel. Änderungen erfordern oft umfangreiche Anpassungen im Plan und können zu Verzögerungen und Mehrkosten führen.</td></tr><tr><th>Agiles Projektmanagement</th><td>Die Anforderungen sind flexibel und werden iterativ während des Projekts angepasst. Planung erfolgt schrittweise in kleinen Einheiten, wodurch Änderungen leicht integriert werden können.</td><td>Sehr flexibel. Änderungen sind jederzeit möglich und werden als Teil des Prozesses betrachtet, um den Anforderungen des Kunden besser gerecht zu werden.</td></tr></table>",
+     "hinweis": "Je Tabellenfeld 2 Punkte."
+    },
+    {
+     "nr": "c",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "Die Gastronomen könnten ihre Anforderungen während des Projekts ändern. — Risiko / Gegenmaßnahme",
+       "Fehlende oder unzureichende Kommunikation — Risiko / Gegenmaßnahme"
+      ]
+     },
+     "text": "<p>Die Risiken für dieses Projekt sollen analysiert werden. Hierfür ist eine Risikoanalyse vorzubereiten. In der nachfolgenden Tabelle wurden Ihnen zwei Probleme genannt.</p><p><b>Beschreiben Sie die entsprechenden Risiken und jeweils eine geeignete Gegenmaßnahme.</b></p><table><tr><th>Problem</th><th>Risiko</th><th>Gegenmaßnahme</th></tr><tr><th>Die Gastronomen könnten ihre Anforderungen während des Projekts ändern.</th><td></td><td></td></tr><tr><th>Fehlende oder unzureichende Kommunikation</th><td></td><td></td></tr></table>",
+     "loesung": "<p>Erwartet werden Beschreibungen, wie z. B.:</p><table><tr><th>Problem</th><th>Risiko</th><th>Gegenmaßnahme</th></tr><tr><th>Die Gastronomen könnten ihre Anforderungen während des Projekts ändern.</th><td>Die Anforderungsänderungen können z. B. wegen Veränderungen der Marktsituation oder neuen gesetzlichen Vorgaben auftreten. Dies führt dazu, dass Funktionen möglicherweise mehrfach überarbeitet werden müssen. Dadurch könnten Mehraufwände entstehen, was Zeit und Budget überziehen kann.</td><td>Es ist hier sinnvoll, einen agilen Projektmanagementansatz (z. B. Scrum) zu verwenden, der flexible Anpassungen zulässt. Durch regelmäßige Sprints und Reviews mit den Gastronomen als Stakeholdern können Anforderungen frühzeitig überprüft und angepasst werden.</td></tr><tr><th>Fehlende oder unzureichende Kommunikation</th><td>Schlechte Kommunikation zwischen Entwicklern, Designern und Gastronomen kann zu Missverständnissen führen und die Entwicklung in eine falsche Richtung lenken. Dies führt zu Verzögerungen und Nacharbeit, was den gesamten Projektfortschritt behindert.</td><td>Die Einführung regelmäßiger Team- und Stakeholder-Meetings sowie der Einsatz von Projektmanagement-Tools zur transparenten Dokumentation aller Anforderungen und Fortschritte kann helfen, Kommunikationslücken zu schließen.</td></tr></table>",
+     "hinweis": "Je Risiko und je Gegenmaßnahme 2 Punkte."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Anwendungsfalldiagramm, eRechnung",
+   "punkte": 27,
+   "themen": [
+    "UML",
+    "Englisch"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 18,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "uc"
+     ],
+     "text": "<p>Die App soll um ein Modul zur Platzreservierung erweitert werden. Für Firmenkunden ist eine Registrierung erforderlich, um eine Bezahlung per Rechnung zu ermöglichen. Alle anderen Kunden können die Reservierung ohne Registrierung vornehmen.</p><p>Bei dem Modul zum Reservieren von Plätzen sind folgende Aspekte zu berücksichtigen:</p><ul><li>Ein Mitarbeiter kann die für die Platzreservierung erforderlichen Daten bearbeiten (z. B. Öffnungszeiten, Anzahl Plätze). Dazu muss er sich mit seinen Anmeldedaten einloggen.</li><li>Firmenkunden müssen sich registrieren, um eine Registrierungsnummer zu erhalten.</li><li>Für eine Platzreservierung gibt der Kunde die Reservierungsdaten (Datum, Uhrzeit und Anzahl der Plätze) an. Zudem können optional Sonderwünsche (wie z. B. Fensterplatz, ruhiger Platz, Extraraum) angegeben werden.</li><li>Bei allen Reservierungen muss eine E-Mail-Adresse angegeben werden. Bei Reservierungen von Firmenkunden muss zusätzlich die Registrierungsnummer hinterlegt werden.</li><li>Alle Kunden können eine Reservierung stornieren.</li></ul><p><b>Erstellen Sie ein Anwendungsfalldiagramm für das Modul zum Reservieren von Plätzen.</b> (Systemgrenze: „Platzreservierung“)</p>",
+     "loesung": "<img data-bild=\"w25-ga1-2a\"><p>In Worten: Akteure <b>Kunde</b>, <b>Firmenkunde</b> (erbt von Kunde) und <b>Mitarbeiter</b>. Anwendungsfälle: Reservierung stornieren, Plätze reservieren, EMail-Adresse angeben, Registrierungsnummer angeben, Sonderwünsche angeben, registrieren, Login, Daten bearbeiten.</p><ul><li>Kunde — Plätze reservieren, Reservierung stornieren</li><li>Firmenkunde — registrieren</li><li>Mitarbeiter — Daten bearbeiten</li><li>Plätze reservieren «include» EMail-Adresse angeben</li><li>Daten bearbeiten «include» Login</li><li>Registrierungsnummer angeben «extend» Plätze reservieren (Bedingung: wenn Reservierung als Firmenkunde erfolgt)</li><li>Sonderwünsche angeben «extend» Plätze reservieren (Bedingung: wenn es Sonderwünsche gibt)</li></ul>",
+     "hinweis": "Vorschlag für Punktevergabe: jeweils 1 Punkt pro Akteur (3 Punkte); 1 Punkt für Vererbung zwischen Akteuren (1 Punkt); jeweils 1 Punkt pro Anwendungsfall (8 Punkte); jeweils 1 Punkt pro extend- bzw. include-Beziehung (4 Punkte); jeweils 0,5 Punkte pro Beziehung zwischen Akteur und Anwendungsfall (2 Punkte)."
+    },
+    {
+     "nr": "ba",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>In Zukunft müssen die Rechnungen an Firmen als eRechnung (engl. eInvoice) versendet werden. Sie wollen sich über die neuen Regelungen informieren und haben den folgenden Text gefunden:</p><p>(Text siehe Anlage „Text zur eRechnung“)</p><p><b>ba) Erläutern Sie das Hauptziel von eRechnungen.</b></p>",
+     "loesung": "<p>Das Hauptziel einer eRechnung besteht darin, die Rechnung automatisch zu verarbeiten. Eine menschenlesbare Visualisierung ist zweitrangig.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Text zur eRechnung (englisch)",
+       "html": "<p><i>Directive 2014/55/EU on electronic invoicing in public procurement uses the term „electronic invoice“, and defines it as „an invoice that has been issued, transmitted and received in a structured electronic format which allows for its automatic and electronic processing“. In accordance with the Directive, the European standard on eInvoicing specifies invoices in a standardised structured data format that provides for automatic reading of the data into computer systems. The main objective is thus to process the invoice automatically, and human-readable visualisation is secondary.</i></p><p><i>Specifically, an electronic invoice is a form of a digital invoice. A digital invoice is a document that exists in a digital format as opposed to a physical format (such as a paper invoice), where digital is defined as „composed of data in the form of especially binary digits“ (Merriam-Webster). Digital invoices can be transmitted as files through computer messaging networks, but different types of digital documents have different characteristics that affect how they can be processed. There are two main aspects to a digital invoice: the visual aspect and the data aspect. The visual aspect allows a human reader to see the content of a document, and the data aspect allows a computer to process the information contained in the document.</i></p><p>(https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Types+of+digital+invoices)</p>"
+      }
+     ]
+    },
+    {
+     "nr": "bb",
+     "punkte": 6,
+     "eingabe": "frei",
+     "text": "<p><b>bb) Erläutern Sie zwei Aspekte einer digitalen Rechnung.</b></p>",
+     "loesung": "<ul><li>Muss in einem digitalen Format vorliegen, d. h. „bestehend aus Daten in Form insbesondere binärer Ziffern“</li><li>Visueller Aspekt ermöglicht einem menschlichen Leser, den Inhalt des Dokuments zu sehen</li><li>Datenaspekt ermöglicht es einem Computer, die im Dokument enthaltenen Informationen zu verarbeiten</li></ul>",
+     "hinweis": "Je Aspekt mit Erläuterung 3 Punkte.",
+     "anlagen": [
+      {
+       "titel": "Text zur eRechnung (englisch)",
+       "html": "<p><i>Directive 2014/55/EU on electronic invoicing in public procurement uses the term „electronic invoice“, and defines it as „an invoice that has been issued, transmitted and received in a structured electronic format which allows for its automatic and electronic processing“. In accordance with the Directive, the European standard on eInvoicing specifies invoices in a standardised structured data format that provides for automatic reading of the data into computer systems. The main objective is thus to process the invoice automatically, and human-readable visualisation is secondary.</i></p><p><i>Specifically, an electronic invoice is a form of a digital invoice. A digital invoice is a document that exists in a digital format as opposed to a physical format (such as a paper invoice), where digital is defined as „composed of data in the form of especially binary digits“ (Merriam-Webster). Digital invoices can be transmitted as files through computer messaging networks, but different types of digital documents have different characteristics that affect how they can be processed. There are two main aspects to a digital invoice: the visual aspect and the data aspect. The visual aspect allows a human reader to see the content of a document, and the data aspect allows a computer to process the information contained in the document.</i></p><p>(https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Types+of+digital+invoices)</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Verschlüsselung, Validierung, Prototyping",
+   "punkte": 25,
+   "themen": [
+    "IT-Sicherheit",
+    "Qualität & Test"
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 1,
+     "eingabe": "frei",
+     "text": "<p>Die IT-Sicherheit hat bei der AMAG Soft GmbH einen hohen Stellenwert. Im Rahmen der Konzeptionierung prüfen Sie daher auch, wie die Übermittlung der eRechnung an den Kunden erfolgen soll. In Ihrem Projektteam wurde sich dahingehend bereits für den E-Mail-Versand entschieden. Für die Übertragung von E-Mails findet eine Transportverschlüsselung Anwendung.</p><p><b>aa) Nennen Sie die Art von Verschlüsselungsverfahren, auf der die Transportverschlüsselung bei der E-Mail-Übertragung basiert.</b></p>",
+     "loesung": "<p>Die Transportverschlüsselung bei der E-Mail-Übertragung ist eine <b>hybride Verschlüsselung</b>.</p>",
+     "hinweis": "Sollte der Prüfling das Protokoll (TLS) oder als Art die asymmetrische Verschlüsselung benennen, ist dies mit 0 Punkten zu bewerten."
+    },
+    {
+     "nr": "ab",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p><b>ab) Erläutern Sie, welchen Vorteil diese Art von Verschlüsselungsverfahren gegenüber anderen Verfahren bietet.</b></p>",
+     "loesung": "<p>Asymmetrische und hybride Verschlüsselungsverfahren ermöglichen es, dass die kommunizierenden Parteien kein gemeinsames Geheimnis (Pre-Shared-Secret) haben müssen. Die Verschlüsselung erfolgt mithilfe des Public-Keys der jeweils empfangenden Partei.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Damit die erstellten eRechnungen vom Empfänger zuverlässig ausgelesen werden können, müssen Sie sicherstellen, dass Ihre Implementierung der jeweiligen Protokoll-Spezifikation entspricht.</p><p><b>ba) Nennen Sie drei Möglichkeiten, wie Sie sicherstellen können, dass Ihre Implementierung der Protokoll-Spezifikation entspricht.</b></p>",
+     "loesung": "<ul><li>Upload von generierten Test-Rechnungen zu einem zertifizierten Validator</li><li>Implementierung von Unit-Tests</li><li>Verwendung einer (zertifizierten) Library</li><li>Einsatz von Möglichkeiten der formalen Validierung (bspw. Schemadateien ⇒ .xsd)</li></ul>",
+     "hinweis": "Je Möglichkeit 1 Punkt."
+    },
+    {
+     "nr": "bb",
+     "punkte": 6,
+     "eingabe": "frei",
+     "text": "<p>Bei Ihrer Recherche finden Sie die Website www.e-invoice-tester.com, bei der Sie eine eRechnung hochladen können. Anschließend werden Ihnen die Inhalte der Rechnung angezeigt.</p><p><b>bb) Erläutern Sie zwei Punkte, die Sie bei der Verwendung zu beachten haben.</b></p>",
+     "loesung": "<ul><li>Zur Wahrung der Vertraulichkeit von Firmengeheimnissen und Kundendaten dürfen keine Echt-Daten verwendet werden. Hochgeladene Rechnungen müssen nicht-reale Testdaten enthalten.</li><li>Die Ergebnisse der Website können fehlerhaft sein. Dies ist insbesondere der Fall, wenn das Validierungs-Tool nicht auf Konformität überprüft und zertifiziert wurde.</li><li>Unterschied: Werden nur bestimmte Daten geprüft oder das vollständige Protokoll?</li></ul><p>Und andere Antwortmöglichkeiten.</p>",
+     "hinweis": "Je Punkt mit Erläuterung 3 Punkte."
+    },
+    {
+     "nr": "bc",
+     "punkte": 6,
+     "eingabe": "frei",
+     "text": "<p>Ihr Kollege weist Sie darauf hin, dass für das zu implementierende Protokoll XSD-Dateien vorhanden sind. XSD-Dateien (XML Schema Definition) definieren das Schema für ein XML-Dokument und ermöglichen so eine einfache Validierung.</p><p><b>bc) Erklären Sie anhand der nachfolgenden XML-Datei, weshalb eine ausschließliche Schema-Validierung als unzureichend zu betrachten ist. Die Fehlerstelle ist gekennzeichnet.</b></p><pre>&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;\n&lt;Invoice&gt;\n    &lt;InvoiceLines&gt;\n        &lt;InvoiceLine&gt;\n            &lt;LineNumber&gt;1&lt;/LineNumber&gt;\n            &lt;ProductCode&gt;123456&lt;/ProductCode&gt;\n            &lt;NetPrice&gt;10.00&lt;/NetPrice&gt;\n            &lt;Quantity&gt;10&lt;/Quantity&gt;\n            &lt;NetTotal&gt;100.00&lt;/NetTotal&gt;\n            &lt;TaxTotal&gt;19.00&lt;/TaxTotal&gt;\n            &lt;GrossTotal&gt;119.00&lt;/GrossTotal&gt;\n        &lt;/InvoiceLine&gt;\n        &lt;InvoiceLine&gt;\n            &lt;LineNumber&gt;2&lt;/LineNumber&gt;\n            &lt;ProductCode&gt;654321&lt;/ProductCode&gt;\n            &lt;NetPrice&gt;20.00&lt;/NetPrice&gt;\n            &lt;Quantity&gt;5&lt;/Quantity&gt;\n            &lt;NetTotal&gt;100.00&lt;/NetTotal&gt;\n            &lt;TaxTotal&gt;19.00&lt;/TaxTotal&gt;\n            &lt;GrossTotal&gt;119.00&lt;/GrossTotal&gt;\n        &lt;/InvoiceLine&gt;\n    &lt;/InvoiceLines&gt;\n    &lt;InvoiceTotal&gt;\n        &lt;NetTotal&gt;238.00&lt;/NetTotal&gt; &lt;!-- Fehler --&gt;\n    &lt;/InvoiceTotal&gt;\n&lt;/Invoice&gt;</pre>",
+     "loesung": "<p>In der vorliegenden XML-Datei wurden für die Berechnung des Netto-Gesamtwerts die Brutto-Werte verwendet. (3 Punkte)</p><p>Eine Schemavalidierung kann ausschließlich die Struktur prüfen. Logische Fehler können jedoch nicht erkannt werden. (3 Punkte)</p><p>Dazu wären weitere Tests erforderlich (bspw. ergänzende Unit-Tests).</p>",
+     "hinweis": "Der letzte Satz ist für die volle Punktzahl nicht erforderlich."
+    },
+    {
+     "nr": "c",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Damit der Entwicklungsaufwand für verschiedene Umsetzungsmöglichkeiten der eRechnungen besser eingeschätzt werden kann, testen Sie verschiedene Ansätze auch mithilfe von <b>Prototyping</b>.</p><p><b>Erklären Sie, was mit Prototyping in diesem Zusammenhang gemeint ist und wann Prototyping im Rahmen der Konzeptionierung sinnvoll sein kann.</b></p>",
+     "loesung": "<p>Es werden Antworten wie die nachfolgende erwartet. Abweichende Lösungen sind möglich.</p><p>Unter Prototyping wird die Erstellung einer vereinfachten Version verstanden. In diesem Zusammenhang kann dies bspw. die Implementierung der verschiedenen Lösungsansätze betreffen. So kann der tatsächliche Aufwand eines Lösungsweges besser abgeschätzt werden. Prototyping kann insbesondere dann sinnvoll sein, wenn es um die Abschätzung komplexerer Aufgaben geht, bei denen kaum Erfahrungswerte vorliegen.</p><p>Eine andere Begründung, wann der Einsatz sinnvoll sein kann, könnte bspw. darauf eingehen, dass so besser Entscheidungen getroffen werden können, von denen weitere Teile der Konzeptionierung abhängen.</p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Redundanz, Anomalien, Normalisierung",
+   "punkte": 24,
+   "themen": [
+    "Datenbank"
+   ],
+   "text": "<p>Zur Sicherung der Qualität können Gäste die einzelnen Restaurantleistungen von Servicemitarbeitern und Köchen für jeden Besuch online bewerten. Die Abspeicherung erfolgt zunächst tabellarisch.</p><p>Die Tabelle <b>Bewertung</b> steht als Anlage bei jeder Teilaufgabe.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Bei dieser Form der Datenhaltung werden viele Daten redundant gespeichert.</p><p><b>Beschreiben Sie in diesem Zusammenhang den Begriff Redundanz an einem konkreten Beispiel aus der Tabelle Bewertung.</b></p>",
+     "loesung": "<p>Unter Redundanz versteht man die mehrfache Abspeicherung identischer Informationen. In der Tabelle werden z. B. die kompletten Gastkontaktdaten für jeden Besuch extra abgespeichert.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "Änderungsanomalie",
+       "Einfügeanomalie",
+       "Löschanomalie"
+      ]
+     },
+     "text": "<p>Infolge redundanter Datenhaltung können unerwünschte Anomalien in der Datenbank auftreten.</p><p><b>Ergänzen Sie die folgende Tabelle, indem Sie die jeweilige Anomalieart an einem konkreten Beispiel aus der Tabelle Bewertung erläutern.</b></p><table><tr><th>Anomalieart</th><th>Beispiel mit Erläuterung</th></tr><tr><th>Änderungsanomalie</th><td></td></tr><tr><th>Einfügeanomalie</th><td></td></tr><tr><th>Löschanomalie</th><td></td></tr></table>",
+     "loesung": "<table><tr><th>Anomalieart</th><th>Beispiel mit Erläuterung</th></tr><tr><th>Änderungsanomalie</th><td>Bei der Änderung eines Attributwerts müssen evtl. mehrere Datensätze angepasst werden. Ändert sich z. B. der Name der Leistung Cesar Salat, dann muss der Name bei jedem Datensatz mit dieser Leistung geändert werden.</td></tr><tr><th>Einfügeanomalie</th><td>Beim Einfügen neuer Informationen in eine Tabelle werden evtl. leere Datenfelder erzeugt. Wenn ein neuer Gast registriert werden soll, der noch nicht da war, bleiben die Datenfelder des Datensatzes ab Besuch_Zeit leer.</td></tr><tr><th>Löschanomalie</th><td>Es kann kein Datensatz aus der Tabelle gelöscht werden, ohne dabei evtl. andere, nur einmalig vorhandene Informationen ebenfalls zu löschen. Wenn z. B. die Leistung Tiramisu nur in einem Datensatz vorkommt, verschwinden die Leistungsdaten, wenn der Datensatz gelöscht wird.</td></tr></table>",
+     "hinweis": "Je Anomalie mit Beispiel 2 Punkte."
+    },
+    {
+     "nr": "c",
+     "punkte": 16,
+     "eingabe": "zeichnen",
+     "text": "<p><b>Bringen Sie die Tabelle mit den Besuchs- und Bewertungsdaten in die 3. Normalform und erstellen Sie dazu ein relationales Datenbankmodell.</b> (Tabelle Bewertung: siehe Anlage)</p><p>Hinweise:</p><ul><li>Alle benötigten Primär- und Fremdschlüssel müssen aus bereits vorhandenen Daten gebildet werden.</li><li>Primärschlüssel sind mit (PK) und Fremdschlüssel mit (FK) zu kennzeichnen. Zeichnen Sie auch alle Beziehungen zwischen den Tabellen ein.</li><li>Laut Spezifikation wird eine bestimmte Leistung je Besuch nur einmal erbracht.</li></ul>",
+     "loesung": "<img data-bild=\"w25-ga1-4c\"><ul><li><b>Gast</b> (id_Gast (PK), Name, Vorname, Telefon, Email)</li><li><b>Bewertung</b> (id_Gast (PK)(FK), id_Leist (PK)(FK), Besuch_Zeit (PK), id_Mit (FK), Bewertung)</li><li><b>Leistung</b> (id_Leist (PK), Leistung_Bezeichnung)</li><li><b>Mitarbeiter</b> (id_Mit (PK), Mitarbeiter_Name, Mit_Telefon)</li></ul><p>Beziehungen: Gast 1 : n Bewertung · Leistung 1 : m Bewertung · Mitarbeiter 1 : n Bewertung</p>",
+     "hinweis": "Bewertungsvorschlag: je Tabelle mit Attributen 2 Punkte → 8 Punkte; je einfacher PK 1 Punkt → 3 Punkte; zusammengesetzter PK → 2 Punkte; je Beziehung mit FKs 1 Punkt → 3 Punkte."
+    }
+   ],
+   "anlagen": [
+    {
+     "titel": "Ausschnitt aus der Tabelle Bewertung",
+     "html": "<table><tr><th>Id_Gast</th><th>Gast_Kontakt</th><th>Besuch_Zeit</th><th>Id_Leist</th><th>Leistung_Bezeichnung</th><th>Bewertung</th><th>Id_Mit</th><th>Mitarbeiter_Name</th><th>Mit_Telefon</th></tr><tr><td>33</td><td>Klaus Müller<br>01514455789<br>mul@dfr.de</td><td>2025-10-17-19-45</td><td>123,<br>488,<br>793</td><td>Service,<br>Schweinsbraten,<br>Tiramisu</td><td>5,<br>3,<br>4</td><td>35,<br>52,<br>52</td><td>Birkeler,<br>Helmig,<br>Helmig</td><td>35,<br>10,<br>10</td></tr><tr><td>42</td><td>Britta Schulz<br>01726548990<br>schulz@co.eu</td><td>2025-11-17-19-45</td><td>123,<br>896</td><td>Service,<br>Cesar Salat</td><td>3,<br>4</td><td>35,<br>99</td><td>Birkeler,<br>Sauer</td><td>35,<br>15</td></tr><tr><td>33</td><td>Klaus Müller<br>01514455789<br>mul@dfr.de</td><td>2025-11-18-20-30</td><td>896</td><td>Cesar Salat</td><td>4</td><td>52</td><td>Helmig</td><td>10</td></tr><tr><td>43</td><td>Klaus Müller<br>01635791205<br>k.mue@bif.de</td><td>2025-10-19-17-30</td><td>488,<br>896</td><td>Schweinsbraten,<br>Cesar Salat</td><td>5,<br>2</td><td>99,<br>99</td><td>Sauer,<br>Sauer</td><td>15,<br>15</td></tr></table>"
+    }
+   ]
+  }
+ ]
+}

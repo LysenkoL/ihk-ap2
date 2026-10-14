@@ -119,12 +119,31 @@
       const mods = A && A.alleModule ? A.alleModule() : (P ? P.module : []);
       mods.forEach(m => {
         const z = A.zustand(m.id);
+        const staende = (Array.isArray(z.versuche) ? z.versuche : []).filter(v => v && v.zustand)
+          .sort((a, b) => (a.d || 0) - (b.d || 0)).map(v => ({ z: v.zustand, d: v.d, archiv: true }));
+        staende.push({ z, d: z.start || 0, archiv: false });
         A.teileVon(m).forEach(t => {
-          const p = z.p[t.id];
-          if (p == null || p >= (t.punkte || 0)) return;
-          out.push({ id: "az:" + m.id + ":" + t.id, quelle: "azubi", verlust: (t.punkte || 0) - p, mid: m.id, tid: t.id,
+          let offen = null;
+          const max = t.punkte || 0;
+          staende.forEach(v => {
+            const zz = v.z, p = A.punkteFuer ? A.punkteFuer(t, zz) : (zz.p || {})[t.id], h = (zz.hilfe || {})[t.id];
+            if (!Number.isFinite(p) || !max || p < 0 || p > max) return;
+            const mitHilfe = h && (h.vorAntwort || h.nachLoesung) ||
+              (!h && (zz.auf || {})[t.id] && !(zz.modus === "pruefung" && zz.abgegeben));
+            if (p < max) offen = { v, p };
+            else if (!mitHilfe) offen = null;
+          });
+          if (!offen) return;
+          const zz = offen.v.z, p = offen.p, stamp = ((zz.beobachtet || {})[t.id] || {}).id;
+          const legacyId = "az:" + m.id + ":" + t.id;
+          const id = legacyId + (stamp ? ":" + stamp : offen.v.d ? ":" + offen.v.d : "");
+          const datiert = /^azubi-([a-z0-9]+)-/.exec(stamp || "");
+          const ereignisZeit = datiert ? parseInt(datiert[1], 36) : (zz.start || offen.v.d || 0);
+          const antwort = (zz.a || {})[t.id];
+          out.push({ id, legacyId, ereignisZeit, quelle: "azubi", verlust: max - p, mid: m.id, tid: t.id,
                      titel: text(t.titel), wo: m.kurz + " · " + t.nr + " " + t.label,
-                     punkte: p + " / " + t.punkte + " P.", leer: !A.hatAntwort(t, z.a[t.id]) });
+                     punkte: p + " / " + t.punkte + " P.", leer: !A.hatAntwort(t, antwort),
+                     antwort: A.antwortMd ? A.antwortMd(t, antwort || {}) : "", ausArchiv: offen.v.archiv });
         });
       });
     } catch (e) { console.error("Wiederholen/Azubi:", e); }
@@ -185,6 +204,15 @@
   function liste() {
     const h = heuteIso();
     return kandidaten().map(x => {
+      /* Bestehende Termine nur einmal dem schon vorhandenen Ereignis zuordnen.
+         Der alte Schlüssel bleibt erhalten; spätere Fehler erben seine Serie nicht. */
+      const alt = x.legacyId && x.legacyId !== x.id && S.k[x.legacyId];
+      if (!S.k[x.id] && alt && (alt.azEvent === x.id || (!alt.azEvent &&
+          (!alt.t || !x.ereignisZeit || x.ereignisZeit <= alt.t)))) {
+        alt.azEvent = x.id;
+        S.k[x.id] = Object.assign({}, alt);
+        sichern();
+      }
       const st = S.k[x.id] || null;
       x.st = st;
       x.faellig = st && st.f ? st.f : h;
@@ -334,6 +362,8 @@
       l.appendChild(el("div", "wd-text", t || "Zu dieser Aufgabe gibt es keine Musterlösung im Text — im Bogen nachsehen."));
     } else if (x.quelle === "azubi") {
       if (x._loesung) l.appendChild(x._loesung);
+      if (x.ausArchiv) l.appendChild(el("p", "wd-sub", "Ошибка из предыдущей попытки. Условие и разбор показаны из текущего пакета."));
+      if (x.antwort) { l.appendChild(el("p", "wd-sub", "Твой ответ в этой попытке:")); l.appendChild(el("pre", "wd-text", x.antwort)); }
     } else if (x.quelle === "gen") {
       const e = x.e;
       if (e.richtig) l.appendChild(el("p", "wd-text", "Richtig: " + e.richtig));

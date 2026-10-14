@@ -1,0 +1,452 @@
+{
+ "id": "ga1-2023-s",
+ "bereich": "ga1",
+ "termin": "Sommer 2023",
+ "kurz": "GA1 S23",
+ "minuten": 90,
+ "schluessel": "u-form Lösungserläuterungen Sommer 2023 (keine offiziellen ZPA-Lösungshinweise)",
+ "situation": "<p>Die Parkanlage „Wilder Garten“ in Köln konnte u. a. mit ihrer reichhaltigen Pflanzenvielfalt, ihren schönen verwinkelten Wegen, ihren vielen schattigen Plätzen und ihren beliebten Attraktionen in der letzten Saison ihre Anziehungskraft als Naherholungsfläche für viele Besucher steigern. Besucher aus allen Altersgruppen und auch Reiseveranstalter zählen zu den Kunden der Parkanlage.</p>",
+ "beleg": [
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-zustand\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-klasse\">"
+  },
+  {
+   "id": "aktivitaet",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-aktivitaet\">"
+  },
+  {
+   "id": "tabkalk",
+   "titel": "Belegsatz: Beschreibung von Funktionen der Tabellenkalkulation",
+   "html": "<h4>The function: VLOOKUP – Description</h4><p>You can use the <b>VLOOKUP</b> function to search the first column of a range of cells, and then return a value from any cell on the same row of the range.<br>For example, suppose that you have a list of employees contained in the range A2:C10 and the employees' ID numbers are stored in the first column of the range and the employees' names are stored in the third column of the range.<br>If you know the employee's ID number, you can use the <b>VLOOKUP</b> function to return either the department or the name of that employee. To obtain the name of employee number 38, you can use the formula <b>=VLOOKUP(38; A2:C10; 3; FALSE)</b>. This formula searches for the value 38 in the first column of the range A2:C10, and then returns the value that is contained in the third column of the range and on the same row as the lookup.<br><b>FALSE</b> indicates you are searching for an exact match.</p><h4>The function: IF – Description</h4><p>The IF function returns one value if a condition you specify evaluates to TRUE, and another value if that condition evaluates to FALSE.<br>For example, the formula <b>=IF(A1&gt;1; \"Over 10\";\"10 or less\")</b> returns \"Over 10\" if A1 is greater than 10, and \"10 or less\" if A1 is less than or equal to 10.</p><h4>The function: WEEKDAY – Description</h4><p>Returns the day of the week corresponding to a date. The day is given as an integer, ranging from 1 (Monday) to 7 (Sunday), by default.<br>For example, given the date 26.04.2023 in A1, the formula <b>=WEEKDAY(A1)</b> returns 3.</p><p><b>Range:</b> An area of two or more cells.</p><p>Quelle: https://support.microsoft.com/</p>"
+  },
+  {
+   "id": "struktogramm",
+   "titel": "Belegsatz: Struktogramm DIN 66261",
+   "html": "<img data-bild=\"s23-ga1-bs-struktogramm\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"s23-ga1-bs-sql1\"><img data-bild=\"s23-ga1-bs-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s23-ga1-bs-zustand": {
+   "seite": "s23/x1-13",
+   "box": [
+    0.035,
+    0.066,
+    0.67,
+    0.349
+   ]
+  },
+  "s23-ga1-bs-klasse": {
+   "seite": "s23/x1-13",
+   "box": [
+    0.035,
+    0.4,
+    0.813,
+    0.82
+   ]
+  },
+  "s23-ga1-bs-aktivitaet": {
+   "seite": "s23/x1-14",
+   "box": [
+    0.04,
+    0.065,
+    0.815,
+    0.629
+   ]
+  },
+  "s23-ga1-bs-struktogramm": {
+   "seite": "s23/x1-16",
+   "box": [
+    0.045,
+    0.065,
+    0.685,
+    0.696
+   ]
+  },
+  "s23-ga1-bs-sql1": {
+   "seite": "s23/x1-17",
+   "box": [
+    0.04,
+    0.068,
+    0.94,
+    0.839
+   ],
+   "q": 70
+  },
+  "s23-ga1-bs-sql2": {
+   "seite": "s23/x1-18",
+   "box": [
+    0.05,
+    0.068,
+    0.95,
+    0.856
+   ],
+   "q": 70
+  },
+  "s23-ga1-2b": {
+   "seite": "s23/x1-04",
+   "box": [
+    0.073,
+    0.394,
+    0.633,
+    0.702
+   ]
+  },
+  "s23-ga1-2bb-l": {
+   "seite": "s23/xl-05",
+   "box": [
+    0.12,
+    0.586,
+    0.912,
+    0.945
+   ]
+  },
+  "s23-ga1-2bc-l": {
+   "seite": "s23/xl-06",
+   "box": [
+    0.088,
+    0.32,
+    0.737,
+    0.536
+   ]
+  },
+  "s23-ga1-3c-l": {
+   "seite": "s23/xl-08",
+   "box": [
+    0.08,
+    0.075,
+    0.765,
+    0.43
+   ]
+  },
+  "s23-ga1-4cb-l": {
+   "seite": "s23/xl-09",
+   "box": [
+    0.112,
+    0.078,
+    0.912,
+    0.375
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Konflikt, Risiken, Anforderungen, Kosten, Qualität",
+   "punkte": 24,
+   "themen": [
+    "Projektmanagement",
+    "Wirtschaftlichkeit",
+    "Qualität & Test"
+   ],
+   "anlagen": [
+    {
+     "titel": "Einleitung zur 1. Aufgabe: Projekt „BESUCHERAPP“",
+     "html": "<p>Oft führt der Besucherandrang zu Wartezeiten. Daher möchte die Geschäftsführung der Parkanlage die Einlasskontrollen entzerren. Die Buchung von Eintrittskarten sowie der Einlass in die Anlage soll mittels einer App realisiert werden. Für dieses Vorhaben wird das Projekt „BESUCHERAPP“ eingerichtet und ein Projektteam gebildet. Dieses Team besteht aus den Entwicklern des Systemhauses AMAG Soft GmbH aus dem Sauerland, dem bisherigen Kartenverkaufspersonal, den Mitarbeitern der hauseigenen IT-Abteilung sowie dem Projektleiter der Parkanlage.</p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Schon während des Kick-Off-Meetings entsteht eine starke Verunsicherung und Unruhe unter dem Verkaufspersonal, das durch den Softwareeinsatz einen Arbeitsplatzverlust befürchtet.</p><p><b>Beschreiben Sie zwei Schritte Ihres Vorgehens zur Bewältigung des aufgeführten Konfliktes „Arbeitsplatzverlust“.</b></p>",
+     "loesung": "<p>Den Befürchtungen des Verkaufspersonals kann durch folgende beispielhafte Schritte entgegengewirkt werden:</p><p>Transparente Darstellung der Projektziele: Durch eine vollständig transparente und offene Kommunikation aller Projektbestandteile und -ziele soll von Anfang an offengelegt werden, was die Ziele des Projektes „BESUCHERAPP“ sind und welche Ziele explizit nicht vom Projekt verfolgt werden.</p><p>Frühzeitige Einbindung des Verkaufspersonals in das Projekt: Durch die ständige Mitarbeit und Miteinbeziehung des Verkaufspersonals kann verhindert werden, dass Gerüchte entstehen. Außerdem kann hierdurch das Verkaufspersonal in alle projektrelevanten Abstimmungen miteinbezogen werden, Maßnahmen die zum Abbau von Arbeitsplätzen führen, können so frühzeitig abgelehnt werden.</p><p>Zusicherungen gewähren: Durch verbindliche Zusicherungen und Verträge kann sichergestellt werden, dass keine Arbeitsplätze abgebaut werden. Es könnten neue Tätigkeiten in die Arbeitsverträge aufgenommen werden, um so auch langfristig festzuschreiben, dass das Verkaufspersonal weiterhin benötigt wird.</p>",
+     "hinweis": "Weitere Lösungen sind möglich, die Beschreibung der Schritte kann kürzer ausfallen."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "Inkompatible Software-Schnittstellen — Ursache / Auswirkung",
+       "Widerspruch des Personalrates — Ursache / Auswirkung"
+      ]
+     },
+     "text": "<p>Sie haben die folgenden drei Risiken im Projekt identifiziert.</p><p><b>Tragen Sie in die folgende Tabelle mögliche Auswirkungen und Ursachen für jedes Risiko ein.</b></p><table><tr><th>Risiko</th><th>Ursache</th><th>Auswirkung</th></tr><tr><th>Unterschätzung des Entwicklungsaufwandes</th><td>Keine Erfahrung bei der AMAG Soft GmbH über die Prozesse der Parkanlage</td><td>Projektende verzögert und das Projekt verteuert sich</td></tr><tr><th>Inkompatible Software-Schnittstellen</th><td></td><td></td></tr><tr><th>Widerspruch des Personalrates</th><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Risiko</th><th>Ursache</th><th>Auswirkung</th></tr><tr><th>Unterschätzung des Entwicklungsaufwandes</th><td>Keine Erfahrung bei der AMAG Soft GmbH</td><td>Projektende verzögert und das Projekt verteuert sich</td></tr><tr><th>Inkompatible Software-Schnittstellen</th><td><ul><li>Fehlerhafte bzw. lückenhafte Anforderungsanalyse</li><li>Unzureichende technische Vorklärungen</li></ul></td><td><ul><li>Benötigte Funktionen können nicht eingebunden werden</li><li>Technische Machbarkeit der App kann nicht gewährleistet werden</li><li>Es entstehen Mehrkosten</li></ul></td></tr><tr><th>Widerspruch des Personalrates</th><td><ul><li>Unzureichende Einbindung des Personalrates</li><li>Fehlende Transparenz der Projektziele</li><li>Personalrat fürchtet Arbeitsplatzkontrolle und den Verlust von Arbeitsplätzen</li></ul></td><td><ul><li>Abbruch des Projektes</li><li>Erhöhter Abstimmungsbedarf und dadurch Verschiebung des Projektes</li></ul></td></tr></table><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": "Anhand der Aufgabenstellung geht nicht klar hervor, wie viele Auswirkungen und Ursachen zu nennen sind, daher ist davon auszugehen, dass jeweils eine Auswirkung / Ursache je Zelle ausreicht."
+    },
+    {
+     "nr": "c",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie jeweils eine funktionale und eine nichtfunktionale Anforderung an die zu entwickelnde App für mobile Endgeräte.</b></p>",
+     "loesung": "<p>Eine funktionale Anforderung wäre z. B., dass gewährleistet wird, dass die App auf allen gängigen mobilen Systemen (iOS sowie Android) lauffähig ist. Nur so können alle potenziellen Anwender angesprochen werden.</p><p>Eine beispielhafte nicht funktionale Anforderung wäre, dass die angebotenen Services und Funktionen der App jederzeit zur Verfügung stehen müssen. Andernfalls wäre nicht sichergestellt, dass z. B. jederzeit Eintrittskarten gekauft werden können.</p><p>Weitere mögliche funktionale Anforderungen:</p><ul><li>Berechnung der Einzelpreise und des Gesamtpreises für die Buchung</li><li>Gewährleistung einer sicheren Authentifizierung</li><li>Integration einer geeigneten Bezahllösung</li><li>Push-Benachrichtigungen</li><li>Individuelle Einstellungsmöglichkeiten zur App-Oberfläche</li></ul><p><i>Weitere Lösungen sind möglich.</i></p><p>Weitere mögliche nichtfunktionale Anforderungen:</p><ul><li>Zuverlässige Benutzbarkeit</li><li>Leichte Bedienung (Usability)</li><li>Fehlertoleranz durch Auto-Vervollständigung und Feldprüfungen</li><li>Gewährleistung der Datenintegrität durch Datenbankmechanismen</li></ul><p><i>Weitere Lösungen sind möglich.</i></p><p><i>Anmerkung: Die Lauffähigkeit auf iOS und Android wird meist als nichtfunktionale Anforderung (Portabilität) eingeordnet. Eindeutiger ist als funktionales Beispiel eine Funktion der App, z. B. „Eintrittskarten buchen und bezahlen“ (siehe Liste).</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Für das Projekt „BESUCHERAPP“ wird ein Kostenplan benötigt.</p><p><b>Nennen Sie zwei Kostenarten Ihres Projektes und je ein konkretes Beispiel.</b></p>",
+     "loesung": "<p><b>Personalkosten:</b></p><ul><li>Kosten für Mitarbeiter der AMAG Soft GmbH</li><li>Kosten für das Kartenverkaufspersonal</li><li>Kosten für Mitarbeiter der hauseigene IT-Abteilung</li><li>Kosten für den Projektleiter der Parkanlage</li></ul><p><b>Softwarekosten:</b></p><ul><li>Kosten für Entwicklungsumgebungen und Testinstanzen zur App</li><li>Kosten für Softwarelizenzen</li></ul><p><b>Hardwarekosten:</b></p><ul><li>Lesegeräte für die digitalen Tickets</li><li>Serverkosten (Mailserver, Applikationsserver etc.)</li></ul><p><b>Kommunikationskosten:</b></p><ul><li>Leitungs- und Übertragungskosten</li></ul><p><b>Qualifizierungskosten:</b></p><ul><li>Schulungskosten für Mitarbeiterqualifizierungen (Kartenverkaufspersonal, Mitarbeiter der IT-Abteilung)</li><li>Kosten für Trainer bei In-House-Schulungen</li><li>Zertifikatskosten</li></ul><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "e",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie zwei Maßnahmen, mit denen Sie die Qualität bei der Entwicklung der App sichern können.</b></p>",
+     "loesung": "<p>Durch die Verwendung standardisierter Testverfahren und -methoden wie z. B. automatisierter Regressionstests, kann sichergestellt werden, dass nach jeder neuen Softwareversion detailliert nach Fehlern gesucht wird.</p><p>Um eine bestmögliche Qualität während der Entwicklung zu gewährleisten, sollten des Weiteren auch anerkannte Softwareentwicklungsmodelle wie z. B. SCRUM oder KANBAN verwendet werden.</p><p>Weitere beispielhafte Maßnahmen zur Qualitätssicherung:</p><ul><li>Einhaltung der gesetzlichen Vorgaben zum Datenschutz (BDSG, DSGVO)</li><li>Detaillierter Abgleich zwischen den Funktionalitäten der Software und dem Lasten- bzw. Pflichtenheft</li><li>Detaillierter und permanenter Abgleich des definierten Soll-Zustandes und dem Ist-Zustand</li></ul><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "ISO 9126, Polymorphie, Fabrikmethode",
+   "punkte": 26,
+   "themen": [
+    "Qualität & Test",
+    "Programmierung/OOP",
+    "UML",
+    "Englisch"
+   ],
+   "text": "<p>Die Geschäftsführung der Parkanlage „Wilder Garten“ legt besonders großen Wert auf die Qualität der verwendeten Software.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Merkmal 1",
+       "Merkmal 2"
+      ]
+     },
+     "text": "<p>Ein Qualitätsmerkmal für Software nach dem ISO/IEC 9126-Standard ist die Maintainability (Wartbarkeit). Sie ist folgendermaßen definiert:</p><p><i>The capability of the software product to be modified. Modifications may include corrections, improvements, or adaptation of the software to changes in environment, and in requirements and functional specifications.</i></p><p><b>Nennen und erläutern Sie zwei weitere Qualitätsmerkmale für Software nach diesem Standard.</b></p>",
+     "loesung": "<p>Qualitätsmerkmale gemäß ISO/IEC 9126:</p><p><b>Funktionalität</b><br>Eine Reihe von Attributen, die sich auf das Vorhandensein einer Reihe von Funktionen und deren spezifische Eigenschaften beziehen. Die Funktionen sind diejenigen, die erklärte oder implizierte Bedürfnisse befriedigen: Angemessenheit, Exaktheit, Interoperabilität, Sicherheit und Einhaltung der Funktionalität.</p><p><b>Zuverlässigkeit</b><br>Eine Reihe von Attributen, die sich auf die Fähigkeit einer Software beziehen, ihr Leistungsniveau unter bestimmten Bedingungen über einen bestimmten Zeitraum aufrechtzuerhalten: Ausgereiftheit, Fehlertoleranz, Wiederherstellbarkeit und Einhaltung der Zuverlässigkeitsanforderungen.</p><p><b>Benutzerfreundlichkeit</b><br>Eine Reihe von Attributen, die sich auf den für die Nutzung erforderlichen Aufwand und die individuelle Bewertung dieser Nutzung durch eine bestimmte oder implizite Gruppe von Benutzern auswirken: Verstehbarkeit, Erlernbarkeit, Bedienbarkeit, Anziehungskraft und Übereinstimmung mit der Gebrauchstauglichkeit.</p><p><b>Effizienz</b><br>Eine Reihe von Attributen, die sich auf das Verhältnis zwischen dem Leistungsniveau der Software und der Menge der verwendeten Ressourcen unter bestimmten Bedingungen beziehen: Zeitverhalten, Ressourcennutzung und Einhaltung der Effizienz.</p><p><b>Portabilität</b><br>Eine Reihe von Attributen, die sich auf die Fähigkeit einer Software beziehen, von einer Umgebung in eine andere übertragen zu werden: Anpassungsfähigkeit, Installierbarkeit, Koexistenz, Ersetzbarkeit und Einhaltung der Portabilität.</p>",
+     "hinweis": "ISO/IEC 9126 wurde inzwischen durch ISO/IEC 25000 ersetzt, Qualitätsmerkmale gemäß ISO/IEC 25000 sind demnach auch als richtig zu bewerten."
+    },
+    {
+     "nr": "ba",
+     "punkte": 4,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Besuchertypen, Klasse Besucher und Struktogramme (zu Teilaufgabe b)",
+       "html": "<p>In der „BESUCHERAPP“ soll es zunächst drei Typen von Besuchern geben.</p><ul><li>„STANDARD“-Besucher zahlen für Online-Tickets den regulären Eintrittspreis und haben nur über den Haupteingang Zutritt zum Park.</li><li>„PREMIUM“-Besucher bekommen 5 Prozent Rabatt auf den regulären Eintrittspreis, sowie an Werktagen auch Zutritt über den Expresseingang.</li><li>„VIP“-Besuchern wird 10 Prozent Nachlass und an allen Tagen Zutritt über den Expresseingang gewährt.</li></ul><p>In einer ersten Implementierung enthält die Klasse Besucher Methoden mit redundanten Auswahlstrukturen.</p><table><tr><th>Besucher</th></tr><tr><td>- typ : String</td></tr><tr><td>+ Besucher(typ : String)<br>+ isExpressEingang(isWerktag : Boolean) : Boolean<br>+ calculatePreis(basisPreis : Double) : Double</td></tr></table><img data-bild=\"s23-ga1-2b\"><p><i>Struktogramme in Worten:</i> <code>+ isExpressEingang(isWerktag : Boolean) : Boolean</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: false; \"PREMIUM\" → Rückgabe: isWerktag; \"VIP\" → Rückgabe: true. <code>+ calculatePreis(basisPreis : Double) : Double</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: basisPreis; \"PREMIUM\" → Rückgabe: basisPreis*0.95; \"VIP\" → Rückgabe: basisPreis*0.9.</p><p>Da zukünftig weitere Besuchertypen geplant sind, rät Ihnen ein erfahrener Kollege, diese Redundanz durch Polymorphie aufzulösen, um die Wartbarkeit des Softwareprodukts zu verbessern.</p>"
+      }
+     ],
+     "text": "<p>Die Besuchertypen, die Klasse Besucher und die Struktogramme stehen in der Anlage.</p><p><b>ba) Erläutern Sie den Begriff Polymorphie.</b></p>",
+     "loesung": "<p>Polymorphie (Vielgestaltigkeit) ist ein zentrales Prinzip der objektorientierten Programmierung, das besonders im Kontext der Vererbung auftritt. Es beschreibt, dass Methoden mit identischer Signatur unterschiedliche Resultate liefern können. Erst zur Laufzeit wird entschieden, welche der Methoden für das jeweilige Objekt verwendet wird (dynamisches Binden). Man unterscheidet in statische (überladene Methoden) und dynamische Polymorphie (überschriebene Methoden).</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 9,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "anlagen": [
+      {
+       "titel": "Besuchertypen, Klasse Besucher und Struktogramme (zu Teilaufgabe b)",
+       "html": "<p>In der „BESUCHERAPP“ soll es zunächst drei Typen von Besuchern geben.</p><ul><li>„STANDARD“-Besucher zahlen für Online-Tickets den regulären Eintrittspreis und haben nur über den Haupteingang Zutritt zum Park.</li><li>„PREMIUM“-Besucher bekommen 5 Prozent Rabatt auf den regulären Eintrittspreis, sowie an Werktagen auch Zutritt über den Expresseingang.</li><li>„VIP“-Besuchern wird 10 Prozent Nachlass und an allen Tagen Zutritt über den Expresseingang gewährt.</li></ul><p>In einer ersten Implementierung enthält die Klasse Besucher Methoden mit redundanten Auswahlstrukturen.</p><table><tr><th>Besucher</th></tr><tr><td>- typ : String</td></tr><tr><td>+ Besucher(typ : String)<br>+ isExpressEingang(isWerktag : Boolean) : Boolean<br>+ calculatePreis(basisPreis : Double) : Double</td></tr></table><img data-bild=\"s23-ga1-2b\"><p><i>Struktogramme in Worten:</i> <code>+ isExpressEingang(isWerktag : Boolean) : Boolean</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: false; \"PREMIUM\" → Rückgabe: isWerktag; \"VIP\" → Rückgabe: true. <code>+ calculatePreis(basisPreis : Double) : Double</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: basisPreis; \"PREMIUM\" → Rückgabe: basisPreis*0.95; \"VIP\" → Rückgabe: basisPreis*0.9.</p><p>Da zukünftig weitere Besuchertypen geplant sind, rät Ihnen ein erfahrener Kollege, diese Redundanz durch Polymorphie aufzulösen, um die Wartbarkeit des Softwareprodukts zu verbessern.</p>"
+      }
+     ],
+     "text": "<p><b>bb) Erstellen Sie ein UML-Klassendiagramm für den polymorphen Ansatz ohne redundante Auswahlstrukturen.</b></p><p>Hinweise:</p><ul><li>Machen Sie dazu die Klasse <i>Besucher</i> abstrakt.</li><li>Entfernen Sie die Instanzvariable <i>typ</i>.</li><li>Verwenden Sie Vererbung und Überschreibung von abstrakten Methoden.</li><li>Modellieren Sie in der Klasse <i>Besucher</i> eine statische Fabrikmethode <i>createBesucher</i>, die je nach Besucher-Typ die entsprechende Besucherinstanz zurückliefern soll.</li></ul>",
+     "loesung": "<img data-bild=\"s23-ga1-2bb-l\"><p>In Worten:</p><ul><li>Klasse <b>Besucher</b> {abstract}, ohne Attribute, mit den Methoden<br>+ createBesucher(typ : String) : Besucher {static}<br>+ isExpressEingang(isWerktag : Boolean) : Boolean {abstract}<br>+ calculatePreis(basisPreis : Double) : Double {abstract}</li><li>Die Klassen <b>VIPBesucher</b>, <b>StandardBesucher</b> und <b>PremiumBesucher</b> erben von Besucher (Vererbungspfeil mit leerer Dreieckspitze zu Besucher).</li><li>Jede der drei Unterklassen hat keine Attribute und überschreibt<br>+ isExpressEingang(isWerktag : Boolean) : Boolean<br>+ calculatePreis(basisPreis : Double) : Double</li></ul>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Bausteine: abstrakte Klasse Besucher ohne Attribut typ, statische Fabrikmethode createBesucher, zwei abstrakte Methoden, drei Unterklassen mit Vererbung, in jeder Unterklasse die zwei überschriebenen Methoden."
+    },
+    {
+     "nr": "bc",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "struktogramm"
+     ],
+     "anlagen": [
+      {
+       "titel": "Besuchertypen, Klasse Besucher und Struktogramme (zu Teilaufgabe b)",
+       "html": "<p>In der „BESUCHERAPP“ soll es zunächst drei Typen von Besuchern geben.</p><ul><li>„STANDARD“-Besucher zahlen für Online-Tickets den regulären Eintrittspreis und haben nur über den Haupteingang Zutritt zum Park.</li><li>„PREMIUM“-Besucher bekommen 5 Prozent Rabatt auf den regulären Eintrittspreis, sowie an Werktagen auch Zutritt über den Expresseingang.</li><li>„VIP“-Besuchern wird 10 Prozent Nachlass und an allen Tagen Zutritt über den Expresseingang gewährt.</li></ul><p>In einer ersten Implementierung enthält die Klasse Besucher Methoden mit redundanten Auswahlstrukturen.</p><table><tr><th>Besucher</th></tr><tr><td>- typ : String</td></tr><tr><td>+ Besucher(typ : String)<br>+ isExpressEingang(isWerktag : Boolean) : Boolean<br>+ calculatePreis(basisPreis : Double) : Double</td></tr></table><img data-bild=\"s23-ga1-2b\"><p><i>Struktogramme in Worten:</i> <code>+ isExpressEingang(isWerktag : Boolean) : Boolean</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: false; \"PREMIUM\" → Rückgabe: isWerktag; \"VIP\" → Rückgabe: true. <code>+ calculatePreis(basisPreis : Double) : Double</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: basisPreis; \"PREMIUM\" → Rückgabe: basisPreis*0.95; \"VIP\" → Rückgabe: basisPreis*0.9.</p><p>Da zukünftig weitere Besuchertypen geplant sind, rät Ihnen ein erfahrener Kollege, diese Redundanz durch Polymorphie aufzulösen, um die Wartbarkeit des Softwareprodukts zu verbessern.</p>"
+      }
+     ],
+     "text": "<p><b>bc) Implementieren Sie in Pseudocode oder in einem Struktogramm die Fabrikmethode <i>createBesucher</i>. Der Default-Fall soll nicht berücksichtigt werden.</b></p>",
+     "loesung": "<pre>public abstract class Besucher {\n    //...\n}\n\npublic class BesucherFactory {\n    public static Besucher createBesucher(String typ) {\n        switch (typ) {\n            case \"STANDARD\":\n                return new StandardBesucher();\n            case \"PREMIUM\":\n                return new PremiumBesucher();\n            case \"VIP\":\n                return new VIPBesucher();\n        }\n    }\n}</pre><p>oder</p><img data-bild=\"s23-ga1-2bc-l\"><p>In Worten (Struktogramm „+ createBesucher(typ : String) : Besucher {static}“):</p><ul><li>read typ</li><li>Fallauswahl typ?<br>\"STANDARD\": CREATE StandardBesucher, RETURN StandardBesucher<br>\"PREMIUM\": CREATE PremiumBesucher, RETURN PremiumBesucher<br>\"VIP\": Create VIPBesucher, RETURN VIPBesucher</li></ul><p><i>Ähnliche Lösungen sind möglich.</i></p><p><i>Anmerkung: Laut Aufgabe bb) liegt die statische Fabrikmethode in der Klasse Besucher; im Code-Beispiel der Lösungserläuterungen steht sie in einer eigenen Klasse BesucherFactory.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bd",
+     "punkte": 4,
+     "eingabe": "code",
+     "beleg": [
+      "struktogramm"
+     ],
+     "anlagen": [
+      {
+       "titel": "Besuchertypen, Klasse Besucher und Struktogramme (zu Teilaufgabe b)",
+       "html": "<p>In der „BESUCHERAPP“ soll es zunächst drei Typen von Besuchern geben.</p><ul><li>„STANDARD“-Besucher zahlen für Online-Tickets den regulären Eintrittspreis und haben nur über den Haupteingang Zutritt zum Park.</li><li>„PREMIUM“-Besucher bekommen 5 Prozent Rabatt auf den regulären Eintrittspreis, sowie an Werktagen auch Zutritt über den Expresseingang.</li><li>„VIP“-Besuchern wird 10 Prozent Nachlass und an allen Tagen Zutritt über den Expresseingang gewährt.</li></ul><p>In einer ersten Implementierung enthält die Klasse Besucher Methoden mit redundanten Auswahlstrukturen.</p><table><tr><th>Besucher</th></tr><tr><td>- typ : String</td></tr><tr><td>+ Besucher(typ : String)<br>+ isExpressEingang(isWerktag : Boolean) : Boolean<br>+ calculatePreis(basisPreis : Double) : Double</td></tr></table><img data-bild=\"s23-ga1-2b\"><p><i>Struktogramme in Worten:</i> <code>+ isExpressEingang(isWerktag : Boolean) : Boolean</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: false; \"PREMIUM\" → Rückgabe: isWerktag; \"VIP\" → Rückgabe: true. <code>+ calculatePreis(basisPreis : Double) : Double</code> — Fallauswahl nach typ: \"STANDARD\" → Rückgabe: basisPreis; \"PREMIUM\" → Rückgabe: basisPreis*0.95; \"VIP\" → Rückgabe: basisPreis*0.9.</p><p>Da zukünftig weitere Besuchertypen geplant sind, rät Ihnen ein erfahrener Kollege, diese Redundanz durch Polymorphie aufzulösen, um die Wartbarkeit des Softwareprodukts zu verbessern.</p>"
+      }
+     ],
+     "text": "<p><b>bd) Implementieren Sie in Pseudocode oder in einem Struktogramm die überschreibenden Methoden <i>isExpressEingang</i> und <i>calculatePreis</i> für „PREMIUM“-Besucher.</b></p>",
+     "loesung": "<pre>@Override\npublic Boolean isExpressEingang (Boolean isWerktag) {\n        return isWerktag;\n}\n\n@Override\npublic Double calculatePreis (Double basisPreis) {\n        return basisPreis*0.95;\n}</pre><p>oder (Struktogramme)</p><table><tr><th>+ isExpressEingang(isWerktag: Boolean) : Boolean</th></tr><tr><td>RETURN: isWerktag</td></tr></table><p></p><table><tr><th>+ calculatePreis(basisPreis : Double) : Double</th></tr><tr><td>RETURN: basisPreis*0.95</td></tr></table>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Tabellenkalkulation, Zustandsdiagramm Ampel",
+   "punkte": 26,
+   "themen": [
+    "Algorithmen",
+    "UML"
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 2,
+     "eingabe": "frei",
+     "beleg": [
+      "tabkalk"
+     ],
+     "anlagen": [
+      {
+       "titel": "Preismodell, Arbeitsblätter Preise, Wetterdaten und Buchung, Hinweise (zu Teilaufgabe a)",
+       "html": "<p>Um mehr Besucher über den Vorverkauf zu gewinnen, sollen die Eintrittspreise für Familienkarten mit einem dynamischen Preismodell bestimmt werden, bei dem die erwartete Wetterlage und der Wochentag berücksichtigt werden. Bei erwartetem schlechtem Wetter sollen die Karten im Vorverkauf billiger angeboten werden. Für die Tage Montag bis Freitag soll der Preis um weitere 10 % vermindert werden.</p><p>Für eine Simulation der Preisermittlung soll eine Tabellenkalkulation verwendet werden. Der Funktionsumfang der Tabellenkalkulation entspricht dem marktüblicher Kalkulationsprogramme.</p><p>Die Grundpreise für die verschiedenen Wettersituationen befinden sich im Arbeitsblatt Preise, die erwarteten Wetterbedingungen befinden sich im Arbeitsblatt Wetterdaten.</p><p><b>Arbeitsblatt Preise</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th></tr><tr><th>1</th><td></td><td>Wettersituation</td><td>Grundpreis</td></tr><tr><th>2</th><td></td><td>Sonnenschein</td><td>40</td></tr><tr><th>3</th><td></td><td>leicht bewölkt</td><td>37</td></tr><tr><th>4</th><td></td><td>bewölkt</td><td>33</td></tr><tr><th>5</th><td></td><td>Nieselregen</td><td>30</td></tr><tr><th>6</th><td></td><td>Regen</td><td>27</td></tr><tr><th>7</th><td></td><td>Starkregen</td><td>24</td></tr><tr><th>8</th><td></td><td>Unwetter</td><td>22</td></tr></table><p><b>Arbeitsblatt Wetterdaten</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>1</th><td></td><td colspan=\"3\"><b>Simulierte Wetterdaten</b></td></tr><tr><th>2</th><td></td><td>Datum</td><td>Wettersituation</td><td>° Celsius</td></tr><tr><th>3</th><td></td><td>26.04.2023</td><td>Sonnenschein</td><td>14</td></tr><tr><th>4</th><td></td><td>27.04.2023</td><td>bewölkt</td><td>13</td></tr><tr><th>5</th><td></td><td>28.04.2023</td><td>leicht bewölkt</td><td>12</td></tr><tr><th>6</th><td></td><td>29.04.2023</td><td>Regen</td><td>12</td></tr><tr><th>7</th><td></td><td>30.04.2023</td><td>Nieselregen</td><td>15</td></tr><tr><th>8</th><td></td><td>01.05.2023</td><td>Starkregen</td><td>16</td></tr><tr><th>9</th><td></td><td>02.05.2023</td><td>bewölkt</td><td>20</td></tr><tr><th>10</th><td></td><td>03.05.2023</td><td>Unwetter</td><td>22</td></tr><tr><th>11</th><td></td><td>04.05.2023</td><td>leicht bewölkt</td><td>18</td></tr><tr><th>12</th><td></td><td>05.05.2023</td><td>Sonnenschein</td><td>16</td></tr><tr><th>13</th><td></td><td>06.05.2023</td><td>Regen</td><td>19</td></tr><tr><th>14</th><td></td><td>07.05.2023</td><td>Nieselregen</td><td>23</td></tr><tr><th>15</th><td></td><td>08.05.2023</td><td>leicht bewölkt</td><td>20</td></tr><tr><th>16</th><td></td><td>09.05.2023</td><td>Sonnenschein</td><td>19</td></tr><tr><th>17</th><td></td><td>10.05.2023</td><td>Sonnenschein</td><td>17</td></tr></table><p>In der Simulation sollen die möglichen Preise angezeigt werden.</p><p><b>Arbeitsblatt Buchung</b> (markierte Zellen: C3, E3 und F3 — hier fett)</p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr><tr><th>1</th><td>Tag der Onlinebuchung</td><td></td><td colspan=\"4\">Ansicht der möglichen Tage zur Buchung</td></tr><tr><th>2</th><td>Mittwoch, 26. April 2023</td><td></td><td>Datum</td><td>Wetterbedingungen</td><td>Temperatur in °Celsius</td><td>Endpreis</td></tr><tr><th>3</th><td></td><td></td><td><b>Donnerstag, 27. April 2023</b></td><td>Bewölkt</td><td><b>13</b></td><td><b>29,70</b></td></tr><tr><th>4</th><td></td><td></td><td>Freitag, 28. April 2023</td><td>Leicht bewölkt</td><td>12</td><td>33,30</td></tr><tr><th>5</th><td></td><td></td><td>Samstag, 29. April 2023</td><td>Regen</td><td>12</td><td>27,00</td></tr><tr><th>6</th><td></td><td></td><td>Sonntag, 30. April 2023</td><td>Nieselregen</td><td>15</td><td>30,00</td></tr><tr><th>7</th><td></td><td></td><td>Montag, 1. Mai 2023</td><td>Starkregen</td><td>16</td><td>21,60</td></tr><tr><th>8</th><td></td><td></td><td>Dienstag, 2. Mai 2023</td><td>Bewölkt</td><td>20</td><td>29,70</td></tr></table><p>Hinweise zu Funktionen finden Sie im Belegsatz.</p><p>Hinweise: Für Berechnungen stehen Ihnen die Funktionen VLOOKUP, IF und WEEKDAY zur Verfügung, welche im Belegsatz näher erläutert sind.</p><p>Bei Bedarf können Hilfswerte in anderen Spalten berechnet und dann verwendet werden.</p><p>Beim Bezug auf Zellen in einem anderen Arbeitsblatt wird der Name des Arbeitsblatts vor den Bezug geschrieben, getrennt durch ein Ausrufezeichen (Beispiel Preise!B1).</p><p>Datumswerte werden intern als Anzahl der Tage seit dem 01.01.1900 gespeichert.</p>"
+      }
+     ],
+     "text": "<p><b>Geben Sie Formeln an, mit denen die Inhalte der markierten Zellen im Arbeitsblatt Buchung bestimmt werden.</b> (Arbeitsblätter und Hinweise siehe Anlage)</p><p><b>aa) Zelle C3:</b></p>",
+     "loesung": "<p><code>C3 = A2 + 1</code></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 5,
+     "eingabe": "frei",
+     "beleg": [
+      "tabkalk"
+     ],
+     "anlagen": [
+      {
+       "titel": "Preismodell, Arbeitsblätter Preise, Wetterdaten und Buchung, Hinweise (zu Teilaufgabe a)",
+       "html": "<p>Um mehr Besucher über den Vorverkauf zu gewinnen, sollen die Eintrittspreise für Familienkarten mit einem dynamischen Preismodell bestimmt werden, bei dem die erwartete Wetterlage und der Wochentag berücksichtigt werden. Bei erwartetem schlechtem Wetter sollen die Karten im Vorverkauf billiger angeboten werden. Für die Tage Montag bis Freitag soll der Preis um weitere 10 % vermindert werden.</p><p>Für eine Simulation der Preisermittlung soll eine Tabellenkalkulation verwendet werden. Der Funktionsumfang der Tabellenkalkulation entspricht dem marktüblicher Kalkulationsprogramme.</p><p>Die Grundpreise für die verschiedenen Wettersituationen befinden sich im Arbeitsblatt Preise, die erwarteten Wetterbedingungen befinden sich im Arbeitsblatt Wetterdaten.</p><p><b>Arbeitsblatt Preise</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th></tr><tr><th>1</th><td></td><td>Wettersituation</td><td>Grundpreis</td></tr><tr><th>2</th><td></td><td>Sonnenschein</td><td>40</td></tr><tr><th>3</th><td></td><td>leicht bewölkt</td><td>37</td></tr><tr><th>4</th><td></td><td>bewölkt</td><td>33</td></tr><tr><th>5</th><td></td><td>Nieselregen</td><td>30</td></tr><tr><th>6</th><td></td><td>Regen</td><td>27</td></tr><tr><th>7</th><td></td><td>Starkregen</td><td>24</td></tr><tr><th>8</th><td></td><td>Unwetter</td><td>22</td></tr></table><p><b>Arbeitsblatt Wetterdaten</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>1</th><td></td><td colspan=\"3\"><b>Simulierte Wetterdaten</b></td></tr><tr><th>2</th><td></td><td>Datum</td><td>Wettersituation</td><td>° Celsius</td></tr><tr><th>3</th><td></td><td>26.04.2023</td><td>Sonnenschein</td><td>14</td></tr><tr><th>4</th><td></td><td>27.04.2023</td><td>bewölkt</td><td>13</td></tr><tr><th>5</th><td></td><td>28.04.2023</td><td>leicht bewölkt</td><td>12</td></tr><tr><th>6</th><td></td><td>29.04.2023</td><td>Regen</td><td>12</td></tr><tr><th>7</th><td></td><td>30.04.2023</td><td>Nieselregen</td><td>15</td></tr><tr><th>8</th><td></td><td>01.05.2023</td><td>Starkregen</td><td>16</td></tr><tr><th>9</th><td></td><td>02.05.2023</td><td>bewölkt</td><td>20</td></tr><tr><th>10</th><td></td><td>03.05.2023</td><td>Unwetter</td><td>22</td></tr><tr><th>11</th><td></td><td>04.05.2023</td><td>leicht bewölkt</td><td>18</td></tr><tr><th>12</th><td></td><td>05.05.2023</td><td>Sonnenschein</td><td>16</td></tr><tr><th>13</th><td></td><td>06.05.2023</td><td>Regen</td><td>19</td></tr><tr><th>14</th><td></td><td>07.05.2023</td><td>Nieselregen</td><td>23</td></tr><tr><th>15</th><td></td><td>08.05.2023</td><td>leicht bewölkt</td><td>20</td></tr><tr><th>16</th><td></td><td>09.05.2023</td><td>Sonnenschein</td><td>19</td></tr><tr><th>17</th><td></td><td>10.05.2023</td><td>Sonnenschein</td><td>17</td></tr></table><p>In der Simulation sollen die möglichen Preise angezeigt werden.</p><p><b>Arbeitsblatt Buchung</b> (markierte Zellen: C3, E3 und F3 — hier fett)</p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr><tr><th>1</th><td>Tag der Onlinebuchung</td><td></td><td colspan=\"4\">Ansicht der möglichen Tage zur Buchung</td></tr><tr><th>2</th><td>Mittwoch, 26. April 2023</td><td></td><td>Datum</td><td>Wetterbedingungen</td><td>Temperatur in °Celsius</td><td>Endpreis</td></tr><tr><th>3</th><td></td><td></td><td><b>Donnerstag, 27. April 2023</b></td><td>Bewölkt</td><td><b>13</b></td><td><b>29,70</b></td></tr><tr><th>4</th><td></td><td></td><td>Freitag, 28. April 2023</td><td>Leicht bewölkt</td><td>12</td><td>33,30</td></tr><tr><th>5</th><td></td><td></td><td>Samstag, 29. April 2023</td><td>Regen</td><td>12</td><td>27,00</td></tr><tr><th>6</th><td></td><td></td><td>Sonntag, 30. April 2023</td><td>Nieselregen</td><td>15</td><td>30,00</td></tr><tr><th>7</th><td></td><td></td><td>Montag, 1. Mai 2023</td><td>Starkregen</td><td>16</td><td>21,60</td></tr><tr><th>8</th><td></td><td></td><td>Dienstag, 2. Mai 2023</td><td>Bewölkt</td><td>20</td><td>29,70</td></tr></table><p>Hinweise zu Funktionen finden Sie im Belegsatz.</p><p>Hinweise: Für Berechnungen stehen Ihnen die Funktionen VLOOKUP, IF und WEEKDAY zur Verfügung, welche im Belegsatz näher erläutert sind.</p><p>Bei Bedarf können Hilfswerte in anderen Spalten berechnet und dann verwendet werden.</p><p>Beim Bezug auf Zellen in einem anderen Arbeitsblatt wird der Name des Arbeitsblatts vor den Bezug geschrieben, getrennt durch ein Ausrufezeichen (Beispiel Preise!B1).</p><p>Datumswerte werden intern als Anzahl der Tage seit dem 01.01.1900 gespeichert.</p>"
+      }
+     ],
+     "text": "<p><b>Geben Sie Formeln an, mit denen die Inhalte der markierten Zellen im Arbeitsblatt Buchung bestimmt werden.</b> (Arbeitsblätter und Hinweise siehe Anlage)</p><p><b>ab) Zelle E3:</b></p>",
+     "loesung": "<p><code>E3 = VLOOKUP(C3;Wetterdaten!B3:D17;3;FALSE)</code></p><p>oder</p><p><code>E3 = SVERWEIS(C3;Wetterdaten!B3:D17;3;FALSCH)</code></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ac",
+     "punkte": 5,
+     "eingabe": "frei",
+     "beleg": [
+      "tabkalk"
+     ],
+     "anlagen": [
+      {
+       "titel": "Preismodell, Arbeitsblätter Preise, Wetterdaten und Buchung, Hinweise (zu Teilaufgabe a)",
+       "html": "<p>Um mehr Besucher über den Vorverkauf zu gewinnen, sollen die Eintrittspreise für Familienkarten mit einem dynamischen Preismodell bestimmt werden, bei dem die erwartete Wetterlage und der Wochentag berücksichtigt werden. Bei erwartetem schlechtem Wetter sollen die Karten im Vorverkauf billiger angeboten werden. Für die Tage Montag bis Freitag soll der Preis um weitere 10 % vermindert werden.</p><p>Für eine Simulation der Preisermittlung soll eine Tabellenkalkulation verwendet werden. Der Funktionsumfang der Tabellenkalkulation entspricht dem marktüblicher Kalkulationsprogramme.</p><p>Die Grundpreise für die verschiedenen Wettersituationen befinden sich im Arbeitsblatt Preise, die erwarteten Wetterbedingungen befinden sich im Arbeitsblatt Wetterdaten.</p><p><b>Arbeitsblatt Preise</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th></tr><tr><th>1</th><td></td><td>Wettersituation</td><td>Grundpreis</td></tr><tr><th>2</th><td></td><td>Sonnenschein</td><td>40</td></tr><tr><th>3</th><td></td><td>leicht bewölkt</td><td>37</td></tr><tr><th>4</th><td></td><td>bewölkt</td><td>33</td></tr><tr><th>5</th><td></td><td>Nieselregen</td><td>30</td></tr><tr><th>6</th><td></td><td>Regen</td><td>27</td></tr><tr><th>7</th><td></td><td>Starkregen</td><td>24</td></tr><tr><th>8</th><td></td><td>Unwetter</td><td>22</td></tr></table><p><b>Arbeitsblatt Wetterdaten</b></p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>1</th><td></td><td colspan=\"3\"><b>Simulierte Wetterdaten</b></td></tr><tr><th>2</th><td></td><td>Datum</td><td>Wettersituation</td><td>° Celsius</td></tr><tr><th>3</th><td></td><td>26.04.2023</td><td>Sonnenschein</td><td>14</td></tr><tr><th>4</th><td></td><td>27.04.2023</td><td>bewölkt</td><td>13</td></tr><tr><th>5</th><td></td><td>28.04.2023</td><td>leicht bewölkt</td><td>12</td></tr><tr><th>6</th><td></td><td>29.04.2023</td><td>Regen</td><td>12</td></tr><tr><th>7</th><td></td><td>30.04.2023</td><td>Nieselregen</td><td>15</td></tr><tr><th>8</th><td></td><td>01.05.2023</td><td>Starkregen</td><td>16</td></tr><tr><th>9</th><td></td><td>02.05.2023</td><td>bewölkt</td><td>20</td></tr><tr><th>10</th><td></td><td>03.05.2023</td><td>Unwetter</td><td>22</td></tr><tr><th>11</th><td></td><td>04.05.2023</td><td>leicht bewölkt</td><td>18</td></tr><tr><th>12</th><td></td><td>05.05.2023</td><td>Sonnenschein</td><td>16</td></tr><tr><th>13</th><td></td><td>06.05.2023</td><td>Regen</td><td>19</td></tr><tr><th>14</th><td></td><td>07.05.2023</td><td>Nieselregen</td><td>23</td></tr><tr><th>15</th><td></td><td>08.05.2023</td><td>leicht bewölkt</td><td>20</td></tr><tr><th>16</th><td></td><td>09.05.2023</td><td>Sonnenschein</td><td>19</td></tr><tr><th>17</th><td></td><td>10.05.2023</td><td>Sonnenschein</td><td>17</td></tr></table><p>In der Simulation sollen die möglichen Preise angezeigt werden.</p><p><b>Arbeitsblatt Buchung</b> (markierte Zellen: C3, E3 und F3 — hier fett)</p><table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr><tr><th>1</th><td>Tag der Onlinebuchung</td><td></td><td colspan=\"4\">Ansicht der möglichen Tage zur Buchung</td></tr><tr><th>2</th><td>Mittwoch, 26. April 2023</td><td></td><td>Datum</td><td>Wetterbedingungen</td><td>Temperatur in °Celsius</td><td>Endpreis</td></tr><tr><th>3</th><td></td><td></td><td><b>Donnerstag, 27. April 2023</b></td><td>Bewölkt</td><td><b>13</b></td><td><b>29,70</b></td></tr><tr><th>4</th><td></td><td></td><td>Freitag, 28. April 2023</td><td>Leicht bewölkt</td><td>12</td><td>33,30</td></tr><tr><th>5</th><td></td><td></td><td>Samstag, 29. April 2023</td><td>Regen</td><td>12</td><td>27,00</td></tr><tr><th>6</th><td></td><td></td><td>Sonntag, 30. April 2023</td><td>Nieselregen</td><td>15</td><td>30,00</td></tr><tr><th>7</th><td></td><td></td><td>Montag, 1. Mai 2023</td><td>Starkregen</td><td>16</td><td>21,60</td></tr><tr><th>8</th><td></td><td></td><td>Dienstag, 2. Mai 2023</td><td>Bewölkt</td><td>20</td><td>29,70</td></tr></table><p>Hinweise zu Funktionen finden Sie im Belegsatz.</p><p>Hinweise: Für Berechnungen stehen Ihnen die Funktionen VLOOKUP, IF und WEEKDAY zur Verfügung, welche im Belegsatz näher erläutert sind.</p><p>Bei Bedarf können Hilfswerte in anderen Spalten berechnet und dann verwendet werden.</p><p>Beim Bezug auf Zellen in einem anderen Arbeitsblatt wird der Name des Arbeitsblatts vor den Bezug geschrieben, getrennt durch ein Ausrufezeichen (Beispiel Preise!B1).</p><p>Datumswerte werden intern als Anzahl der Tage seit dem 01.01.1900 gespeichert.</p>"
+      }
+     ],
+     "text": "<p><b>Geben Sie Formeln an, mit denen die Inhalte der markierten Zellen im Arbeitsblatt Buchung bestimmt werden.</b> (Arbeitsblätter und Hinweise siehe Anlage)</p><p><b>ac) Zelle F3:</b></p><p>Hinweis: Gehen Sie davon aus, dass der Grundpreis bereits als Hilfswert in der Zelle H3 ermittelt wurde.</p>",
+     "loesung": "<p><code>F3 = H3 * IF(WEEKDAY(C3)&lt;=5;0,9;1)</code></p><p>oder</p><p><code>F3 = H3 * I3</code></p><p>Mit der Formel <code>= IF(WEEKDAY(C3)&lt;=5;0,9;1)</code> in I3</p><p>Alternativ kann auch „WOCHENTAG“ und „WENN“ verwendet werden.</p><p><i>Anmerkung: Im IF-Beispiel des Belegsatzes steht „=IF(A1&gt;1; …)“ — gemeint ist A1&gt;10 (Druckfehler im Original).</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "gross",
+     "text": "<p>Tabellenkalkulationsprogramme können auch in anderen Situationen verwendet werden.</p><p><b>ba) Beschreiben Sie eine weitere Einsatzmöglichkeit für ein Tabellenkalkulationsprogramm.</b></p>",
+     "loesung": "<p>Tabellenkalkulationsprogramme können z. B. auch für die nachfolgenden Einsatzmöglichkeiten genutzt werden:</p><p><b>Budgetplanung:</b><br>Verwaltung von Einnahmen und Ausgaben sowie Erstellung von Budgetplänen.</p><p><b>Datensammlung und -analyse:</b><br>Verwendung von Tabellenkalkulationsprogrammen zur Datenerfassung und -analyse in verschiedenen Bereichen, wie z. B. Wissenschaft, Forschung, Finanzen und Marketing.</p><p><b>Projektmanagement:</b><br>Verfolgung von Fortschritten, Verwaltung von Ressourcen und Überwachung von Meilensteinen bei Projekten.</p><p><b>Zeitplanung:</b><br>Erstellung von Zeitplänen für Projekte, um sicherzustellen, dass sie rechtzeitig abgeschlossen werden.</p><p><b>Personalplanung:</b><br>Verwaltung von Mitarbeiterdaten, z. B. Arbeitszeiten, Gehältern und Urlaubszeiten.</p><p><b>Inventar- und Bestandsmanagement:</b><br>Verwaltung von Inventar und Bestand für Unternehmen, z. B. Tracking von Produktions- oder Lagerbeständen.</p><p><b>Kundenbeziehungsmanagement:</b><br>Verwaltung von Kunden- und Verkaufsdaten für Unternehmen, z.B. Tracking von Verkaufszahlen und Kundendaten.</p><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "gross",
+     "text": "<p><b>bb) Beschreiben Sie ein Problem beim Einsatz von Tabellenkalkulationsprogrammen.</b></p>",
+     "loesung": "<p>Einige Probleme beim Einsatz von Tabellenkalkulationsprogrammen sind:</p><p><b>Fehleranfälligkeit:</b><br>Durch manuelle Eingabe und Bearbeitung der Daten können leicht Fehler auftreten, die schwer zu finden sein können.</p><p><b>Mangelnde Sicherheit:</b><br>Es besteht ein höheres Risiko für unerlaubten Zugriff, da Tabellenkalkulationsprogramme oft auf lokalen Computern gespeichert werden und nicht über die gleichen Sicherheitsmaßnahmen wie andere Anwendungen verfügen.</p><p><b>Unzureichende Datenvalidierung:</b><br>Ohne eine angemessene Überprüfung können Benutzer falsche Daten in die Tabellenkalkulation einfügen, was zu falschen Ergebnissen führen kann.</p><p><b>Schwierigkeiten bei der Zusammenarbeit:</b><br>Bei der Zusammenarbeit an einer Tabellenkalkulation kann es zu Problemen kommen, wenn mehrere Personen gleichzeitig Änderungen vornehmen oder unterschiedliche Versionen der Tabelle bearbeiten.</p><p><b>Mangelnde Skalierbarkeit:</b><br>Tabellenkalkulationsprogramme sind möglicherweise nicht geeignet, um mit großen Datenmengen umzugehen oder komplexe Berechnungen durchzuführen.</p><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 10,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "zustand"
+     ],
+     "text": "<p>Mit der „BESUCHERAPP“ soll die Auslastung angezeigt werden. Eine Ampel soll folgende Zustände anzeigen:</p><p>Grün: unter 50 % Auslastung<br>Orange: 50 % bis 80 % Auslastung<br>Rot: über 80 % Auslastung</p><p>Die Ampel soll anhand der Auslastung regelmäßig aktualisiert werden.</p><p><b>Erstellen Sie ein Zustandsdiagramm zur Beschreibung der Ampel.</b></p><p>(Im Bogen ist der Startknoten mit einem Pfeil nach unten bereits vorgegeben.)</p>",
+     "loesung": "<img data-bild=\"s23-ga1-3c-l\"><p>In Worten:</p><ul><li>Start → <b>Grün</b></li><li>Grün → <b>Orange</b>: [Auslastung &gt;= 50% und &lt;= 80%]</li><li>Grün → <b>Rot</b>: [Auslastung &gt; 80 %]</li><li>Orange → Rot: [Auslastung &gt; 80 %]</li><li>Orange → Grün: [Auslastung &lt; 50%]</li><li>Rot → Orange: [Auslastung &lt;= 80 % und &gt;= 50 %]</li><li>Rot → Grün: [Auslastung &lt; 50 %]</li></ul>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Bausteine: Startknoten mit Pfeil zum Anfangszustand, drei Zustände Grün, Orange, Rot, sechs Übergänge (zwischen allen Zuständen in beide Richtungen) mit Bedingungen in eckigen Klammern."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Verschlüsselung, Signatur, Normalisierung",
+   "punkte": 24,
+   "themen": [
+    "IT-Sicherheit",
+    "Datenbank"
+   ],
+   "text": "<p>Neben der Wetter-Prognose sollen auch aktuelle Daten erhoben werden. Diese sollen zur Steuerung einer automatischen Bewässerungsanlage genutzt werden. Dafür sollen kleine Sensoren in den Beeten zum Einsatz kommen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Für die Datenübertragung zwischen Sensoren und Server wird ein lokales Funknetz verwendet. Da die Sensoren aufgrund örtlicher Gegebenheiten nur batteriebetrieben eingesetzt werden können, steht den Sensoren nur eine geringe Rechenleistung zur Verfügung.</p><p>Die Daten möchten Sie in verschlüsselter Form übertragen.</p><p><b>Schlagen Sie ein geeignetes Verschlüsselungsverfahren vor und begründen Sie Ihre Wahl.</b></p>",
+     "loesung": "<p>Für die sichere Übertragung von Daten zwischen den batteriebetriebenen Sensoren und dem Server in einem lokalen Funknetzwerk empfiehlt es sich, eine symmetrische Verschlüsselung wie AES oder ChaCha20 zu verwenden. Da diese Verfahren besonders ressourcenschonend, leicht und schnell sind.</p><p>Zur Authentifizierung der Sensoren und des Servers kann ein Pre-Shared Key (PSK) verwendet werden, der eine einfache Möglichkeit zur Gewährleistung von Vertraulichkeit und Integrität der Daten während der Übertragung bietet. Hierdurch muss keine komplexe Public-Key-Infrastruktur (asymmetrische Verschlüsselung) eingesetzt werden.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage aus Teilaufgabe a)",
+       "html": "<p>Für die Datenübertragung zwischen Sensoren und Server wird ein lokales Funknetz verwendet. Da die Sensoren aufgrund örtlicher Gegebenheiten nur batteriebetrieben eingesetzt werden können, steht den Sensoren nur eine geringe Rechenleistung zur Verfügung.</p><p>Die Daten möchten Sie in verschlüsselter Form übertragen.</p>"
+      }
+     ],
+     "text": "<p>Ein Team-Kollege schlägt Ihnen vor, die übertragenen Daten zu signieren, anstatt diese zu verschlüsseln.</p><p><b>Nehmen Sie Stellung zu diesem Vorschlag.</b></p>",
+     "loesung": "<p>Da die Daten, die zwischen den Sensoren und dem Server übertragen werden, keine besonderen Anforderungen an die Vertraulichkeit erfüllen müssen, kann das Signieren der Daten eine geeignete Alternative sein. Insbesondere da im Gegensatz zur Verschlüsselung weniger Rechenaufwand betrieben werden muss und hierdurch Energie eingespart werden kann.</p><p>Durch das Signieren würde sichergestellt werden, dass die Daten von einer vertrauenswürdigen Quelle stammen und unterwegs nicht verändert wurden. Es wird also vor allem die Authentizität und Integrität der Daten gewährleistet.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ca",
+     "punkte": 3,
+     "eingabe": "gross",
+     "anlagen": [
+      {
+       "titel": "Tabellenausschnitt über den Pflanzenbestand",
+       "html": "<table><tr><th>Pflanze</th><th>Pflanzen-Kürzel</th><th>Beet-Name</th><th>Beet-Koordinaten</th><th>Pflanzdatum</th><th>Anzahl der Pflanzen</th></tr><tr><td>Tulpen</td><td>TLP</td><td>Süd-Beet</td><td>50° 55’ 43” N<br>6° 53’ 58” E</td><td>11.11.2022</td><td>30</td></tr><tr><td>Schneeglöckchen</td><td>SG</td><td>West-Beet</td><td>50° 55’ 47” N<br>6° 53’ 9” E</td><td>23.02.2023</td><td>50</td></tr><tr><td>Tulpen</td><td>TLP</td><td>West-Beet</td><td>50° 55’ 47” N<br>6° 53’ 9” E</td><td>10.11.2022</td><td>25</td></tr></table>"
+      }
+     ],
+     "text": "<p>Von der Parkverwaltung erhalten Sie den folgenden Tabellenausschnitt über den Pflanzenbestand (siehe Anlage).</p><p>In der Tabelle liegen nicht normalisierte Daten vor.</p><p><b>ca) Beschreiben Sie eine mögliche Gefahr beim Ändern von Datensätzen anhand eines konkreten Beispiels aus der oben genannten Datenstruktur.</b></p>",
+     "loesung": "<p>Wenn zum Beispiel ein Beet umbenannt wird und in einer anderen Tabelle auf den ursprüngliche Beet-Namen verwiesen wurde, kann es zu inkonsistenten Daten kommen, wenn der neue Beet-Name nicht in allen betroffenen Tabellen aktualisiert wird.</p><p>Dies kann dazu führen, dass Berichte oder Abfragen fehlerhafte Ergebnisse liefern oder dass bestimmte Aktionen, die auf das Beet bezogen sind, nicht korrekt ausgeführt werden.</p><p>Es handelt sich hierbei um eine Redundanzanomalie (speziell Änderungsanomalie).</p><p><i>Anmerkung: Direkt an der Tabelle gezeigt: Das West-Beet steht mit Namen und Koordinaten in zwei Datensätzen. Werden z. B. die Koordinaten nur in einem der beiden Datensätze geändert, widersprechen sich die Daten.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 13,
+     "eingabe": "zeichnen",
+     "anlagen": [
+      {
+       "titel": "Tabellenausschnitt über den Pflanzenbestand",
+       "html": "<table><tr><th>Pflanze</th><th>Pflanzen-Kürzel</th><th>Beet-Name</th><th>Beet-Koordinaten</th><th>Pflanzdatum</th><th>Anzahl der Pflanzen</th></tr><tr><td>Tulpen</td><td>TLP</td><td>Süd-Beet</td><td>50° 55’ 43” N<br>6° 53’ 58” E</td><td>11.11.2022</td><td>30</td></tr><tr><td>Schneeglöckchen</td><td>SG</td><td>West-Beet</td><td>50° 55’ 47” N<br>6° 53’ 9” E</td><td>23.02.2023</td><td>50</td></tr><tr><td>Tulpen</td><td>TLP</td><td>West-Beet</td><td>50° 55’ 47” N<br>6° 53’ 9” E</td><td>10.11.2022</td><td>25</td></tr></table>"
+      }
+     ],
+     "text": "<p>Die vorliegenden Daten sollen künftig in einer relationalen Datenbank gespeichert werden.</p><p>Außerdem soll mithilfe von Sensoren die Bodenfeuchtigkeit in den Beeten überwacht werden. Ein Beet kann dabei mehrere Sensoren enthalten. Ihrem Programm werden die Sensor-Messwerte übermittelt. Dazu liegt folgendes Beispiel vor:</p><pre>{\n  \"DevEUI\": \"72:69:F5:AC:9E:8A:BE:3D\",\n  \"Value\": 426,\n  \"Timestamp\": \"2023-04-26T07:00:00+0000\"\n}</pre><p><b>cb) Erstellen Sie aus den Daten der abgebildeten Tabelle und für die Messwerterfassung ein Relationen-Modell in der dritten Normalform. Geben Sie Kardinalitäten an und kennzeichnen Sie Schlüssel mit PK und FK.</b></p>",
+     "loesung": "<img data-bild=\"s23-ga1-4cb-l\"><p>In Worten:</p><ul><li><b>Pflanze</b> (PK PflanzenID, PflanzenName, PflanzenKürzel)</li><li><b>Pflanzung</b> (PK PflanzungID, FK PflanzenID, FK BeetID, PflanzDatum, AnzahlPflanzen)</li><li><b>Beet</b> (PK BeetID, BeetName, BeetKoordinaten)</li><li><b>Sensor</b> (PK SensorID, FK BeetID, SensorName)</li><li><b>Messwert</b> (PK MesswertID, FK SensorID, Messwert, MesswertZeitpunkt)</li></ul><p>Beziehungen: Pflanze 1 : n Pflanzung · Beet 1 : n Pflanzung · Beet 1 : n Sensor · Sensor 1 : n Messwert</p><p><b>Weiterführende Informationen:</b></p><p>Nachfolgend einige kurze Regeln für die Erstellung eines ER-Diagramms (Entity-Relationship-Diagramm):</p><ol><li>Identifiziere die relevanten Entitäten, d.h. die Hauptobjekte, die im System modelliert werden sollen.</li><li>Definiere die Beziehungen zwischen den Entitäten, um die Verbindungen und Abhängigkeiten zwischen ihnen darzustellen.</li><li>Verwende Rechtecke, um Entitäten darzustellen, und Linien, um die Beziehungen zwischen ihnen zu verbinden.</li><li>Kennzeichne die Schlüsselattribute für jede Entität, um eindeutige Identifikation zu ermöglichen.</li><li>Definiere Kardinalitäten, um die Anzahl der Beziehungen zwischen Entitäten anzugeben (z. B. 1:1, 1:n, n:m).</li><li>Dokumentiere die Attribute für jede Entität, um ihre Eigenschaften und Bedeutungen festzuhalten.</li><li>Halte das Diagramm übersichtlich und gut strukturiert, um eine klare Darstellung der Datenmodellierung zu gewährleisten.</li><li>Beachte die Konventionen und Standards, die für ER-Diagramme gelten, um eine konsistente und verständliche Darstellung zu gewährleisten.</li></ol><p>Diese Regeln dienen als allgemeine Richtlinien für die Erstellung eines ER-Diagramms. Es ist wichtig, den spezifischen Anwendungsfall und die Anforderungen des Datenmodells zu berücksichtigen, um anschließend das Diagramm entsprechend anzupassen.</p><p><i>Anmerkung: Die DevEUI aus dem Beispiel ist die eindeutige Kennung des Sensors; sie kann in der Tabelle Sensor als Attribut (oder als Primärschlüssel) geführt werden. Value und Timestamp entsprechen Messwert und MesswertZeitpunkt.</i></p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Bausteine: fünf Tabellen (Pflanze, Pflanzung, Beet, Sensor, Messwert) mit Attributen, Primärschlüssel je Tabelle, Fremdschlüssel in Pflanzung, Sensor und Messwert, vier 1:n-Beziehungen mit Kardinalitäten."
+    }
+   ]
+  }
+ ]
+}

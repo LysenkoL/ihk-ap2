@@ -1,0 +1,229 @@
+{
+ "id": "ga2-2025-w",
+ "bereich": "ga2",
+ "termin": "Winter 2025/26",
+ "kurz": "GA2 W25/26",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2025/26)",
+ "situation": "<p>Die AMAG Soft GmbH hat sich durch ihre innovativen App-Entwicklungen in der Gastronomiebranche einen Namen gemacht. Angesichts des Erfolgs und der kontinuierlichen Nachfrage nach digitalen Lösungen in der Gastronomie möchte die AMAG Soft GmbH ihre bestehenden Lösungen erweitern.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"bs24-uc\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"bs24-zustand\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "w25-ga2-2": {
+   "seite": "w25/ga2-07",
+   "box": [
+    0.12,
+    0.07,
+    0.66,
+    0.36
+   ]
+  },
+  "w25-ga2-2l": {
+   "seite": "w25/l2-3",
+   "box": [
+    0.06,
+    0.05,
+    0.75,
+    0.43
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Algorithmen: freie Tische, bester Tisch",
+   "punkte": 30,
+   "themen": [
+    "Algorithmen"
+   ],
+   "text": "<p>Die AMAG Soft GmbH möchte die Möglichkeit einer Online-Reservierung anbieten.</p>",
+   "anlagen": [
+    {
+     "titel": "Klassen Tisch, Reservierung, List&lt;T&gt; und Beispieldaten",
+     "html": "<p>Dazu ist eine Klasse <code>Tisch</code> und eine Klasse <code>Reservierung</code> vorhanden.</p><table><tr><th>Tisch</th></tr><tr><td>+ tischNr : Integer<br>+ maxPersonen : Integer</td></tr></table><table><tr><th>Reservierung</th></tr><tr><td>+ reservierungsNr: Integer<br>+ datum: Date<br>+ tischNr: Integer</td></tr></table><p>In der Klasse <code>Tisch</code> ist als Attribut neben einer Tischnummer für jeden Tisch die Anzahl der Personen angegeben, die maximal an diesem Tisch Platz haben. In der Klasse <code>Reservierung</code> ist neben einer Reservierungsnummer das Datum der Reservierung und die Tischnummer als Attribut vorhanden. Für jedes Attribut der beiden Klassen ist eine öffentliche <code>get</code>-Methode vorhanden.</p><p>Weiter gibt es eine generische Liste <code>List&lt;Tisch&gt; tische</code> mit allen für das Restaurant vorhandenen Tischen und eine generische Liste <code>List&lt;Reservierung&gt; reservierungen</code> mit allen Reservierungen ab dem aktuellen Tagesdatum. Jede Zeile der folgenden Tabelle enthält beispielhaft die Daten eines Objektes vom Typ <code>Tisch</code> bzw. <code>Reservierung</code>.</p><p>Liste <code>List&lt;Tisch&gt; tische</code></p><table><tr><th>tischNr</th><th>maxPersonen</th></tr><tr><td>1</td><td>4</td></tr><tr><td>2</td><td>2</td></tr><tr><td>3</td><td>6</td></tr><tr><td>…</td><td></td></tr></table><p>Liste <code>List&lt;Reservierung&gt; reservierungen</code></p><table><tr><th>reservierungsNr</th><th>datum</th><th>tischNr</th></tr><tr><td>101</td><td>01.11.2025</td><td>1</td></tr><tr><td>102</td><td>01.11.2025</td><td>2</td></tr><tr><td>103</td><td>01.11.2025</td><td>5</td></tr><tr><td>104</td><td>02.11.2025</td><td>2</td></tr><tr><td>…</td><td></td><td></td></tr></table><p>Für eine generische Liste <code>List&lt;T&gt;</code> sind u. a. folgende Methoden vorhanden:</p><table><tr><th>List&lt;T&gt;</th></tr><tr><td>+ add(T : t) : void<br>+ size() : Integer<br>+ get(i : Integer) : T</td></tr></table><p>Mit der <code>add</code>-Methode wird ein Objekt ans Ende der Liste hinzugefügt. Die <code>size</code>-Methode liefert die Anzahl der in der Liste vorhandenen Objekte und mit der <code>get</code>-Methode erhält man das Objekt an der Position i.</p><p>Bei einer Online-Reservierung ist das Datum und die Anzahl der Personen eingegeben worden. Eine Reservierung gilt für den ganzen Abend und für genau einen Tisch.</p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 20,
+     "eingabe": "code",
+     "text": "<p>Die Klassen, Listen und Beispieldaten stehen in der Anlage.</p><p><b>Erstellen Sie eine Funktion in Pseudocode, die eine Liste von Tischobjekten zurückgibt, die für die eingegebenen Reservierungsdaten zur Verfügung stehen. Für die Auswahl der Tischobjekte ist zu beachten, dass die Plätze des Tisches durch die Reservierung mindestens zur Hälfte besetzt sein müssen.</b></p><pre>List&lt;Tisch&gt; erstelleFreieTische (\n      List&lt;Tisch&gt; tische,\n      List&lt;Reservierung&gt; reservierungen,\n      Date datum,\n      Integer anzahlPersonen)\n\n      List&lt;Tisch&gt; freieTische = new List&lt;Tisch&gt;()\n\n      …\n\nEnde erstelleFreieTische</pre>",
+     "loesung": "<pre>List&lt;Tisch&gt; erstelleFreieTische (\n      List&lt;Tisch&gt; tische,\n      List&lt;Reservierung&gt; reservierungen,\n      Date datum,\n      Integer anzahlPersonen)\n   List&lt;Tisch&gt; freieTische = new List&lt;Tisch&gt;()\n   Für int i = 0; i &lt; tische.size(); i++\n      Tisch t = tische.get(i)\n      Wenn anzahlPersonen &lt;= t.getMaxPersonen() und\n           anzahlPersonen &gt;= t.getMaxPersonen() / 2.0   // keine Integerdivision!\n         Boolean frei = true\n         Für int j = 0; j &lt; reservierungen.size() und frei; j++\n            Reservierung r = reservierungen.get(j)\n            Wenn r.getTischNr() == t.getTischNr() und\n                 r.getDatum() == datum\n               frei = false\n            Ende wenn\n         Ende für\n         Wenn frei\n            freieTische.add(t)\n         Ende wenn\n      Ende wenn\n   Ende für\n   Return freieTische\nEnde erstelleFreieTische</pre>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Wichtige Bausteine: Schleife über alle Tische, Prüfung „passt“ (anzahlPersonen ≤ maxPersonen) und „mindestens halb besetzt“ (ohne Integerdivision), innere Schleife über die Reservierungen mit Vergleich von Tischnummer und Datum, Hinzufügen freier Tische, Rückgabe der Liste."
+    },
+    {
+     "nr": "b",
+     "punkte": 10,
+     "eingabe": "code",
+     "text": "<p>Aus einer Liste von „freien“ Tischobjekten, die für einen Reservierungswunsch zur Verfügung stehen, soll ein „am besten passender“ Tisch ausgewählt werden.</p><p>Ein Tisch gilt als „am besten passend“, wenn die Differenz <code>tisch.getMaxPersonen() - anzahlPersonen</code> minimal ist (<code>anzahlPersonen</code> ist die bei der Reservierung angegebene Anzahl von Personen).</p><p><b>Erstellen Sie eine Funktion, die aus der Liste der freien Tische einen „am besten passenden“ auswählt.</b></p><p>Hinweis: Die Liste <code>freieTische</code> kann keine Objekte enthalten. In dem Fall soll der Wert <code>null</code> zurückgegeben werden.</p><pre>Tisch besterTisch(List&lt;Tisch&gt; freieTische, Integer anzahlPersonen)</pre>",
+     "loesung": "<pre>Tisch besterTisch(List&lt;Tisch&gt; freieTische, Integer anzahlPersonen)\n   wenn freieTische.size() == 0\n      Rückgabe null\n   Tisch tisch = freieTische.get(0)\n   für int i = 1; i &lt; freieTische.size(); i++\n      wenn freieTische.get(i).getPersonen() - anzahlPersonen &lt;\n           tisch.getPersonen() - anzahlPersonen\n         tisch = freieTische.get(i)\n      ende wenn\n   ende für\n   Rückgabe tisch\nEnde besterTisch</pre><p><i>Anmerkung: In den Lösungshinweisen steht getPersonen() — gemeint ist getMaxPersonen().</i></p>",
+     "hinweis": "Bausteine: leere Liste → null, Startwert erster Tisch, Schleife ab Index 1, Vergleich der Differenzen, Rückgabe."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "UML-Zustandsdiagramm Serviceroboter",
+   "punkte": 25,
+   "themen": [
+    "UML"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "zustand"
+     ],
+     "text": "<p>Die AMAG Soft GmbH will ihr Portfolio erweitern. Ein Roboter soll die Speisen zu den Gästen bringen. Zur Vorbereitung der Implementierung soll ein UML-Zustandsdiagramm erstellt werden.</p><p>Ihnen werden die Zustände des Roboters wie folgt beschrieben:</p><ul><li>Nach dem Einschalten wechselt der Roboter in den Zustand „Wartend“.</li><li>Ein Kellner gibt die Tischnummer als Ziel ein und stellt das Essen auf den Roboter, der dann in den Zustand „Zielfahrt“ wechselt. In diesem Zustand fährt der Roboter in Richtung Ziel.</li><li>Wenn während der Fahrt ein Hindernis im Weg ist, wechselt der Roboter in den Zustand „Halt“ und hält an.</li><li>Im Zustand „Halt“ kann entweder der Zielweg frei werden, dann wird in den Zustand „Zielfahrt“ gewechselt, oder ein Ausweichen ist möglich, dann wechselt der Roboter in den Zustand „Ausweichen“ und umfährt das Hindernis.</li><li>Beim Umfahren des Hindernisses kann der Weg ebenfalls versperrt werden, dann wechselt der Roboter in den Zustand „Halt“.</li><li>Ist das Umfahren eines Hindernisses beendet, wechselt der Roboter vom Zustand „Ausweichen“ in den Zustand „Zielfahrt“.</li><li>Sobald bei der Zielfahrt das Ziel erreicht ist, gibt es zwei Optionen:<br>1.) Ziel ist ein Tisch: Der Zustand wechselt in „Warte_Entladung“, beim Erreichen dieses Zustands wird eine Melodie für den Gast abgespielt, damit er bemerkt, dass er sein Essen vom Roboter nehmen kann.<br>2.) Ziel ist die Warteposition: Der Roboter wechselt in den Zustand „Wartend“.</li><li>Wenn der Kunde sein Essen vom Roboter nimmt, wird als Ziel danach automatisch die Warteposition eingestellt und der Roboter wechselt in den Zustand „Zielfahrt“.</li></ul><p>Weitere Sonderfälle (z. B. Akku fast leer) sollen nicht berücksichtigt werden.</p><p><b>Ergänzen Sie das abgebildete Zustandsdiagramm entsprechend der Beschreibung.</b></p><img data-bild=\"w25-ga2-2\">",
+     "loesung": "<img data-bild=\"w25-ga2-2l\"><p>In Worten:</p><ul><li>Start → <b>Wartend</b></li><li>Wartend → <b>Zielfahrt</b> (do / fahren zum Ziel): Beladen / Ziel := Tischnummer</li><li>Zielfahrt → <b>Halt</b> (entry / anhalten): Hindernis</li><li>Halt → Zielfahrt: [Zielweg frei]</li><li>Halt → <b>Ausweichen</b> (do / Hindernis umfahren): [Ausweichen möglich]</li><li>Ausweichen → Halt: Hindernis</li><li>Ausweichen → Zielfahrt: [Umfahren beendet]</li><li>Zielfahrt → <b>Warte_Entladung</b> (entry / Melodie abspielen): Ziel erreicht [Ziel = Tischnummer]</li><li>Zielfahrt → Wartend: Ziel erreicht [Ziel = Warteposition]</li><li>Warte_Entladung → Zielfahrt: entladen / Ziel := Warteposition</li></ul>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Zähle: alle 5 Zustände mit entry/do-Aktionen und alle Übergänge mit Ereignis, [Bedingung] und / Aktion."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Unit-Test, Testabdeckung, Fehlersuche",
+   "punkte": 20,
+   "themen": [
+    "Qualität & Test"
+   ],
+   "text": "<p>Es soll von Ihrem Team die entwickelte Software getestet werden.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Zum Testen der Funktionalität sollen Unit-Tests zum Einsatz kommen.</p><p><b>aa) Beschreiben Sie, was ein Unit-Test ist und wozu er verwendet wird.</b></p>",
+     "loesung": "<p>Bei einem Unit-Test werden einzelne Teile oder Einheiten einer Anwendung, die sogenannten Units, auf ihre Funktionalität hin überprüft.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Durch die Unit-Tests soll eine hohe Testabdeckung erreicht werden.</p><p><b>ab) Erläutern Sie den Begriff „Testabdeckung“ bezogen auf die Anweisungen in einem Quellcode.</b></p>",
+     "loesung": "<p>Eine solche Testabdeckung beschreibt, wie viel Prozent der gesamten Anweisungen im Quellcode durch die Testfälle erreicht und ausgeführt werden, d. h. von den Tests abgedeckt sind.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 10,
+     "eingabe": {
+      "zeilen": [
+       "{10, 20, 30, 5, 17} — erwartet / tatsächlich",
+       "{10, -10, -20, -20, 30} — erwartet / tatsächlich",
+       "{10, 18, 30, 20, -15, -25} — erwartet / tatsächlich",
+       "{-3} — erwartet / tatsächlich",
+       "null — erwartet / tatsächlich"
+      ]
+     },
+     "text": "<p>Gegeben ist nachfolgende Funktion zum Suchen des kleinsten Wertes in einem Array. Die Funktion soll diesen Wert ermitteln und zurückgeben. Wird null oder ein leeres Array übergeben, soll die Funktion eine Exception „Array nicht auswertbar“ werfen.</p><pre> 1  int ermittleMinimum(int[] werte) {\n 2      if (werte == null || werte.length == 0) {\n 3          throw new Exception(\"Array nicht auswertbar.\");\n 4      }\n 5\n 6      int kleinsterWert = 0;\n 7\n 8      for (int i = 0; i &lt; werte.length-1; i++) {\n 9          if (werte[i] &lt; kleinsterWert) {\n10              kleinsterWert = werte[i];\n11          }\n12      }\n13      return kleinsterWert;\n14  }</pre><p><b>ba) Testen Sie die gegebene Funktion mit den nachfolgenden Testdaten und tragen Sie in die Tabelle das erwartete und das tatsächliche Testergebnis ein.</b></p><table><tr><th>Testdaten</th><th>erwartetes Testergebnis</th><th>Testergebnis</th></tr><tr><td>int[] werte = {10, 20, 30, 5, 17};</td><td></td><td></td></tr><tr><td>int[] werte = {10, -10, -20, -20, 30};</td><td></td><td></td></tr><tr><td>int[] werte = {10, 18, 30, 20, -15, -25};</td><td></td><td></td></tr><tr><td>int[] werte = {-3};</td><td></td><td></td></tr><tr><td>int[] werte = null;</td><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Testdaten</th><th>erwartetes Testergebnis</th><th>Testergebnis</th></tr><tr><td>int[] werte = {10, 20, 30, 5, 17};</td><td>5</td><td>0</td></tr><tr><td>int[] werte = {10, -10, -20, -20, 30};</td><td>-20</td><td>-20</td></tr><tr><td>int[] werte = {10, 18, 30, 20, -15, -25};</td><td>-25</td><td>-15</td></tr><tr><td>int[] werte = {-3};</td><td>-3</td><td>0</td></tr><tr><td>int[] werte = null;</td><td>Exception – „Array nicht auswertbar.“</td><td>Exception – „Array nicht auswertbar.“</td></tr></table>",
+     "hinweis": "Je Tabellenzeile 2 Punkte (erwartet und tatsächlich je 1 Punkt)."
+    },
+    {
+     "nr": "bb",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "1. Fehler: Zeile und korrigierte Zeile",
+       "2. Fehler: Zeile und korrigierte Zeile"
+      ]
+     },
+     "text": "<p><b>bb) In der Funktion liegen zwei semantische Fehler vor. Nennen Sie die entsprechenden Positionen (Zeilennummer) und korrigieren Sie die Quellcodezeile.</b> (bitte komplette korrigierte Zeile angeben)</p>",
+     "loesung": "<table><tr><th>Position (Zeilennummer)</th><th>mögliche Korrektur</th></tr><tr><td>6</td><td><code>int kleinsterWert = werte[0];</code></td></tr><tr><td>8</td><td><code>for (int i = 0; i &lt; werte.length; i++) {</code><br>oder<br><code>for (int i = 0; i &lt;= werte.length - 1; i++) {</code></td></tr></table>",
+     "hinweis": "Je Fehler (Zeile + Korrektur) 2 Punkte.",
+     "anlagen": [
+      {
+       "titel": "Funktion ermittleMinimum",
+       "html": "<pre> 1  int ermittleMinimum(int[] werte) {\n 2      if (werte == null || werte.length == 0) {\n 3          throw new Exception(\"Array nicht auswertbar.\");\n 4      }\n 5\n 6      int kleinsterWert = 0;\n 7\n 8      for (int i = 0; i &lt; werte.length-1; i++) {\n 9          if (werte[i] &lt; kleinsterWert) {\n10              kleinsterWert = werte[i];\n11          }\n12      }\n13      return kleinsterWert;\n14  }</pre>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Bestell-Datenbank",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Als Mitarbeiter der AMAG Soft GmbH sind Sie mit dem Management der Bestell-Datenbank eines Restaurants betraut. Die Tabellen stehen in der Anlage. Erstellen Sie die SQL-Anweisungen für folgende Teilaufgaben.</p>",
+   "anlagen": [
+    {
+     "titel": "Tabellen Kunden, Gerichte, Bestellungen, Bestelldetails, Gerichtkategorie",
+     "html": "<p>Tabelle <i>Kunden</i></p><table><tr><th>KID</th><th>Name</th><th>Erstellungsdatum</th></tr><tr><td>1</td><td>Julia Meier</td><td>2023-12-15</td></tr><tr><td>2</td><td>Lucas Weber</td><td>2024-01-20</td></tr><tr><td>3</td><td>Ben Richter</td><td>2024-01-11</td></tr><tr><td>4</td><td>Emma Klein</td><td>2025-07-02</td></tr><tr><td>5</td><td>Finn Schröder</td><td>2025-07-15</td></tr><tr><td>6</td><td>Lea Wolf</td><td>2025-07-22</td></tr></table><p>Tabelle <i>Gerichte</i></p><table><tr><th>GID</th><th>Gericht</th><th>Preis</th><th>GKID</th></tr><tr><td>1</td><td>Pizza Margherita</td><td>7.50</td><td>1</td></tr><tr><td>2</td><td>Pizza Salami</td><td>8.50</td><td>1</td></tr><tr><td>3</td><td>Spaghetti Bolognese</td><td>9.00</td><td>2</td></tr><tr><td>4</td><td>Lasagne</td><td>10.00</td><td>2</td></tr><tr><td>5</td><td>Caesar Salat</td><td>6.50</td><td>3</td></tr><tr><td>6</td><td>Cola</td><td>2.00</td><td>4</td></tr><tr><td>7</td><td>Mineralwasser</td><td>1.50</td><td>4</td></tr><tr><td>8</td><td>Espresso</td><td>2.50</td><td>4</td></tr></table><p>Tabelle <i>Bestellungen</i></p><table><tr><th>BID</th><th>KID</th><th>Bestelldatum</th></tr><tr><td>1</td><td>1</td><td>2024-05-01 18:30:00</td></tr><tr><td>2</td><td>1</td><td>2024-05-03 19:45:00</td></tr><tr><td>3</td><td>1</td><td>2024-05-05 20:00:00</td></tr><tr><td>4</td><td>2</td><td>2024-06-02 17:15:00</td></tr><tr><td>5</td><td>2</td><td>2024-06-04 18:45:00</td></tr><tr><td>6</td><td>3</td><td>2024-07-01 18:00:00</td></tr><tr><td>7</td><td>3</td><td>2024-07-03 19:15:00</td></tr><tr><td>8</td><td>3</td><td>2024-07-05 20:30:00</td></tr><tr><td>9</td><td>3</td><td>2024-07-07 18:45:00</td></tr><tr><td>10</td><td>4</td><td>2024-08-01 17:00:00</td></tr><tr><td>11</td><td>5</td><td>2024-08-02 19:30:00</td></tr></table><p>Tabelle <i>Bestelldetails</i></p><table><tr><th>BDID</th><th>BID</th><th>GID</th><th>Menge</th></tr><tr><td>1</td><td>1</td><td>1</td><td>2</td></tr><tr><td>2</td><td>1</td><td>5</td><td>1</td></tr><tr><td>3</td><td>1</td><td>3</td><td>1</td></tr><tr><td>4</td><td>1</td><td>6</td><td>2</td></tr><tr><td>5</td><td>2</td><td>2</td><td>1</td></tr><tr><td>6</td><td>2</td><td>4</td><td>1</td></tr><tr><td>7</td><td>2</td><td>7</td><td>1</td></tr><tr><td>8</td><td>2</td><td>8</td><td>1</td></tr><tr><td>9</td><td>3</td><td>1</td><td>1</td></tr><tr><td>10</td><td>3</td><td>3</td><td>2</td></tr><tr><td>11</td><td>3</td><td>6</td><td>1</td></tr><tr><td>12</td><td>3</td><td>8</td><td>1</td></tr><tr><td>13</td><td>4</td><td>2</td><td>1</td></tr><tr><td>14</td><td>4</td><td>7</td><td>2</td></tr><tr><td>15</td><td>5</td><td>4</td><td>1</td></tr><tr><td>16</td><td>5</td><td>5</td><td>1</td></tr><tr><td>17</td><td>6</td><td>1</td><td>2</td></tr><tr><td>18</td><td>6</td><td>3</td><td>1</td></tr><tr><td>19</td><td>7</td><td>2</td><td>1</td></tr><tr><td>20</td><td>7</td><td>6</td><td>1</td></tr><tr><td>21</td><td>8</td><td>4</td><td>1</td></tr><tr><td>22</td><td>8</td><td>5</td><td>2</td></tr><tr><td>23</td><td>9</td><td>1</td><td>1</td></tr><tr><td>24</td><td>9</td><td>7</td><td>1</td></tr><tr><td>25</td><td>10</td><td>6</td><td>2</td></tr><tr><td>26</td><td>11</td><td>7</td><td>2</td></tr></table><p>Tabelle <i>Gerichtkategorie</i></p><table><tr><th>GKID</th><th>Kategorie</th></tr><tr><td>1</td><td>Pizza</td></tr><tr><td>2</td><td>Pasta</td></tr><tr><td>3</td><td>Salat</td></tr><tr><td>4</td><td>Getränk</td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 2,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, um eine neue Kategorie für Gerichte „Dessert“ einzufügen.</b></p>",
+     "loesung": "<pre>INSERT INTO Gerichtkategorie (GKID, Name)\nVALUES (5, 'Dessert');</pre><p><i>Anmerkung: In der Aufgabe heißt die Spalte „Kategorie“, die Lösungshinweise schreiben „Name“. Beides wird gewertet.</i></p>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten."
+    },
+    {
+     "nr": "b",
+     "punkte": 5,
+     "eingabe": "code",
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage, die den Gesamtpreis für jede Bestellung berechnet und aufsteigend nach der BID sortiert ausgibt.</b></p><p>Ergebnisbeispiel:</p><table><tr><th>BID</th><th>Kunde</th><th>Gesamtpreis</th></tr><tr><td>1</td><td>Julia Meier</td><td>34.50</td></tr><tr><td>2</td><td>Julia Meier</td><td>22.00</td></tr></table>",
+     "loesung": "<pre>SELECT b.BID,\n       k.Name AS Kunde,\n       SUM(g.Preis * bd.Menge) AS Gesamtpreis\nFROM Bestellungen b\nJOIN Bestelldetails bd ON b.BID = bd.BID\nJOIN Gerichte g ON bd.GID = g.GID\nJOIN Kunden k ON b.KID = k.KID\nGROUP BY b.BID\nORDER BY b.BID;</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten."
+    },
+    {
+     "nr": "c",
+     "punkte": 5,
+     "eingabe": "code",
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, die alle Kunden auflistet, die mindestens drei Bestellungen aufgegeben haben.</b></p><p>Ergebnisbeispiel:</p><table><tr><th>KID</th><th>Name</th><th>AnzahlBestellungen</th></tr><tr><td>1</td><td>Julia Meier</td><td>3</td></tr><tr><td>3</td><td>Ben Richter</td><td>4</td></tr></table>",
+     "loesung": "<pre>SELECT k.KID, k.Name, COUNT(b.BID) AS AnzahlBestellungen\nFROM Kunden k\nJOIN Bestellungen b ON k.KID = b.KID\nGROUP BY k.KID, k.Name\nHAVING COUNT(b.BID) &gt;= 3;</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten."
+    },
+    {
+     "nr": "d",
+     "punkte": 8,
+     "eingabe": "code",
+     "text": "<p><b>Erstellen Sie die SQL-Anweisungen, um die Struktur der Tabelle Kunden zu ändern. Der Inhalt der Spalte Name soll auf zwei Spalten Vorname und Nachname aufgeteilt werden. Nach dem Übertragen der aufgeteilten Daten in die neuen Spalten soll die Spalte Name gelöscht werden.</b></p><p>Hinweis: Die Funktion <code>SUBSTRING(string, delimiter, number)</code> steht zur Verfügung.</p><table><tr><th>Parameter</th><th>Beschreibung</th></tr><tr><td>string</td><td>Originalstring</td></tr><tr><td>delimiter</td><td>Trennzeichen</td></tr><tr><td>number</td><td>1: Die Funktion liefert einen Substring links vom delimiter.<br>-1: Die Funktion liefert einen Substring rechts vom delimiter.</td></tr></table><p>Tabelle Kunden nach der Änderung:</p><table><tr><th>KID</th><th>Erstellungsdatum</th><th>Vorname</th><th>Nachname</th></tr><tr><td>1</td><td>2023-12-15</td><td>Julia</td><td>Meier</td></tr><tr><td>2</td><td>2024-01-20</td><td>Lucas</td><td>Weber</td></tr></table>",
+     "loesung": "<pre>ALTER TABLE Kunden\nADD COLUMN Vorname VARCHAR(50),\nADD COLUMN Nachname VARCHAR(50);\n\nUPDATE Kunden\nSET Vorname  = SUBSTRING(Name, ' ', 1),\n    Nachname = SUBSTRING(Name, ' ', -1);\n\nALTER TABLE Kunden\nDROP COLUMN Name;</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten."
+    },
+    {
+     "nr": "e",
+     "punkte": 5,
+     "eingabe": "code",
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, um aufzulisten, welche Gericht-Kategorie wie oft verkauft wurde, absteigend sortiert nach Verkaufsanzahl.</b></p><p>Ergebnisbeispiel:</p><table><tr><th>KategorieName</th><th>Verkaufsanzahl</th></tr><tr><td>Getränke</td><td>10</td></tr><tr><td>Pizza</td><td>8</td></tr><tr><td>Pasta</td><td>5</td></tr><tr><td>Salat</td><td>4</td></tr></table>",
+     "loesung": "<pre>SELECT gk.Name AS KategorieName,\n       SUM(bd.Menge) AS Verkaufsanzahl\nFROM Bestelldetails bd\nJOIN Gerichte g ON bd.GID = g.GID\nJOIN Gerichtkategorie gk ON g.GKID = gk.GKID\nGROUP BY gk.Name\nORDER BY Verkaufsanzahl DESC;</pre>",
+     "hinweis": "Alternative korrekte Lösungen sind ebenfalls als richtig zu bewerten."
+    }
+   ]
+  }
+ ]
+}

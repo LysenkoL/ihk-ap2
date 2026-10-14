@@ -1,0 +1,354 @@
+{
+ "id": "ga1-2022-s",
+ "bereich": "ga1",
+ "termin": "Sommer 2022",
+ "kurz": "GA1 S22",
+ "minuten": 90,
+ "schluessel": "Lösungserläuterungen des u-form Verlags (Abschlussprüfung Teil 2 Sommer 2022) – keine offiziellen Lösungshinweise der ZPA",
+ "situation": "<p>Der Energieversorger Wind und Sonne AG möchte den Prozess zur Strom-Abrechnung weiter digitalisieren. Innerhalb dieses Projekts sollen mehrere Apps entwickelt werden. Dabei sollen Sie bei der Planung, Umsetzung und Einführung mitarbeiten und unterstützen.</p>",
+ "beleg": [
+  {
+   "id": "sequenz",
+   "titel": "Belegsatz: UML-Sequenzdiagramm",
+   "html": "<img data-bild=\"s22-ga1-bs-sequenz\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "pseudo",
+   "titel": "Belegsatz: Pseudocode, prozedurale Programmierung",
+   "html": "<p>Schriftart: Courier New (12)</p><table><tr><th>Pseudocode</th><th>Beschreibung</th></tr><tr><td><pre>wenn [ Bedingung ] dann\n   [ Anweisung ]\nsonst\n   [ Anweisung ]\nEnde wenn</pre></td><td>Verzweigung</td></tr><tr><td><pre>zähle [ Variable ] von [ Startwert] bis [Endwert]\n   [ Schleifeninhalt ]\nEnde zähle</pre></td><td>Zählschleife (Iteration)</td></tr><tr><td><pre>solange [ Bedingung ]\n   [ Schleifeninhalt ]\nEnde solange</pre></td><td>Kopfgesteuerte Schleife</td></tr><tr><td><pre>wiederhole\n   [ Schleifeninhalt ]\nsolange &lt; Bedingung &gt;</pre></td><td>Fußgesteuerte Schleife</td></tr><tr><td><code>:=</code></td><td>Zuweisung</td></tr><tr><td><code>=; &lt;; &gt;; &lt;=; &gt;=; &lt; &gt;</code></td><td>Vergleiche</td></tr><tr><td><code>integer</code></td><td></td></tr><tr><td><code>double</code></td><td></td></tr><tr><td><code>string</code></td><td></td></tr><tr><td><code>array</code></td><td></td></tr></table>"
+  }
+ ],
+ "bilder": {
+  "s22-ga1-bs-sequenz": {
+   "seite": "s22/beleg-2",
+   "box": [
+    0.045,
+    0.073,
+    0.84,
+    0.643
+   ]
+  },
+  "s22-ga1-3": {
+   "seite": "s22/ga1-05",
+   "box": [
+    0.045,
+    0.105,
+    0.615,
+    0.305
+   ]
+  },
+  "s22-ga1-3b": {
+   "seite": "s22/ga1-06",
+   "box": [
+    0.05,
+    0.093,
+    0.87,
+    0.402
+   ]
+  },
+  "s22-ga1-3ca": {
+   "seite": "s22/ga1-08",
+   "box": [
+    0.06,
+    0.245,
+    0.86,
+    0.82
+   ]
+  },
+  "s22-ga1-4b": {
+   "seite": "s22/ga1-10",
+   "box": [
+    0.055,
+    0.61,
+    0.655,
+    0.968
+   ]
+  },
+  "s22-ga1-3ba-l": {
+   "seite": "s22/l1-4",
+   "box": [
+    0.1,
+    0.245,
+    0.915,
+    0.593
+   ]
+  },
+  "s22-ga1-3bb-l": {
+   "seite": "s22/l1-5",
+   "box": [
+    0.1,
+    0.083,
+    0.84,
+    0.398
+   ]
+  },
+  "s22-ga1-3ca-l": {
+   "seite": "s22/l1-5",
+   "box": [
+    0.1,
+    0.485,
+    0.75,
+    0.942
+   ]
+  },
+  "s22-ga1-4b-l": {
+   "seite": "s22/l1-7",
+   "box": [
+    0.105,
+    0.083,
+    0.88,
+    0.5
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Vorgehensmodelle, Befürchtungen und Maßnahmen",
+   "punkte": 20,
+   "themen": [
+    "Projektmanagement"
+   ],
+   "text": "<p>Zur Projektdurchführung wählen Sie ein Vorgehensmodell aus. Diese lassen sich in die Kategorien klassisch und agil einordnen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 8,
+     "eingabe": {
+      "zeilen": [
+       "Klassisch: Erläuterung und Beispiel",
+       "Agil: Erläuterung und Beispiel"
+      ]
+     },
+     "text": "<p><b>Erläutern Sie, was Sie unter den beiden Kategorien verstehen und nennen Sie jeweils ein Beispiel.</b></p>",
+     "loesung": "<p><b>Klassisches Projektmanagement</b> bzw. klassische Vorgehensmodelle zeichnen sich dadurch aus, dass die Aufgaben meist linear und anhand von Projektphasen bearbeitet werden. Das zur Verfügung stehende Budget, Termine, der Personalbedarf sowie die zu erreichenden Ergebnisse werden am Anfang des Projektes festgelegt. Vor allem, wenn die einzusetzenden Methoden und Technologien bekannt sind sowie eine klare Definition aller Anforderungen vorliegt, werden einfache und Klassische Vorgehensmodelle gewählt.</p><p>Beispiele für klassische Ansätze: Wasserfallmodell, V-Modell, Spiralmodell</p><p><b>Agiles Projektmanagement</b> bzw. agile Vorgehensmodelle zeichnen sich dadurch aus, dass oftmals eine starke Mitwirkung des Auftraggebers bei der Erstellung des Werkes erforderlich ist und dass die Mitarbeiter im Team eine hohe Eigenverantwortung besitzen. Vor allem, wenn die einzusetzenden Methoden und Technologien nicht vollständig bekannt und keine vollständige Definition aller Anforderungen vorliegt, werden agile Vorgehensmodelle bevorzugt.</p><p>Beispiele für agile Ansätze: Scrum, Kanban, Extreme Programming, Lean StartUp</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Kategorie Erläuterung 3 Punkte und Beispiel 1 Punkt."
+    },
+    {
+     "nr": "b",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Vorstand – Befürchtung 1 und Maßnahme",
+       "Vorstand – Befürchtung 2 und Maßnahme",
+       "Stromableser – Befürchtung 1 und Maßnahme",
+       "Stromableser – Befürchtung 2 und Maßnahme"
+      ]
+     },
+     "text": "<p><b>Beschreiben Sie aus der Sicht des Vorstandes des Energieversorgers sowie der mitarbeitenden Stromableser jeweils zwei mögliche Befürchtungen bei der Einführung der Digitalisierungsmaßnahmen und ordnen Sie jeder Befürchtung eine geeignete Gegenmaßnahme zu.</b> Typische Aufgaben für die Stromableser sind die Erfassung der Informationen, die Störungsaufnahme sowie die Kundenberatung.</p><table><tr><th>Betroffener</th><th>Befürchtungen</th><th>Maßnahmen</th></tr><tr><th>Vorstand des Energieversorgers</th><td></td><td></td></tr><tr><th>Stromableser</th><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Betroffener</th><th>Befürchtung</th><th>Maßnahmen</th></tr><tr><th>Vorstand des Energieversorgers</th><td>z. B.<ul><li>Geringe Akzeptanz in der Belegschaft</li><li>Zeitliche Verzögerungen und unplanbare Kosten</li><li>Imageverlust bei Misserfolg der technischen Lösungen</li></ul></td><td>z. B.<ul><li>Einbindung der kompletten Belegschaft und transparente Kommunikation während des Projektes</li><li>Laufende Überwachung aller Termine und Meilensteine sowie dauerhaftes Kosten-Controlling</li><li>Ständiges Abgleichen der Soll- und Ist-Zustände, regelmäßiges Hinterfragen der Ergebnisse</li></ul></td></tr><tr><th>Stromableser</th><td>z. B.<ul><li>Überforderung und komplexe technische Herausforderungen</li><li>Mehraufwände durch komplexe technische Lösungen</li><li>Verlust des Arbeitsplatzes</li></ul></td><td>z. B.<ul><li>Schulungsangebote schaffen, Stromableser bei der technischen Umsetzung und Planung miteinbeziehen</li><li>Erhöhung des Gehaltes, Regelmäßig Feedback der Stromableser im Projekt einholen und soziale Benefits schaffen</li><li>Beschäftigungsgarantie aussprechen, Karrierewege aufzeigen und planen</li></ul></td></tr></table><p><i>Es werden kurze Beschreibungen zu den jeweiligen Punkten gefordert. Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Befürchtung mit zugeordneter Gegenmaßnahme 3 Punkte (4 × 3 Punkte)."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Fremdvergabe, Anforderungen, MongoDB",
+   "punkte": 25,
+   "themen": [
+    "Projektmanagement",
+    "Datenbank",
+    "Englisch"
+   ],
+   "text": "<p>Sie schlagen dem Vorstand des Energieversorgers vor, den Stromablesern zur Unterstützung einer effizienten Bearbeitung ihrer Tätigkeiten eine mobile App zur Verfügung zu stellen.</p><p>Die benötigte App kann durch die hauseigene IT-Abteilung oder durch einen externen Anbieter entwickelt werden. Dazu wird eine Entscheidungsgrundlage für den Vorstand des Energieversorgers benötigt.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil 1",
+       "Vorteil 2",
+       "Nachteil 1",
+       "Nachteil 2"
+      ]
+     },
+     "text": "<p><b>Nennen Sie jeweils zwei Vor- und zwei Nachteile einer Fremdvergabe.</b></p>",
+     "loesung": "<p><b>Mögliche Vorteile einer Fremdvergabe:</b></p><ul><li>Erleichterte Kostenkontrolle</li><li>Kostenvorteil durch Wettbewerb</li><li>Langjährige Erfahrung und Know-how bei der App-Entwicklung</li><li>Geringe Bindung der internen Mitarbeiter und Ressourcen</li><li>Zertifizierte Entwickler und Lösungen, weniger interner Schulungsbedarf</li><li>Konzentration auf das Kerngeschäft der Wind und Sonne AG</li><li>…</li></ul><p><b>Mögliche Nachteile einer Fremdvergabe:</b></p><ul><li>Interne Informationen müssen preisgegeben werden (ggf. auch sicherheitsrelevante Informationen)</li><li>Interne Abläufe müssen zunächst erklärt und dokumentiert werden</li><li>Direkte Abhängigkeit von der Fremdfirma</li><li>Kein langfristiger Know-how-Aufbau bei internen Mitarbeitern</li><li>Möglicherweise Kommunikationsprobleme durch unterschiedliche Unternehmenskulturen</li><li>…</li></ul>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Vor- bzw. Nachteil 1 Punkt."
+    },
+    {
+     "nr": "b",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Funktionale Anforderung 1",
+       "Funktionale Anforderung 2",
+       "Funktionale Anforderung 3",
+       "Nichtfunktionale Anforderung 1",
+       "Nichtfunktionale Anforderung 2",
+       "Nichtfunktionale Anforderung 3"
+      ]
+     },
+     "text": "<p>Sie schlagen dem Vorstand des Energieversorgers vor, den Stromablesern zur Unterstützung einer effizienten Bearbeitung ihrer Tätigkeiten eine mobile App zur Verfügung zu stellen.</p><p><b>Beschreiben Sie drei funktionale und drei nichtfunktionale Anforderungen an die zu entwickelnde App.</b></p>",
+     "loesung": "<p><b>Erläuterung möglicher funktionaler Anforderungen an die zu entwickelnde App:</b></p><ul><li>Die gängigen mobilen Plattformen (iOS und Android) sollten unterstützt werden.</li><li>Die Oberfläche der App sollte sich anpassen lassen, damit die Stromableser diese individuell einstellen können.</li><li>Eine Funktion für Push-Benachrichtigungen ist sinnvoll, damit die Stromableser Erinnerungen erhalten (z. B. an Termine) oder Fehler angezeigt bekommen.</li></ul><p>Beispiele für weitere funktionale Anforderungen:</p><ul><li>Gewährleistung einer sicheren Authentifizierung</li><li>Validierung von Benutzereingaben</li><li>Unterstützung gängiger Schnittstellenstandards</li><li>…</li></ul><p><b>Erläuterung möglicher nicht-funktionaler Anforderungen an die zu entwickelnde App:</b></p><ul><li>Die App sollte für die Stromableser zuverlässig auf ihren Endgeräten funktionieren.</li><li>Die App sollte während der üblichen Arbeitszeit immer erreichbar/verfügbar sein.</li><li>Die Bedienbarkeit muss angemessen für den Aufgabenbereich sein, aber auch möglichst einfach und übersichtlich.</li></ul><p>Beispiele für weitere nichtfunktionale Anforderungen:</p><ul><li>Fehlertoleranz</li><li>Sicherstellen der Datenschutzanforderungen</li><li>Sicherstellung der Datenintegrität</li><li>…</li></ul><p><i>Es werden Erläuterungen zu den jeweiligen Anforderungen erwartet.</i></p><p><i>Anmerkung: Plattformunterstützung (iOS/Android) und anpassbare Oberfläche werden oft auch als nichtfunktionale Anforderungen (Portabilität, Benutzbarkeit) gesehen. Eindeutig funktional sind fachliche Funktionen der App, z. B. Zählerstand erfassen, Störung aufnehmen, Kundendaten anzeigen.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je beschriebene Anforderung 2 Punkte (6 × 2 Punkte)."
+    },
+    {
+     "nr": "c",
+     "punkte": 9,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil 1",
+       "Vorteil 2",
+       "Vorteil 3"
+      ]
+     },
+     "text": "<p>Für die App müssen die Daten der Stromzähler in einer Datenbank gespeichert werden. Dazu liegt Ihnen der folgende Text zum NoSQL-DBMS MongoDB vor.</p><p><b>Erläutern Sie drei Vorteile beim Einsatz von MongoDB gegenüber relationalen Datenbanken.</b></p><p><b>Flexible data models</b><br>NoSQL databases typically have very flexible schemas. A flexible schema allows you to easily make changes to your database as requirements change. You can iterate quickly and continuously integrate new application features to provide value to your users faster.</p><p><b>Fast queries</b><br>Queries in NoSQL databases can be faster than SQL databases. Why? Data in SQL databases is typically normalized, so queries for a single object or entity require you to join data from multiple tables. As your tables grow in size, the joins can become expensive. However, data in NoSQL databases is typically stored in a way that is optimized for queries. The rule of thumb when you use MongoDB is Data is that is accessed together should be stored together. Queries typically do not require joins, so the queries are very fast.</p><p><b>Easy for developers</b><br>Some NoSQL databases like MongoDB map their data structures to those of popular programming languages. This mapping allows developers to store their data in the same way that they use it in their application code.</p><p>https://www.mongodb.com/nosql-explained/nosql-vs-sql</p>",
+     "loesung": "<p><b>Mögliche Vorteile einer MongoDB gegenüber klassischen relationalen Datenbanken:</b></p><ul><li>Beschleunigte Implementierung neuer Funktionen und Features durch flexible Datenmodelle</li><li>Schnellere Abfragen durch eine optimierte Datenhaltung und den weitestgehenden Verzicht auf Joins.</li><li>Erleichterte Bedienung für Entwickler, da sich die Struktur der Datenbank an die Struktur bekannter Programmiersprachen anlehnt. Informationen können so analog zur Datenhaltung in der Applikation auch in der Datenbank gespeichert werden.</li></ul><p><i>Weitere Vorteile auf Basis der Angaben sind möglich. Es werden Erläuterungen zu den jeweiligen Vorteilen erwartet.</i></p><p><i>Anmerkung: Im englischen Text steht wörtlich „is Data is that is accessed together“ (Druckfehler) – gemeint ist: „Data that is accessed together should be stored together“.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Vorteil mit Erläuterung 3 Punkte."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Klassendiagramm, Observer-Muster, Sequenzdiagramm",
+   "punkte": 30,
+   "themen": [
+    "UML",
+    "Programmierung/OOP"
+   ],
+   "anlagen": [
+    {
+     "titel": "Ausgangslage 3. Aufgabe: Smart Meter und Anzeigen",
+     "html": "<p>Smart Meter (intelligente Stromzähler) ermöglichen die monatliche Ablesung des Zählerstandes über das Internet. Für die Kunden soll eine Anwendung mit verschiedenen Anzeigen entwickelt werden, welche z. B. die Ablesungen mit Datum und Zählerstand (<i>ReadingsDisplay</i>) oder den monatlichen Durchschnittsverbrauch (<i>AvgDisplay</i>) anzeigen.</p><img data-bild=\"s22-ga1-3\">"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 7,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Zunächst soll eine Klasse SmartMeter für Stromzählerobjekte modelliert werden.</p><p>Die Klasse SmartMeter soll Folgendes beinhalten:</p><ul><li>Die nur klassenintern sichtbaren Instanzvariablen <i>meterNumber</i> für die Stromzählernummer und <i>counter</i> für den Zählerstand.</li><li>Einen paketübergreifend sichtbaren Konstruktor zur Initialisierung der Instanzvariablen.</li><li>Für den Zählerstand je eine paketübergreifend sichtbare Set- und Get-Methode.</li></ul><p><b>Erstellen Sie das Klassendiagramm für die Klasse SmartMeter.</b></p><p>Hinweis: Geben Sie jeweils auch sinnvolle Datentypen an.</p>",
+     "loesung": "<table><tr><th>SmartMeter</th></tr><tr><td>- meterNumber : String<br>- counter : Integer oder Double</td></tr><tr><td>+ SmartMeter (meterNumber : String, counter : Double)<br>+ setCounter(counter : Double) : void<br>+ getCounter() : Double</td></tr></table>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Klassenname 1 Punkt, je Attribut mit Sichtbarkeit und Datentyp 1 Punkt, Konstruktor mit Parametern 2 Punkte, Set- und Get-Methode je 1 Punkt."
+    },
+    {
+     "nr": "ba",
+     "punkte": 4,
+     "eingabe": "gross",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Die im jeweiligen Anzeigefenster angezeigten Werte sollen mithilfe des Observer-Musters aktualisiert werden. Ein noch unvollständiger Entwurf zur Umsetzung dieser Anforderung liegt bereits vor:</p><img data-bild=\"s22-ga1-3b\"><p><b>ba) Ergänzen Sie im Klassendiagramm die Beziehung zwischen der Klasse <i>MeterData</i> und dem Interface <i>Observer</i> und erläutern Sie diese Art der Beziehung.</b></p>",
+     "loesung": "<img data-bild=\"s22-ga1-3ba-l\"><p>Es ist eine Aggregation (hat-Beziehung / besitzt-Beziehung) zu wählen.</p><p>Eine Aggregation liegt immer dann vor, wenn zwischen den beteiligten Objekten eine Beziehung vorliegt, die als „ist Teil von“ oder „besteht aus“ beschrieben werden kann. Die Klasse MeterData kann mehrere Observerobjekte haben.</p><p>Multiplizitäten sind nicht erforderlich.</p><p>In Worten: Linie von <b>MeterData</b> (Ganzes, leere Raute an MeterData) zum Interface <b>Observer</b> (Teil).</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Beziehung richtig eingezeichnet 2 Punkte, Erläuterung 2 Punkte."
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Die im jeweiligen Anzeigefenster angezeigten Werte sollen mithilfe des Observer-Musters aktualisiert werden. Ein noch unvollständiger Entwurf zur Umsetzung dieser Anforderung liegt bereits vor:</p><img data-bild=\"s22-ga1-3b\"><p><b>bb) Fügen Sie im Klassendiagramm in den Klassen <i>MeterData</i>, <i>AvgDisplay</i> und <i>ReadingsDisplay</i> die jeweils fehlenden Methodenimplementierungen ein.</b></p>",
+     "loesung": "<img data-bild=\"s22-ga1-3bb-l\"><p>In Worten (ergänzte Methoden sind im Original fett):</p><ul><li><b>MeterData:</b> + addObservers(Observer) : void, + notifyObservers() : void</li><li><b>AvgDisplay:</b> + update() : void</li><li><b>ReadingsDisplay:</b> + update() : void</li></ul><p><i>Anmerkung: In den Lösungserläuterungen steht „addObservers“; im Interface ObservedSubject heißt die Methode addObserver(Observer) : void – gemeint ist diese.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): MeterData mit addObserver und notifyObservers 1 Punkt, update() in AvgDisplay und ReadingsDisplay 1 Punkt."
+    },
+    {
+     "nr": "bc",
+     "punkte": 4,
+     "eingabe": "gross",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Die im jeweiligen Anzeigefenster angezeigten Werte sollen mithilfe des Observer-Musters aktualisiert werden. Ein noch unvollständiger Entwurf zur Umsetzung dieser Anforderung liegt bereits vor:</p><img data-bild=\"s22-ga1-3b\"><p><b>bc) Erläutern Sie die Art der Beziehung zwischen den Klassen <i>Observer</i> und <i>AvgDisplay</i>. Begründen Sie, warum diese Art der Beziehung hier sinnvoll ist.</b></p>",
+     "loesung": "<p>Es handelt sich um eine Implementierung einer Schnittstelle bzw. eine Realisierung.</p><p>Die Abstrakte Methode „update“ des implementierten Interfaces „Observer“ muss durch die Klasse „AvgDisplay“ überschrieben werden. Hierdurch bekommt „AvgDisplay“ die Rolle eines Oberservs zugewiesen. Durch die Methode „notifyObservers“ der Klasse „MeterData“ wird auf allen Objekten mit Observer-Rolle „update“ aufgerufen. Durch die Polymorphie ist jede Implementierung von „update“ spezifisch für das jeweilige Objekt.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Art der Beziehung (Implementierung/Realisierung) 2 Punkte, Begründung 2 Punkte."
+    },
+    {
+     "nr": "ca",
+     "punkte": 9,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "sequenz"
+     ],
+     "text": "<p>Der Funktionsweise des verwendeten Observer-Musters wird wie folgt beschrieben:</p><ul><li>Der Client erzeugt ein <i>MeterData</i>- und ein <i>AvgDisplay</i>-Objekt.</li><li>Im Konstruktor des <i>AvgDisplay</i>-Objekts wird die Methode <i>addObserver</i> aufgerufen.</li><li>Der Client ruft die Methode <i>setReadings_Date</i> auf.</li><li>In der Methode <i>setReadingsData</i> wird <i>notifyObservers</i> gestartet.</li><li>Die Methode <i>notifyObservers</i> führt update aus.</li><li>Die Methode <i>update</i> holt sich über den Aufruf der Methode <i>getAvgMonth</i> den Double-Wert des monatlichen Stromdurchschnittsverbrauchs und startet die Methode <i>display</i> zur Anzeige des Wertes.</li><li>Der Kontrollfluss geht von <i>display</i> über <i>update</i>, <i>notifyObservers</i> und <i>setReadings_Date</i> zurück zum Client.</li></ul><p>Mithilfe eines Sequenzdiagramms soll der Ablauf der Methodenaufrufe auf den Objekten verdeutlicht werden. Ein unvollständiger Entwurf, in dem die ersten drei Schritte bereits dargestellt sind, liegt vor.</p><p><b>ca) Ergänzen Sie das folgende Sequenzdiagramm gemäß der Ablaufbeschreibung um die noch nicht dargestellten Aufrufe mit allen Methodenbalken, Nachrichten und Antworten inklusive Beschriftung.</b></p><img data-bild=\"s22-ga1-3ca\">",
+     "loesung": "<img data-bild=\"s22-ga1-3ca-l\"><p>In Worten (ab setReadings_Data, die ersten drei Schritte waren vorgegeben):</p><ol><li>Client → meterData: <b>setReadings_Data(readings)</b> (synchron, Methodenbalken auf meterData)</li><li>meterData → meterData: <b>notifyObservers()</b> (Selbstaufruf, zusätzlicher Methodenbalken)</li><li>meterData → :AvgDisplay: <b>update()</b> (synchron, Methodenbalken auf :AvgDisplay)</li><li>:AvgDisplay → meterData: <b>getAvgMonth()</b> (synchron, Methodenbalken auf meterData)</li><li>meterData → :AvgDisplay: Antwort <b>Double</b> (gestrichelt)</li><li>:AvgDisplay → :AvgDisplay: <b>display()</b> (Selbstaufruf mit Rückkehr)</li><li>:AvgDisplay → meterData: Antwort (Ende update, gestrichelt), danach Rückkehr aus notifyObservers</li><li>meterData → Client: Antwort (Ende setReadings_Data, gestrichelt)</li></ol><p><i>Anmerkung: Der Aufgabentext schreibt die Methode uneinheitlich (setReadings_Date, setReadingsData, im Diagramm setReadings_Data, im Klassendiagramm setReadings_date) – gemeint ist immer dieselbe Methode. „Der Funktionsweise“ ist ein Druckfehler für „Die Funktionsweise“.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je richtiger Aufruf bzw. richtige Antwort mit Beschriftung und Methodenbalken ca. 1 Punkt (notifyObservers, update, getAvgMonth, Double, display, Rückkehr update, Rückkehr notifyObservers, Rückkehr zum Client, Methodenbalken)."
+    },
+    {
+     "nr": "cb",
+     "punkte": 4,
+     "eingabe": "code",
+     "beleg": [
+      "pseudo"
+     ],
+     "text": "<p>Die Methode <i>notifyObservers</i> benachrichtigt über den Aufruf von <i>update</i> alle registrierten Observer.</p><p><b>cb) Implementieren Sie die Methode <i>notifyObservers</i> in Pseudocode.</b></p>",
+     "anlagen": [
+      {
+       "titel": "Klassendiagramm-Entwurf (aus Teilaufgabe b)",
+       "html": "<img data-bild=\"s22-ga1-3b\">"
+      }
+     ],
+     "loesung": "<pre>public void notifyObservers() {\n        for (Observer o: observers) {\n            o.update();\n        }\n}</pre><p><i>Anmerkung: Die Lösungserläuterungen geben Java-Code an. Gleichwertig in Pseudocode nach Belegsatz (eigene Ergänzung):</i></p><pre>notifyObservers()\n   zähle i von 0 bis observers.länge - 1\n      observers[i].update()\n   Ende zähle\nEnde notifyObservers</pre>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): Schleife über alle registrierten Observer 2 Punkte, Aufruf von update() je Observer 2 Punkte."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Ticketsystem, OAuth2, SSL-Zertifikate",
+   "punkte": 25,
+   "themen": [
+    "IT-Sicherheit",
+    "Datenschutz"
+   ],
+   "text": "<p>Um für die App einen Support bereitstellen zu können, soll ein Ticketsystem eingeführt werden. Der Energieversorger stellt daher das Ticketsystem auf einem Webserver zur Verfügung.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil 1",
+       "Vorteil 2",
+       "Vorteil 3",
+       "Nachteil"
+      ]
+     },
+     "text": "<p><b>Erläutern Sie drei Vorteile und einen Nachteil beim Einsatz eines Ticketsystems.</b></p>",
+     "loesung": "<p><b>Vorteile eines Ticketsystems:</b></p><ul><li>Zeitersparnis durch standardisierte Prozessabläufe, Feldwert-Prüfungen und transparent einsehbare Tätigkeitsschritte:<br>Hierdurch werden Fehler schneller gefunden und Probleme zuverlässiger analysiert. Durch Feldwert-Prüfungen wird das Fehlerpotenzial im Ticketsystem selbst minimiert.</li><li>Einheitliche und faire Bearbeitung aller Anfragen durch standardisierte Prozesse und vorgegebene Workflows:<br>Der Support muss alle Anfragen derselben Priorität somit auf identische Weise bearbeiten. Die Anwender werden hierdurch bestmöglich gleichbehandelt.</li><li>Entlastung der Mitarbeiter durch Primary-Replica-Ticketbeziehungen (ehemals Master-Slave):<br>Hierdurch können identische Anfragen verknüpft und anschließend mithilfe eines Primary-Ticket zentral bearbeitet werden. Alle Aktivitäten des Primary-Tickets werden an die verknüpften Replica-Vorgänge vererbt. So werden alle Melder bzw. Anwender gleichermaßen sowie sofort über eventuelle Fortschritte informiert und die Mitarbeiter im Support entlastet.</li><li>Systematische Pflege der internen Wissensdatenbank:<br>Viele Ticketsysteme bieten eine Wissensdatenbank für die Lösung von bereits gemeldeten Problemfällen. Die Mitarbeiter im Support können diese Wissensdatenbank pflegen und um neue Known-Errors ergänzen. Hierdurch wird die Bearbeitungszeit von Tickets beschleunigt. Ein Zugang zur Wissensdatenbank kann außerdem für alle Anwender zur Verfügung gestellt werden. Somit verringert sich die Anzahl der Support-Anfragen, da Anwender durch entsprechende Einträge in der Wissensdatenbank, selbstständig Lösungsvorschläge anwenden können.</li><li>Einfache Verwaltung und erleichtertes Reporting aller Anfragen:<br>Alle aktuellen und vergangenen Tickets werden mithilfe der jeweiligen Status übersichtlich angeordnet. Das Ticketsystem erleichtert außerdem die Erstellung von Reports, statistischen Erhebungen und Kennzahlen zum Ticketaufkommen, den Reaktions- sowie Lösungszeiten sowie die Bearbeitungsqualität der Tickets.</li><li>…</li></ul><p><b>Nachteile eines Ticketsystems:</b></p><ul><li>Hohe initiale sowie laufende Kosten:<br>Die Einführung eines Ticketsystems ist häufig mit hohen Kosten verbunden. Neben den benötigten Softwarelizenzen müssen auch Schulungsmaßnahmen, laufende Personalkosten, Serverkosten sowie Kosten für die Wartung- und Pflege der Software bezahlt werden. Gegebenenfalls müssen des Weiteren zusätzliche kompetente Mitarbeiter eingestellt werden, um schnellstmöglich einen funktionierenden Betrieb des Ticketsystems sicherzustellen.</li><li>Gefahr der Überwachung und Kontrolle:<br>Durch die genaue und automatisierte Protokollierung aller Tätigkeitsschritte und deren Dauer entsteht die Gefahr der Verhaltens- und Leistungskontrolle. Insbesondere wenn das Ticketsystem keine Mechanismen zur Anonymisierung oder Pseudonymisierung unterstützt, ist das System zwingend mit den gesetzlichen Anforderungen zum Datenschutz abzugleichen und vom Betriebsrat zu genehmigen. Alle Berichte und Reports müssen außerdem mit den Anforderungen des Arbeitsrechts vereinbar sein.</li><li>…</li></ul><p><i>Weitere Lösungen sind denkbar.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Vorteil bzw. Nachteil mit Erläuterung 3 Punkte."
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Feld 1: Client → Authorization Server",
+       "Feld 2: Authorization Server → Client",
+       "Feld 3: Client → Resource Server",
+       "Feld 4: Resource Server → Client"
+      ]
+     },
+     "text": "<p>Das Ticketsystem verwendet zum Login OAuth2. Dazu liegt Ihnen die nachfolgende Grafik vor, die den Autorisierungs-Prozess beschreibt.</p><p><b>Ordnen Sie die folgenden Begriffe den korrekten Positionen in der Grafik zu, damit der Prozess vollständig beschrieben ist:</b></p><ul><li>Access Token</li><li>Protected Resource</li><li>Auth. Code</li></ul><p>Hinweis: Einer dieser Begriffe muss doppelt verwendet werden.</p><img data-bild=\"s22-ga1-4b\"><p><i>Für die Eingabe: die vier leeren (gestrichelten) Felder von oben nach unten als Feld 1 bis 4.</i></p>",
+     "loesung": "<img data-bild=\"s22-ga1-4b-l\"><table><tr><th>Feld</th><th>Pfeil</th><th>Begriff</th></tr><tr><td>1</td><td>Client → Authorization Server</td><td>Auth. Code</td></tr><tr><td>2</td><td>Authorization Server → Client</td><td>Access Token</td></tr><tr><td>3</td><td>Client → Resource Server</td><td>Access Token</td></tr><tr><td>4</td><td>Resource Server → Client</td><td>Protected resource</td></tr></table><p>Doppelt verwendet wird <b>Access Token</b>.</p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je richtig belegtes Feld 1 Punkt."
+    },
+    {
+     "nr": "c",
+     "punkte": 9,
+     "eingabe": {
+      "zeilen": [
+       "Sicherheitsmechanismus 1",
+       "Sicherheitsmechanismus 2",
+       "Sicherheitsmechanismus 3"
+      ]
+     },
+     "text": "<p>Um Datensicherheit und Datenschutz zu gewährleisten, soll der Webserver, auf dem das Ticketsystem installiert werden soll, mit einem Secure Sockets Layer (SSL)-Zertifikat gesichert werden.</p><p><b>Erläutern Sie drei Sicherheitsmechanismen, die durch den Einsatz von SSL-Zertifikaten erreicht werden.</b></p>",
+     "loesung": "<p>Durch den Einsatz von SSL-Zertifikaten werden unter anderem die nachfolgenden Sicherheitsmechanismen erreicht:</p><ul><li>Durch den Einsatz von SSL-Zertifikaten lassen sich Sender und Empfänger authentifizieren.</li><li>Die Übermittlung der eingegebenen Daten erfolgt kryptografisch geschützt, also verschlüsselt.</li><li>Durch den Einsatz des SSL-Zertifikats wird eine Zugangskontrolle sichergestellt.</li><li>Daten können ohne Verlust und sicher transportiert werden. Dadurch wird die Datenintegrität sichergestellt.</li></ul><p><i>Weitere Lösungen sind möglich.</i></p>",
+     "hinweis": "Keine Punkteaufteilung in den Lösungserläuterungen. Naheliegend (eigene Annahme): je Sicherheitsmechanismus mit Erläuterung 3 Punkte."
+    }
+   ]
+  }
+ ]
+}

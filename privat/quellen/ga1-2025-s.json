@@ -1,0 +1,310 @@
+{
+ "id": "ga1-2025-s",
+ "bereich": "ga1",
+ "termin": "Sommer 2025",
+ "kurz": "GA1 S25",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Sommer 2025)",
+ "situation": "<p>Die FIT Medical AG (FIT) ist Betreibergesellschaft mehrerer Kliniken. Der extreme Kostendruck im Gesundheitswesen zwang die FIT in der Vergangenheit zur Schließung mehrerer kleiner Kliniken und zur Bündelung der Ressourcen. Weiteres Potenzial zu Verbesserungen der Effizienz und der Rentabilität wird in den inhomogenen IT-Infrastrukturen (Hardware und Software) der Kliniken gesehen.</p><p>Im Zuge der jährlichen Diskussion der Risikostrategie zwischen Vorstand und Aufsichtsrat wurde eine strategische Neuausrichtung der FIT beschlossen.</p><p>Die AMAG Soft GmbH ist ein Anbieter von IT-Serviceleistungen sowie Cloud-Angeboten im Gesundheitswesen. Sie sind Mitarbeiter der AMAG Soft GmbH. Ihre Aufgabe besteht darin, in Projekten zur digitalen Transformation im Gesundheitswesen für die FIT AG mitzuarbeiten.</p>",
+ "beleg": [
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s25-beleg-akt\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "seq",
+   "titel": "Belegsatz: UML-Sequenzdiagramm",
+   "html": "<img data-bild=\"s25-beleg-seq\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s25-beleg-akt": {
+   "seite": "s25/x1-12",
+   "box": [
+    0.073,
+    0.066,
+    0.819,
+    0.605
+   ],
+   "q": 70
+  },
+  "s25-beleg-seq": {
+   "seite": "s25/x1-14",
+   "box": [
+    0.069,
+    0.071,
+    0.816,
+    0.677
+   ],
+   "q": 70
+  },
+  "s25-ga1-2a": {
+   "seite": "s25/x1-04",
+   "box": [
+    0.425,
+    0.305,
+    0.875,
+    0.47
+   ]
+  },
+  "s25-ga1-2al": {
+   "seite": "s25/l1-2",
+   "box": [
+    0.064,
+    0.593,
+    0.842,
+    0.915
+   ]
+  },
+  "s25-ga1-2bl": {
+   "seite": "s25/l1-3",
+   "box": [
+    0.089,
+    0.147,
+    0.532,
+    0.393
+   ]
+  },
+  "s25-ga1-3a": {
+   "seite": "s25/x1-07",
+   "box": [
+    0.04,
+    0.042,
+    0.71,
+    0.192
+   ]
+  },
+  "s25-ga1-3al": {
+   "seite": "s25/l1-4",
+   "box": [
+    0.315,
+    0.054,
+    0.91,
+    0.84
+   ]
+  },
+  "s25-ga1-4c": {
+   "seite": "s25/x1-09",
+   "box": [
+    0.056,
+    0.251,
+    0.444,
+    0.966
+   ]
+  },
+  "s25-ga1-4cl": {
+   "seite": "s25/l1-5",
+   "box": [
+    0.088,
+    0.601,
+    0.866,
+    0.776
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Umfeldanalyse, Stakeholder, Abschlussprotokoll",
+   "punkte": 20,
+   "themen": [
+    "Projektmanagement"
+   ],
+   "text": "<p>Sie arbeiten im Projekt zur digitalen Transformation im Gesundheitswesen mit. Eine hohe Bedeutung hat beispielsweise die Einführung einer digitalen Arbeitszeiterfassung in den Kliniken. Zu Ihren Aufgaben gehört es, u. a. eine Umfeldanalyse sowie ein Abschlussprotokoll mit vorzubereiten.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "technisches Umfeld",
+       "rechtliches Umfeld"
+      ]
+     },
+     "text": "<p><b>Erläutern Sie jeweils einen Aspekt Ihrer Umfeldanalyse aus den folgenden zwei Bereichen.</b></p><ul><li>technisches Umfeld</li><li>rechtliches Umfeld</li></ul>",
+     "loesung": "<p>Erwartet wird jeweils eine Erläuterung zu Aspekten, wie z. B.:</p><ul><li>Technisches Umfeld</li><li>Vorhandene Hardware- und Netzwerkinfrastruktur in den Kliniken</li><li>Softwarelandschaft und Datenstrukturen in den Kliniken</li><li>Rechtliches Umfeld</li><li>Gesetzliche Forderungen an den Datenschutz</li><li>Gesetzliche Forderungen an die IT-Sicherheit</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 10,
+     "eingabe": {
+      "zeilen": [
+       "Stakeholder 1 — Erwartung / Befürchtung",
+       "Stakeholder 2 — Erwartung / Befürchtung"
+      ]
+     },
+     "text": "<p><b>Nennen Sie zwei weitere Stakeholder neben dem Vorstand der FIT, die Sie in Ihrem Projekt berücksichtigen und beschreiben Sie jeweils eine Erwartung und eine Befürchtung der identifizierten Stakeholder.</b></p><table><tr><th>Stakeholder</th><th>Erwartung</th><th>Befürchtung</th></tr><tr><td>Vorstand der FIT</td><td>Professionelles Projektmanagement, Lieferung der Projektleistung in Time, in Budget, in Quality</td><td>Verzug und Mehrkosten; Unruhe beim Klinikpersonal</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>",
+     "loesung": "<p>Erwartet wird die Nennung von zwei Stakeholdern und jeweils eine Beschreibung der Erwartungen und der Befürchtungen, wie z. B.:</p><table><tr><th>Stakeholder</th><th>Erwartung</th><th>Befürchtung</th></tr><tr><td><i>Vorstand der FIT</i></td><td><i>Professionelles Projektmanagement, Lieferung der Projektleistung in Time, in Budget, in Quality</i></td><td><i>Verzug und Mehrkosten; Unruhe beim Klinikpersonal</i></td></tr><tr><td>Geschäftsführung der AMAG Soft GmbH</td><td>Erfolgreiches Projektmanagement, Gewinne</td><td>Zu hohe Komplexität des Vorhabens, Abhängigkeit von externen Providern</td></tr><tr><td>IT-Fachkräfte in den Kliniken</td><td>Standardisierung, Vereinfachung von Arbeitsabläufen</td><td>Jobverlust, da zentrale Administration, Umständliche, aber sicherheitskonforme Prozesse</td></tr><tr><td>Mitarbeiter in den Verwaltungen der Kliniken</td><td>Schaffung von Standards, Vereinfachung der betrieblichen Aufgaben</td><td>Versagensängste wegen neuer und komplexer Anwendungsprogramme</td></tr><tr><td>Klinik-Fachpersonal (Ärzte, Pflegerinnen und Pfleger etc.)</td><td>Erleichterung Ihrer täglichen Arbeit, durch ergonomische Anwendungen</td><td>Zu viel Zeit geht für Sicherheitsaspekte verloren</td></tr></table><p><i>Anmerkung: Die erste Zeile (kursiv, Vorstand der FIT) ist im Aufgabenbogen vorgegeben.</i></p>",
+     "hinweis": "Stakeholder jeweils 1 Punkt, Erwartung jeweils 2 Punkte, Befürchtung jeweils 2 Punkte."
+    },
+    {
+     "nr": "c",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Der Vorstand der FIT Medical AG erwartet zum Projektende ein Protokoll.</p><p><b>Beschreiben Sie zwei Aufgaben, die Sie für die Vorbereitung dieses Abschlussprotokolls durchzuführen haben.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zu zwei Aufgaben, die zur Erstellung eines Abschlussprotokolls durchzuführen sind, wie z. B.:</p><ul><li>Soll-Ist-Vergleich bezüglich der Anforderungen, z. B. des Pflichtenheftes</li><li>Weitere Aktivitäten identifizieren, die im Anschluss an das Projekt umgesetzt werden können/sollten</li></ul>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "ER-Modell, Mockup, Passwort-Speicherung",
+   "punkte": 27,
+   "themen": [
+    "Datenbank",
+    "Software-Ergonomie",
+    "IT-Sicherheit"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 16,
+     "eingabe": "zeichnen",
+     "text": "<p>Die AMAG Soft GmbH möchte das Projekt „Digitale Krankenakte“ starten. Ziel ist es, dass alle Kliniken und Ärztehäuser Zugriff auf die Krankenakte eines Patienten haben. Erste Ideen zur Erfassung des Medikamentenplans, der Diagnosen und der stattgefundenen Behandlungen wurden wie folgt definiert:</p><ul><li>Patienten werden mit Nachname, Vorname, Geburtsdatum, Krankenkasse und Versichertennummer erfasst.</li><li>Medikamente haben einen Hersteller und einen Wirkstoff.</li><li>Ein Patient kann mehrere Medikamente einnehmen.</li><li>Für jede Einnahme eines Medikamentes wird die Dosis und der Einnahmezeitpunkt hinterlegt.</li><li>Ärzte werden mit Nachname, Vorname und Spezialgebiet erfasst.</li><li>Ein Patient kann von unterschiedlichen Ärzten behandelt werden.</li><li>Für jede Behandlung wird ein Zeitstempel und ein Bericht hinterlegt.</li><li>Ein Patient kann mehrere Diagnosen haben.</li><li>Jede Diagnose ist mit Feststellungsdatum und Bezeichnung der Erkrankung erfasst.</li></ul><p>Der Entitätstyp Patient ist mit den geforderten Attributen bereits gegeben.</p><p><b>Vervollständigen Sie das Entity-Relationship-Modell entsprechend den Vorgaben und ergänzen Sie sinnvolle Primärschlüssel für die Entitätstypen.</b></p><img data-bild=\"s25-ga1-2a\"><p><i>Vorgegeben: Entitätstyp <b>Patient</b> mit den Attributen <u>PatientID</u> (Primärschlüssel), Nachname, Vorname, Geburtsdatum, Krankenkasse und Versichertennummer.</i></p>",
+     "loesung": "<img data-bild=\"s25-ga1-2al\"><p>In Worten:</p><ul><li><b>Arzt</b> (<u>ArztID</u>, Nachname, Vorname, Spezialgebiet)</li><li><b>Patient</b> (<u>PatientID</u>, Nachname, Vorname, Geburtsdatum, Krankenkasse, Versichertennummer)</li><li><b>Medikament</b> (<u>MedikamentID</u>, Hersteller, Wirkstoff)</li><li><b>Diagnose</b> (<u>DiagnoseID</u>, Feststellungsdatum, Erkrankung)</li><li>Arzt n — <b>behandelt</b> — m Patient; Attribute der Beziehung: Zeitstempel, Bericht</li><li>Patient n — <b>nimmt ein</b> — m Medikament; Attribute der Beziehung: Dosis, Einnahmezeitpunkt</li><li>Patient 1 — <b>hat</b> — n Diagnose</li></ul>",
+     "hinweis": "Vorschlag für die Vergabe der Punkte: je 2 Punkte pro Beziehung mit Kardinalitäten; je 1 Punkt pro Entitätstyp; je 0,5 Punkte pro Attribut; je 0,5 Punkte pro Primärschlüssel."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": "zeichnen",
+     "text": "<p>Für den Fall, dass ein Einlesen der geforderten Daten der Patienten (Nachname, Vorname, Geburtsdatum, Krankenkasse und Versichertennummer) nicht über die Chipkarte möglich ist, müssen diese manuell erfasst werden. Die Krankenkassen sind bereits im System hinterlegt und können ausgewählt werden.</p><p><b>Skizzieren Sie ein Mockup für die Benutzeroberfläche zur Eingabe der Daten.</b></p><p><i>(Im Aufgabenbogen ist dafür ein leerer Fensterrahmen mit der Titelzeile „Digitale Krankenakte“ und drei Fenster-Schaltflächen ○○○ oben rechts vorgegeben.)</i></p>",
+     "loesung": "<img data-bild=\"s25-ga1-2bl\"><p>In Worten: Fenster „Digitale Krankenakte“ (○○○) mit der Überschrift <b>Patientendaten</b>; darunter je eine Beschriftung mit Eingabefeld:</p><ul><li>Nachname — Textfeld</li><li>Vorname — Textfeld</li><li>Geburtsdatum — Textfeld</li><li>Krankenkasse — Auswahlfeld (Dropdown)</li><li>Versichertennummer — Textfeld</li></ul><p>Unten rechts die Schaltflächen <b>Abbrechen</b> und <b>Speichern</b>.</p>",
+     "hinweis": "Vorschlag für die Vergabe der Punkte: 1 Punkt für die Überschrift; 2 Punkte für die Beschriftung der Eingabefelder; 2 Punkte für die Eingabefelder; 1 Punkt für die Verwendung des Auswahlfeldes (Krankenkasse); 1 Punkt für die Möglichkeit zu speichern; 1 Punkt für die Möglichkeit abzubrechen bzw. zurückzugehen. Andere Darstellungen sind ebenfalls möglich."
+    },
+    {
+     "nr": "c",
+     "punkte": 3,
+     "eingabe": "gross",
+     "text": "<p>Die Datenbank soll ebenfalls zur Speicherung von Zugangsdaten (Benutzername und Passwort) verwendet werden. Das Passwort darf nicht im Klartext gespeichert werden.</p><p><b>Nennen Sie eine geeignete Möglichkeit zur Speicherung des Passwortes und beschreiben Sie das gewählte Verfahren.</b></p>",
+     "loesung": "<p>Eine geeignete Möglichkeit zur Speicherung von Passwörtern in einer Datenbank ist die Verwendung von Hash-Funktionen. Eine Hash-Funktion ist ein mathematischer Algorithmus, der eine Eingabe (in diesem Fall das Passwort) in eine feste Zeichenfolge fester Länge umwandelt, die als Hash-Wert bezeichnet wird.</p><p>Wenn einfache Hash-Funktionen verwendet werden, wird das Passwort direkt gehasht und der Hash-Wert in der Datenbank gespeichert.<br>Ein Nachteil bei der Verwendung einfacher Hash-Funktionen besteht darin, dass identische Passwörter denselben Hash-Wert erzeugen.<br>Um dies zu verhindern, können Hash-Funktionen in Kombination mit Salzen verwendet werden. Ein Salt (dt. Salz) ist eine zufällig generierte Zeichenfolge, die vor oder nach dem Passwort hinzugefügt wird, bevor es gehasht wird. Das Salz wird gemeinsam mit dem Hash-Wert in der Datenbank gespeichert.</p>",
+     "hinweis": "Eine Erläuterung ohne Hinweis auf Salt ist ebenfalls als vollständig richtig zu bewerten."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Aktivitätsdiagramm Visite, Digitalisierung",
+   "punkte": 29,
+   "themen": [
+    "UML",
+    "Projektmanagement"
+   ],
+   "text": "<p>Sie arbeiten im Teilprojekt Digitalisierung der Patientenakte mit. Diese Anwendung soll zukünftig über Tablets bedient werden, da die Bearbeitung der Patientenakte, z. B. bei einer Visite, meistens im Behandlungszimmer des Patienten stattfindet.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 17,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "akt"
+     ],
+     "text": "<p>Sie werden gebeten, den aktuellen Ablauf einer Visite und die dabei durchgeführten Arbeitsschritte grafisch anhand folgender Notizen darzustellen.</p><ul><li>Die Ärzte versammeln sich zusammen mit dem Pflegepersonal im Stationszimmer.</li><li>Es werden die Laborergebnisse abgefragt und die Reihenfolge der Patienten nach deren Terminen (wie z. B. anstehende Behandlungen) und Dringlichkeit geplant.</li><li>Im Behandlungszimmer des Patienten wird zuerst die Patientenakte in Papierform geöffnet.</li><li>Die Vitalwerte des Patienten werden vom Pflegepersonal überprüft und in der Patientenakte notiert. Gleichzeitig wird der Patient vom Arzt nach auftretenden Symptomen gefragt.</li><li>Eventuell aufgetretene Symptome werden notiert, der Behandlungsplan wird daraufhin angepasst und mit dem Patienten besprochen.</li><li>Für den Fall, dass neue Laborergebnisse vorliegen, werden diese vom Arzt zusammen mit dem Patienten besprochen.</li><li>Nach der Notierung der Vitalwerte und der eventuellen Besprechung der Laborergebnisse werden ärztliche Untersuchungen durchgeführt, um den aktuellen Stand der Behandlung festzustellen. Dieser Stand wird handschriftlich notiert.</li><li>Die Änderungen der Patientenakten werden nach der Visite des Patienten im Stationszimmer in die vorhandene Software übertragen.</li></ul><p><b>Erweitern Sie das angefangene Aktivitätsdiagramms zur Beschreibung des Ablaufs auf der Folgeseite. Die in den ersten drei Spiegelstrichen beschriebenen Arbeitsschritte sind bereits dargestellt.</b></p><img data-bild=\"s25-ga1-3a\"><p><i>Vorgegeben: Startknoten → „Ärzte und Krankenschwestern versammeln sich“ → „Laborergebnisse abfragen“ → „Planen der Patientenreihenfolge“ → „Patientenakte öffnen“.</i></p>",
+     "loesung": "<img data-bild=\"s25-ga1-3al\"><p>In Worten:</p><ul><li>Startknoten → Ärzte und Krankenschwestern versammeln sich → Laborergebnisse abfragen → Planen der Patientenreihenfolge → Patientenakte öffnen</li><li><b>Teilung</b> (Splitting) in zwei parallele Flüsse:</li><li>Linker Fluss: Abfrage nach auftretenden Symptomen → <b>Entscheidung</b>: [Symptome vorhanden] → Symptome in Patientenakte notieren → Behandlungsplan ändern → Änderungen im Behandlungsplan besprechen → Zusammenführung; [Keine Symptome vorhanden] → direkt zur Zusammenführung</li><li>Danach <b>Entscheidung</b>: [neue Laborergebnisse] → Laborergebnisse besprechen → Zusammenführung; [keine neuen Laborergebnisse] → direkt zur Zusammenführung</li><li>Rechter Fluss: Vitalwerte überprüfen → Vitalwerte in Patientenakte notieren</li><li><b>Synchronisation</b> beider Flüsse → Untersuchungen durchführen → Untersuchungen in Patientenakte notieren → Alle Änderungen in Software übernehmen → Endknoten</li></ul>",
+     "hinweis": "1 Punkt je Aktivität; 1 Punkt für Ende; 2 Punkte für die Synchronisierung; 2 Punkte je Verzweigung. Alternative Lösungen sind auch möglich."
+    },
+    {
+     "nr": "b",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Problem 1 — Erläuterung",
+       "Problem 2 — Erläuterung",
+       "Problem 3 — Erläuterung"
+      ]
+     },
+     "anlagen": [
+      {
+       "titel": "Teilprojekt und Notizen zum Ablauf einer Visite (aus Teilaufgabe a)",
+       "html": "<p>Sie arbeiten im Teilprojekt Digitalisierung der Patientenakte mit. Diese Anwendung soll zukünftig über Tablets bedient werden, da die Bearbeitung der Patientenakte, z. B. bei einer Visite, meistens im Behandlungszimmer des Patienten stattfindet.</p><p>Notizen zum aktuellen Ablauf einer Visite:</p><ul><li>Die Ärzte versammeln sich zusammen mit dem Pflegepersonal im Stationszimmer.</li><li>Es werden die Laborergebnisse abgefragt und die Reihenfolge der Patienten nach deren Terminen (wie z. B. anstehende Behandlungen) und Dringlichkeit geplant.</li><li>Im Behandlungszimmer des Patienten wird zuerst die Patientenakte in Papierform geöffnet.</li><li>Die Vitalwerte des Patienten werden vom Pflegepersonal überprüft und in der Patientenakte notiert. Gleichzeitig wird der Patient vom Arzt nach auftretenden Symptomen gefragt.</li><li>Eventuell aufgetretene Symptome werden notiert, der Behandlungsplan wird daraufhin angepasst und mit dem Patienten besprochen.</li><li>Für den Fall, dass neue Laborergebnisse vorliegen, werden diese vom Arzt zusammen mit dem Patienten besprochen.</li><li>Nach der Notierung der Vitalwerte und der eventuellen Besprechung der Laborergebnisse werden ärztliche Untersuchungen durchgeführt, um den aktuellen Stand der Behandlung festzustellen. Dieser Stand wird handschriftlich notiert.</li><li>Die Änderungen der Patientenakten werden nach der Visite des Patienten im Stationszimmer in die vorhandene Software übertragen.</li></ul>"
+      }
+     ],
+     "text": "<p>Um diesen Prozess zu optimieren, sollen Sie potenzielle Probleme benennen. Für die Abwägung, ob eine Digitalisierung zu diesem Zeitpunkt wirtschaftlich sinnvoll ist, muss zu jedem Problem benannt werden, ob und wenn ja, wie dieses durch eine Digitalisierung gelöst werden kann.</p><p>(Ablauf der Visite: siehe Anlage)</p><p><b>Benennen Sie drei Probleme des aktuellen Prozesses und erläutern Sie, wie das jeweilige Problem durch Digitalisierung gelöst werden kann.</b></p><table><tr><th>Problem</th><th>Erläuterung</th></tr><tr><td>Priorisierung der Reihenfolge erfolgt manuell</td><td>Das Programm kann hier auf Basis neuer Laborwerte, aktueller Vitalwerte und anstehenden Behandlungen (bspw. Reha, OPs) bereits Vorschläge machen.</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Problem</th><th>Erläuterung</th></tr><tr><td>Priorisierung der Reihenfolge erfolgt manuell</td><td>Das Programm kann hier auf Basis neuer Laborwerte, aktueller Vitalwerte und anstehenden Behandlungen (bspw. Reha, OPs) bereits Vorschläge machen.</td></tr><tr><td>Laborergebnisse müssen manuell der Patientenakte zugeordnet werden</td><td>Fehleranfällig und kann daher zu Behandlungsfehlern führen; Zeitersparnis, da alle Daten direkt und ohne Verzögerungen (bspw. durch Postversand) zur Hand.</td></tr><tr><td>Manuelle Übertragung von Vitalwerten in die Patientenakte</td><td>Fehleranfällig und kann daher zu Behandlungsfehlern führen. Alternativ könnten die Daten von neuen Messgeräten direkt in der Patientenakte ergänzt werden. Abhängig vom gewählten Vorgehen könnten Messungen so auch automatisch und in geringeren Abständen erfolgen.</td></tr><tr><td>Änderung des Behandlungsplans erfolgt beim Patienten und muss allen relevanten Stellen im Anschluss kommuniziert werden</td><td>Eine Änderung könnte nun direkt beim Patienten vorgenommen werden und alle „Abhängigkeiten“ automatisch aufgelöst werden. Bspw. automatische Terminierung von Therapien oder die Übergabe der Informationen an andere Schichten.</td></tr><tr><td>Behandlungsplanänderungen erfolgen nur anhand der Erfahrungen des medizinischen Personals</td><td>Ein Programm kann hier automatisch Vergleiche mit ähnlichen Fällen durchführen und dem Arzt alternative Behandlungsmöglichkeiten vorschlagen. Auch auf geänderte Standard-Vorgehen bei bestimmten Krankheitsbildern kann hier direkt eingegangen werden.</td></tr></table><p><i>Anmerkung: Die erste Zeile (Priorisierung der Reihenfolge) ist im Aufgabenbogen als Beispiel vorgegeben.</i></p>",
+     "hinweis": "Problem jeweils 1 Punkt, Erläuterung jeweils 3 Punkte."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Factory Method, abstrakte Klasse, Entwurfsmuster",
+   "punkte": 24,
+   "themen": [
+    "Programmierung/OOP",
+    "UML",
+    "Englisch"
+   ],
+   "text": "<p>Zur Kennzeichnung von Proben, die zu einem Patienten gehören, müssen unterschiedliche Etiketten gedruckt werden. Im Meeting wird vorgeschlagen, zur Umsetzung das Entwurfsmuster (Design Pattern) Factory Method zu verwenden.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Sie haben folgende Information zum Entwurfsmuster Factory Method gefunden.</p><p>(Text siehe Anlage „Information zum Entwurfsmuster Factory Method“)</p><p><b>aa) Erläutern Sie zwei Aspekte des Entwurfsmusters Factory Method.</b></p>",
+     "loesung": "<ul><li>In einer Basisklasse wird eine Schnittstelle zur Erzeugung von Objekten bereitgestellt und in Unterklassen können Objekte unterschiedlicher Typen erstellt werden.</li><li>Der Aufruf des Konstruktors wird in eine Methode verlagert.</li><li>In Unterklassen kann diese Methode überschrieben werden, um spezifische Objekte zu erzeugen.</li></ul>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Information zum Entwurfsmuster Factory Method (englisch)",
+       "html": "<p><i><b>Factory Method</b> is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.<br>The Factory Method pattern suggests that you replace direct object construction calls (using the new operator) with calls to a special factory method. Don’t worry: the objects are still created via the new operator, but it’s being called from within the factory method. Objects returned by a factory method are often referred to as products.<br>At first glance, this change may look pointless: we just moved the constructor call from one part of the program to another. However, consider this: now you can override the factory method in a subclass and change the class of products being created by the method.<br>There’s a slight limitation though: subclasses may return different types of products only if these products have a common base class or interface. Also, the factory method in the base class should have its return type declared as this interface.</i><br>(Quelle: https://refactoring.guru/design-patterns/factory-method)</p>"
+      }
+     ]
+    },
+    {
+     "nr": "ab",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>(Entwurfsmuster Factory Method, Text siehe Anlage)</p><p><b>ab) Erläutern Sie eine Einschränkung, die bei der Klassenstruktur zu beachten ist.</b></p>",
+     "loesung": "<p>Die Klassen der erzeugten Objekte müssen eine gemeinsame Basisklasse haben oder ein gemeinsames Interface implementieren.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Information zum Entwurfsmuster Factory Method (englisch)",
+       "html": "<p><i><b>Factory Method</b> is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.<br>The Factory Method pattern suggests that you replace direct object construction calls (using the new operator) with calls to a special factory method. Don’t worry: the objects are still created via the new operator, but it’s being called from within the factory method. Objects returned by a factory method are often referred to as products.<br>At first glance, this change may look pointless: we just moved the constructor call from one part of the program to another. However, consider this: now you can override the factory method in a subclass and change the class of products being created by the method.<br>There’s a slight limitation though: subclasses may return different types of products only if these products have a common base class or interface. Also, the factory method in the base class should have its return type declared as this interface.</i><br>(Quelle: https://refactoring.guru/design-patterns/factory-method)</p>"
+      }
+     ]
+    },
+    {
+     "nr": "b",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p><b>Erläutern Sie zwei Merkmale einer abstrakten Klasse im Vergleich zu Interfaces und gewöhnlichen Klassen.</b></p>",
+     "loesung": "<ul><li>Eine abstrakte Klasse enthält mindestens eine abstrakte Methode. Zusätzlich kann es vollständig definierte Methoden geben. Die abstrakten Methoden sind nicht in der Klasse definiert, sondern müssen in erbenden Klassen definiert werden.</li><li>Von einer abstrakten Klasse können direkt keine Objekte erzeugt werden, es sind nur Objekte erbender Klassen möglich, die dann auch den Typ der abstrakten Klasse haben.</li><li>Eine abstrakte Klasse kann Attribute enthalten.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 6,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Mit dem Muster Factory Method wurden bereits Klassen zum Erstellen der Unterlagen für Laboruntersuchungen und EKG erstellt. Die Patienten können Hilfsmittel wie z. B. Krücken erhalten, die auch beschriftet werden sollen.</p><p><b>Ergänzen Sie das nebenstehende Klassenmodell um die erforderlichen Klassen zum Drucken von Etiketten für Hilfsmittel.</b></p><p>Klassenmodell zu Aufgabe 4c) (im Original quer gedruckt):</p><img data-bild=\"s25-ga1-4c\"><p>Klassenmodell in Worten:</p><ul><li><b><i>EtikettFabrik</i></b> <i>{abstract}</i> — Attribute: … — Methode: + erstelleEtikett() : Etikett {abstract}</li><li><b>LaborBlutEtikettFabrik</b> und <b>EKGEtikettFabrik</b> erben von EtikettFabrik — Attribute: … — Methode: + erstelleEtikett() : Etikett</li><li><b><i>Etikett</i></b> <i>{abstract}</i> — Attribute: # patient : Patient, # beschriftung : String — Methode: + druckeEtikett() : void {abstract}</li><li><b>LaborBlutEtikett</b> erbt von Etikett — Methoden: + LaborBlutEtikett(Patient), + druckeEtikett() : void</li><li><b>EKGEtikett</b> erbt von Etikett — Methoden: + EKGEtikett(Patient), + druckeEtikett() . void</li><li>Gerichtete Assoziation: EtikettFabrik (Multiplizität 1) → Etikett (Multiplizität *)</li></ul>",
+     "loesung": "<img data-bild=\"s25-ga1-4cl\"><p>In Worten: Ergänzt werden zwei Klassen —</p><ul><li><b>HilfsmittelEtikettFabrik</b> erbt von <i>EtikettFabrik</i> — Attribute: … — Methode: + erstelleEtikett() : Etikett</li><li><b>HilfsmittelEtikett</b> erbt von <i>Etikett</i> — Methoden: + HilfsmittelEtikett(Patient), + druckeEtikett() : void</li></ul><p>Alle übrigen Klassen und die Assoziation EtikettFabrik 1 → * Etikett bleiben unverändert.</p><p><i>Anmerkung: Bei EKGEtikett steht im Original (Aufgabe und Lösung) „+ druckeEtikett() . void“ — gemeint ist „+ druckeEtikett() : void“.</i></p>",
+     "hinweis": "Bewertungsvorschlag: 3 Punkte für Klasse HilfsmittelEtikettFabrik; 3 Punkte für Klasse HilfsmittelEtikett."
+    },
+    {
+     "nr": "d",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p><b>Nennen Sie ein weiteres Entwurfsmuster und beschreiben Sie dieses.</b></p>",
+     "loesung": "<p>Erwartet wird die Nennung eines Entwurfsmusters, wie z. B. Singleton oder Observer-Pattern mit einer passenden Beschreibung.</p>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}

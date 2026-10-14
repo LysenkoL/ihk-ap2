@@ -21,6 +21,8 @@ initSql({ locateFile: f => path.join(__dirname, "../vendor/sqljs-1.14.2", f) }).
   assert.deepStrictEqual(ev.map(e => e.support), ["selbst", "hilfe", "hilfe", "loesung"]);
   assert.deepStrictEqual(ev.map(e => e.correct), [1, 0, 1, 1]);
   assert.strictEqual(ev[0].answers.code, "select ort, name, vorname from kunde");
+  assert(ev[0].snapshot && ev[0].snapshot.question === sql("g1").text, "SQL-Ereignis enthält die tatsächlich geübte Aufgabenfassung");
+  assert.strictEqual(ev[0].snapshot.solution, sql("g1").loesung);
   assert.strictEqual(L.summary().find(s => s.topic === "sql").independent, 1);
   assert.strictEqual(JSON.parse(mem["ap2:sql"]).a.g1.n, 2);
 
@@ -34,6 +36,8 @@ initSql({ locateFile: f => path.join(__dirname, "../vendor/sqljs-1.14.2", f) }).
   const algo = L.list().filter(e => e.source === "algo");
   assert.deepStrictEqual(algo.map(e => e.support), ["selbst", "selbst", "hilfe", "loesung"]);
   assert.deepStrictEqual(algo[1].answers.input, [1, 4, 2, 5]);
+  assert(algo[1].snapshot, "Algorithmus-Ereignis enthält die erwartete konkrete Schrittlösung");
+  assert.deepStrictEqual(algo[1].snapshot.soll, [1, 2, 4, 5]);
   assert.strictEqual(algo[1].task, algo[2].task, "Korrektur bleibt dieselbe konkrete Teilaufgabe");
   assert.strictEqual(L.summary().find(s => s.topic === "algo").ratio, 0.5);
   const mitCode = { modus: "bubble", feld: [2, 1], k: 0 };

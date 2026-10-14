@@ -1,0 +1,259 @@
+{
+ "id": "ga2-2021-w",
+ "bereich": "ga2",
+ "termin": "Winter 2021/22",
+ "kurz": "GA2 W21/22",
+ "minuten": 90,
+ "schluessel": "u-form Lösungserläuterungen Winter 2021/22 (keine offiziellen ZPA-Lösungshinweise)",
+ "situation": "<p>Sie arbeiten im Projekt zur Entwicklung einer Software zur Terminvergabe in Arztpraxen mit. Dabei gehört es zu Ihren Aufgaben, bei der Planung Sicherheitsaspekte einzubeziehen sowie Teststrategien herauszuarbeiten.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"w21-ga1-bs-uc\">"
+  },
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"w21-ga2-bs-akt\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"w21-ga1-bs-klasse\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"w21-ga2-bs-sql1\"><img data-bild=\"w21-ga2-bs-sql2\">"
+  }
+ ],
+ "bilder": {
+  "w21-ga2-bs-akt": {
+   "seite": "w21/beleg-2",
+   "box": [
+    0.045,
+    0.325,
+    0.82,
+    0.888
+   ]
+  },
+  "w21-ga2-bs-sql1": {
+   "seite": "w21/beleg-4",
+   "box": [
+    0.04,
+    0.055,
+    0.965,
+    0.955
+   ],
+   "q": 70
+  },
+  "w21-ga2-bs-sql2": {
+   "seite": "w21/beleg-5",
+   "box": [
+    0.04,
+    0.052,
+    0.965,
+    0.615
+   ],
+   "q": 70
+  },
+  "w21-ga2-1a": {
+   "seite": "w21/l-08",
+   "box": [
+    0.09,
+    0.31,
+    0.79,
+    0.955
+   ]
+  },
+  "w21-ga2-1c": {
+   "seite": "w21/ga2-03",
+   "box": [
+    0.025,
+    0.322,
+    0.768,
+    0.783
+   ]
+  },
+  "w21-ga2-3": {
+   "seite": "w21/l-10",
+   "box": [
+    0.06,
+    0.106,
+    0.89,
+    0.485
+   ]
+  },
+  "w21-ga2-4": {
+   "seite": "w21/ga2-08",
+   "box": [
+    0.035,
+    0.08,
+    0.845,
+    0.181
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Aktivitätsdiagramm, Variantenwahl, Struktogramm-Fehler",
+   "punkte": 25,
+   "themen": [
+    "UML",
+    "Algorithmen"
+   ],
+   "text": "<p>Sie erhalten den Auftrag die „Online-Terminvergabe“ grundlegend zu planen. Dazu wurden zwei unterschiedliche Vorgehensweisen grob vorgeplant. Diese sind in der Tabelle „Ablauf“ mit Variante 1 und Variante 2 dargestellt.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 15,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "akt"
+     ],
+     "text": "<p><b>Stellen Sie den Ablauf der Variante 1 mit einem UML-Aktivitätsdiagramm dar.</b></p><p>Ablauf:</p><table><tr><td colspan=\"2\">Patient ruft die Terminreservierung auf, wonach er eine Anzeige der Ärzte und Terminarten erhält. Jetzt kann er den Arzt bzw. die Terminart auswählen.<br>Nach der Auswahl sucht die Software den 1. freien Termin. …</td></tr><tr><td>Variante 1:</td><td>Variante 2:</td></tr><tr><td>… Das Programm zeigt den Monat, in dem der 1. freie Termin liegt, mit allen freien Terminen im angezeigten Zeitraum an.<br>Der Anwender wählt einen freien Termin.<br>Das System versucht nun, den Termin zu blockieren.<br>Wenn der Termin noch frei ist, kann er final reserviert und parallel dazu der Anwender informiert werden. Danach ist die Aktivität beendet.<br>Ist der Termin inzwischen nicht mehr verfügbar, wird eine entsprechende Meldung ausgeben und erneut der 1. freie Termin gesucht, um dem Anwender die Auswahl anzuzeigen.</td><td>… Die Software ermittelt den Monat des 1. freien Termins.<br>Es werden alle Termine des ermittelten Monats blockiert.<br>Der Monat mit allen freien Terminen wird zur Auswahl angezeigt.<br>Der Anwender kann einen freien Termin wählen.<br>Danach wird der Anwender bzgl. der erfolgreichen Reservierung informiert und parallel der Termin final reserviert sowie alle anderen blockierten Termine freigegeben.<br>Danach ist die Aktivität beendet.</td></tr></table><p><b>UML-Aktivitätsdiagramm:</b></p><table><tr><th>Anwender</th><th>Terminvergabesystem</th></tr><tr><td><br><br><br></td><td><br><br><br></td></tr></table><p><i>(Im Bogen: leerer Rahmen mit den zwei Schwimmbahnen „Anwender“ und „Terminvergabesystem“.)</i></p>",
+     "loesung": "<img data-bild=\"w21-ga2-1a\"><p>In Worten (Schwimmbahnen „Anwender“ und „Terminvergabesystem“):</p><ul><li>Startknoten (Anwender) → <b>Aufruf Terminreservierung</b> (Anwender)</li><li>→ <b>Anzeige Ärzte / Terminarten</b> (Terminvergabesystem)</li><li>→ <b>Auswahl Arzt / Terminart</b> (Anwender)</li><li>→ Zusammenführung (Raute) → <b>Suche 1. freien Termin</b> (Terminvergabesystem)</li><li>→ <b>Anzeige Monat mit 1. freiem Termin</b> (Terminvergabesystem)</li><li>→ <b>Auswahl freier Termin</b> (Anwender)</li><li>→ <b>Termin blockieren</b> (Terminvergabesystem) → Entscheidung (Raute)</li><li>[Termin bereits vergeben] → <b>Anzeige Termin zwischenzeitlich vergeben</b> → zurück zur Zusammenführung vor „Suche 1. freien Termin“</li><li>[Termin ist frei] → Teilung (Splitting): parallel <b>Anzeige Bestätigung Reservierung</b> und <b>Termin final reservieren</b></li><li>→ Synchronisation → Endknoten</li></ul><p>Das UML-Aktivitätsdiagramm muss immer über einen Startknoten begonnen und mittels eines Endknoten beendet werden.</p><p>An Entscheidungen müssen Bedingungen anliegen, bei Zusammenführungen darf es keine Bedingungen geben. Sollten Bedingungen erforderlich sein, so müssen diese immer in eckigen Klammern notiert werden.</p><p>Gemäß Angabe muss eine Parallelisierung von Prozessschritten stattfinden. Die hierfür erforderliche Teilung (Splitting) sowie die anschließende Synchronisation sind im Diagramm zu berücksichtigen.</p><p>Zwischen Aktivitäten und Aktionen ist nicht zu unterscheiden und Pins sind ebenfalls nicht erforderlich.</p>",
+     "hinweis": "Die Lösungserläuterungen nennen keine Punkteaufteilung. Zähle: Start- und Endknoten, alle Aktionen in der richtigen Schwimmbahn, Entscheidung mit [Bedingungen], Zusammenführung für die erneute Terminsuche, Teilung und Synchronisation für die parallelen Schritte."
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>(Tabelle „Ablauf“ mit Variante 1 und Variante 2: siehe Anlage)</p><p><b>Wählen Sie für die zu erstellende Terminvergabe eine Variante aus und begründen Sie Ihre Wahl in Hinblick auf die Praxistauglichkeit.</b></p>",
+     "anlagen": [
+      {
+       "titel": "Tabelle „Ablauf“ (Variante 1 und Variante 2)",
+       "html": "<p>Sie erhalten den Auftrag die „Online-Terminvergabe“ grundlegend zu planen. Dazu wurden zwei unterschiedliche Vorgehensweisen grob vorgeplant. Diese sind in der Tabelle „Ablauf“ mit Variante 1 und Variante 2 dargestellt.</p><table><tr><td colspan=\"2\">Patient ruft die Terminreservierung auf, wonach er eine Anzeige der Ärzte und Terminarten erhält. Jetzt kann er den Arzt bzw. die Terminart auswählen.<br>Nach der Auswahl sucht die Software den 1. freien Termin. …</td></tr><tr><td>Variante 1:</td><td>Variante 2:</td></tr><tr><td>… Das Programm zeigt den Monat, in dem der 1. freie Termin liegt, mit allen freien Terminen im angezeigten Zeitraum an.<br>Der Anwender wählt einen freien Termin.<br>Das System versucht nun, den Termin zu blockieren.<br>Wenn der Termin noch frei ist, kann er final reserviert und parallel dazu der Anwender informiert werden. Danach ist die Aktivität beendet.<br>Ist der Termin inzwischen nicht mehr verfügbar, wird eine entsprechende Meldung ausgeben und erneut der 1. freie Termin gesucht, um dem Anwender die Auswahl anzuzeigen.</td><td>… Die Software ermittelt den Monat des 1. freien Termins.<br>Es werden alle Termine des ermittelten Monats blockiert.<br>Der Monat mit allen freien Terminen wird zur Auswahl angezeigt.<br>Der Anwender kann einen freien Termin wählen.<br>Danach wird der Anwender bzgl. der erfolgreichen Reservierung informiert und parallel der Termin final reserviert sowie alle anderen blockierten Termine freigegeben.<br>Danach ist die Aktivität beendet.</td></tr></table>"
+      }
+     ],
+     "loesung": "<p>Es ist Variante 1 zu wählen. Da häufig von parallelen Zugriffen auszugehen ist, ist Variante 2 nicht praktikabel. Alle Termine des ermittelten Monats würden hier direkt blockiert und dem Anwender zur Auswahl gestellt werden. Je nach Dauer des Reservierungsprozesses sind alle Termine für parallel angemeldete Patienten blockiert. Dies führt zu Irritationen und ggf. telefonischen Rückfragen.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "1. Fehler: Stelle und Korrektur",
+       "2. Fehler: Stelle und Korrektur",
+       "3. Fehler: Stelle und Korrektur"
+      ]
+     },
+     "text": "<p>Die Online-Terminvergabe soll nur über einen Login möglich sein. Dazu müssen die Benutzer einen Account erstellen und ein Passwort vergeben, welches folgende Kriterien erfüllen muss:</p><ul><li>Es muss mindestens zehn Zeichen lang sein.</li><li>Es muss mindestens einen Buchstaben (letter), eine Ziffer (digit) und ein Sonderzeichen (specialChar) enthalten.</li></ul><p>Es liegt ein fehlerhaftes Struktogramm zur Überprüfung des Passwortes vor. Der Rückgabewert soll wahr oder falsch sein.</p><p><b>Finden Sie drei Fehler und geben Sie eine Korrektur an.</b></p><img data-bild=\"w21-ga2-1c\">",
+     "loesung": "<p><b>1. Fehler:</b></p><ul><li>Stelle: Erste Verzweigungsbedingung</li><li>IST-Zustand: Bedingung: password.length &gt; 10</li><li>Korrektur: Bedingung: password.length ≥ 10</li></ul><p><b>2. Fehler:</b></p><ul><li>Stelle: Schleifenbedingung while / solange</li><li>IST-Zustand: Bedingung: i ≤ password.length</li><li>Korrektur: Bedingung: i &lt; password.length</li></ul><p><b>3. Fehler:</b></p><ul><li>Stelle: Erste Anweisung innerhalb des Nein-Zweiges zu isDigit(password[i]) = true</li><li>IST-Zustand: digit := false</li><li>Korrektur: Anweisung muss gestrichen werden</li></ul><p><b>4. Fehler:</b></p><ul><li>Stelle: Ende des Struktogramms</li><li>IST-Zustand: Keine Ausgabe des passwordOK-Wertes</li><li>Korrektur: Return passwordOK als letzte Anweisung</li></ul><p><i>Anmerkung: Gefragt sind drei Fehler, die Lösungserläuterungen nennen vier. Außerdem ist im Struktogramm die Klammer bei isLetter(password[i] = true) falsch gesetzt (gemeint: isLetter(password[i]) = true) — das führen die Lösungserläuterungen nicht als Fehler auf.</i></p>",
+     "hinweis": "Die Lösungserläuterungen nennen keine Punkteaufteilung. Gefordert sind drei Fehler mit Korrektur (naheliegend je Fehler 2 Punkte); jeder der vier genannten Fehler zählt."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Pseudocode: freien Termin im 2-dim. Array suchen",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "code",
+     "text": "<p>Für eine Gemeinschaftspraxis, der mehrere Ärzte angehören, soll für die Sprechstundenhilfen eine softwaregestützte Terminplanung realisiert werden.</p><p>Benötigt wird dazu eine Funktion, die unter Vorgabe eines Datums (Tag und Monat), einer Ärzte-ID und eines Zeitslots ermittelt, ob unter diesen Vorgaben ein Termin möglich ist.</p><p>Für jeden Arzt liegt ein Terminplan in Form eines zweidimensionalen Arrays vor. Jede Zeile dieses Arrays speichert für einen Tag die Belegung von acht möglichen Zeitslots für diesen Arzt.</p><p>Beispiel:</p><table><tr><th>Monat</th><th>Tag</th><th>Slot 0</th><th>Slot 1</th><th>Slot 2</th><th>Slot 3</th><th>Slot 4</th><th>Slot 5</th><th>Slot 6</th><th>Slot 7</th></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>9</td><td>30</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>10</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>10</td><td>2</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table><p>(1 – Arzt in diesem Zeitslot belegt, 0 – Arzt in diesem Slot nicht belegt)</p><p>Für den Zugriff auf das zweidimensionale Array eines Arztes liegt folgende Funktion bereits vor:</p><table><tr><td>getTimeTable (id : Integer) :<br>2-dim-Integer-Array</td><td>Liefert für eine übergebene Ärzte-ID den zugehörigen Terminplan als zweidimensionales Array (siehe Beispiel)</td></tr></table><p>Es soll folgende Funktion erstellt werden:</p><p><code>getAppointment(month: Integer, day: Integer, id : Integer, slot: Integer) : boolean</code></p><ul><li>Falls kein bestimmter Zeitslot ausgewählt werden muss, hat der Parameter „slot“ den Wert -1.</li><li>Die Funktion <i>getAppointment</i> soll den Wert <b><i>true</i></b> zurückgeben, falls ein Termin gefunden werden kann, andernfalls den Wert <b><i>false</i></b>.</li></ul><p><b>Erstellen Sie auf der gegenüberliegenden Seite diese Funktion <i>getAppointment</i> in Pseudocode.</b></p>",
+     "loesung": "<pre>getAppointment(month: Integer, day: Integer, id: Integer, time_slot: Integer) : boolean\n    boolean treffer = false\n    int[ ] [ ] timeTableDoc = getTimeTable(id)\n    für i = 0, i &lt; timeTableDoc.length\n       wenn (month == timeTableDoc[i] [0] &amp;&amp;\n       day == timeTableDoc[i] [1])\n              wenn (time_slot &lt; 0)\n                     für z = 0; z &lt; 8\n                          wenn (timeTableDoc[i] [2 + z] == 0)\n                                   treffer = true\n                          ende wenn\n                     ende für\n              sonst\n                     wenn (timeTableDoc[i] [2 + time_slot] == 0)\n                          treffer = true\n                     ende wenn\n              ende wenn\n       ende wenn\n    ende für\n    Rückgabe treffer;\nende getAppointment</pre><p><i>Anmerkung: In den Lösungserläuterungen heißt der vierte Parameter time_slot — in der Aufgabe heißt er slot. Spalte 0 und 1 jeder Zeile enthalten Monat und Tag, deshalb liegen die Slots bei Index 2 + Slotnummer.</i></p>",
+     "hinweis": "Die Lösungserläuterungen nennen keine Punkteaufteilung. Wichtige Bausteine: Terminplan mit getTimeTable(id) holen, Schleife über die Zeilen, Vergleich von Monat (Spalte 0) und Tag (Spalte 1), bei slot = -1 alle acht Slots prüfen, sonst nur den gewählten Slot (Index 2 + slot), Wert 0 = frei, Rückgabe true/false."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Relationales Datenmodell in 3. NF erweitern",
+   "punkte": 25,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "zeichnen",
+     "text": "<p>Ein Kollege von Ihnen hatte begonnen, das relationale Modell der bestehenden Datenbank zu erweitern. Krankheitsbedingt fällt er leider nun einige Wochen aus und Sie übernehmen seine Aufgaben. Zunächst sollen Sie das relationale Datenmodell fertigstellen. Dazu stehen Ihnen die nachfolgenden Unterlagen zur Verfügung. In diesen sind exemplarische Daten für Untersuchungstermine und Patientendiagnosen enthalten. Diese Daten sollen in der Datenbank verwaltet werden.</p><table><tr><th colspan=\"5\">Untersuchungstermine</th></tr><tr><td>UTNr</td><td>Datum/Uhrzeit</td><td>Patient</td><td>Arzt</td><td>Raum</td></tr><tr><td>1</td><td>20.04.2021 – 10.00 Uhr</td><td>Sommer, Hans<br>Hohlweg 17, 55555 Bergtal</td><td>Baum, Walter</td><td>Röntgenraum 2</td></tr><tr><td>2</td><td>20.04.2021 – 11.00 Uhr</td><td>Reins, Fraucke<br>Winzergasse 5, 55555 Bergtal</td><td>Baum, Walter</td><td>Röntgenraum 1</td></tr><tr><td>3</td><td>21.04.2021 – 10.00 Uhr</td><td>Fuchs, Katrin<br>Bachweg 12, 55554 Zweigtal</td><td>Winter, Simone</td><td>MRT</td></tr></table><table><tr><th colspan=\"6\">Patientendiagnose</th></tr><tr><td>PDNr</td><td>Datum</td><td>Patient</td><td>Arzt</td><td>ICD_10_GM_Code</td><td>Bermerkungen</td></tr><tr><td>1</td><td>23.04.2021</td><td>Sommer, Hans</td><td>Baum, Walter</td><td>M71</td><td>Wiedervorstellung in 3 Monaten</td></tr><tr><td>2</td><td>07.06.2021</td><td>Reins, Fraucke</td><td>Frühling, Klaus</td><td>K93</td><td></td></tr><tr><td>3</td><td>22.06.2021</td><td>Fuchs, Katrin</td><td>Winter, Simone</td><td>D50</td><td>Überweisung an einen Spezialisten</td></tr></table><p>Hinweis: Die Untersuchungstermine und die Patientendiagnose sind voneinander unabhängig. Die Diagnose kann auch ein anderer Arzt als der untersuchende Arzt erstellen.</p><p><b>Erweitern Sie das relationale Datenmodell auf Seite 7 um die notwendigen Tabellen mit den entsprechenden Attributen in der 3. NF. Zeichnen Sie die Beziehungen zwischen den Tabellen ein und bestimmen Sie die Kardinalitäten. Kennzeichnen Sie in allen Tabellen die Primär- und Fremdschlüssel mit PK bzw. FK.</b></p><p>Relationales Modell:</p><table><tr><th>Diagnose</th></tr><tr><td>DiagnoseID (PK)<br>ICD_10_GM_Code<br>Kurzbeschreibung</td></tr></table>",
+     "loesung": "<img data-bild=\"w21-ga2-3\"><p>In Worten:</p><ul><li><b>Diagnose</b> (DiagnoseID (PK), ICD_10_GM_Code, Kurzbeschreibung)</li><li><b>Patientendiagnose</b> (PDNr (PK), DiagnoseID (FK), ArztID (FK), PatientID (FK), Bemerkungen, Datum)</li><li><b>Arzt</b> (ArztID (PK), Vorname, Name)</li><li><b>Patient</b> (PatientID (PK), Vorname, Name, Postleitzahl, Straße, Ort)</li><li><b>Untersuchungstermine</b> (UTNr (PK), PatientID (FK), ArztID (FK), RaumID (FK), Datum, Uhrzeit)</li><li><b>Raum</b> (RaumID (PK), Beschreibung)</li></ul><p>Beziehungen: Diagnose 1 : n Patientendiagnose · Arzt 1 : n Patientendiagnose · Patient 1 : n Patientendiagnose · Patient 1 : n Untersuchungstermine · Arzt 1 : n Untersuchungstermine · Raum 1 : n Untersuchungstermine</p><p>Bzgl. der Kardinalitäten ist drauf zu achten, dass M:N Beziehungen aufgelöst werden. Pro Relation darf immer nur ein Primärschlüssel verwendet werden.</p>",
+     "hinweis": "Die Lösungserläuterungen nennen keine Punkteaufteilung. Zähle: neue Tabellen Patient, Arzt, Raum, Patientendiagnose, Untersuchungstermine mit sinnvollen Attributen (Name/Vorname bzw. Adresse aufgeteilt), PK und FK gekennzeichnet, alle Beziehungen mit Kardinalitäten (1 : n)."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Arzneimittel-Datenbank",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Die Arzneimittel mit deren Wirkstoffen sind in einer Datenbank erfasst (Datenbankmodell siehe Anlage). Erstellen Sie für die nachfolgenden Aufgabenstellungen die entsprechenden SQL-Anweisungen.</p>",
+   "anlagen": [
+    {
+     "titel": "Datenbank Wirkstoff, Arzneimittelwirkstoffe, Arzneimittel, Hersteller",
+     "html": "<p>Die Arzneimittel mit deren Wirkstoffen sind in folgender Datenbank erfasst.</p><img data-bild=\"w21-ga2-4\"><p>In Worten:</p><ul><li><b>Wirkstoff</b> (WirkstoffID (PK), Bezeichnung)</li><li><b>Arzneimittelwirkstoffe</b> (AMID (PK), WirkstoffID (PK), Menge)</li><li><b>Arzneimittel</b> (AMID (PK), Bezeichnung, HerstellerID, Preis, rezeptpflichtig)</li><li><b>Hersteller</b> (HerstellerID (PK), Name)</li><li>Wirkstoff 1 : n Arzneimittelwirkstoffe · Arzneimittel 1 : n Arzneimittelwirkstoffe · Hersteller 1 : n Arzneimittel</li></ul><p>Hinweis: Das Attribut „rezeptpflichtig“ hat den Datentyp Boolean. Die Überschriften müssen nicht per Alias angepasst werden.</p><p>Erstellen Sie für die nachfolgenden Aufgabenstellungen die entsprechenden SQL-Anweisungen.</p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Legen Sie die Tabelle „Hersteller“ an.</b></p>",
+     "loesung": "<pre>CREATE TABLE Hersteller (HerstellerID INT, Name VARCHAR(30), PRIMARY KEY (HerstellerID));</pre>",
+     "hinweis": "Andere Lösungen sind möglich."
+    },
+    {
+     "nr": "b",
+     "punkte": 3,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Zeigen Sie an, ob das Arzneimittel mit der Bezeichnung „abc“ rezeptpflichtig ist.</b></p>",
+     "loesung": "<pre>SELECT rezeptpflichtig FROM Arzneimittel WHERE Bezeichnung = \"abc\";</pre>",
+     "hinweis": "Andere Lösungen sind möglich."
+    },
+    {
+     "nr": "c",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erhöhen Sie den Preis aller Arzneimittel vom Hersteller „CCC“ um fünf Prozent.</b></p>",
+     "loesung": "<pre>UPDATE Arzneimittel SET Preis = Preis * 1.05\nWHERE HerstellerID = (SELECT HerstellerID FROM Hersteller WHERE Bezeichnung = \"CCC\");</pre><p><i>Anmerkung: Die Tabelle Hersteller hat laut Datenbankmodell kein Attribut Bezeichnung, sondern Name — richtig ist <code>WHERE Name = \"CCC\"</code>.</i></p>",
+     "hinweis": "Andere Lösungen sind möglich."
+    },
+    {
+     "nr": "d",
+     "punkte": 6,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Listen Sie alle Hersteller auf, von denen mehr als 50 nichtrezeptpflichtige Arzneimittel in der Datenbank erfasst sind. Die Ausgabe soll folgende Daten auflisten.</b></p><p>Beispiel:</p><table><tr><th>Hersteller</th><th>Anzahl</th></tr><tr><td>ABC</td><td>234</td></tr><tr><td>DDDD</td><td>96</td></tr><tr><td>XXX</td><td>51</td></tr></table>",
+     "loesung": "<pre>SELECT H.Name, COUNT (A.ArzneimittelID)\nFROM Arzneimittel AS A, Hersteller AS H\nWHERE A.HerstellerID = H.HerstellerID AND rezeptpflichtig = False\nGROUP BY H.Name HAVING COUNT (A.ArzneimittelID ) &gt; 50;</pre><p><i>Anmerkung: Der Primärschlüssel von Arzneimittel heißt laut Datenbankmodell AMID — gemeint ist <code>COUNT(A.AMID)</code>.</i></p>",
+     "hinweis": "Andere Lösungen sind möglich."
+    },
+    {
+     "nr": "e",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Listen Sie die Bezeichnung, die Menge, den Preis und den Hersteller aller Arzneimittel auf, welche den Wirkstoff „Y34“ in der Menge von 100 oder 200 Einheiten enthalten. Das Ergebnis soll absteigend nach der Menge und dann aufsteigend nach dem Preis sortiert sein.</b></p><p>Beispiel:</p><table><tr><th>Bezeichnung</th><th>Menge</th><th>Preis</th><th>Hersteller</th></tr><tr><td>AY34-200</td><td>200</td><td>13,67</td><td>AAA</td></tr><tr><td>BB Y34</td><td>200</td><td>15,88</td><td>BBB</td></tr><tr><td>AY34-100</td><td>100</td><td>8,55</td><td>AAA</td></tr><tr><td>CC XX 100</td><td>100</td><td>9,99</td><td>CCC</td></tr></table>",
+     "loesung": "<pre>SELECT A.Bezeichnung, AW.Menge, A.Preis, H.Name\nFROM Wirkstoff AS W, Arzneimittelwirkstoffe AS AW, Arzneimittel AS A, Hersteller AS H\nWHERE W.WirkstoffID = AW.WirkstoffID AND\n     AW.AMID = A.AMID AND\n     A.HerstellerID = H.HerstellerID AND\n     W.Bezeichnung = \"Y34\" AND (AW.Menge = 100 OR AW.Menge = 200)\nORDER BY AW.Menge DESC, A.Preis ASC;</pre>",
+     "hinweis": "Andere Lösungen sind möglich."
+    }
+   ]
+  }
+ ]
+}

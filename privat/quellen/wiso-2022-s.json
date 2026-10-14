@@ -1,0 +1,576 @@
+{
+ "id": "wiso-2022-s",
+ "bereich": "wiso",
+ "termin": "Sommer 2022",
+ "kurz": "WiSo S22",
+ "minuten": 60,
+ "quelle": "raw/ap2-2022-s-wiso.pdf",
+ "schluessel": "offizielle Lösungen der IHK, nachgeprüft",
+ "situation": "Die Sachs-IT GmbH ist ein mittelständisches Unternehmen, das IT-Systemleistungen für einen breiten Kundenkreis anbietet. Alle folgenden Aufgaben beziehen sich auf dieses Unternehmen.",
+ "aufgaben": [
+  {
+   "nr": 1,
+   "thema": "Arbeitsvertrag",
+   "text": "Die Sachs-IT GmbH hat mit dem 25-jährigen Harry Petry einen Einzelarbeitsvertrag geschlossen.",
+   "frage": "Welche der folgenden Aussagen ist in diesem Zusammenhang zutreffend? Ein Einzelarbeitsvertrag …",
+   "typ": "eine",
+   "optionen": [
+    "kann nur geschlossen werden, wenn für die Sachs-IT GmbH kein gültiger Tarifvertrag vorliegt.",
+    "kann nur mit Zustimmung der Gewerkschaft geschlossen werden.",
+    "ist ohne Urlaubsregelung ungültig.",
+    "ist auch gültig, wenn das vereinbarte Arbeitsentgelt über dem tarifvertraglich geregelten liegt.",
+    "darf für höchstens zwei Jahre geschlossen werden."
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Günstigkeitsprinzip (принцип благоприятствования): Mehr als der Tarif zu zahlen ist immer erlaubt."
+  },
+  {
+   "nr": 2,
+   "thema": "Probezeit im Arbeitsvertrag",
+   "text": "In Herrn Petrys Arbeitsvertrag ist auch eine Angabe zur Probezeit vorgesehen.",
+   "frage": "Welche der folgenden Aussagen dazu sind zutreffend? Die Probezeit …",
+   "typ": "mehrere",
+   "optionen": [
+    "könnte ggf. ganz entfallen.",
+    "muss mindestens einen Monat betragen.",
+    "muss mindestens drei Monate betragen.",
+    "muss mindestens vier Monate betragen.",
+    "kann bis zu sechs Monate betragen.",
+    "kann neuerdings bis zu zwei Jahre betragen."
+   ],
+   "soll": [
+    1,
+    5
+   ],
+   "erkl": "Im normalen Arbeitsvertrag ist die Probezeit freiwillig (kann entfallen) und höchstens 6 Monate (§ 622 Abs. 3 BGB). Nur in der Ausbildung ist sie Pflicht: 1–4 Monate."
+  },
+  {
+   "nr": 3,
+   "thema": "Jugendarbeitsschutz: Nachtruhe",
+   "text": "Henry Witting, 17 Jahre, hat am 1. Januar 2021 seine Berufsausbildung als Fachinformatiker Fachrichtung Systemintegration bei der Sachs-IT GmbH begonnen. Da einige Mitarbeitende der IT-Abteilung erkrankt sind, muss der Dienstplan für Herrn Witting geändert werden. Bei der Änderung wird die Pausenregelung entsprechend angepasst. (Alter Dienstplan: Montag bis Freitag Beginn 9:00 oder 11:00 Uhr, Ende 18:00 oder 20:00 Uhr.)",
+   "anlage": "<b>Auszug Jugendarbeitsschutzgesetz – § 14 Nachtruhe</b><br>(1) Jugendliche dürfen nur in der Zeit von 6 bis 20 Uhr beschäftigt werden.<br>(2) Jugendliche über 16 Jahre dürfen 1. im Gaststätten- und Schaustellergewerbe bis 22 Uhr, 2. in mehrschichtigen Betrieben bis 23 Uhr, 3. in der Landwirtschaft ab 5 Uhr oder bis 21 Uhr, 4. in Bäckereien und Konditoreien ab 5 Uhr beschäftigt werden.",
+   "frage": "Zu welcher Uhrzeit könnte Herr Witting unter Beachtung des JArbSchG frühestens seinen Dienst beginnen? (hh:mm)",
+   "typ": "text",
+   "label": "Uhrzeit (hh:mm)",
+   "soll": [
+    "06:00",
+    "6:00",
+    "06.00",
+    "6.00",
+    "6 Uhr",
+    "06 Uhr"
+   ],
+   "erkl": "Jugendliche (несовершеннолетние) dürfen nur von 6 bis 20 Uhr arbeiten. Die Ausnahmen (Gaststätte, Landwirtschaft, Bäckerei) gelten nicht für IT → frühestens 06:00."
+  },
+  {
+   "nr": 4,
+   "thema": "Jugendarbeitsschutz",
+   "frage": "Welche der folgenden Vorschriften gilt für den 17-jährigen Herrn Witting laut Jugendarbeitsschutzgesetz?",
+   "typ": "eine",
+   "optionen": [
+    "Jugendliche dürfen nur an fünf Tagen in der Woche beschäftigt werden.",
+    "Die erste Nachuntersuchung muss drei Monate nach Ausbildungsbeginn stattfinden.",
+    "An Feiertagen dürfen Jugendliche nicht beschäftigt werden. Ausnahmen sieht das Gesetz nicht vor.",
+    "Die wöchentlichen Ruhetage müssen aufeinander folgen.",
+    "Jugendliche dürfen nicht mehr als 48 Stunden wöchentlich beschäftigt werden."
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Fünf-Tage-Woche (§ 15 JArbSchG). Höchstens 40 Stunden pro Woche, Nachuntersuchung nach einem Jahr, Feiertagsarbeit mit Ausnahmen; Ruhetage „möglichst“ hintereinander."
+  },
+  {
+   "nr": 5,
+   "thema": "Urlaub",
+   "text": "Herr Witting möchte wissen, wie viel Urlaub ihm für das Kalenderjahr 2022 zusteht. Der Auszubildende vollendet am 4. April 2022 das 18. Lebensjahr.",
+   "anlage": "<b>Auszug Jugendarbeitsschutzgesetz – § 19 Urlaub</b><br>(2) Der Urlaub beträgt jährlich 1. mindestens 30 Werktage, wenn der Jugendliche zu Beginn des Kalenderjahrs noch nicht 16 Jahre alt ist, 2. mindestens 27 Werktage, wenn … noch nicht 17 Jahre alt ist, 3. mindestens 25 Werktage, wenn … noch nicht 18 Jahre alt ist. (…)<br><b>Auszug aus dem Tarifvertrag für die Sachs-IT GmbH – § 42 Erholungsurlaub</b><br>(1) Die Dauer des Erholungsurlaubs beträgt für alle Beschäftigten der Sachs-IT GmbH 30 Arbeitstage.<br>(2) Beginnt oder endet das Arbeitsverhältnis im Laufe des Urlaubsjahres, so beträgt der Urlaubsanspruch ein Zwölftel für jeden Beschäftigungsmonat.<br>(3) Arbeitstage sind alle Kalendertage, die nicht Sonnabende, Sonntage oder gesetzliche Feiertage sind (Fünftagewoche). Auszubildenden soll ihr Erholungsurlaub in den Berufsschulferien gewährt werden.",
+   "frage": "Auf wie viele Tage Urlaub hat Herr Witting demnach im Kalenderjahr 2022 Anspruch?",
+   "typ": "zahl",
+   "soll": "30",
+   "einheit": "Urlaubstage",
+   "erkl": "Gesetz (JArbSchG): 25 Werktage, weil er am 01.01.2022 noch 17 ist. Der Tarifvertrag gibt allen 30 Arbeitstage — das ist günstiger, also gilt der Tarif: 30."
+  },
+  {
+   "nr": 6,
+   "thema": "Ausbilder",
+   "text": "Die Ausbildungsleiterin der Sachs-IT GmbH sucht mittelfristig Mitarbeitende, die als Ausbilder tätig werden wollen.",
+   "frage": "Welche der folgenden Voraussetzungen muss ein Ausbilder nach den gesetzlichen Regelungen u. a. erfüllen? Er/Sie muss …",
+   "typ": "eine",
+   "optionen": [
+    "Mitglied im zuständigen Prüfungsausschuss sein.",
+    "über eine notwendige persönliche und fachliche Eignung verfügen.",
+    "jährlich ein Weiterbildungsseminar der IHK besuchen.",
+    "Mitglied der Geschäftsleitung sein.",
+    "Mitglied einer Gewerkschaft sein."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Persönliche und fachliche Eignung (личная и профессиональная пригодность), §§ 28–30 BBiG."
+  },
+  {
+   "nr": 7,
+   "thema": "Anhörung des Betriebsrats",
+   "text": "Einem Mitarbeiter der Sachs-IT GmbH wurde ohne Anhörung des Betriebsrates gekündigt.",
+   "frage": "Welche der folgenden Aussagen entspricht dem Betriebsverfassungsgesetz? Die Kündigung …",
+   "typ": "eine",
+   "optionen": [
+    "ist wirksam, weil eine Zustimmung des Betriebsrates nicht vorgeschrieben ist.",
+    "ist wirksam, weil eine Anhörung des Betriebsrates nicht vorgeschrieben ist.",
+    "ist unwirksam, weil eine Anhörung des Betriebsrates zwingend vorgeschrieben ist.",
+    "ist durch eine nachträgliche Anhörung des Betriebsrates wirksam geworden.",
+    "ist unwirksam, wenn das Arbeitsgericht nicht beteiligt wurde."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Ohne Anhörung (заслушивание) des Betriebsrats ist jede Kündigung unwirksam (§ 102 BetrVG). Nachholen hilft nicht."
+  },
+  {
+   "nr": 8,
+   "thema": "Kündigung der Ausbildung",
+   "text": "Am 12.03.2022 kündigt die 17-jährige Pamela Bommering ihr Ausbildungsverhältnis mit nachstehendem Schreiben. Das Schreiben geht der Sachs-IT GmbH noch am selben Tag zu.<br><i>„Sehr geehrte Damen und Herren, nach langer Überlegung kündige ich das Ausbildungsverhältnis zum 15. April 2022, weil ich eine Ausbildung in einem anderen Beruf beginnen möchte. Bitte stellen Sie mir ein qualifiziertes Zeugnis aus. MfG Pamela Bommering“</i>",
+   "frage": "Hat Frau Bommering wirksam gekündigt?",
+   "typ": "eine",
+   "optionen": [
+    "Ja, weil das Kündigungsschreiben rechtzeitig übergeben wurde.",
+    "Ja, weil Frau Bommering schriftlich gekündigt und einen Kündigungsgrund angegeben hat.",
+    "Ja, weil Frau Bommering sich noch in der Probezeit befindet.",
+    "Nein, weil die Unterschrift der Erziehungsberechtigten als gesetzliche Vertreter fehlt.",
+    "Nein, weil die Kündigungsfrist von vier Wochen nicht eingehalten wurde."
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Sie ist 17 = minderjährig (несовершеннолетняя). Eine Kündigung braucht dann die Unterschrift der Eltern (gesetzliche Vertreter). Die Frist (über 4 Wochen) wäre in Ordnung."
+  },
+  {
+   "nr": 9,
+   "thema": "Arbeitszeugnis",
+   "text": "Frau Bommering wünscht nach der Beendigung des Ausbildungsvertrages mit der Sachs-IT GmbH ein qualifiziertes Zeugnis.",
+   "frage": "Welche der folgenden Formulierungen in einem Ausbildungszeugnis macht das Zeugnis zu einem qualifizierten Zeugnis?",
+   "typ": "eine",
+   "optionen": [
+    "„Pamela Bommering, geboren am 03.12.2004, …“",
+    "„… wohnhaft in Solingen, …“",
+    "„… wurde seit dem 1. Januar 2021 in unserem Betrieb ausgebildet.“",
+    "„Frau Bommering erledigte die ihr übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit.“",
+    "„Wir wünschen Frau Bommering für die Zukunft alles Gute.“"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Qualifiziert (квалифицированная характеристика) = mit Bewertung von Leistung und Verhalten. Name, Adresse, Dauer stehen auch im einfachen Zeugnis."
+  },
+  {
+   "nr": 10,
+   "thema": "Betriebsrat",
+   "text": "In der Sachs-IT GmbH wurde ein Betriebsrat gewählt.",
+   "frage": "Welche der folgenden Aussagen über den Betriebsrat ist zutreffend? Ein Betriebsrat …",
+   "typ": "eine",
+   "optionen": [
+    "muss in jeder Gesellschaft mit beschränkter Haftung gewählt werden.",
+    "muss paritätisch aus Arbeitnehmern und Arbeitnehmerinnen gebildet werden.",
+    "besitzt umfangreiche Handlungsvollmacht und kann in fast allen Belangen des Unternehmens Rechtsgeschäfte abschließen.",
+    "muss aufgrund der zwingenden Mitbestimmung der Gründung einer Filiale zustimmen.",
+    "besitzt bei der Aufstellung des Urlaubsplans ein Mitbestimmungsrecht."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Urlaubsplan → Mitbestimmung (§ 87 Abs. 1 Nr. 5 BetrVG). Ein Betriebsrat kann gewählt werden (ab 5 Arbeitnehmern), muss aber nicht."
+  },
+  {
+   "nr": 11,
+   "thema": "Jugend- und Auszubildendenvertretung",
+   "text": "Peter Meyer, Ausbilder bei der Sachs-IT GmbH, informiert seine neuen Auszubildenden über die Anforderungen und Möglichkeiten, sich in die Jugend- und Auszubildendenvertretung (JAV) wählen zu lassen.",
+   "frage": "Welche der folgenden Aussagen zur JAV ist zutreffend?",
+   "typ": "eine",
+   "optionen": [
+    "„Es ist ausreichend, wenn Sie eine Liste von drei Vorgesetzten vorlegen, die Ihre Wahl unterstützen, um für die Wahl aufgestellt zu werden.“",
+    "„Eine eventuelle strafrechtliche Verurteilung ist für die Wahl nicht relevant, da es keinen Bezug zu Ihrer Tätigkeit hat.“",
+    "„Als Auszubildende/-r unter 25 sind Sie wahlberechtigt und auch wählbar.“",
+    "„Wenn es 20 Wahlberechtigte gibt, können Sie leicht eins der vier JAV-Mitglieder werden.“",
+    "„Mit der „Zweitstimme“ können Sie als Ersatzmitglied in die JAV gewählt werden.“"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Azubis unter 25 dürfen die JAV wählen und gewählt werden (§§ 60, 61 BetrVG). Bei 21–50 Wahlberechtigten hat die JAV 3 Mitglieder, nicht 4."
+  },
+  {
+   "nr": 12,
+   "thema": "Friedenspflicht",
+   "text": "In der Sachs-IT GmbH sind zwei Drittel der Mitarbeiter Mitglied einer Gewerkschaft und an die absolute Friedenspflicht gebunden.",
+   "frage": "Welcher der folgenden Sachverhalte trifft auf die im Tarifrecht genannte absolute Friedenspflicht zu?",
+   "typ": "eine",
+   "optionen": [
+    "Erzeugung eines guten Betriebsklimas",
+    "Verbot eines Arbeitskampfes während eines geltenden Tarifvertrages",
+    "Vermeidung von Auseinandersetzungen vor dem Arbeitsgericht",
+    "Einhaltung des Kündigungsschutzes für Betriebsratsmitglieder",
+    "Konstruktive Zusammenarbeit zwischen Arbeitgebern und Arbeitnehmern"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Friedenspflicht (обязанность сохранять мир): Solange der Tarifvertrag gilt, kein Streik. Absolut = für gar kein Thema, relativ = nur für die geregelten Themen."
+  },
+  {
+   "nr": 13,
+   "thema": "Tarifvertrag",
+   "text": "Die Sachs-IT GmbH ist tarifgebunden und schließt Arbeitsverträge auf der Grundlage des aktuellen Tarifvertrags.",
+   "frage": "Welche der folgenden Aussagen treffen auf einen Tarifvertrag zu? Ein Tarifvertrag …",
+   "typ": "mehrere",
+   "optionen": [
+    "kommt durch freie Vereinbarung der Tarifpartner zustande.",
+    "bedarf der Genehmigung eines staatlich bestellten Schlichters.",
+    "schließt günstigere Betriebsvereinbarungen nicht aus.",
+    "darf nur für gewerkschaftlich organisierte Arbeitende angewendet werden.",
+    "darf eine Laufzeit von höchstens drei Jahren haben.",
+    "gibt Höchstgrenzen für Löhne und Gehälter an."
+   ],
+   "soll": [
+    1,
+    3
+   ],
+   "erkl": "Tarifautonomie: freie Vereinbarung ohne Staat. Günstigere Regeln für Arbeitnehmer sind erlaubt. Tarifverträge setzen Mindest-, keine Höchstlöhne."
+  },
+  {
+   "nr": 14,
+   "thema": "Manteltarifvertrag",
+   "text": "Neben einem neuen Gehaltstarifvertrag wird von den Tarifpartnern auch ein neuer Mantel- oder Rahmentarifvertrag geschlossen.",
+   "frage": "Welcher der folgenden Sachverhalte wird darin u. a. geregelt?",
+   "typ": "eine",
+   "optionen": [
+    "Die Vergütung für Auszubildende",
+    "Die Mindest- und Höchstlohnsätze",
+    "Die Anzahl der Sonderurlaubstage",
+    "Definition der jeweiligen Vergütungsgruppen",
+    "Der Betrag des Ecklohns"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Manteltarifvertrag (рамочный тарифный договор): Arbeitszeit, Urlaub, Sonderurlaub, Kündigungsfristen. Geldbeträge stehen im Lohn-/Gehaltstarifvertrag, Gruppen im Rahmentarifvertrag."
+  },
+  {
+   "nr": 15,
+   "thema": "Sozialversicherung",
+   "text": "Herr Petry bittet in der Personalabteilung der Sachs-IT GmbH um Informationen zur Sozialversicherung.",
+   "frage": "Welche der folgenden Versicherungen sind <b>nicht</b> im Beitragssatz des <b>Arbeitnehmers</b> zur Sozialversicherung enthalten?",
+   "typ": "mehrere",
+   "optionen": [
+    "Krankenversicherung",
+    "Pflegeversicherung",
+    "Lebensversicherung",
+    "Rentenversicherung",
+    "Arbeitslosenversicherung",
+    "Unfallversicherung"
+   ],
+   "soll": [
+    3,
+    6
+   ],
+   "erkl": "Lebensversicherung ist privat, keine Sozialversicherung. Die Unfallversicherung zahlt allein der Arbeitgeber (страхование от несчастных случаев)."
+  },
+  {
+   "nr": 16,
+   "thema": "Europass",
+   "text": "Eine Auszubildende der Sachs-IT GmbH will einen Teil ihrer Berufsausbildung im Ausland durchführen. In Zusammenhang mit diesem Auslandsaufenthalt weist die Sachs-IT GmbH die Auszubildende auf den Europass hin.",
+   "frage": "Welche der folgenden Aussagen zum Europass ist zutreffend?",
+   "typ": "eine",
+   "optionen": [
+    "Europass ist ein kostenpflichtiger Dienst.",
+    "Der Europass unterstützt Auszubildende, erworbene Qualifikationen, Fähigkeiten und Kompetenzen bei Bewerbungen europaweit verständlich darzustellen.",
+    "Der Europass beglaubigt Ausbildungsabschnitte von Auszubildenden, die im europäischen Ausland durchgeführt wurden, im „Europass-Mobilität“.",
+    "Der vom Europass ausgestellte „Europass-Mobilität“ ist für eine Berufsausbildung im europäischen Ausland verpflichtend.",
+    "Der Europass zertifiziert Fremdsprachenkenntnisse im „Europass-Sprachkenntnisse“."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Europass: kostenlos, freiwillig, macht Qualifikationen europaweit verständlich. Er beglaubigt und zertifiziert nichts."
+  },
+  {
+   "nr": 17,
+   "thema": "Wirtschaftssektoren",
+   "text": "Volkswirtschaften werden in Wirtschaftssektoren eingeteilt.",
+   "frage": "Ordnen Sie den nachstehenden Sachverhalten die folgenden Sektoren zu.",
+   "typ": "zuordnung",
+   "otitel": "Sektoren",
+   "optionen": [
+    "Primärer Sektor",
+    "Sekundärer Sektor",
+    "Tertiärer Sektor"
+   ],
+   "zeilen": {
+    "a": "Ein Computerhersteller produziert Laptops.",
+    "b": "Für die Smartphone-Fertigung benötigte Rohstoffe werden von der Mining Co. im Tagebau gefördert.",
+    "c": "Die Altintas KG erstellt Sicherheits-Software.",
+    "d": "Die Sachs-IT GmbH kauft Monitore und verkauft diese einem Kunden.",
+    "e": "Die Sachs-IT GmbH berät Kunden bei deren innerbetrieblichen Sicherheitsproblemen."
+   },
+   "soll": {
+    "a": 2,
+    "b": 1,
+    "c": 2,
+    "d": 3,
+    "e": 3
+   },
+   "erkl": "Rohstoffe fördern = primär. Etwas herstellen (Laptops, laut IHK auch Software als Produkt) = sekundär. Handel und Beratung = tertiär (сфера услуг)."
+  },
+  {
+   "nr": 18,
+   "thema": "GmbH",
+   "text": "Bei der Gründung der Sachs-IT GmbH wurde von Günter Sachs die Rechtsform GmbH gewählt.",
+   "frage": "Welche der folgenden Aussagen trifft auf eine GmbH zu?",
+   "typ": "eine",
+   "optionen": [
+    "GmbH-Anteile werden an der Börse gehandelt.",
+    "Das Stammkapital der GmbH muss bei Gründung mindestens 100.000 EUR betragen.",
+    "Alle Gesellschafter der GmbH sind jederzeit zur Geschäftsführung berechtigt.",
+    "Die Gesellschafter der GmbH haften für Verbindlichkeiten mit ihrem Privatvermögen.",
+    "Die Gewinnverteilung erfolgt der gesetzlichen Regelung entsprechend nach Geschäftsanteilen."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Gewinn nach Geschäftsanteilen (доли в уставном капитале), § 29 GmbHG. Mindestkapital 25.000 EUR; keine Börse; Geschäftsführung durch Geschäftsführer."
+  },
+  {
+   "nr": 19,
+   "thema": "Wirtschaftlichkeit",
+   "text": "Für die folgenden vier durchgeführten Aufträge der Sachs-IT GmbH liegen folgende Zahlen vor:",
+   "anlage": "<table><tr><th>Auftrag Nr.</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><td>Aufwand (EUR)</td><td>150.000</td><td>40.000</td><td>40.000</td><td>50.000</td></tr><tr><td>Ertrag (EUR)</td><td>180.000</td><td>50.000</td><td>52.000</td><td>62.000</td></tr></table>",
+   "frage": "Ermitteln Sie, welcher Auftrag am wirtschaftlichsten abgewickelt wurde. (Auftragsnummer)",
+   "typ": "eine",
+   "optionen": [
+    "Auftrag 1",
+    "Auftrag 2",
+    "Auftrag 3",
+    "Auftrag 4"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Wirtschaftlichkeit = Ertrag ÷ Aufwand: 1,20 · 1,25 · 1,30 · 1,24 → Auftrag 3."
+  },
+  {
+   "nr": 20,
+   "thema": "Unternehmenszusammenschlüsse",
+   "text": "Die Sachs-IT GmbH hat die Bätje GmbH gekauft und betreibt diese unter Beibehaltung der Firma Bätje GmbH weiter.",
+   "frage": "Um welche der folgenden Formen eines Unternehmenszusammenschlusses handelt es sich?",
+   "typ": "eine",
+   "optionen": [
+    "Fusion",
+    "Arbeitsgemeinschaft",
+    "Interessengemeinschaft",
+    "Kartell",
+    "Konzern"
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Die gekaufte Firma bleibt rechtlich selbstständig, wird aber von der Sachs-IT geleitet → Konzern (концерн). Bei einer Fusion würde sie verschwinden."
+  },
+  {
+   "nr": 21,
+   "thema": "Organisation: Leitungssysteme",
+   "text": "Das Schema zeigt das Leitungssystem der Sachs-IT GmbH: Unter der Leitung stehen waagerecht die Bereiche Einkauf, Produktion und Absatz. Senkrecht dazu stehen die Bereiche PC, Netz und Software. Die Linien kreuzen sich wie in einem Gitter.",
+   "frage": "Nach welchem der folgenden Leitungssysteme arbeitet die Sachs-IT GmbH?",
+   "typ": "eine",
+   "optionen": [
+    "Einliniensystem",
+    "Matrixsystem",
+    "Mehrliniensystem",
+    "Stabliniensystem",
+    "Abteilungssystem"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Zwei Dimensionen kreuzen sich (Funktionen × Produkte) wie ein Gitter → Matrixorganisation (матричная структура)."
+  },
+  {
+   "nr": 22,
+   "thema": "Globalisierung",
+   "text": "Die Sachs-IT GmbH kauft Waren, die in weltweiter Arbeitsteilung hergestellt werden.",
+   "frage": "Welche der folgenden Auswirkungen hat die weltweite Arbeitsteilung?",
+   "typ": "eine",
+   "optionen": [
+    "Die Produktion erfolgt jeweils in den Ländern mit den ökologisch besten Standards.",
+    "Durch Nutzung der jeweils wirtschaftlich günstigsten Rohstoff- und Produktionsbedingungen nimmt die Menge der transportierten Waren weltweit zu.",
+    "Aufgrund internationaler Vereinbarungen müssen die Unternehmen in allen Ländern die gleichen hohen sozialen und ökologischen Standards einhalten.",
+    "Die Volkswirtschaften der Länder spezialisieren sich nicht auf bestimmte Produktionen.",
+    "Auf dem weltweiten Arbeitsmarkt herrscht eine allgemeine Arbeitnehmerfreizügigkeit."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Man produziert dort, wo es am billigsten ist → mehr Transport (больше перевозок) weltweit. Länder spezialisieren sich."
+  },
+  {
+   "nr": 23,
+   "thema": "Sicherheitszeichen",
+   "text": "Herr Petry wird von der Sicherheitsfachkraft der Sachs-IT GmbH über Schutzmaßnahmen am Arbeitsplatz informiert. Dabei legt die Sicherheitsfachkraft Wert darauf, dass die Sicherheitskennzeichen bekannt sind. (Im Original Bilder; hier beschrieben.)",
+   "frage": "Welche der folgenden Sicherheitskennzeichen sind den danebenstehenden Bedeutungen zuzuordnen?",
+   "typ": "zuordnung",
+   "otitel": "Sicherheitskennzeichen",
+   "optionen": [
+    "Rotes Quadrat: Hand drückt Knopf, Flammen",
+    "Gelbes Dreieck: Flamme über einem Strich",
+    "Gelbes Dreieck: Blitz",
+    "Verbotskreis: Hand und Person",
+    "Grünes Quadrat: weißer Pfeil nach rechts",
+    "Verbotskreis: Hand mit Blitz",
+    "Grünes Quadrat: Personengruppe, Pfeile zur Mitte"
+   ],
+   "zeilen": {
+    "a": "Warnung vor feuergefährlichen Stoffen",
+    "b": "Gehäuse unter Spannung, nicht berühren",
+    "c": "Manueller Brandmelder",
+    "d": "Richtungsangabe Rettungsweg"
+   },
+   "soll": {
+    "a": 2,
+    "b": 6,
+    "c": 1,
+    "d": 5
+   },
+   "erkl": "a) Gelbes Dreieck mit Flamme = Warnung vor feuergefährlichen Stoffen. b) Verbot „Berühren — Gehäuse unter Spannung“ (Hand + Blitz). c) Roter Brandmelder (Handfeuermelder). d) Grüner Pfeil = Rettungsweg (путь эвакуации)."
+  },
+  {
+   "nr": 24,
+   "thema": "Unfallverhütungsvorschriften",
+   "text": "Die Mitarbeitenden der Sachs-IT GmbH müssen die Vorschriften zu Unfallverhütung und zum Arbeits- und zum Gesundheitsschutz am Arbeitsplatz kennen und einhalten.",
+   "frage": "Welche der folgenden Aussagen trifft auf die Informationspflicht über Unfallverhütungsvorschriften zu? Die Sachs-IT GmbH muss …",
+   "typ": "eine",
+   "optionen": [
+    "ihre Mitarbeiter schriftlich informieren, dass an den Arbeitsplätzen Unfallverhütungsvorschriften einzuhalten sind, die sie bei der zuständigen Berufsgenossenschaft einsehen können.",
+    "ihre Mitarbeiter zu Beginn ihrer Tätigkeit einmal mündlich, z. B. im Vorstellungsgespräch, über die einzuhaltenden Unfallverhütungsvorschriften informieren.",
+    "die Unfallverhütungsvorschriften im Intranet bereitstellen, sodass alle Mitarbeiter diese jederzeit einsehen und downloaden können.",
+    "die Unfallverhütungsvorschriften im Betrieb gut sichtbar aushängen.",
+    "jeden neuen Mitarbeiter zu einer Informationsveranstaltung über Arbeitssicherheit und Gesundheitsschutz bei der zuständigen Berufsgenossenschaft anmelden."
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Unfallverhütungsvorschriften (правила предотвращения несчастных случаев) müssen im Betrieb an gut sichtbarer Stelle zugänglich sein — laut IHK: aushängen."
+  },
+  {
+   "nr": 25,
+   "thema": "Brandschutz",
+   "text": "Herrn Petry liegen Piktogramme vor, die das Löschen mithilfe von Feuerlöschgeräten zum Thema haben. Eine Kollegin meint, dass eins der Piktogramme ein unzutreffendes Verhalten darstellt.",
+   "frage": "Welches der folgenden Piktogramme stellt unzutreffendes Verhalten im Löschfall dar?",
+   "typ": "eine",
+   "optionen": [
+    "Brandstelle beobachten, auf Wiederentzündung warten, NICHT einfach weggehen",
+    "Möglichst viele Feuerlöscher gleichzeitig benutzen, NICHT hintereinander",
+    "Tropf- und Fließbrände von unten bekämpfen, NIE von oben löschen",
+    "Von unten und von vorn nach hinten löschen, NICHT andersherum",
+    "Immer in Windrichtung löschen, NICHT gegen den Wind"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Tropf- und Fließbrände löscht man von oben nach unten (сверху вниз). Flächenbrände von vorn nach hinten, mit dem Wind, mehrere Löscher gleichzeitig."
+  },
+  {
+   "nr": 26,
+   "thema": "Feuerlöscher",
+   "text": "Zur Brandbekämpfung verwendet die Sachs-IT GmbH u. a. Feuerlöscher. Herr Petry weist die Auszubildenden in die Handhabung der Feuerlöscher mit Dauerdruck ein.",
+   "frage": "Bringen Sie die folgenden Schritte zur Bedienung eines Feuerlöschers in die richtige Reihenfolge.",
+   "typ": "reihenfolge",
+   "zeilen": {
+    "a": "Sicherungsstift/Sicherungslasche ziehen",
+    "b": "Feuerlöscher aus der Wandhalterung entnehmen",
+    "c": "Betätigungshebel ziehen/Betätigungstaste drücken",
+    "d": "Schlauch in Richtung Feuer halten",
+    "e": "Zum Feuerlöschgerät laufen"
+   },
+   "soll": {
+    "a": 3,
+    "b": 2,
+    "c": 4,
+    "d": 5,
+    "e": 1
+   },
+   "erkl": "Laut IHK-Lösung: e → b → a → c → d. Zum Löscher laufen, aus der Halterung nehmen, Sicherungsstift ziehen, Betätigungshebel drücken (рычаг), Schlauch auf das Feuer richten."
+  },
+  {
+   "nr": 27,
+   "thema": "Umweltschutz",
+   "text": "Im Rahmen des Umweltschutzes soll künftig stärker das Verursacherprinzip berücksichtigt werden.",
+   "frage": "Welche der folgenden Aussagen zum Verursacherprinzip trifft zu? Das Verursacherprinzip bedeutet, dass …",
+   "typ": "eine",
+   "optionen": [
+    "die Kosten für die Beseitigung von Umweltschäden auf alle Mitglieder der Solidargemeinschaft gleichmäßig aufgeteilt werden.",
+    "die Kosten für die Beseitigung von Umweltschäden diejenigen tragen, die für die Schäden verantwortlich sind.",
+    "möglichst solche Waren vertrieben werden sollen, deren Verpackung vom Konsumenten leicht fachgerecht entsorgt werden kann.",
+    "die Abfallentsorgung wichtiger ist als die Abfallvermeidung.",
+    "ausreichend Verpackungsmaterial eingesetzt wird, damit die Ware nicht beschädigt wird."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Verursacherprinzip (принцип «загрязнитель платит»): Wer den Schaden macht, zahlt."
+  },
+  {
+   "nr": 28,
+   "thema": "Recycling",
+   "text": "Zweck des Kreislaufwirtschaftsgesetzes ist es unter anderem, das Recycling von Abfällen zu fördern.",
+   "frage": "Welche der folgenden Handlungen im Betriebsablauf der Sachs-IT GmbH wird als Recycling bezeichnet?",
+   "typ": "eine",
+   "optionen": [
+    "Die Sachs-IT GmbH verwendet für Verpackungen bei Briefen und Paketen nur Materialien mit dem Umweltsiegel.",
+    "In den Waschräumen werden Papierhandtücher bereitgelegt, die besonders hygienisch sind.",
+    "Anfallende Verpackungen werden erst nach Materialien getrennt und dann dem Dualen System zugeführt.",
+    "Durch den Einbau von Öko-Toiletten-Spülungen wird wertvolles Trinkwasser gespart.",
+    "In der Kantine werden nur Lebensmittel aus biologischer Erzeugung verwendet."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Recycling (переработка): Abfall trennen und als Rohstoff wiederverwerten, z. B. über das Duale System (gelbe Tonne)."
+  },
+  {
+   "nr": 29,
+   "thema": "Diversity",
+   "text": "Die Sachs-IT GmbH möchte ihr „Diversity Management“ neu bewerten und überlegt, der 2006 ins Leben gerufenen „Charta der Vielfalt“ beizutreten. Hierbei handelt es sich um eine Selbstverpflichtung von Unternehmen und anderen Organisationen, ein möglichst vorurteilsfreies Arbeitsumfeld zu schaffen.",
+   "frage": "Welcher der folgenden Punkte wird in der Charta <b>nicht</b> berücksichtigt?",
+   "typ": "eine",
+   "optionen": [
+    "Alter",
+    "Religion",
+    "Sexuelle Orientierung/Identität",
+    "Ausbildungsstand/Art des Abschlusses",
+    "Nationalität/ethnische Herkunft"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Die Charta der Vielfalt nennt u. a. Alter, Geschlecht, Herkunft, Religion, Behinderung, sexuelle Orientierung, soziale Herkunft. Der Ausbildungsstand (уровень образования) ist ein sachliches Kriterium."
+  },
+  {
+   "nr": 30,
+   "thema": "Diversity",
+   "text": "Ihr Kollege möchte sich näher mit dem Thema beschäftigen und fragt Sie, was das Ziel des Diversity Managements ist.",
+   "frage": "Welche der folgenden Antworten geben Sie ihm? Diversity Management …",
+   "typ": "eine",
+   "optionen": [
+    "ist ein klassischer Teil des Personalwesens und soll die bestehenden Vorurteile bei Kunden ausnutzen.",
+    "zielt auf eine Gewinnmaximierung durch Personaleinsparung ab.",
+    "umfasst alle Strategien, die es erlauben, Ungleiches gleich und Gleiches ungleich zu behandeln.",
+    "soll helfen, dass Humankapital der Belegschaft dem Management zur Verfügung zu stellen.",
+    "will die in der Vielfalt der Belegschaft liegenden Potenziale für das Unternehmen nutzbar machen."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Diversity Management (управление многообразием): Die Vielfalt der Mitarbeitenden ist eine Stärke, die das Unternehmen nutzen soll."
+  }
+ ]
+}

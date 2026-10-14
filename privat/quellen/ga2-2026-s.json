@@ -1,0 +1,221 @@
+{
+ "id": "ga2-2026-s",
+ "bereich": "ga2",
+ "termin": "Sommer 2026",
+ "kurz": "GA2 S26",
+ "minuten": 90,
+ "schluessel": "inoffizieller Lösungsvorschlag (keine ZPA-Lösungshinweise), fachlich nachgeprüft; Lücken mit eigener Musterlösung ergänzt",
+ "situation": "<p>Ein landwirtschaftlicher Betrieb in Mecklenburg ist im Bereich der Produktion von Getreide, Ölfrüchten sowie Tierhaltung tätig. In vielen Bereichen des Betriebs werden IT-gestützte Verfahren verwendet, die aber nicht mehr auf dem aktuellen Stand sind. Daher soll in einem Projekt die Digitalisierung des Betriebs modernisiert werden. Sie arbeiten im Team des Systemhauses AMAG AG mit, das den Betrieb in diesem Projekt unterstützt.</p>",
+ "beleg": [
+  {
+   "id": "akt",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s26-beleg-akt\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"s26-beleg-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s26-ga2-3a": {
+   "seite": "s26/ga2-07",
+   "box": [
+    0.06,
+    0.135,
+    0.745,
+    0.192
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Algorithmen: Kuhdaten erzeugen, Durchschnittsleistung",
+   "punkte": 30,
+   "themen": [
+    "Algorithmen"
+   ],
+   "text": "<p>Das Systemhaus AMAG AG soll Methoden zur Weiterverarbeitung der Milchproduktionsdaten entwickeln.</p>",
+   "anlagen": [
+    {
+     "titel": "Klassen ProdData, KuhData, List&lt;T&gt;, Date und Beispieldaten",
+     "html": "<p>Das Systemhaus AMAG AG soll Methoden zur Weiterverarbeitung der Milchproduktionsdaten entwickeln.</p><table><tr><th colspan=\"3\">List&lt;ProdData&gt;</th></tr><tr><th>date</th><th>name</th><th>leistung</th></tr><tr><td>…</td><td>…</td><td>…</td></tr><tr><td>2026-04-12</td><td>Winnie</td><td>45.6</td></tr><tr><td>2026-04-12</td><td>Elsi</td><td>39.4</td></tr><tr><td>2026-04-12</td><td>Rosi</td><td>49.8</td></tr><tr><td>…</td><td>…</td><td>…</td></tr><tr><td>2026-04-13</td><td>Winnie</td><td>42.1</td></tr><tr><td>2026-04-13</td><td>Elsi</td><td>40.2</td></tr><tr><td>…</td><td>…</td><td>…</td></tr></table><p>→</p><table><tr><th colspan=\"2\">List&lt;KuhData&gt;</th></tr><tr><th>name</th><th>avgLeistung</th></tr><tr><td>Winnie</td><td>44.17</td></tr><tr><td>Elsi</td><td>38.0</td></tr><tr><td>Rosi</td><td>47.83</td></tr><tr><td>…</td><td>…</td></tr></table><table><tr><th>ProdData</th></tr><tr><td>- date : Date<br>- name : String<br>- leistung : double</td></tr><tr><td>…</td></tr></table><table><tr><th>KuhData</th></tr><tr><td>- name : String<br>- avgLeistung : double</td></tr><tr><td>+ KuhData(name : String, avgLeistung : double)<br>…</td></tr></table><p>Die Produktionsdaten liegen als Objekte der Klasse <b>ProdData</b> in einer Liste <b>List&lt;ProdData&gt;</b> vor. ProdData-Objekte haben als Attribute das Tagesdatum <code>date</code>, den <b>eindeutigen</b> Kuhnamen <code>name</code> und die Milch-Tagesleistung <code>leistung</code>.</p><p>Benötigt wird eine Liste <b>List&lt;KuhData&gt;</b>, die für jede Kuh ein Objekt der Klasse <b>KuhData</b> mit den Attributen <code>name</code> und der Durchschnittsleistung <code>avgLeistung</code> für einen frei wählbaren Zeitraum enthält.</p><p>Gehen Sie davon aus, dass für alle Attribute in den jeweiligen Klassen Getter und Setter vorhanden sind.</p><p>Für Listen stehen folgende Methoden zur Verfügung.</p><table><tr><th>List&lt;T&gt;</th></tr><tr><td></td></tr><tr><td>+ add(t : T) : void<br>+ size() : Integer<br>+ get(i : Integer) : T<br>+ contains(t : T) : Boolean</td></tr></table><ul><li>Mit der <b>add</b>-Methode wird ein Objekt ans Ende der Liste hinzugefügt.</li><li>Die <b>size</b>-Methode liefert die Anzahl der in der Liste vorhandenen Objekte.</li><li>Die <b>get</b>-Methode gibt das Objekt an der Position i zurück.</li><li>Die <b>contains</b>-Methode gibt true zurück, wenn die Liste ein namensgleiches Objekt enthält.</li></ul><p>Die Klasse Date enthält eine Methode <b>date.between(start, ende)</b>. Sie liefert</p><ul><li>true, wenn date im Datumsbereich zwischen start und ende liegt und</li><li>false, wenn date <b>nicht</b> im Datumsbereich zwischen start und ende liegt.</li></ul><p>Hinweis: <code>String</code>-Werte können mit „==“ verglichen werden.</p>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 12,
+     "eingabe": "code",
+     "text": "<p>Die Klassen, Listen und Beispieldaten stehen in der Anlage.</p><p>Die Aufgabe soll in zwei Schritten a und b erledigt werden.</p><table><tr><th colspan=\"3\">List&lt;ProdData&gt;</th></tr><tr><th>date</th><th>name</th><th>leistung</th></tr><tr><td>…</td><td>…</td><td>…</td></tr><tr><td>2026-04-12</td><td>Winnie</td><td>45.6</td></tr><tr><td>2026-04-12</td><td>Elsi</td><td>39.4</td></tr><tr><td>2026-04-12</td><td>Rosi</td><td>49.8</td></tr><tr><td>…</td><td>…</td><td>…</td></tr><tr><td>2026-04-13</td><td>Winnie</td><td>42.1</td></tr><tr><td>2026-04-13</td><td>Elsi</td><td>40.2</td></tr><tr><td>…</td><td>…</td><td>…</td></tr></table><p>→</p><table><tr><th colspan=\"2\">List&lt;KuhData&gt;</th></tr><tr><th>name</th><th>avgLeistung</th></tr><tr><td>Winnie</td><td>0.0</td></tr><tr><td>Elsi</td><td>0.0</td></tr><tr><td>Rosi</td><td>0.0</td></tr><tr><td>…</td><td>…</td></tr></table><p><b>Entwickeln Sie eine Methode erzeugeKuhData, die für jede Kuh ein Objekt der Klasse KuhData erzeugt, der Liste List&lt;KuhData&gt; hinzufügt und diese Liste abschließend zurückgibt. Die Durchschnittsleistungen <code>avgLeistung</code> sollen zunächst mit 0.0 vorinitialisiert werden.</b></p><p>Hinweis: Die Berechnung der Durchschnittsleistungen erfolgt erst in Teilaufgabe b.</p><pre>List&lt;KuhData&gt; erzeugeKuhData(List&lt;ProdData&gt; prodData) {\n  List&lt;KuhData&gt; kuhData = new List&lt;KuhData&gt;()\n\n  …\n\n  return kuhData\n}</pre>",
+     "loesung": "<pre>List&lt;KuhData&gt; erzeugeKuhData(List&lt;ProdData&gt; prodData) {\n    List&lt;KuhData&gt; kuhData = new List&lt;KuhData&gt;();\n\n    for (int i = 0; i &lt; prodData.size(); i++) {\n        ProdData p = prodData.get(i);\n        KuhData kuh = new KuhData(p.getName(), 0.0);\n\n        if (!kuhData.contains(kuh)) {\n            kuhData.add(kuh);\n        }\n    }\n    return kuhData;\n}</pre>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Wichtige Bausteine: Schleife über prodData, je Datensatz ein KuhData-Objekt mit Name und 0.0 erzeugen, mit contains prüfen, ob die Kuh schon in der Liste ist, nur dann add, Rückgabe der Liste."
+    },
+    {
+     "nr": "b",
+     "punkte": 18,
+     "eingabe": "code",
+     "text": "<p><i>Teilaufgabe a): Entwickeln Sie eine Methode erzeugeKuhData, die für jede Kuh ein Objekt der Klasse KuhData erzeugt, der Liste List&lt;KuhData&gt; hinzufügt und diese Liste abschließend zurückgibt. Die Durchschnittsleistungen avgLeistung sollen zunächst mit 0.0 vorinitialisiert werden.</i></p><table><tr><th colspan=\"2\">List&lt;KuhData&gt;</th></tr><tr><th>name</th><th>avgLeistung</th></tr><tr><td>Winnie</td><td>0.0</td></tr><tr><td>Elsi</td><td>0.0</td></tr><tr><td>Rosi</td><td>0.0</td></tr><tr><td>…</td><td>…</td></tr></table><p>→</p><table><tr><th colspan=\"2\">List&lt;KuhData&gt;</th></tr><tr><th>name</th><th>avgLeistung</th></tr><tr><td>Winnie</td><td>44.17</td></tr><tr><td>Elsi</td><td>38.0</td></tr><tr><td>Rosi</td><td>47.83</td></tr><tr><td>…</td><td>…</td></tr></table><p>Eine Methode <code>calcAvgLeistung</code> soll die Durchschnittsleistungen je Kuh berechnen, die mit 0.0 vorinitialisierten Werte damit überschreiben und die geänderte Liste zurückgeben.</p><p>Gehen Sie davon aus, dass die Methode <code>erzeugeKuhData</code> aus Aufgabe a vorliegt.</p><p><b>Entwickeln Sie die Methode calcAvgLeistung. Der gewünschte Zeitraum wird in start und ende übergeben.</b></p><pre>List&lt;KuhData&gt; calcAvgLeistung(List&lt;ProdData&gt; prodData, Date start, Date ende) {\n  List&lt;KuhData&gt; kuhData = erzeugeKuhData(prodData)\n\n  …\n\n  return kuhData\n}</pre>",
+     "loesung": "<pre>List&lt;KuhData&gt; calcAvgLeistung(List&lt;ProdData&gt; prodData, Date start, Date ende) {\n    List&lt;KuhData&gt; kuhData = erzeugeKuhData(prodData);\n\n    for (int i = 0; i &lt; kuhData.size(); i++) {\n        double summe = 0.0;\n        int anzahl = 0;\n\n        for (int j = 0; j &lt; prodData.size(); j++) {\n            ProdData p = prodData.get(j);\n            if (p.getDate().between(start, ende)\n                    &amp;&amp; p.getName() == kuhData.get(i).getName()) {\n                summe = summe + p.getLeistung();\n                anzahl = anzahl + 1;\n            }\n        }\n\n        if (anzahl &gt; 0) {\n            kuhData.get(i).setAvgLeistung(summe / anzahl);\n        }\n    }\n    return kuhData;\n}</pre>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Wichtige Bausteine: äußere Schleife über kuhData, Summe und Anzahl je Kuh auf 0 setzen, innere Schleife über prodData, Bedingung Zeitraum (between) und gleicher Name, Summe und Anzahl erhöhen, Durchschnitt nur bei Anzahl > 0 berechnen und mit setAvgLeistung setzen, Rückgabe der Liste."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Klassendiagramm Aufgabenplanung, Polymorphie",
+   "punkte": 20,
+   "themen": [
+    "UML",
+    "Programmierung/OOP"
+   ],
+   "text": "<p>Im Betrieb soll zur Unterstützung der Aufgabenplanung ein Programm entwickelt werden. Der Entwurf soll objektorientiert erfolgen und Sie arbeiten bei der Entwicklung von Klassendiagramm und Quelltext mit.</p>",
+   "anlagen": [
+    {
+     "titel": "Beschreibung der Klassen (Aufgabenplanung)",
+     "html": "<p>Im Betrieb soll zur Unterstützung der Aufgabenplanung ein Programm entwickelt werden.<br>Der Entwurf soll objektorientiert erfolgen und Sie arbeiten bei der Entwicklung von Klassendiagramm und Quelltext mit.<br>In der Diskussion wurden folgende Klassen identifiziert:</p><p>Es gibt eine allgemeine Klasse <code><b>Aufgabe</b></code> und Klassen für spezielle Aufgaben, wie:</p><ul><li><code><b>AufgabeFixTermin</b></code></li><li><code><b>AufgabeWetterabhängig</b></code></li></ul><p>Es soll bereits jetzt vorgesehen werden, dass später Klassen für weitere Aufgabenarten einfach hinzugefügt werden können.</p><p>Attribute der Klasse <code><b>Aufgabe</b></code>:</p><ul><li>Die Beschreibung der Aufgabe, z. B. „Dünger ausfahren“, wird als Text gespeichert.</li><li>Wie viele Mitarbeiter für die Aufgabe benötigt werden wird als ganze Zahl hinterlegt.</li></ul><p>Bei Aufgaben mit festem Termin ist dieses Datum im Attribut <code><b>termin</b></code> zu speichern.<br>Bei Aufgaben mit Wettervoraussetzung ist die Art der Wettervoraussetzung zu erfassen (z. B. sonnig, trocken, Regen erwartet, …).<br>Der Datentyp <code><b>Wetter</b></code> soll hierzu verwendet werden.</p><p>Methoden der Klassen für Aufgaben:</p><ul><li><code><b>aufgabeBeschreiben:</b></code> Gibt einen String mit dem Aufgabentext und der Anzahl benötigter Mitarbeiter zurück.</li><li><code><b>heuteAusführbar:</b></code> Prüft, ob zum Aufrufzeitpunkt die Voraussetzungen zum Ausführen erfüllt sind (Wettervoraussetzung erfüllt, oder heute ist gleich dem festen Termin). Später im Programm soll automatisch die zur Klasse passende Methode <code><b>heuteAusführbar</b></code> aufgerufen werden.</li></ul><p>Die Klasse <code><b>AufgabenContainer</b></code> beinhaltet die Verwaltung der Aufgaben.<br>Attribut: <b>List&lt;Aufgabe&gt; aufgaben</b><br>Methoden:</p><ul><li><code><b>aufgabeHinzufügen:</b></code> Fügt eine Aufgabe (Objekt der Klasse <code><b>Aufgabe</b></code>) hinzu.</li><li><code><b>aufgabenHeute:</b></code> Gibt eine Liste der heute ausführbaren Aufgaben zurück.</li></ul>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 12,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Die Beschreibung der Klassen steht in der Anlage.</p><ul><li><b>Zeichnen Sie ein Klassendiagramm mit den Klassen <code>AufgabenContainer</code>, <code>Aufgabe</code>, <code>AufgabeFixTermin</code>, <code>AufgabeWetterabhängig</code>.</b></li><li><b>Tragen Sie bei jeder Klasse die benötigten Eigenschaften und Methoden mit vollständiger Signatur ein, um die beschriebenen Anforderungen zu erfüllen.</b></li><li><b>Kennzeichnen Sie die Sichtbarkeiten der Eigenschaften und Methoden.</b></li><li><b>Zeichnen Sie die Beziehungen zwischen den Klassen ein. Kardinalitäten sind nicht einzutragen.</b></li></ul>",
+     "loesung": "<pre>AufgabenContainer\n- aufgaben : List&lt;Aufgabe&gt;\n+ aufgabeHinzufuegen(aufgabe : Aufgabe) : void\n+ aufgabenHeute() : List&lt;Aufgabe&gt;\n\nAufgabe (abstrakt)\n- beschreibung : String\n- anzahlMitarbeiter : int\n+ aufgabeBeschreiben() : String\n+ heuteAusfuehrbar() : Boolean\n\nAufgabeFixTermin erbt von Aufgabe\n- termin : Date\n+ heuteAusfuehrbar() : Boolean\n\nAufgabeWetterabhaengig erbt von Aufgabe\n- wetterVoraussetzung : Wetter\n+ heuteAusfuehrbar() : Boolean\n\nBeziehungen:\nAufgabenContainer verwaltet 0..* Aufgabe-Objekte.\nAufgabeFixTermin und AufgabeWetterabhaengig generalisieren/spezialisieren Aufgabe.</pre><p><i>Anmerkung: Im Lösungsvorschlag ist das Klassendiagramm nur als Text angegeben. Gezeichnet bedeutet das: Vererbungspfeile (leere Dreiecksspitze) von AufgabeFixTermin und von AufgabeWetterabhängig zu Aufgabe; zwischen AufgabenContainer und Aufgabe eine Aggregation (leere Raute bei AufgabenContainer) bzw. Assoziation. Kardinalitäten wie „0..*“ verlangt die Aufgabe ausdrücklich nicht. Da Aufgabe abstrakt ist, wird heuteAusführbar() dort sinnvoll als abstrakte Methode (kursiv) angegeben und in den Unterklassen überschrieben.</i></p>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Zähle: vier Klassen mit Attributen und Methoden mit vollständiger Signatur, Sichtbarkeiten, abstrakte Oberklasse Aufgabe, Vererbung der beiden Unterklassen, Beziehung AufgabenContainer – Aufgabe."
+    },
+    {
+     "nr": "ba",
+     "punkte": 4,
+     "eingabe": "code",
+     "text": "<p>Die Beschreibung der Klassen steht in der Anlage.</p><p>b) Die Klasse <code><b>AufgabenContainer</b></code> enthält die Methode <code><b>aufgabenHeute</b></code>, die eine Liste der Aufgaben, die heute ausgeführt werden können, zurückgibt.</p><p><b>ba) Erstellen Sie im Pseudocode die Methode <code>List&lt;Aufgabe&gt; aufgabenHeute()</code></b></p><p>Hinweis: Mit der Methode <code><b>heuteAusführbar</b></code> kann geprüft werden, ob eine Aufgabe heute ausführbar ist.</p>",
+     "loesung": "<pre>List&lt;Aufgabe&gt; aufgabenHeute() {\n    List&lt;Aufgabe&gt; liste = new List&lt;Aufgabe&gt;();\n\n    for (int i = 0; i &lt; aufgaben.size(); i++) {\n        Aufgabe a = aufgaben.get(i);\n        if (a.heuteAusfuehrbar()) {\n            liste.add(a);\n        }\n    }\n    return liste;\n}</pre>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Bausteine: neue Ergebnisliste, Schleife über aufgaben, Aufruf heuteAusführbar(), add, Rückgabe der Liste."
+    },
+    {
+     "nr": "bb",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Die Beschreibung der Klassen steht in der Anlage.</p><p>b) Die Klasse <code><b>AufgabenContainer</b></code> enthält die Methode <code><b>aufgabenHeute</b></code>, die eine Liste der Aufgaben, die heute ausgeführt werden können, zurückgibt.</p><p>bb) Die Methode <code><b>aufgabenHeute</b></code> der Klasse <code><b>AufgabenContainer</b></code> ruft intern die Methode <code><b>heuteAusführbar</b></code> der verschiedenen Aufgaben-Klassen auf. In diesem Kontext ist es so, dass erst zur Laufzeit entschieden wird, welche Methode konkret ausgeführt wird.</p><p><b>Nennen und erklären Sie den Mechanismus, der dies bewirken kann.</b></p>",
+     "loesung": "<p>Der gesuchte Mechanismus ist Polymorphie mit dynamischer Bindung. Obwohl die Liste den Typ Aufgabe enthält, wird zur Laufzeit anhand des tatsächlichen Objekttyps die passende überschriebene Methode heuteAusfuehrbar ausgeführt.</p>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Gefordert sind Nennen (Polymorphie / dynamische Bindung) und Erklären."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Relationales Datenmodell, Speicherbedarf",
+   "punkte": 25,
+   "themen": [
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 20,
+     "eingabe": "zeichnen",
+     "text": "<p>a) Die Daten für die Verwaltung und Bearbeitung der Felder sollen in einer relationalen Datenbank gespeichert werden. Es liegen Ihnen ein ER-Modell und Informationen aus einer Ist-Analyse vor, welche für die Erstellung des relationalen Datenmodells die Grundlage bilden.</p><p>ER-Modell:</p><img data-bild=\"s26-ga2-3a\"><p>(Feld <i>n</i> — besitzt — <i>1</i> Bodentyp; Bodentyp <i>m</i> — optimal für — <i>n</i> Feldfrucht)</p><p>Informationen aus der Ist-Analyse:</p><ul><li>Beim Anbau von Feldfrüchten auf einzelnen Feldern werden unterschiedliche Bearbeitungsschritte durchgeführt. Für jeden Bearbeitungsschritt sollen das betreffende Feld, die angebaute Feldfrucht sowie der Zeitraum (von/bis) erfasst werden.</li><li>Außerdem kann jedem Bearbeitungsschritt genau eine Tätigkeit wie z.B. Aussaat, Ernte oder ähnliches zugeordnet werden.</li><li>Zu jeder Tätigkeit gibt es eine Beschreibung</li></ul><p><b>Überführen Sie das gegebene ER-Modell in ein relationales Datenbankmodell in der 3. Normalform und erweitern Sie es anhand der Informationen aus der Ist-Analyse. Übernehmen Sie alle in der Ist-Analyse genannten Attribute in das Modell und bestimmen Sie für jede Tabelle einen Primärschlüssel (PK). Bilden Sie alle Beziehungen zwischen den Tabellen unter Angabe der jeweiligen Kardinalitäten ab und tragen Sie die dafür notwendigen Fremdschlüssel (FK) in die Tabellen ein.</b></p>",
+     "loesung": "<table><tr><th>Tabelle</th><th>Attribute</th></tr><tr><td>Bodentyp</td><td>BodentypID (PK), Bezeichnung</td></tr><tr><td>Feld</td><td>FeldID (PK), BodentypID (FK), weitere Felddaten</td></tr><tr><td>Feldfrucht</td><td>FeldfruchtID (PK), Bezeichnung</td></tr><tr><td>Bodentyp_Feldfrucht</td><td>BodentypID (PK/FK), FeldfruchtID (PK/FK)</td></tr><tr><td>Taetigkeit</td><td>TaetigkeitID (PK), Beschreibung</td></tr><tr><td>Bearbeitungsschritt</td><td>BearbeitungID (PK), FeldID (FK), FeldfruchtID (FK), TaetigkeitID (FK), ZeitraumVon, ZeitraumBis</td></tr></table><hr><p><i>Eigene Musterlösung — im Lösungsheft nicht enthalten.</i></p><p>Die Aufgabe verlangt auch die Beziehungen mit Kardinalitäten. Zum Modell oben gehören:</p><ul><li>Bodentyp 1 : n Feld (Fremdschlüssel BodentypID in Feld)</li><li>Bodentyp 1 : n Bodentyp_Feldfrucht und Feldfrucht 1 : n Bodentyp_Feldfrucht — die Zwischentabelle löst die m:n-Beziehung „optimal für“ auf</li><li>Feld 1 : n Bearbeitungsschritt (FK FeldID)</li><li>Feldfrucht 1 : n Bearbeitungsschritt (FK FeldfruchtID)</li><li>Taetigkeit 1 : n Bearbeitungsschritt (FK TaetigkeitID; jeder Bearbeitungsschritt hat genau eine Tätigkeit)</li></ul>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Zähle: alle Tabellen mit den Attributen aus der Ist-Analyse, je Tabelle ein PK, alle FKs (Zwischentabelle mit zusammengesetztem PK), alle Beziehungen mit Kardinalitäten."
+    },
+    {
+     "nr": "b",
+     "punkte": 5,
+     "eingabe": "frei",
+     "text": "<p>b) Für die Ermittlung des Zustands der einzelnen Felder werden Bilder genutzt, die von autonomen Drohnen aufgenommen und anschließend durch eine KI analysiert werden. Die Drohnen fliegen einmal wöchentlich über die Felder und erfassen pro Flug 500 Bilder im unkomprimierten „Raw“-Format. Die Kameras liefern die Bilder mit einer Auflösung von 50 Megapixeln und einer Farbtiefe von 24 Bit.</p><p><b>Berechnen Sie den benötigten Speicherbedarf in TiB, welcher für die Bilder innerhalb eines Jahres (52 Wochen) anfällt. Runden Sie das Ergebnis auf zwei Stellen nach dem Komma. Der Rechenweg ist anzugeben.</b></p>",
+     "loesung": "<p>Speicherbedarf: 50.000.000 Pixel x 24 Bit = 1.200.000.000 Bit = 150.000.000 Byte je Bild. 500 Bilder x 52 Wochen = 26.000 Bilder. 26.000 x 150.000.000 Byte = 3.900.000.000.000 Byte. Umrechnung in TiB: 3.900.000.000.000 / 1024^4 = 3,55 TiB.</p>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Der Rechenweg ist anzugeben; Ergebnis auf zwei Nachkommastellen runden."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: CRUD, Tierbestand, Archivierung",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "C (reate) — DDL / DML",
+       "U (pdate) — DDL / DML",
+       "D (elete) — DDL / DML"
+      ]
+     },
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>a) Stellen Sie den Zusammenhang zwischen den SQL-Befehlen mit den grundlegenden Datenbankoperationen (CRUD) her.</p><p>CRUD-Operationen sind grundlegende Funktionen, die in der Softwareentwicklung und Datenbankverwaltung verwendet werden, um mit Daten zu interagieren. CRUD ist ein Akronym, das für die vier grundlegenden Operationen steht.</p><p><b>Ergänzen Sie die zugehörigen Befehle (weiße Felder):</b></p><table><tr><th>Grundlegende Datenoperationen</th><th>Bedeutung</th><th>DDL Data Definition Language</th><th>DML Data Manipulation Language</th><th>DQL Data Query Language</th></tr><tr><th>C (reate)</th><td>Anlegen, Erstellen</td><td></td><td></td><td><b>X</b></td></tr><tr><th>R (ead)</th><td>Lesen</td><td><b>X</b></td><td><b>X</b></td><td><b>SELECT</b></td></tr><tr><th>U (pdate)</th><td>Aktualisieren</td><td></td><td></td><td><b>X</b></td></tr><tr><th>D (elete)</th><td>Löschen</td><td></td><td></td><td><b>X</b></td></tr></table>",
+     "loesung": "<table><tr><th>CRUD</th><th>DDL</th><th>DML</th><th>DQL</th></tr><tr><td>Create</td><td>CREATE</td><td>INSERT</td><td>-</td></tr><tr><td>Read</td><td>-</td><td>-</td><td>SELECT</td></tr><tr><td>Update</td><td>-</td><td>UPDATE</td><td>-</td></tr><tr><td>Delete</td><td>DROP</td><td>DELETE</td><td>-</td></tr></table><p><i>Anmerkung: Bei Update/DDL steht im Lösungsvorschlag „-“. Das Feld ist im Aufgabenbogen aber ein weißes Ausfüllfeld; fachlich gehört dort <b>ALTER</b> (ALTER TABLE — ändert die Struktur einer Tabelle, siehe Belegsatz) hin. Die Felder mit X im Aufgabenbogen bleiben leer.</i></p>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Es sind 6 weiße Felder auszufüllen (naheliegend je 0,5 Punkte)."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Tierkategorie, Tierbestand, TierZusatzInfo, Archiv_Tierbestand",
+       "html": "<p>Die Datenbank der Tiere soll mit SQL abgefragt werden (Aufgaben b und c)</p><p><b>Tabelle: Tierkategorie</b></p><table><tr><th>TK_ID</th><th>TK_Kategorie</th></tr><tr><td>1</td><td>Kühe</td></tr><tr><td>2</td><td>Schweine</td></tr><tr><td>3</td><td>Hühner</td></tr><tr><td>…</td><td></td></tr></table><p><b>Tabelle: Tierbestand</b></p><table><tr><th>TB_ID</th><th>TB_TKID</th><th>TB_ChipNr</th><th>TB_GebDat</th><th>TB_SchlachtDat</th></tr><tr><td>1001</td><td>2</td><td>S03-333-567</td><td>03.01.2022</td><td>NULL</td></tr><tr><td>1002</td><td>2</td><td>S03-343-566</td><td>05.01.2022</td><td>NULL</td></tr><tr><td>1003</td><td>1</td><td>K77-899988</td><td>12.08.2021</td><td>NULL</td></tr><tr><td>1004</td><td>2</td><td>S12-222-322</td><td>03.11.2024</td><td>NULL</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: TierZusatzInfo</b></p><table><tr><th>TZI_ID</th><th>TZI_TBID</th><th>TZI_ErfasstAm</th><th>TZI_Gewicht</th><th>TZI_Bemerkung</th></tr><tr><td>1</td><td>3</td><td>12.02.2026</td><td>334</td><td>ohne Befund</td></tr><tr><td>2</td><td>1</td><td>12.02.2026</td><td>655</td><td>ohne Befund</td></tr><tr><td>3</td><td>3</td><td>11.03.2026</td><td>342</td><td>schläfrig</td></tr><tr><td>4</td><td>3</td><td>12.04.2026</td><td>344</td><td>ohne Befund</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Archiv_Tierbestand (wird benötigt für Aufgabe 4 c)</b></p><table><tr><th>A_TBID</th><th>A_Tierkategorie</th><th>A_ChipNr</th><th>A_GebDat</th><th>A_SchlachtDat</th><th>A_MaxGewicht</th></tr><tr><td>505</td><td>Schweine</td><td>S02-333-322</td><td>01.04.2020</td><td>01.04.2023</td><td>466</td></tr><tr><td>506</td><td>Schweine</td><td>S02-343-166</td><td>05.05.2021</td><td>01.04.2023</td><td>578</td></tr><tr><td>508</td><td>Kühe</td><td>K55-899777</td><td>05.05.2021</td><td>05.04.2023</td><td>712</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+      }
+     ],
+     "text": "<p><b>b) Erstellen Sie eine SQL-Abfrage mit der Sie eine Auflistung aller Tier-Kategorien mit den nachfolgenden Informationen je Tier-Kategorie über die lebenden Tiere erhalten:</b></p><ul><li>Anzahl des Tierbestandes</li><li>Gewicht des schwersten Tieres</li><li>Alter des ältesten Tieres</li><li>Durchschnittliches Alter</li></ul><p>Ergebnistabelle:</p><table><tr><th>TK_Kategorie</th><th>AnzahlTiere</th><th>SchwerstesTier</th><th>ÄltestesTier</th><th>DurchschnittAlter</th></tr><tr><td>Hühner</td><td>0</td><td>NULL</td><td>NULL</td><td>NULL</td></tr><tr><td>Kühe</td><td>3</td><td>344</td><td>4</td><td>4</td></tr><tr><td>Schweine</td><td>3</td><td>655</td><td>1</td><td>2</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p>Die Tabellen stehen in der Anlage.</p>",
+     "loesung": "<pre>SELECT\n    tk.TK_Kategorie,\n    COUNT(tb.TB_ID) AS AnzahlTiere,\n    MAX(g.MaxGewicht) AS SchwerstesTier,\n    MAX(TIMESTAMPDIFF(YEAR, tb.TB_GebDat, CURRENT_DATE)) AS AeltestesTier,\n    AVG(TIMESTAMPDIFF(YEAR, tb.TB_GebDat, CURRENT_DATE)) AS DurchschnittAlter\nFROM Tierkategorie tk\nLEFT JOIN Tierbestand tb\n    ON tb.TB_TKID = tk.TK_ID\n   AND tb.TB_SchlachtDat IS NULL\nLEFT JOIN (\n    SELECT TZI_TBID, MAX(TZI_Gewicht) AS MaxGewicht\n    FROM TierZusatzInfo\n    GROUP BY TZI_TBID\n) g ON g.TZI_TBID = tb.TB_ID\nGROUP BY tk.TK_ID, tk.TK_Kategorie;</pre><p><i>Anmerkung: TIMESTAMPDIFF(YEAR, …, CURRENT_DATE) ist MySQL-Syntax. Mit den Funktionen aus dem Belegsatz lautet das Alter <code>DATEDIFF(YEAR, tb.TB_GebDat, NOW())</code> — beides ist gleichwertig.</i></p><p><i>Anmerkung zu den Beispieldaten: In TierZusatzInfo stehen bei TZI_TBID die Werte 3 und 1, in Tierbestand heißen die Tiere aber 1003 (Kuh) und 1001 (Schwein) — gemeint sind offenbar diese Tiere (dann passen 344 für Kühe und 655 für Schweine zur Ergebnistabelle). Die Ergebnistabelle ist nur ein Beispiel: Mit den abgebildeten Daten wäre das älteste Schwein 4 Jahre alt (geboren Januar 2022), nicht 1. Die Abfrage selbst ist fachlich richtig (mit korrigierten TZI_TBID-Werten nachgeprüft).</i></p>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Bausteine: LEFT JOIN, damit auch Kategorien ohne lebende Tiere erscheinen (Hühner mit 0), nur lebende Tiere (TB_SchlachtDat IS NULL), COUNT, MAX Gewicht, MAX und AVG Alter, GROUP BY Kategorie. Andere korrekte Lösungen zählen auch."
+    },
+    {
+     "nr": "ca",
+     "punkte": 10,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Tierkategorie, Tierbestand, TierZusatzInfo, Archiv_Tierbestand",
+       "html": "<p>Die Datenbank der Tiere soll mit SQL abgefragt werden (Aufgaben b und c)</p><p><b>Tabelle: Tierkategorie</b></p><table><tr><th>TK_ID</th><th>TK_Kategorie</th></tr><tr><td>1</td><td>Kühe</td></tr><tr><td>2</td><td>Schweine</td></tr><tr><td>3</td><td>Hühner</td></tr><tr><td>…</td><td></td></tr></table><p><b>Tabelle: Tierbestand</b></p><table><tr><th>TB_ID</th><th>TB_TKID</th><th>TB_ChipNr</th><th>TB_GebDat</th><th>TB_SchlachtDat</th></tr><tr><td>1001</td><td>2</td><td>S03-333-567</td><td>03.01.2022</td><td>NULL</td></tr><tr><td>1002</td><td>2</td><td>S03-343-566</td><td>05.01.2022</td><td>NULL</td></tr><tr><td>1003</td><td>1</td><td>K77-899988</td><td>12.08.2021</td><td>NULL</td></tr><tr><td>1004</td><td>2</td><td>S12-222-322</td><td>03.11.2024</td><td>NULL</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: TierZusatzInfo</b></p><table><tr><th>TZI_ID</th><th>TZI_TBID</th><th>TZI_ErfasstAm</th><th>TZI_Gewicht</th><th>TZI_Bemerkung</th></tr><tr><td>1</td><td>3</td><td>12.02.2026</td><td>334</td><td>ohne Befund</td></tr><tr><td>2</td><td>1</td><td>12.02.2026</td><td>655</td><td>ohne Befund</td></tr><tr><td>3</td><td>3</td><td>11.03.2026</td><td>342</td><td>schläfrig</td></tr><tr><td>4</td><td>3</td><td>12.04.2026</td><td>344</td><td>ohne Befund</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Archiv_Tierbestand (wird benötigt für Aufgabe 4 c)</b></p><table><tr><th>A_TBID</th><th>A_Tierkategorie</th><th>A_ChipNr</th><th>A_GebDat</th><th>A_SchlachtDat</th><th>A_MaxGewicht</th></tr><tr><td>505</td><td>Schweine</td><td>S02-333-322</td><td>01.04.2020</td><td>01.04.2023</td><td>466</td></tr><tr><td>506</td><td>Schweine</td><td>S02-343-166</td><td>05.05.2021</td><td>01.04.2023</td><td>578</td></tr><tr><td>508</td><td>Kühe</td><td>K55-899777</td><td>05.05.2021</td><td>05.04.2023</td><td>712</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+      }
+     ],
+     "text": "<p>c) Um die Tabelle Tierbestand nicht unnötig mit nicht mehr benötigten Daten zu belasten wurde eine Archivtabelle erstellt, welche zusätzlich zur Tierbestandtabelle zwei weitere Attribute für die Tierkategorie als Textfeld und für das höchste Gewicht beinhaltet.</p><p><b>ca) Erstellen Sie eine SQL-Anweisung mit der alle Daten der geschlachteten Tiere, der Tierkategorie und dem höchsten gewogenen Gewicht in die Tabelle Archiv_Tierbestand über einen Befehl archiviert werden.</b></p><p>Die Tabellen stehen in der Anlage.</p>",
+     "loesung": "<pre>INSERT INTO Archiv_Tierbestand\n    (A_TBID, A_Tierkategorie, A_ChipNr, A_GebDat, A_SchlachtDat, A_MaxGewicht)\nSELECT\n    tb.TB_ID,\n    tk.TK_Kategorie,\n    tb.TB_ChipNr,\n    tb.TB_GebDat,\n    tb.TB_SchlachtDat,\n    MAX(tzi.TZI_Gewicht)\nFROM Tierbestand tb\nJOIN Tierkategorie tk ON tk.TK_ID = tb.TB_TKID\nLEFT JOIN TierZusatzInfo tzi ON tzi.TZI_TBID = tb.TB_ID\nWHERE tb.TB_SchlachtDat IS NOT NULL\nGROUP BY tb.TB_ID, tk.TK_Kategorie, tb.TB_ChipNr, tb.TB_GebDat, tb.TB_SchlachtDat;</pre>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Bausteine: ein Befehl INSERT INTO … SELECT, Join mit Tierkategorie für den Kategorietext, MAX(TZI_Gewicht) mit GROUP BY, nur geschlachtete Tiere (TB_SchlachtDat IS NOT NULL)."
+    },
+    {
+     "nr": "cb",
+     "punkte": 4,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "anlagen": [
+      {
+       "titel": "Tabellen Tierkategorie, Tierbestand, TierZusatzInfo, Archiv_Tierbestand",
+       "html": "<p>Die Datenbank der Tiere soll mit SQL abgefragt werden (Aufgaben b und c)</p><p><b>Tabelle: Tierkategorie</b></p><table><tr><th>TK_ID</th><th>TK_Kategorie</th></tr><tr><td>1</td><td>Kühe</td></tr><tr><td>2</td><td>Schweine</td></tr><tr><td>3</td><td>Hühner</td></tr><tr><td>…</td><td></td></tr></table><p><b>Tabelle: Tierbestand</b></p><table><tr><th>TB_ID</th><th>TB_TKID</th><th>TB_ChipNr</th><th>TB_GebDat</th><th>TB_SchlachtDat</th></tr><tr><td>1001</td><td>2</td><td>S03-333-567</td><td>03.01.2022</td><td>NULL</td></tr><tr><td>1002</td><td>2</td><td>S03-343-566</td><td>05.01.2022</td><td>NULL</td></tr><tr><td>1003</td><td>1</td><td>K77-899988</td><td>12.08.2021</td><td>NULL</td></tr><tr><td>1004</td><td>2</td><td>S12-222-322</td><td>03.11.2024</td><td>NULL</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: TierZusatzInfo</b></p><table><tr><th>TZI_ID</th><th>TZI_TBID</th><th>TZI_ErfasstAm</th><th>TZI_Gewicht</th><th>TZI_Bemerkung</th></tr><tr><td>1</td><td>3</td><td>12.02.2026</td><td>334</td><td>ohne Befund</td></tr><tr><td>2</td><td>1</td><td>12.02.2026</td><td>655</td><td>ohne Befund</td></tr><tr><td>3</td><td>3</td><td>11.03.2026</td><td>342</td><td>schläfrig</td></tr><tr><td>4</td><td>3</td><td>12.04.2026</td><td>344</td><td>ohne Befund</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table><p><b>Tabelle: Archiv_Tierbestand (wird benötigt für Aufgabe 4 c)</b></p><table><tr><th>A_TBID</th><th>A_Tierkategorie</th><th>A_ChipNr</th><th>A_GebDat</th><th>A_SchlachtDat</th><th>A_MaxGewicht</th></tr><tr><td>505</td><td>Schweine</td><td>S02-333-322</td><td>01.04.2020</td><td>01.04.2023</td><td>466</td></tr><tr><td>506</td><td>Schweine</td><td>S02-343-166</td><td>05.05.2021</td><td>01.04.2023</td><td>578</td></tr><tr><td>508</td><td>Kühe</td><td>K55-899777</td><td>05.05.2021</td><td>05.04.2023</td><td>712</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+      }
+     ],
+     "text": "<p>c) Um die Tabelle Tierbestand nicht unnötig mit nicht mehr benötigten Daten zu belasten wurde eine Archivtabelle erstellt, welche zusätzlich zur Tierbestandtabelle zwei weitere Attribute für die Tierkategorie als Textfeld und für das höchste Gewicht beinhaltet.</p><p><i>Vorher (ca): Erstellen Sie eine SQL-Anweisung mit der alle Daten der geschlachteten Tiere, der Tierkategorie und dem höchsten gewogenen Gewicht in die Tabelle Archiv_Tierbestand über einen Befehl archiviert werden.</i></p><p><b>cb) Danach sollen alle zugehörigen Daten der archivierten Datensätze aus den Tabellen entfernt werden.</b></p><p>Die Tabellen stehen in der Anlage.</p>",
+     "loesung": "<pre>DELETE FROM TierZusatzInfo\nWHERE TZI_TBID IN (\n    SELECT TB_ID FROM Tierbestand WHERE TB_SchlachtDat IS NOT NULL\n);\n\nDELETE FROM Tierbestand\nWHERE TB_SchlachtDat IS NOT NULL;</pre>",
+     "hinweis": "Das Lösungsheft nennt keine Punkteaufteilung. Reihenfolge beachten: zuerst TierZusatzInfo (verweist per Fremdschlüssel auf Tierbestand), danach Tierbestand."
+    }
+   ]
+  }
+ ]
+}

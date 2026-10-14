@@ -67,7 +67,7 @@
       if (!gueltig(e) || ids.get(e.id) > 1) return;
       let s = groups.get(e.topic);
       if (!s) {
-        s = { topic: e.topic, total: 0, independent: 0, assisted: 0, recognition: 0, selfRated: 0, weak: 0, latest: 0, ratio: null, correct: 0, max: 0, tasks: new Map() };
+        s = { topic: e.topic, total: 0, independent: 0, assisted: 0, recognition: 0, selfRated: 0, weak: 0, selfWeak: 0, latest: 0, ratio: null, correct: 0, max: 0, tasks: new Map(), selfTasks: new Map() };
         groups.set(e.topic, s);
       }
       s.total++; s.latest = Math.max(s.latest, e.t || 0);
@@ -79,12 +79,17 @@
         const key = e.source + ":" + e.task, alt = s.tasks.get(key);
         const rang = e.support === "selbst" ? 1 : 0, altRang = alt && alt.support === "selbst" ? 1 : 0;
         if (!alt || rang > altRang || (rang === altRang && (e.t || 0) >= (alt.t || 0))) s.tasks.set(key, e);
+      } else {
+        const key = e.source + ":" + e.task, alt = s.selfTasks.get(key);
+        const rang = e.support === "selbst" ? 1 : 0, altRang = alt && alt.support === "selbst" ? 1 : 0;
+        if (!alt || rang > altRang || (rang === altRang && (e.t || 0) >= (alt.t || 0))) s.selfTasks.set(key, e);
       }
     });
     return Array.from(groups.values()).map(s => {
       s.weak = Array.from(s.tasks.values()).filter(e => e.correct < e.max).length;
+      s.selfWeak = Array.from(s.selfTasks.values()).filter(e => e.correct < e.max).length;
       s.ratio = s.max ? s.correct / s.max : null;
-      delete s.tasks; delete s.correct; delete s.max;
+      delete s.tasks; delete s.selfTasks; delete s.correct; delete s.max;
       return s;
     }).sort((a, b) => a.topic.localeCompare(b.topic));
   }

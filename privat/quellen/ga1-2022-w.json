@@ -1,0 +1,331 @@
+{
+ "id": "ga1-2022-w",
+ "bereich": "ga1",
+ "termin": "Winter 2022/23",
+ "kurz": "GA1 W22/23",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2022/23)",
+ "situation": "<p>Ein bundesweit tätiger Bildungsträger bietet an acht attraktiven Standorten Tagungen, Seminare und Veranstaltungen an. An den Standorten stehen insgesamt 45 Seminarräume mit mehr als 600 IT-Arbeitsplätzen zur Verfügung. Die Trainings sind auch als Online-Trainings buchbar.</p><p>Alle IT-Services werden von zwei Rechenzentren ausgeführt. Über eine Client-Server-Umgebung werden die jeweiligen Schulungsimages verteilt.</p><p>Da derzeitig nicht alle Schulung- und Büroräume ausgelastet sind, sollen zukünftig die Raumressourcen den Kunden für individuelle Bedürfnisse zur Verfügung gestellt werden, z. B.: „Co-Working“.</p><p>Für den Bildungsträger soll eine Webanwendung für die Raum- und Kursbuchung geplant und realisiert werden.</p>",
+ "beleg": [
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"w22-ga1-beleg-zustand\">"
+  },
+  {
+   "id": "aktivitaet",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"w22-ga1-beleg-aktivitaet\">"
+  }
+ ],
+ "bilder": {
+  "w22-ga1-beleg-zustand": {
+   "seite": "w22/beleg-2",
+   "box": [
+    0.115,
+    0.078,
+    0.675,
+    0.262
+   ]
+  },
+  "w22-ga1-beleg-aktivitaet": {
+   "seite": "w22/beleg-2",
+   "box": [
+    0.11,
+    0.31,
+    0.885,
+    0.857
+   ]
+  },
+  "w22-ga1-4a": {
+   "seite": "w22/l1-5",
+   "box": [
+    0.088,
+    0.122,
+    0.958,
+    0.768
+   ]
+  },
+  "w22-ga1-4b": {
+   "seite": "w22/l1-6",
+   "box": [
+    0.065,
+    0.095,
+    0.7,
+    0.57
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "IT-Infrastruktur, CI/CD, TLS, Zertifikate, SSO",
+   "punkte": 28,
+   "themen": [
+    "Projektmanagement",
+    "Netzwerk",
+    "IT-Sicherheit"
+   ],
+   "text": "<p>In letzter Zeit sind häufiger Ausfälle der angebotenen Dienstleistungen (z. B. Office-Anwendungen, IT-Security-Service) aufgetreten. Gründe hierfür sind die veraltete und inhomogene Infrastruktur an den Standorten sowie in den Rechenzentren.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie zwei mögliche Schwachstellen der aktuellen IT-Infrastruktur.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen wie z. B.:</p><ul><li>Netzwerkinfrastruktur der Standorte</li><li>Bereitstellung der Dienste über zwei Rechenzentren</li><li>Unterschiedliche Hardware</li><li>Datenengpass (Bandbreitenproblem)</li><li>Bereitstellung der Images über Serverinstallation</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Funktionale Anforderung",
+       "Nicht funktionale Anforderung"
+      ]
+     },
+     "text": "<p><b>Beschreiben Sie eine funktionale und eine nicht funktionale Anforderung an die neue IT-Infrastruktur der Standorte.</b></p>",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 1",
+       "html": "<p>In letzter Zeit sind häufiger Ausfälle der angebotenen Dienstleistungen (z. B. Office-Anwendungen, IT-Security-Service) aufgetreten. Gründe hierfür sind die veraltete und inhomogene Infrastruktur an den Standorten sowie in den Rechenzentren.</p>"
+      }
+     ],
+     "loesung": "<p>Erwartet werden Beschreibungen zu funktionalen Anforderungen wie z. B.:</p><ul><li>Standard-Office-Dienste</li><li>Sichere Datenübertragung (über VPN-Punkte)</li><li>Geeignete Hardware</li><li>Leistungsfähige Netzinfrastruktur</li></ul><p>Erwartet werden Beschreibungen zu nicht funktionalen Anforderungen wie z. B.:</p><ul><li>Performance</li><li>Verfügbarkeit</li><li>Speicherkapazität</li><li>Stabilität der Services</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ca",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Für die Bereitstellung der verschiedenen Dienste wird eine selbstentwickelte Software verwendet. Durch das manuelle Kompilieren und die manuelle Bereitstellung der Software kam es in der Vergangenheit mehrfach zu Problemen mit der Verfügbarkeit. Aufgrund dessen informieren Sie sich über Möglichkeiten der automatisierten Kompilierung und Bereitstellung.</p><p><b>ca) Beschreiben Sie, wie die automatisierte Kompilierung und Bereitstellung umgesetzt werden können.</b></p>",
+     "loesung": "<p>Ein möglicher Standard-Weg ist hier der Einsatz von Pipelines im Rahmen von Continuous Integration und Deployment (CI/CD). Die Pipelines können bei verschiedenen Ereignissen, z. B. dem Erstellen eines PRs oder dem Taggen eines Commits, ausgelöst werden.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Für die Bereitstellung der verschiedenen Dienste wird eine selbstentwickelte Software verwendet. Durch das manuelle Kompilieren und die manuelle Bereitstellung der Software kam es in der Vergangenheit mehrfach zu Problemen mit der Verfügbarkeit. Aufgrund dessen informieren Sie sich über Möglichkeiten der automatisierten Kompilierung und Bereitstellung.</p><p><b>cb) Nennen Sie zwei Vorteile der von Ihnen geschilderten Umsetzung gegenüber der manuellen Bereitstellung.</b></p>",
+     "loesung": "<p>z. B. ausgehend von CI/CD:</p><p>Vorteile:</p><ul><li>Automatische Ausführung von Unit-Tests in einer gleichbleibenden Testumgebung vor Deployment möglich</li><li>Automatische und einheitliche Bereitstellung auf verschiedene Umgebungen für Tests</li><li>Nicht jeder Entwickler benötigt direkten Zugriff auf Staging- und Production-Systeme, da die Zugänge in der Pipeline hinterlegt sind.</li><li>Ein Rollback ist i. d. R. mit wenigen Klicks/Befehlen möglich, in dem die jeweilige Pipeline mit dem alten Stand erneut ausgeführt wird.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 5,
+     "eingabe": "gross",
+     "text": "<p>Ihre Software kommuniziert mit verschiedenen Diensten im lokalen Netzwerk, welche über eine Domain erreichbar sind.</p><p>Die Domains sind Subdomains der Domain <b><i>schulungszentrum.local</i></b>. Diese werden vom lokalen DNS-Server aufgelöst. Der Traffic wird mittels TLS verschlüsselt.</p><p><b>Nennen Sie das dem TLS-Protokoll zugrunde liegende Verschlüsselungsverfahren und erläutern Sie dieses Verfahren.</b></p>",
+     "loesung": "<p>TLS (Transport Layer Security) arbeitet nach dem Prinzip der hybriden Verschlüsselung. Dabei werden im Rahmen des TLS-Handshakes zunächst die Public-Keys ausgetauscht, um die weitere Kommunikation asymmetrisch zu verschlüsseln. Nachdem sich Client und Server auf einen Shared-Key geeinigt haben, wird die weitere Verbindung symmetrisch verschlüsselt. Die hybride Verschlüsselung wird verwendet, da das asymmetrische Verfahren sehr rechenaufwendig ist und man somit die Vorteile aus beiden Verfahren (symmetrisch und asymmetrisch) kombinieren kann.</p>",
+     "hinweis": "1 Punkt für die Nennung der hybriden Verschlüsselung, 4 Punkte für die Erläuterung."
+    },
+    {
+     "nr": "e",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p><b>Erläutern Sie, wie die verwendete Software die Authentizität der einzelnen Dienste überprüfen kann, ohne jeden Public-Key im Voraus zu kennen.</b></p>",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage aus d)",
+       "html": "<p>Ihre Software kommuniziert mit verschiedenen Diensten im lokalen Netzwerk, welche über eine Domain erreichbar sind.</p><p>Die Domains sind Subdomains der Domain <b><i>schulungszentrum.local</i></b>. Diese werden vom lokalen DNS-Server aufgelöst. Der Traffic wird mittels TLS verschlüsselt.</p>"
+      }
+     ],
+     "loesung": "<p>Mithilfe einer lokalen Certificate Authority können die Zertifikate der jeweiligen Dienste signiert werden. Die Software kann dann überprüfen, ob das verwendete Zertifikat von der lokalen Certificate Authority signiert und nicht widerrufen wurde.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "f",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil",
+       "Nachteil"
+      ]
+     },
+     "text": "<p>Um mithilfe Ihrer Software Kunden-Systeme bereitzustellen, ist ein Login erforderlich. Dafür soll der im Unternehmen bestehende Identity Provider verwendet werden, welcher mittels OAuth2 integriert werden kann.</p><p><b>Erläutern Sie einen Vorteil und einen Nachteil der Nutzung von Single-Sign-On (SSO). Beachten Sie bei Ihrer Erläuterung den Sicherheitsaspekt.</b></p>",
+     "loesung": "<p>Erwartet werden Erläuterungen bspw. zu den nachfolgenden Vor- und Nachteilen.</p><p>Vorteile:</p><ul><li>Zentrale Rechteverwaltung ermöglicht bessere Übersicht über erteilte Rechte.</li><li>Nutzer müssen sich nicht verschiedene Benutzernamen und Passwörter merken -&gt; geringere Gefahr, dass diese aufgeschrieben werden</li><li>Bei Sicherheitsvorfällen kann schnell und an zentraler Stelle reagiert werden (z. B. Nutzer sperren, Passwörter ändern).</li></ul><p>Nachteile:</p><ul><li>Mit einem Zugang erhalten Angreifer Zugriff auf verschiedenste Systeme.</li><li>Abhängigkeit von der Verfügbarkeit des Identity Providers (bspw. bei Systemausfall)</li></ul>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "3-Schichten-Architektur, agiles Vorgehen, Open Source",
+   "punkte": 22,
+   "themen": [
+    "Projektmanagement",
+    "Programmierung/OOP"
+   ],
+   "text": "<p>Während der Planung des Projektes „Raumbuchung“ sollen Sie als Mitarbeiter für die Projektleitung einige Fragen hinsichtlich des zu planenden Produktes klären.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie, wie die 3-Schichten-Architektur bei einer Webanwendung typischerweise aussieht und wie die entsprechenden Komponenten zusammenarbeiten.</b></p>",
+     "loesung": "<p>Webanwendungen bestehen typischerweise aus einem Webserver, welcher die Webanwendung hostet, einem Backend-Server und einer Datenbank.</p><p>Die Webanwendung fragt Daten bei dem Backend-Server an, welcher selbst die Daten in der Datenbank abfragt und dann an die Webanwendung zurückliefert.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ba",
+     "punkte": 1,
+     "eingabe": "frei",
+     "text": "<p>Sie diskutieren im Projektteam den Einsatz eines agilen Vorgehensmodells.</p><p><b>ba) Nennen Sie ein agiles Vorgehensmodell Ihrer Wahl.</b></p>",
+     "loesung": "<p>Scrum, … (Andere agile Vorgehensmodelle sind ebenfalls gültig.)</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 6,
+     "eingabe": "gross",
+     "text": "<p>Sie diskutieren im Projektteam den Einsatz eines agilen Vorgehensmodells.</p><p><b>bb) Beschreiben Sie drei Elemente des gewählten Vorgehensmodells.</b></p>",
+     "loesung": "<p>Die Anforderungen werden in den Sprints so umgesetzt, dass diese am Ende eines Sprints abgeschlossen sind. Es wird sich im Team jeden Tag im Daily-Scrum getroffen und kurz über die Arbeit am Sprint geredet. Nach einem Sprint wird dem Kunden der neue Stand gezeigt. Bevor der neue Sprint beginnt, überlegt sich das Team, wie es seine Arbeitsweise verbessern kann.</p><ul><li>Daily-Scrum: Dauer ca. 15 Minuten, Inhalt: Was habe ich gestern gemacht, was möchte ich heute machen …</li><li>Sprint: Die Entwicklung wird in Iterationen organisiert, Länge sollte immer gleich sein, zwischen 2 und 4 Wochen.</li><li>Die Liste der Anforderungen steht im Product Backlog. Jede Anforderung wird User-Story genannt.</li><li>Scrum-Master: ist verantwortlich für die Sicherstellung, dass das Team operativ und produktiv arbeiten kann</li><li>u. a.</li></ul><p>Andere Elemente des entsprechend gewählten Vorgehensmodells sind auch korrekt.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ca",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Während einer Besprechung wurde diskutiert, ob bei Open-Source-Bibliotheken Einschränkungen in der Verwendbarkeit existieren.</p><p><b>ca) Erläutern Sie den Begriff Open-Source.</b></p>",
+     "loesung": "<p>Bei Open-Source ist der Quelltext von Programmen oder Bibliotheken öffentlich einsehbar.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Während einer Besprechung wurde diskutiert, ob bei Open-Source-Bibliotheken Einschränkungen in der Verwendbarkeit existieren.</p><p><b>cb) Begründen Sie, ob Sie jede Open-Source-Bibliothek ohne Einschränkungen einsetzen dürfen.</b></p>",
+     "loesung": "<p>Da Open-Source-Software mit Lizenzen versehen werden kann, darf man nicht automatisch jede Open-Source-Software einsetzen.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cc",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Vorteil",
+       "Nachteil"
+      ]
+     },
+     "text": "<p><b>cc) Beschreiben Sie einen Vor- und einen Nachteil bei der Verwendung von Open-Source-Bibliotheken.</b></p>",
+     "loesung": "<p>Vorteil: Jeder kann nachvollziehen, was in der Software/Bibliothek gemacht wird. Man weiß also, wie die Software arbeitet.</p><p>Nachteil: Jeder kann den Quelltext lesen und eventuelle Schwachstellen zum Angreifen von Software nutzen, welche diese Open-Source-Software einsetzen.</p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "UI-Gestaltungselemente, inklusives Design, XML und DTD",
+   "punkte": 20,
+   "themen": [
+    "Software-Ergonomie",
+    "Schnittstellen"
+   ],
+   "text": "<p>Für die Buchung der Kurse soll eine Web-Applikation entwickelt werden. Sie arbeiten als IT-Fachkraft in diesem Projekt mit.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 3,
+     "eingabe": {
+      "zeilen": [
+       "Beispiel 1",
+       "Beispiel 2",
+       "Beispiel 3"
+      ]
+     },
+     "text": "<p>Für die Entwicklung sollen gängige Gestaltungselemente für Benutzerschnittstellen verwendet werden.</p><p><b>Ergänzen Sie folgende Tabelle um drei weitere Beispiele.</b></p><table><tr><td>Ein Link-Pfad, meist in Form einer Textzeile, zeigt dem Benutzer, wo er sich in der Hierarchie der Domain befindet (breadcrumbs navigation).</td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr></table>",
+     "loesung": "<table><tr><td>Ein Link-Pfad, meist in Form einer Textzeile, zeigt dem Benutzer, wo er sich in der Hierarche der Domain befindet (breadcrumb navigation).</td></tr><tr><td>Nach Eingabe weniger Zeichen werden Suchvorschläge angezeigt, bei refined search sogar solche, die von der eingegebenen Zeichenfolge abweichen (search box with auto complete and refined search).</td></tr><tr><td>Zeigt an, wie viele Schritte noch zu gehen sind, bis die Aufgabe erledigt ist (steps left).</td></tr><tr><td>Der Benutzer kann z. B. erst einmal seinen Einkaufskorb füllen und muss sich erst registrieren bzw. einloggen, wenn er zur Kasse geht (lazy registration).</td></tr></table><p>u. v. m., z. B. Elemente gemäß EN ISO 9241, insbesondere Teil 110</p>",
+     "hinweis": "Je 1 Punkt."
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "Schriftart/Schriftbild",
+       "Farbgebung"
+      ]
+     },
+     "text": "<p>Damit auch Menschen mit Behinderung die Anwendung nutzen können, soll bei der Entwicklung auch auf inklusives Design geachtet werden.</p><p><b>Nennen Sie für die gegebenen Kriterien je zwei Beispiele, wie Sie inklusives Design umsetzen können.</b></p><table><tr><th>Kriterium</th><th>Beispiele</th></tr><tr><td>Schriftart/Schriftbild</td><td></td></tr><tr><td>Farbgebung</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Kriterium</th><th>Beispiele</th></tr><tr><td>Schriftart/Schriftbild</td><td>z. B.<ul><li>Größe mindestens 16-20 px im Body-Bereich</li><li>Nur Schriftarten mit großer x-Höhe verwenden</li><li>Schriftarten mit großer Schriftstärke</li><li>Großbuchstaben bei Bildschirmelement-Beschriftungen</li><li>Zeilenlänge max. 50-60 Zeichen (30-40 im Mobilbereich)</li><li>Zeilenabstand mindestens 1,5</li></ul></td></tr><tr><td>Farbgebung</td><td>z. B.<ul><li>Auf deutliche Farbkontraste achten</li><li>Problematische Farbkombinationen vermeiden (rot-grün …)</li><li>Farbauswahlelemente mit Beschriftungen hinterlegen</li></ul></td></tr></table>",
+     "hinweis": "Je 1 Punkt."
+    },
+    {
+     "nr": "ca",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Das Kursprogramm soll in einer XML-Datei gespeichert werden.</p><pre>&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;!DOCTYPE kursprogramm SYSTEM \"kursprogramm.dtd\"&gt;\n&lt;kursprogramm&gt;\n   ...</pre><p>In der gegebenen Dokumenttyp-Deklaration wird auf eine externe DTD (Dokumenttyp-Definition) -Datei <i>kursprogramm.dtd</i> verwiesen.</p><p><b>ca) Erläutern Sie, wofür diese benötigt wird.</b></p>",
+     "loesung": "<p>Eine DTD definiert eine bestimmte Klasse von Dokumenten, die alle vom gleichen Typ sind, indem sie verbindlich das Vokabular und die Grammatik für die Auszeichnungssprache festlegt, die bei der Erstellung des Dokuments verwendet werden soll. Ein XML-Dokument, das einer DTD entspricht, ist eine Dokumentinstanz dieser DTD.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 4,
+     "eingabe": {
+      "zeilen": [
+       "wohlgeformt/well-formed",
+       "gültig/valid"
+      ]
+     },
+     "text": "<p><b>cb) Erläutern Sie die folgenden Eigenschaften eines XML-Dokuments.</b></p><table><tr><td>wohlgeformt/<br>well-formed</td><td></td></tr><tr><td>gültig/valid</td><td></td></tr></table>",
+     "loesung": "<table><tr><td>wohlgeformt/well-formed</td><td>Die Regeln von XML werden eingehalten, d. h. dass Inhalte durch öffnende und schließende Tags eingeschlossen werden. Die Tags sind hierarchisch verschachtelt.</td></tr><tr><td>gültig/valid</td><td>Tag-Reihenfolge bzw. -Schachtelung und Werte gehen mit DTD oder XML-Schema konform. Ein gültiges Dokument setzt Wohlgeformtheit voraus.</td></tr></table>",
+     "hinweis": "Je 2 Punkte."
+    },
+    {
+     "nr": "cc",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "1. weiterer Fehler: Zeile / Beschreibung / Eigenschaft",
+       "2. weiterer Fehler: Zeile / Beschreibung / Eigenschaft"
+      ]
+     },
+     "text": "<p>cc) Das gegebene XML-Dokument auf der Folgeseite enthält mindestens sechs Fehler. Einer davon ist in der Antworttabelle (siehe Seite 7) schon eingetragen.</p><p><b>Finden Sie zwei weitere Fehler und geben Sie in der Antworttabelle Zeilennummer, Fehlerbeschreibung und die Eigenschaft an (siehe cb), die jeweils verletzt wurde.</b></p><p>Externe DTD in Dateiform „<i>kursprogramm.dtd</i>“:</p><pre>&lt;!ELEMENT kursprogramm (kurs+)&gt;\n&lt;!ELEMENT kurs (bezeichnung, referententeam)&gt;\n&lt;!ATTLIST kurs id ID #REQUIRED kurstyp CDATA #IMPLIED&gt;\n&lt;!ELEMENT bezeichnung (#PCDATA)&gt;\n&lt;!ELEMENT referententeam (referent+)&gt;\n&lt;!ELEMENT referent (name, kontakt?)&gt;\n&lt;!ELEMENT name (#PCDATA)&gt;\n&lt;!ELEMENT kontakt (fon | email* | (fon, email*))&gt;\n&lt;!ELEMENT fon (#PCDATA)&gt;\n&lt;!ELEMENT email (#PCDATA)&gt;</pre><p>XML-Dokument:</p><pre> 1  &lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n 2  &lt;!DOCTYPE kursprogramm SYSTEM \"kursprogramm.dtd\"&gt;\n 3  &lt;kursprogramm&gt;\n 4      &lt;kurs id=\"uidesbeg\" kurstyp=\"Wochenkurs\"&gt;\n 5          &lt;bezeichnung&gt;User Interface Design für Anfänger&lt;/bezeichnung&gt;\n 6          &lt;referententeam&gt;\n 7              &lt;referent&gt;\n 8                  &lt;name&gt;Natalia Huber&lt;/name&gt;\n 9                  &lt;fon&gt;+49153776544543&lt;/fon&gt;\n10              &lt;/referent&gt;\n11              &lt;referent&gt;\n12                  &lt;name&gt;Horst Wigand&lt;/name\n13                  &lt;kontakt&gt;\n14                      &lt;email&gt;horstw@giga.com&lt;/email&gt;\n15                      &lt;email&gt;howi@gmx.net&lt;/email&gt;\n16                      &lt;fon&gt;+49171467894457&lt;/fon&gt;\n17                  &lt;/kontakt&gt;\n18          &lt;/referententeam&gt;\n19      &lt;/kurs&gt;\n20      &lt;kurs id=\"xmladv\"&gt;\n21          &lt;kurstyp&gt;Drei-Tages-Kurs&lt;/kurstyp&gt;\n22          &lt;bezeichnung&gt;XML für Fortgeschrittene&lt;/bezeichnung&gt;\n23          &lt;referententeam&gt;\n24              &lt;referent&gt;\n25                  &lt;name&gt;Michael Schuh&lt;/name&gt;\n26                  &lt;kontakt&gt;\n27                      &lt;fon&gt;+49151234567885&lt;/fon&gt;\n28                      &lt;adresse&gt;Hanreiweg 47, 48155 Münster&lt;/adresse&gt;\n29                  &lt;/kontakt&gt;\n30              &lt;/referent&gt;\n31          &lt;/referententeam&gt;\n32      &lt;kurs&gt;\n33  &lt;/kursprogramm&gt;</pre><table><tr><th>Zeile</th><th>Beschreibung</th><th>Eigenschaft</th></tr><tr><td>28</td><td>Adresse ist nicht in der DTD definiert</td><td>Gültigkeit</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Zeile</th><th>Beschreibung</th><th>Eigenschaft</th></tr><tr><td>28</td><td>Adresse ist nicht in der DTD definiert</td><td>Gültigkeit</td></tr><tr><td>9</td><td>Element fon ist nicht innerhalb von kontakt</td><td>Gültigkeit</td></tr><tr><td>16</td><td>Element fon muss vor email stehen</td><td>Gültigkeit</td></tr><tr><td>17/18</td><td>Schließender Tag für referent fehlt</td><td>Wohlgeformtheit</td></tr><tr><td>21</td><td>kurstyp ist kein Element, sondern Attribut</td><td>Gültigkeit</td></tr><tr><td>32</td><td>Beim schließenden Tag von kurs fehlt /</td><td>Wohlgeformtheit</td></tr></table><p><i>Anmerkung: Im Aufgabensatz fehlt in Zeile 12 beim schließenden Tag die Klammer (&lt;/name statt &lt;/name&gt;). Das steht nicht in den Lösungshinweisen, ist aber ebenfalls ein Fehler der Wohlgeformtheit („mindestens sechs Fehler“).</i></p>",
+     "hinweis": "Je 2 Punkte pro vollständig ausgefüllte Antwortzeile."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Aktivitätsdiagramm, Zustandsdiagramm, Datenbankwahl",
+   "punkte": 30,
+   "themen": [
+    "UML",
+    "Datenbank"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "aktivitaet"
+     ],
+     "text": "<p>Für die Buchung von Räumen und benötigten Ressourcen ist der im Folgenden beschriebene Prozess vorgesehen. Abbruchmöglichkeiten sollen nicht berücksichtigt werden.</p><ul><li>Ein Kunde erstellt eine Anfrage mit dem gewünschten Zeitraum. Zunächst wird der Zeitraum vom Bildungsträger geprüft. Ist der Zeitraum nicht verfügbar, dann erstellt der Kunde eine Anfrage für einen anderen Zeitraum.</li><li>Ist der Zeitraum verfügbar, beschreibt der Kunde die Anforderungen hinsichtlich Ressourcen und Raumgröße. Beide Anforderungen werden parallel von den entsprechenden Abteilungen geprüft. Wenn beide Anforderungen erfüllt werden können, wird ein Angebot erstellt, das der Kunde anschließend prüft.</li><li>Sind die Anforderungen nicht erfüllbar oder will der Kunde das Angebot nicht annehmen, modifiziert der Kunde seine Anforderungen. Der Zeitraum kann an dieser Stelle nicht mehr verändert werden.</li><li>Wenn der Kunde das Angebot annehmen will, werden die Ressourcen und der Raum vom Kunden verbindlich gebucht.</li></ul><p><b>Erstellen Sie auf der gegenüberliegenden Seite ein UML-Aktivitätsdiagramm, dass den Prozess darstellt.</b></p><p><i>Vorlage im Aufgabensatz: leerer Rahmen mit zwei Schwimmbahnen.</i></p><table><tr><th>Kunde</th><th>Bildungsträger</th></tr><tr><td></td><td></td></tr></table>",
+     "loesung": "<img data-bild=\"w22-ga1-4a\"><p>In Worten: Schwimmbahnen <b>Kunde</b> und <b>Bildungsträger</b>.</p><ul><li>Kunde: Anfrage für Zeitraum erstellen, Anforderungen beschreiben, Angebot prüfen, Raum mit Ressourcen buchen</li><li>Bildungsträger: Zeitraum prüfen, Ressourcen-Anforderung prüfen, Raumbedarf prüfen, Angebot erstellen</li><li>Startknoten → Zusammenführung → Anfrage für Zeitraum erstellen → Zeitraum prüfen → Entscheidung: [nicht verfügbar] zurück zur Zusammenführung vor „Anfrage für Zeitraum erstellen“; [verfügbar] → Zusammenführung → Anforderungen beschreiben</li><li>Anforderungen beschreiben → Teilung → parallel „Ressourcen-Anforderung prüfen“ und „Raumbedarf prüfen“ → Synchronisation</li><li>danach Entscheidung: [Nicht verfügbar] → Zusammenführung → zurück zur Zusammenführung vor „Anforderungen beschreiben“; [verfügbar] → Angebot erstellen → Angebot prüfen</li><li>Angebot prüfen → Entscheidung: [nicht annehmen] → Zusammenführung → zurück zu „Anforderungen beschreiben“; [annehmen] → Raum mit Ressourcen buchen → Endknoten</li></ul><p>Andere Lösungen sind möglich.</p>",
+     "hinweis": "Vorschlag für die Punkteverteilung: Je Aktivität 1 Punkt; richtige Verteilung der Aktivitäten auf die Seiten 1 Punkt; je Knoten 0,5 Punkte."
+    },
+    {
+     "nr": "b",
+     "punkte": 11,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "zustand"
+     ],
+     "text": "<p>Den Räumen können unterschiedliche Zustände zugewiesen werden. Hierzu gibt es folgende Vorgaben:</p><ul><li>Nach Anlegen eines Raumes ist er frei.</li><li>Freie Räume können gesperrt werden. Gesperrte Räume sind nach Aufhebung der Sperrung wieder frei.</li><li>Für freie Räume kann eine Anfrage gestellt werden. Der Raum hat den Zustand angefragt.</li><li>Angefragte Räume können storniert oder gebucht werden. Im Fall einer Stornierung ist der angefragte Raum wieder frei.</li><li>Gebuchte Räume sind nach Beendigung der Veranstaltung wieder frei.</li></ul><p><b>Erstellen Sie für die Raumzustände ein UML-Zustandsdiagramm mit folgendem Startpunkt.</b></p><p><i>Vorgabe im Aufgabensatz: nur der Startpunkt (●), darunter freie Fläche zum Zeichnen.</i></p>",
+     "loesung": "<img data-bild=\"w22-ga1-4b\"><p>In Worten: Zustände <b>frei</b>, <b>gesperrt</b>, <b>angefragt</b>, <b>gebucht</b>.</p><ul><li>Start → frei: anlegen</li><li>frei → gesperrt: sperren</li><li>gesperrt → frei: Sperrung aufheben</li><li>frei → angefragt: Anfrage stellen</li><li>angefragt → frei: Anfrage stornieren</li><li>angefragt → gebucht: buchen</li><li>gebucht → frei: [Veranstaltung beendet] / freigeben</li></ul><p>Andere Lösungen sind möglich.</p>",
+     "hinweis": "Vorschlag für die Punkteverteilung: Je Zustand 1 Punkt; je Zustandsübergang 1 Punkt."
+    },
+    {
+     "nr": "c",
+     "punkte": 5,
+     "eingabe": "gross",
+     "text": "<p>Für die Speicherung der Kundendaten und der Aufträge soll eine Datenbanklösung gewählt werden. Sie sollen einen Vorschlag für ein geeignetes System machen.</p><p>Dabei stehen ein dokumentenorientiertes NoSQL-Datenbankmanagementsystem und ein relationales Datenbankmanagementsystem zur Auswahl.</p><p><b>Schlagen Sie eine Variante vor und begründen Sie Ihren Vorschlag mit zwei Argumenten.</b></p>",
+     "loesung": "<p>Mögliche Argumente für NoSQL</p><ul><li>Flexible Datenstruktur, z. B. unterschiedliche Raumtypen mit unterschiedlichen Ausstattungen</li><li>Datenmenge kann groß werden</li></ul><p>Mögliche Argumente für relationale DB</p><ul><li>Transaktionssicherheit</li><li>Datenkonsistenz immer gewährleistet</li></ul><p>Andere Antworten sind möglich.</p>",
+     "hinweis": "Entscheidung für eine Variante: 1 Punkt; je Argument 2 Punkte."
+    }
+   ]
+  }
+ ]
+}

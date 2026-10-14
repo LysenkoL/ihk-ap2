@@ -45,6 +45,47 @@ assert.strictEqual(st2.l, 0, "nicht gewusst setzt zurück"); assert.strictEqual(
 /* ohne Browser-Daten: keine Kandidaten, kein Absturz */
 assert.deepStrictEqual(W.kandidaten(), []);
 
+/* Ein neuer Versuch darf die noch nicht behobene alte Lücke nicht löschen. */
+const teil = { id: "t1", titel: "SQL", nr: 1, label: "a", punkte: 4 };
+let az = { p: {}, a: {}, versuche: [{ d: 10, zustand: { p: { t1: 1 }, a: { t1: { frei: "SELECT falsch" } }, beobachtet: { t1: { id: "erste-luecke" } } } }] };
+global.GENAZUBI = { paket: () => null, alleModule: () => [{ id: "ga2-test", kurz: "GA2" }], teileVon: () => [teil], zustand: () => az,
+  hatAntwort: (t, a) => !!a, antwortMd: (t, a) => a.frei || "" };
+let kandidaten = W.kandidaten();
+assert.strictEqual(kandidaten.length, 1, "archivierter Fehler bleibt nach neuem Versuch fällig");
+assert.strictEqual(kandidaten[0].antwort, "SELECT falsch", "alter Antworttext bleibt beim Vergleich verfügbar");
+az.p.t1 = 4; az.a.t1 = { frei: "SELECT richtig" }; az.hilfe = { t1: { vorAntwort: true } };
+assert.strictEqual(W.kandidaten().length, 1, "vollständige Antwort mit Lösung beseitigt alte Lücke nicht");
+az.hilfe = {}; az.auf = {}; az.beobachtet = { t1: { id: "kontrolle" } };
+assert.strictEqual(W.kandidaten().length, 0, "neue volle selbständige Kontrolle schließt Lücke");
+az.p.t1 = 2; az.beobachtet.t1.id = "zweite-luecke";
+assert.notStrictEqual(W.kandidaten()[0].id, kandidaten[0].id, "neuer Fehler erhält neue Wiederholungsserie");
+delete global.GENAZUBI;
+
+const vm = require("vm"), A = require("../gen/azubi.js");
+function queueApi(state, modul, zustand) {
+  const data = { "ap2:wieder": JSON.stringify(state) }, context = { console, module: { exports: {} },
+    localStorage: { getItem: k => data[k] || null, setItem: (k, v) => { data[k] = v; } },
+    GENAZUBI: Object.assign({}, A, { paket: () => null, alleModule: () => [modul], zustand: () => zustand }) };
+  vm.runInNewContext(fs.readFileSync(path.join(root, "gen/wiederholen.js"), "utf8"), context);
+  return context.module.exports;
+}
+const wi = { id: "w", titel: "WiSo", nr: 1, label: "a", punkte: 100 / 30, eingabe: { typ: "mehrfach", soll: [1], optionen: ["Richtig", "Falsch"] } };
+const wm = { id: "wiso-test", kurz: "WiSo", aufgaben: [{ teile: [wi] }] };
+const wz = { p: {}, a: {}, versuche: [{ d: 10, zustand: { p: { w: 0 }, a: {} } },
+  { d: 20, zustand: { p: { w: 3.33 }, auto: { w: 1 }, a: { w: { m: [1] } } } }] };
+assert.strictEqual(queueApi({}, wm, wz).kandidaten().length, 0, "alte gerundete WiSo-Vollpunktzahl schließt Lücke exakt");
+const lm = { id: "ga2-test", kurz: "GA2", aufgaben: [{ teile: [teil] }] };
+const lz = { start: 10, p: { t1: 1 }, a: { t1: { frei: "alt" } }, beobachtet: { t1: { id: "bestehend" } } };
+const legacy = { k: { "az:ga2-test:t1": { l: 1, f: "2026-10-08", t: 20 } }, tage: {} };
+const lq = queueApi(legacy, lm, lz);
+assert.strictEqual(lq.liste()[0].faellig, "2026-10-08", "vorhandene Frist übersteht neue Ereignis-ID");
+assert.strictEqual(lq.liste()[0].st.l, 1, "Erfolgsserie bleibt erhalten");
+lz.start = 30; lz.beobachtet.t1.id = "neuer-fehler";
+assert.strictEqual(lq.liste()[0].st, null, "neuer Fehler erbt alte Erfolgsserie nicht");
+const erledigt = { k: { "az:ga2-test:t1": { raus: 1, t: 20 } }, tage: {} };
+lz.start = 10; lz.beobachtet.t1.id = "bestehend";
+assert.strictEqual(queueApi(erledigt, lm, lz).liste().length, 0, "bereits erledigtes Ereignis bleibt erledigt");
+
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 ["gen/wiederholen.js", "gen/wiederholen.css"].forEach(f => {

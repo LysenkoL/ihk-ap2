@@ -8,7 +8,6 @@ const RUHEND = {
   "generator-ipconfig.test.js": "ipconfig-Vorlage ist AP1 und hier nicht angemeldet",
   "katalog.test.js":            "Prüfungskatalog AP2 — Schritt 1",
   "kompendium-status.test.js":  "Kompendium — später, nur AP2-Themen",
-  "nachschlagen.test.js":       "braucht echte Prüfungstexte — wieder aktiv nach Schritt 1/2",
   "prognose.test.js":           "Prognose-Prüfungen AP1",
   "radar.test.js":              "Themen-Radar AP1 — AP2-Radar in Schritt 5",
   "sprint.test.js":             "Rechen-Sprint AP1"

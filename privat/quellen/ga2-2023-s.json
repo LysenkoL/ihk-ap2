@@ -1,0 +1,224 @@
+{
+ "id": "ga2-2023-s",
+ "bereich": "ga2",
+ "termin": "Sommer 2023",
+ "kurz": "GA2 S23",
+ "minuten": 90,
+ "schluessel": "u-form Lösungserläuterungen Sommer 2023 (keine offiziellen ZPA-Lösungshinweise)",
+ "situation": "<p>Die Parkanlage „Wilder Garten“ in Köln konnte u. a. mit ihrer reichhaltigen Pflanzenvielfalt, ihren schönen verwinkelten Wegen, ihren vielen schattigen Plätzen und ihren beliebten Attraktionen in der letzten Saison ihre Anziehungskraft als Naherholungsfläche für viele Besucher steigern. Besucher aus allen Altersgruppen und auch Reiseveranstalter zählen zu den Kunden der Parkanlage.</p>",
+ "beleg": [
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-zustand\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-klasse\">"
+  },
+  {
+   "id": "aktivitaet",
+   "titel": "Belegsatz: UML-Aktivitätsdiagramm",
+   "html": "<img data-bild=\"s23-ga1-bs-aktivitaet\">"
+  },
+  {
+   "id": "tabkalk",
+   "titel": "Belegsatz: Beschreibung von Funktionen der Tabellenkalkulation",
+   "html": "<h4>The function: VLOOKUP – Description</h4><p>You can use the <b>VLOOKUP</b> function to search the first column of a range of cells, and then return a value from any cell on the same row of the range.<br>For example, suppose that you have a list of employees contained in the range A2:C10 and the employees' ID numbers are stored in the first column of the range and the employees' names are stored in the third column of the range.<br>If you know the employee's ID number, you can use the <b>VLOOKUP</b> function to return either the department or the name of that employee. To obtain the name of employee number 38, you can use the formula <b>=VLOOKUP(38; A2:C10; 3; FALSE)</b>. This formula searches for the value 38 in the first column of the range A2:C10, and then returns the value that is contained in the third column of the range and on the same row as the lookup.<br><b>FALSE</b> indicates you are searching for an exact match.</p><h4>The function: IF – Description</h4><p>The IF function returns one value if a condition you specify evaluates to TRUE, and another value if that condition evaluates to FALSE.<br>For example, the formula <b>=IF(A1&gt;1; \"Over 10\";\"10 or less\")</b> returns \"Over 10\" if A1 is greater than 10, and \"10 or less\" if A1 is less than or equal to 10.</p><h4>The function: WEEKDAY – Description</h4><p>Returns the day of the week corresponding to a date. The day is given as an integer, ranging from 1 (Monday) to 7 (Sunday), by default.<br>For example, given the date 26.04.2023 in A1, the formula <b>=WEEKDAY(A1)</b> returns 3.</p><p><b>Range:</b> An area of two or more cells.</p><p>Quelle: https://support.microsoft.com/</p>"
+  },
+  {
+   "id": "struktogramm",
+   "titel": "Belegsatz: Struktogramm DIN 66261",
+   "html": "<img data-bild=\"s23-ga1-bs-struktogramm\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"s23-ga1-bs-sql1\"><img data-bild=\"s23-ga1-bs-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s23-ga2-1a-l": {
+   "seite": "s23/xl-10",
+   "box": [
+    0.085,
+    0.155,
+    0.912,
+    0.912
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "UML-Aktivitätsdiagramm neue Pflanzung",
+   "punkte": 25,
+   "themen": [
+    "UML"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "aktivitaet"
+     ],
+     "text": "<p>Sie werden von Ihrem Ausbilder beauftragt, den Prozess zur Anlage neuer Pflanzungen mittels eines UML-Aktivitätsdiagramms zu dokumentieren. Um den Prozess zu verstehen, sprechen Sie mit mehreren Mitarbeitern.</p><p>Sie beginnen mit einem Mitarbeiter der Gartenplanung.</p><p>Dieser teilt Ihnen mit, dass er den Gärtnern den Auftrag zu einer neuen Pflanzung erteilt.</p><p>Wenn die Gärtner fertig gepflanzt haben, fertigt er Bilder des neuen Bereichs an. Wenn die Bilder gemacht sind und der Einkauf die Rechnung bezahlt hat, ist der Vorgang abgeschlossen.</p><p>Informationen eines Gärtners:</p><p>Wenn der Gärtner einen neuen Pflanzauftrag vom Gartenplaner erhält, stellt er zuerst die Anforderungen zusammen und sagt dem Einkauf welche Pflanzen zu bestellen sind.</p><p>Wenn Pflanzen ankommen, bekommt er diese vom Einkauf und bringt die Pflanzen in die Quarantänestation. Der Gärtner prüft täglich die Pflanzen und kontrolliert das Quarantäneende.</p><p>Ist eine Pflanze in Quarantäne erkrankt, so muss diese behandelt und die Quarantäne für alle Pflanzen verlängert werden.</p><p>Sind alle Pflanzen gesund und die Quarantäne abgelaufen pflanzt der Gärtner die Pflanzen.</p><p>Nach Abschluss der Pflanzarbeiten macht die Gartenplanung noch Bilder.</p><p>Der Einkauf gibt Ihnen folgende Hinweise:</p><p>Der Gärtner teilt uns mit was er braucht, dann bestellen wir diese Pflanzen bei unserem Lieferanten. Bei Anlieferung übergeben wir die Pflanzen an den Gärtner und bezahlen die Rechnung.</p><p>Weiterhin beschreibt der Einkauf den Vorgang beim Lieferanten so, dass der Lieferant den Auftrag annimmt, danach die Lieferung zusammenstellt und dann die Pflanzen ausliefert.</p><p><b>Vervollständigen Sie aufgrund der erhaltenen Informationen das abgebildete Aktivitätsdiagramm.</b></p><p>(Im Bogen ist ein leerer Rahmen mit vier Swimlanes vorgegeben:)</p><table><tr><th>Gartenplanung</th><th>Gärtner</th><th>Einkauf</th><th>Lieferant</th></tr><tr><td><br><br><br></td><td><br><br><br></td><td><br><br><br></td><td><br><br><br></td></tr></table>",
+     "loesung": "<img data-bild=\"s23-ga2-1a-l\"><p>In Worten:</p><ul><li>Swimlanes: Gartenplanung, Gärtner, Einkauf, Lieferant</li><li>Gartenplanung: Startknoten → <b>Neue Pflanzung beauftragen</b></li><li>→ Gärtner: <b>Anforderungen zusammenstellen</b></li><li>→ Einkauf: <b>Pflanzen bestellen</b></li><li>→ Lieferant: <b>Auftrag annehmen</b> → <b>Lieferung zusammenstellen</b> → <b>Pflanzen ausliefern</b></li><li>→ Gabelung (Synchronisationsbalken) im Einkauf, zwei parallele Zweige: Einkauf <b>Pflanzen an Gärtner übergeben</b> und Einkauf <b>Rechnung bezahlen</b></li><li>Pflanzen an Gärtner übergeben → Gärtner: <b>Pflanzen in Quarantänestation bringen</b> → Verbindungsknoten (Raute) → <b>Pflanzen und Quarantänezeit täglich prüfen</b> → Entscheidung:<br>[min. eine Pflanze erkrankt] → <b>Pflanzen behandeln</b> → <b>Quarantänezeit verlängern</b> → zurück zum Verbindungsknoten<br>[alle Pflanzen gesund] → weitere Entscheidung: [Quarantäne nicht vorbei] → zurück zum Verbindungsknoten; [Quarantäne vorbei] → <b>Pflanzung vornehmen</b></li><li>Pflanzung vornehmen → Gartenplanung: <b>Bilder des neuen Bereichs anfertigen</b></li><li>Bilder des neuen Bereichs anfertigen und Rechnung bezahlen → Synchronisationsbalken (Vereinigung) → Endknoten</li></ul><p><b>Weiterführende Informationen:</b></p><p>Nachfolgende einige kurze Regeln für die Erstellung eines UML-Aktivitätsdiagramms:</p><ol><li>Verwende Aktivitäten, um Aktionen oder Operationen darzustellen, die im Prozess ausgeführt werden.</li><li>Verbinde Aktivitäten mit Pfeilen, um den Fluss der Ausführung anzugeben.</li><li>Verwende Entscheidungsdiamanten, um Verzweigungen oder Entscheidungspunkte im Prozess darzustellen.</li><li>Nutze Synchronisationsbalken, um parallele Aktivitäten darzustellen, die gleichzeitig ausgeführt werden.</li><li>Verwende Swimlanes, um unterschiedliche Rollen, Abteilungen oder Akteure im Prozess zu repräsentieren.</li><li>Verwende Start- und Endsymbole, um den Beginn und das Ende des Prozesses zu kennzeichnen.</li><li>Halte Aktivitäten klar, einfach und gut benannt, um die Lesbarkeit zu verbessern. Aktivitäten sollten darüber hinaus immer mit geeigneten Adjektiven beschrieben sein.</li><li>Dokumentiere Bedingungen, Schleifen oder Wiederholungen, um komplexe Abläufe im Prozess zu verdeutlichen.</li><li>Optional: Verwende Kommentare oder Notizen, um zusätzliche Informationen oder Erläuterungen hinzuzufügen.</li><li>Halte das Diagramm übersichtlich und gut strukturiert, um eine klare Darstellung des Prozesses zu gewährleisten.</li></ol><p>Diese Regeln dienen als allgemeine Richtlinien, um ein UML-Aktivitätsdiagramm verständlich und aussagekräftig zu gestalten. Es ist wichtig, den Kontext und die spezifischen Anforderungen des Projekts zu berücksichtigen, um anschließend das Diagramm entsprechend anzupassen.</p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Bausteine: vier Swimlanes, Start- und Endknoten, alle Aktivitäten in der richtigen Partition, Gabelung nach „Pflanzen ausliefern“ (übergeben und Rechnung bezahlen parallel), Quarantäne-Schleife mit Entscheidungen [min. eine Pflanze erkrankt] / [alle Pflanzen gesund] und [Quarantäne vorbei] / [Quarantäne nicht vorbei], Synchronisation von „Bilder anfertigen“ und „Rechnung bezahlen“ vor dem Endknoten."
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Algorithmus: Besucher je Stunde zählen (Array)",
+   "punkte": 25,
+   "themen": [
+    "Algorithmen"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 25,
+     "eingabe": "code",
+     "beleg": [
+      "struktogramm"
+     ],
+     "text": "<p>Die Verwaltung des Parks möchte eine Auswertung über die Besucherzahlen für alle Tage eines vorgegebenen Monats erhalten.</p><p>Für die Besuchertickets werden daher an den Ein – und Ausgängen folgende Informationen festgehalten:</p><ul><li>Das Ticket wird beim Einlass gescannt und damit das Datum, die Uhrzeit und die Anzahl der Personen (Gruppentickets) gespeichert.</li><li>Beim Hinausgehen wird jede Person mit Datum und Uhrzeit einzeln erfasst.</li></ul><p>Der Park hat aktuell die Öffnungszeiten von 9:00 Uhr bis 19:00 Uhr.</p><p>Zur Auswertung soll für jeden Tag eines Monats festgehalten werden, wie viele Personen sich von 9:00 Uhr bis 9:59 Uhr, von 10:00 Uhr bis 10:59 Uhr, … und von 18:00 Uhr bis 18:59 Uhr aufgehalten haben.</p><p>Die folgende Klasse ist bereits vorhanden:</p><table><tr><th>ComeLeave</th></tr><tr><td>– date: Date<br>– comeInOut: Integer<br>– noPeople: Integer<br>…</td></tr></table><p>Für jedes Attribut sind öffentliche Zugriffsmethoden (set/get) vorhanden.</p><p>Folgende Methoden können verwendet werden:</p><table><tr><td>getDay() der Klasse Date</td><td>Ermittelt zum Datum den Tag (1 – 31)</td></tr><tr><td>getHour() der Klasse Date</td><td>Ermittelt zum Datum die Stunde (0 – 23)</td></tr><tr><td>getDaysOfMonth() der Klasse Date</td><td>Ermittelt zum Datum die Anzahl der Tage im Monat</td></tr></table><p>In der Tabelle <b>entry</b> vom Typ <b>ComeLeave</b> sind die Kommen – und Gehenzeiten der Besucher für den auszuwertenden Monat erfasst (eine Zeile entspricht den Attributen eines Objektes vom Typ ComeLeave):</p><table><tr><th>date</th><th>time</th><th>comeInOut<br>0 = In/1 = Out</th><th>noPeople</th></tr><tr><td>…</td><td></td><td></td><td></td></tr><tr><td><b>22.5.2023</b></td><td>9:00</td><td>0</td><td>1</td></tr><tr><td><b>22.5.2023</b></td><td>9:00</td><td>0</td><td>2</td></tr><tr><td><b>22.5.2023</b></td><td>9:01</td><td>0</td><td>30</td></tr><tr><td>…</td><td></td><td></td><td></td></tr><tr><td><b>22.5.2023</b></td><td>12:00</td><td>1</td><td>1</td></tr><tr><td><b>22.5.2023</b></td><td>12:01</td><td>0</td><td>2</td></tr><tr><td><b>22.5.2023</b></td><td>12:02</td><td>1</td><td>1</td></tr><tr><td>…</td><td></td><td></td><td></td></tr></table><p><b>Erstellen Sie eine Funktion countVisitors(entry: ComeLeave) : Integer[][], die folgende Anforderung erfüllt:</b></p><ul><li>Für jede Stunde eines Tages (Öffnungszeiten!) und für jeden Tag des auszuwertenden Monats soll die Anzahl der anwesenden Personen in einem zweidimensionalen Array vom Typ Integer gespeichert werden.<p>Für jeden Tag des Monats soll eine Zeile und für jede Stunde innerhalb der Öffnungszeit eine Spalte verwendet werden.</p><p>Dieses Array ist der Rückgabewert der Funktion countVisitors().</p><p>Dabei wird eine Person ab einem Stundenabschnitt gezählt, wenn sie in diesem Abschnitt den Park betreten hat. Wenn eine Person den Park verlässt, wird die Anzahl erst für die nachfolgenden Abschnitte entsprechend korrigiert.</p></li></ul><p>Beispielarray für ein Ergebnis:</p><table><tr><th>Tag\\Std</th><th>9:00-<br>9:59</th><th>10:00-<br>10:59</th><th>11:00-<br>11:59</th><th>12:00-<br>12:59</th><th>13:00-<br>13:59</th><th>14:00-<br>14:59</th><th>15:00-<br>15:59</th><th>16:00-<br>16:59</th><th>17:00-<br>17:59</th><th>18:00-<br>18:59</th></tr><tr><td>1</td><td>23</td><td>40</td><td>56</td><td>120</td><td>145</td><td>160</td><td>140</td><td>95</td><td>86</td><td>45</td></tr><tr><td>2</td><td>27</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td></td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td></td></tr><tr><td>31</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td></td></tr></table><p>Vorgabe im Lösungsfeld des Bogens:</p><pre>countVisitors(entry: ComeLeave) : Integer[][]</pre>",
+     "loesung": "<p><b>Wichtige Anmerkung zu dieser Aufgabe:</b></p><p>Die Angaben der Aufgabenstellung enthalten Fehler, daher kann diese Aufgabe nicht zweifelsfrei bearbeitet werden. Aufgrund dieser und weiterer Unstimmigkeiten in der Angabe, wurde seitens der ZPA-Nord-West eine Empfehlung ausgesprochen, diese Aufgabe generell mit 25 Punkte zu bewerten.</p><p>Dennoch findest du nachfolgend einen Lösungsversuch:</p><pre>countVisitors(entry: ComeLeave) : Integer[][]\n    count_entry = entry.length;\n    count_visitor = entry[0].getDate().getDaysOfMonth() * 10;\n    visitors = new Integer[count_visitor][];\n\n    for (i = 0; i &lt; count_entry; i++)\n     {\n        day = entry[i].getDate().getDay();\n        hour = entry[i].getDate().getHour();\n        index_row = day - 1;\n        index_column = hour - 9;\n\n        if (entry[i].getComeInOut() == 0)\n          {\n          for (j = index_column; j &lt;= 9; j++)\n               {\n               visitors[index_row][j] = visitors[index_row][j]\n               + entry[i].getNoPeople()\n               }\n          }\n          else\n          {\n          for (j = index_column + 1; j &lt;= 9; j++)\n          {\n          visitors[index_row][j] = visitors[index_row][j] - 1;\n          }\n        }\n     }\n\nreturn visitors;\n}\nend countVisitors</pre><p><i>Anmerkung: Auffällig in der Aufgabenstellung: Der Parameter <code>entry</code> ist als einzelnes ComeLeave-Objekt angegeben, wird aber als Tabelle (Array/Liste) von Einträgen gebraucht; die Spalte „time“ der Tabelle ist kein Attribut der Klasse ComeLeave (die Uhrzeit steckt in <code>date</code>). Im Lösungsversuch wird das Array mit <code>getDaysOfMonth() * 10</code> Zeilen angelegt — gemeint ist ein Array mit einer Zeile je Tag und 10 Spalten (9–18 Uhr), z. B. <code>new Integer[getDaysOfMonth()][10]</code> mit 0 vorbelegt; nach <code>+ entry[i].getNoPeople()</code> fehlt das Semikolon.</i></p>",
+     "hinweis": "Laut u-form hat die ZPA Nord-West empfohlen, diese Aufgabe wegen Fehlern in der Aufgabenstellung generell mit 25 Punkten zu bewerten. Zur Selbstkontrolle: Array mit einer Zeile je Tag und 10 Spalten (9–18 Uhr), Schleife über alle Einträge, Zeile = Tag - 1, Spalte = Stunde - 9, beim Kommen noPeople ab der aktuellen Spalte addieren, beim Gehen erst ab der nächsten Spalte abziehen, Array zurückgeben."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Schreibtischtest, Fehlerkorrektur, Anweisungsüberdeckung",
+   "punkte": 25,
+   "themen": [
+    "Qualität & Test",
+    "Algorithmen"
+   ],
+   "text": "<p>Die Verwaltung des Parks hat eine Jahresstatistik für die Nutzung der Monatstickets in Auftrag gegeben. Die implementierte Methode soll einem Test unterzogen werden.</p>",
+   "anlagen": [
+    {
+     "titel": "Datenstruktur TicketData, Testdaten und erwartete Ausgabe",
+     "html": "<p>Die Daten liegen in einer Liste, aufsteigend sortiert nach Monat, vor und haben die folgende Struktur:</p><pre>struct TicketData\n{       int Id;                   //Ticket-Id\n        string Monat;             //Monat\n        string Jahr;              //Jahr\n        int NutzungsZaehler;      //Anzahl der Nutzungen (tagesweise)\n}</pre><p>Für den Test sollen die folgenden Testdaten verwendet werden:</p><table><tr><th>Id</th><th>Monat</th><th>Jahr</th><th>Nutzungszaehler</th></tr><tr><td>0</td><td>Januar</td><td>2023</td><td>31</td></tr><tr><td>1</td><td>Januar</td><td>2023</td><td>31</td></tr><tr><td>2</td><td>Februar</td><td>2023</td><td>28</td></tr></table><p>Aus diesen Daten soll die folgende Ausgabe generiert werden:</p><pre>Nutzungsstatistik Monatstickets\n\nAuswertung für Monat   Januar\n Minimale Nutzung:     31\n Maximale Nutzung:     31\n Durchschnitt:         31\n Gesamtanzahl Tickets: 2\n\nAuswertung für Monat   Februar\n Minimale Nutzung:     28\n Maximale Nutzung:     28\n Durchschnitt:         28\n Gesamtanzahl Tickets: 1\n\nAuswertung für Jahr 2023\n Minimale Nutzung:     28\n Maximale Nutzung:     31\n Durchschnitt:         30\n Gesamtanzahl Tickets: 3</pre>"
+    },
+    {
+     "titel": "Abbildung zur 3. Aufgabe: Methode TicketStatistik",
+     "html": "<pre>01 TicketStatistik(List&lt;TicketData&gt; TicketDataList) : void\n02  WriteLn(\"Nutzungssstatistik Monatstickets\");\n03  WriteLn();\n04  TicketData td0 = TicketDataList[0];\n05  string monat = td0.Monat;\n06  int monatMin = GetMonatstage(monat);\n07  int monatMax = 0;\n08  int monatTicketZaehler = 0;\n09  int monatNutzungsZaehler = 0;\n10  int jahrMin = 31;\n11  int jahrMax = 0;\n12  int jahrTicketZaehler = 0;\n13  int jahrNutzungsZaehler = 0;\n14  foreach(TicketData td in TicketDataList)\n15    if ( monat != td.Monat )\n16      //Monatsauswertung:\n17      WriteLn(\"Auswertung für Monat\" + monat);\n18      WriteLn(\" Minimale Nutzung:\" + monatMin);\n19      WriteLn(\" Maximale Nutzung:\" + monatMax);\n20      WriteLn(\" Durchschnitt:\" + monatNutzungsZaehler/monatTicketZaehler);\n21      WriteLn(\" Gesamtanzahl Tickets:\" + monatTicketZaehler);\n22      WriteLn();\n23      //Monatsdaten für Jahresauswertung übernehmen:\n24      jahrTicketZaehler = jahrTicketZaehler + monatTicketZaehler;\n25      jahrNutzungsZaehler = jahrNutzungsZaehler + monatNutzungsZaehler;\n26      if ( jahrMax &lt; monatMax )\n27        jahrMax = monatMax;\n28      end if\n29      if ( jahrMin &gt; monatMin )\n30        jahrMin = monatMin;\n31      end if\n32      //Reset Monat:\n33      monatTicketZaehler = 0;\n34      monatNutzungsZaehler = 0;\n35      monatMax = 0;\n36      monat = td.Monat;\n37      monatMin = GetMonatstage(monat);\n38    end if\n39    //Ticketauswertung:\n40    monatTicketZaehler += 1;\n41    monatNutzungsZaehler += td.NutzungsZaehler;\n42    if ( monatMax &lt; td.NutzungsZaehler )\n43      monatMax = td.NutzungsZaehler;\n44    end if\n45    if ( monatMin &gt; td.NutzungsZaehler )\n46      monatMin = td.NutzungsZaehler;\n47    end if\n48  end foreach\n49  //Jahresauswertung:\n50  WriteLn(\"Auswertung für Jahr\" + td0.Jahr);\n51  WriteLn(\" Minimale Nutzung:\" + jahrMin);\n52  WriteLn(\" Maximale Nutzung:\" + jahrMax);\n53  WriteLn(\" Durchschnitt:\" + jahrNutzungsZaehler / monatTicketZaehler);\n54  WriteLn(\" Gesamtanzahl Tickets\" + jahrTicketZaehler);\n55  WriteLn();\n56 end TicketStatistik</pre>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 2,
+     "eingabe": {
+      "zeilen": [
+       "Fehler 1",
+       "Fehler 2"
+      ]
+     },
+     "text": "<p>a) Überprüfen Sie den Code auf der perforierten Seite 7 mit Hilfe der auf Seite 6 genannten Testdaten. Verwenden Sie dazu die Datenverlaufstabelle.</p><p>(Code, Testdaten und erwartete Ausgabe stehen in der Anlage.)</p><p>Datenverlaufstabelle:</p><table><tr><th>Typ</th><th>Variable/Ausdruck</th><th>Werteverlauf</th></tr><tr><td>string</td><td>monat</td><td></td></tr><tr><td>int</td><td>monatMin</td><td></td></tr><tr><td>int</td><td>monatMax</td><td></td></tr><tr><td>int</td><td>monatTicketZaehler</td><td></td></tr><tr><td>int</td><td>monatNutzungsZaehler</td><td></td></tr><tr><td>int</td><td>jahrMin</td><td></td></tr><tr><td>int</td><td>jahrMax</td><td></td></tr><tr><td>int</td><td>jahrTicketZaehler</td><td></td></tr><tr><td>int</td><td>jahrNutzungsZaehler</td><td></td></tr><tr><td>TicketData</td><td>td</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table><p><b>aa) Nennen Sie kurz zwei gefundene Fehler.</b></p>",
+     "loesung": "<p>Datenverlaufstabelle:</p><table><tr><th>Variable</th><th>Iteration 1</th><th>Iteration 2</th></tr><tr><td>Monat</td><td>Januar</td><td>Februar</td></tr><tr><td>monatMin</td><td>31</td><td>28</td></tr><tr><td>monatMax</td><td>31</td><td>31</td></tr><tr><td>monatTicketZaehler</td><td>2</td><td>1</td></tr><tr><td>monatNutzungsZaehler</td><td>62</td><td>28</td></tr><tr><td>jahrMin</td><td>31</td><td>28</td></tr><tr><td>jahrMax</td><td>31</td><td>31</td></tr><tr><td>jahrTicketZaehler</td><td>2</td><td>3</td></tr><tr><td>jahrNutzungsZaehler</td><td>62</td><td>90</td></tr></table><p>Die Datenverlaufstabelle wird nicht bewertet und kann daher unterschiedlich verwendet / nicht verwendet werden.</p><p>Fehler 1: Der letzte Monat (Februar) wird nicht ausgewertet.<br>Fehler 2: Der Jahresdurchschnitt wird falsch berechnet.</p><p><b>Weiterführende Informationen:</b></p><p>Im Code wird überprüft, ob der Monat ungleich td.Monat ist („monat != td.Monat“), bevor die Monatsauswertung durchführt wird. Da dies am Ende der Schleife geschieht, wird der Februar nicht ausgewertet, da es keinen weiteren Monat gibt, der nach ihm kommt. Das führt dazu, dass die Auswertung für den Februar fehlt.</p><p>Im Code wird zur Ermittlung des Durchschnittes eine Division aus „jahrNutzungsZaehler“ und „monatTicketZaehler“ verwendet. „monatTicketZaehler“ enthält allerdings nur die Anzahl der Tickets im letzten Monat.</p><p><i>Anmerkung: Die Tabelle der Lösungserläuterungen zeigt je Monat die Werte, die sich bei korrekter Auswertung ergeben. Nach dem Code wird monatMax beim Monatswechsel auf 0 zurückgesetzt und ist für Februar danach 28 (in der Tabelle steht 31). Ohne Korrektur bleiben jahrTicketZaehler = 2 und jahrNutzungsZaehler = 62, weil der Februar nicht übernommen wird.</i></p>",
+     "hinweis": "Die Datenverlaufstabelle wird nicht bewertet und kann daher unterschiedlich verwendet / nicht verwendet werden. Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung."
+    },
+    {
+     "nr": "ab",
+     "punkte": 13,
+     "eingabe": "code",
+     "text": "<p>a) Überprüfen Sie den Code auf der perforierten Seite 7 mit Hilfe der auf Seite 6 genannten Testdaten. Verwenden Sie dazu die Datenverlaufstabelle.</p><p>(Code, Testdaten und erwartete Ausgabe stehen in der Anlage.)</p><p><b>ab) Machen Sie Vorschläge für die Änderung bzw. Erweiterung des Codes, so dass die erwartete Ausgabe erzeugt wird.</b></p>",
+     "loesung": "<p>Korrekturvorschlag zur Berücksichtigung des letzten Monats:</p><p>Zusätzlicher Code nach Zeile 48:</p><pre>…\n\n//Monatsauswertung (Letzter Monat):\nWriteLn(\"Auswertung für Monat\" + monat);\nWriteLn(\" Minimale Nutzung:\" + monatMin);\nWriteLn(\" Maximale Nutzung:\" + monatMax);\nWriteLn(\" Durchschnitt:\" + monatNutzungsZaehler /\nmonatTicketZaehLer) ;\nWriteLn(\" Gesamtanzahl Tickets:\" + monatTicketZaehler);\nWriteLn();\n\n//Monatsdaten für Jahresauswertung übernehmen (Letzter Monat):\njahrTicketZaehler = jahrTicketZaehler + monatTicketZaehLer;\njahrNutzungsZaehler = jahrNutzungsZaehler +\nmonatNutzungsZaehLer;\nif ( jahrMax &lt; monatMax )\njahrMax = monatMax;\nend if\nif ( jahrMin &gt; monatMin )\njahrMin = monatMin;\nend if\n\n…</pre><p><i>Alternative Lösungen sind möglich.</i></p><p>Korrekturvorschlag zur korrekten Berechnung des Durchschnittes:<br>Korrektur von Zeile 53:</p><pre>WriteLn(\"Durchschnitt:\" + jahrNutzungsZaehler / jahrTicketZaehler);</pre><p><i>Alternative Lösungen sind möglich.</i></p><p><i>Anmerkung: „monatTicketZaehLer“ und „monatNutzungsZaehLer“ (großes L) sind Schreibfehler in den Lösungserläuterungen für monatTicketZaehler und monatNutzungsZaehler. Beim genauen Vergleich mit der erwarteten Ausgabe weichen außerdem ab: Zeile 02 „Nutzungssstatistik“ (drei s), Zeile 54 ohne Doppelpunkt nach „Gesamtanzahl Tickets“, Zeilen 17 und 50 ohne Leerzeichen vor dem Monat bzw. Jahr — diese Punkte nennt die u-form-Lösung nicht.</i></p>",
+     "hinweis": "Die u-form-Lösungserläuterungen nennen keine Punkteaufteilung. Bausteine: Auswertung des letzten Monats nach der Schleife (Ausgabe und Übernahme in die Jahreswerte einschließlich Min/Max), Jahresdurchschnitt mit jahrTicketZaehler statt monatTicketZaehler."
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>b) Der Test soll alle Anweisungen mindestens einmal durchlaufen (Anweisungsüberdeckung, coverage test).</p><p><b>ba) Erläutern Sie die Anweisungsüberdeckung.</b></p>",
+     "loesung": "<p>Unter einer Anweisungsüberdeckung versteht man eine Metrik im Softwaretest, welche angibt, wie viele der Anweisungen im Programmcode während der Testdurchführung ausgeführt wurden. Ziel ist es, dass jede Anweisung mindestens einmal durchlaufen wird. Die Anweisungsüberdeckung ist eine wichtige Kennzahl, um die Qualität und Effektivität von Tests zu bewerten und potenzielle Fehler im Code aufzudecken.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>b) Der Test soll alle Anweisungen mindestens einmal durchlaufen (Anweisungsüberdeckung, coverage test).</p><p>bb) Mit den vorgegebenen Testdaten werden nicht alle Anweisungen des Codes durchlaufen.</p><p><b>Nennen Sie die Anweisungen, die nicht durchlaufen werden.</b></p>",
+     "loesung": "<p>Die Anweisung in Zeile 46 „<code>monatMin = td.NutzungsZaehler;</code>“ wird nicht durchlaufen, da bei den gegebenen Testdaten <code>monatMin</code> nicht größer als <code>td.NutzungsZaehler</code> ist.</p><p>Es ist davon auszugehen, dass eventuelle Schaltjahre nicht zu berücksichtigen sind.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bc",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>b) Der Test soll alle Anweisungen mindestens einmal durchlaufen (Anweisungsüberdeckung, coverage test).</p><p><b>bc) Passen Sie die Testdaten so an, dass alle Anweisungen durchlaufen werden und begründen Sie ihre Veränderungen.</b></p>",
+     "loesung": "<p>Die Testdaten sind so anzupassen, dass als <code>Nutzungszaehler</code> für Februar ein Wert unter 28 gewählt wird (z. B. 12).</p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Pflegearbeiten im botanischen Garten",
+   "punkte": 25,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Es liegt nachfolgender Datenbankauszug zur Verwaltung der Pflegearbeiten im botanischen Garten vor. Für die Verwaltung und Auswertung der Daten soll die Datenbankabfragesprache SQL zum Einsatz kommen.</p><p>(Die Tabellen stehen in der Anlage.)</p>",
+   "anlagen": [
+    {
+     "titel": "Tabellen Objekt, Mitarbeiter, Taetigkeit, Pflegearbeit",
+     "html": "<p>Tabelle <i>Objekt</i></p><table><tr><th>OID</th><th>Bezeichnung</th></tr><tr><td>1</td><td>Rasenfläche Süd</td></tr><tr><td>2</td><td>Rosengarten</td></tr><tr><td>3</td><td>Tropenhaus</td></tr></table><p>Tabelle <i>Mitarbeiter</i></p><table><tr><th>MID</th><th>Name</th><th>Vorname</th></tr><tr><td>1</td><td>Rose</td><td>Ines</td></tr><tr><td>2</td><td>Baum</td><td>Jürgen</td></tr><tr><td>31</td><td>Holz</td><td>Walter</td></tr></table><p>Tabelle <i>Taetigkeit</i></p><table><tr><th>TID</th><th>Bezeichnung</th></tr><tr><td>1</td><td>Rosenschnitt</td></tr><tr><td>2</td><td>Rasen mähen</td></tr><tr><td>3</td><td>Unkraut jäten</td></tr></table><p>Tabelle <i>Pflegearbeit</i></p><table><tr><th>PID</th><th>OID</th><th>TID</th><th>MID_Soll</th><th>MID_Ist</th><th>Datum_Soll</th><th>Datum_Abschluss</th></tr><tr><td>1</td><td>1</td><td>2</td><td>31</td><td>31</td><td>20.04.2023</td><td>20.04.2023</td></tr><tr><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>11.05.2023</td><td>NULL</td></tr><tr><td>3</td><td>2</td><td>1</td><td>1</td><td>2</td><td>20.03.2023</td><td>21.03.2023</td></tr><tr><td>4</td><td>2</td><td>1</td><td>1</td><td>NULL</td><td>01.08.2023</td><td>NULL</td></tr><tr><td>5</td><td>2</td><td>3</td><td>31</td><td>NULL</td><td>28.07.2023</td><td>NULL</td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 5,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage, mit der die Anzahl der Pflegearbeiten ermittelt wird, welche im Jahr 2023 geplant aber noch nicht abgeschlossen sind.</b></p>",
+     "loesung": "<pre>SELECT COUNT(*) AS Anzahl\nFROM Pflegearbeit\nWHERE YEAR(Datum_Soll) = 2023 AND Datum_Abschluss IS NULL;</pre><p><i>Die Benennung der Ausgabe als Anzahl (<code>AS Anzahl</code>) ist optional.</i></p>",
+     "hinweis": "Die Benennung der Ausgabe als Anzahl (AS Anzahl) ist optional."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage, mit der Sie ermitteln, an welchen Wochentagen in der Zeit vom 19.06.2023 bis einschließlich 30.06.2023 welche Pflegearbeiten in der „Außenanlage Nord“ stattfinden sollen. Das Ergebnis soll nach dem Datum aufsteigend sortiert angezeigt werden.</b></p><p>Beispiel-Ergebnistabelle:</p><table><tr><th>Datum</th><th>Wochentag</th><th>Tätigkeit</th></tr><tr><td>19.06.2023</td><td>Montag</td><td>Heckenschnitt</td></tr><tr><td>19.06.2023</td><td>Montag</td><td>Rasen mähen</td></tr><tr><td>22.06.2023</td><td>Donnerstag</td><td>Unkraut jäten</td></tr><tr><td>26.06.2023</td><td>Montag</td><td>Rosenschnitt</td></tr><tr><td>30.06.2023</td><td>Freitag</td><td>Rosenschnitt</td></tr></table>",
+     "loesung": "<pre>SELECT P.Datum_Soll AS Datum,\n       WEEKDAY(P.Datum_Soll) AS Wochentag,\n       T.Bezeichnung AS Taetigkeit\nFROM Objekt AS O\nINNER JOIN Pflegearbeit AS P ON O.OID = P.OID\nINNER JOIN Taetigkeit AS T ON T.TID = P.TID\nWHERE P.Datum_Soll &gt;= '2023-06-19' AND P.Datum_Soll &lt;= '2023-06-30' AND\nO.Bezeichnung = 'Außenanlage Nord'\nORDER BY P.Datum_Soll ASC;</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Abfrage mit der Sie die durchschnittliche Anzahl der Tätigkeiten pro Monat im Jahr 2021 von jedem Mitarbeiter auflisten.</b></p><p>Beispiel-Ergebnistabelle:</p><table><tr><th>MID</th><th>Name</th><th>Vorname</th><th>Durchschnitt</th></tr><tr><td>1</td><td>Rose</td><td>Ines</td><td>25,3</td></tr><tr><td>2</td><td>Baum</td><td>Jürgen</td><td>17,8</td></tr><tr><td>19</td><td>Knoll</td><td>Jana</td><td>0</td></tr><tr><td>31</td><td>Holz</td><td>Walter</td><td>30,2</td></tr></table>",
+     "loesung": "<pre>SELECT M.MID, M.Name, M.Vorname, (COUNT(P.MID_Ist) / 12) AS Durchschnitt\nFROM Mitarbeiter AS M\nLEFT JOIN Pflegearbeit AS P ON M.MID = P.MID_Ist AND\nYEAR(P.Datum_Abschluss) = 2021\nGROUP BY M.MID, M.Name, M.Vorname;</pre><p><b>Alternative Lösung:</b></p><pre>SELECT M.MID, M.Name, M.Vorname, (COUNT(P.MID_Ist) / 12) AS Durchschnitt\nFROM Mitarbeiter AS M\nLEFT JOIN (\n    SELECT MID_Ist\n    FROM Pflegearbeit\n    WHERE YEAR(Datum_Abschluss) = 2021\n)\nAS P ON M.MID = P.MID_Ist\nGROUP BY M.MID, M.Name, M.Vorname;</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "d",
+     "punkte": 4,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Geben Sie alle SQL-Anweisungen an, welche notwendig sind, um einen neuen Nutzer „Maier“ mit dem Passwort „5jk2T?“ zu erstellen und diesem die Leserechte an der Tabelle Objekt zuzuweisen.</b></p>",
+     "loesung": "<pre>CREATE USER 'Maier' IDENTIFIED BY 'Sjk2T?';\nGRANT SELECT ON Objekt TO 'Maier';</pre><p><i>Anmerkung: In der Aufgabe lautet das Passwort „5jk2T?“ (mit der Ziffer 5), in den Lösungserläuterungen steht 'Sjk2T?'.</i></p>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}

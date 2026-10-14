@@ -10,6 +10,28 @@ const root = path.join(__dirname, "..");
 
 const A = require(path.join(root, "gen", "azubi.js"));
 
+/* Strenge Uhr läuft auch im Hintergrund und nach Reload; alte Lernuhr pausiert. */
+const uhrModul = { id: "uhr", minuten: 90, aufgaben: [] };
+const streng = { modus: "pruefung", uhrArt: "streng", start: 1000, zeit: 0, abgegeben: false };
+assert.strictEqual(A.zeitFortschreiben(uhrModul, streng, 601000, 1000, false), false);
+assert.strictEqual(streng.zeit, 600000, "zehn Minuten Hintergrund zählen vollständig");
+const geladenStreng = JSON.parse(JSON.stringify(streng));
+assert.strictEqual(A.zeitFortschreiben(uhrModul, geladenStreng, 5401000, 1000, true), true, "90 Minuten enden auch nach Neuladen");
+assert.strictEqual(geladenStreng.zeit, 5400000);
+assert.strictEqual(A.zeitFortschreiben(uhrModul, geladenStreng, 2000, 1000, true), true, "zurückgestellte Uhr gibt keine Zeit zurück");
+const aktiv = { modus: "pruefung", start: 1000, zeit: 100, abgegeben: false };
+A.zeitFortschreiben(uhrModul, aktiv, 601000, 600000, false);
+assert.strictEqual(aktiv.zeit, 100, "alte Lernuhr pausiert im Hintergrund");
+A.zeitFortschreiben(uhrModul, aktiv, 602000, 1000, true);
+assert.strictEqual(aktiv.zeit, 1100);
+const beendet = { ...geladenStreng, abgegeben: true };
+A.zeitFortschreiben(uhrModul, beendet, 9999999, 1000, true);
+assert.strictEqual(beendet.zeit, 5400000, "abgegebener Versuch wird nicht weiter gemessen");
+assert.strictEqual(A.bereichVon({ id: "ga1-2023-w" }), "ga1");
+assert.strictEqual(A.bereichVon({ id: "anders", bereich: "GA2" }), "ga2");
+assert.strictEqual(A.bereichVon({ id: "wiso-2024-s" }), "wiso");
+assert.strictEqual(A.bereichVon({ id: "unbekannt" }), "weitere", "fehlende Zuordnung wird nicht als GA2 ausgegeben");
+
 /* Zahlen: Komma, Tausenderpunkt, Einheiten */
 assert.deepStrictEqual(A.zahlen("760000"), [760000]);
 assert(A.zahlen("760.000").includes(760000), "Tausenderpunkt");
@@ -140,6 +162,13 @@ assert.strictEqual(geaendert.beobachtet.t1.signatur, "aktuell", "unveränderter 
 const manuellGeaendert = { ...Z(), a: { t1: { f1: "30400" } }, p: { t1: 2.5 } };
 A.antwortSetzen(raster, manuellGeaendert, "f1", "30000");
 assert.strictEqual(manuellGeaendert.p.t1, 2.5, "manuelle Bewertung nicht automatisch überschreiben");
+const nachLeerAbgabe = { ...Z(), p: { t5: 0 }, auto: { t5: 1 }, auf: { t5: 1 } };
+A.antwortSetzen(offen, nachLeerAbgabe, "t1", "jetzt ausgefüllte offene Antwort");
+assert.strictEqual(nachLeerAbgabe.p.t5, undefined, "ausgefüllte offene Antwort braucht neue manuelle Bewertung statt altem automatischen Nullwert");
+assert.strictEqual(nachLeerAbgabe.auto.t5, undefined);
+const gleicherWert = { ...Z(), a: { t5: { t1: "unverändert" } }, auf: { t5: 1 }, hilfe: { t5: { vorAntwort: false } } };
+A.antwortSetzen(offen, gleicherWert, "t1", "unverändert");
+assert.strictEqual(gleicherWert.hilfe.t5.nachLoesung, undefined, "unveränderte Eingabe zählt nicht als Nachbearbeitung");
 
 /* Grenze zum Lernstand: Auswahl, Selbstbewertung und Hilfe nicht vermischen. */
 assert.strictEqual(typeof A.beobachten, "function");
@@ -188,6 +217,20 @@ try {
 } finally {
   if (alteBeobachtung === undefined) delete global.GENLERNSTAND; else global.GENLERNSTAND = alteBeobachtung;
 }
+
+const zeitEnde = { ...Z(), modus: "pruefung", uhrArt: "streng", a: { t1: { f1: "30400" }, t5: { t1: "eigene Erklärung" } }, p: { t5: 2 } };
+assert(A.pruefungAbgeben(modul("timer-abgabe", 1), zeitEnde, true));
+assert.strictEqual(zeitEnde.p.t1, 4, "automatische Teilpunkte bei Zeitende");
+assert.strictEqual(zeitEnde.p.t5, 2, "manuelle Bewertung bleibt erhalten");
+assert.strictEqual(zeitEnde.zeitAbgelaufen, true);
+const fest = JSON.stringify(zeitEnde);
+assert.strictEqual(A.antwortSetzen(raster, zeitEnde, "f1", "0"), false, "strenge Abgabe sperrt Änderungen");
+assert.strictEqual(A.pruefungAbgeben(modul("timer-abgabe", 1), zeitEnde, false), false, "Abgabe ist idempotent");
+assert.strictEqual(JSON.stringify(zeitEnde), fest, "sowohl Eingabe als auch erneute Abgabe ändern den Versuch nicht");
+const offeneAbgabe = { ...Z(), modus: "pruefung", uhrArt: "streng", a: { t5: { t1: "unbewerteter eigener Text" } } };
+A.pruefungAbgeben(modul("timer-offen", 1), offeneAbgabe, true);
+assert.strictEqual(offeneAbgabe.p.t5, undefined, "offener Text bleibt zur manuellen Rubrik statt automatischer Null");
+assert.strictEqual(offeneAbgabe.p.t1, 0, "leere geschlossene Aufgabe erhält null");
 
 let z = Z(); z.p.t1 = 4; z.p.t5 = 2;
 const s = A.auswertung(modul("x", 1), z);
@@ -304,7 +347,8 @@ const sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 assert(!sw.includes("privat/"), "privates Paket darf nicht in den Cache-Vorrat");
 assert(!/src="privat\//.test(html), "privates Paket nicht fest in index.html");
 const gi = fs.readFileSync(path.join(root, ".gitignore"), "utf8");
-assert(/^privat\/$/m.test(gi), "privat/ steht in .gitignore");
+assert(/^raw\/$/m.test(gi), "raw/ steht in .gitignore");
+assert(/^_tmp\/$/m.test(gi), "_tmp/ steht in .gitignore");
 
 /* Falls vorhanden: das echte Paket prüfen */
 const paketDatei = path.join(root, "privat", "ap2-paket.js");

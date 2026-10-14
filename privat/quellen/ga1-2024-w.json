@@ -1,0 +1,324 @@
+{
+ "id": "ga1-2024-w",
+ "bereich": "ga1",
+ "termin": "Winter 2024/25",
+ "kurz": "GA1 W24/25",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Winter 2024/25)",
+ "situation": "<p>In Kiel soll das Nahverkehrssystem (KVAG) um eine neue Stadtbahn erweitert werden. In Zusammenhang mit dieser Erweiterung sollen die IT-Systeme der KVAG erweitert und erneuert werden. Dazu werden verschiedene Teilprojekte festgelegt. Diese betreffen unter anderem die Fahrplanauskunft, die Buchungssysteme, die Anzeigen und die Vernetzung. Alle Teilprojekte sollen auch hinsichtlich der Anforderungen von Datenschutz und Datensicherheit untersucht werden.</p>",
+ "beleg": [
+  {
+   "id": "uc",
+   "titel": "Belegsatz: UML-Anwendungsfalldiagramm",
+   "html": "<img data-bild=\"bs24-uc\">"
+  },
+  {
+   "id": "klasse",
+   "titel": "Belegsatz: UML-Klassendiagramm",
+   "html": "<img data-bild=\"bs24-klasse\">"
+  },
+  {
+   "id": "zustand",
+   "titel": "Belegsatz: UML-Zustandsdiagramm",
+   "html": "<img data-bild=\"bs24-zustand\">"
+  },
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "w24-ga1-3a": {
+   "seite": "w24/ga1-6",
+   "box": [
+    0.04,
+    0.11,
+    0.6,
+    0.315
+   ]
+  },
+  "w24-ga1-3b": {
+   "seite": "w24/ga1-7",
+   "box": [
+    0.05,
+    0.085,
+    0.86,
+    0.437
+   ]
+  },
+  "w24-ga1-3a-l": {
+   "seite": "w24/l1-4",
+   "box": [
+    0.05,
+    0.09,
+    0.75,
+    0.43
+   ]
+  },
+  "w24-ga1-4a": {
+   "seite": "w24/l1-5",
+   "box": [
+    0.085,
+    0.118,
+    0.86,
+    0.495
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Vorgehensmodelle, PM-Begriffe, Datenschutz",
+   "punkte": 24,
+   "themen": [
+    "Projektmanagement",
+    "Datenschutz"
+   ],
+   "text": "<p>Sie arbeiten im Teilprojekt „Fahrplanauskunft“ mit. Für diese Fahrplanauskunft ist eine App für mobile Endgeräte zu entwickeln. Der Benutzer dieser App muss sich für die Nutzung der App registrieren. Es soll auch in späteren Versionen möglich sein, Ticketbuchungen und Zahlungen vornehmen zu können.</p><p>Bei der Entwicklung der App „Fahrplanauskunft“ haben Sie die Möglichkeit, aus unterschiedlichen Vorgehensmodellen auszuwählen.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p><b>Beschreiben Sie zwei Kategorien von möglichen Vorgehensmodellen.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zum <u>klassischen</u> und <u>agilen</u> Projektmanagement.</p><p>Das klassische Projektmanagement bezieht sich auf die traditionelle Herangehensweise an die Planung, Durchführung und Steuerung von Projekten. Es basiert auf bewährten Praktiken und Methoden, die in der Regel in einer linearen Abfolge von Phasen organisiert sind.</p><p>Agiles Projektmanagement ist eine Herangehensweise an die Durchführung von Projekten, die auf Flexibilität, Zusammenarbeit und kontinuierliche Anpassung an Veränderungen ausgerichtet ist.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>(Ausgangslage und Teilaufgabe a) siehe Anlage)</p><p><b>Beschreiben Sie jeweils ein Modell zu den in a) genannten Kategorien.</b></p>",
+     "loesung": "<p>Erwartet werden Beschreibungen zu Modellen wie z. B.:</p><p><u>Wasserfallmodell:</u> Das Wasserfallmodell ist eines der ältesten und bekanntesten Modelle des klassischen Projektmanagements. Es gliedert ein Projekt in aufeinanderfolgende Phasen, die linear abgearbeitet werden. Jede Phase muss abgeschlossen sein, bevor die nächste beginnt. Die Phasen umfassen oft die Projektinitiierung, Planung, Ausführung, Überwachung und Abschluss.</p><p><u>Scrum:</u> Scrum ist eines der am weitesten verbreiteten agilen Frameworks. Es teilt die Projektarbeit in kurze Iterationen, die als Sprints bezeichnet werden, auf. Innerhalb eines Sprints werden Prioritäten gesetzt, Aufgaben zugewiesen und ein Arbeitszyklus von etwa zwei bis vier Wochen durchgeführt. Scrum betont die enge Zusammenarbeit im Team und die regelmäßige Überprüfung der Arbeitsergebnisse.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 1 und Teilaufgabe a)",
+       "html": "<p>Sie arbeiten im Teilprojekt „Fahrplanauskunft“ mit. Für diese Fahrplanauskunft ist eine App für mobile Endgeräte zu entwickeln. Der Benutzer dieser App muss sich für die Nutzung der App registrieren. Es soll auch in späteren Versionen möglich sein, Ticketbuchungen und Zahlungen vornehmen zu können.</p><p>Bei der Entwicklung der App „Fahrplanauskunft“ haben Sie die Möglichkeit, aus unterschiedlichen Vorgehensmodellen auszuwählen.</p><p>a) Beschreiben Sie zwei Kategorien von möglichen Vorgehensmodellen.</p>"
+      }
+     ]
+    },
+    {
+     "nr": "c",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Change Request Management",
+       "Meilenstein",
+       "Stakeholder",
+       "Lessons Learned"
+      ]
+     },
+     "text": "<p>Zur Vorbereitung des Projektes sollen folgende Begriffe erläutert werden.</p><p><b>Füllen Sie dazu die folgende Tabelle aus.</b></p><table><tr><th>Begriff</th><th>Erläuterung</th></tr><tr><th>Change Request Management</th><td></td></tr><tr><th>Meilenstein</th><td></td></tr><tr><th>Stakeholder</th><td></td></tr><tr><th>Lessons Learned</th><td></td></tr></table>",
+     "loesung": "<table><tr><th>Begriff</th><th>Erläuterung</th></tr><tr><th>Change Request Management</th><td>Change Request Management bezieht sich auf den Prozess der Planung, Umsetzung und Steuerung von Veränderungen in dem Projekt „Fahrplanauskunft“. Das Ziel des Change Request Management ist es, sicherzustellen, dass Veränderungen während des Projektes erfolgreich umgesetzt werden.</td></tr><tr><th>Meilensteine</th><td>Ein Meilenstein ist ein wichtiger Punkt oder ein Ereignis im Verlauf des Projektes „Fahrplanauskunft“ Meilensteine werden verwendet, um den Fortschritt zu überwachen, den Zeitplan zu planen und den Erfolg eines Projekts zu bewerten.</td></tr><tr><th>Stakeholder</th><td>Stakeholder sind Personen oder Gruppen, die ein Interesse am Projekt „Fahrplanauskunft“ haben oder von seinen Ergebnissen betroffen sind. Dazu gehören z. B. der Vorstand der KVAG, Mitarbeiter der KVAG, Kunden der KVAG und die Stadt Kiel, die auf irgendeine Art und Weise mit dem Projekt in Verbindung stehen.</td></tr><tr><th>Lessons Learned</th><td>Lessons Learned sind Erkenntnisse und Erfahrungen, die am Ende des Projektes „Fahrplanauskunft“ gesammelt werden. Dies können sowohl positive Erfahrungen als auch Fehler und Probleme sein. Das Ziel ist es, aus diesen Erfahrungen zu lernen, um zukünftige Projekte zu verbessern. Lessons Learned können in Berichten oder Dokumentationen festgehalten und für das Wissensmanagement in der KVAG genutzt werden.</td></tr></table>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 1",
+       "html": "<p>Sie arbeiten im Teilprojekt „Fahrplanauskunft“ mit. Für diese Fahrplanauskunft ist eine App für mobile Endgeräte zu entwickeln. Der Benutzer dieser App muss sich für die Nutzung der App registrieren. Es soll auch in späteren Versionen möglich sein, Ticketbuchungen und Zahlungen vornehmen zu können.</p>"
+      }
+     ]
+    },
+    {
+     "nr": "d",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Wenn ein Nutzer der App seine Benutzerdaten speichern möchte, soll eine „Datenschutz-Einwilligung“ verwendet werden.</p><p><b>Beschreiben Sie zwei Gründe, warum die Verwendung einer „Datenschutzerklärung und deren Einwilligung“ von Bedeutung für den Datenschutz ist.</b></p>",
+     "loesung": "<p>Mögliche Gründe könnten z. B. sein:</p><p><u>Transparenz und Informationspflicht:</u><br>Eine Datenschutzerklärung informiert die Benutzer darüber, welche Art von personenbezogenen Daten gesammelt werden, wie sie verwendet werden und welche Rechte die Benutzer in Bezug auf ihre Daten haben. Dies schafft Transparenz und erfüllt die rechtliche Informationspflicht gegenüber den Benutzern der App.</p><p><u>Einwilligung der Benutzer:</u><br>Durch die Verwendung einer Einwilligungserklärung können Benutzer aktiv zustimmen oder ablehnen, dass ihre Daten gesammelt und verarbeitet werden. Dies stellt sicher, dass die Verarbeitung personenbezogener Daten auf einer rechtlichen Grundlage erfolgt und die Privatsphäre der Benutzer respektiert wird.</p><p><u>Rechtliche Compliance:</u><br>Datenschutzgesetze wie die Datenschutz-Grundverordnung (DSGVO) in der Europäischen Union erfordern die Einholung der ausdrücklichen Einwilligung der Benutzer für die Verarbeitung ihrer Daten. Die Verwendung einer Datenschutzerklärung und Einwilligung stellt sicher, dass die Anwendung den gesetzlichen Anforderungen entspricht.</p><p><u>Schutz vor Missbrauch:</u><br>Eine klare Datenschutzerklärung und Einwilligung verhindern, dass Benutzerdaten ohne Wissen oder Zustimmung der Benutzer gesammelt und missbraucht werden. Dies trägt zur Sicherheit und Integrität der Daten bei und schützt die Benutzer vor unerwünschter Datenverarbeitung.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage Aufgabe 1",
+       "html": "<p>Sie arbeiten im Teilprojekt „Fahrplanauskunft“ mit. Für diese Fahrplanauskunft ist eine App für mobile Endgeräte zu entwickeln. Der Benutzer dieser App muss sich für die Nutzung der App registrieren. Es soll auch in späteren Versionen möglich sein, Ticketbuchungen und Zahlungen vornehmen zu können.</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Netzwerkkonzepte, Ethernet-Frame, MAC-Adressen-Skript",
+   "punkte": 26,
+   "themen": [
+    "Netzwerk",
+    "Algorithmen"
+   ],
+   "text": "<p>Die KVAG betreibt je nach Anforderung verschiedene Datennetze.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 9,
+     "eingabe": {
+      "zeilen": [
+       "Internet der Dinge (IoT) — Netzwerkkonzept / Begründung",
+       "Unternehmensnetzwerk — Netzwerkkonzept / Begründung",
+       "Rechenzentrum — Netzwerkkonzept / Begründung"
+      ]
+     },
+     "text": "<p><b>Ordnen Sie folgende drei Netzwerkkonzepte ihrem jeweiligen Anwendungsgebiet zu und begründen Sie die gewählte Zuordnung.</b></p><ul><li><b>LAN</b> (Local Area Network)</li><li><b>SAN</b> (Storage Area Network)</li><li><b>LPWAN</b> (Low Power Wide Area Network)</li></ul><table><tr><th>Anwendungsgebiet</th><th>Netzwerkkonzept</th><th>Begründung</th></tr><tr><th>Internet der Dinge (IoT)</th><td></td><td></td></tr><tr><th>Unternehmensnetzwerk</th><td></td><td></td></tr><tr><th>Rechenzentrum</th><td></td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Anwendungsgebiet</th><th>Netzwerk-Konzept</th><th>Begründung</th></tr><tr><th>Internet der Dinge (IoT)</th><td>LPWAN</td><td>LPWAN bietet eine hohe Reichweite, niedrigen Energieverbrauch und eine kostengünstige Lösung für die Vernetzung von IoT-Geräten.</td></tr><tr><th>Unternehmensnetzwerk</th><td>LAN</td><td>Ein LAN bietet hohe Bandbreite, geringe Latenzzeiten und eine hohe Sicherheit. Es ermöglicht den gemeinsamen Zugriff auf Ressourcen und die effiziente Kommunikation innerhalb des Unternehmens.</td></tr><tr><th>Rechenzentrum</th><td>SAN</td><td>Ein SAN bietet eine hohe Übertragungsgeschwindigkeit, Skalierbarkeit und Zuverlässigkeit. Es ermöglicht den Datenaustausch zwischen Servern und Speichersystemen.</td></tr></table>",
+     "hinweis": "Je 1 Punkt für richtige Zuordnung, je 2 Punkte für Begründung."
+    },
+    {
+     "nr": "ba",
+     "punkte": 6,
+     "eingabe": {
+      "zeilen": [
+       "1. Feld von links (8 Bytes)",
+       "2. Feld (6 Bytes)",
+       "3. Feld (6 Bytes)",
+       "4. Feld (2 Bytes)",
+       "5. Feld (46 - 1.500 Bytes)",
+       "6. Feld (4 Bytes)"
+      ]
+     },
+     "text": "<p>Der am häufigsten verwendete Technologiestandard in einem Local Area Network (LAN) ist das paketvermittelnde Ethernet.</p><p><b>ba) Ordnen Sie die Nummern der folgenden Bezeichner den Feldern des Ethernet-Frames zu.</b></p><table><tr><th>Nummer</th><th>Bezeichner</th></tr><tr><td>1</td><td>Source Address</td></tr><tr><td>2</td><td>Data Payload</td></tr><tr><td>3</td><td>Preamble</td></tr><tr><td>4</td><td>Frame Check Sequence</td></tr><tr><td>5</td><td>Type</td></tr><tr><td>6</td><td>Destination Address</td></tr></table><p>Ethernet-Frame (von links nach rechts):</p><table><tr><td>◯</td><td>◯</td><td>◯</td><td>◯</td><td>◯</td><td>◯</td></tr><tr><td>(8 Bytes)</td><td>(6 Bytes)</td><td>(6 Bytes)</td><td>(2 Bytes)</td><td>(46 - 1.500 Bytes)</td><td>(4 Bytes)</td></tr></table>",
+     "loesung": "<table><tr><th>3</th><th>6</th><th>1</th><th>5</th><th>2</th><th>4</th></tr><tr><td>(8 Bytes)</td><td>(6 Bytes)</td><td>(6 Bytes)</td><td>(2 Bytes)</td><td>(46 - 1.500 Bytes)</td><td>(4 Bytes)</td></tr></table><p>In Worten: Preamble (3) · Destination Address (6) · Source Address (1) · Type (5) · Data Payload (2) · Frame Check Sequence (4)</p>",
+     "hinweis": "Je 1 Punkt pro richtige Zuordnung."
+    },
+    {
+     "nr": "bb",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>In den Feldern „Source Address“ und „Destination Address“ werden die MAC-Adressen (Medium Access Control) des Senders bzw. Empfängers eingetragen.</p><p><b>bb) Erläutern Sie den Aufbau einer MAC-Adresse.</b></p>",
+     "loesung": "<p>MAC-Adressen sind 6 Byte lang und werden in der Regel hexadezimal dargestellt (1 P). Die ersten 3 Byte geben den Hersteller an (Vendorkennung/OUI Organizationally Unique Identifier) (1 P), die restlichen 3 Bytes sind die eindeutige Kennung des jeweiligen Hardware-Gerätes (1 P).</p>",
+     "hinweis": "Je mit (1 P) markierte Aussage 1 Punkt."
+    },
+    {
+     "nr": "c",
+     "punkte": 8,
+     "eingabe": "code",
+     "text": "<p>Im Netz 192.168.0.0/24 sollen die IP-Adressen und MAC-Adressen aller Geräte mithilfe eines Skripts ermittelt werden.</p><p>Hinweise:</p><ul><li>Die MAC-Adresse kann mit der Funktion <i>getMacAddress(IP-Address) : MAC-Address</i> abgerufen werden. Wird keine MAC-Adresse gefunden, wird NULL zurückgegeben.</li><li>Das JSON-Array soll beispielhaft folgendes Aussehen haben:</li></ul><pre>[\n    {\n        \"IP-Adresse\": \"192.168.0\",\n        \"MAC-Adresse\": \"08:00:27:E2:A8:F0\"\n    },\n    …\n]</pre><p><b>Schreiben Sie ein Skript in Pseudocode oder in einer Ihnen bekannten Skriptsprache, welches die IP-Adressen und die MAC-Adressen aller Geräte im Netz mit der ID 192.168.0.0/24 abfragt und das Ergebnis in ein JSON-Array schreibt.</b></p>",
+     "loesung": "<pre>$networkPrefix = \"192.168.0\"\n# Array für die Ergebnisse erstellen\n$results = @()\n# Schleife über die möglichen Hostadressen\nfor ($host = 1; $host -le 254; $host++) {\n   # IP-Adresse aus networkPrefix und host mit einem \".\" zusammensetzen\n   $ipAddress = \"$networkPrefix.$host\"\n   # MAC-Adresse abfragen\n   $macAddress = getMacAddress($ipAddress)\n   # Überprüfen, ob die MAC-Adresse vorhanden ist\n   if ($macAddress ne $null) {\n      # Ergebnis zum Array hinzufügen\n      $result = @{\n         \"IP-Adresse\" = $ipAddress\n         \"MAC-Adresse\" = $macAddress\n      }\n      $results += $result\n   }\n}</pre><p><i>Anmerkung: Die Lösung ist in PowerShell geschrieben. Dort heißt der Vergleichsoperator <code>-ne</code> (im Lösungsheft steht „ne“). <code>$host</code> ist in PowerShell eine reservierte automatische Variable — in einem echten Skript einen anderen Namen nehmen (z. B. <code>$i</code>). Die JSON-Ausgabe selbst wäre z. B. <code>$results | ConvertTo-Json</code>. Im JSON-Beispiel der Aufgabe steht „192.168.0“ ohne Hostanteil (so wie <code>$networkPrefix</code>).</i></p>",
+     "hinweis": "Auch richtig: andere Skriptsprachen oder Pseudocode."
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Klassendiagramm Streckennetz, Aggregation/Komposition",
+   "punkte": 25,
+   "themen": [
+    "UML"
+   ],
+   "text": "<p>Die Software für die Fahrplanauskunft und die Einsatzplanung soll überarbeitet werden.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 17,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>Für die Fahrplanauskunft soll das Streckennetz neu modelliert werden.<br>Als Beispiel ist ein vereinfachtes Streckennetz dargestellt:</p><img data-bild=\"w24-ga1-3a\"><p>In einem Klassendiagramm sollen Haltestellen, Strecken, Linien und Fahrten modelliert werden. Dabei sollen folgende Sachverhalte berücksichtigt werden:</p><ul><li>Eine Haltestelle hat eine Bezeichnung, eine Position und eine Aufenthaltsdauer.<br>Die Haltestellen sind im Beispiel durch schwarze Punkte dargestellt.</li><li>Eine Strecke ist eine direkte Verbindung zwischen zwei Haltestellen. Für die Strecke wird eine Fahrtdauer festgelegt.<br>Im Beispiel sind die Strecken durch eine schwarze durchgezogene Linie zwischen zwei Haltestellen dargestellt.</li><li>Eine Buslinie ist eine Folge von Strecken. Sie ist durch eine geordnete Liste von Strecken festgelegt.<br>Beispiel: Buslinie 5 besteht aus den Strecken Markt-Friedhof, Friedhof-Sportplatz, Sportplatz-Grenzweg und Grenzweg-IHK. Sie ist durch die gestrichelte Linie mit der Beschriftung 5 dargestellt.</li><li>Eine Fahrt findet auf einer ganzen Buslinie oder auf einem Teil der Buslinie statt. Die Fahrt hat eine Starthaltestelle, eine Startzeit und eine Endhaltestelle.<br>Beispiel: Eine Fahrt auf der Linie 5 beginnt um 10:00 Uhr an der Haltestelle Friedhof und endet an der Haltestelle Grenzweg.</li></ul><p>Für jede Klasse sollen die Attribute mit Datentypen angegeben werden. Methoden müssen nicht eingetragen werden. Ferner sollen die Beziehungen mit Multiplizitäten im Diagramm eingetragen werden.</p><p><b>Ergänzen Sie das Klassendiagramm entsprechend den Vorgaben:</b></p><table><tr><th>Haltestelle</th></tr><tr><td>- bezeichnung : String<br>- position : Koordinaten<br>- aufenthaltsdauer : Integer</td></tr><tr><td>&nbsp;</td></tr></table>",
+     "loesung": "<img data-bild=\"w24-ga1-3a-l\"><p>In Worten:</p><ul><li><b>Haltestelle</b> (- bezeichnung : String, - position : Koordinaten, - aufenthaltsdauer : Integer)</li><li><b>Strecke</b> (- vonHaltestelle : Haltestelle, - nachHaltestelle : Haltestelle, - fahrtdauer : Integer)</li><li><b>Buslinie</b> (- streckenliste : List&lt;Strecke&gt;)</li><li><b>Fahrt</b> (- buslinie : Buslinie, - startZeit : Time, - startHaltestelle : Haltestelle, - endHaltestelle : Haltestelle)</li></ul><p>Beziehungen (Multiplizitäten):</p><ul><li>Haltestelle 2 — * Strecke</li><li>Haltestelle 2 — * Fahrt</li><li>Strecke 1..* — * Buslinie</li><li>Buslinie 1 — * Fahrt</li></ul>",
+     "hinweis": "Je Klasse 3 Punkte (1 Punkt Klasse, 1 Punkt Attribute, 1 Punkt Datentypen) = 9 Punkte. Je Beziehung 2 Punkte (1 Punkt Beziehung, 1 Punkt Multiplizität) = 8 Punkte."
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p>In der KVAG gibt es mehrere Fahrzeugtypen. Jeder Fahrer darf nur bestimmte Fahrzeugtypen fahren. Eine Liste der erlaubten Fahrzeugtypen ist in der Klasse Fahrer vorhanden. In der Klasse Personalverwaltung gibt es eine Liste aller Fahrer.<br>Im folgenden Auszug aus einem Klassendiagramm sind die Klassen mit den entsprechenden Attributen dargestellt.</p><img data-bild=\"w24-ga1-3b\"><p><i>In Worten (zum Lesen auf dem Handy):</i></p><ul><li><b>Fahrzeugtyp</b>: … - typID : Integer … | … + getTypID() : Integer …</li><li><b>Fahrer</b>: … - erlaubterFahrzeugtyp : List&lt;Fahrzeugtyp&gt; … | … + getErlaubterFahrzeugtyp() : List&lt;Fahrzeugtyp&gt; …</li><li><b>Personalverwaltung</b>: … - fahrer : List&lt;Fahrer&gt; … | … + sucheFahrer(typID : Integer) : List&lt;Fahrer&gt;</li><li>Aggregation Fahrer (Raute) — Fahrzeugtyp: Multiplizität * an Fahrer, * an Fahrzeugtyp</li><li>Aggregation Personalverwaltung (Raute) — Fahrer: Multiplizität * an Personalverwaltung, 1..* an Fahrer</li></ul><p>Im Klassendiagramm sind die Beziehungen als Aggregation modelliert.</p><p><b>ba) Beschreiben Sie die Bedeutung der Aggregation zwischen den Klassen Personalverwaltung und Fahrer.</b></p>",
+     "loesung": "<p>Eine Aggregation beschreibt eine „Ganzes-Teil“-Beziehung, z. B. wird jeder Fahrer als ein Teil in der Personalverwaltung modelliert. Dazu wird die Liste fahrer genutzt.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 3,
+     "eingabe": "gross",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p><b>bb) Erläutern Sie die Bedeutung der Multiplizität 1..* in der Beziehung zwischen den Klassen Personalverwaltung und Fahrer sowie die Bedeutung der Multiplizität * in der Beziehung zwischen den Klassen Fahrer und Fahrzeugtyp.</b></p>",
+     "loesung": "<p>Die Multiplizität 1..* bedeutet, dass es wenigstens einen Fahrer in der Liste in Personal gibt, dass es aber beliebig viele in der Liste geben kann.</p><p>Die Multiplizität * lässt darüber hinaus zu, dass es auch kein Objekt gibt, zu dem die Klasse in Beziehung steht, z. B. könnte ein neu eingestellter Fahrer zunächst noch keine Erlaubnis haben, um irgendeines der Fahrzeuge zu fahren.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Auszug aus dem Klassendiagramm (Fahrzeugtyp, Fahrer, Personalverwaltung)",
+       "html": "<p>In der KVAG gibt es mehrere Fahrzeugtypen. Jeder Fahrer darf nur bestimmte Fahrzeugtypen fahren. Eine Liste der erlaubten Fahrzeugtypen ist in der Klasse Fahrer vorhanden. In der Klasse Personalverwaltung gibt es eine Liste aller Fahrer.<br>Im folgenden Auszug aus einem Klassendiagramm sind die Klassen mit den entsprechenden Attributen dargestellt.</p><img data-bild=\"w24-ga1-3b\"><p><i>In Worten (zum Lesen auf dem Handy):</i></p><ul><li><b>Fahrzeugtyp</b>: … - typID : Integer … | … + getTypID() : Integer …</li><li><b>Fahrer</b>: … - erlaubterFahrzeugtyp : List&lt;Fahrzeugtyp&gt; … | … + getErlaubterFahrzeugtyp() : List&lt;Fahrzeugtyp&gt; …</li><li><b>Personalverwaltung</b>: … - fahrer : List&lt;Fahrer&gt; … | … + sucheFahrer(typID : Integer) : List&lt;Fahrer&gt;</li><li>Aggregation Fahrer (Raute) — Fahrzeugtyp: Multiplizität * an Fahrer, * an Fahrzeugtyp</li><li>Aggregation Personalverwaltung (Raute) — Fahrer: Multiplizität * an Personalverwaltung, 1..* an Fahrer</li></ul><p>Im Klassendiagramm sind die Beziehungen als Aggregation modelliert.</p>"
+      }
+     ]
+    },
+    {
+     "nr": "bc",
+     "punkte": 3,
+     "eingabe": "frei",
+     "beleg": [
+      "klasse"
+     ],
+     "text": "<p><b>bc) Erläutern Sie, ob für die Modellierung der Beziehung zwischen den Klassen Personalverwaltung und Fahrer statt einer Aggregation auch eine Komposition sinnvoll verwendet werden kann.</b></p>",
+     "loesung": "<p>Eine Komposition ist ebenfalls eine „Ganzes-Teil“-Beziehung, aber die Objekte, die die Teile beschreiben, sind existenzabhängig, können also ohne das Objekt, dass das Ganze beschreibt, nicht existieren. Das liegt in der modellierten Situation nicht vor, da die Fahrer z. B. auch in einer allgemeinen Mitarbeiterliste enthalten sein könnten.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Auszug aus dem Klassendiagramm (Fahrzeugtyp, Fahrer, Personalverwaltung)",
+       "html": "<p>In der KVAG gibt es mehrere Fahrzeugtypen. Jeder Fahrer darf nur bestimmte Fahrzeugtypen fahren. Eine Liste der erlaubten Fahrzeugtypen ist in der Klasse Fahrer vorhanden. In der Klasse Personalverwaltung gibt es eine Liste aller Fahrer.<br>Im folgenden Auszug aus einem Klassendiagramm sind die Klassen mit den entsprechenden Attributen dargestellt.</p><img data-bild=\"w24-ga1-3b\"><p><i>In Worten (zum Lesen auf dem Handy):</i></p><ul><li><b>Fahrzeugtyp</b>: … - typID : Integer … | … + getTypID() : Integer …</li><li><b>Fahrer</b>: … - erlaubterFahrzeugtyp : List&lt;Fahrzeugtyp&gt; … | … + getErlaubterFahrzeugtyp() : List&lt;Fahrzeugtyp&gt; …</li><li><b>Personalverwaltung</b>: … - fahrer : List&lt;Fahrer&gt; … | … + sucheFahrer(typID : Integer) : List&lt;Fahrer&gt;</li><li>Aggregation Fahrer (Raute) — Fahrzeugtyp: Multiplizität * an Fahrer, * an Fahrzeugtyp</li><li>Aggregation Personalverwaltung (Raute) — Fahrer: Multiplizität * an Personalverwaltung, 1..* an Fahrer</li></ul><p>Im Klassendiagramm sind die Beziehungen als Aggregation modelliert.</p>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Zustandsdiagramm Auslastung, Entwurfsmuster",
+   "punkte": 25,
+   "themen": [
+    "UML",
+    "Programmierung/OOP"
+   ],
+   "text": "<p>Die aktuelle Auslastung der Bahnen soll auf verschiedenen Anzeigen ausgegeben werden.</p>",
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 15,
+     "eingabe": "zeichnen",
+     "beleg": [
+      "zustand"
+     ],
+     "text": "<p>Bei der Auslastung werden die Zustände <i>leer</i>, <i>niedrig</i>, <i>normal</i> und <i>hoch</i> unterschieden. Wenn die Fahrt beginnt oder wenn alle Personen wieder ausgestiegen sind (Auslastung = 0 %), befindet sich die Bahn im Zustand <i>leer</i>. Ist eine Bahn <i>leer</i>, dann kann sie die Fahrt beenden und in den Endzustand gelangen.</p><p>Jeweils beim Verlassen einer Haltestelle wird bei dem Ereignis <i>Abfahrt</i> die aktuelle Auslastung überprüft. Folgende Festlegungen wurden zur Auslastung getroffen:</p><ul><li>Zustand <i>niedrig</i>: bis 30 % Auslastung</li><li>Zustand <i>normal</i>: über 30 % und unter 70 % Auslastung</li><li>Zustand <i>hoch</i>: ab 70 % Auslastung</li><li>Die Zustandsübergänge zwischen den Zuständen <i>leer</i> und <i>normal</i> bzw. <i>hoch</i> sollen zur Vereinfachung nicht berücksichtigt werden.</li></ul><p><b>Erstellen Sie auf der Folgeseite ein UML-Zustandsdiagramm zur Beschreibung der Auslastung.</b></p>",
+     "loesung": "<img data-bild=\"w24-ga1-4a\"><p>In Worten: Zustände <b>leer</b>, <b>niedrig</b>, <b>normal</b>, <b>hoch</b> mit Start- und Endpunkt.</p><ul><li>Start → leer: Fahrt beginnen</li><li>leer → Ende: Fahrt beenden</li><li>leer → niedrig: Abfahrt [Auslastung &gt; 0 %]</li><li>niedrig → leer: Abfahrt [Auslastung = 0 %]</li><li>niedrig → normal: Abfahrt [Auslastung &gt; 30 % und Auslastung &lt; 70 %]</li><li>normal → niedrig: Abfahrt [Auslastung &lt;= 30 %]</li><li>normal → hoch: Abfahrt [Auslastung &gt;= 70 %]</li><li>hoch → normal: Abfahrt [Auslastung &gt; 30 % und Auslastung &lt; 70 %]</li><li>niedrig → hoch: Abfahrt [Auslastung &gt;= 70 %]</li><li>hoch → niedrig: Abfahrt [Auslastung &lt;= 30 %]</li></ul>",
+     "hinweis": "Vorschlag für die Vergabe der Punkte: Je 0,5 Punkte für Start- und Endpunkt. Je 1 Punkt pro Zustand. Je 1 Punkt pro Zustandsübergang mit Bedingung."
+    },
+    {
+     "nr": "ba",
+     "punkte": 4,
+     "eingabe": "gross",
+     "text": "<p>Die aktuelle Auslastung soll u. a. in einer App, auf den Anzeigetafeln an den Haltestellen und in der Verwaltungssoftware der Mitarbeiter angezeigt werden. Ändert sich die Auslastung einer Bahn, so sollen alle Anzeigen aktualisiert werden.</p><p>Bei der Entwicklung der Software soll ein Entwurfsmuster (Design Pattern) verwendet werden.</p><p><b>ba) Beschreiben Sie zwei Vorteile, welche sich durch die Verwendung von Entwurfsmustern ergeben.</b></p>",
+     "loesung": "<p>Vorteile durch die Verwendung von Entwurfsmustern sind z. B.</p><ul><li>Bewährte Lösung für ein wiederkehrendes Problem in der Softwareentwicklung → Zeit- und Kostenersparnis</li><li>Hilfsmittel für Entwickler um z. B. Effizienz, Erweiterbarkeit oder Wartbarkeit der Software zu verbessern</li><li>Einfachere Kommunikation zwischen Entwicklern</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 2,
+     "eingabe": {
+      "zeilen": [
+       "Erzeugungsmuster",
+       "Verhaltensmuster"
+      ]
+     },
+     "text": "<p>Entwurfsmuster können beispielsweise in die Kategorien Erzeugungs-, Struktur- und Verhaltensmuster unterteilt werden. Ein Beispiel für die Kategorie Strukturmuster ist gegeben.</p><p><b>bb) Nennen Sie für die beiden anderen Kategorien jeweils ein Beispiel.</b></p><table><tr><th>Kategorie</th><th>Beispiel</th></tr><tr><td>Strukturmuster</td><td>Facade-Pattern</td></tr><tr><td>Erzeugungsmuster</td><td></td></tr><tr><td>Verhaltensmuster</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Kategorie</th><th>Beispiel</th></tr><tr><td>Strukturmuster</td><td>Facade-Pattern</td></tr><tr><td>Erzeugungsmuster</td><td>Singleton-Pattern, Factory-Pattern u. a.</td></tr><tr><td>Verhaltensmuster</td><td>Observer-Pattern, Command-Pattern u. a.</td></tr></table>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bc",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Zur Aktualisierung aller Anzeigen bei einer Änderung des Auslastungszustandes soll ein Entwurfsmuster verwendet werden.</p><p><b>bc) Nennen Sie ein geeignetes Entwurfsmuster und begründen Sie Ihre Entscheidung.</b></p>",
+     "loesung": "<p>Das Observer-Muster ist ein geeignetes Entwurfsmuster. Es definiert eine Abhängigkeitsbeziehung zwischen Objekten, sodass Änderungen in einem Objekt (dem Subjekt) alle seine abhängigen Objekte (die Observer) benachrichtigen. Ändert sich der Auslastungszustand einer Bahn, so werden alle Anzeigen über die Änderung informiert.</p>",
+     "hinweis": "",
+     "anlagen": [
+      {
+       "titel": "Ausgangslage zu Teilaufgabe b)",
+       "html": "<p>Die aktuelle Auslastung soll u. a. in einer App, auf den Anzeigetafeln an den Haltestellen und in der Verwaltungssoftware der Mitarbeiter angezeigt werden. Ändert sich die Auslastung einer Bahn, so sollen alle Anzeigen aktualisiert werden.</p><p>Bei der Entwicklung der Software soll ein Entwurfsmuster (Design Pattern) verwendet werden.</p>"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

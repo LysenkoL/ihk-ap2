@@ -120,7 +120,8 @@
   const NICHT_MARKIEREN = new Set(["projekt", "angebot", "anfrage", "bestellung", "rechnung", "monitor", "server", "bit", "byte",
     "risiko", "anforderung", "praesentation", "marketing", "miete", "kredit", "zins", "update", "kundengespraech", "motivation",
     "homeoffice", "datenbank", "algorithmus", "variable", "funktion", "methode", "klasse", "objekt", "attribut", "index",
-    "bedingung", "parameter", "schnittstelle", "ergonomie", "lizenz", "cloud-computing", "vorgang", "port", "ping"]);
+    "bedingung", "parameter", "schnittstelle", "ergonomie", "lizenz", "cloud-computing", "vorgang", "port", "ping",
+    "tabelle", "liste", "mitarbeiter", "kunde", "benutzer", "dauer", "bezeichnung"]);
   const ZIELE = "#sitTxt, .tk-frage, .tk-gintro, .loesung-txt, .az-text, .az-zeile-text, .az-wahl-text, .az-zuo-text, " +
                 ".wd-text, .wd-intro, .kp-inhalt, .sp-inhalt, #kkVorne, #kkHinten, .satz-frage, .satz-muster, .sz-otext";
   const NICHT_IN = "textarea, input, select, button, a, code, pre, script, style, .gl-w, .az-bewerten, svg";

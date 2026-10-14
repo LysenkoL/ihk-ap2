@@ -1,0 +1,581 @@
+{
+ "id": "wiso-2025-s",
+ "bereich": "wiso",
+ "termin": "Sommer 2025",
+ "kurz": "WiSo S25",
+ "minuten": 60,
+ "quelle": "raw/ap2-2025-s-wiso.pdf",
+ "schluessel": "offizielle vorläufige Lösungen der IHK, nachgeprüft",
+ "situation": "Die EcoTech GmbH ist ein IT-Dienstleistungsunternehmen mit Sitz in Erfurt. Die folgenden Aufgaben beziehen sich auf dieses Unternehmen.",
+ "aufgaben": [
+  {
+   "nr": 1,
+   "thema": "Wirtschaftssektoren",
+   "text": "Die EcoTech GmbH arbeitet mit verschiedenen Kooperationspartnern zusammen.",
+   "frage": "Welches der folgenden Unternehmen gehört zum sekundären Wirtschaftssektor?",
+   "typ": "eine",
+   "optionen": [
+    "Spediteur Fahrschnell OHG",
+    "Lagerlogistik Peter Müller e. K.",
+    "Import Keller OHG",
+    "Akku- und Ladegerätebau GmbH",
+    "Handelsvertretung Show & More GmbH"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Sekundärer Sektor = Industrie und Handwerk: Dinge herstellen (производство). Der Akku- und Ladegerätebau stellt Geräte her. Spedition, Lager, Import und Handelsvertretung sind Dienstleistung = tertiärer Sektor."
+  },
+  {
+   "nr": 2,
+   "thema": "Marktformen",
+   "text": "Ein Mitbewerber der EcoTech GmbH hatte letztes Jahr erstmalig eine App zur Erstellung der Einkommensteuererklärung im Angebot. In diesem Jahr will die EcoTech GmbH eine ähnliche App entwickeln und vertreiben. Sie geht von einer großen Nachfrage durch eine Vielzahl von Käufern aus.",
+   "frage": "Welche der folgenden Marktformen würde ab diesem Jahr für diesen Markt vorliegen, wenn es keine weiteren Anbieter gibt?",
+   "typ": "eine",
+   "optionen": [
+    "Angebotsmonopol",
+    "Nachfragepolypol",
+    "Angebotsoligopol",
+    "Angebotspolypol",
+    "Nachfrageoligopol"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Wenige Anbieter (hier zwei) + viele Käufer = Angebotsoligopol (олигополия предложения). Ein Anbieter wäre Monopol, sehr viele Anbieter Polypol."
+  },
+  {
+   "nr": 3,
+   "thema": "Ökonomisches Prinzip",
+   "frage": "In welchem der folgenden Fälle handelt die EcoTech GmbH nach dem ökonomischen Maximalprinzip?",
+   "typ": "eine",
+   "optionen": [
+    "Im Zentrallager wurde bei gleicher Umschlagmenge die Anzahl der Beschäftigten von sieben auf fünf gesenkt.",
+    "In der Verwaltung wurden durch Rationalisierungsmaßnahmen die Kosten um 15 % gesenkt.",
+    "Der Umsatz wurde bei gleichem Personaleinsatz um 20 % gesteigert.",
+    "Durch eine Erhöhung des Werbeetats um 10 % wurde die rückläufige Absatzentwicklung gestoppt.",
+    "Durch Umgestaltung der Vertriebswege für den Absatz für B2B-Kunden wurden die Kosten um 5 % gesenkt."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Maximalprinzip (принцип максимума): mit gleichem Einsatz möglichst viel Ergebnis — gleiches Personal, mehr Umsatz. Gleiches Ergebnis mit weniger Einsatz (weniger Personal, weniger Kosten) ist das Minimalprinzip."
+  },
+  {
+   "nr": 4,
+   "thema": "Konjunktur",
+   "kontext": "Situation zur 4. bis 6. Aufgabe: Die EcoTech GmbH beobachtet die wirtschaftliche Entwicklung in der EU. Die Unternehmensleitung bespricht in einer Konferenz die folgenden Zahlen:",
+   "anlage": "<table><tr><th>Indikatoren</th><th>Vorjahr (in %)</th><th>Aktuelles Jahr (in %)</th><th>Prognose Folgejahr (in %)</th></tr><tr><td>Bruttoinlandsprodukt</td><td>- 0,5</td><td>- 1,0</td><td>- 2,0</td></tr><tr><td>Inflationsrate</td><td>2,2</td><td>2,2</td><td>2,0</td></tr><tr><td>Arbeitslosenquote</td><td>6,0</td><td>6,5</td><td>7,5</td></tr></table>",
+   "frage": "In welcher der folgenden Phasen der gesamtwirtschaftlichen Entwicklung befindet sich die EU anhand der drei Angaben in der Spalte „Aktuelles Jahr“?",
+   "typ": "eine",
+   "optionen": [
+    "Stillstand/Stagnation",
+    "Aufschwung/Expansion",
+    "Höchststand/Boom",
+    "Abschwung/Rezession",
+    "Tiefstand/Depression"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "BIP sinkt weiter, Arbeitslosigkeit steigt → Abschwung/Rezession (спад, рецессия). Depression wäre der Tiefpunkt mit sehr hoher Arbeitslosigkeit; hier geht es noch nach unten."
+  },
+  {
+   "nr": 5,
+   "thema": "Konjunktur",
+   "kontext": "Situation zur 4. bis 6. Aufgabe: Die EcoTech GmbH beobachtet die wirtschaftliche Entwicklung in der EU (Bruttoinlandsprodukt sinkt, Arbeitslosenquote steigt).",
+   "text": "In der Konferenz wird über die Merkmale von Konjunkturauf- und -abschwüngen diskutiert.",
+   "frage": "Welches der folgenden Merkmale ist typisch für eine konjunkturelle Rezession? Zunahme …",
+   "typ": "eine",
+   "optionen": [
+    "der Investitionen",
+    "des Bruttoinlandsprodukts",
+    "der gesamtwirtschaftlichen Lohnsumme",
+    "der Kapazitätsauslastung",
+    "der Lagerbestände"
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "In der Rezession wird weniger gekauft. Die Firmen bleiben auf ihrer Ware sitzen → die Lagerbestände (складские запасы) steigen. Investitionen, BIP, Löhne und Auslastung sinken."
+  },
+  {
+   "nr": 6,
+   "thema": "Konjunkturpolitik",
+   "kontext": "Situation zur 4. bis 6. Aufgabe: Die EcoTech GmbH beobachtet die wirtschaftliche Entwicklung in der EU (Bruttoinlandsprodukt sinkt, Arbeitslosenquote steigt).",
+   "text": "In der Konferenz werden verschiedene Maßnahmen zur Konjunkturbelebung betrachtet.",
+   "frage": "Welche der folgenden Maßnahmen belebt die Konjunktur und könnte zu einer besseren Auftragslage führen?",
+   "typ": "eine",
+   "optionen": [
+    "Erhöhung der staatlichen Investitionen",
+    "Erhöhung der Steuern",
+    "Erhöhung der Leitzinsen",
+    "Kürzung des Kindergeldes",
+    "Kürzung des Arbeitslosengeldes"
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Mehr Staatsinvestitionen = mehr Aufträge für Firmen (антициклическая политика). Höhere Steuern, höhere Zinsen und weniger Sozialleistungen nehmen den Menschen Geld weg und bremsen."
+  },
+  {
+   "nr": 7,
+   "thema": "Unternehmensziele",
+   "text": "Die EcoTech GmbH hat in ihrem Unternehmensbild verschiedene Unternehmensziele festgelegt. Diese Ziele sollen in regelmäßigen Abständen kontrolliert und aktualisiert werden.",
+   "frage": "Welche der folgenden Arten von Zielen sind den nachstehenden Unternehmenszielen zuzuordnen?",
+   "typ": "zuordnung",
+   "otitel": "Arten von Zielen",
+   "optionen": [
+    "Ökonomisches Ziel",
+    "Ökologisches Ziel",
+    "Weder ökonomisches noch ökologisches Ziel"
+   ],
+   "zeilen": {
+    "a": "Die Chancengleichheit von Frauen und Männern wird sichergestellt.",
+    "b": "Die Mitarbeitenden sollen durch Gewinnbeteiligung zu effizienterer Arbeitsleistung motiviert werden.",
+    "c": "Es sollen ausreichend Gewinne erwirtschaftet werden, damit anstehende Investitionen nicht ausschließlich mit Fremdkapital finanziert werden müssen.",
+    "d": "Die CO₂-Emission soll durch Einbau einer Photovoltaikanlage gesenkt werden.",
+    "e": "Es werden modernste Techniken für Lagerlogistik und Transport eingesetzt, damit der Leistungsprozess die natürliche Lebensgrundlage möglichst wenig belastet."
+   },
+   "soll": {
+    "a": 3,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 2
+   },
+   "erkl": "a) Chancengleichheit = soziales Ziel → weder noch. b) und c) Effizienz und Gewinn = ökonomisch (экономическая цель). d) und e) weniger CO₂, Natur schonen = ökologisch."
+  },
+  {
+   "nr": 8,
+   "thema": "Ausbildungsvertrag",
+   "kontext": "Situation zur 8. bis 10. Aufgabe: Mario Kerman ist Mitarbeiter und Ansprechpartner bei der EcoTech GmbH im Bereich Aus- und Weiterbildung.",
+   "text": "Am 1. Februar wird Frau Jung (20 Jahre alt) eine Berufsausbildung zur Fachinformatikerin Anwendungsentwicklung in der EcoTech GmbH beginnen. Herr Kerman soll den Ausbildungsvertrag überprüfen.",
+   "frage": "Welchen der folgenden Vertragsinhalte muss er korrigieren?",
+   "typ": "eine",
+   "optionen": [
+    "Die Ausbildungsvergütungen sind bereits für alle Ausbildungsjahre eingetragen.",
+    "Die Angaben der Eltern sind nicht eingetragen.",
+    "Die Kündigungsvoraussetzungen sind aufgeführt.",
+    "Die Probezeit ist mit einer Dauer von sechs Monaten eingetragen.",
+    "Die Ausbildungsdauer ist mit 36 Monaten eingetragen."
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Probezeit: mindestens 1, höchstens 4 Monate (§ 20 BBiG). Sechs Monate sind zu lang → korrigieren. Frau Jung ist volljährig, Eltern müssen nicht im Vertrag stehen."
+  },
+  {
+   "nr": 9,
+   "thema": "Berufsbildungsgesetz",
+   "kontext": "Situation zur 8. bis 10. Aufgabe: Mario Kerman ist Mitarbeiter und Ansprechpartner bei der EcoTech GmbH im Bereich Aus- und Weiterbildung.",
+   "text": "Herr Kerman überprüft weitere Abläufe der Berufsausbildung in der EcoTech GmbH.",
+   "frage": "Welche der folgenden Situationen entsprechen den Regelungen des Berufsbildungsgesetzes?",
+   "typ": "mehrere",
+   "optionen": [
+    "Während der Probezeit kann das Berufsausbildungsverhältnis nur mit einer Kündigungsfrist von vier Wochen gekündigt werden.",
+    "Eine Kündigung des Berufsausbildungsverhältnisses durch eine Auszubildende nach der Probezeit ist möglich, wenn sie eine Ausbildung in einem anderen Ausbildungsberuf beginnen will.",
+    "Vereinbarungen über eine Weiterbeschäftigung nach der Ausbildung können bereits im Berufsausbildungsvertrag festgelegt werden.",
+    "Das Ausbildungsverhältnis endet mit Ablauf der Ausbildungszeit, auch wenn die Auszubildende die IHK-Abschlussprüfung vorher besteht.",
+    "Die EcoTech GmbH muss den Auszubildenden bei Beendigung des Berufsausbildungsverhältnisses auf deren Wunsch ein qualifiziertes Zeugnis ausstellen.",
+    "Die EcoTech GmbH muss der Auszubildenden am Tag nach dem Bestehen der Abschlussprüfung einen unbefristeten Arbeitsvertrag anbieten."
+   ],
+   "soll": [
+    2,
+    5
+   ],
+   "erkl": "Nach der Probezeit darf der Azubi mit 4 Wochen Frist kündigen, wenn er den Beruf wechselt (§ 22 BBiG). Ein qualifiziertes Zeugnis gibt es auf Wunsch (§ 16 BBiG). Falsch: In der Probezeit jederzeit ohne Frist. Weiterbeschäftigung darf nicht im Vertrag festgelegt werden (§ 12). Bestehen vor Vertragsende beendet die Ausbildung (§ 21)."
+  },
+  {
+   "nr": 10,
+   "thema": "Ausbildungsvertrag",
+   "kontext": "Situation zur 8. bis 10. Aufgabe: Mario Kerman ist Mitarbeiter und Ansprechpartner bei der EcoTech GmbH im Bereich Aus- und Weiterbildung.",
+   "text": "Herr Kermann stellt eine Liste der erforderlichen Unterlagen zur Berufsausbildung für die Auszubildenden zusammen.",
+   "frage": "Welche der folgenden Unterlagen ist gemäß den Vorschriften des Berufsbildungsgesetzes Teil des Berufsausbildungsvertrages?",
+   "typ": "eine",
+   "optionen": [
+    "Der fachlich gegliederte Stoffplan der Berufsschule",
+    "Der gemeinsame Ausbildungsplan der Berufsschule und des Betriebes",
+    "Der Rahmenlehrplan der Berufsschule",
+    "Der Ausbildungsplan des Ausbildungsbetriebes",
+    "Der Einsatz- und der Pausenplan des jeweiligen Betriebes"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Der betriebliche Ausbildungsplan (план обучения на предприятии) — sachliche und zeitliche Gliederung — gehört zum Vertrag (§ 11 BBiG). Die Pläne der Berufsschule gehören nicht dazu."
+  },
+  {
+   "nr": 11,
+   "thema": "Jugend- und Auszubildendenvertretung",
+   "text": "Nach einigen Monaten Tätigkeit in der EcoTech GmbH möchte sich die Auszubildende Claudia Peters in der Jugend- und Auszubildendenvertretung (JAV) engagieren. Sie interessiert sich dafür, welche Aufgaben die JAV hat.",
+   "frage": "Welches der folgenden Gesetze enthält entsprechende Regelungen?",
+   "typ": "eine",
+   "optionen": [
+    "Bürgerliches Gesetzbuch",
+    "Arbeitsschutzgesetz",
+    "Berufsbildungsgesetz",
+    "Jugendarbeitsschutzgesetz",
+    "Betriebsverfassungsgesetz"
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Die JAV (представительство молодёжи и учеников) steht im Betriebsverfassungsgesetz (§§ 60–73 BetrVG), genau wie der Betriebsrat."
+  },
+  {
+   "nr": 12,
+   "thema": "Jugend- und Auszubildendenvertretung",
+   "text": "In der EcoTech GmbH unterhält sich eine Kollegin mit Frau Peters und möchte wissen, wie die Zusammenarbeit zwischen Mitgliedern der JAV, dem Betriebsrat und der Geschäftsführung der EcoTech GmbH geregelt ist.",
+   "frage": "Welche der folgenden Aussagen trifft zu? Als Mitglied der Jugend- und Auszubildendenvertretung …",
+   "typ": "eine",
+   "optionen": [
+    "darf man nur zweimal im Jahr an Sitzungen des Betriebsrates teilnehmen.",
+    "darf man für Jugendliche und Auszubildende beim Betriebsrat Maßnahmen zugunsten der Auszubildenden beantragen.",
+    "vertritt man alle Jugendinteressen direkt bei der Geschäftsführung.",
+    "muss man vor jeder Entscheidung des Betriebsrates gehört werden.",
+    "hat man bei allen betrieblichen Belangen ein Mitspracherecht."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Die JAV arbeitet über den Betriebsrat: Sie beantragt beim Betriebsrat Maßnahmen für Jugendliche und Azubis (§ 70 BetrVG). Sie geht nicht direkt zur Geschäftsführung."
+  },
+  {
+   "nr": 13,
+   "thema": "Betriebsrat",
+   "text": "Die Fachinformatikerin Sofia Hase interessiert sich für eine Mitarbeit im Betriebsrat.",
+   "frage": "Welche der folgenden Voraussetzungen muss Frau Hase erfüllen, damit sie in den Betriebsrat gewählt werden kann? Zur Wahl in den Betriebsrat …",
+   "typ": "eine",
+   "optionen": [
+    "müssen Mitarbeitende das 18. Lebensjahr vollendet haben und die Ausbildung zwingend abgeschlossen haben.",
+    "können sich Mitarbeitende aufstellen lassen, die das 16. Lebensjahr vollendet haben.",
+    "müssen Mitarbeitende volljährig sein und seit mindestens sechs Monaten der EcoTech GmbH angehören.",
+    "ist die berufliche und strafrechtliche Vorgeschichte der Mitarbeitenden völlig irrelevant.",
+    "müssen Mitarbeitende das 18. Lebensjahr vollendet haben und dürfen vorher maximal sechs Monate der EcoTech GmbH angehört haben."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Wählbar (passives Wahlrecht — право быть избранным): mindestens 18 Jahre und mindestens 6 Monate im Betrieb (§ 8 BetrVG). Wählen (aktives Wahlrecht) darf man ab 16."
+  },
+  {
+   "nr": 14,
+   "thema": "Jugendarbeitsschutz",
+   "text": "Das Jugendarbeitsschutzgesetz (JArbSchG) gilt für jugendliche Mitarbeitende, also Personen, die das 18. Lebensjahr noch nicht vollendet haben.",
+   "frage": "Welche der folgenden Regelungen steht im JArbSchG?",
+   "typ": "eine",
+   "optionen": [
+    "Jugendliche dürfen nicht länger als drei Stunden ununterbrochen ohne Ruhepausen beschäftigt werden.",
+    "Zwischen dem Feierabend und dem Arbeitsbeginn am nächsten Tag muss eine Ruhepause von acht Stunden eingelegt werden.",
+    "Jugendliche sollen vor einer Gefährdung ihrer Gesundheit oder einer Störung der Entwicklung bewahrt werden.",
+    "Jugendliche sollen grundsätzlich nicht vor acht Uhr morgens beschäftigt werden.",
+    "Jugendliche müssen zur besseren Vorbereitung im Rahmen der Abschlussprüfung zwei Arbeitstage vor der Prüfung freigestellt werden."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Ziel des JArbSchG: Jugendliche vor Gefahren für Gesundheit und Entwicklung schützen. Die Zahlen sind falsch: Pause nach spätestens 4,5 Stunden, 12 Stunden Freizeit zwischen zwei Arbeitstagen, Arbeit von 6 bis 20 Uhr, frei am Arbeitstag direkt vor der schriftlichen Abschlussprüfung (ein Tag)."
+  },
+  {
+   "nr": 15,
+   "thema": "Betriebsversammlung",
+   "text": "Der Betriebsrat der EcoTech GmbH lädt zur vierteljährlichen Betriebsversammlung ein.",
+   "frage": "Welche der folgenden Personengruppen ist berechtigt, an der Betriebsversammlung teilzunehmen?",
+   "typ": "eine",
+   "optionen": [
+    "Alle Arbeitnehmende des Unternehmens",
+    "Nur die Betriebsratsmitglieder und die Gewerkschaftsvertreter",
+    "Nur die gewerkschaftlich organisierten Mitarbeitenden",
+    "Nur die Vollzeitmitarbeitenden und die Führungskräfte",
+    "Nur die Vollzeitmitarbeitenden und die Auszubildenden"
+   ],
+   "soll": [
+    1
+   ],
+   "erkl": "Die Betriebsversammlung (собрание трудового коллектива) ist für alle Arbeitnehmer des Betriebs — auch Teilzeit und Azubis (§ 42 BetrVG)."
+  },
+  {
+   "nr": 16,
+   "thema": "Rechtsquellen",
+   "text": "Bei der EcoTech GmbH kommen zu unterschiedlichen Sachverhalten immer wieder Fragen auf. Frau Hase wird beauftragt, die entsprechenden Rechtsquellen den Sachverhalten zuzuordnen.",
+   "frage": "Welche der folgenden Rechtsquellen sind den nachstehenden Sachverhalten zuzuordnen?",
+   "typ": "zuordnung",
+   "otitel": "Rechtsquellen",
+   "optionen": [
+    "Berufsbildungsgesetz",
+    "Handelsgesetzbuch",
+    "Betriebsverfassungsgesetz",
+    "Bürgerliches Gesetzbuch",
+    "Bundesurlaubsgesetz",
+    "Jugendarbeitsschutzgesetz"
+   ],
+   "zeilen": {
+    "a": "Die Geschäftsführung der EcoTech GmbH und der Betriebsrat arbeiten unter Beachtung der geltenden Tarifverträge und gesetzlichen Regelungen konstruktiv zusammen.",
+    "b": "Die Geschäftsleitung der EcoTech GmbH erarbeitet neue Allgemeine Geschäftsbedingungen."
+   },
+   "soll": {
+    "a": 3,
+    "b": 4
+   },
+   "erkl": "a) Vertrauensvolle Zusammenarbeit Arbeitgeber–Betriebsrat: § 2 BetrVG. b) Allgemeine Geschäftsbedingungen (AGB — общие условия сделок) stehen im BGB (§§ 305 ff.)."
+  },
+  {
+   "nr": 17,
+   "thema": "Arbeitskampf",
+   "text": "Die EcoTech GmbH ist Mitglied eines Arbeitgeberverbandes und tarifgebunden. Bei den laufenden Tarifverhandlungen hat die Arbeitgeberseite kein Angebot vorgelegt und die Forderung der Gewerkschaft abgelehnt. Daraufhin plant die Gewerkschaft Streikmaßnahmen.",
+   "frage": "Welche der folgenden Aussagen zu einem unbefristeten Streik trifft zu? Ein unbefristeter Streik …",
+   "typ": "eine",
+   "optionen": [
+    "muss vom DGB (Deutscher Gewerkschaftsbund) genehmigt werden.",
+    "muss beim Bundesministerium für Arbeit und Soziales beantragt werden.",
+    "ist nur vor dem Auslaufen eines Tarifvertrags möglich.",
+    "wird immer von Tarifverhandlungen begleitet.",
+    "kann von den Arbeitgebern mit Aussperrung erwidert werden."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Gegen einen Streik dürfen die Arbeitgeber mit Aussperrung (локаут) antworten. Streik ist erst nach Ende des Tarifvertrags erlaubt (Friedenspflicht — обязанность сохранять мир). Kein Staat und kein DGB muss zustimmen."
+  },
+  {
+   "nr": 18,
+   "thema": "Kündigungsfristen",
+   "kontext": "Situation zur 18. und 19. Aufgabe: Der Mitarbeitende der EcoTech GmbH Paul Kropp ist seit dem 01.01.2012 bei der EcoTech GmbH beschäftigt. Die EcoTech GmbH möchte das Arbeitsverhältnis im Dezember 2025 betriebsbedingt zum nächstmöglichen Termin kündigen. Es gilt die gesetzliche Kündigungsfrist.",
+   "anlage": "<b>§ 622 BGB Kündigungsfristen bei Arbeitsverhältnissen (Auszug)</b><br>(1) Das Arbeitsverhältnis eines Arbeiters oder eines Angestellten (Arbeitnehmers) kann mit einer Frist von vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats gekündigt werden.<br>(2) Für eine Kündigung durch den Arbeitgeber beträgt die Kündigungsfrist, wenn das Arbeitsverhältnis in dem Betrieb oder Unternehmen<br>1. zwei Jahre bestanden hat, einen Monat zum Ende eines Kalendermonats,<br>2. fünf Jahre bestanden hat, zwei Monate zum Ende eines Kalendermonats,<br>3. acht Jahre bestanden hat, drei Monate zum Ende eines Kalendermonats,<br>4. zehn Jahre bestanden hat, vier Monate zum Ende eines Kalendermonats,<br>5. zwölf Jahre bestanden hat, fünf Monate zum Ende eines Kalendermonats,<br>6. 15 Jahre bestanden hat, sechs Monate zum Ende eines Kalendermonats,<br>7. 20 Jahre bestanden hat, sieben Monate zum Ende eines Kalendermonats.",
+   "frage": "Mit Ablauf welchen Tages endet das Arbeitsverhältnis von Herrn Kropp?",
+   "typ": "datum",
+   "soll": "31.05.2026",
+   "erkl": "01.01.2012 bis Dezember 2025 = fast 14 Jahre → mindestens 12 Jahre → 5 Monate zum Monatsende (§ 622 Abs. 2 Nr. 5 BGB). Kündigung im Dezember 2025 → Ende 31.05.2026. (Kündigungsfrist — срок уведомления об увольнении)"
+  },
+  {
+   "nr": 19,
+   "thema": "Arbeitszeugnis",
+   "kontext": "Situation zur 18. und 19. Aufgabe: Paul Kropp ist seit dem 01.01.2012 bei der EcoTech GmbH beschäftigt; ihm wird zum nächstmöglichen Termin gekündigt.",
+   "text": "Die EcoTech GmbH erstellt für Herrn Kropp ein qualifiziertes Arbeitszeugnis.",
+   "frage": "Welcher der folgenden Sachverhalte trifft auf ein qualifiziertes Arbeitszeugnis zu? Das qualifizierte Arbeitszeugnis …",
+   "typ": "eine",
+   "optionen": [
+    "enthält nur Angaben über Art und Dauer der Beschäftigung.",
+    "darf neben Art und Dauer der Beschäftigung auf Wunsch auch Aussagen über das private Auftreten enthalten.",
+    "wird nach Ermessen des Arbeitgebers ausgestellt.",
+    "wird nur bei sehr guten Leistungen ausgestellt.",
+    "muss nur auf Verlangen des Arbeitnehmers ausgestellt werden."
+   ],
+   "soll": [
+    5
+   ],
+   "erkl": "Einfaches Zeugnis: nur Art und Dauer. Qualifiziertes Zeugnis (квалифицированная характеристика): zusätzlich Leistung und Verhalten — der Arbeitgeber muss es ausstellen, wenn der Arbeitnehmer es verlangt (§ 109 GewO). Privates gehört nicht hinein."
+  },
+  {
+   "nr": 20,
+   "thema": "Kündigungsschutz",
+   "text": "Es sollen bei der EcoTech GmbH die Personalkosten gesenkt werden. Dazu wird geprüft, inwieweit dies durch Personalabbau möglich ist.",
+   "frage": "Welches der folgenden Arbeitsverhältnisse könnte am ehesten durch eine ordentliche Kündigung beendet werden? Das Kündigungsschutzgesetz ist anzuwenden.",
+   "typ": "eine",
+   "optionen": [
+    "Dan Schulze, 19 Jahre, Auszubildender zum Kaufmann für IT-System-Management im zweiten Ausbildungsjahr bei dreijähriger Ausbildungsdauer",
+    "Leon Berger, 32 Jahre, Fachinformatiker Systemintegration, seit fünf Jahren im Unternehmen, ledig, keine Kinder",
+    "Joel Hase, 35 Jahre, schwerbehindert, zwei Kinder, Fachinformatiker Anwendungsentwicklung, seit zehn Jahren im Unternehmen",
+    "Luisa Nova, 28 Jahre, Personalsachbearbeiterin, im fünften Monat schwanger, seit einem Jahr im Unternehmen",
+    "Till Svensson, 38 Jahre, IT-System-Elektroniker, seit fünf Jahren im Unternehmen, er wurde vor einem Jahr in den Betriebsrat gewählt"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Besonderen Kündigungsschutz (особая защита от увольнения) haben: Azubis nach der Probezeit, Schwerbehinderte, Schwangere, Betriebsräte. Bei der Sozialauswahl zählt auch: jung, ledig, keine Kinder → Herr Berger zuerst."
+  },
+  {
+   "nr": 21,
+   "thema": "GmbH-Gründung",
+   "kontext": "Situation zur 21. bis 23. Aufgabe: Zur Reduzierung finanzieller Risiken plant die EcoTech GmbH, den Unternehmensbereich „Allgemeine Dienstleistungen“ auszulagern. Denis Trout und Suzi Wegener möchten ein selbstständiges Tochterunternehmen in der Rechtsform der GmbH gründen. Herr Trout beteiligt sich mit 80.000,00 EUR und Frau Wegener mit 40.000 EUR.",
+   "text": "Die beiden Gesellschafter wollen die GmbH rechtswirksam gründen.",
+   "frage": "Welcher der folgenden Sachverhalte ist in diesem Zusammenhang zutreffend?",
+   "typ": "eine",
+   "optionen": [
+    "Frau Wegener muss die Eintragung der GmbH beim Arbeitsgericht beantragen.",
+    "Das neue Unternehmen könnte auch unter dem Namen EcoTech GmbH firmieren.",
+    "Frau Wegener oder Herr Trout treten für die GmbH als geschäftsführender Gesellschafter auf.",
+    "Die Einlagen der beiden Gesellschafter müssen insgesamt mehr als das 5-Fache des gesetzlich geforderten Stammkapitals der neuen GmbH betragen.",
+    "Zur Rechtswirksamkeit genügt es, dass der Gesellschaftsvertrag zwischen den beiden Gesellschaftern mündlich geschlossen wird."
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Ein Gesellschafter darf zugleich Geschäftsführer sein (geschäftsführender Gesellschafter — управляющий участник). Falsch: Eintragung beim Registergericht (Amtsgericht), nicht beim Arbeitsgericht. Der Name „EcoTech GmbH“ ist am selben Ort schon vergeben (Firmenausschließlichkeit). Ein Mehrfaches des Mindestkapitals verlangt kein Gesetz. Der Gesellschaftsvertrag muss notariell beurkundet werden."
+  },
+  {
+   "nr": 22,
+   "thema": "GmbH",
+   "kontext": "Situation zur 21. bis 23. Aufgabe: Denis Trout (80.000,00 EUR) und Suzi Wegener (40.000 EUR) gründen eine Tochter-GmbH.",
+   "text": "Die beiden Gründer wollen im Gesellschaftsvertrag die Geschäftsführung der neuen GmbH festlegen.",
+   "frage": "Welche der folgenden Aussagen zur GmbH trifft zu?",
+   "typ": "eine",
+   "optionen": [
+    "Die Geschäftsführung muss von allen Gesellschaftern ausgeübt werden.",
+    "Ein Gesellschafter der GmbH kann als Geschäftsführer eingesetzt werden.",
+    "Die Gesellschafter haften mit ihrem Privatvermögen für alle Verbindlichkeiten der GmbH.",
+    "Die GmbH muss nicht im Handelsregister eingetragen werden.",
+    "Das Stammkapital muss in voller Höhe von der Geschäftsführung geleistet werden."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Ein Gesellschafter darf Geschäftsführer (управляющий директор) sein, muss aber nicht. Die Gesellschafter haften nicht privat. Die GmbH entsteht erst mit Eintragung ins Handelsregister. Das Stammkapital zahlen die Gesellschafter."
+  },
+  {
+   "nr": 23,
+   "thema": "Gewinnverteilung GmbH",
+   "kontext": "Situation zur 21. bis 23. Aufgabe: Herr Trout beteiligt sich mit 80.000,00 EUR und Frau Wegener mit 40.000 EUR an der neuen GmbH.",
+   "text": "Im ersten Geschäftsjahr wird in dem neu gegründeten Tochterunternehmen ein Gewinn in Höhe von 60.000,00 EUR erwirtschaftet. Für die Gewinnverteilung ist keine vertragliche Regelung vereinbart.",
+   "frage": "Berechnen Sie, welcher Gewinnanteil in EUR auf Frau Wegener entfällt.",
+   "typ": "zahl",
+   "soll": "20000,00",
+   "einheit": "EUR",
+   "erkl": "Ohne Vertrag: Gewinn nach dem Verhältnis der Geschäftsanteile (§ 29 GmbHG). 40.000 von 120.000 = 1/3. 60.000 EUR × 1/3 = 20.000,00 EUR. (Gewinnanteil — доля прибыли)"
+  },
+  {
+   "nr": 24,
+   "thema": "Gleichbehandlung (AGG)",
+   "text": "Als Arbeitgeber muss die EcoTech GmbH das Allgemeine Gleichbehandlungsgesetz (AGG) beachten.",
+   "frage": "In welchen der folgenden Fälle wurde gegen das AGG <b>verstoßen</b>?",
+   "typ": "mehrere",
+   "optionen": [
+    "Die EcoTech GmbH schaltet eine Stellenanzeige, in der sie „junge Mitarbeiter (m/w/d)“ sucht.",
+    "Zwei Mitarbeiter werden abgemahnt, weil sie trotz Verbot im Lager zum wiederholten Mal geraucht haben.",
+    "Alle volljährigen Mitarbeitenden machen an einem 4-Stunden-Arbeitstag keine Pause.",
+    "Ein Vorschlag einer Mitarbeiterin wird abgelehnt, weil sie eine dunkle Hautfarbe hat.",
+    "Ein zu 60 % schwerbehinderter Mitarbeiter erhält fünf Urlaubstage mehr als die Nicht-Schwerbehinderten.",
+    "Ein Bewerber für die Personalabteilung wird abgelehnt, weil er keine PC-Kenntnisse hat."
+   ],
+   "soll": [
+    1,
+    4
+   ],
+   "erkl": "Das AGG (закон о равном обращении) verbietet Benachteiligung wegen Alter, Herkunft/Hautfarbe, Geschlecht, Religion, Behinderung, sexueller Identität. „Jung“ = Alter, Hautfarbe = ethnische Herkunft. Zusatzurlaub für Schwerbehinderte ist erlaubt (Nachteilsausgleich)."
+  },
+  {
+   "nr": 25,
+   "thema": "Gleichbehandlung (AGG)",
+   "text": "Die EcoTech GmbH möchte neue Mitarbeitende einstellen. Auch bei der Einstellung von Personal ist das Allgemeine Gleichbehandlungsgesetz (AGG) zu berücksichtigen.",
+   "frage": "Welcher der folgenden Sachverhalte <b>entspricht</b> dem AGG?",
+   "typ": "eine",
+   "optionen": [
+    "Vor der Sichtung der Bewerbungsunterlagen werden Name und Alter der Bewerberinnen und Bewerber offengelegt.",
+    "In der Stellenanzeige wird darauf hingewiesen, dass Bewerber aus Italien bevorzugt werden.",
+    "Bei der Auswahl des Personals werden Männer bevorzugt.",
+    "Bei der Auswahl des Personals werden ausschließlich die Qualifikationen der Bewerberinnen und Bewerber als Auswahlkriterium zugrunde gelegt.",
+    "In den Stellenanzeigen ist folgender Hinweis aufgenommen worden: „Wir sind ein junges, dynamisches Team, deshalb werden nur Bewerberinnen berücksichtigt, die unter 35 Jahre alt sind.“"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Nur die Qualifikation (квалификация) als Kriterium = keine Benachteiligung. Herkunft, Geschlecht und Alter als Kriterium verstoßen gegen das AGG."
+  },
+  {
+   "nr": 26,
+   "thema": "Arbeitsschutz",
+   "kontext": "Situation zur 26. bis 28. Aufgabe: Bei einer unternehmensinternen Schulung zu Unfallgefahren und deren Vermeidung werden verschiedene Situationen diskutiert.",
+   "text": "In der EcoTech GmbH soll die Arbeitssicherheit gewährleistet werden.",
+   "frage": "Zu welchem der folgenden Zeitpunkte sind die Mitarbeiter der EcoTech GmbH über die Unfall- und Gesundheitsgefahren zu belehren?",
+   "typ": "eine",
+   "optionen": [
+    "Nur bei Aufnahme der Beschäftigung",
+    "Bei Aufnahme der Beschäftigung und anschließend in regelmäßigen Abständen",
+    "Nach Ablauf der Probezeit",
+    "Bei Abschluss des Arbeitsvertrages",
+    "Es besteht keine Pflicht des Arbeitgebers"
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Unterweisung (инструктаж по технике безопасности) bei Arbeitsbeginn und danach regelmäßig, meist jährlich (§ 12 ArbSchG)."
+  },
+  {
+   "nr": 27,
+   "thema": "Arbeitsschutz",
+   "kontext": "Situation zur 26. bis 28. Aufgabe: Bei einer unternehmensinternen Schulung zu Unfallgefahren und deren Vermeidung werden verschiedene Situationen diskutiert.",
+   "text": "In der EcoTech GmbH soll Herr Kerman die Aufgabe des Sicherheitsbeauftragten übernehmen.",
+   "frage": "An welche der folgenden zuständigen Einrichtungen muss er sich wenden, um genauere Informationen zu diesem Thema zu erhalten?",
+   "typ": "eine",
+   "optionen": [
+    "Gewerbeaufsichtsbehörde",
+    "Deutscher Gewerkschaftsbund",
+    "Berufsgenossenschaft",
+    "Industrie- und Handelskammer",
+    "Handwerkskammer"
+   ],
+   "soll": [
+    3
+   ],
+   "erkl": "Die Berufsgenossenschaft (отраслевая страховая касса от несчастных случаев) bildet Sicherheitsbeauftragte aus und erlässt die Unfallverhütungsvorschriften."
+  },
+  {
+   "nr": 28,
+   "thema": "Sicherheitszeichen",
+   "kontext": "Situation zur 26. bis 28. Aufgabe: Bei einer unternehmensinternen Schulung zu Unfallgefahren und deren Vermeidung werden verschiedene Situationen diskutiert.",
+   "text": "Ein Praktikant der EcoTech GmbH zeigt Herrn Kerman verschiedene in der EcoTech GmbH vorhandene Zeichen und fragt nach deren Funktion. (Im Original sind die Schilder als Bilder abgedruckt; hier sind sie beschrieben.)",
+   "frage": "Welche der folgenden Schilder sind den nachstehenden Bezeichnungen zuzuordnen?",
+   "typ": "zuordnung",
+   "otitel": "Schilder",
+   "optionen": [
+    "Blauer Kreis, weißer Sicherheitsstiefel",
+    "Grünes Quadrat, weißes Kreuz",
+    "Weißer Kreis mit rotem Rand und rotem Schrägstrich, brennende Zigarette",
+    "Gelbes Dreieck mit schwarzem Rand, Person stolpert über eine Stufe",
+    "Rotes Quadrat, weißer Löschschlauch (Wandhydrant)"
+   ],
+   "zeilen": {
+    "a": "Rettungszeichen",
+    "b": "Verbotszeichen",
+    "c": "Brandschutzzeichen",
+    "d": "Gebotszeichen",
+    "e": "Warnzeichen"
+   },
+   "soll": {
+    "a": 2,
+    "b": 3,
+    "c": 5,
+    "d": 1,
+    "e": 4
+   },
+   "erkl": "Farben merken: Grün = Rettung (Erste Hilfe). Rot umrandet + Strich = Verbot. Rot gefüllt = Brandschutz. Blau rund = Gebot (Pflicht, z. B. Sicherheitsschuhe tragen). Gelbes Dreieck = Warnung."
+  },
+  {
+   "nr": 29,
+   "thema": "Umweltschutz",
+   "text": "Die EcoTech GmbH hat in ihren Unternehmenszielen die Verbesserung des Umweltschutzes festgelegt.",
+   "frage": "Welche der folgenden Maßnahmen trägt <b>nicht</b> zur Erreichung dieses Ziels bei?",
+   "typ": "eine",
+   "optionen": [
+    "Die Beleuchtung der Büro- sowie der Verkaufsräume in den Filialen erfolgt mittels LED-Leuchtmitteln anstatt Glühlampen.",
+    "In der betriebseigenen Kantine wird der Kaffee in Einwegbechern aus Kunststoff ausgegeben.",
+    "Die Transportlogistik wird mithilfe einer geeigneten Software optimiert.",
+    "Die Reinigung der Gebäudefenster erfolgt mit biologisch abbaubaren Reinigungsmitteln.",
+    "In den Büros der EcoTech GmbH wird ausschließlich Recycling-Papier verwendet."
+   ],
+   "soll": [
+    2
+   ],
+   "erkl": "Gefragt ist „nicht“: Einwegbecher aus Kunststoff erzeugen Müll (одноразовые стаканы). LED, bessere Logistik, Bio-Reiniger und Recyclingpapier schonen die Umwelt."
+  },
+  {
+   "nr": 30,
+   "thema": "Umweltzeichen",
+   "text": "Auf den Verpackungen vieler Produkte befinden sich unterschiedliche Kennzeichnungen. (Im Original Bilder; hier beschrieben.)",
+   "frage": "Welche der folgenden Abbildungen weist auf das Recyceln von Verpackungen hin?",
+   "typ": "eine",
+   "optionen": [
+    "Rundes Siegel „Blauer Engel – Das Umweltzeichen“",
+    "Siegel „FAIRTRADE“",
+    "„CE“-Zeichen",
+    "Drei Pfeile im Kreis (Recycling-Symbol)",
+    "Geöffneter Cremetiegel mit „6M“"
+   ],
+   "soll": [
+    4
+   ],
+   "erkl": "Drei Pfeile im Kreis = Recycling (переработка). Blauer Engel = umweltfreundliches Produkt, Fairtrade = fairer Handel, CE = EU-Sicherheitsnormen, Tiegel „6M“ = 6 Monate haltbar nach dem Öffnen."
+  }
+ ]
+}

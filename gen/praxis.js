@@ -24,7 +24,7 @@
   function variante(id, d) { return task(id).varianten[(d || draft(id)).variant]; }
   function aendere(id, fn) {
     draft(id);
-    const next = clone(ST); fn(next.tasks[id].draft); commit(next);
+    const next = clone(ST); fn(next.tasks[id].draft); next.tasks[id].draft.updatedAt = Date.now(); commit(next);
     return clone(next.tasks[id].draft);
   }
   function modusGueltig(mode) { if (!MODI.includes(mode)) throw new Error("Unbekannter Modus: " + mode); }
@@ -38,7 +38,7 @@
     const variant = s.draft ? (s.draft.variant + 1) % t.varianten.length : 0;
     s.draft = {
       id: "px-" + Date.now().toString(36) + "-" + (++zaehler) + "-" + Math.random().toString(36).slice(2, 9),
-      variant, mode, support: mode === "erklaert" ? "hilfe" : "selbst", createdAt: Date.now(),
+      variant, mode, support: mode === "erklaert" ? "hilfe" : "selbst", createdAt: Date.now(), updatedAt: Date.now(),
       answers: Object.fromEntries(t.varianten[variant].felder.map(f => [f.id, ""])),
       hintSeen: false, solutionSeen: false, checks: [], reason: "", submission: null
     };
@@ -100,7 +100,7 @@
   function speichern(id, checks, reason) {
     const d = draft(id), v = variante(id), t = task(id);
     const previous = ST.tasks[id].attempts.find(a => a.id === d.id);
-    if (previous) return clone(previous);
+    if (previous) return beobachtung(previous);
     if (!d.submission) throw new Error("Сначала сдай ответ.");
     const ids = Array.from(new Set(checks == null ? d.checks : checks));
     if (ids.some(x => !(v.rubrik || []).some(r => r.id === x))) throw new Error("Unbekanntes Kriterium");
@@ -110,13 +110,25 @@
       answers: clone(d.submission.answers), support: d.submission.support, mode: d.submission.mode,
       kind: result.kind, correct: v.rubrik ? v.rubrik.filter(r => ids.includes(r.id)).reduce((s, r) => s + r.be, 0) : result.correct,
       max: result.max, checks: ids, details: clone(result.details),
+      recorded: false,
       reason: reasons.includes(reason) ? reason : d.reason,
       snapshot: { titel: t.titel, thema: t.thema, bereich: t.bereich, variante: clone(v) }
     };
     const next = clone(ST); next.tasks[id].attempts.push(attempt); commit(next);
+    return beobachtung(attempt);
+  }
+  function beobachtung(attempt) {
+    if (attempt.recorded) return clone(attempt);
     if (root.GENLERNSTAND && typeof root.GENLERNSTAND.record === "function") {
-      try { root.GENLERNSTAND.record({ topic: t.thema, source: "praxis", task: id, correct: attempt.correct, max: attempt.max,
-        support: attempt.support, kind: attempt.kind, answers: clone(attempt.answers), reason: attempt.reason || undefined }); }
+      try {
+        const r = root.GENLERNSTAND.record({ id: "praxis:" + attempt.id, t: attempt.t,
+          topic: attempt.snapshot.thema, source: "praxis", task: attempt.task, correct: attempt.correct, max: attempt.max,
+          support: attempt.support, kind: attempt.kind, answers: clone(attempt.answers), reason: attempt.reason || undefined });
+        if (r && r.ok) {
+          const next = clone(ST), a = next.tasks[attempt.task].attempts.find(x => x.id === attempt.id);
+          a.recorded = true; commit(next); return clone(a);
+        }
+      }
       catch (e) { if (root.console) root.console.warn("Практика сохранена; общий журнал пока недоступен.", e); }
     }
     return clone(attempt);
@@ -160,7 +172,7 @@
     if (!hatDom) return id ? start(id) : liste();
     if (id) start(id);
     viewId = id || null; sichtbar();
-    if (root.history) root.history.pushState({ seite: "scPraxis", px: { id: viewId } }, "");
+    if (root.history) root.history.pushState({ ihk: 1, seite: "scPraxis", px: { id: viewId } }, "");
     render();
     if (root.scrollTo) root.scrollTo(0, 0);
   }
@@ -259,7 +271,13 @@
       reason.value = saved ? saved.reason : d.reason; reason.disabled = !!saved;
       reason.onchange = () => { try { rubrik(id, draft(id).checks, reason.value); } catch (e) { message(e.message); } }; reasonLabel.appendChild(reason); c.appendChild(reasonLabel);
       if (!saved) c.appendChild(button("Сохранить результат в истории", action(() => speichern(id)), "primary"));
-      else paragraph(c, "Результат и исходный ответ сохранены. Поддержка: " + SUPPORT[saved.support] + ".");
+      else {
+        paragraph(c, "Результат и исходный ответ сохранены. Поддержка: " + SUPPORT[saved.support] + ".");
+        if (!saved.recorded) {
+          paragraph(c, "Общий журнал ещё не подтвердил запись. Ответ в истории практики сохранён.", "px-muted");
+          c.appendChild(button("Повторить запись в общий журнал", action(() => speichern(id))));
+        }
+      }
       const next = button(t.varianten.length > 1 ? "Другой вариант без помощи" : "Новая самостоятельная попытка", action(() => { start(id, "pruefung", true); }), "ghost");
       c.appendChild(next); paragraph(c, "Для проверки усвоения вернись к другому примеру позже. Сразу после разбора ответ ещё свеж в памяти.", "px-muted");
     }
@@ -270,7 +288,7 @@
     const w = seite().firstChild; w.textContent = "";
     const nav = el("nav", "px-actions"); nav.setAttribute("aria-label", "Навигация практики");
     nav.appendChild(button("К списку задач", () => oeffnen()));
-    nav.appendChild(button("На главную", () => { if (root.history) root.history.pushState({ seite: "scStart" }, ""); if (root.schirm) root.schirm("scStart"); })); w.appendChild(nav);
+    nav.appendChild(button("На главную", () => { if (root.history) root.history.pushState({ ihk: 1, seite: "scStart" }, ""); if (root.schirm) root.schirm("scStart"); })); w.appendChild(nav);
     if (lesefehler) { paragraph(w, lesefehler, "px-message"); return; }
     try { if (viewId) aufgabenAnsicht(w, viewId); else uebersicht(w); } catch (e) { message(e.message); }
   }

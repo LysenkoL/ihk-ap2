@@ -1,0 +1,232 @@
+{
+ "id": "ga2-2024-s",
+ "bereich": "ga2",
+ "termin": "Sommer 2024",
+ "kurz": "GA2 S24",
+ "minuten": 90,
+ "schluessel": "Lösungshinweise der ZPA (Abschlussprüfung Sommer 2024)",
+ "situation": "<p>Die AMAG Soft AG ist ein Hersteller von Batterien und Akkus für E-Bikes, E-Scooter, Pedelecs und E-Roller.</p><p>Zur jährlichen Aktionärsversammlung treffen sich die Aktionäre am Stammsitz.</p><p>Die AMAG Soft AG möchte ihren Aktionären zukünftig einen E-Service mit verschiedenen Anwendungsmöglichkeiten anbieten.</p><p>Zur Realisierung dieses Projekts „Aufbau einer E-Service-Plattform“ für Aktionäre der AMAG Soft AG wird eine Projektgruppe gegründet, in der Sie mitarbeiten sollen.</p>",
+ "beleg": [
+  {
+   "id": "sql",
+   "titel": "Belegsatz: SQL-Syntax (Auszug)",
+   "html": "<p><i>Der Original-Belegsatz Sommer 2024 liegt nicht vor. Hier der spätere Notations-Belegsatz (Stand 2024-10-07) zum Nachschlagen der SQL-Syntax.</i></p><img data-bild=\"bs24-sql1\"><img data-bild=\"bs24-sql2\">"
+  }
+ ],
+ "bilder": {
+  "s24-ga2-1a-l": {
+   "seite": "s24/l2-2",
+   "box": [
+    0.06,
+    0.11,
+    0.81,
+    0.497
+   ]
+  }
+ },
+ "aufgaben": [
+  {
+   "nr": 1,
+   "titel": "Aktivitätsdiagramm Einladung, E-Mail-Sicherheit",
+   "punkte": 25,
+   "themen": [
+    "UML",
+    "IT-Sicherheit"
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 14,
+     "eingabe": "zeichnen",
+     "text": "<p>Der Einladungsvorgang zur Aktionärsversammlung soll mithilfe eines UML-Aktivitätsdiagramms dargestellt werden.</p><ul><li>Ein Mitarbeiter des Aktionärssekretariats versendet die Einladungen gleichzeitig per Post und über die E-Service-Plattform.</li><li>Wenn ein Aktionär einen Zugang zur E-Service-Plattform hat, meldet er sich dort an und kann dabei zwischen virtueller Teilnahme und Präsenzteilnahme wählen. Hat der Aktionär keinen E-Service-Zugang, kann er nur in Präsenz teilnehmen und die Anmeldung per Post versenden. Diese postalische Anmeldung wird vom Mitarbeiter erfasst. (Der Fall, dass von einem Aktionär keine Anmeldung erfolgt, soll ignoriert werden.)</li><li>Unmittelbar nach jeder Online-Anmeldung zur Präsenzteilnahme bzw. Erfassung durch den Mitarbeiter im Aktionärssekretariat wird durch das System ein Platz für den Aktionär reserviert.</li><li>Bei virtueller Teilnahme wird kein Platz reserviert.</li><li>Nach der Reservierung versendet das System entweder die Platzkarten zusammen mit der Tagesordnung an den Aktionär oder bei virtueller Teilnahme die Zugangsdaten und die Tagesordnung.</li></ul><p><b>Ergänzen Sie das nebenstehende UML-Aktivitätsdiagramm.</b></p><p><i>Vorlage im Bogen: leeres Aktivitätsdiagramm mit drei Partitionen (Schwimmbahnen):</i></p><table><tr><th>Mitarbeiter</th><th>Aktionär</th><th>System</th></tr><tr><td><br><br><br><br><br><br><br><br></td><td></td><td></td></tr></table>",
+     "loesung": "<img data-bild=\"s24-ga2-1a-l\"><p>In Worten (Partitionen Mitarbeiter, Aktionär, System):</p><ul><li><b>Mitarbeiter:</b> Start → Gabelung (Parallelisierung) → „Einladung per Post versenden“ und „Einladung über E-Service versenden“ parallel → Synchronisation (Vereinigung)</li><li>Danach Verzweigung (Partition Aktionär):<br>[kein E-Service-Nutzer] → „Anmeldung versenden“ (Aktionär) → „Anmeldung erfassen“ (Mitarbeiter) → Zusammenführung<br>[E-Service-Nutzer] → „Anmelden“ (Aktionär) → Verzweigung</li><li>Verzweigung nach „Anmelden“:<br>[Präsenzteilnahme] → Zusammenführung (mit „Anmeldung erfassen“)<br>[virtuelle Teilnahme] → „Zugangsdaten und Tagesordnung versenden“ (System)</li><li><b>System:</b> Zusammenführung → „Platz reservieren“ → „Platzkarte und Tagesordnung versenden“</li><li>„Platzkarte und Tagesordnung versenden“ und „Zugangsdaten und Tagesordnung versenden“ → Zusammenführung → Ende</li></ul>",
+     "hinweis": "Je Aktivität an der korrekten Stelle 1 Punkt. Je Verzweigung 2 Punkte. Parallelisierung 2 Punkte. (In der Musterlösung: 8 Aktivitäten, 2 Verzweigungen, 1 Parallelisierung = 14 Punkte.)"
+    },
+    {
+     "nr": "ba",
+     "punkte": 2,
+     "eingabe": "frei",
+     "text": "<p>Die Einladungen werden an die Nutzer der E-Service-Plattform per E-Mail als Worddokument im Anhang versendet.</p><p><b>ba) Beschreiben Sie ein mögliches Sicherheitsrisiko, welches sich daraus ergeben kann.</b></p>",
+     "loesung": "<p>Z. B. Word-Dokumente aus externen Quellen zu öffnen, birgt ein hohes Sicherheitsrisiko.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "bb",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Die Einladungen werden an die Nutzer der E-Service-Plattform per E-Mail als Worddokument im Anhang versendet.</p><p><b>bb) Erläutern Sie eine Alternative zu diesem Vorgehen der AMAG Soft AG, die mehr Sicherheit bietet.</b></p>",
+     "loesung": "<p>Z. B. Einladung direkt im Web-Browser auf der Plattform öffnen, da so keine Manipulation des Dokumentes möglich ist.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ca",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Die E-Service-Plattform soll es den Aktionären ermöglichen, komfortabel ihr Passwort zurückzusetzen.</p><p>In einer Teamsitzung wird vorgeschlagen, eine E-Mail mit einem Link zum Zurücksetzen des Passwortes an die gespeicherte E-Mail-Adresse zu senden.</p><p><b>ca) Erläutern Sie eine Schwachstelle dieses Vorschlags.</b></p>",
+     "loesung": "<p>Erwartet wird eine Erläuterung zu Schwachstellen,<br>z. B. E-Mail-Link könnte in falsche Hände gelangen.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "cb",
+     "punkte": 3,
+     "eingabe": "frei",
+     "text": "<p>Die E-Service-Plattform soll es den Aktionären ermöglichen, komfortabel ihr Passwort zurückzusetzen.</p><p>In einer Teamsitzung wird vorgeschlagen, eine E-Mail mit einem Link zum Zurücksetzen des Passwortes an die gespeicherte E-Mail-Adresse zu senden.</p><p><b>cb) Erläutern Sie ein Vorgehen, welches mehr Sicherheit bringt.</b></p>",
+     "loesung": "<p>Erwartet wird eine Erläuterung zu einem Vorgehen,<br>z. B. eine SMS mit einem Transaktionscode parallel zum Rücksetz-Link versenden, sodass ein 2. Weg benutzt wird, um das Rücksetzen abzusichern.</p>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Sortieren mit Vergleichsfunktion, Tage zählen",
+   "punkte": 20,
+   "themen": [
+    "Algorithmen"
+   ],
+   "text": "<p>Die Geschäftsleitung möchte Aktiennotierungen nach einem beliebigen Kriterium sortieren können. Daher soll für den Vergleich innerhalb des Sortieralgorithmus eine Vergleichsfunktion verwendet werden.</p>",
+   "anlagen": [
+    {
+     "titel": "Klasse Tageskurs und Array kurse",
+     "html": "<p>Es existiert bereits eine Klasse <i>Tageskurs</i>, die Informationen zu einer Aktie bereitstellt. Außerdem ist ein Array <i>kurse</i> vorhanden, in dem Objekte vom Typ <i>Tageskurs</i> gespeichert sind.</p><p>Klasse <i>Tageskurs</i></p><table><tr><th>Tageskurs</th></tr><tr><td>- datum: Date</td></tr><tr><td>- aktienkurs: double</td></tr><tr><td>- daxWert: double</td></tr><tr><td>- prozVAktie: double  // prozentuale Veränderung Aktie zum Vortageswert</td></tr><tr><td>- prozVDAX: double  // prozentuale Veränderung DAX zum Vortageswert</td></tr><tr><td><br></td></tr></table><p>Für jedes Attribut gibt es öffentliche get-Methoden.</p><p>Auflistung der Daten der <i>Tageskurs</i>-Objekte aus dem Array <i>kurse</i></p><table><tr><th>datum</th><th>aktienkurs</th><th>daxWert</th><th>prozVAktie</th><th>prozVDAX</th></tr><tr><td>15.04.2024</td><td>100</td><td>15000</td><td>0,0300</td><td>0,0500</td></tr><tr><td>16.04.2024</td><td>105</td><td>15100</td><td>0,0500</td><td>0,0067</td></tr><tr><td>17.04.2024</td><td>110</td><td>14900</td><td>0,0476</td><td>-0,0132</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 12,
+     "eingabe": "code",
+     "text": "<p>Für die Sortierfunktion <code>sort (Tageskurs[] kurse, Function vergleiche): void</code> wird das Function-Objekt <i>vergleiche</i> übergeben.</p><p>Die im Function-Objekt vorhandene Funktion kann im Sortieralgorithmus wie folgt aufgerufen werden:<br><code>vergleiche(tageskursA, tageskursB)</code></p><p>Die Vergleichsfunktion liefert einen Wert &gt; 0 zurück, wenn <code>tageskursB</code> vor <code>tageskursA</code> sortiert werden soll.</p><p><b>Geben Sie auf der gegenüberliegenden Seite einen Sortieralgorithmus eigener Wahl im Pseudocode an und nennen Sie den gewählten Sortieralgorithmus.</b></p><pre>sort (Tageskurs[] kurse, Function vergleiche) : void</pre>",
+     "loesung": "<p>Beispielhaft mit bubbleSort:</p><pre>// BubbleSort\nsort (Tageskurs[] kurse, Function vergleiche) : void\n  for (i = 0; i &lt; kurse.length - 1; i++)\n   for (j = 0; j &lt; kurse.length - 1 - i; j++)\n     if (vergleiche(kurse[j], kurse[j+1]) &gt; 0)\n       Tageskurs k = kurse[j]\n       kurse[j] = kurse[j+1]\n       kurse[j+1] = k\n     End if\n   End for\n  End for\nEnd sort</pre>",
+     "hinweis": "Die Lösungshinweise nennen keine Punkteaufteilung. Die Lösung ist „beispielhaft mit bubbleSort“ — andere Sortieralgorithmen sind ebenso richtig (Allgemeine Korrekturhinweise: andere sach- und fachgerechte Lösungsalternativen werden mit der vorgesehenen Punktzahl bewertet)."
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": "code",
+     "text": "<p>Die Geschäftsleitung möchte wissen, an wie vielen Tagen der Aktienkurs der AMAG Soft AG „besser“ notiert war als der DAX an diesem Tag.</p><p>Die prozentualen Veränderungen des Aktienkurses und des DAX-Wertes gegenüber dem Vortag stehen in den Objekten der Klasse <i>Tageskurs</i>.</p><p>Der Notierung des Aktienkurses wird als „besser“ als die des DAX bezeichnet, wenn diese prozentuale Veränderung des Aktienkurses größer war als die des DAX.</p><p>Die entsprechenden Daten sind in dem Array <i>kurse</i> vom Typ <i>Tageskurs</i> vorhanden.</p><p><b>Erstellen Sie einen Algorithmus für eine Funktion <i>notierungPlus(Tageskurs[] kurse): Integer</i>, der ermittelt, an wie vielen Tagen die prozentuale Veränderung des Aktienkurses „besser“ war als die des DAX und diesen Wert zurückgibt.</b></p><pre>notierungPlus(Tageskurs[] kurse): Integer</pre>",
+     "loesung": "<pre>notierungPlus(Tageskurs[] kurse): Integer\n  count: Integer = 0\n  for (i = 0; i &lt; kurse.length; i++)\n     if (kurse[i].getProzVAktie() &gt; kurse[i].getProzVDAX() ) count++\n  End For\n  Return count\nEnd notierungPlus</pre>",
+     "hinweis": ""
+    }
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Whitebox-Test, Regressionstest, Überdeckungen",
+   "punkte": 25,
+   "themen": [
+    "Qualität & Test",
+    "Englisch"
+   ],
+   "text": "<p>Sie sind dem Team zugeordnet, welches sich schwerpunktmäßig mit dem Testen der zukünftigen Software beschäftigt.</p>",
+   "teile": [
+    {
+     "nr": "aa",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Sie diskutieren im Team die Vor- und Nachteile von Whitebox- und Blackbox-Tests.</p><p><b>aa) Beschreiben Sie zwei Vorteile von Whitebox-Tests gegenüber von Blackbox-Tests.</b></p>",
+     "loesung": "<ul><li>Es können Fehler genauer lokalisiert werden.</li><li>Es werden alle Programmteile getestet, auch solche, welche durch die Anforderungsspezifikation nicht erfasst wurden.</li><li>Es wird eine hohe Testabdeckung des Quellcodes erreicht.</li><li>Unterstützt das Optimieren des Quellcodes</li><li>u. a.</li></ul>",
+     "hinweis": ""
+    },
+    {
+     "nr": "ab",
+     "punkte": 4,
+     "eingabe": "frei",
+     "text": "<p>Ihr Team möchte verschiedene Regressionstests entwickeln.</p><p><b>ab) Erläutern Sie den Zweck von Regressionstests.</b></p>",
+     "loesung": "<p>Regressionstests sind Tests, mit deren Hilfe sichergestellt werden soll, dass das Hinzufügen von neuem Code, Optimierungen innerhalb des Codes oder das Beheben von Fehlern die vorhandene Funktionalität nicht beeinträchtigt und noch den Anforderungen entspricht.</p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 12,
+     "eingabe": {
+      "zeilen": [
+       "Anweisungsüberdeckung",
+       "Zweigüberdeckung",
+       "Pfadüberdeckung"
+      ]
+     },
+     "text": "<p>Bei Whitebox-Tests gibt es verschiedene Metriken, deren Verwendung die Gewinnung der Testdaten beeinflusst. Dazu gehören die Anweisungs-, die Zweig- und die Pfadüberdeckung, die im folgenden englischen Text beschrieben werden:</p><p><i>Statement coverage, branch coverage, and path coverage are important white box testing metrics that help ensure that software programs are performing reliably, correctly, and efficiently.</i></p><p><i>Statement coverage is a measure of the percentage of statements in a program that are executed by a set of tests. In statement coverage, the test data should be chosen such that all statements in the code are executed at least once.</i></p><p><i>Branch coverage is a measure of the percentage of branches in a program that are executed by a set of tests. The choice of test data is intended to ensure that all branches of each condition are executed at least once. A full branch coverage automatically includes a full statement coverage.</i></p><p><i>Path coverage is a measure of the percentage of paths through a program that are executed by a set of tests. A path is a sequence of statements that starts at the entry point of the program and ends at an exit point. A full path coverage automatically includes a full branches coverage.</i></p><p><b>Erläutern Sie mithilfe des englischen Textes, nach welchen Kriterien bei den nachfolgenden Metriken die Testdaten gewonnen werden und wie die einzelnen Metriken aufeinander aufbauen.</b></p><p>Anweisungsüberdeckung:<br>Zweigüberdeckung:<br>Pfadüberdeckung:</p>",
+     "loesung": "<p><b>Anweisungsüberdeckung:</b> (4 Punkte)<br>Die Anweisungsüberdeckung ist ein Maß für den prozentualen Anteil der Anweisungen in einem Programm, die von einer Reihe von Tests ausgeführt werden. Bei der Anweisungsüberdeckung sollten die Testdaten so gewählt werden, dass alle Anweisungen im Code mindestens einmal ausgeführt werden.</p><p><b>Zweigüberdeckung:</b> (4 Punkte)<br>Die Zweigüberdeckung ist ein Maß für den prozentualen Anteil der Verzweigungen in einem Programm, die von einer Reihe von Tests ausgeführt werden. Durch die Auswahl der Testdaten soll sichergestellt werden, dass alle Verzweigungen jeder Bedingung mindestens einmal ausgeführt werden. Eine vollständige Zweigüberdeckung beinhaltet automatisch eine vollständige Anweisungsüberdeckung.</p><p><b>Pfadüberdeckung:</b> (4 Punkte)<br>Die Pfadüberdeckung ist ein Maß für den prozentualen Anteil der Pfade in einem Programm, die von einer Reihe von Tests ausgeführt werden. Ein Pfad ist eine Folge von Anweisungen, die am Einstiegspunkt des Programms beginnt und an einem Ausstiegspunkt endet. Eine vollständige Pfadüberdeckung beinhaltet automatisch eine vollständige Zweigüberdeckung.</p>",
+     "hinweis": "Je Metrik 4 Punkte."
+    },
+    {
+     "nr": "c",
+     "punkte": 5,
+     "eingabe": {
+      "zeilen": [
+       "Pfad 1",
+       "Pfad 2",
+       "Pfad 3",
+       "Pfad 4",
+       "Pfad 5"
+      ]
+     },
+     "text": "<p>Gegeben ist folgender Algorithmus:</p><pre>void login(string name, string password) {\n    if (checkCredentials(name, password)) {     B1\n        showStandardMenu();                     A1\n        if (checkPremiumMember()) {             B2\n            showPremiumMemberMenu();            A3\n        }\n        if (checkStaffMember()) {               B3\n            showStaffMemberMenu();              A4\n        }\n    } else {\n        showErrorMessage();                     A2\n    }\n}</pre><p><b>Notieren Sie alle Pfade, welche in diesem Algorithmus durchlaufen werden können, um eine vollständige Pfadüberdeckung zu erreichen. Geben Sie dazu pro Pfad alle durchlaufenden Bedingungen (B) und Anweisungen (A) in der Reihenfolge ihrer Abarbeitung an.</b></p><p>Beispiel: 1. B1, A3, A4, B2 …</p><p>(Hinweis: Das Beispiel stellt keinen möglichen Pfad dar.)</p><table><tr><th>Nummer</th><th>Pfad</th></tr><tr><td>1</td><td></td></tr><tr><td>2</td><td></td></tr><tr><td>3</td><td></td></tr><tr><td>4</td><td></td></tr><tr><td>5</td><td></td></tr></table>",
+     "loesung": "<table><tr><th>Nummer</th><th>Pfad</th></tr><tr><td>1</td><td>B1, A2</td></tr><tr><td>2</td><td>B1, A1, B2, A3, B3, A4</td></tr><tr><td>3</td><td>B1, A1, B2, B3, A4</td></tr><tr><td>4</td><td>B1, A1, B2, A3, B3</td></tr><tr><td>5</td><td>B1, A1, B2, B3</td></tr></table>",
+     "hinweis": "Die Reihenfolge der Pfade ist beliebig."
+    }
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "SQL: Aktienkurse auswerten und archivieren",
+   "punkte": 30,
+   "themen": [
+    "SQL"
+   ],
+   "text": "<p>Für die Aktionärsversammlung sollen Auswertungen des Aktienkurses vorgelegt werden.</p><p>Die Tabellen auf der perforierten Anlage stehen dafür zur Verfügung.</p><p><i>Die Tabellen der perforierten Anlage (Aktie, Boerse, AktienKurs) stehen als Anlage bei jeder Teilaufgabe.</i></p>",
+   "anlagen": [
+    {
+     "titel": "Perforierte Anlage: Tabellen Aktie, Boerse, AktienKurs",
+     "html": "<p><i>Perforierte Anlage im Bogen („Dieses Blatt kann an der Perforation aus dem Aufgabensatz herausgetrennt werden!“)</i></p><p><b>Abbildungen zur 4. Aufgabe</b></p><p>Tabelle: Aktie</p><table><tr><th>A_ID</th><th>A_AktienName</th><th>A_WKN</th></tr><tr><td>1</td><td>Hannover Rück</td><td>840221</td></tr><tr><td>2</td><td>Deutsche Bank</td><td>514000</td></tr><tr><td>3</td><td>Daimler Truck</td><td>DTR0CK</td></tr><tr><td>4</td><td>MTU Aero Engines</td><td>A0D9PT</td></tr><tr><td>5</td><td>Münchener Rück</td><td>843002</td></tr><tr><td>6</td><td>AMAG</td><td>999999</td></tr><tr><td>…</td><td></td><td></td></tr></table><p>Tabelle: Boerse</p><table><tr><th>B_ID</th><th>B_BoerseName</th><th>B_BoerseKng</th></tr><tr><td>1</td><td>Börse Frankfurt</td><td>FWB</td></tr><tr><td>2</td><td>Stuttgarter Wertpapierbörse</td><td>EUWAX</td></tr><tr><td>3</td><td>Niedersächsische Börse Hannover</td><td>BÖAG</td></tr><tr><td>4</td><td>Börse Düsseldorf</td><td>BD</td></tr><tr><td>5</td><td>Börse München</td><td>BM</td></tr><tr><td>6</td><td>Tradegate Exchange</td><td>Tradegate</td></tr><tr><td>…</td><td></td><td></td></tr></table><p>Tabelle: AktienKurs (Ausschnitt der Transaktions-Daten)</p><table><tr><th>AK_ID</th><th>AK_DatumZeit</th><th>AK_Kurs</th><th>AK_BoerseID</th><th>AK_AktieID</th><th>AK_Anzahl</th></tr><tr><td>10021</td><td>2024-04-19 10:08:00.033</td><td>53,55</td><td>1</td><td>6</td><td>5</td></tr><tr><td>10022</td><td>2024-04-19 10:09:20.110</td><td>54,21</td><td>2</td><td>6</td><td>100</td></tr><tr><td>10023</td><td>2024-04-19 10:09:55.110</td><td>54,19</td><td>1</td><td>6</td><td>150</td></tr><tr><td>10024</td><td>2024-04-19 10:09:55.120</td><td>222,66</td><td>2</td><td>4</td><td>150</td></tr><tr><td>10025</td><td>2024-04-19 10:11:55.120</td><td>53,99</td><td>4</td><td>6</td><td>150</td></tr><tr><td>10026</td><td>2024-04-19 10:12:05.120</td><td>53,98</td><td>3</td><td>6</td><td>70</td></tr><tr><td>10027</td><td>2024-04-19 11:00:01.020</td><td>54,02</td><td>2</td><td>6</td><td>99</td></tr><tr><td>10028</td><td>2024-04-19 11:00:02.033</td><td>54,06</td><td>3</td><td>6</td><td>120</td></tr><tr><td>10029</td><td>2024-04-19 11:00:02.133</td><td>54,00</td><td>2</td><td>6</td><td>250</td></tr><tr><td>…</td><td></td><td></td><td></td><td></td><td></td></tr></table>"
+    }
+   ],
+   "teile": [
+    {
+     "nr": "a",
+     "punkte": 2,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>Die Aktie mit dem Namen „MTU Aero Engines“ wird nicht mehr gehandelt.</p><p><b>Erstellen Sie eine SQL-Anweisung, welche alle Einträge der Aktie (AK_AktieID: 4) aus der Tabelle AktienKurs entfernt.</b></p>",
+     "loesung": "<pre>DELETE FROM AktienKurs WHERE AK_AktieID = 4</pre>",
+     "hinweis": ""
+    },
+    {
+     "nr": "b",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><b>Erstellen Sie eine SQL-Anweisung, welche den Minimal-, den Maximal-, den Durchschnittskurs sowie die Anzahl der Transaktionen der AMAG-Aktie (AK_AktieID:6) an den verschiedenen Börsen entsprechend der folgenden Ergebnistabelle ausgibt.</b></p><table><tr><th>B_ID</th><th>B_BoersenName</th><th>KursMin</th><th>KursMax</th><th>KursDurchschnitt</th><th>AnzahlTransaktionen</th></tr><tr><td>1</td><td>Börse Frankfurt</td><td>53.55</td><td>54.19</td><td>53.870000</td><td>2434</td></tr><tr><td>2</td><td>Stuttgarter Wertpapierbörse</td><td>54.00</td><td>54.21</td><td>54.076666</td><td>3234</td></tr><tr><td>3</td><td>Niedersächsische Börse Hannover</td><td>53.98</td><td>54.06</td><td>54.020000</td><td>2334</td></tr><tr><td>4</td><td>Börse Düsseldorf</td><td>53.99</td><td>53.99</td><td>53.990000</td><td>1223</td></tr></table>",
+     "loesung": "<pre>SELECT B.B_ID\n       ,B.B_BoersenName\n       ,MIN(AK.AK_Kurs) AS KursMin\n       ,MAX(AK.AK_Kurs) AS KursMax\n       ,AVG(AK.AK_Kurs) AS KursDurchschnitt\n       ,COUNT(AK.AK_ID) AS AnzahlTransaktionen\n  FROM Boerse AS B\n    INNER JOIN AktienKurs AS AK ON AK.AK_BoerseID = B.B_ID\n  WHERE AK.AK_AktieID = 6\n  GROUP BY B.B_ID, B.B_BoersenName;</pre><p><i>Anmerkung: Die Lösungshinweise schreiben B.B_BoersenName (wie die Ergebnistabelle der Aufgabe). In der Tabelle Boerse der Anlage heißt die Spalte B_BoerseName.</i></p>",
+     "hinweis": ""
+    },
+    {
+     "nr": "c",
+     "punkte": 8,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p>Am Anfang eines neuen Jahres werden alle Daten der Vorjahre aus der Tabelle AktienKurs in die Tabelle AktienKursArchiv verschoben.</p><p>Die Tabelle AktienKursArchiv ist gleich der Tabelle AktienKurs aufgebaut.</p><p><b>Erstellen Sie SQL-Anweisungen, welche die Daten entsprechend der Beschreibung verschieben.</b></p>",
+     "loesung": "<pre>INSERT INTO AktienKursArchiv\n     (AK_ID, AK_DatumZeit, AK_Kurs, AK_BoerseID, AK_AktieID)\nSELECT\n     AK_ID, AK_DatumZeit, AK_Kurs, AK_BoerseID, AK_AktieID\n  FROM AktienKurs\n  WHERE YEAR(AK_DatumZeit) &lt; YEAR(TODAY);\n\nDELETE FROM AktienKurs WHERE YEAR(AK_DatumZeit) &lt; YEAR(TODAY);</pre><p><i>Anmerkung: In den Spaltenlisten der Lösungshinweise fehlt AK_Anzahl. Da AktienKursArchiv gleich aufgebaut ist wie AktienKurs, gehört AK_Anzahl in beide Listen (oder kürzer: INSERT INTO AktienKursArchiv SELECT * FROM AktienKurs WHERE …). TODAY steht so in den Lösungshinweisen; der Notations-Belegsatz (Stand 2024-10-07) nennt für das aktuelle Datum die Funktion NOW().</i></p>",
+     "hinweis": "Andere korrekte Lösungen sind auch möglich."
+    },
+    {
+     "nr": "d",
+     "punkte": 12,
+     "eingabe": "code",
+     "beleg": [
+      "sql"
+     ],
+     "text": "<p><i>(Aus c): Am Anfang eines neuen Jahres werden alle Daten der Vorjahre aus der Tabelle AktienKurs in die Tabelle AktienKursArchiv verschoben. Die Tabelle AktienKursArchiv ist gleich der Tabelle AktienKurs aufgebaut.)</i></p><p><b>Sie möchten für alle Jahre über alle Börsen den Minimal- und den Maximalkurs sowie die Anzahl der Transaktionen im Jahr von der AMAG-Aktie (AK_AktieID:6) entsprechend der nachfolgenden Ergebnistabelle erhalten. Die Tabelle soll absteigend nach Jahren sortiert werden.</b></p><p>Denken Sie daran, dass die Daten der Vorjahre in der Tabelle AktienKursArchiv archiviert wurden.</p><table><tr><th>Boersenjahr</th><th>KursMin</th><th>KursMax</th><th>AnzahlTransaktionen</th></tr><tr><td>2024</td><td>53.55</td><td>54.21</td><td>8343</td></tr><tr><td>2023</td><td>48.33</td><td>52.09</td><td>9987</td></tr><tr><td>2022</td><td>48.32</td><td>51.44</td><td>6554</td></tr></table>",
+     "loesung": "<pre>SELECT YEAR(AK.AK_DatumZeit) AS Boersenjahr\n     ,MIN(AK.AK_Kurs) AS KursMin\n     ,MAX(AK.AK_Kurs) AS KursMax\n     ,COUNT(AK.AK_ID) AS AnzahlTransaktionen\n  FROM AktienKurs AS AK\n  WHERE AK.AK_AktieID = 6\n   GROUP BY YEAR(AK.AK_DatumZeit)\nUNION ALL\nSELECT YEAR(AKA.AK_DatumZeit)\n     ,MIN(AKA.AK_Kurs)\n     ,MAX(AKA.AK_Kurs)\n     ,COUNT(AKA.AK_ID)\n  FROM AktienKursArchiv AS AKA\n  WHERE AKA.AK_AktieID = 6\n   GROUP BY YEAR(AKA.AK_DatumZeit)\nORDER BY Boersenjahr DESC;</pre>",
+     "hinweis": ""
+    }
+   ]
+  }
+ ]
+}
