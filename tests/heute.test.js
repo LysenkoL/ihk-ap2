@@ -188,3 +188,30 @@ assert.strictEqual(H.plural(22, ["день", "дня", "дней"]), "дня");
 assert.strictEqual(H.plural(112, ["день", "дня", "дней"]), "дней");
 
 console.log("heute: ok");
+
+/* ---------------------------------------------------- Карта активности 12 недель --- */
+{
+  const jetzt = new Date(2026, 9, 28, 12, 0);            /* Ср 28.10.2026 */
+  const t = (d, m) => new Date(2026, m == null ? 9 : m, d, 10, 0).getTime();
+  let A = H.aktivitaet([t(28), t(27), t(27), t(26), t(24), t(20)], jetzt);
+  assert.strictEqual(A.spalten.length, 12);
+  assert.ok(A.spalten.every(s => s.length === 7));
+  const letzte = A.spalten[11];
+  assert.strictEqual(letzte[0].key, "2026-10-26", "последний столбец — текущая неделя с понедельника");
+  assert.ok(letzte[2].heute && letzte[3].zukunft);
+  assert.strictEqual(letzte[1].n, 2);
+  assert.strictEqual(A.serie, 3, "26, 27, 28 подряд");
+  assert.strictEqual(A.heuteOffen, false);
+  assert.strictEqual(A.aktiveTage, 5);
+  assert.strictEqual(A.laengste, 3);
+  A = H.aktivitaet([t(27), t(26), t(25)], jetzt);
+  assert.deepStrictEqual([A.serie, A.heuteOffen], [3, true], "сегодня ещё нет — серия до вчера не обрывается");
+  A = H.aktivitaet([t(26)], jetzt);
+  assert.strictEqual(A.serie, 0, "пропущен вчерашний день");
+  A = H.aktivitaet([t(1), t(2), t(3), t(4), t(5), "2026-10-06", t(10)], jetzt);
+  assert.strictEqual(A.laengste, 6, "лучшая серия в окне");
+  assert.strictEqual(H.aktivitaet([], jetzt).serie, 0);
+  const viele = Array.from({ length: 12 }, () => t(28));
+  assert.strictEqual(H.aktivitaet(viele, jetzt).spalten[11][2].stufe, 3);
+  console.log("heute: aktivitaet ok");
+}

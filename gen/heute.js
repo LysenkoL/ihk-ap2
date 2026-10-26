@@ -99,6 +99,32 @@
     const tage = wochenTage(jetzt).map((key, i) => ({ key, wt: WT[i], aktiv: set.has(key), heute: key === heute, zukunft: key > heute }));
     return { tage, anzahl: tage.filter(t => t.aktiv).length };
   }
+  /** Карта активности: wochen недель (столбцы, с понедельника), сегодня — в последнем столбце.
+      Серия: дни подряд с активностью до сегодня; если сегодня ещё ничего — до вчера (heuteOffen). */
+  function aktivitaet(zeiten, jetzt, wochen) {
+    const W = wochen || 12, zahl = new Map();
+    (zeiten || []).map(zuKey).filter(Boolean).forEach(k => zahl.set(k, (zahl.get(k) || 0) + 1));
+    const d = new Date(jetzt == null ? Date.now() : jetzt), heute = tagKey(d);
+    const wd = (d.getDay() + 6) % 7;
+    const start = new Date(d.getFullYear(), d.getMonth(), d.getDate() - wd - (W - 1) * 7);
+    const spalten = [];
+    for (let w = 0; w < W; w++) {
+      const sp = [];
+      for (let i = 0; i < 7; i++) {
+        const key = tagKey(new Date(start.getFullYear(), start.getMonth(), start.getDate() + w * 7 + i)), n = zahl.get(key) || 0;
+        sp.push({ key, n, stufe: n === 0 ? 0 : n <= 2 ? 1 : n <= 9 ? 2 : 3, heute: key === heute, zukunft: key > heute });
+      }
+      spalten.push(sp);
+    }
+    const tag = i => tagKey(new Date(d.getFullYear(), d.getMonth(), d.getDate() - i));
+    const heuteOffen = !zahl.has(heute);
+    let serie = 0;
+    for (let i = heuteOffen ? 1 : 0; zahl.has(tag(i)); i++) serie++;
+    let laengste = 0, lauf = 0;
+    spalten.forEach(sp => sp.forEach(c => { if (c.zukunft) return; lauf = c.n ? lauf + 1 : 0; laengste = Math.max(laengste, lauf); }));
+    const aktiveTage = spalten.reduce((s, sp) => s + sp.filter(c => c.n && !c.zukunft).length, 0);
+    return { spalten, serie, laengste: Math.max(laengste, serie), heuteOffen, aktiveTage };
+  }
   /** было ли что-то сегодня (локальная дата) */
   function heuteDa(zeiten, jetzt) {
     const h = tagKey(jetzt == null ? new Date() : new Date(jetzt));
@@ -230,7 +256,7 @@
   }
   const sicherungNoetig = o => sicherung(o).warn;
 
-  const api = { tagKey, zuKey, berlinTag, restTage, plural, etappe, wochenTage, woche, heuteDa, tageZwischen,
+  const api = { tagKey, zuKey, berlinTag, restTage, plural, etappe, wochenTage, woche, aktivitaet, heuteDa, tageZwischen,
                 profil, zeitenSammeln, schritte, aufgabeFertig, tagesZiel, hatFortschritt, sicherung, sicherungNoetig,
                 SK, PRUEFUNG, LERN_QUELLEN, ETAPPEN };
 
@@ -311,9 +337,12 @@
         worte: R.GENWORTKARTEN && R.GENWORTKARTEN.heute ? versuch(() => { const u = R.GENWORTKARTEN.heute(); return { sek: u.heuteSek, fertig: u.fertig }; }, null) : null,
         exam: !!(R.GENLERNWEG && R.GENLERNWEG.oeffnen), examFertig:events.some(e=>e.source==="azubi"&&e.max>0&&e.correct===e.max&&heuteDa([e.t],jetzt))
       });
+      /* Карточки слов пишут не в журнал, а в ap2:wortkarten.tage */
+      const wk = lies("ap2:wortkarten", {}) || {}, wkTage = Object.keys((wk && wk.tage) || {}).filter(k => wk.tage[k] && wk.tage[k].n > 0);
+      const alleZeiten = z.alle.concat(wkTage);
       return {
         plan, lern,
-        woche: woche(z.alle, jetzt), tageSoll: prof.tage,
+        woche: woche(alleZeiten, jetzt), tageSoll: prof.tage, aktiv: aktivitaet(alleZeiten, jetzt),
         etappe: etappe(berlinTag(jetzt)),
         sicherung: sicherung({ letzte: letzteSicherung(), jetzt: jetzt.getTime(), fortschritt: hatFortschritt(werte) })
       };
@@ -394,6 +423,32 @@
         "На этой неделе: " + x + " из " + soll + " " + (soll % 10 === 1 && soll % 100 !== 11 ? "дня" : "дней") + (x >= soll ? " ✓" : "")));
       unten.appendChild(w);
 
+      /* Серия дней и карта за 12 недель (свёрнута) */
+      const A = d.aktiv;
+      if (A) {
+        const kopfA = el("details", "ht-aktiv");
+        /* карточка перерисовывается — раскрытое состояние держим отдельно */
+        kopfA.open = aktivOffen;
+        kopfA.addEventListener("toggle", () => { aktivOffen = kopfA.open; });
+        const sum = el("summary", "ht-serie");
+        const dn = n => n + " " + plural(n, ["день", "дня", "дней"]);
+        sum.textContent = (A.serie ? "Серия: " + dn(A.serie) + " подряд" + (A.heuteOffen ? " — сегодня ещё не занималась" : "") : "Серия: начни сегодня") +
+          " · лучшая: " + dn(A.laengste);
+        kopfA.appendChild(sum);
+        const gitter = el("div", "ht-karte12");
+        gitter.setAttribute("role", "img");
+        gitter.setAttribute("aria-label", "Активность за 12 недель: " + A.aktiveTage + " активных дней");
+        A.spalten.forEach(sp => sp.forEach((c, i) => {
+          const z = el("span", "ht-k s" + c.stufe + (c.heute ? " heute" : "") + (c.zukunft ? " spaeter" : ""));
+          z.style.gridColumn = String(A.spalten.indexOf(sp) + 1); z.style.gridRow = String(i + 1);
+          z.title = c.key + ": " + c.n;
+          gitter.appendChild(z);
+        }));
+        kopfA.appendChild(gitter);
+        kopfA.appendChild(el("span", "ht-k-legende", "12 недель · столбец = неделя (Пн сверху) · активных дней: " + A.aktiveTage));
+        unten.appendChild(kopfA);
+      }
+
       const e = d.etappe;
       const et = el("p", "ht-etappe");
       et.appendChild(el("b", null, e.titel));
@@ -417,7 +472,7 @@
     }
 
     /* ---- Platz: direkt unter dem hero „Следующий шаг“ ---- */
-    let zeichnetGerade = false;
+    let zeichnetGerade = false, aktivOffen = false;
     function platzieren(k) {
       const s = $("scStart"), kopf = $("stKopf");
       const hero = kopf && kopf.querySelector(":scope > .st-heute");
