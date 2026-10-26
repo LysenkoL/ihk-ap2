@@ -337,6 +337,20 @@
     return true;
   }
 
+  /** Von außen (Prüfungstag): Bogen frisch im Prüfungsmodus starten. Ein angefangener
+      Stand wird vorher als Versuch archiviert. → Startzeit oder 0 */
+  function pruefungStarten(id, uhrArt) {
+    const m = modul(id);
+    if (!m) return 0;
+    if (LAUF && LAUF.m.id === id) { lauffStop(); LAUF = null; }
+    const z = zustand(id);
+    const begonnen = Object.keys(z.a).length || Object.keys(z.auf).length || Object.keys(z.p).length || z.abgegeben || z.zeit;
+    if (begonnen && !neuerVersuch(m, z)) return 0;
+    const jetzt = Date.now();
+    Object.assign(z, { modus: "pruefung", uhrArt: uhrArt || "streng", start: jetzt, zeit: 0, abgegeben: false, zeitAbgelaufen: false, pos: null, zuletzt: jetzt });
+    return schreib(SK + id, z) ? jetzt : 0;
+  }
+
   function loesungAnsehen(t, z, jetzt) {
     const hilfe = z.hilfe || (z.hilfe = {});
     if (!hilfe[t.id]) hilfe[t.id] = { loesungGezeigt: jetzt == null ? Date.now() : jetzt, vorAntwort: !hatAntwort(t, z.a[t.id]) };
@@ -2188,7 +2202,7 @@
 
   const api = {
     oeffnen, zeigen, block, laden, importieren, paket, modul, alleModule, zustand, ansicht, teileVon, bereichVon,
-    normText, zahlen, feldRichtig, textVarianten, pruefe, markdown, punkteLesen, punkteFuer, htmlZuMd, antwortMd, stellen, hatAntwort, note, auswertung, einordnen, sortiert, paketAusText, neuerVersuch, loesungAnsehen, antwortSetzen, beobachten, zeitFortschreiben, pruefungAbgeben,
+    normText, zahlen, feldRichtig, textVarianten, pruefe, markdown, punkteLesen, punkteFuer, htmlZuMd, antwortMd, stellen, hatAntwort, note, auswertung, einordnen, sortiert, paketAusText, neuerVersuch, pruefungStarten, loesungAnsehen, antwortSetzen, beobachten, zeitFortschreiben, pruefungAbgeben,
     get VIEW() { return VIEW; }
   };
   root.GENAZUBI = api;

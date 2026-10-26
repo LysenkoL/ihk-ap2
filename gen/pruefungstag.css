@@ -1,0 +1,32 @@
+/* gen/pruefungstag.css — Prüfungstag (gen/pruefungstag.js), префикс pt- */
+.pt-page{max-width:760px; margin:auto; padding:18px; box-sizing:border-box}
+.pt-wrap{display:grid; gap:12px; min-width:0}
+.pt-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:16px; line-height:1.55; min-width:0}
+.pt-card h2{margin:0 0 8px; font-size:20px}
+.pt-card h3{margin:0 0 8px; font-size:16px}
+.pt-card p{margin:6px 0}
+.pt-muted{display:block; color:var(--muted,#666); font-size:13px}
+.pt-alert{color:var(--red,#a62424); font-weight:600}
+.pt-ok{color:var(--ok,#1f6b3a); font-weight:600}
+.pt-card .btn{min-height:44px; margin:8px 6px 0 0; white-space:normal}
+.pt-feld{display:grid; gap:4px; margin:10px 0}
+.pt-feld select{min-height:44px; max-width:100%; padding:6px 10px; font:inherit; font-size:16px; border:1px solid var(--rule,#ccc); border-radius:8px; background:var(--card,#fff); color:var(--ink)}
+.pt-plan{margin:8px 0; padding-left:22px}
+.pt-plan li{margin:6px 0}
+.pt-plan li b{display:block}
+.pt-gesamt{font-weight:600; font-variant-numeric:tabular-nums}
+.pt-teile{list-style:none; margin:10px 0 0; padding:0; display:grid; gap:10px}
+.pt-teil{border:1px solid var(--rule,#ddd); border-radius:12px; padding:12px; background:var(--field,#f7f6fa)}
+.pt-teil.pt-dran{border-color:var(--pruefer,#5B2A86); box-shadow:0 0 0 1px var(--pruefer,#5B2A86) inset}
+.pt-teil.pt-abgegeben{background:var(--ok-soft,#e6f2ea)}
+.pt-teilkopf{display:flex; justify-content:space-between; align-items:baseline; gap:8px}
+.pt-rest{font-size:28px; font-weight:800; margin:4px 0; font-variant-numeric:tabular-nums}
+.pt-rest.knapp{color:var(--red,#a62424)}
+.pt-ergebnis{display:grid; gap:8px; margin:6px 0}
+.pt-zeile{display:grid; grid-template-columns:56px 1fr; gap:2px 10px; align-items:center}
+.pt-balken{grid-column:2; height:8px; border-radius:4px; background:var(--rule-soft,var(--rule,#ddd)); overflow:hidden}
+.pt-balken i{display:block; height:100%}
+.pt-balken i.rot{background:var(--red,#a62424)} .pt-balken i.gelb{background:#c48a00} .pt-balken i.gruen{background:var(--ok,#1f6b3a)}
+.pt-verlauf{margin:0; padding-left:18px; font-size:14px}
+.pt-verlauf li{margin:4px 0}
+@media(max-width:540px){.pt-page{padding:10px}.pt-card{padding:14px}}
