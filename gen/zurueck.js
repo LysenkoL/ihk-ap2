@@ -62,14 +62,15 @@ window.GENZURUECK = (function () {
     scTrace: "scStart",
     scKatalog2: "scStart",
     scWort: "scStart",
-    scGenUeb: "scStart"
+    scGenUeb: "scStart",
+    scEngl: "scStart"
   };
   const NAMEN = {
     scLernweg: "Мой маршрут", scPraxis: "Самостоятельная практика",
     scStart: "Start", scBogen: "Prüfungsbogen", scAuswertung: "Auswertung",
     scNetz: "Netzplan-Trainer", scKK: "Karteikarten", scModell: "Modell-Trainer",
     scUml: "UML-Trainer", scArchiv: "Archiv", scSpick: "Spickzettel", scKomp: "Kompendium", scKatalog: "Prüfungskatalog", scAzubi: "Azubi-Navigator", scWieder: "Fehler wiederholen", scGlossar: "Glossar", scSql: "SQL-Trainer", scSatz: "Kurzfragen", scLernen: "Themen AP2", scAlgo: "Sortieren & Suchen", scRadar: "Themen-Radar", scAnalyse: "Fehler durchgehen", scGen: "Arbeitsblatt",
-    scCode: "Код с автопроверкой", scNormal: "Нормализация", scOpUeb: "Что от меня хотят", scNiveau: "Мой уровень", scTrace: "Schreibtischtest", scKatalog2: "Каталог AP2", scWort: "Карточки слов", scGenUeb: "Übung"
+    scCode: "Код с автопроверкой", scNormal: "Нормализация", scOpUeb: "Что от меня хотят", scNiveau: "Мой уровень", scTrace: "Schreibtischtest", scKatalog2: "Каталог AP2", scWort: "Карточки слов", scGenUeb: "Übung", scEngl: "Английский текст"
   };
 
   let jetzt = "scStart";
@@ -80,7 +81,7 @@ window.GENZURUECK = (function () {
      nach den bekannten Kennungen gesucht und nicht nach der Klasse — sonst
      bleibt genau der Bildschirm unsichtbar, um den es am meisten geht.   */
   const SCHIRME = ["scStart", "scBogen", "scAuswertung", "scNetz", "scKK",
-                   "scModell", "scUml", "scArchiv", "scSpick", "scKomp", "scKatalog", "scAzubi", "scWieder", "scGlossar", "scSql", "scSatz", "scLernen", "scLernweg", "scPraxis", "scAlgo", "scRadar", "scAnalyse", "scGen", "scCode", "scNormal", "scOpUeb", "scNiveau", "scTrace", "scKatalog2", "scWort", "scGenUeb"];
+                   "scModell", "scUml", "scArchiv", "scSpick", "scKomp", "scKatalog", "scAzubi", "scWieder", "scGlossar", "scSql", "scSatz", "scLernen", "scLernweg", "scPraxis", "scAlgo", "scRadar", "scAnalyse", "scGen", "scCode", "scNormal", "scOpUeb", "scNiveau", "scTrace", "scKatalog2", "scWort", "scGenUeb", "scEngl"];
   function sichtbar() {
     for (const id of SCHIRME) { const e = $(id); if (e && !e.hidden) return id; }
     return "scStart";

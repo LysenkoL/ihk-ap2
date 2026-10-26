@@ -1,0 +1,43 @@
+/* gen/englisch.css — «Английский текст GA1» (gen/englisch.js), префикс en- */
+.en-page{max-width:760px; margin:auto; padding:18px; box-sizing:border-box}
+.en-wrap{display:grid; gap:12px; min-width:0}
+.en-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:18px; line-height:1.6; min-width:0}
+.en-card h2{margin:8px 0 6px; font-size:21px; line-height:1.3}
+.en-card h3{margin:0 0 8px; font-size:15.5px; line-height:1.45}
+.en-muted{display:block; color:var(--muted,#666); font-size:13px; line-height:1.5}
+.en-muted-i{color:var(--muted,#666); font-style:italic}
+.en-alert{color:var(--red,#a62424); font-weight:600}
+.en-zeile{display:flex; flex-direction:column; align-items:flex-start; gap:2px; width:100%; text-align:left; padding:12px 14px; border:1px solid var(--rule,#ddd);
+  border-radius:12px; background:var(--card,#fff); color:var(--ink); font:inherit; cursor:pointer; min-height:44px}
+.en-z-titel{font-weight:700; font-size:15px}
+.en-z-ru{font-size:13px; color:var(--muted)}
+.en-z-stand{font-size:12.5px; color:var(--muted)}
+.en-z-stand.ok{color:var(--ok,#1f6b3a)}
+.en-situation{margin:4px 0 10px; font-size:14.5px; color:var(--ink)}
+.en-text{padding:12px 14px; border-left:4px solid var(--pruefer,#5B2A86); background:var(--field,#f4f3f8); border-radius:0 10px 10px 0; font-size:15.5px; line-height:1.65}
+.en-text p{margin:0 0 10px; overflow-wrap:anywhere}
+.en-text p:last-child{margin:0}
+.en-vok{margin-top:10px}
+.en-vok summary{cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:650}
+.en-vok ul{margin:4px 0; padding-left:18px; font-size:14px}
+.en-vok li{margin:3px 0}
+.en-nr{color:var(--pruefer,#5B2A86); font-weight:800}
+.en-punkte{color:var(--muted); font-weight:500; font-size:13px}
+.en-optionen{display:grid; gap:6px; margin:4px 0 10px}
+.en-option{display:flex; align-items:flex-start; gap:10px; padding:10px 12px; border:1px solid var(--rule,#ddd); border-radius:10px; cursor:pointer; min-height:44px; box-sizing:border-box; font-size:14.5px}
+.en-option input{flex:none; width:20px; height:20px; margin-top:2px}
+.en-option.ok{border-color:var(--ok,#1f6b3a); background:var(--ok-soft,#e6f2ea)}
+.en-option.falsch{border-color:var(--red,#a62424); background:var(--red-soft,#fbeaea)}
+.en-antwort{box-sizing:border-box; width:100%; min-height:96px; padding:10px 12px; font:inherit; font-size:15px; color:var(--ink); background:var(--field,#fafafa);
+  border:1px solid var(--rule,#ccc); border-radius:9px; resize:vertical; margin-bottom:8px}
+.en-muster{margin:10px 0; padding:10px 12px; border-radius:10px; background:var(--ok-soft,#e6f2ea); font-size:14.5px}
+.en-kriterien{display:grid; gap:4px; margin:6px 0 8px}
+.en-krit{display:flex; align-items:flex-start; gap:10px; min-height:40px; font-size:14px}
+.en-krit input{flex:none; width:20px; height:20px; margin-top:2px}
+.en-ergebnis{font-weight:700; margin:8px 0}
+.en-ergebnis.ok{color:var(--ok,#1f6b3a)}
+.en-ergebnis.falsch{color:var(--red,#a62424)}
+.en-card .btn{min-height:44px; white-space:normal; margin:4px 6px 0 0}
+.en-summe{padding:0 4px}
+.en-page :focus-visible{outline:3px solid var(--pruefer,#5B2A86); outline-offset:2px}
+@media(max-width:540px){.en-page{padding:10px}.en-card{padding:14px}.en-text{font-size:15px}}
