@@ -1,0 +1,53 @@
+/* gen/niveau.css — «Мой уровень по частям» (gen/niveau.js): карточка на главной и экран #scNiveau */
+#scStart .nv-karte{margin-top:10px; padding:12px 14px 10px; border:1px solid var(--rule); border-radius:var(--st-r-s,9px);
+  background:var(--card); min-width:0}
+.nv-kopf{display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 10px; margin-bottom:6px}
+#scStart .nv-titel{margin:0; font-family:var(--body); font-size:15px; font-weight:700; line-height:1.3; color:var(--ink);
+  text-transform:none; letter-spacing:0; border:0; padding:0}
+.nv-quelle{margin-left:auto; font-size:12px; color:var(--muted)}
+.nv-teile{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.nv-teil{min-width:0}
+.nv-zeile{display:flex; align-items:baseline; gap:8px; min-width:0; flex-wrap:wrap}
+.nv-name{font-size:14px; min-width:44px; color:var(--ink)}
+.nv-wert{font-size:13.5px; font-weight:600; color:var(--ink); overflow-wrap:anywhere}
+.nv-leer .nv-wert, .nv-teil.leer .nv-wert, .nv-teilbox.leer .nv-wert{color:var(--muted); font-weight:500}
+.nv-leer{display:block; font-size:12.5px; color:var(--muted); line-height:1.35}
+.nv-balken{position:relative; display:block; height:8px; margin-top:4px; border-radius:4px; background:var(--rule-soft,var(--rule)); overflow:hidden}
+.nv-fuell{display:block; height:100%; border-radius:4px}
+.nv-fuell.rot{background:var(--red)}
+.nv-fuell.gelb{background:var(--warn)}
+.nv-fuell.gruen{background:var(--ok)}
+.nv-marke{position:absolute; top:0; bottom:0; width:1px; background:var(--muted); opacity:.55}
+.nv-teil.rot .nv-wert, .nv-teilbox.rot .nv-wert{color:var(--red)}
+.nv-teil.gruen .nv-wert, .nv-teilbox.gruen .nv-wert{color:var(--ok)}
+.nv-regel{margin:8px 0 0; font-size:12.5px; line-height:1.45; color:var(--muted)}
+.nv-regel .nv-zeichen{display:inline-block; min-width:1.1em; font-weight:800}
+.nv-regel.ja .nv-zeichen{color:var(--ok)}
+.nv-regel.nein .nv-zeichen{color:var(--red)}
+.nv-unten{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px 10px; margin-top:8px;
+  padding-top:8px; border-top:1px solid var(--rule-soft,var(--rule))}
+.nv-zuerst{font-size:13.5px; font-weight:600; color:var(--ink)}
+.nv-unten .btn{min-height:44px; padding:8px 14px}
+
+/* Экран */
+.nv-page{max-width:920px; margin:auto; padding:18px; box-sizing:border-box}
+.nv-wrap{display:grid; gap:16px; min-width:0}
+.nv-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:20px; line-height:1.6; min-width:0}
+.nv-card h2{margin:0 0 10px; font-size:21px; line-height:1.3}
+.nv-card h3{margin:14px 0 4px; font-size:16px}
+.nv-card p{margin:8px 0}
+.nv-muted{display:block; color:var(--muted,#666); font-size:13px; line-height:1.5}
+.nv-de{display:block; font-size:13.5px; color:var(--ink)}
+.nv-teilbox{padding:12px 0; border-top:1px solid var(--rule,#ddd); min-width:0}
+.nv-teilbox .nv-name{font-size:17px}
+.nv-teilbox .nv-wert{font-size:15px}
+.nv-teilbox .nv-balken{margin:6px 0 2px; height:10px}
+.nv-card .nv-regel{font-size:14.5px; color:var(--ink); font-weight:600}
+.nv-thema{padding:10px 0; border-bottom:1px solid var(--rule,#ddd); min-width:0}
+.nv-thema b{display:block; overflow-wrap:anywhere}
+.nv-aktionen{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+.nv-card .btn{min-height:44px; white-space:normal; max-width:100%; text-align:left}
+.nv-probe{margin-top:14px}
+.nv-card :focus-visible{outline:3px solid var(--pruefer,#5B2A86); outline-offset:3px}
+@media(max-width:540px){.nv-page{padding:10px}.nv-card{padding:16px}.nv-card h2{font-size:19px}}
+@media print{.nv-page[hidden]{display:none}.nv-card button{display:none}}
