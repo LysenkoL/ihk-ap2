@@ -199,8 +199,11 @@
     const hat=id=>{const v=a[id];return v!=null&&(typeof v!=="object"||Object.values(v).some(x=>String(x==null?"":x).trim()));};
     return {beantwortet:teile.filter(hat).length,bewertet:teile.filter(id=>p[id]!=null||auto[id]!=null).length,gesamt:teile.length};
   }
+  /* Временный список заданий из бланков (например, «Wo kommt das vor?» в глоссарии): тот же вид, что у «Что тренировать». */
+  let EXTRA=null;
+  function aufgabenZeigen(eintrag){EXTRA=Object.assign({id:"~liste",bereich:"AP2",de:"",aufgaben:[]},eintrag);oeffnen("@"+EXTRA.id);}
   function aufgabenListe(w,tid){
-    const t=(root.AP2_TRAINING||[]).find(x=>x.id===tid);
+    const t=(root.AP2_TRAINING||[]).find(x=>x.id===tid)||(EXTRA&&EXTRA.id===tid?EXTRA:null);
     if(!t){overview(w);return;}
     const c=card(w,t.name+" · "+t.bereich+": задания из экзаменов");
     const de=el("p","lw-muted",t.de);de.lang="de";c.appendChild(de);
@@ -460,7 +463,7 @@
     if(root.GENSTART)root.GENSTART.kopfAktualisieren();
   }
   const api={next,sessionMinutes,oeffnen,empfehlung:recommend,zielOeffnen,liste:units,stand:()=>clone(state),
-    beginnen,entwurf,hilfe,abgeben,rubrik,abschliessen,erneut,markieren,statusText,pruefungsPlan,quelle,startThema,themaInfo,aufgabeStand,
+    beginnen,entwurf,hilfe,abgeben,rubrik,abschliessen,erneut,markieren,statusText,pruefungsPlan,quelle,startThema,themaInfo,aufgabeStand,aufgabenZeigen,
     fehler:()=>readError||saveError};
   root.GENLERNWEG=api;
   if(typeof module==="object"&&module.exports)module.exports=api;

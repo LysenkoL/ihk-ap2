@@ -146,6 +146,23 @@
     });
   }
 
+  /** Beim ersten gespeicherten Foto den Browser bitten, den Speicher nicht von
+      selbst zu räumen (navigator.storage.persist). Fotos gibt es nur auf diesem
+      Gerät; ohne „persistent“ darf der Browser sie bei Platzmangel löschen.
+      Einmal je Sitzung; → Promise<true|false|null> (null = nicht unterstützt) */
+  let persistGefragt = null;
+  function dauerhaft(speicher) {
+    const s = speicher !== undefined ? speicher : (root.navigator && root.navigator.storage);
+    if (persistGefragt && speicher === undefined) return persistGefragt;
+    let p;
+    try {
+      if (!s || typeof s.persist !== "function") p = Promise.resolve(null);
+      else p = Promise.resolve(typeof s.persisted === "function" ? s.persisted() : false).then(ja => ja ? true : s.persist()).then(x => !!x, () => null);
+    } catch (e) { p = Promise.resolve(null); }
+    if (speicher === undefined) persistGefragt = p;
+    return p;
+  }
+
   let letzteZeit = 0;
   /** Foto speichern. Als ArrayBuffer — ältere Safari-Versionen speichern
       Blobs in IndexedDB nicht zuverlässig. */
@@ -159,6 +176,7 @@
       typ: blob.type || "image/jpeg", bytes: daten.byteLength,
       w: info && info.w || 0, h: info && info.h || 0, daten
     }))).then(() => {
+      dauerhaft();
       geaendert(modulId, teilId);
       return { id, t, bytes: blob.size || 0 };
     });
@@ -475,7 +493,7 @@
   }
 
   const api = {
-    anhaengen, speichern, liste, loeschen, verkleinern,
+    anhaengen, speichern, liste, loeschen, verkleinern, dauerhaft,
     schluessel, praefix, grenzen, zerlegen, zeigenFuer, masse, naechsteQualitaet, groesseText, zeitText, bereichVon,
     DB_NAME, STORE, MAX_SEITE, QUALITAET, HINWEIS
   };

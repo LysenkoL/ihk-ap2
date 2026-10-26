@@ -88,4 +88,15 @@ assert.strictEqual(F.groesseText(212 * 1024), "212 КБ");
 assert.strictEqual(F.groesseText(1.5 * 1024 * 1024), "1,5 МБ");
 assert.match(F.zeitText(new Date(2026, 9, 10, 9, 5).getTime()), /^10\.10\.2026 09:05$/);
 assert(/только на этом устройстве/.test(F.HINWEIS) && /резервной копии/.test(F.HINWEIS), "ehrlicher Hinweis");
-console.log("fotos: ok");
+/* navigator.storage.persist(): erst fragen, ob schon dauerhaft; Fehler → null */
+(async () => {
+  let gefragt = 0;
+  assert.strictEqual(await F.dauerhaft({ persisted: () => Promise.resolve(false), persist: () => { gefragt++; return Promise.resolve(true); } }), true);
+  assert.strictEqual(gefragt, 1);
+  assert.strictEqual(await F.dauerhaft({ persisted: () => Promise.resolve(true), persist: () => { gefragt++; return Promise.resolve(true); } }), true);
+  assert.strictEqual(gefragt, 1, "schon dauerhaft → nicht erneut fragen");
+  assert.strictEqual(await F.dauerhaft({ persist: () => Promise.resolve(false) }), false, "abgelehnt");
+  assert.strictEqual(await F.dauerhaft(null), null, "nicht unterstützt");
+  assert.strictEqual(await F.dauerhaft({ persisted: () => Promise.reject(new Error("x")), persist: () => Promise.resolve(true) }), null);
+  console.log("fotos: ok");
+})().catch(e => { console.error(e); process.exit(1); });

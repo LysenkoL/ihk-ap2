@@ -306,6 +306,31 @@
     if (typeof schirm === "function") schirm("scBogen");
   }
 
+  /** Fundstellen aus den Prüfungsbögen → Aufgabenliste [Modul, Nr., Punkte, [Teil-IDs]] wie in AP2_TRAINING */
+  function bogenAufgaben(funde) {
+    const map = new Map();
+    funde.forEach(f => {
+      const m = f.eintrag.m, t = f.eintrag.t;
+      if (!m || !t) return;
+      const a = (m.aufgaben || []).find(x => (x.teile || []).some(y => y.id === t.id));
+      if (!a) return;
+      const k = m.id + "#" + a.nr;
+      if (!map.has(k)) map.set(k, [m.id, String(a.nr), (a.teile || []).reduce((s, y) => s + (Number(y.punkte) || 0), 0), []]);
+      const teile = map.get(k)[3];
+      if (teile.indexOf(t.id) < 0) teile.push(t.id);
+    });
+    return [...map.values()];
+  }
+  function bogenUeben(funde, titel) {
+    const L = root.GENLERNWEG, A = root.GENAZUBI;
+    const aufgaben = bogenAufgaben(funde);
+    if (!L || !L.aufgabenZeigen || !aufgaben.length) return;
+    const b = $("glBlase"); if (b) b.classList.remove("an");
+    const NAME = { ga1: "GA1", ga2: "GA2", wiso: "WiSo" };
+    const br = new Set(aufgaben.map(a => { const m = A && A.modul ? A.modul(a[0]) : null; return m && A.bereichVon ? NAME[A.bereichVon(m)] || "AP2" : "AP2"; }));
+    L.aufgabenZeigen({ name: titel, bereich: br.size === 1 ? [...br][0] : "AP2", aufgaben });
+  }
+
   /** Aufklappbarer Teil „Wo kommt das vor?“ — für jedes Kärtchen und jeden Glossar-Eintrag */
   function vorkommenTeil(r, wortAnzeige) {
     const { formen, frei } = formenFuer(r);
@@ -348,6 +373,13 @@
       if (ihkFunde.length) {
         const u = el("button", "ns-link", "Diese " + ihkFunde.length + " IHK-Aufgaben üben"); u.type = "button";
         u.onclick = () => ueben(ihkFunde, "Aufgaben mit „" + (wortAnzeige || r.text) + "“");
+        st.appendChild(u);
+      }
+      const bogenFunde = funde.filter(f => f.eintrag.quelle === "azubi" && f.wo === "Aufgabe");
+      const nB = bogenAufgaben(bogenFunde).length;
+      if (nB) {
+        const u = el("button", "ns-link", "Diese " + nB + (nB === 1 ? " Aufgabe" : " Aufgaben") + " aus den Bögen üben"); u.type = "button";
+        u.onclick = () => bogenUeben(bogenFunde, "„" + (wortAnzeige || r.text) + "“");
         st.appendChild(u);
       }
       if (st.childNodes.length) inhalt.appendChild(st);
@@ -507,7 +539,7 @@
     document.addEventListener("keydown", ev => { if (ev.key === "Escape" && pille) pille.hidden = true; });
   }
 
-  const api = { verbFormen, nomenFormen, adjFormen, wortschatz, nachschlagen, kandidaten, saeubern, imWortschatz,
+  const api = { bogenAufgaben, verbFormen, nomenFormen, adjFormen, wortschatz, nachschlagen, kandidaten, saeubern, imWortschatz,
     vorkommen, suchAusdruck, formenFuer, vorkommenTeil, karte, speichern, loeschen, aendern, zeilen, suchen, claudeText,
     meinVonWort, get MEIN() { return MEIN; }, _index: () => { IDX = null; return index(); } };
   root.GENWORT = api;

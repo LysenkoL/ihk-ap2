@@ -18,6 +18,7 @@ window.GENOP = (function () {
   /* ---------------------------------------------------------------------
      Die Operatoren. `regex` erkennt sie in Aufgabentext und Feldbezeichnung,
      `rang` entscheidet bei mehreren Treffern: der anspruchsvollste gewinnt,
+     Achtung: \b kennt nur a–z. Vor Ü/Ä/Ö gilt (?:^|[^a-zäöüß]) statt \b.
      denn „Nennen und begründen Sie“ ist eine Begründungsaufgabe.
      ------------------------------------------------------------------ */
   const OPERATOREN = [
@@ -35,7 +36,7 @@ window.GENOP = (function () {
     {
       key: "beschreiben", rang: 2,
       name: "Beschreiben / Darstellen",
-      regex: /\bbeschreiben\b|\bdarstellen\b|\bschildern\b/i,
+      regex: /\bbeschreiben\b|\bdarstellen\b|\bstellen sie\b[^.?!]*\bdar\b|\bschildern\b/i,
       verlangt: "Den Sachverhalt in eigenen Worten wiedergeben — was passiert, in welcher Reihenfolge.",
       umfang: "Zwei bis vier Sätze, sachlich, ohne Wertung.",
       falle: "Beschreiben heißt noch nicht begründen. Ein „weil“ ist hier nicht verlangt — " +
@@ -109,7 +110,7 @@ window.GENOP = (function () {
     {
       key: "vergleichen", rang: 4,
       name: "Vergleichen / Gegenüberstellen / Unterscheiden",
-      regex: /\bvergleichen\b|\bgegen(ü|ue)berstellen\b|\bunterscheiden\b|\bworin unterscheiden\b|\bunterschied\b/i,
+      regex: /\bvergleichen\b|\bgegen(ü|ue)berstellen\b|\bstellen sie\b[^.?!]*\bgegen(ü|ue)ber\b|\bunterscheiden\b|\bworin unterscheiden\b|\bunterschied\b/i,
       verlangt: "Beide Seiten am GLEICHEN Merkmal messen — nicht zwei getrennte Beschreibungen.",
       umfang: "Je Merkmal ein Satz, der beide Seiten enthält. Zwei bis drei Merkmale reichen meist.",
       falle: "Erst alles über A, dann alles über B — das ist kein Vergleich. " +
@@ -148,7 +149,7 @@ window.GENOP = (function () {
     {
       key: "pruefen", rang: 4,
       name: "Prüfen / Überprüfen / Kontrollieren",
-      regex: /\bpr(ü|ue)fen sie\b|\b(ü|ue)berpr(ü|ue)fen\b|\bkontrollieren\b|\btrifft .* zu\b/i,
+      regex: /\bpr(ü|ue)fen sie\b|(?:^|[^a-zäöüß])(ü|ue)berpr(ü|ue)fen\b|\bkontrollieren\b|\btrifft .* zu\b/i,
       verlangt: "Aussage mit einem Kriterium abgleichen und das Ergebnis als klares Ja oder Nein sagen.",
       umfang: "Kriterium nennen, prüfen, Ergebnis in einem Satz.",
       falle: "Die Antwort „ja“ oder „nein“ allein reicht nicht — der Prüfschritt gehört dazu.",
