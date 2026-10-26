@@ -2,7 +2,7 @@
    скопированное решение не закрывает самостоятельную ошибку. */
 "use strict";
 (function (root) {
-  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK" };
+  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK", trace: "Schreibtischtest" };
   const HILFE = { selbst: "самостоятельно", hilfe: "с помощью", loesung: "с открытым решением" };
   const ART = { auto: "автопроверка", recognition: "узнавание ответа", selbst: "самооценка" };
   const MODI = { bubble: "Bubble Sort", selection: "Selection Sort", insertion: "Insertion Sort", binaer: "Binäre Suche", linear: "Lineare Suche" };
@@ -64,6 +64,10 @@
       const a = (root.AP2_CODE || []).find(a => a.id === e.task);
       if (a) return { title: a.titel, question: a.kontext + "\n" + a.aufgabe, solution: a.loesung,
         notice: "Текущая версия: условие прежней попытки не сохранено." };
+    }
+    if (e.source === "trace") {
+      const loesung = (() => { try { return root.GENTRACE ? root.GENTRACE.loesungText(e.task) : ""; } catch (error) { return ""; } })();
+      if (s && s.type === "trace") return { title: s.title, question: s.question, code: s.code, solution: loesung || "Открой задачу в тренажёре «Schreibtischtest» и нажми «Показать правильно»." };
     }
     if (e.source === "sql") {
       if (s && s.type === "sql") return { title: s.title, question: s.question, solution: s.solution, explanation: s.explanation, schema: s.schema, code: s.before };
@@ -137,6 +141,7 @@
     if (e.source === "praxis" && root.GENPRAXIS) return root.GENPRAXIS.oeffnen(e.task);
     if (e.source === "lernweg" && root.GENLERNWEG) return root.GENLERNWEG.oeffnen(e.task);
     if (e.source === "code" && root.GENCODE) return root.GENCODE.oeffnen(e.task);
+    if (e.source === "trace" && root.GENTRACE) return root.GENTRACE.oeffnen(e.task);
     if (e.source === "normal" && root.GENNORMAL) { const [id, step] = e.task.split(":"); return root.GENNORMAL.oeffnen(id, step); }
     if (e.source === "operatoren" && root.GENOPUEB) return root.GENOPUEB.oeffnen({task:e.task,ref:(e.answers||{}).ref,event:e});
   }

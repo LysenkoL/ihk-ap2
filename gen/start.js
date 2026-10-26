@@ -678,6 +678,7 @@ window.GENSTART = (function () {
     if (window.GENLERNEN) kachel("Themen & Quiz", (window.AP2_THEMEN || []).length + " Themen · erklärt", () => window.GENLERNEN.oeffnen(), "lernen");
     if (window.GENALGO) kachel("Sortieren & Suchen", "Schritt für Schritt", () => window.GENALGO.oeffnen(), "sortieren");
     if (window.GENCODE) kachel("Код с автопроверкой", "Entwickeln Sie eine Methode · 10 задач", () => window.GENCODE.oeffnen(), "pseudo");
+    if (window.GENTRACE) kachel("Schreibtischtest", "Wertetabelle · Fehler finden · 12 задач", () => window.GENTRACE.oeffnen(), "pseudo");
     if (window.GENNORMAL) kachel("Нормализация 1NF → 3NF", "Шаг за шагом · 4 примера", () => window.GENNORMAL.oeffnen(), "er");
     if (window.GENOPUEB) kachel("Что от меня хотят?", "Operatoren: nennen, erläutern …", () => window.GENOPUEB.oeffnen(), "check");
     if (window.GENSATZ) kachel("Kurzfragen", z.satzKarten ? z.satzKarten + " Fragen · 5 Min." : "5 Minuten", satzbau, "satz");

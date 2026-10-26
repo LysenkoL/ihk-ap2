@@ -146,7 +146,7 @@
     {id:"ga2-uml", bereich:"GA2", name:"UML: поведение", de:"Aktivität, Sequenz, Zustand", pruef:7, punkte:17,
       units:["uml"], praxis:"uml-sequenz", quiz:"oop", lern:["oop"]},
     {id:"ga2-test", bereich:"GA2", name:"Тесты: Schreibtischtest, покрытие", de:"Schreibtischtest, Überdeckung, Testfälle", pruef:6, punkte:14,
-      units:["tests"], praxis:"test-trace", quiz:"tests", satz:"Qualität & Test", lern:["tests"]}
+      units:["tests"], praxis:"test-trace", trace:true, quiz:"tests", satz:"Qualität & Test", lern:["tests"]}
   ];
   /* Задания из 20 GA по темам (метки «themen» в privat/quellen): [модуль, номер задания, баллы, id частей].
      Только ссылки — тексты заданий берутся из личного пакета во время работы. */

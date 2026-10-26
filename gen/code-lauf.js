@@ -15,11 +15,17 @@
    Typ = {name, args:[Typ], dim}
 
    Fehlermeldungen auf Russisch mit Zeilennummer: «Строка 4: …».
-   API: root.GENCODELAUF = { uebersetzen, ausfuehren, pruefeAufgabe, … }
+   API: root.GENCODELAUF = { uebersetzen, ausfuehren, pruefeAufgabe, verfolgen, … }
+   verfolgen() = Schreibtischtest: Werte an Beobachtungspunkten mitschreiben
+   (Beschreibung weiter unten bei der Funktion).
    ========================================================================== */
 "use strict";
 (function (root) {
   const GRENZE = { schritte: 200000, tiefe: 150, zeichen: 100000, zellen: 1000000, ausgabe: 4000 };
+  /* Schlüssel für die Spur in den Laufzeit-Optionen: ein Symbol, damit kein
+     Test-JSON die Spur versehentlich einschaltet. */
+  const SPUR = typeof Symbol === "function" ? Symbol("spur") : "__spur__";
+  const SPUR_ZEILEN = 2000;
 
   class CodeFehler extends Error {
     constructor(text, zeile, art) {
@@ -514,7 +520,7 @@
       throw new CodeFehler("после new " + b.wert + " ожидались ( ) или [ ]", tk().z, "syntax");
     }
 
-    return { programm, methode, versucheTyp: () => { const r = versucheTyp(p); if (r) p = r.ende; return r && r.typ; }, ende: () => tk().typ === "eof" };
+    return { programm, methode, versucheTyp: () => { const r = versucheTyp(p); if (r) p = r.ende; return r && r.typ; }, ende: () => tk().typ === "eof", ausdruck };
   }
 
   function parseTyp(text) {
@@ -971,13 +977,62 @@
       throw fehl(was + " должен быть целым числом, а здесь " + typName(w), z, "typ");
     }
 
+    /* ---------- Schreibtischtest: Spur aufnehmen (nur über verfolgen) ----------
+       Ohne Spur ist ausf === ausfKern und pruefe === bedingung: dieselben
+       Schritte, dieselben Fehler, dasselbe Ergebnis wie vorher. */
+    const sp = optionen && optionen[SPUR] ? spurLaufzeit(optionen[SPUR]) : null;
+    const ausf = sp ? ausfMitSpur : ausfKern;
+    const pruefe = sp ? (c, sc, z) => sp.bedingung(z, bedingung(c, sc), sc) : bedingung;
+    function spurLaufzeit(cfg) {
+      const idx = { vor: new Map(), nach: new Map(), durchlauf: new Map(), bedingung: new Map() };
+      cfg.punkte.forEach((p, k) => { const m = idx[p.wann]; if (!m.has(p.zeile)) m.set(p.zeile, []); m.get(p.zeile).push(k); });
+      const nr = cfg.punkte.map(() => 0), letzte = new Map();
+      let pos = 0, block = null;
+      /* Lesen ohne Nebenwirkung: keine Schritte, keine neuen Warnungen, Fehler → null */
+      function lies(a, sc) {
+        if (a.name) { const v = finde(sc, a.name); return v && v.init ? spurWert(v.w) : null; }
+        const vorher = new Set(warnungen.keys());
+        try { return spurWert(wert(a.e, sc)); }
+        catch (e) { return null; }
+        finally { warnungen.forEach((_, k) => { if (!vorher.has(k)) warnungen.delete(k); }); }
+      }
+      function aufnehmen(k, sc) {
+        if (cfg.zeilen.length >= cfg.maxZeilen) { cfg.abgeschnitten = true; return; }
+        const p = cfg.punkte[k];
+        cfg.zeilen.push({ punkt: k, zeile: p.zeile, wann: p.wann, nr: ++nr[k],
+          werte: p.ausdruecke.map(a => lies(a, sc)),
+          bedingungen: p.bedingungen.map(z => (letzte.has(z) ? letzte.get(z) : null)),
+          ausgabe: ausgabe.slice(pos) });
+        pos = ausgabe.length; letzte.clear();
+      }
+      const melde = (art, z, sc) => { const l = idx[art].get(z); if (l) l.forEach(k => aufnehmen(k, sc)); };
+      return {
+        init: cfg.init,
+        vor: (s, sc) => melde("vor", s.z, sc),
+        nach: (s, sc) => melde("nach", s.z, sc),
+        /* Ende eines Blocks: dessen Variablen (z. B. im Schleifenrumpf deklariert)
+           sind für die Durchlauf-Zeile danach noch sichtbar */
+        block: (s, inner) => { block = { s, inner }; },
+        durchlauf: (s, sc) => melde("durchlauf", s.z, s.body && s.body.k === "block" && block && block.s === s.body ? block.inner : sc),
+        bedingung: (z, b, sc) => { letzte.set(z, b); melde("bedingung", z, sc); return b; }
+      };
+    }
+    function ausfMitSpur(s, sc) {
+      const zaehlt = s.k !== "block" && s.k !== "leer" && !sp.init.has(s);
+      if (zaehlt) sp.vor(s, sc);
+      const r = ausfKern(s, sc);
+      if (zaehlt) sp.nach(s, sc);
+      return r;
+    }
+
     /* ---------- Anweisungen ---------- */
-    function ausf(s, sc) {
+    function ausfKern(s, sc) {
       schritt(s.z);
       switch (s.k) {
         case "block": {
           const inner = scope(sc);
-          for (const x of s.body) { const r = ausf(x, inner); if (r) return r; }
+          for (const x of s.body) { const r = ausf(x, inner); if (r) { if (sp) sp.block(s, inner); return r; } }
+          if (sp) sp.block(s, inner);
           return;
         }
         case "leer": return;
@@ -993,13 +1048,14 @@
           }
           return;
         case "expr": wert(s.e, sc); return;
-        case "if": return bedingung(s.c, sc) ? ausf(s.dann, sc) : s.sonst ? ausf(s.sonst, sc) : undefined;
+        case "if": return pruefe(s.c, sc, s.z) ? ausf(s.dann, sc) : s.sonst ? ausf(s.sonst, sc) : undefined;
         case "while": {
           const alt = schleifenZeile; schleifenZeile = s.z;
           try {
-            while (bedingung(s.c, sc)) {
+            while (pruefe(s.c, sc, s.z)) {
               schritt(s.z);
               const r = ausf(s.body, sc);
+              if (sp) sp.durchlauf(s, sc);
               if (r === BRK) break; if (r === CONT) continue; if (r) return r;
             }
           } finally { schleifenZeile = alt; }
@@ -1011,8 +1067,9 @@
             do {
               schritt(s.z);
               const r = ausf(s.body, sc);
+              if (sp) sp.durchlauf(s, sc);
               if (r === BRK) break; if (r && r !== CONT) return r;
-            } while (bedingung(s.c, sc));
+            } while (pruefe(s.c, sc, s.zw));
           } finally { schleifenZeile = alt; }
           return;
         }
@@ -1023,8 +1080,9 @@
           try {
             for (;;) {
               schritt(s.z);
-              if (s.c && !bedingung(s.c, fs)) break;
+              if (s.c && !pruefe(s.c, fs, s.z)) break;
               const r = ausf(s.body, fs);
+              if (sp) sp.durchlauf(s, fs);
               if (r === BRK) break; if (r && r !== CONT) return r;
               s.upd.forEach(u => wert(u, fs));
             }
@@ -1046,6 +1104,7 @@
               const t = s.typ.name === "var" ? typVon(q.a[i], s.z) : s.typ;
               fs.vars.set(s.name, { typ: t, w: s.typ.name === "var" ? q.a[i] : konvertiere(q.a[i], t, s.nz, "переменную " + s.name), init: true, name: s.name });
               const r = ausf(s.body, fs);
+              if (sp) sp.durchlauf(s, fs);
               if (r === BRK) break; if (r && r !== CONT) return r;
             }
             if (q.t === "list" && q.mod !== mod) throw fehl("список изменён внутри for-each (в Java — ConcurrentModificationException). Чтобы удалять или добавлять, используй обычный for с индексом или новый список", s.z);
@@ -1697,7 +1756,152 @@
     return { kompiliert: true, fehler: ersterFehler, bestanden, gesamt: tests.length, tests: ergebnisse, warnungen: Array.from(warnungen.values()) };
   }
 
-  const api = { uebersetzen, ausfuehren, pruefeAufgabe, formatiere, gleichJS, parseSignatur, parseTyp, typStr, klassenMap, CodeFehler, GRENZE,
+  /* ======================================================================
+     Schreibtischtest (Ablaufverfolgung): verfolgen()
+     ----------------------------------------------------------------------
+     verfolgen(quelltext, {
+       methode, args, klassen, signatur?, maxSchritte?,   — wie ausfuehren()
+       punkte: [{ zeile, wann, werte?, bedingungen? }],   — Beobachtungspunkte
+       maxZeilen?                                          — höchstens so viele Spurzeilen (Standard 2000)
+     })
+     zeile = Zeilennummer im Quelltext (ab 1). wann:
+       "vor"        bevor die Anweisung ausgeführt wird, die in dieser Zeile beginnt
+       "nach"       nachdem sie fertig ist (bei Schleife/if: nach der ganzen Anweisung)
+       "durchlauf"  am Ende jedes Durchlaufs der Schleife, deren Kopf in dieser Zeile
+                    steht — bei for VOR dem Erhöhen: i hat noch den Wert des Durchlaufs;
+                    Variablen aus dem Schleifenrumpf sind noch sichtbar
+       "bedingung"  bei jeder Prüfung der Bedingung von if / while / for / do…while
+                    in dieser Zeile — auch bei der letzten, falschen Prüfung
+     werte: Variablennamen oder Ausdrücke, die nur lesen: "i", "werte[i]",
+            "b.getBetrag()", "a[j] > a[j + 1]". Zuweisungen, ++/--, new und Aufrufe
+            eigener Methoden sind verboten (Fehler phase:"spur").
+     bedingungen: Zeilennummern von if/while/for/do; je Zeile das Ergebnis der
+            Prüfung, die dort SEIT DER VORIGEN SPURZEILE zuletzt lief, sonst null.
+
+     Ergebnis = Ergebnis von ausfuehren() (ok, wert, roh, ausgabe, warnungen,
+     schritte, fehler, phase) plus
+       spur: [{ punkt, zeile, wann, nr, werte:[Wert|null], bedingungen:[true|false|null],
+                ausgabe }]   — in zeitlicher Reihenfolge; nr zählt je Punkt ab 1;
+                               ausgabe = neue Ausgabe seit der vorigen Spurzeile
+       rueckgabe: Wert | null   — Rückgabewert (null bei void oder Fehler)
+       abgeschnitten: true, wenn maxZeilen erreicht wurde
+     Wert = { typ: "int" | "double" | "char" | "boolean" | "String" | "int[]" | …,
+              js: JS-Kopie zum Zeitpunkt der Aufnahme, text: wie in einer Wertetabelle
+              (2.5, true, a, {1, 2}) }. null = Variable (noch) nicht vorhanden / ohne
+              Wert oder Ausdruck hier nicht auswertbar (z. B. Index außerhalb).
+     Bricht der Lauf mit einem Fehler ab (ok:false, phase:"lauf"), enthält spur
+     alle Zeilen bis zum Fehler. Das Schrittlimit (maxSchritte) gilt wie sonst.
+     Ohne verfolgen() bleibt alles wie bisher.
+     ====================================================================== */
+  function spurText(w) {
+    if (w === null) return "null";
+    if (w === undefined) return "";
+    if (typeof w === "string") return w;
+    if (typeof w === "boolean") return String(w);
+    switch (w.t) {
+      case "int": case "long": return String(w.v);
+      case "double": return dblStr(w.v);
+      case "char": return String.fromCharCode(w.v);
+      case "array": return "{" + w.a.map(spurText).join(", ") + "}";
+      case "list": return "[" + w.a.map(spurText).join(", ") + "]";
+      case "obj": return w.klasse + "(" + Object.keys(w.f).map(k => k + "=" + spurText(w.f[k])).join(", ") + ")";
+    }
+    return "?";
+  }
+  function spurWert(w) {
+    if (w === undefined) return null;
+    return { typ: typName(w), js: zuJS(w), text: spurText(w) };
+  }
+  const WANN = ["vor", "nach", "durchlauf", "bedingung"];
+  const LESEND = new Set(["length", "charAt", "size", "get", "substring", "equals", "equalsIgnoreCase", "contains", "indexOf",
+    "lastIndexOf", "startsWith", "endsWith", "isEmpty", "isBlank", "toUpperCase", "toLowerCase", "trim", "strip", "compareTo",
+    "compareToIgnoreCase", "abs", "max", "min", "round", "floor", "ceil", "sqrt", "pow", "isDigit", "isLetter", "isLetterOrDigit",
+    "isUpperCase", "isLowerCase", "isWhitespace", "toString", "valueOf", "compare"]);
+  function spurAusdruck(text) {
+    const t = String(text == null ? "" : text).trim();
+    if (/^[\p{L}_$][\p{L}\p{N}_$]*$/u.test(t) && !KW.has(t)) return { text: t, name: t };
+    const fehl = grund => new CodeFehler("Spur: выражение «" + t + "» — " + grund, 0, "spur");
+    let e;
+    try {
+      const P = parse(lexer(t));
+      e = P.ausdruck();
+      if (!P.ende()) throw fehl("после выражения лишние символы");
+    } catch (x) {
+      if (x instanceof CodeFehler && x.art === "spur") throw x;
+      throw fehl(x instanceof CodeFehler ? x.text : "не разобрано");
+    }
+    (function nurLesen(x) {
+      if (!x || typeof x !== "object") return;
+      switch (x.k) {
+        case "lit": case "name": return;
+        case "bin": nurLesen(x.l); nurLesen(x.r); return;
+        case "unary": case "cast": case "feld": nurLesen(x.e); return;
+        case "cond": nurLesen(x.c); nurLesen(x.a); nurLesen(x.b); return;
+        case "index": nurLesen(x.e); nurLesen(x.i); return;
+        case "call":
+          if (!x.obj || !(LESEND.has(x.name) || /^(get|is)\p{Lu}/u.test(x.name)))
+            throw fehl("в таблице можно только читать значения: " + x.name + "(…) здесь не разрешён");
+          nurLesen(x.obj); x.args.forEach(nurLesen); return;
+      }
+      throw fehl("в таблице можно только читать значения (без =, ++, --, new)");
+    })(e);
+    return { text: t, e };
+  }
+  function spurVorbereiten(programm, punkte, maxZeilen) {
+    const liste = [], init = new Set();
+    const geh = s => {
+      if (!s) return;
+      switch (s.k) {
+        case "block": s.body.forEach(geh); return;
+        case "leer": return;
+        case "if": liste.push(s); geh(s.dann); geh(s.sonst); return;
+        case "while": case "do": case "foreach": liste.push(s); geh(s.body); return;
+        case "for": liste.push(s); s.init.forEach(i => init.add(i)); geh(s.body); return;
+        default: liste.push(s);
+      }
+    };
+    programm.methoden.forEach(m => geh(m.body));
+    const schleife = z => liste.some(s => s.z === z && ["for", "foreach", "while", "do"].includes(s.k));
+    const pruefung = z => liste.some(s => (s.k === "do" ? s.zw === z : s.z === z && (s.k === "if" || s.k === "while" || (s.k === "for" && s.c))));
+    const anweisung = z => liste.some(s => s.z === z);
+    if (punkte != null && !Array.isArray(punkte)) throw new CodeFehler("Spur: punkte должен быть списком", 0, "spur");
+    const cfgPunkte = (punkte || []).map((p, k) => {
+      const z = p && p.zeile, wann = p && p.wann;
+      if (!Number.isInteger(z) || z < 1) throw new CodeFehler("Spur: у точки " + (k + 1) + " нет номера строки", 0, "spur");
+      if (!WANN.includes(wann)) throw new CodeFehler("Spur: wann должно быть одним из: " + WANN.join(", "), z, "spur");
+      if (wann === "durchlauf" && !schleife(z)) throw new CodeFehler("Spur: в строке " + z + " не начинается цикл — «durchlauf» ставят на строку заголовка цикла", z, "spur");
+      if (wann === "bedingung" && !pruefung(z)) throw new CodeFehler("Spur: в строке " + z + " нет условия if / while / for", z, "spur");
+      if ((wann === "vor" || wann === "nach") && !anweisung(z)) throw new CodeFehler("Spur: в строке " + z + " не начинается команда", z, "spur");
+      const bed = (p.bedingungen || []).map(b => {
+        if (!Number.isInteger(b) || !pruefung(b)) throw new CodeFehler("Spur: в строке " + b + " нет условия if / while / for", Number.isInteger(b) ? b : 0, "spur");
+        return b;
+      });
+      return { zeile: z, wann, ausdruecke: (p.werte || []).map(spurAusdruck), bedingungen: bed };
+    });
+    const max = Number.isInteger(maxZeilen) && maxZeilen > 0 ? maxZeilen : SPUR_ZEILEN;
+    return { punkte: cfgPunkte, init, maxZeilen: max, zeilen: [], abgeschnitten: false };
+  }
+  function verfolgen(quelltext, optionen) {
+    const o = optionen || {};
+    const leer = () => ({ ausgabe: "", warnungen: [], spur: [], rueckgabe: null, abgeschnitten: false });
+    const u = uebersetzen(quelltext, o);
+    if (!u.ok) return Object.assign(leer(), { ok: false, phase: "uebersetzen", fehler: u.fehler });
+    let cfg;
+    try { cfg = spurVorbereiten(u.programm, o.punkte, o.maxZeilen); }
+    catch (e) {
+      if (e instanceof CodeFehler) return Object.assign(leer(), { ok: false, phase: "spur", fehler: info(e) });
+      throw e;
+    }
+    const opt = Object.assign({}, o, { klassen: u.klassen });
+    opt[SPUR] = cfg;
+    const r = starte(u.programm, u.klassen, opt);
+    r.spur = cfg.zeilen;
+    r.abgeschnitten = !!cfg.abgeschnitten;
+    r.rueckgabe = r.ok ? spurWert(r.roh) : null;
+    return r;
+  }
+
+  const api = { uebersetzen, ausfuehren, pruefeAufgabe, verfolgen, formatiere, gleichJS, parseSignatur, parseTyp, typStr, klassenMap, CodeFehler, GRENZE,
     _intern: { lexer, dblStr } };
   root.GENCODELAUF = api;
   if (typeof module === "object" && module.exports) module.exports = api;
