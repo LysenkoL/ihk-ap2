@@ -25,6 +25,15 @@ roh.forEach(r => {
   assert(einfach.length <= 170, "Erklärung zu lang (einfach bleiben): " + de);
 });
 
+/* Prüfungssprache: eigene Kategorie, nicht „Arbeit & Betrieb“ */
+assert.strictEqual(GEB.pruef, "Prüfungssprache");
+["der Belegsatz", "bzw.", "gemäß", "die Teilaufgabe", "i. d. R."].forEach(w => {
+  const r = roh.find(x => x[0] === w);
+  assert(r, w + " fehlt");
+  assert.strictEqual(r[4], "pruef", w + " → Prüfungssprache");
+});
+assert.strictEqual(roh.find(x => x[0] === "der Mitarbeiter")[4], "org", "Mitarbeiter bleibt Arbeit & Betrieb");
+
 const G = Gl.aufbereiten(roh);
 assert.strictEqual(new Set(G.liste.map(e => e.id)).size, G.liste.length, "Ids eindeutig");
 const ids = t => Gl.finde(G, t).map(f => f.id);
