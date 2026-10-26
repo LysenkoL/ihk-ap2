@@ -1,0 +1,32 @@
+/* gen/muendlich.css — Mündliche Ergänzungsprüfung (gen/muendlich.js), префикс mu- */
+.mu-page{max-width:760px; margin:auto; padding:18px; box-sizing:border-box}
+.mu-wrap{display:grid; gap:12px; min-width:0}
+.mu-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:16px; line-height:1.55; min-width:0}
+.mu-card h2{margin:0 0 8px; font-size:20px}
+.mu-card h3{margin:0 0 8px; font-size:16px}
+.mu-muted{display:block; color:var(--muted,#666); font-size:13px}
+.mu-muted-i{color:var(--muted,#666); font-size:13px}
+.mu-alert{color:var(--red,#a62424); font-weight:600}
+.mu-ok{color:var(--ok,#1f6b3a); font-weight:600}
+.mu-rechner{margin-top:10px; padding:12px; border-radius:10px; background:var(--field,#f4f3f8)}
+.mu-feld{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.mu-feld input{width:90px; min-height:44px; padding:6px 10px; font:inherit; font-size:16px; border:1px solid var(--rule,#ccc); border-radius:8px; background:var(--card,#fff); color:var(--ink)}
+.mu-ergebnis{margin:8px 0 0; font-weight:600}
+.mu-wahl{display:flex; gap:6px; margin:8px 0}
+.mu-chip{min-height:44px; padding:6px 16px; border-radius:22px; border:1px solid var(--rule,#ccc); background:var(--card,#fff); color:var(--ink); font:inherit; font-weight:600; cursor:pointer}
+.mu-chip.an{background:var(--pruefer,#5B2A86); border-color:var(--pruefer,#5B2A86); color:#fff}
+.mu-card .btn{min-height:44px; margin:6px 6px 0 0; white-space:normal}
+.mu-frage, .mu-loesung{overflow-x:auto; font-size:15px}
+.mu-frage table, .mu-loesung table{max-width:100%}
+.mu-frage img, .mu-loesung img{max-width:100%; height:auto}
+.mu-loesung{margin-top:12px; padding:10px 12px; border-radius:10px; background:var(--ok-soft,#e6f2ea)}
+.mu-loesung h4{margin:0 0 6px}
+.mu-situation summary{cursor:pointer; min-height:40px; display:flex; align-items:center; font-weight:600}
+.mu-uhr{text-align:center}
+.mu-zeit{font-size:44px; font-weight:800; margin:4px 0; font-variant-numeric:tabular-nums; color:var(--ink)}
+.mu-balken{height:8px; border-radius:4px; background:var(--rule-soft,var(--rule)); overflow:hidden; margin:6px 0 10px}
+.mu-balken span{display:block; height:100%; width:0; background:var(--pruefer,#5B2A86); transition:width .25s linear}
+.mu-krit{display:flex; align-items:flex-start; gap:10px; min-height:44px; padding:4px 0}
+.mu-krit input{flex:none; width:20px; height:20px; margin-top:2px}
+.mu-card audio{width:100%; margin:6px 0}
+@media(max-width:540px){.mu-page{padding:10px}.mu-card{padding:14px}}
