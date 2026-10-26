@@ -9,8 +9,8 @@
 | Где | Что |
 |---|---|
 | `index.html` | оболочка, все экраны |
-| `gen/` | модули JS/CSS. Для AP2 главные: `start.js` (главная), `lernweg*` (13 занятий), `praxis*` (16 задач), `lernen*` (35 тем GA1/GA2/WiSo + 332 вопроса квиза; с 26.10 ещё `lernen-katalog-daten.js`, `lernen-wiso-daten.js`), `algo*` (сортировка/поиск), `sql*` (76 SQL-задач по Beiblatt, из них 10 «Vorhersage»), `satzbau.js` + `satzbausteine-ap2.js` + `satzbausteine-katalog.js` (206 Kurzfragen), `glossar*`, `azubi.*` (плеер экзаменов), `wiederholen.js` + `lernstand*.js` (повторение ошибок), `sync.js` (перенос прогресса), `pwa.js`, `auth.js` (PIN). С 10.10: `heute.*` (карточка «Сегодня»), `code-lauf.js` + `code-daten.js` + `code-trainer.*` (код с автопроверкой; `verfolgen()` — трассировка), `trace-daten.js` + `trace-trainer.*` (Schreibtischtest), `normal*` (нормализация), `operatoren-uebung.*` (тренажёр операторов), `fotos.*` (фото ответа), `vorlesen.js` (озвучка). С 26.10: `katalog-ap2*` (чек-лист каталога 2025), `wortkarten.*` (карточки слов, Leitner), `uebung-gen.*` (движок задач с новыми числами; наборы: `rechnen-ap2-daten.js`, `tickets-daten.js`, `cps-daten.js`, `uml-lesen-daten.js`), `englisch*` (английский текст GA1), `niveau.*` («Мой уровень по частям»). Остальное унаследовано из AP1, часть скрыта |
-| `sw.js`, `manifest.webmanifest`, иконки | PWA и офлайн (кэш `ihk-ap2-v28`) |
+| `gen/` | модули JS/CSS. Для AP2 главные: `start.js` (главная), `lernweg*` (13 занятий), `praxis*` (16 задач), `lernen*` (35 тем GA1/GA2/WiSo + 332 вопроса квиза; с 26.10 ещё `lernen-katalog-daten.js`, `lernen-wiso-daten.js`), `algo*` (сортировка/поиск), `sql*` (76 SQL-задач по Beiblatt, из них 10 «Vorhersage»), `satzbau.js` + `satzbausteine-ap2.js` + `satzbausteine-katalog.js` (206 Kurzfragen), `glossar*`, `azubi.*` (плеер экзаменов), `wiederholen.js` + `lernstand*.js` (повторение ошибок), `sync.js` (перенос прогресса), `pwa.js`, `auth.js` (PIN). С 10.10: `heute.*` (карточка «Сегодня»), `code-lauf.js` + `code-daten.js` + `code-trainer.*` (код с автопроверкой; `verfolgen()` — трассировка), `trace-daten.js` + `trace-trainer.*` (Schreibtischtest), `normal*` (нормализация), `operatoren-uebung.*` (тренажёр операторов), `fotos.*` (фото ответа), `marken.*` (личные отметки к подпунктам), `vorlesen.js` (озвучка). С 26.10: `katalog-ap2*` (чек-лист каталога 2025), `wortkarten.*` (карточки слов, Leitner), `uebung-gen.*` (движок задач с новыми числами; наборы: `rechnen-ap2-daten.js`, `tickets-daten.js`, `cps-daten.js`, `uml-lesen-daten.js`), `englisch*` (английский текст GA1), `niveau.*` («Мой уровень по частям»). Остальное унаследовано из AP1, часть скрыта |
+| `sw.js`, `manifest.webmanifest`, иконки | PWA и офлайн (кэш `ihk-ap2-v29`) |
 | `vendor/sqljs-1.14.2/` | SQLite в браузере |
 | `tests/` | проверки: `node tests/alle.js` |
 | `tools/` | `paket_bauen.py` (сборка пакета экзаменов), `bilder_schneiden.py` (вырезки схем), `GA-ABSCHREIBEN.md` (как переписывать экзамены), `wiso_training.py` (темы WiSo для «Что тренировать» → `gen/training-wiso-daten.js`; перезапустить после правки меток тем WiSo). Остальное — старые инструменты AP1 |
@@ -92,12 +92,12 @@
 - Карточки слов: 927 слов (Мои слова → Prüfungsdeutsch → термины AP2), DE→RU, потом RU→DE, 5 коробок Лейтнера, 10 новых в день, озвучка; шаг «Слова: 5 минут» в «Сегодня».
 - Каталог AP2 (2. Auflage 2024) как чек-лист: 117 пунктов, статус по попыткам, фильтры, поиск, своя отметка «знаю / повторить / не знаю».
 - Тренажёры: практика (16 задач), SQL (76, по Beiblatt 2024-10-07: DATEDIFF/DATEADD с Datumsteil, WEEKDAY, STDDEV/VARIANCE/CORR, права по образцу, «предскажи результат»), сортировка и поиск, Kurzfragen (206), глоссарий (598), код с автопроверкой (10), Schreibtischtest (12: Wertetabelle, Fehler finden, Ausgabe), нормализация (4 сценария), операторы.
-- Плеер экзаменов: 29 экзаменов (10 GA1, 10 GA2, 9 WiSo); таймеры, частичные баллы, история; фото ответа к GA; самооценка по пунктам (W23/24); перевод слова и маркер в бланках.
+- Плеер экзаменов: 29 экзаменов (10 GA1, 10 GA2, 9 WiSo); таймеры, частичные баллы, история; фото ответа к GA; самооценка по пунктам (W23/24); перевод слова и маркер в бланках; личные отметки ★ ⏳ ❓ ⚠ ✎ под каждым подпунктом и экран «Мои отметки» (список ошибок копируется для правки пакета).
 - Обсуждение ответа с ИИ (ChatGPT/Claude, без API), критерии самооценки по попыткам, адаптивный день (Codex 14.10–26.10).
-- Перенос прогресса между устройствами, офлайн (PWA v28). Тесты 26.10: 50 пройдено, 0 ошибок, 6 отложено.
+- Перенос прогресса между устройствами, офлайн (PWA v29). Тесты 26.10: 51 пройдено, 0 ошибок, 6 отложено.
 
 **В работе**
-- Из задачи Codex 14.10 осталось одно: «Личные отметки» (пункт 15 очереди в IDEEN.md).
+- Задача Codex 14.10 закрыта: «Личные отметки» сделаны 26.10.
 
 **Не сделано**
 - Экзамены открыты на GitHub и по ссылке на сайте (решение Лены). Пароль на сами файлы — по желанию, пункт 24 очереди.

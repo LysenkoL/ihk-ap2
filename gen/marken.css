@@ -1,0 +1,26 @@
+/* gen/marken.css — Личные отметки (gen/marken.js), префикс mk- */
+.mk-zeile{margin-top:10px; padding-top:8px; border-top:1px dashed var(--rule,#ccc)}
+.mk-knoepfe{display:flex; flex-wrap:wrap; gap:6px}
+.mk-knopf{display:inline-flex; align-items:center; gap:5px; min-height:38px; padding:5px 10px; border-radius:18px; border:1px solid var(--rule,#ccc);
+  background:var(--card,#fff); color:var(--muted); font:inherit; font-size:13px; cursor:pointer}
+.mk-knopf .mk-sym{font-size:15px}
+.mk-knopf.an{border-color:var(--pruefer,#5B2A86); background:var(--pruefer-soft,#efe7f6); color:var(--ink); font-weight:600}
+@media(max-width:420px){.mk-knopf:not(.an) .mk-name{display:none}.mk-knopf{min-width:44px; justify-content:center}}
+.mk-notiz textarea{box-sizing:border-box; width:100%; margin-top:6px; padding:8px 10px; font:inherit; font-size:14px; color:var(--ink);
+  background:var(--field,#fafafa); border:1px solid var(--rule,#ccc); border-radius:8px; resize:vertical}
+.mk-alert{color:var(--red,#a62424); font-weight:600; font-size:13px; margin:6px 0 0}
+.mk-page{max-width:760px; margin:auto; padding:18px; box-sizing:border-box}
+.mk-wrap{display:grid; gap:10px; min-width:0}
+.mk-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:16px; line-height:1.55; min-width:0}
+.mk-card h2{margin:0 0 6px; font-size:20px}
+.mk-muted{display:block; color:var(--muted,#666); font-size:13px}
+.mk-filter{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0}
+.mk-chip{min-height:40px; padding:6px 12px; border-radius:20px; border:1px solid var(--rule,#ccc); background:var(--card,#fff); color:var(--ink); font:inherit; font-size:13.5px; cursor:pointer}
+.mk-chip .mk-n{color:var(--muted); font-size:12px}
+.mk-chip.an{background:var(--pruefer,#5B2A86); border-color:var(--pruefer,#5B2A86); color:#fff}
+.mk-chip.an .mk-n{color:#fff}
+.mk-eintrag b{display:block; overflow-wrap:anywhere}
+.mk-text{margin:6px 0; white-space:pre-wrap; overflow-wrap:anywhere; font-size:14px}
+.mk-akt{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.mk-akt .btn, .mk-card > .btn{min-height:44px}
+@media(max-width:540px){.mk-page{padding:10px}}
