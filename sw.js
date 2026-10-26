@@ -25,7 +25,7 @@
 /* Bei jeder Veröffentlichung hochzählen — dann wirft der Worker den alten
    Programm-Cache weg und holt alles frisch. Die Bilder bleiben davon
    unberührt.                                                              */
-const VERSION   = "ihk-ap2-v21";
+const VERSION   = "ihk-ap2-v22";
 const CACHE_APP = VERSION + "-app";
 const CACHE_BILD = "ihk-ap2-bilder";       /* ohne Version — bleibt bestehen */
 /* Große Bibliotheken (SQL-Datenbank, 0,7 MB) tragen die Version im Pfad
@@ -101,6 +101,7 @@ const GRUNDGERUEST = [
   "./gen/praxis.css",
   "./gen/heute.css",
   "./gen/wortkarten.css",
+  "./gen/uebung-gen.css",
   "./gen/niveau.css",
   "./gen/fotos.css",
   "./gen/code-trainer.css",
@@ -122,6 +123,8 @@ const GRUNDGERUEST = [
   "./gen/operatoren-uebung.js",
   "./gen/heute.js",
   "./gen/wortkarten.js",
+  "./gen/uebung-gen.js",
+  "./gen/rechnen-ap2-daten.js",
   "./gen/niveau.js",
   "./gen/marker.js",
   "./gen/merkblatt.js",
