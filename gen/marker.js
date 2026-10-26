@@ -221,24 +221,40 @@ window.GENMARKER = (function () {
     return -1;
   }
 
-  /** Von einer Position auf das ganze Wort (bis zum nächsten Leerzeichen) ausweiten. */
-  function wortUm(text, pos) {
+  /** Absatzgrenzen im Text eines Kastens: Positionen, an denen ein neuer Block
+      (p, li, td …) beginnt. textContent klebt „Ende.</p><p>Anfang“ ohne Leerzeichen
+      zusammen — ohne Grenzen würde ein Tipp das letzte Wort des vorigen Absatzes mitfärben. */
+  const BLOCK = /^(P|DIV|LI|UL|OL|TR|TD|TH|TABLE|H[1-6]|PRE|BLOCKQUOTE|DT|DD|SECTION|ARTICLE|FIGCAPTION|CAPTION)$/;
+  function grenzen(box) {
+    const g = []; let pos = 0, vorher = null;
+    textKnoten(box).forEach(n => {
+      let e = n.parentElement;
+      while (e && e !== box && !BLOCK.test(e.tagName)) e = e.parentElement;
+      if (vorher && e !== vorher && pos > 0) g.push(pos);
+      vorher = e; pos += n.nodeValue.length;
+    });
+    return g;
+  }
+
+  /** Von einer Position auf das ganze Wort ausweiten: bis zum Leerzeichen oder zur Absatzgrenze. */
+  function wortUm(text, pos, grenze) {
     if (pos < 0) return null;
+    const g = grenze || [], rand = i => g.indexOf(i) >= 0;
     let a = Math.min(pos, text.length - 1), b = a;
     if (a < 0) return null;
     if (/\s/.test(text[a])) {                 /* auf einer Lücke: nach links suchen */
-      while (a > 0 && /\s/.test(text[a])) a--;
+      while (a > 0 && /\s/.test(text[a]) && !rand(a)) a--;
       b = a;
     }
-    while (a > 0 && !/\s/.test(text[a - 1])) a--;
-    while (b < text.length && !/\s/.test(text[b])) b++;
+    while (a > 0 && !/\s/.test(text[a - 1]) && !rand(a)) a--;
+    while (b < text.length && !/\s/.test(text[b]) && !(b > a && rand(b))) b++;
     return b > a ? [a, b] : null;
   }
 
   /** Tipp oder Wischen im Stiftmodus auswerten. */
   function malen_tipp(box, von, bis) {
-    const text = box.textContent || "";
-    const w1 = wortUm(text, von), w2 = wortUm(text, bis);
+    const text = box.textContent || "", g = grenzen(box);
+    const w1 = wortUm(text, von, g), w2 = wortUm(text, bis, g);
     if (!w1 && !w2) return;
     const a = Math.min((w1 || w2)[0], (w2 || w1)[0]);
     const b = Math.max((w1 || w2)[1], (w2 || w1)[1]);
@@ -470,5 +486,5 @@ window.GENMARKER = (function () {
   else einhaengen();
 
   return { scannen, anwenden, alleLoeschen, anzahl, legendeBauen, stiftSetzen,
-           stift: () => malmodus, daten: () => DATEN, FARBEN, SELEKTOR, hash };
+           stift: () => malmodus, daten: () => DATEN, FARBEN, SELEKTOR, hash, wortUm, grenzen };
 })();
