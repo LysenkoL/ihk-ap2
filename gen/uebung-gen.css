@@ -43,3 +43,6 @@
 .gu-merke{margin:8px 0 0; padding:8px 10px; border-radius:9px; background:var(--ok-soft,#e6f2ea); font-size:14px}
 .gu-page :focus-visible{outline:3px solid var(--pruefer,#5B2A86); outline-offset:2px}
 @media(max-width:540px){.gu-page{padding:10px}.gu-card{padding:14px}.gu-gegeben{grid-template-columns:1fr}.gu-gegeben dd{margin-bottom:4px}}
+.gu-bild{margin:8px 0; overflow-x:auto; color:var(--ink)}
+.gu-bild svg{display:block; max-width:100%; height:auto; margin:0 auto}
+.gu-bild text{fill:currentColor; font-family:var(--body, sans-serif)}
