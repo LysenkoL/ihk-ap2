@@ -116,6 +116,60 @@
 .sq-loesung .sq-mini{margin-top:8px}
 .sq-weiter{margin-top:10px}
 
+/* Marken für Datenbank und Prüfart */
+.sq-marke.db{background:var(--field); color:var(--ink); border:1px solid var(--rule)}
+.sq-marke.muster{background:var(--warn-soft); color:var(--warn)}
+.sq-z-text b .sq-db{font-weight:600; font-size:11.5px; color:var(--muted); margin-left:6px; white-space:nowrap}
+
+/* Aufgabe: Hinweis, Ergebnisbeispiel, Muster-Info */
+.sq-hinweis{font-size:14.5px; line-height:1.5; margin:10px 0 0; padding:8px 12px; border-left:3px solid var(--pruefer); background:var(--field); border-radius:0 8px 8px 0}
+.sq-beispiel{margin-top:12px}
+.sq-beispiel-titel{font-size:13px; font-weight:700; color:var(--muted); margin:0}
+.sq-beispiel .sq-ergebnis{margin-top:4px}
+.sq-tabelle tr.mehr td{color:var(--muted); text-align:center; background:transparent}
+.sq-muster-info{margin-top:10px; padding:8px 12px; border-radius:9px; background:var(--warn-soft); font-size:13.5px; line-height:1.5}
+.sq-muster-info p{margin:0}
+.sq-muster-info .sq-ru{margin-top:4px}
+
+/* Beiblatt-Kurzfassung */
+.sq-beiblatt{margin-top:6px}
+.sq-bb{margin:6px 0 0; padding-left:18px; font-size:13.5px; line-height:1.5}
+.sq-bb li{margin:3px 0}
+.sq-bb code{font-family:var(--data); font-size:12.5px; background:var(--field); border-radius:5px; padding:0 4px; word-break:break-word}
+
+/* Ergebnis vorhersagen */
+.sq-code{font-family:var(--data); font-size:13.5px; line-height:1.5; margin:12px 0 0; padding:10px 12px; background:var(--field);
+  border:1px solid var(--rule); border-radius:10px; white-space:pre-wrap; word-break:break-word; color:var(--ink)}
+.sq-vh-daten{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:6px}
+.sq-vh-tab{min-width:0; max-width:100%}
+.sq-vh-name{font-family:var(--data); font-size:13px; font-weight:800; margin:8px 0 0; color:var(--pruefer)}
+.sq-vh-tab .sq-ergebnis{margin-top:4px}
+.sq-vh-tab .sq-tabelle, .sq-option .sq-tabelle{min-width:0}
+.sq-frage{display:block; font-size:15px; font-weight:700; margin:0 0 8px; color:var(--ink)}
+.sq-optionen{display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:8px}
+.sq-option{border:1.5px solid var(--rule); border-radius:11px; padding:8px 10px; background:var(--card); cursor:pointer; min-width:0; min-height:44px}
+.sq-option:hover{border-color:var(--pruefer)}
+.sq-option:focus-visible{outline:3px solid var(--pruefer); outline-offset:2px}
+.sq-option.gewaehlt{border-color:var(--pruefer); background:var(--pruefer-soft); box-shadow:inset 0 0 0 1px var(--pruefer)}
+.sq-option.fest{cursor:default}
+.sq-option.richtig{border-color:var(--ok); background:var(--ok-soft); box-shadow:inset 0 0 0 1px var(--ok)}
+.sq-option.falsch{border-color:var(--red); background:var(--red-soft); box-shadow:inset 0 0 0 1px var(--red)}
+.sq-opt-kopf{display:block; font-size:12.5px; font-weight:800; color:var(--muted); letter-spacing:.03em}
+.sq-option.richtig .sq-opt-kopf::after{content:" ✓ richtig"; color:var(--ok)}
+.sq-option.falsch .sq-opt-kopf::after{content:" ✗ deine Wahl"; color:var(--red)}
+.sq-option .sq-ergebnis{margin-top:4px}
+.sq-option .sq-tabelle tbody tr:nth-child(even) td{background:transparent}
+.sq-eingabe{display:block; width:100%; max-width:260px; box-sizing:border-box; font-family:var(--data); font-size:16px; padding:10px 12px; min-height:44px;
+  border:1.5px solid var(--rule); border-radius:10px; background:var(--field); color:var(--ink)}
+.sq-eingabe:focus{outline:none; border-color:var(--pruefer); background:var(--card)}
+.sq-eingabe[readonly]{opacity:.8}
+.sq-meldung .sq-mini{margin-top:8px}
+.sq-seite .btn:disabled{opacity:.5; cursor:default}
+
+/* Freies SQL: Datenbank wählen */
+.sq-db-wahl{margin-top:10px}
+.sq-speicherfehler{margin:0 0 10px}
+
 @media (max-width:560px){
   .sq-karte{padding:14px 13px}
   .sq-karte h2{font-size:19px}
@@ -123,5 +177,7 @@
   .sq-knoepfe .btn{flex:1 1 40%}
   .sq-schema-in{grid-template-columns:1fr}
   .sq-editor{font-size:16px}
+  .sq-optionen{grid-template-columns:1fr}
+  .sq-code{font-size:13px}
 }
 @media print{ .sq-seite{display:none} }
