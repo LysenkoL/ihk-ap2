@@ -14,28 +14,6 @@
 
 ---
 
-## sql/ — SQL строго по Beiblatt (Stand 2024-10-07)
-
-**Файлы:** `gen/sql.js`, `gen/sql-daten.js`, `gen/sql.css`, `tests/sql.test.js` — новые версии существующих файлов.
-
-**Готово** (`node tests/sql.test.js` в черновике зелёный: «76 Aufgaben (10 Vorhersagen), Beiblatt-Funktionen, Muster-Prüfung …»):
-- функции как в листе SQL-Syntax:
-  - `DATEDIFF(Datumsteil, Anfang, Ende)` и `DATEADD(Datumsteil, Intervall, Datum)` с DAY/MONTH/YEAR/HOUR/MINUTE;
-  - старая форма `DATEDIFF(a, b)` осталась;
-  - Datumsteil без кавычек — предобработка `datumsteilQuoten()`;
-  - `WEEKDAY` (Montag = 0), `HOUR`, `MINUTE`;
-  - `STDDEV`, `VARIANCE`, `CORR`;
-- проверка по образцу для `CREATE USER` / `GRANT` / `REVOKE` (SQLite их не выполняет), подписана «Prüfung nach Muster, ohne Ausführung»;
-- 48 → 76 задач: UNION, DISTINCT, RIGHT/LEFT JOIN, подзапрос как таблица, EXISTS, HAVING, LEFT/RIGHT, даты, UPDATE/DELETE с подзапросом, INSERT … SELECT, права;
-- новый тип «Vorhersage» (предскажи результат), 10 задач, запись в журнал с `kind:"recognition"`.
-
-**Осталось:**
-- [ ] обзор кода (дифф `gen/sql.js` большой — около 1100 строк);
-- [ ] проверка в браузере: SQL-тренажёр, новые задачи и «Vorhersage», 390 px, перезагрузка, нет ошибок в консоли (помощник остановился именно здесь);
-- [ ] перенести на место, подключить, VERSION в `sw.js`.
-
----
-
 ## schreibtischtest/ — тренажёр «Schreibtischtest»
 
 **Файлы:**
