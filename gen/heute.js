@@ -292,7 +292,7 @@
       });
       let wieder = null;
       if (R.GENWIEDER && R.GENWIEDER.faellig) {
-        wieder = versuch(() => ({ faellig: R.GENWIEDER.faellig().length, geschafft: R.GENWIEDER.heuteKarten ? R.GENWIEDER.heuteKarten() : 0 }), null);
+        wieder = versuch(() => ({ faellig: R.GENWIEDER.faellig().length, geschafft: R.GENWIEDER.heuteKarten ? R.GENWIEDER.heuteKarten() : R.GENWIEDER.heuteGeschafft ? R.GENWIEDER.heuteGeschafft() : 0 }), null);
       }
       const vorschlag = R.GENLERNWEG && R.GENLERNWEG.empfehlung ? versuch(() => R.GENLERNWEG.empfehlung({ohneWieder:true}), null) : null;
       const ui=lies(SK,{})||{}, ziel=tagesZiel(ui.plan,vorschlag,wieder,jetzt);

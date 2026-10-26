@@ -25,7 +25,7 @@
 /* Bei jeder Veröffentlichung hochzählen — dann wirft der Worker den alten
    Programm-Cache weg und holt alles frisch. Die Bilder bleiben davon
    unberührt.                                                              */
-const VERSION   = "ihk-ap2-v13";
+const VERSION   = "ihk-ap2-v14";
 const CACHE_APP = VERSION + "-app";
 const CACHE_BILD = "ihk-ap2-bilder";       /* ohne Version — bleibt bestehen */
 /* Große Bibliotheken (SQL-Datenbank, 0,7 MB) tragen die Version im Pfad
@@ -86,6 +86,8 @@ const GRUNDGERUEST = [
   "./gen/kompakt.js",
   "./gen/kurzfragen.css",
   "./gen/lernen-daten.js",
+  "./gen/lernen-katalog-daten.js",
+  "./gen/lernen-wiso-daten.js",
   "./gen/lernen.css",
   "./gen/lernen.js",
   "./gen/lernstand.js",
@@ -127,6 +129,7 @@ const GRUNDGERUEST = [
   "./gen/pwa.js",
   "./gen/satzbau.js",
   "./gen/satzbausteine-ap2.js",
+  "./gen/satzbausteine-katalog.js",
   "./gen/satzbausteine.js",
   "./gen/satzbausteine2.js",
   "./gen/simulation.js",
@@ -210,8 +213,11 @@ self.addEventListener("fetch", ev => {
       try {
         const netz = await fetch(req);
         const c = await caches.open(CACHE_APP);
-        c.put("./index.html", netz.clone());
-        return netz;
+        /* Nur echte Seiten merken: eine Fehlerseite des Servers (404, 500 …)
+           darf die gespeicherte App nicht ersetzen — dann lieber den Cache. */
+        if (netz.type === "opaqueredirect") return netz;   /* Weiterleitung: Browser folgt selbst */
+        if (netz.ok) { c.put("./index.html", netz.clone()); return netz; }
+        return (await c.match("./index.html")) || (await c.match("./")) || netz;
       } catch (e) {
         const c = await caches.open(CACHE_APP);
         return (await c.match("./index.html")) || (await c.match("./")) ||

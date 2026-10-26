@@ -154,8 +154,8 @@ window.GENFINDER = (function () {
         if (G()) G().oeffneBlock("daten");
         setTimeout(() => { const i = document.getElementById("syDatei"); if (i) i.click(); }, 120);
       }, "import laden datei sync abgleichen computer handy holen"],
-      ["Themen AP2 — erklärt, mit Quiz", "15 Themen · Algorithmen, Muster, Tests, REST, Krypto …", "lernen",
-        () => window.GENLERNEN && window.GENLERNEN.oeffnen(), "themen theorie erklärung quiz lernen ap2 algorithmen entwurfsmuster pattern tests rest soap json xml krypto git scrum ergonomie"],
+      ["Themen AP2 — erklärt, mit Quiz", "35 Themen · GA1, GA2, WiSo · Netze, Sicherheit, Arbeitsrecht …", "lernen",
+        () => window.GENLERNEN && window.GENLERNEN.oeffnen(), "themen theorie erklärung quiz lernen ap2 wiso arbeitsrecht ausbildung rechtsformen netze sicherheit algorithmen entwurfsmuster pattern tests rest soap json xml krypto git scrum ergonomie"],
       ["Sortieren & Suchen Schritt für Schritt", "Bubble, Selection, Insertion Sort · binäre und lineare Suche", "sortieren",
         () => window.GENALGO && window.GENALGO.oeffnen(), "sortieren sortierung bubble selection insertion sort suche binäre lineare binär durchlauf array feld algorithmus trainer"],
       ["SQL-Trainer", "GA2 · 48 Aufgaben an einer echten Datenbank", "sql",

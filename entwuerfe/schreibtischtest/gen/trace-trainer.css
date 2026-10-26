@@ -1,0 +1,189 @@
+/* ============================================================================
+   gen/trace-trainer.css — «Schreibtischtest» (gen/trace-trainer.js), Präfix tr-
+   ========================================================================== */
+.tr-seite{max-width:880px; margin:0 auto; padding:16px}
+.tr-wrap{display:flex; flex-direction:column; gap:14px; min-width:0}
+.tr-seite .btn{font-family:var(--body); text-transform:none; letter-spacing:0; font-size:14.5px; font-weight:650;
+  border-radius:9px; padding:9px 15px; min-height:44px; white-space:normal; line-height:1.25}
+.tr-seite .btn.klein{min-height:44px; padding:6px 12px; font-size:13.5px}
+.tr-seite .btn:disabled{opacity:.5; cursor:not-allowed}
+.tr-karte{background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:16px 18px; min-width:0;
+  line-height:1.55; box-shadow:0 1px 2px rgba(20,23,28,.05)}
+.tr-karte h2{font-family:var(--body); font-size:20px; font-weight:800; margin:0 0 8px; color:var(--pruefer); line-height:1.3}
+.tr-karte h2.ok{color:var(--ok)}
+.tr-karte p{margin:8px 0}
+.tr-klein{font-size:13px; color:var(--muted); line-height:1.5}
+.tr-klein.fehler{color:var(--red); font-weight:600}
+.tr-alarm{background:var(--red-soft); color:var(--red); border:1px solid var(--red); border-radius:10px; padding:10px 14px; font-weight:600; margin:0; overflow-wrap:anywhere}
+.tr-eyebrow{font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--muted); margin:0 0 4px !important}
+.tr-label{font-size:11.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:12px 0 2px !important; display:block}
+.tr-nav{display:flex; gap:8px}
+.tr-nav .btn{padding-left:6px}
+.tr-seite :focus-visible{outline:3px solid var(--pruefer); outline-offset:2px}
+
+/* Deutsche Aufgabenstellung, Erklärungen */
+.tr-de{border-left:3px solid var(--pruefer); padding-left:12px; margin:8px 0 4px}
+.tr-auftrag{font-weight:600}
+.tr-details{margin-top:10px; border-top:1px solid var(--rule-soft, var(--rule)); padding-top:4px}
+.tr-details > summary{cursor:pointer; font-weight:700; min-height:44px; display:flex; align-items:center; color:var(--pruefer)}
+.tr-details ol, .tr-details ul{padding-left:22px; margin:4px 0 8px}
+.tr-details li{margin:5px 0}
+.tr-begriffe{display:grid; grid-template-columns:minmax(120px, 1fr) 2fr; gap:6px 16px; margin:6px 0 8px}
+.tr-begriffe dt{font-weight:700; overflow-wrap:anywhere}
+.tr-begriffe dd{margin:0}
+
+/* Aufgabenliste */
+.tr-liste{list-style:none; padding:0; margin:4px 0 0; display:flex; flex-direction:column; gap:8px}
+.tr-aufgabe{display:flex; flex-direction:column; gap:3px; width:100%; text-align:left; background:var(--card); color:var(--ink);
+  border:1px solid var(--rule); border-left:4px solid var(--rule); border-radius:10px; padding:10px 12px; min-height:44px; cursor:pointer; font:inherit}
+.tr-aufgabe:hover{border-color:var(--pruefer)}
+.tr-aufgabe.fertig{border-left-color:var(--ok)}
+.tr-aufgabe.teil{border-left-color:var(--warn)}
+.tr-a-titel{font-weight:700; font-size:15.5px; line-height:1.3}
+.tr-a-de{font-size:13px; color:var(--muted)}
+.tr-a-status{font-size:13px; color:var(--muted)}
+.tr-a-status.fertig{color:var(--ok); font-weight:600}
+.tr-a-status.teil{color:var(--warn); font-weight:600}
+
+/* Quellcode mit Zeilennummern — scrollt nur in sich selbst */
+.tr-code-scroll, .tr-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%}
+.tr-code-scroll{border:1px solid var(--rule); border-radius:10px; background:var(--field)}
+.tr-code{list-style:none; margin:0; padding:8px 0; min-width:max-content; font-family:var(--data); font-size:14.5px; line-height:1.6; color:var(--ink)}
+.tr-code li{display:flex; align-items:stretch}
+.tr-code code{font-family:inherit; white-space:pre; padding:0 14px 0 8px; tab-size:4}
+.tr-nr{position:sticky; left:0; z-index:1; flex:none; min-width:2.6em; padding:0 8px 0 6px; text-align:right; background:var(--card);
+  border-right:1px solid var(--rule); color:var(--muted); user-select:none; font-variant-numeric:tabular-nums}
+/* Fehler finden: jede Zeile ist ein Knopf */
+.tr-wahl{padding:4px 0}
+.tr-zeile{display:flex; align-items:center; width:100%; min-height:44px; margin:0; padding:0; border:0; border-left:4px solid transparent;
+  background:transparent; color:var(--ink); font:inherit; text-align:left; cursor:pointer; touch-action:manipulation}
+.tr-zeile:hover{background:var(--pruefer-soft)}
+.tr-zeile .tr-nr{align-self:stretch; display:flex; align-items:center; justify-content:flex-end}
+.tr-zeile[aria-pressed="true"]{background:var(--warn-soft); border-left-color:var(--warn)}
+.tr-zeile[aria-pressed="true"] .tr-nr{background:var(--warn); color:#fff; font-weight:800}
+.tr-zeile.ok[aria-pressed="true"]{background:var(--ok-soft); border-left-color:var(--ok)}
+.tr-zeile.ok[aria-pressed="true"] .tr-nr{background:var(--ok)}
+.tr-zeile.nok[aria-pressed="true"]{background:var(--red-soft); border-left-color:var(--red)}
+.tr-zeile.nok[aria-pressed="true"] .tr-nr{background:var(--red)}
+.tr-zeile.soll{box-shadow:inset 4px 0 0 var(--red)}
+
+/* Klasse, Eingabe */
+.tr-klasse, .tr-eingabe{margin-top:12px}
+.tr-mtab{border-collapse:collapse; width:100%; font-size:14px; min-width:280px}
+.tr-mtab th, .tr-mtab td{border:1px solid var(--rule); padding:6px 8px; text-align:left; vertical-align:top}
+.tr-mtab th{background:var(--field); font-size:12.5px}
+.tr-mtab code{font-family:var(--data); font-size:13px; white-space:nowrap}
+.tr-objekte td{font-family:var(--data); font-size:13.5px; white-space:nowrap}
+.tr-e-zeile{margin:4px 0 !important}
+.tr-e-wert{font-family:var(--data); font-size:14.5px; background:var(--field); border:1px solid var(--rule); border-radius:6px; padding:3px 8px;
+  display:inline-block; overflow-wrap:anywhere; white-space:pre-wrap}
+.tr-e-name{font-family:var(--data); font-size:14px; margin:4px 0 !important}
+
+/* Arbeitsbereich */
+.tr-support{font-size:13px; font-weight:700; margin:0 0 8px !important; color:var(--ok)}
+.tr-support.hilfe{color:var(--warn)}
+.tr-support.loesung{color:var(--red)}
+.tr-tasten{position:sticky; top:var(--tr-kopf, 0px); z-index:6; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:6px 0 8px; background:var(--card)}
+.tr-taste{flex:none; min-width:44px; min-height:44px; padding:0 14px; font-family:var(--data); font-size:15px; font-weight:700;
+  border:1px solid var(--rule); background:var(--field); color:var(--ink); border-radius:8px; cursor:pointer; touch-action:manipulation}
+.tr-taste:active{background:var(--pruefer); color:#fff; border-color:var(--pruefer)}
+.tr-tasten .tr-klein{flex:1 1 160px}
+
+/* Wertetabelle — scrollt seitlich in ihrem Block, nicht die ganze Seite */
+.tr-tabwrap{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; border:1px solid var(--rule); border-radius:10px; outline:none}
+.tr-tabelle{border-collapse:separate; border-spacing:0; min-width:100%; font-size:15px}
+.tr-tabelle th, .tr-tabelle td{border-bottom:1px solid var(--rule); border-right:1px solid var(--rule); padding:5px; text-align:center; vertical-align:top}
+.tr-tabelle tr > :last-child{border-right:0}
+.tr-tabelle tbody tr:last-child > *{border-bottom:0}
+.tr-tabelle thead th{background:var(--field); font-family:var(--data); font-size:13px; font-weight:700; padding:8px 6px; min-width:80px;
+  overflow-wrap:normal; word-break:normal; hyphens:manual; line-height:1.3; vertical-align:bottom}
+.tr-tabelle thead th.tr-h-text{min-width:150px}
+.tr-tabelle thead th.tr-h0{min-width:80px; font-family:var(--body); font-size:12px}
+.tr-tabelle tbody th{position:sticky; left:0; z-index:2; background:var(--card); font-weight:800; font-size:14px; padding:8px 6px; vertical-align:middle}
+.tr-tabelle thead th:first-child{position:sticky; left:0; z-index:3}
+.tr-vorgabe > *{background:var(--field)}
+.tr-vorgabe th{background:var(--field) !important}
+.tr-zelle.leer, .tr-zelle.fix{vertical-align:middle}
+.tr-strich{color:var(--muted); font-size:18px}
+.tr-fixwert{font-family:var(--data); font-size:15px; color:var(--muted); white-space:pre-wrap}
+.tr-feld{display:block; width:100%; min-width:72px; min-height:44px; box-sizing:border-box; margin:0; padding:6px 8px;
+  font-family:var(--data); font-size:16px; text-align:center; color:var(--ink); background:var(--field);
+  border:1px solid var(--rule); border-radius:8px}
+.tr-feld.breit{min-width:150px; text-align:left}
+.tr-feld:focus{border-color:var(--pruefer); outline:2px solid var(--pruefer); outline-offset:0; background:var(--card)}
+select.tr-feld{padding:6px 4px; text-align:center; text-align-last:center; cursor:pointer}
+.tr-zelle.ok .tr-feld{border-color:var(--ok); background:var(--ok-soft)}
+.tr-zelle.falsch .tr-feld{border-color:var(--red); border-width:2px; background:var(--red-soft)}
+.tr-soll{display:block; margin-top:3px; font-family:var(--data); font-size:12.5px; font-weight:700; color:var(--ok); white-space:pre-wrap; overflow-wrap:anywhere}
+.tr-rueckgabe{margin-top:12px; max-width:340px}
+.tr-rueckgabe .tr-feld{text-align:left}
+
+/* Korrekturen (Fehler finden) */
+.tr-korrekturen{display:flex; flex-direction:column; gap:10px}
+.tr-korr{border:1px solid var(--warn); border-left:4px solid var(--warn); border-radius:10px; padding:8px 10px 10px; background:var(--card); min-width:0}
+.tr-k-label{display:block; font-weight:700; font-size:14px; margin:0 0 4px}
+.tr-k-alt{font-size:13px; color:var(--muted); overflow-x:auto; white-space:nowrap; margin-bottom:6px}
+.tr-k-alt code{font-family:var(--data); white-space:pre}
+.tr-k-feld{text-align:left; font-size:15.5px; margin-bottom:8px}
+.tr-ausgabe-feld{display:block; width:100%; box-sizing:border-box; min-height:150px; margin:6px 0 0; padding:10px; resize:vertical;
+  font-family:var(--data); font-size:16px; line-height:1.5; color:var(--ink); background:var(--field);
+  border:1px solid var(--rule); border-radius:10px; white-space:pre; overflow-x:auto}
+.tr-ausgabe-feld:focus{border-color:var(--pruefer); outline:2px solid var(--pruefer); outline-offset:0}
+
+.tr-knoepfe{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.tr-knoepfe .btn.primary{min-width:140px}
+.tr-speicher{margin:8px 0 0 !important}
+.tr-hilfe, .tr-loesung{margin-top:12px; border-radius:10px; padding:4px 12px 8px}
+.tr-hilfe{background:var(--warn-soft); border:1px solid var(--warn)}
+.tr-loesung{background:var(--ok-soft); border:1px solid var(--ok)}
+.tr-pre{font-family:var(--data); font-size:14px; line-height:1.5; background:var(--card); border:1px solid var(--rule); border-radius:8px;
+  padding:10px 12px; margin:6px 0; overflow-x:auto; white-space:pre; color:var(--ink); max-width:100%}
+.tr-fixliste{padding-left:20px; margin:4px 0}
+.tr-fixliste li{margin:6px 0}
+.tr-fix{margin:4px 0 !important; overflow-wrap:anywhere}
+.tr-fix code{font-family:var(--data); font-size:13.5px}
+.tr-alt-code{text-decoration:line-through; color:var(--red)}
+.tr-neu-code{color:var(--ok); font-weight:700}
+
+/* Testfälle und Ergebnis */
+.tr-tests{list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px}
+.tr-test{border:1px solid var(--rule); border-left:4px solid var(--ok); border-radius:10px; padding:6px 10px 8px; min-width:0}
+.tr-test.nok{border-left-color:var(--red)}
+.tr-t-kopf{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px; margin:2px 0 4px !important}
+.tr-t-zeichen{font-weight:900; color:var(--ok); font-size:16px; margin-right:4px}
+.nok > .tr-t-zeichen, .tr-test.nok .tr-t-zeichen{color:var(--red)}
+.tr-zeile-kv{display:grid; grid-template-columns:84px minmax(0, 1fr); gap:2px 8px; margin:3px 0; align-items:start}
+.tr-z-label{font-size:12.5px; color:var(--muted); font-weight:700; padding-top:1px}
+.tr-z-wert{font-family:var(--data); font-size:13.5px; white-space:pre-wrap; overflow-wrap:anywhere}
+.tr-befund{list-style:none; padding:0; margin:8px 0; display:flex; flex-direction:column; gap:6px}
+.tr-befund li{border-radius:8px; padding:6px 10px; background:var(--field); border-left:4px solid var(--rule)}
+.tr-befund li.ok{border-left-color:var(--ok)}
+.tr-befund li.teil{border-left-color:var(--warn)}
+.tr-befund li.nok{border-left-color:var(--red)}
+.tr-gesamt{margin-top:10px}
+.tr-ok-text{color:var(--ok); font-weight:700}
+.tr-a-zeilen{list-style:none; padding:0; margin:8px 0; display:flex; flex-direction:column; gap:4px}
+.tr-a-zeilen li{display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 4px; padding:4px 8px; border-radius:8px; background:var(--field)}
+.tr-a-zeilen code{font-family:var(--data); font-size:14px; white-space:pre-wrap; overflow-wrap:anywhere}
+.tr-analyse{margin-top:12px; border-left:3px solid var(--ok); padding:2px 0 2px 12px}
+.tr-historie{list-style:none; padding:0; margin:4px 0}
+.tr-historie li{border-bottom:1px solid var(--rule-soft, var(--rule)); padding:8px 0; font-size:14px}
+.tr-historie li.ok{color:var(--ok); font-weight:600}
+
+@media (max-width:540px){
+  .tr-seite{padding:10px}
+  .tr-karte{padding:14px}
+  .tr-karte h2{font-size:18.5px}
+  .tr-begriffe{grid-template-columns:1fr; gap:2px}
+  .tr-begriffe dd{margin-bottom:8px}
+  .tr-zeile-kv{grid-template-columns:1fr}
+  .tr-knoepfe .btn{flex:1 1 calc(50% - 8px)}
+  .tr-knoepfe .btn.primary{flex-basis:100%}
+  .tr-code{font-size:14px}
+}
+@media print{
+  .tr-seite[hidden]{display:none}
+  .tr-tasten, .tr-knoepfe, .tr-nav{display:none}
+  .tr-karte{break-inside:avoid; box-shadow:none}
+}
