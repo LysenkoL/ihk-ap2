@@ -436,7 +436,6 @@
     const q = el("p", "k2-muted", D.quelle ? D.quelle + " · действует " + (D.gueltig || "") : "");
     q.lang = "de"; c.appendChild(q);
     const zahlen = el("div", "k2-zahlen"); zahlen.id = "k2Zahlen"; c.appendChild(zahlen);
-    zahlenZeichnen();
 
     const wie = el("details", "k2-info");
     wie.appendChild(el("summary", null, "Как читать статус и отметки"));
@@ -490,6 +489,8 @@
     lab.appendChild(inp); c.appendChild(lab);
     const info = el("p", "k2-treffer"); info.id = "k2Treffer"; info.setAttribute("aria-live", "polite"); c.appendChild(info);
     w.appendChild(c);
+    /* erst jetzt im Dokument: zahlenZeichnen() und filterZeichnen() suchen ihre Kästen per id */
+    zahlenZeichnen();
     filterZeichnen();
   }
 
