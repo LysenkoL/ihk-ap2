@@ -12,14 +12,16 @@
    Gebiete: proj Projekt · wirt Wirtschaft · kunde Kunde & Vertrieb ·
    hw Hardware · netz Netzwerk · sys Betriebssystem & Software ·
    prog Programmierung · db Datenbank · qual Qualität · sich IT-Sicherheit ·
-   recht Datenschutz & Recht · org Arbeit & Betrieb · cloud Cloud & Betrieb
+   recht Datenschutz & Recht · org Arbeit & Betrieb · cloud Cloud & Betrieb ·
+   pruef Prüfungssprache (Wörter der Aufgabenstellung: Belegsatz, bzw., gemäß …)
    ========================================================================== */
 "use strict";
 
 window.IHK_GLOSSAR_GEBIETE = {
   proj: "Projekt", wirt: "Wirtschaft", kunde: "Kunde & Vertrieb", hw: "Hardware", netz: "Netzwerk",
   sys: "System & Software", prog: "Programmierung", db: "Datenbank", qual: "Qualität",
-  sich: "IT-Sicherheit", recht: "Datenschutz & Recht", org: "Arbeit & Betrieb", cloud: "Cloud & Betrieb"
+  sich: "IT-Sicherheit", recht: "Datenschutz & Recht", org: "Arbeit & Betrieb", cloud: "Cloud & Betrieb",
+  pruef: "Prüfungssprache"
 };
 
 window.IHK_GLOSSAR = [
