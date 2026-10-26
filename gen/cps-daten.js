@@ -103,7 +103,7 @@
   const S = {
     id: "cps", titel: "Cyber-physische Systeme", eyebrow: "CPS", topic: "cps",
     ru: "Датчики и исполнительные устройства, частота и интервал опроса, polling или interrupt, объём данных и АЦП — каждый раз новые значения.",
-    kachel: { name: "CPS: Sensoren & Aktoren", unten: "Abtastung · Polling · A/D-Wandler", ikon: "netz" },
+    kachel: { name: "CPS: Sensoren & Aktoren", unten: "Abtastung · Polling · A/D-Wandler", ikon: "werkzeug" },
     gruppen: [{ id: "cps", titel: "Sensoren, Aktoren, Abtastung", ru: "Киберфизические системы" }],
     aufgaben, GERAETE
   };

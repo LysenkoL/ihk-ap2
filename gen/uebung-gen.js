@@ -7,6 +7,7 @@
      GENUEBGEN.sammlung({
        id: "rechnen", titel: "Rechen-Trainer AP2", ru: "…", topic: "rechnen",
        kachel: { name, unten, ikon }, gruppen: [{ id, titel, ru }],
+       (Aufgabe darf zusätzlich bild: "<svg …>" liefern — vom Generator gebaut, z. B. ein UML-Diagramm)
        aufgaben: [{ id, gruppe, titel, ru, gen: R => ({
          situation?, frage, gegeben?: [[Name, Wert]], felder: [Feld], weg: [Schritt], ru?, merke? }) }]
      })
@@ -215,6 +216,8 @@
         a.gegeben.forEach(([k, v]) => { dl.appendChild(el("dt", null, k)); dl.appendChild(el("dd", null, v)); });
         c.appendChild(dl);
       }
+      /* bild: SVG, das der Generator selbst erzeugt (keine Eingaben von außen) */
+      if (a.bild) { const bx = el("div", "gu-bild"); bx.innerHTML = a.bild; c.appendChild(bx); }
       const fr = el("p", "gu-frage", a.frage); fr.lang = "de"; c.appendChild(fr);
       const form = el("div", "gu-felder");
       a.felder.forEach(f => {
