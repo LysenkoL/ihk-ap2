@@ -231,3 +231,24 @@ if (html.includes(f)) {
 }
 
 console.log("lernen-wiso: " + W.length + " Themen, " + nFragen + " Quizfragen, " + reihen.length + " Ladereihenfolgen, Rechnungen, lernen.js OK");
+
+/* ---- Teile-Filter und WiSo-Quiz (gen/lernen.js) ---- */
+{
+  const LN = global.GENLERNEN;
+  assert.ok(LN && LN.themenIm, "GENLERNEN.themenIm geladen");
+  {
+    const alleT = LN.THEMEN();
+    const w = LN.themenIm("wiso");
+    assert.strictEqual(w.length, W.length, "WiSo-Filter: alle WiSo-Themen");
+    assert.ok(w.every(t => t.teil === "WiSo"));
+    const g1 = LN.themenIm("ga1"), g2 = LN.themenIm("ga2");
+    assert.ok(g1.some(t => t.teil === "GA1+GA2") && g2.some(t => t.teil === "GA1+GA2"), "GA1+GA2 in beiden Teilen");
+    assert.ok(!g1.some(t => t.teil === "GA2") && !g2.some(t => t.teil === "GA1"));
+    assert.ok(!g1.concat(g2).some(t => t.teil === "WiSo"), "WiSo nicht in GA");
+    assert.strictEqual(LN.themenIm("alle").length, alleT.length);
+    const wisoFragen = LN.runde({ themen: w.map(t => t.id), anzahl: 10 });
+    assert.strictEqual(wisoFragen.length, 10);
+    assert.ok(wisoFragen.every(q => /^wiso-/.test(q.thema)), "WiSo-Quiz nur aus WiSo-Themen");
+    console.log("lernen-wiso: Teile-Filter und WiSo-Quiz OK");
+  }
+}
