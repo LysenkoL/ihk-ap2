@@ -683,6 +683,7 @@ window.GENSTART = (function () {
     if (window.GENTRACE) kachel("Schreibtischtest", "Wertetabelle · Fehler finden · 12 задач", () => window.GENTRACE.oeffnen(), "pseudo");
     if (window.GENNORMAL) kachel("Нормализация 1NF → 3NF", "Шаг за шагом · 4 примера", () => window.GENNORMAL.oeffnen(), "er");
     if (window.GENOPUEB) kachel("Что от меня хотят?", "Operatoren: nennen, erläutern …", () => window.GENOPUEB.oeffnen(), "check");
+    if (window.GENWORTKARTEN && window.GENWORTKARTEN.oeffnen) kachel("Карточки слов", "DE ↔ RU · 5 минут · Leitner", () => window.GENWORTKARTEN.oeffnen(), "satz");
     if (window.GENSATZ) kachel("Kurzfragen", z.satzKarten ? z.satzKarten + " Fragen · 5 Min." : "5 Minuten", satzbau, "satz");
     if (z.analyseOffen != null) kachel("Fehler durchgehen", z.analyseOffen ? z.analyseOffen + " offen" : "nichts offen", journal, "journal", z.analyseOffen >= 5);
     else kachel("Fehlerjournal", z.fehlerOffen ? z.fehlerOffen + " offen" : "nichts offen", journal, "journal", z.fehlerOffen >= 5);

@@ -141,6 +141,6 @@ const sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
   assert.ok(sw.includes("./" + f), "sw.js: " + f);
 });
 const zr = fs.readFileSync(path.join(root, "gen", "zurueck.js"), "utf8");
-assert.ok(/scKatalog2: "scStart"/.test(zr) && /"scKatalog2"\]/.test(zr), "zurueck.js kennt scKatalog2");
+assert.ok(/scKatalog2: "scStart"/.test(zr) && /SCHIRME = \[[^\]]*"scKatalog2"/.test(zr), "zurueck.js kennt scKatalog2");
 
 console.log("katalog-ap2: ok");
