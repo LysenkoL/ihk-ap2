@@ -1111,6 +1111,7 @@
       c.appendChild(ak);
     }
     /* GENFOTOS */ if (root.GENFOTOS) { try { root.GENFOTOS.anhaengen(c, m, t); } catch (e) { console.error("Azubi/Fotos:", e); } }
+    /* GENMARKEN */ if (root.GENMARKEN && root.GENMARKEN.anhaengen) { try { root.GENMARKEN.anhaengen(c, m, t); } catch (e) { console.error("Azubi/Marken:", e); } }
     return c;
   }
 

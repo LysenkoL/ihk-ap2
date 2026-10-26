@@ -673,6 +673,7 @@ window.GENSTART = (function () {
     if (window.GENPRAXIS) kachel("Самостоятельная практика", "Код · тесты · UML · GA1", () => window.GENPRAXIS.oeffnen(), "uebung");
     kachel("Meine Prüfungsbögen", "WiSo · GA1/GA2 при наличии материалов",
       () => (window.GENAZUBI ? window.GENAZUBI.oeffnen(null) : oeffneBlock("azubi")), "pruefung");
+    if (window.GENMARKEN && window.GENMARKEN.oeffnen) { const n = window.GENMARKEN.anzahl(); kachel("Мои отметки", n ? n + " заданий · ★ ⏳ ❓ ⚠ ✎" : "★ ⏳ ❓ ⚠ ✎ в бланках", () => window.GENMARKEN.oeffnen(), "check"); }
     kachel("Arbeitsblatt", z.vorlagen + " Aufgabentypen", assistent, "blatt");
     kachel("Gemischte Übung", "GA1/GA2 · 90 Min. · kein Prüfungsnachweis", simulation, "sim");
     if (window.GENKATALOG2) kachel("Каталог AP2", "что учить · где тренировать · мой статус", () => window.GENKATALOG2.oeffnen(), "katalog");
