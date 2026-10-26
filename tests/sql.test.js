@@ -27,7 +27,7 @@ initSqlJs({ locateFile: f => path.join(LIB, f) }).then(SQL => {
 
   /* ---------------------------------------------------- Daten und Aufgaben */
   const ids = new Set();
-  const artBekannt = ["select", "dml", "ddl", "view", "muster", "vorhersage"];
+  const artBekannt = ["select", "dml", "ddl", "view", "muster", "vorhersage", "index"];
   D.AUFGABEN.forEach(a => {
     assert(!ids.has(a.id), "doppelt: " + a.id); ids.add(a.id);
     assert(D.THEMEN.some(t => t.key === a.thema), a.id + " Thema");
@@ -488,6 +488,31 @@ initSqlJs({ locateFile: f => path.join(LIB, f) }).then(SQL => {
   ["gen/sql.js", "gen/sql.css", "gen/sql-daten.js"].forEach(x => { assert(html.includes(x), x); assert(sw.includes("./" + x), x); });
   assert(!html.includes("sql-wasm.js"), "Bibliothek erst bei Bedarf laden");
   assert(sw.includes("vendor/"), "Bibliothek offline verfügbar");
+
+  /* ---------------------------------------------------- SQL+: Index, MODIFY/CHANGE, Textfunktionen */
+  ok("i1", "create index ix on Kunde(Ort);", "Indexname egal");
+  nein("i1", "CREATE INDEX ix ON Kunde (Name);", /nicht auf \(Ort\)/);
+  nein("i1", "SELECT * FROM Kunde;", /keinen Index/);
+  nein("i2", "CREATE INDEX uk ON Kunde (Email);", /nicht eindeutig/);
+  ok("i2", "CREATE UNIQUE INDEX u ON Kunde (Email);");
+  nein("i3", "CREATE INDEX x ON Bestellung (Datum, KundenNr);", /Reihenfolge/);
+  ok("m1", "ALTER TABLE Kunde MODIFY COLUMN Ort VARCHAR(80);", "MODIFY COLUMN");
+  nein("m1", "ALTER TABLE Kunde MODIFY Ort VARCHAR(60);", /80/);
+  nein("m1", "DROP TABLE Bestellposition; DROP TABLE Bestellung; DROP TABLE Kunde; CREATE TABLE Kunde (KundenNr INTEGER PRIMARY KEY, Firma VARCHAR(60), Name VARCHAR(40) NOT NULL, Vorname VARCHAR(40), PLZ CHAR(5), Ort VARCHAR(80), Email VARCHAR(80), Registriert DATE);", /Daten|Zeilen/);
+  ok("m2", "ALTER TABLE Artikel MODIFY Bestand INT NOT NULL DEFAULT 0;");
+  nein("m2", "ALTER TABLE Artikel MODIFY Bestand INTEGER DEFAULT 0;", /NULL/);
+  assert(/nicht leer|NOT NULL|leer/.test(fehler("UPDATE Artikel SET Bestand = NULL WHERE ArtikelNr = 1; ALTER TABLE Artikel MODIFY Bestand INTEGER NOT NULL;")), "NOT NULL trotz NULL-Werten scheitert verständlich");
+  ok("m3", "ALTER TABLE Kunde CHANGE COLUMN PLZ Postleitzahl CHAR(5);");
+  nein("m3", "ALTER TABLE Kunde ADD Postleitzahl CHAR(5);", /PLZ/);
+  assert.strictEqual(wert("ALTER TABLE Kunde CHANGE PLZ Postleitzahl CHAR(5); SELECT Postleitzahl FROM Kunde WHERE KundenNr = 10;"), "01067", "Daten bleiben nach CHANGE");
+  assert.strictEqual(wert("ALTER TABLE Kunde MODIFY Ort VARCHAR(80); SELECT COUNT(*) FROM Bestellung b JOIN Kunde k ON k.KundenNr = b.KundenNr;") > 0, true, "Fremdschlüssel/Join nach Umbau intakt");
+  assert(/gibt es in Kunde nicht/.test(fehler("ALTER TABLE Kunde MODIFY Stadt VARCHAR(80);")));
+  assert(/Datentyp/.test(fehler("ALTER TABLE Kunde MODIFY Ort;") + fehler("ALTER TABLE Kunde MODIFY Ort 80;")));
+  ok("p2", "UPDATE Kunde SET Email = LOWER(TRIM(Email));", "ohne WHERE: NULL bleibt NULL");
+  nein("p2", "UPDATE Kunde SET Email = LOWER(Email);");
+  ok("p1", "UPDATE Kunde SET Name = UCASE(Name) WHERE Ort = 'Berlin';", "UCASE wie UPPER");
+  nein("p3", "UPDATE Artikel SET Bezeichnung = CONCAT(Bezeichnung, '(Restposten)') WHERE Bestand < 3;");
+  ok("p4", "UPDATE Kunde SET Ort = 'Köln' WHERE Ort = 'Koeln';", "auch ohne REPLACE richtig im Ergebnis");
 
   console.log("sql: " + D.AUFGABEN.length + " Aufgaben (" + vh.length + " Vorhersagen), Beiblatt-Funktionen, Muster-Prüfung, Varianten, Fehler und Warnungen OK");
 }).catch(e => { console.error(e); process.exit(1); });

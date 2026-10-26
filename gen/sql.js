@@ -251,7 +251,7 @@
     if (/near "INTERVAL"/i.test(m) || /syntax error/.test(m) && /\bINTERVAL\s+[-+]?\d/i.test(stmt || "")) return "INTERVAL (MySQL) geht hier nicht. Laut Beiblatt: DATEADD(DAY, 7, Datum) bzw. DATEDIFF(DAY, Anfangsdatum, Enddatum).";
     if (/near "FROM": syntax error/i.test(m)) return "Syntaxfehler vor FROM — oft ein Komma zu viel hinter der letzten Spalte.";
     if (/near "(MODIFY|CHANGE)"/i.test(m) || /near "COLUMN"/i.test(m) && /ALTER\s+COLUMN/i.test(stmt || ""))
-      return "Spalten nachträglich ändern (MODIFY / ALTER COLUMN) kann SQLite nicht. In MySQL: ALTER TABLE t MODIFY Spalte Typ; — für diese Übung nicht nötig.";
+      return "ALTER COLUMN (SQL Server/PostgreSQL) geht hier nicht. MySQL-Schreibweise wie im Beiblatt: ALTER TABLE t MODIFY Spalte Typ; bzw. CHANGE alt neu Typ;";
     if ((r = /near "([^"]+)": syntax error/.exec(m))) return "Syntaxfehler bei „" + r[1] + "“. Häufig: Komma fehlt oder ist zu viel, Schlüsselwort falsch geschrieben, Reihenfolge SELECT – FROM – WHERE – GROUP BY – HAVING – ORDER BY.";
     if (/incomplete input/.test(m)) return "Die Anweisung ist unvollständig — fehlt eine Klammer, ein Anführungszeichen oder ein Teil nach WHERE?";
     if (/misuse of aggregate/.test(m)) return "Aggregatfunktion an falscher Stelle: Bedingungen mit COUNT/SUM/AVG gehören in HAVING (nach GROUP BY), nicht in WHERE.";
@@ -542,6 +542,14 @@
         lauf.schritte.push(schritt);
         continue;
       }
+      const mod = RX_MODIFY.exec(teile[i]);
+      if (mod) {
+        const r = spalteAendern(db, mod);
+        if (r.fehler) { lauf.fehler = { nr: i + 1, sql: teile[i], text: r.fehler, roh: r.roh || "" }; break; }
+        notieren(lauf, MODIFY_NOTIZ);
+        lauf.schritte.push(schritt);
+        continue;
+      }
       const v = vorbereiten(teile[i]);
       notieren(lauf, v.notiz);
       if (v.fk) {
@@ -573,6 +581,87 @@
       if (schritt.spalten.length) lauf.letztes = schritt;
     }
     return lauf;
+  }
+
+  /* ALTER TABLE t MODIFY [COLUMN] spalte Typ … / CHANGE [COLUMN] alt neu Typ … (MySQL).
+     SQLite kann Spalten nicht ändern — die Tabelle wird mit der neuen Spaltendefinition
+     neu aufgebaut, die Daten werden übernommen (wie es MySQL im Hintergrund auch tut). */
+  const RX_MODIFY = /^\s*ALTER\s+TABLE\s+[`"]?(\w+)[`"]?\s+(MODIFY|CHANGE)(?:\s+COLUMN)?\s+[`"]?(\w+)[`"]?\s+([\s\S]+?)\s*$/i;
+  const MODIFY_NOTIZ = "ALTER TABLE … MODIFY / CHANGE (MySQL) kann SQLite nicht direkt — hier nachgebildet: Tabelle mit der neuen Spaltendefinition neu aufgebaut, die Daten bleiben erhalten.";
+  function obenKommas(s) {
+    const out = []; let tiefe = 0, q = null, cur = "";
+    for (const c of s) {
+      if (q) { cur += c; if (c === q) q = null; continue; }
+      if (c === "'" || c === '"' || c === "`") { q = c; cur += c; continue; }
+      if (c === "(") tiefe++;
+      if (c === ")") tiefe--;
+      if (c === "," && !tiefe) { out.push(cur.trim()); cur = ""; continue; }
+      cur += c;
+    }
+    if (cur.trim()) out.push(cur.trim());
+    return out;
+  }
+  function spalteAendern(db, m) {
+    const t = tabelleFinden(db, m[1], "table");
+    if (!t) return { fehler: "Die Tabelle „" + m[1] + "“ gibt es nicht." };
+    const aendern = m[2].toUpperCase() === "CHANGE";
+    let alt = m[3], neu = m[3], def = m[4].trim();
+    if (aendern) {
+      const n = /^[`"]?(\w+)[`"]?\s+([\s\S]+)$/.exec(def);
+      if (!n) return { fehler: "CHANGE braucht alten Namen, neuen Namen und Datentyp: ALTER TABLE t CHANGE alt neu VARCHAR(50);" };
+      neu = n[1]; def = n[2];
+    }
+    if (!/^[A-Za-z]/.test(def)) return { fehler: "Nach dem Spaltennamen fehlt der Datentyp, z. B. … MODIFY " + alt + " VARCHAR(80);" };
+    const sqlRoh = db.exec("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = '" + t.replace(/'/g, "''") + "'")[0].values[0][0];
+    const auf = sqlRoh.indexOf("("), zu = sqlRoh.lastIndexOf(")");
+    const teile = obenKommas(sqlRoh.slice(auf + 1, zu));
+    const nameVon = x => ((/^[`"\[]?(\w+)/.exec(x) || [])[1] || "").toLowerCase();
+    const KONSTR = /^(PRIMARY|FOREIGN|UNIQUE|CHECK|CONSTRAINT)\b/i;
+    const k = teile.findIndex(x => !KONSTR.test(x) && nameVon(x) === alt.toLowerCase());
+    if (k < 0) return { fehler: "Die Spalte „" + alt + "“ gibt es in " + t + " nicht." };
+    if (aendern && neu.toLowerCase() !== alt.toLowerCase() && teile.some((x, i) => i !== k && !KONSTR.test(x) && nameVon(x) === neu.toLowerCase()))
+      return { fehler: "Die Spalte „" + neu + "“ gibt es in " + t + " schon." };
+    teile[k] = neu + " " + def;
+    if (neu !== alt) for (let i = 0; i < teile.length; i++) if (KONSTR.test(teile[i])) teile[i] = teile[i].replace(new RegExp("\\b" + alt + "\\b", "gi"), neu);
+    const tmp = t + "__neu";
+    try {
+      db.run("PRAGMA foreign_keys = OFF");
+      db.run("BEGIN");
+      db.run("CREATE TABLE " + q(tmp) + " (" + teile.join(", ") + ")");
+      db.run("INSERT INTO " + q(tmp) + " SELECT * FROM " + q(t));
+      db.run("DROP TABLE " + q(t));
+      db.run("ALTER TABLE " + q(tmp) + " RENAME TO " + q(t));
+      db.run("COMMIT");
+      return { ok: true };
+    } catch (e) {
+      try { db.run("ROLLBACK"); } catch (x) { }
+      return { fehler: fehlerText(e.message, "ALTER TABLE " + t) + " (Die vorhandenen Daten passen nicht zur neuen Spaltendefinition.)", roh: e.message };
+    } finally { try { db.run("PRAGMA foreign_keys = ON"); } catch (x) { } }
+  }
+
+  /* Indexe einer Tabelle: [{ name, unique, spalten:[…] }] (ohne die automatischen des Primärschlüssels) */
+  function indexeVon(db, t) {
+    const r = db.exec("PRAGMA index_list(" + q(t) + ")");
+    if (!r.length) return [];
+    return r[0].values.filter(v => v[3] === "c").map(v => {
+      const info = db.exec("PRAGMA index_info(" + q(v[1]) + ")");
+      return { name: v[1], unique: !!v[2], spalten: info.length ? info[0].values.sort((a, b) => a[0] - b[0]).map(x => x[2]) : [] };
+    });
+  }
+  function pruefeIndex(db, spec) {
+    const t = tabelleFinden(db, spec.tabelle, "table");
+    if (!t) return { ok: false, text: "Die Tabelle " + spec.tabelle + " gibt es nicht." };
+    const ix = indexeVon(db, t), soll = spec.spalten.map(s => s.toLowerCase());
+    if (!ix.length) return { ok: false, text: "Auf " + t + " gibt es noch keinen Index. CREATE " + (spec.unique ? "UNIQUE " : "") + "INDEX name ON " + t + " (" + spec.spalten.join(", ") + ");" };
+    const gleich = x => x.spalten.map(s => s.toLowerCase()).join() === soll.join();
+    const passt = ix.find(gleich);
+    if (!passt) {
+      const andersRum = ix.find(x => x.spalten.length === soll.length && x.spalten.map(s => s.toLowerCase()).sort().join() === soll.slice().sort().join());
+      if (andersRum) return { ok: false, text: "Der Index " + andersRum.name + " hat die Spalten in anderer Reihenfolge (" + andersRum.spalten.join(", ") + "). Bei zusammengesetzten Indexen zählt die Reihenfolge: zuerst " + spec.spalten[0] + "." };
+      return { ok: false, text: "Es gibt einen Index, aber nicht auf (" + spec.spalten.join(", ") + "). Vorhanden: " + ix.map(x => x.name + " (" + x.spalten.join(", ") + ")").join("; ") + "." };
+    }
+    if (spec.unique && !passt.unique) return { ok: false, text: "Der Index " + passt.name + " ist nicht eindeutig. Verlangt ist CREATE UNIQUE INDEX …" };
+    return { ok: true, text: "Richtig! Index " + passt.name + " auf " + t + " (" + passt.spalten.join(", ") + ")" + (passt.unique ? ", eindeutig (UNIQUE)" : "") + "." };
   }
 
   function tabelleFinden(db, name, typ) {
@@ -1006,6 +1095,7 @@
       else if (soll === "dezimal" && f === "gleitkomma") schlecht(n + ": " + s.typ + " rundet ungenau. Für Geldbeträge DECIMAL(8,2).");
       else schlecht(n + ": " + s.typ + " passt nicht — erwartet " + (FAM_NAME[soll] || soll) + ".");
     });
+    (spec.weg || []).forEach(n => { if (von[n.toLowerCase()]) schlecht("Die Spalte " + n + " gibt es noch — sie sollte umbenannt bzw. entfernt sein."); else gut("Spalte " + n + " ist weg"); });
     if (spec.alle !== false) {
       const extra = sp.filter(s => !Object.keys(spec.spalten).some(n => n.toLowerCase() === s.name.toLowerCase()));
       if (extra.length) info("Zusätzliche Spalte(n), nicht verlangt: " + extra.map(s => s.name).join(", ") + ".");
@@ -1080,8 +1170,23 @@
           r = { ok: false, text: "Fast: Die Werte stimmen nur bis auf Leerzeichen am Anfang oder Ende. Prüfe die Zeichenzahl bei LEFT/RIGHT — oft ist sie um 1 zu groß, weil das Leerzeichen mitgezählt wird." };
       } else if (art === "dml") {
         const start = (() => { const d = dbFuer(a); try { return schnappschuss(d); } finally { d.close(); } })();
-        r = vergleicheStand(soll.stand, schnappschuss(db), start);
-      } else if (art === "ddl") r = pruefeAufbau(db, a.ddl, lauf.fk);
+        const ist = schnappschuss(db);
+        r = vergleicheStand(soll.stand, ist, start);
+        /* Text-Aufgaben (TRIM): Leerzeichen am Rand zählen */
+        if (r.ok && a.genau) {
+          const genau = st => JSON.stringify(Object.keys(st).sort().map(t => st[t].zeilen.map(z => JSON.stringify(z)).sort()));
+          if (genau(soll.stand) !== genau(ist)) r = { ok: false, text: "Fast: Die Werte stimmen nur bis auf Leerzeichen am Anfang oder Ende. Hast du TRIM vergessen?" };
+        }
+      } else if (art === "ddl") {
+        r = pruefeAufbau(db, a.ddl, lauf.fk);
+        if (a.ddl.datenBleiben) {
+          const anzahl = d => { const t = tabelleFinden(d, a.ddl.tabelle, "table"); return t ? d.exec("SELECT COUNT(*) FROM " + q(t))[0].values[0][0] : -1; };
+          const vorher = (() => { const d = dbFuer(a); try { return anzahl(d); } finally { d.close(); } })(), jetzt = anzahl(db);
+          (r.punkte = r.punkte || []).push(jetzt === vorher ? { ok: true, text: "Daten erhalten: " + jetzt + " Zeilen" } : { ok: false, text: "Es sind " + jetzt + " statt " + vorher + " Zeilen — die Daten müssen erhalten bleiben (kein DROP TABLE + neu anlegen)." });
+          if (jetzt !== vorher) { r.ok = false; r.text = "Die Spalte stimmt vielleicht, aber Daten sind verloren gegangen."; }
+        }
+      }
+      else if (art === "index") r = pruefeIndex(db, a.index);
       else if (art === "view") {
         const v = tabelleFinden(db, a.view, "view");
         if (!v) r = { ok: false, text: tabelleFinden(db, a.view, "table") ? a.view + " ist eine Tabelle — gefragt ist eine Sicht: CREATE VIEW " + a.view + " AS SELECT …" : "Die Sicht " + a.view + " gibt es noch nicht (Name genau so schreiben)." };
