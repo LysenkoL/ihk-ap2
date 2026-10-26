@@ -31,6 +31,19 @@
 
   const THEMEN = () => root.AP2_THEMEN || [];
   const thema = id => THEMEN().find(t => t.id === id) || null;
+  /* Teile für den Filter der Übersicht: „GA1+GA2“ gehört zu beiden GA */
+  const TEILE = [["alle", "Alle"], ["ga1", "GA1"], ["ga2", "GA2"], ["wiso", "WiSo"]];
+  const teileVon = t => String((t && t.teil) || "").split("+").map(x => x.trim().toLowerCase()).filter(Boolean);
+  const imTeil = (t, teil) => !teil || teil === "alle" || teileVon(t).includes(teil);
+  const themenIm = teil => THEMEN().filter(t => imTeil(t, teil));
+  /** Quiz über die Themen eines Teils, z. B. das WiSo-Quiz */
+  function teilQuiz(teil, anzahl) {
+    const ids = themenIm(teil).map(t => t.id);
+    if (!ids.length) return false;
+    const name = (TEILE.find(x => x[0] === teil) || [teil, teil])[1];
+    quizStarten(runde({ themen: ids, anzahl: anzahl || 10 }), teil === "alle" ? "Quiz quer durch alle Themen" : name + "-Quiz: " + (anzahl || 10) + " Fragen gemischt");
+    return true;
+  }
   function alleFragen() {
     const out = [];
     THEMEN().forEach(t => (t.quiz || []).forEach(q => out.push(Object.assign({ thema: t.id, themaTitel: t.titel }, q))));
@@ -216,7 +229,11 @@
     root.scrollTo(0, 0);
   }
 
-  function oeffnen(id) { zeige(id ? { art: "thema", id } : { art: "liste" }); }
+  function oeffnen(id) {
+    if (id && TEILE.some(x => x[0] === id)) { zeige({ art: "liste", teil: id }); return; }
+    zeige(id ? { art: "thema", id } : { art: "liste", teil: LISTE_TEIL });
+  }
+  let LISTE_TEIL = "alle";
 
   /* -------------------------------------------------------- Übersicht */
   function zeichneListe() {
@@ -231,10 +248,17 @@
     [["richtig", z.richtig], ["falsch", z.falsch]].forEach(([c, n]) => { if (!n) return; const sp = el("span", "ln-" + c); sp.style.width = (n / Math.max(1, z.gesamt) * 100) + "%"; bal.appendChild(sp); });
     k.appendChild(bal);
     k.appendChild(el("p", "ln-zahlen", z.richtig + " von " + z.gesamt + " Fragen richtig · " + z.falsch + " falsch · " + z.neu + " neu"));
+    const teil = TEILE.some(x => x[0] === VIEW.teil) ? VIEW.teil : "alle";
+    LISTE_TEIL = teil;
     const st = el("div", "ln-knoepfe");
-    const q1 = el("button", "btn primary", "Quiz: 10 Fragen gemischt"); q1.type = "button";
-    q1.onclick = () => quizStarten(runde({ anzahl: 10 }), "Quiz quer durch alle Themen");
+    const q1 = el("button", "btn primary", teil === "alle" ? "Quiz: 10 Fragen gemischt" : (TEILE.find(x => x[0] === teil) || [])[1] + "-Quiz: 10 Fragen"); q1.type = "button";
+    q1.onclick = () => teilQuiz(teil, 10);
     st.appendChild(q1);
+    if (teil === "alle" && themenIm("wiso").length) {
+      const qw = el("button", "btn", "WiSo-Quiz: 10 Fragen"); qw.type = "button";
+      qw.onclick = () => teilQuiz("wiso", 10);
+      st.appendChild(qw);
+    }
     if (z.falsch) {
       const q2 = el("button", "btn", "Falsche wiederholen (" + z.falsch + ")"); q2.type = "button";
       q2.onclick = () => quizStarten(runde({ anzahl: 20, nurFalsch: true }), "Falsch beantwortete Fragen");
@@ -248,8 +272,22 @@
     k.appendChild(st);
     w.appendChild(k);
 
+    const filter = el("div", "ln-filter"); filter.setAttribute("role", "group"); filter.setAttribute("aria-label", "Темы по частям экзамена");
+    TEILE.forEach(([id, name]) => {
+      const b = el("button", "ln-chip" + (teil === id ? " an" : ""));
+      b.type = "button"; b.setAttribute("aria-pressed", teil === id ? "true" : "false");
+      b.appendChild(document.createTextNode(name + " "));
+      b.appendChild(el("span", "ln-chip-n", String(themenIm(id).length)));
+      b.onclick = () => { if (teil !== id) zeige({ art: "liste", teil: id }); };
+      filter.appendChild(b);
+    });
+    w.appendChild(filter);
+    if (teil !== "alle") w.appendChild(el("p", "ln-info ln-filter-info", teil === "wiso"
+      ? "WiSo — Wirtschafts- und Sozialkunde: 60 Minuten, Aufgaben mit Antwortauswahl."
+      : "Темы «GA1+GA2» показаны в обеих частях: они встречаются и в GA1, и в GA2."));
+
     const gitter = el("div", "ln-gitter");
-    THEMEN().forEach(t => {
+    themenIm(teil).forEach(t => {
       const zt = zahlen((t.quiz || []).map(q => ({ id: q.id })));
       const c = el("button", "ln-thema" + (gelesen(t.id) ? " gelesen" : "")); c.type = "button";
       const oben = el("span", "ln-t-oben");
@@ -328,7 +366,8 @@
       t.tabelle.kopf.forEach(h => tr0.appendChild(el("th", null, h)));
       thead.appendChild(tr0); table.appendChild(thead);
       const tbody = el("tbody");
-      t.tabelle.zeilen.forEach(z => { const tr1 = el("tr"); z.forEach((c, j) => tr1.appendChild(el(j === 0 ? "th" : "td", null, c))); tbody.appendChild(tr1); });
+      /* data-label: auf dem Handy wird jede Zeile zur Karte, die Spaltennamen stehen vor den Werten */
+      t.tabelle.zeilen.forEach(z => { const tr1 = el("tr"); z.forEach((c, j) => { const td = el(j === 0 ? "th" : "td", null, c); if (j > 0 && t.tabelle.kopf[j]) td.setAttribute("data-label", t.tabelle.kopf[j]); tr1.appendChild(td); }); tbody.appendChild(tr1); });
       table.appendChild(tbody); sc.appendChild(table); tb.appendChild(sc);
       w.appendChild(tb);
     }
@@ -362,7 +401,7 @@
     }
 
     const nav = el("div", "ln-nav");
-    const zur = el("button", "btn ghost", "← Alle Themen"); zur.type = "button"; zur.onclick = () => zeige({ art: "liste" });
+    const zur = el("button", "btn ghost", "← Alle Themen"); zur.type = "button"; zur.onclick = () => zeige({ art: "liste", teil: LISTE_TEIL });
     nav.appendChild(zur);
     if (i < T.length - 1) {
       const n = el("button", "btn ghost", T[i + 1].titel + " →"); n.type = "button"; n.onclick = () => oeffnen(T[i + 1].id);
@@ -496,7 +535,7 @@
         st.appendChild(b4);
       }
     }
-    const b3 = el("button", "btn ghost", "Alle Themen"); b3.type = "button"; b3.onclick = () => zeige({ art: "liste" });
+    const b3 = el("button", "btn ghost", "Alle Themen"); b3.type = "button"; b3.onclick = () => zeige({ art: "liste", teil: LISTE_TEIL });
     st.appendChild(b3);
     k.appendChild(st);
     w.appendChild(k);
@@ -594,7 +633,7 @@
     else einhaengen();
   }
 
-  const api = { THEMEN, alleFragen, frage, pruefe, runde, zahlen, standVon, falsche, box, oeffnen, quizStarten,
+  const api = { THEMEN, TEILE, imTeil, themenIm, teilQuiz, alleFragen, frage, pruefe, runde, zahlen, standVon, falsche, box, oeffnen, quizStarten,
                 stand: () => ST, antwortEintragen, WIEDER };
   root.GENLERNEN = api;
   if (typeof module === "object" && module.exports) module.exports = api;

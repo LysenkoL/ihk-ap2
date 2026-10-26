@@ -676,6 +676,7 @@ window.GENSTART = (function () {
     kachel("Arbeitsblatt", z.vorlagen + " Aufgabentypen", assistent, "blatt");
     kachel("Gemischte Übung", "GA1/GA2 · 90 Min. · kein Prüfungsnachweis", simulation, "sim");
     if (window.GENKATALOG2) kachel("Каталог AP2", "что учить · где тренировать · мой статус", () => window.GENKATALOG2.oeffnen(), "katalog");
+    if (window.GENLERNEN && window.GENLERNEN.teilQuiz && window.GENLERNEN.themenIm("wiso").length) kachel("WiSo-Quiz", "10 Fragen · " + window.GENLERNEN.themenIm("wiso").length + " Themen WiSo", () => window.GENLERNEN.teilQuiz("wiso", 10), "check");
     if (window.GENLERNEN) kachel("Themen & Quiz", (window.AP2_THEMEN || []).length + " Themen · erklärt", () => window.GENLERNEN.oeffnen(), "lernen");
     if (window.GENALGO) kachel("Sortieren & Suchen", "Schritt für Schritt", () => window.GENALGO.oeffnen(), "sortieren");
     if (window.GENCODE) kachel("Код с автопроверкой", "Entwickeln Sie eine Methode · 10 задач", () => window.GENCODE.oeffnen(), "pseudo");

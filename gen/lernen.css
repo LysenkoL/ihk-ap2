@@ -60,6 +60,26 @@
 .ln-tab th, .ln-tab td{border:1px solid var(--rule); padding:7px 9px; text-align:left; vertical-align:top; line-height:1.4}
 .ln-tab thead th{background:var(--field); font-weight:800}
 .ln-tab tbody th{font-weight:700; background:var(--field)}
+/* Handy: jede Tabellenzeile als Karte, ohne waagrechtes Scrollen */
+@media (max-width:540px){
+  .ln-tab-scroll{overflow-x:visible; margin:0}
+  .ln-tab{min-width:0}
+  .ln-tab thead{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+  .ln-tab, .ln-tab tbody, .ln-tab tr, .ln-tab th, .ln-tab td{display:block; width:auto}
+  .ln-tab tr{border:1px solid var(--rule); border-radius:10px; margin:0 0 10px; overflow:hidden}
+  .ln-tab tbody th, .ln-tab td{border:0; overflow-wrap:anywhere}
+  .ln-tab tbody th{padding:8px 10px; font-size:14px}
+  .ln-tab td{padding:6px 10px; border-top:1px solid var(--rule-soft, var(--rule))}
+  .ln-tab td[data-label]::before{content:attr(data-label); display:block; font-size:11.5px; font-weight:700; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.03em; margin-bottom:2px}
+}
+.ln-filter{display:flex; flex-wrap:wrap; gap:6px; margin:2px 0 10px}
+.ln-chip{min-height:40px; padding:6px 14px; border-radius:20px; border:1px solid var(--rule); background:var(--card); color:var(--ink);
+  font:inherit; font-size:14px; font-weight:600; cursor:pointer}
+.ln-chip-n{color:var(--muted); font-size:12px; font-weight:500}
+.ln-chip.an{background:var(--pruefer); border-color:var(--pruefer); color:#fff}
+.ln-chip.an .ln-chip-n{color:#fff; opacity:.85}
+.ln-filter-info{margin:-4px 0 10px}
 .ln-code{font-family:var(--data, ui-monospace, Menlo, Consolas, monospace); font-size:13px; line-height:1.5; background:var(--field);
   border:1px solid var(--rule); border-radius:9px; padding:10px 12px; margin:6px 0 0; overflow-x:auto; white-space:pre; color:var(--ink);
   -webkit-overflow-scrolling:touch; max-width:100%}

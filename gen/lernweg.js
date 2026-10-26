@@ -431,6 +431,17 @@
     if(u.practice&&root.GENPRAXIS)practice.appendChild(button("Открыть практику",()=>root.GENPRAXIS.oeffnen(u.practice),true));
     if(u.trainer==="sql"&&root.GENSQL)practice.appendChild(button("Открыть SQL-тренажёр",()=>root.GENSQL.oeffnen(),true));
     if(u.trainer==="wiso"&&root.GENAZUBI)practice.appendChild(button("Открыть мои бланки WiSo",()=>root.GENAZUBI.oeffnen(null),true));
+    if(u.trainer==="wiso"&&root.GENLERNEN&&root.GENLERNEN.themenIm){
+      const wt=root.GENLERNEN.themenIm("wiso");
+      if(wt.length){
+        const th=el("div","lw-wiso-theorie");th.appendChild(el("h3",null,"Теория WiSo: "+wt.length+" тем"));
+        th.appendChild(el("p","lw-muted","Каждая тема: объяснение простыми немецкими предложениями, русские термины и квиз. Начни с темы, где была последняя ошибка в бланке."));
+        const acts=el("div","lw-actions");acts.appendChild(button("WiSo-квиз: 10 вопросов",()=>root.GENLERNEN.teilQuiz("wiso",10)));
+        acts.appendChild(button("Все темы WiSo",()=>root.GENLERNEN.oeffnen("wiso")));th.appendChild(acts);
+        const ul=el("ul","lw-units");wt.forEach(t=>{const li=el("li");const b=button(t.ru||t.titel,()=>root.GENLERNEN.oeffnen(t.id));li.appendChild(b);ul.appendChild(li);});
+        th.appendChild(ul);practice.appendChild(th);
+      }
+    }
     if(u.theory&&root.GENLERNEN)practice.appendChild(button("Теория и немецкий квиз",()=>root.GENLERNEN.oeffnen(u.theory)));
     if(u.id==="lesen"&&root.GENOPUEB)practice.appendChild(button("Тренажёр операторов: что от меня хотят",()=>root.GENOPUEB.oeffnen()));
     if(u.id==="projekt") {
