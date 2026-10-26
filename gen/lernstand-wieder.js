@@ -3,6 +3,9 @@
 "use strict";
 (function (root) {
   const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK", trace: "Schreibtischtest" };
+  /* Übungen mit neuen Zahlen (gen/uebung-gen.js): source "gen:<sammlung>" */
+  const quelleName = s => Object.prototype.hasOwnProperty.call(QUELLEN, s) ? QUELLEN[s]
+    : /^gen:/.test(String(s)) ? (((root.GENUEBGEN && root.GENUEBGEN.sammlungen().find(x => "gen:" + x.id === s)) || {}).titel || "Упражнение") : null;
   const HILFE = { selbst: "самостоятельно", hilfe: "с помощью", loesung: "с открытым решением" };
   const ART = { auto: "автопроверка", recognition: "узнавание ответа", selbst: "самооценка" };
   const MODI = { bubble: "Bubble Sort", selection: "Selection Sort", insertion: "Insertion Sort", binaer: "Binäre Suche", linear: "Lineare Suche" };
@@ -20,7 +23,7 @@
     const events = root.GENLERNSTAND ? root.GENLERNSTAND.list() : [], ids = new Map(), offen = new Map();
     events.forEach(e => { if (e && e.id) ids.set(e.id, (ids.get(e.id) || 0) + 1); });
     events.slice().sort((a, b) => ((a && a.t) || 0) - ((b && b.t) || 0)).forEach(e => {
-      if (!e || !Object.prototype.hasOwnProperty.call(QUELLEN, e.source) || !e.id || ids.get(e.id) !== 1 || !Object.prototype.hasOwnProperty.call(ART, e.kind) || !Object.prototype.hasOwnProperty.call(HILFE, e.support) ||
+      if (!e || !quelleName(e.source) || !e.id || ids.get(e.id) !== 1 || !Object.prototype.hasOwnProperty.call(ART, e.kind) || !Object.prototype.hasOwnProperty.call(HILFE, e.support) ||
           typeof e.task !== "string" || !Number.isFinite(e.correct) || !Number.isFinite(e.max) || e.max <= 0 || e.correct < 0 || e.correct > e.max) return;
       const key = JSON.stringify([e.source, e.task, e.kind]);
       if (e.correct < e.max) offen.set(key, e);
@@ -28,13 +31,13 @@
       else if ((e.support !== "selbst" || e.familiar) && !offen.has(key)) offen.set(key, e);
     });
     return Array.from(offen.values()).map(e => {
-      let titel = QUELLEN[e.source];
+      let titel = quelleName(e.source);
       try { titel = material(e).title || titel; } catch (error) { }
       const pruefen = e.correct === e.max;
       const d = new Date(e.t); d.setDate(d.getDate() + 1);
       const faellig = pruefen ? d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0") : undefined;
       return { id: "ls:" + e.source + ":" + e.id, event: e, verlust: e.max - e.correct, pruefen, faellig,
-        titel, wo: QUELLEN[e.source] + " · " + ART[e.kind] + " · " + HILFE[e.support],
+        titel, wo: quelleName(e.source) + " · " + ART[e.kind] + " · " + HILFE[e.support],
         punkte: e.correct + "/" + e.max + " · " + ART[e.kind] + " · " + HILFE[e.support] };
     });
   }
@@ -57,7 +60,7 @@
   function material(e) {
     const s = original(e);
     if (["code", "normal", "operatoren"].includes(e.source) && s) return {
-      title: s.title || QUELLEN[e.source], question: s.question, code: s.signatur, solution: s.solution,
+      title: s.title || quelleName(e.source), question: s.question, code: s.signatur, solution: s.solution,
       explanation: s.explanation, notice: s.notice
     };
     if (e.source === "code") {
@@ -100,7 +103,9 @@
       if (v) return { title: v.title, question: v.control, solution: v.answer, rubric: v.rubric,
         notice: s ? "Разбор сохранён вместе с твоей самооценкой. Это не автоматическая проверка смысла ответа." : "Текущая версия занятия: снимок прежнего условия не сохранён." };
     }
-    return { title: QUELLEN[e.source], question: "Условие этой попытки здесь недоступно. Сохранившийся ответ можно сравнить с новой задачей в тренажёре.",
+    if (/^gen:/.test(e.source) && s && s.type === "gen") return { title: s.title, question: s.question, solution: s.solution, explanation: s.explanation,
+      notice: "Тот же вариант (те же числа) можно открыть снова и решить без подсказки." };
+    return { title: quelleName(e.source), question: "Условие этой попытки здесь недоступно. Сохранившийся ответ можно сравнить с новой задачей в тренажёре.",
       solution: "Точный разбор не сохранён. Открой тренажёр и выбери новую задачу этого навыка." };
   }
   const append = (target, tag, value, cls) => {
@@ -142,6 +147,7 @@
     if (e.source === "lernweg" && root.GENLERNWEG) return root.GENLERNWEG.oeffnen(e.task);
     if (e.source === "code" && root.GENCODE) return root.GENCODE.oeffnen(e.task);
     if (e.source === "trace" && root.GENTRACE) return root.GENTRACE.oeffnen(e.task);
+    if (/^gen:/.test(e.source) && root.GENUEBGEN) { const s = e.snapshot || {}, [aid, seed] = String(e.task).split(":"); return root.GENUEBGEN.oeffnen(s.sammlung || e.source.slice(4), s.aufgabe || aid, s.seed || Number(seed) || undefined); }
     if (e.source === "normal" && root.GENNORMAL) { const [id, step] = e.task.split(":"); return root.GENNORMAL.oeffnen(id, step); }
     if (e.source === "operatoren" && root.GENOPUEB) return root.GENOPUEB.oeffnen({task:e.task,ref:(e.answers||{}).ref,event:e});
   }
