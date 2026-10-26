@@ -67,7 +67,7 @@
     const fNeuer = (f.zuletzt || 0) > (l.zuletzt || 0);
     const neuer = fNeuer ? f : l, aelter = fNeuer ? l : f;
     const out = Object.assign({}, aelter, neuer);
-    const felder = ["a", "p", "auto", "auf", "hilfe"], ids = new Set();
+    const felder = ["a", "p", "auto", "auf", "hilfe", "pruefpunkte", "pruefpunkteLegacy"], ids = new Set();
     felder.forEach(feld => {
       out[feld] = {};
       [l, f].forEach(z => Object.keys(istObj(z[feld]) ? z[feld] : {}).forEach(id => ids.add(id)));
@@ -275,6 +275,89 @@
     return out;
   }
 
+  /* Receipts acknowledge the exact immutable event, not just its ID. Two
+     different answers with an accidentally identical ID remain two records. */
+  function historieVereinigen(l, f, quittung) {
+    const ohne = x => { const z = Object.assign({}, x); delete z[quittung]; return inhalt(z); };
+    const seen = new Map();
+    eindeutige(l, f).forEach(x => {
+      const k = istObj(x) ? ohne(x) : inhalt(x), alt = seen.get(k);
+      if (!seen.has(k)) seen.set(k, x);
+      else if (istObj(x) && x[quittung] && !alt[quittung]) seen.set(k, Object.assign({}, alt, { [quittung]: true }));
+    });
+    return Array.from(seen.values()).sort((a, z) => ((a && a.t) || 0) - ((z && z.t) || 0));
+  }
+
+  /* Keep complete drafts together (answer, help and assessment). Never
+     apply the assessment of the losing draft to the winning answer. */
+  function entwurfStand(x, y, lm, fm, b, archivFelder = []) {
+    const snapshot = v => {
+      const s = Object.assign({}, v);
+      ["konflikte", "_syncZeit"].concat(archivFelder).forEach(k => delete s[k]);
+      return s;
+    };
+    const a = snapshot(x), z = snapshot(y);
+    const xt = x.t || x._syncZeit || lm || 0, yt = y.t || y._syncZeit || fm || 0;
+    const out = Object.assign({}, yt > xt ? y : x);
+    let konflikte = eindeutige(x.konflikte, y.konflikte);
+    if (inhalt(a) !== inhalt(z)) { konflikte = eindeutige(konflikte, [a, z]); b.konflikt++; }
+    if (konflikte.length) out.konflikte = konflikte;
+    // Legacy drafts without per-task times retain their source-key time.
+    if (!out.t) out._syncZeit = Math.max(xt, yt);
+    if (inhalt(out) !== inhalt(x)) b.geaendert++;
+    return out;
+  }
+
+  function aufgabenVereinigen(l, f, merge, b) {
+    const out = Object.assign({}, istObj(l) ? l : {});
+    Object.keys(istObj(f) ? f : {}).forEach(id => {
+      if (!hat(out, id)) { out[id] = f[id]; b.neu++; }
+      else if (istObj(out[id]) && istObj(f[id]) && inhalt(out[id]) !== inhalt(f[id])) out[id] = merge(out[id], f[id]);
+    });
+    return out;
+  }
+
+  function codeStand(l, f, lm, fm, b) {
+    const out = Object.assign({}, fm > lm ? l : f, fm > lm ? f : l);
+    out.aufgaben = aufgabenVereinigen(l.aufgaben, f.aufgaben, (x, y) => {
+      const z = entwurfStand(x, y, lm, fm, b, ["historie"]);
+      z.historie = historieVereinigen(x.historie, y.historie, "erfasst");
+      return z;
+    }, b);
+    return out;
+  }
+
+  function normalStand(l, f, lm, fm, b) {
+    const out = Object.assign({}, fm > lm ? l : f, fm > lm ? f : l);
+    out.sz = aufgabenVereinigen(l.sz, f.sz, (x, y) => Object.assign({}, fm > lm ? x : y, fm > lm ? y : x, {
+      s: aufgabenVereinigen(x.s, y.s, (a, z) => entwurfStand(a, z, lm, fm, b), b)
+    }), b);
+    out.offen = eindeutige(l.offen, f.offen);
+    return out;
+  }
+
+  function operatorenStand(l, f, lm, fm, b) {
+    const out = Object.assign({}, fm > lm ? l : f, fm > lm ? f : l);
+    ["ops", "typen"].forEach(feld => {
+      out[feld] = aufgabenVereinigen(l[feld], f[feld], (x, y) => Object.assign({}, x, y, {
+        r: Math.max(x.r || 0, y.r || 0), f: Math.max(x.f || 0, y.f || 0)
+      }), b);
+    });
+    out.verwechslung = Object.assign({}, l.verwechslung || {});
+    Object.keys(f.verwechslung || {}).forEach(k => { out.verwechslung[k] = Math.max(out.verwechslung[k] || 0, f.verwechslung[k] || 0); });
+    // Old formats have no success tombstone: retain known errors conservatively.
+    out.fehler = jeEintrag(l.fehler || {}, f.fehler || {}, b, "t");
+    out.runden = eindeutige(l.runden, f.runden).sort((a, z) => ((a && a.t) || 0) - ((z && z.t) || 0));
+    const zeit = r => Math.max((r && r.t) || 0, ...((r && r.antworten) || []).map(a => (a && a.t) || 0));
+    const x = l.runde, y = f.runde;
+    out.runde = x && y ? (zeit(y) > zeit(x) || (zeit(y) === zeit(x) && fm > lm) ? y : x) : x || y || null;
+    let konflikte = eindeutige(l.rundenKonflikte, f.rundenKonflikte);
+    if (x && y && inhalt(x) !== inhalt(y)) { konflikte = eindeutige(konflikte, [x, y]); b.konflikt++; }
+    if (konflikte.length) out.rundenKonflikte = konflikte;
+    if (inhalt(out) !== inhalt(l)) b.geaendert++;
+    return out;
+  }
+
   /* Je Eintrag gewinnt der zuletzt geänderte (Zeitstempel im Eintrag selbst):
      „Fehler durchgehen“ (ap2:analyse → k[id].t) und Papier-Fehler
      (ap2:papier → [id].geaendert). Sonst gewänne das ganze Objekt der
@@ -345,6 +428,14 @@
       out = lernwegStand(l, f, b);
     } else if (k === "ap2:praxis" && istObj(l) && istObj(f)) {
       out = praxisStand(l, f, fNeuer, b);
+    } else if (k === "ap2:code" && istObj(l) && istObj(f)) {
+      out = codeStand(l, f, lm, fm, b);
+    } else if (k === "ap2:normal" && istObj(l) && istObj(f)) {
+      out = normalStand(l, f, lm, fm, b);
+    } else if (k === "ap2:opueb" && istObj(l) && istObj(f)) {
+      out = operatorenStand(l, f, lm, fm, b);
+    } else if (k === "ap2:ai:chats" && istObj(l) && istObj(f)) {
+      out = jeEintrag(l, f, b, "t");
     } else if (LISTEN[k] && Array.isArray(l) && Array.isArray(f)) {
       const id = LISTEN[k], pos = {};
       out = l.slice();
@@ -424,6 +515,7 @@
   function bereichVon(k) {
     if (/^ap2:azubi:azprog/.test(k)) return "Prognose-Prüfungen";
     if (k === "ap2:pruefen:chats") return "Claude-Chats je Prüfung";
+    if (k === "ap2:ai:chats") return "KI-Chats je Prüfung";
     if (/^ap2:azubi:/.test(k) && !nurHier(k)) return "Azubi-Navigator";
     if (k === "ap2:answers" || k === "ap2:scores" || k === "ap2:timer") return "Prüfungen (Antworten, Punkte)";
     if (k === "ap2:attempts" || k === "ap2:archiv") return "Durchgänge und Archiv";
@@ -442,6 +534,9 @@
     if (k === "ap2:lernstand") return "Lernbeobachtungen";
     if (k === "ap2:lernweg") return "Lernweg";
     if (k === "ap2:praxis") return "Selbständige Praxis";
+    if (k === "ap2:code") return "Code-Trainer";
+    if (k === "ap2:normal") return "Normalisierung";
+    if (k === "ap2:opueb") return "Operatoren";
     if (k === "ap2:algo") return "Sortieren & Suchen";
     if (k.indexOf("ap2:marker") === 0 || k === "ap2:lesezeichen") return "Markierungen und Lesezeichen";
     if (k === "ap2:zeit") return "Lernzeit";
@@ -552,7 +647,8 @@
       else if (d && d.typ === "ihk-ap2-fortschritt" && d.speicher) { speicher = d.speicher; von = "alte Sicherung"; }
       if (!speicher) { meldung("Diese Datei enthält keinen Stand der App.", true); return; }
       if (d.geraet && d.geraet.id && d.geraet.id === geraet().id) {
-        meldung("Diese Datei stammt von diesem Gerät selbst — nichts zu tun.", true); return;
+        if (!root.confirm || !root.confirm("Восстановить данные из резервной копии этого устройства? Недостающие записи будут добавлены, новые ответы останутся активными, а разные версии черновиков тренажёров сохранятся. Текущий прогресс будет сохранён для отмены.")) return;
+        von = "резервная копия этого устройства";
       }
       const lokal = alleWerte();
       const { schreiben, bericht } = mische(lokal, META, speicher, meta);

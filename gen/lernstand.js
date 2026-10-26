@@ -67,21 +67,27 @@
       if (!gueltig(e) || ids.get(e.id) > 1) return;
       let s = groups.get(e.topic);
       if (!s) {
-        s = { topic: e.topic, total: 0, independent: 0, assisted: 0, recognition: 0, selfRated: 0, weak: 0, selfWeak: 0, latest: 0, ratio: null, correct: 0, max: 0, tasks: new Map(), selfTasks: new Map() };
+        s = { topic: e.topic, total: 0, independent: 0, assisted: 0, recognition: 0, selfRated: 0, weak: 0, selfWeak: 0, latest: 0, ratio: null, correct: 0, max: 0, tasks: new Map(), selfTasks: new Map(), allTasks: new Set(), lastIndependent: new Map(), familiar: 0 };
         groups.set(e.topic, s);
       }
+      s.allTasks.add(e.source + ":" + e.task);
+      if (e.familiar) s.familiar++;
       s.total++; s.latest = Math.max(s.latest, e.t || 0);
       if (e.support !== "selbst") s.assisted++;
       if (e.kind === "recognition") s.recognition++;
       if (e.kind === "selbst") s.selfRated++;
-      if (e.kind === "auto" && e.support === "selbst") { s.independent++; s.correct += e.correct; s.max += e.max; }
+      if (e.kind === "auto" && e.support === "selbst" && !e.familiar) {
+        s.independent++; s.correct += e.correct; s.max += e.max;
+        const key = e.source + ":" + e.task, old = s.lastIndependent.get(key);
+        if (!old || (e.t || 0) >= (old.t || 0)) s.lastIndependent.set(key, e);
+      }
       if (e.kind !== "selbst") {
         const key = e.source + ":" + e.task, alt = s.tasks.get(key);
-        const rang = e.support === "selbst" ? 1 : 0, altRang = alt && alt.support === "selbst" ? 1 : 0;
+        const rang = e.support === "selbst" && !e.familiar ? 1 : 0, altRang = alt && alt.support === "selbst" && !alt.familiar ? 1 : 0;
         if (!alt || rang > altRang || (rang === altRang && (e.t || 0) >= (alt.t || 0))) s.tasks.set(key, e);
       } else {
         const key = e.source + ":" + e.task, alt = s.selfTasks.get(key);
-        const rang = e.support === "selbst" ? 1 : 0, altRang = alt && alt.support === "selbst" ? 1 : 0;
+        const rang = e.support === "selbst" && !e.familiar ? 1 : 0, altRang = alt && alt.support === "selbst" && !alt.familiar ? 1 : 0;
         if (!alt || rang > altRang || (rang === altRang && (e.t || 0) >= (alt.t || 0))) s.selfTasks.set(key, e);
       }
     });
@@ -89,6 +95,13 @@
       s.weak = Array.from(s.tasks.values()).filter(e => e.correct < e.max).length;
       s.selfWeak = Array.from(s.selfTasks.values()).filter(e => e.correct < e.max).length;
       s.ratio = s.max ? s.correct / s.max : null;
+      s.uniqueTasks = s.allTasks.size;
+      s.independentTasks = s.lastIndependent.size;
+      const latestIndependent = Array.from(s.lastIndependent.values());
+      const latestMax = latestIndependent.reduce((n, e) => n + e.max, 0);
+      s.latestIndependentRatio = latestMax ? latestIndependent.reduce((n, e) => n + e.correct, 0) / latestMax : null;
+      s.currentWeak = s.weak;
+      delete s.allTasks; delete s.lastIndependent;
       delete s.tasks; delete s.selfTasks; delete s.correct; delete s.max;
       return s;
     }).sort((a, b) => a.topic.localeCompare(b.topic));

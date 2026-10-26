@@ -6,9 +6,9 @@
   const units=()=>root.AP2_LERNWEG||[];
   function next(list,state,observed) {
     const done=(state||{}).done||{};
-    const pending=list.find(u=>!done[u.id]);
-    if(pending) return pending;
-    return list.find(u=>(observed||[]).some(s=>s.topic===u.topic&&(s.weak||s.selfWeak))||((state.checks||{})[u.id]&&state.checks[u.id].correct<state.checks[u.id].max))||null;
+    const weak=list.find(u=>(observed||[]).some(s=>s.topic===u.topic&&(s.weak||s.selfWeak))||((state&&state.checks&&state.checks[u.id])&&state.checks[u.id].correct<state.checks[u.id].max));
+    if(weak) return weak;
+    return list.find(u=>!done[u.id])||null;
   }
   function sessionMinutes(profile) { const n=Number((profile||{}).minutes); return [10,20,40].includes(n)?n:20; }
   function load() {
@@ -112,10 +112,35 @@
     return "✓ Разобрано "+datum(d)+(c&&c.max?" · самопроверка "+c.correct+" из "+c.max:" · отмечено без самопроверки");
   }
   const zumTraining={titel:"Что тренировать и пробные экзамены",tun:()=>oeffnen(null,false,"lwTrain")};
-  function recommend() {
+  function recommend(options) {
+    if (!(options && options.ohneWieder) && root.GENWIEDER && typeof root.GENWIEDER.faellig === "function") {
+      const f = root.GENWIEDER.faellig();
+      if (f && f.length) {
+        const item = f[0];
+        return {
+          titel: "Повторить ошибки: " + (item.titel || "разобранная ошибка"),
+          warum: "Сегодня назначено повторение ошибок, чтобы закрепить материал.",
+          minuten: 10,
+          knopf: "Повторить",
+          tun: () => root.GENWIEDER.starten(f.slice(0, 3)),
+          ziel: { source: "wiederholung", task: item.id },
+          zusatz: zumTraining
+        };
+      }
+    }
     const u=next(units(),state,observed());
-    if(!u) return {titel:"Повтори на новом примере",warum:"Вводный маршрут пройден. Выбери самостоятельную задачу или вернись к трудной теме.",minuten:sessionMinutes(state.profile),knopf:"Практика",tun:()=>root.GENPRAXIS?root.GENPRAXIS.oeffnen():oeffnen(),zusatz:zumTraining};
-    return {titel:u.title,warum:u.why,minuten:sessionMinutes(state.profile),knopf:state.done[u.id]?"Повторить тему":"Продолжить занятие",tun:()=>oeffnen(u.id),zusatz:zumTraining};
+    if(!u) return {titel:"Повтори на новом примере",warum:"Вводный маршрут пройден. Выбери самостоятельную задачу или вернись к трудной теме.",minuten:sessionMinutes(state.profile),knopf:"Практика",tun:()=>root.GENPRAXIS?root.GENPRAXIS.oeffnen():oeffnen(),ziel:{source:"praxis"},zusatz:zumTraining};
+    return {titel:u.title,warum:u.why,minuten:sessionMinutes(state.profile),knopf:state.done[u.id]?"Повторить тему":"Продолжить занятие",tun:()=>oeffnen(u.id),ziel:{source:"lernweg",task:u.id},zusatz:zumTraining};
+  }
+  function zielOeffnen(ziel) {
+    if (!ziel) return;
+    if (ziel.source === "wiederholung" && root.GENWIEDER && root.GENWIEDER.starten) return root.GENWIEDER.starten();
+    if (ziel.source === "lernweg") return oeffnen(ziel.task);
+    if (ziel.source === "praxis" && root.GENPRAXIS) return root.GENPRAXIS.oeffnen(ziel.task);
+    if (ziel.source === "code" && root.GENCODE) return root.GENCODE.oeffnen(ziel.task);
+    if (ziel.source === "normal" && root.GENNORMAL) return root.GENNORMAL.oeffnen(ziel.task);
+    if (ziel.source === "operatoren" && root.GENOPUEB) return root.GENOPUEB.oeffnen(ziel.task);
+    return oeffnen();
   }
   /* ---- «Что тренировать»: частые темы экзаменов, пробные бланки, повтор ---- */
   const balle=n=>{const a=n%10,b=n%100;return a===1&&b!==11?"балл":a>=2&&a<=4&&(b<12||b>14)?"балла":"баллов";};
@@ -418,7 +443,7 @@
     root.addEventListener("popstate",e=>{if(e.state&&e.state.seite==="scLernweg")oeffnen(e.state.lw,true);});
     if(root.GENSTART)root.GENSTART.kopfAktualisieren();
   }
-  const api={next,sessionMinutes,oeffnen,empfehlung:recommend,liste:units,stand:()=>clone(state),
+  const api={next,sessionMinutes,oeffnen,empfehlung:recommend,zielOeffnen,liste:units,stand:()=>clone(state),
     beginnen,entwurf,hilfe,abgeben,rubrik,abschliessen,erneut,markieren,statusText,pruefungsPlan,quelle,startThema,themaInfo,aufgabeStand,
     fehler:()=>readError||saveError};
   root.GENLERNWEG=api;

@@ -215,7 +215,7 @@
       }
       const st = S.k[x.id] || null;
       x.st = st;
-      x.faellig = st && st.f ? st.f : h;
+      x.faellig = st && st.f ? st.f : x.faellig || h;
       x.neu = !st;
       return x;
     }).filter(x => !(x.st && x.st.raus)).sort(prio);

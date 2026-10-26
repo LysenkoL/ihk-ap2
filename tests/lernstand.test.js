@@ -62,3 +62,19 @@ assert.strictEqual(voll.api.list().length, 1, "bei vollem Speicher bleibt die Be
 assert(voll.alerts.some(x => x.role === "alert" && /не сохран/i.test(x.textContent)), "sichtbare Fehlermeldung statt stiller Erfolg");
 assert.strictEqual(voll.api.record(v.event).ok, false, "wiederholter Speicherversuch meldet keinen falschen Erfolg");
 console.log("lernstand: unveränderliche Beobachtungen, Hilfe getrennt, ehrliche Quote, Speicherfehler OK");
+
+// Repeating one easy task does not increase unique-task evidence; latest independent result wins.
+const unique = laden();
+const ev = { topic: "algo", source: "code", task: "one", correct: 1, max: 1, support: "selbst", kind: "auto" };
+for (let i = 0; i < 6; i++) unique.api.record(Object.assign({}, ev, { id: "u" + i, t: i + 1 }));
+unique.api.record(Object.assign({}, ev, { id: "u6", t: 7, correct: 0 }));
+unique.api.record(Object.assign({}, ev, { id: "u7", t: 8, familiar: true }));
+unique.api.record(Object.assign({}, ev, { id: "u8", task: "two", t: 9, support: "hilfe" }));
+const us = unique.api.summary()[0];
+assert.strictEqual(us.total, 9);
+assert.strictEqual(us.uniqueTasks, 2);
+assert.strictEqual(us.independentTasks, 1);
+assert.strictEqual(us.latestIndependentRatio, 0);
+assert.strictEqual(us.currentWeak, 1, "familiar success does not erase a previous independent failure");
+assert.strictEqual(us.familiar, 1);
+assert.strictEqual(us.independent, 7, "familiar practice is counted separately");

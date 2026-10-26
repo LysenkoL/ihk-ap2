@@ -418,7 +418,14 @@
       inhalt.appendChild(ul);
       if (opt.mitLoesung === false) inhalt.appendChild(el("p", "pf-klein", "Stichworte der Musterlösung zeigt der Check erst nach „Lösung zeigen“."));
 
-      inhalt.appendChild(claudeTeil({ frage, loesung, hinweis, punkte: opt.punkte, pruefung: opt.pruefung, antwort }, gruppe));
+      if (root.GENAICHAT && typeof root.GENAICHAT.controls === "function") {
+        inhalt.appendChild(root.GENAICHAT.controls({
+          group: gruppe,
+          buildText: () => claudeText({ frage, loesung, hinweis, punkte: opt.punkte, pruefung: opt.pruefung, antwort })
+        }));
+      } else {
+        inhalt.appendChild(claudeTeil({ frage, loesung, hinweis, punkte: opt.punkte, pruefung: opt.pruefung, antwort }, gruppe));
+      }
     };
     knopf.onclick = () => {
       const auf = inhalt.hidden;

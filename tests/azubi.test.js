@@ -337,6 +337,15 @@ assert.strictEqual(A.paketAusText("window.IHK_AZUBI = " + JSON.stringify(mini) +
 assert.throws(() => A.paketAusText("{\"module\":[]}"), /kein AP2-Prüfungspaket/);
 assert.throws(() => A.paketAusText("hallo"), /keine Daten/);
 
+/* Neuer Versuch: Kriterien (pruefpunkte) gehören zum Versuch, neue Versuche starten leer */
+{
+  const testModul = { id: "test-pp", punkte: 10, aufgaben: [{ teile: [{ id: "t1", punkte: 10, pruefpunkte: [{ text: "p1", punkte: 5 }] }] }] };
+  const z = { v: 1, modus: "uebung", uhrArt: "aktiv", a: { t1: "antwort" }, auf: { t1: 1 }, p: { t1: 5 }, auto: {}, hilfe: {}, beobachtet: {}, pruefpunkte: { t1: [0] }, versuche: [], zeit: 100 };
+  A.neuerVersuch(testModul, z);
+  assert.deepStrictEqual(z.pruefpunkte, {}, "neuer Versuch startet mit leeren Prüfpunkten");
+  assert(z.versuche.length === 1 && z.versuche[0].zustand.pruefpunkte.t1.includes(0), "alter Versuch behält Prüfpunkte");
+}
+
 /* Eingebunden, offline verfügbar — und das Paket selbst NICHT öffentlich */
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");

@@ -12,7 +12,7 @@
    ========================================================================== */
 "use strict";
 (function (root) {
-  const SK = "ap2:code", SK_SICHERUNG = "ap2:code:sicherung", MAX_HISTORIE = 40;
+  const SK = "ap2:code", SK_SICHERUNG = "ap2:code:sicherung";
   const hatDom = typeof document !== "undefined" && !!document.createElement;
   const $ = id => document.getElementById(id);
   const kopie = x => JSON.parse(JSON.stringify(x));
@@ -35,18 +35,19 @@
     try {
       const x = JSON.parse(roh);
       if (!x || typeof x !== "object" || Array.isArray(x) || !x.aufgaben || typeof x.aufgaben !== "object" || Array.isArray(x.aufgaben)) throw new Error("format");
-      const st = leer();
+      const st = Object.assign({}, x, { v: 1, aufgaben: {} });
       Object.keys(x.aufgaben).forEach(id => {
         const a = x.aufgaben[id];
         if (!a || typeof a !== "object" || Array.isArray(a)) return;
-        st.aufgaben[id] = {
+        st.aufgaben[id] = Object.assign({}, a, {
           code: typeof a.code === "string" ? a.code : null,
           hilfe: !!a.hilfe, loesung: !!a.loesung,
           laeufe: Number.isInteger(a.laeufe) && a.laeufe >= 0 ? a.laeufe : 0,
           versuch: Number.isInteger(a.versuch) && a.versuch > 0 ? a.versuch : 1,
           historie: Array.isArray(a.historie) ? a.historie.filter(h => h && typeof h === "object" && Number.isFinite(h.bestanden) && Number.isFinite(h.gesamt)) : [],
-          t: Number.isFinite(a.t) ? a.t : 0
-        };
+          t: Number.isFinite(a.t) ? a.t : 0,
+          familiar: !!a.familiar || a.versuch > 1
+        });
       });
       return st;
     } catch (e) {
@@ -95,12 +96,13 @@
   }
   function neuerVersuch(id) {
     const x = eintrag(id), a = finde(id);
+    x.familiar = !!(x.familiar || x.hilfe || x.loesung || x.historie.length);
     x.versuch = (x.versuch || 1) + 1; x.hilfe = false; x.loesung = false; x.laeufe = 0; x.code = a.vorlage; x.t = Date.now();
     return speichern();
   }
   function ereignis(a, h) {
     return { id: h.id, t: h.t, topic: "algo", source: "code", task: a.id, correct: h.bestanden, max: h.gesamt, support: h.support, kind: "auto",
-      answers: { code: h.code },
+      familiar: !!h.familiar, answers: { code: h.code },
       snapshot: { type: "code", title: a.titel, question: a.kontext + "\n" + a.aufgabe, signatur: a.signatur, solution: a.loesung } };
   }
   function erfassen(a, h) {
@@ -123,10 +125,9 @@
     x.laeufe = (x.laeufe || 0) + 1;
     const h = { id: "code:" + id + ":" + t.toString(36) + ":" + (++folge) + ":" + x.historie.length, t, versuch: x.versuch || 1,
       bestanden: r.bestanden, gesamt: r.gesamt, support: sup, fehler: r.kompiliert ? (r.fehler ? r.fehler.meldung : null) : r.fehler.meldung,
-      kompiliert: r.kompiliert, code: quell, erfasst: false };
+      kompiliert: r.kompiliert, code: quell, erfasst: false, familiar: !!x.familiar };
     x.historie.forEach(alt => { if (!alt.erfasst) erfassen(a, alt); });
     x.historie.push(h);
-    if (x.historie.length > MAX_HISTORIE) x.historie.splice(0, x.historie.length - MAX_HISTORIE);
     erfassen(a, h);
     x.t = t;
     const s = speichern();
@@ -153,10 +154,10 @@
       return { art: "neu", text: "не решала" + (entwurfDa ? " · есть черновик" : ""), bestanden: 0, gesamt, support: null };
     }
     if (b.bestanden === b.gesamt) {
-      const zusatz = b.support === "selbst" ? "" : b.support === "hilfe" ? " · с подсказкой — повтори сама" : " · с решением — повтори сама";
-      return { art: "fertig", text: "все тесты пройдены" + zusatz, bestanden: b.bestanden, gesamt: b.gesamt, support: b.support };
+      const zusatz = b.support === "selbst" ? (b.familiar ? " · знакомая задача — проверь навык на другом примере" : "") : b.support === "hilfe" ? " · с подсказкой — повтори сама" : " · с решением — повтори сама";
+      return { art: "fertig", text: "все тесты пройдены" + zusatz, bestanden: b.bestanden, gesamt: b.gesamt, support: b.support, familiar: !!b.familiar };
     }
-    return { art: "teil", text: "решено " + b.bestanden + " из " + b.gesamt + " " + testWort(b.gesamt), bestanden: b.bestanden, gesamt: b.gesamt, support: b.support };
+    return { art: "teil", text: "решено " + b.bestanden + " из " + b.gesamt + " " + testWort(b.gesamt), bestanden: b.bestanden, gesamt: b.gesamt, support: b.support, familiar: !!b.familiar };
   }
   function liste() { return aufgaben().map(a => ({ id: a.id, titel: a.titel, stufe: a.stufe, signatur: a.signatur, status: status(a.id) })); }
 
@@ -220,7 +221,7 @@
     const intro = karte(w, "Код, который по-настоящему выполняется");
     intro.appendChild(el("p", null, "В GA2 задание «Entwickeln Sie eine Methode …» — это код на Java-подобном псевдокоде. Здесь твой метод запускается на тестах: видимых примерах и скрытых граничных случаях (пустой список, отрицательные числа, одинаковые значения)."));
     const fertig = aufgaben().filter(a => status(a.id).art === "fertig").length;
-    const selbst = aufgaben().filter(a => { const s = status(a.id); return s.art === "fertig" && s.support === "selbst"; }).length;
+    const selbst = aufgaben().filter(a => { const s = status(a.id); return s.art === "fertig" && s.support === "selbst" && !s.familiar; }).length;
     intro.appendChild(el("p", "cd-klein", "Все тесты пройдены: " + fertig + " из " + aufgaben().length + " задач" + (fertig ? ", из них самостоятельно — " + selbst : "") + ". Подсказка и решение отмечаются в журнале как помощь."));
     const sp = el("details", "cd-details");
     sp.appendChild(el("summary", null, "Какой код понимает тренажёр"));
@@ -281,8 +282,9 @@
     sit.appendChild(sg);
     k.appendChild(sit);
     const ru = el("details", "cd-details");
-    ru.appendChild(el("summary", null, "Что нужно сделать (по-русски)"));
+    ru.appendChild(el("summary", null, "Алгоритм по-русски · подсказка"));
     const ol = el("ol"); (a.erklaerungRu || []).forEach(t => ol.appendChild(el("li", null, t))); ru.appendChild(ol);
+    ru.addEventListener("toggle", () => { if (ru.open) { hilfe(a.id); if (ui && ui.a.id === a.id) ui.sup.textContent = "Помощь: " + HILFE_TEXT[support(a.id)]; } });
     k.appendChild(ru);
     if (a.begriffe && a.begriffe.length) {
       const be = el("details", "cd-details");
@@ -384,7 +386,7 @@
       const r = neuerVersuch(a.id);
       ta.value = code(a.id); aktualisieren(); setzeFehlerZeile(0);
       zeigeHilfe(false); zeigeLoesung(false); supportZeigen(); ergebnis.replaceChildren(); ergebnis.hidden = true;
-      speicherInfo(r.ok ? "Новая попытка начата: код заменён заготовкой. Лучше всего решать её в другой день, без подсказки." : r.error, !r.ok);
+      speicherInfo(r.ok ? "Новая попытка начата: код заменён заготовкой. Это повтор знакомой задачи. Для проверки переноса навыка выбери другой пример." : r.error, !r.ok);
     }, "Начать задачу заново: заготовка, без подсказки и решения");
     [bPruef, bHilfe, bLoes, bNeu].forEach(b => knoepfe.appendChild(b));
     k.appendChild(knoepfe);
@@ -583,7 +585,7 @@
     const alle = r.bestanden === r.gesamt;
     e.appendChild(el("h2", alle ? "ok" : "", (alle ? "✓ " : "") + "Пройдено " + r.bestanden + " из " + r.gesamt + " " + testWort(r.gesamt)));
     let fazit = "Засчитано: " + HILFE_TEXT[r.support] + ".";
-    if (alle) fazit += r.support === "selbst" ? " Отлично — это самостоятельное решение." : " Помощь была — вернись к задаче позже и реши её сама.";
+    if (alle) fazit += r.support === "selbst" ? (r.eintrag && r.eintrag.familiar ? " Знакомая задача решена без открытой помощи. Теперь попробуй другой пример." : " Все тесты пройдены без открытой помощи.") : " Помощь была — вернись к задаче позже и реши её сама.";
     e.appendChild(el("p", "cd-klein", fazit));
     if (!r.kompiliert) {
       e.appendChild(fehlerBox(r.fehler, "Код не запустился"));

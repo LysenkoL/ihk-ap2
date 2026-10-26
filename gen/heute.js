@@ -149,11 +149,15 @@
     const L = [];
     if (o.wieder) {
       const k = Math.max(0, o.wieder.faellig | 0), g = Math.max(0, o.wieder.geschafft | 0);
+      const hatZiel = o.wieder.ziel != null;
+      const ziel = hatZiel ? Math.max(0, o.wieder.ziel | 0) : 0;
       L.push({
         key: "wieder",
-        titel: k ? "Повторить ошибки (" + k + ")" : g ? "Ошибки повторены" : "Ошибок к повтору нет",
-        unter: g ? "сегодня: " + g : "",
-        fertig: g > 0 || k === 0,
+        titel: hatZiel
+          ? (ziel ? "Повторить ошибки: " + Math.min(g, ziel) + "/" + ziel : "Ошибок к повтору нет")
+          : (k ? "Повторить ошибки (" + k + ")" : g ? "Ошибки повторены" : "Ошибок к повтору нет"),
+        unter: hatZiel ? "В очереди на сегодня: " + k : (g ? "сегодня: " + g : ""),
+        fertig: hatZiel ? g >= ziel : (g > 0 || k === 0),
         knopf: k ? "Начать" : null
       });
     }
@@ -164,9 +168,29 @@
         ? { key: "lern", titel: "Занятие сделано", unter: "дальше: " + t, fertig: true, knopf: "Открыть" }
         : { key: "lern", titel: t, unter: "Занятие или практика", fertig: false, knopf: "Открыть" });
     }
-    if (o.satz) L.push({ key: "satz", titel: "5 вопросов", unter: "Kurzfragen", unterDe: true, fertig: !!o.satzFertig, knopf: "Начать" });
+    if (o.satz) {
+      const hatAnzahl = o.satzAnzahl != null;
+      L.push({
+        key: "satz",
+        titel: hatAnzahl ? "5 вопросов: " + Math.min(5, Math.max(0, o.satzAnzahl | 0)) + "/5" : "5 вопросов",
+        unter: "Kurzfragen",
+        unterDe: true,
+        fertig: hatAnzahl ? o.satzAnzahl >= 5 : !!o.satzFertig,
+        knopf: "Начать"
+      });
+    }
     if (min >= 40 && o.exam) L.push({ key: "exam", titel: "Задание из экзамена", unter: "бланк GA1 · GA2 · WiSo", fertig: !!o.examFertig, knopf: "Выбрать" });
     return { minuten: min, liste: L, fertig: L.filter(x => x.fertig).length, gesamt: L.length };
+  }
+  function aufgabeFertig(ziel, events, jetzt) {
+    return !!ziel && (events || []).some(e => e && e.source === ziel.source && e.task === ziel.task &&
+      e.max > 0 && e.correct === e.max && heuteDa([e.t],jetzt));
+  }
+  function tagesZiel(alt, vorschlag, wieder, jetzt) {
+    const tag=tagKey(jetzt);
+    if (alt && alt.tag===tag) return alt;
+    return {tag, lern:vorschlag && vorschlag.ziel ? {titel:vorschlag.titel,ziel:vorschlag.ziel}:null,
+      wieder:Math.min(3,Math.max(0,(wieder||{}).faellig|0)+Math.max(0,(wieder||{}).geschafft|0))};
   }
 
   /* Есть ли что терять: ключи ap2: с данными, кроме настроек этого устройства */
@@ -203,7 +227,7 @@
   const sicherungNoetig = o => sicherung(o).warn;
 
   const api = { tagKey, zuKey, berlinTag, restTage, plural, etappe, wochenTage, woche, heuteDa, tageZwischen,
-                profil, zeitenSammeln, schritte, hatFortschritt, sicherung, sicherungNoetig,
+                profil, zeitenSammeln, schritte, aufgabeFertig, tagesZiel, hatFortschritt, sicherung, sicherungNoetig,
                 SK, PRUEFUNG, LERN_QUELLEN, ETAPPEN };
 
   /* ======================================================================
@@ -257,23 +281,30 @@
       const werte = speicherWerte();
       const st = versuch(() => R.GENLERNWEG ? R.GENLERNWEG.stand() : null, null);
       const prof = profil(st && st.profile);
+      const events=versuch(() => R.GENLERNSTAND ? R.GENLERNSTAND.list() : [], []);
+      const satz=lies("ap2:gen:satz", {});
       const z = zeitenSammeln({
-        lernstand: versuch(() => R.GENLERNSTAND ? R.GENLERNSTAND.list() : [], []),
+        lernstand: events,
         lernweg: st,
-        satz: lies("ap2:gen:satz", {}),
+        satz,
         azubi: azubiZeiten(werte),
         wieder: versuch(() => R.GENWIEDER && R.GENWIEDER.S ? R.GENWIEDER.S.tage : {}, {})
       });
       let wieder = null;
       if (R.GENWIEDER && R.GENWIEDER.faellig) {
-        wieder = versuch(() => ({ faellig: R.GENWIEDER.faellig().length, geschafft: R.GENWIEDER.heuteGeschafft ? R.GENWIEDER.heuteGeschafft() : 0 }), null);
+        wieder = versuch(() => ({ faellig: R.GENWIEDER.faellig().length, geschafft: R.GENWIEDER.heuteKarten ? R.GENWIEDER.heuteKarten() : 0 }), null);
       }
-      const lern = R.GENLERNWEG && R.GENLERNWEG.empfehlung ? versuch(() => R.GENLERNWEG.empfehlung(), null) : null;
+      const vorschlag = R.GENLERNWEG && R.GENLERNWEG.empfehlung ? versuch(() => R.GENLERNWEG.empfehlung({ohneWieder:true}), null) : null;
+      const ui=lies(SK,{})||{}, ziel=tagesZiel(ui.plan,vorschlag,wieder,jetzt);
+      if(ui.plan!==ziel){ui.plan=ziel;try{root.localStorage.setItem(SK,JSON.stringify(ui));}catch(e){}}
+      const lern=ziel.lern && R.GENLERNWEG ? Object.assign({},ziel.lern,{tun:()=>R.GENLERNWEG.zielOeffnen(ziel.lern.ziel)}) : vorschlag;
+      if(wieder)wieder.ziel=ziel.wieder;
+      const histories=(st&&st.history||[]).map(h=>({source:"lernweg",task:h.unit,t:h.time,correct:h.correct,max:h.max}));
       const plan = schritte({
         minuten: prof.minuten, wieder, lern,
-        lernFertig: heuteDa(z.lern, jetzt),
-        satz: !!(R.GENSATZ && R.GENSATZ.starten), satzFertig: heuteDa(z.satz, jetzt),
-        exam: !!(R.GENLERNWEG && R.GENLERNWEG.oeffnen), examFertig: heuteDa(z.exam, jetzt)
+        lernFertig: aufgabeFertig(lern&&lern.ziel,events.concat(histories),jetzt),
+        satz: !!(R.GENSATZ && R.GENSATZ.starten), satzAnzahl:Object.values(satz||{}).filter(x=>x&&heuteDa([x.t],jetzt)).length,
+        exam: !!(R.GENLERNWEG && R.GENLERNWEG.oeffnen), examFertig:events.some(e=>e.source==="azubi"&&e.max>0&&e.correct===e.max&&heuteDa([e.t],jetzt))
       });
       return {
         plan, lern,
@@ -286,7 +317,7 @@
     function aktion(key, d) {
       const R = root;
       try {
-        if (key === "wieder" && R.GENWIEDER) R.GENWIEDER.starten();
+        if (key === "wieder" && R.GENWIEDER) R.GENWIEDER.starten(R.GENWIEDER.faellig().slice(0,3));
         else if (key === "lern" && d.lern && typeof d.lern.tun === "function") d.lern.tun();
         else if (key === "satz" && R.GENSATZ) R.GENSATZ.starten(null, { anzahl: 5 });
         else if (key === "exam" && R.GENLERNWEG) R.GENLERNWEG.oeffnen(null, false, "lwTrain");

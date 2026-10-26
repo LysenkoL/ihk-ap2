@@ -293,7 +293,7 @@
       if (!x || typeof x !== "object" || Array.isArray(x)) throw new Error("format");
       if (x.sz != null && (typeof x.sz !== "object" || Array.isArray(x.sz))) throw new Error("sz");
       if (x.offen != null && !Array.isArray(x.offen)) throw new Error("offen");
-      return { v: 1, sz: x.sz || {}, offen: x.offen || [] };
+      return Object.assign({}, x, { v: 1, sz: x.sz || {}, offen: x.offen || [] });
     } catch (e) {
       readError = "Сохранённый прогресс нормализации не читается. Старые данные не трогаю: можно решать дальше, но новые ответы пока не сохраняются. Сделай резервную копию прогресса.";
       return leer();
@@ -331,6 +331,7 @@
   function setzen(id, schritt, key, wert) {
     const st = schrittStand(id, schritt);
     if (wert === false || wert === "" || wert == null) delete st.a[key]; else st.a[key] = wert;
+    st.t = Date.now();
     return speichern();
   }
   const antworten = (id, schritt) => clone(schrittStand(id, schritt).a);
@@ -350,18 +351,39 @@
     /* «loesung» — решение открыто до проверки; «hilfe» — повтор после объяснений ошибок. */
     const support = st.loesung ? "loesung" : st.hilfe ? "hilfe" : "selbst", t = Date.now();
     const ev = { id: "normal:" + id + ":" + schritt + ":" + t + "-" + Math.random().toString(36).slice(2, 8), t, topic: "normalisierung", source: "normal",
-      task: id + ":" + schritt, correct: r.correct, max: r.max, support, kind: "auto", answers: clone(st.a) };
+      task: id + ":" + schritt, correct: r.correct, max: r.max, support, kind: "recognition", familiar: !!st.familiar, answers: clone(st.a),
+      snapshot: { type: "normal", title: sz.titel + " · " + SCHRITTE.find(s => s.id === schritt).titel, question: sz.situation.join("\n") + "\n" + SCHRITTE.find(s => s.id === schritt).titel, solution: loesung(sz, schritt), explanation: satz(sz, schritt).map(x => x.join(" — ")).join("\n") } };
     st.check = { id: ev.id, t, correct: r.correct, max: r.max, voll: r.voll, support, sig };
+    st.t = t;
+    if (!Array.isArray(st.historie)) st.historie = [];
+    st.historie.push(clone(ev));
     if (!r.voll) st.hilfe = true;
     state.offen.push(ev);
     journal();
     speichern();
     return Object.assign(r, { event: ev.id, support, neu: true });
   }
-  function zeigen(id, schritt) { const st = schrittStand(id, schritt); st.loesung = true; speichern(); return loesung(szVon(id), schritt); }
-  function zuruecksetzen(id, schritt) { schrittStand(id, schritt); szStand(id).s[schritt] = { a: {}, check: null, loesung: false, hilfe: false }; return speichern(); }
-  function szZuruecksetzen(id) { szVon(id); state.sz[id] = { schritt: 0, s: {} }; return speichern(); }
-  function aktivSetzen(id, idx) { const ss = szStand(id); if (Number.isInteger(idx) && idx >= 0 && idx < SCHRITTE.length) { ss.schritt = idx; speichern(); } return ss.schritt; }
+  function zeigen(id, schritt) { const st = schrittStand(id, schritt); st.loesung = true; st.t = Date.now(); speichern(); return loesung(szVon(id), schritt); }
+  function resetSchritt(st) {
+    const versuche = (Array.isArray(st.versuche) ? st.versuche : []).concat([{ a: clone(st.a), check: clone(st.check || null), t: st.t || 0 }]);
+    Object.assign(st, { a: {}, check: null, loesung: false, hilfe: false, familiar: !!(st.familiar || st.hilfe || st.loesung || st.check), versuche, t: Date.now() });
+  }
+  function zuruecksetzen(id, schritt) { resetSchritt(schrittStand(id, schritt)); return speichern(); }
+  function szZuruecksetzen(id) {
+    const ss = szStand(id);
+    Object.keys(ss.s).forEach(s => { if (ss.s[s] && ss.s[s].a) resetSchritt(ss.s[s]); });
+    ss.schritt = 0; ss.t = Date.now(); return speichern();
+  }
+  function aktivSetzen(id, idx) {
+    const ss = szStand(id);
+    if (Number.isInteger(idx) && idx >= 0 && idx < SCHRITTE.length) {
+      ss.schritt = idx; ss.t = Date.now();
+      // Later tables and keys expose answers to previous steps (not anomalies).
+      for (let i = 1; i < idx; i++) { const st = schrittStand(id, SCHRITTE[i].id); st.hilfe = true; st.t = Date.now(); }
+      speichern();
+    }
+    return ss.schritt;
+  }
   function status(id, schritt) {
     const st = state.sz[id] && state.sz[id].s && state.sz[id].s[schritt];
     if (!st) return "offen";
@@ -487,11 +509,11 @@
   function fortschrittText(id) {
     const f = fortschritt(id);
     if (!f.geprueft) return "Ещё не начат";
-    return "Проверено шагов: " + f.geprueft + " из " + f.gesamt + " · верно без подсказок: " + f.selbst;
+    return "Проверено шагов: " + f.geprueft + " из " + f.gesamt + " · верно выбраны ответы без подсказок: " + f.selbst;
   }
   function listeAnsicht(w) {
     const k = karte(w, "Нормализация шаг за шагом");
-    k.appendChild(el("p", null, "Один пример — шесть шагов: аномалии → 1NF → первичный ключ → 2NF → 3NF → модель с PK, FK и связями. Каждый шаг программа проверяет сразу и объясняет ошибки по-русски."));
+    k.appendChild(el("p", null, "Один пример — шесть шагов: аномалии → 1NF → первичный ключ → 2NF → 3NF → модель с PK, FK и связями. Каждый шаг программа проверяет сразу и объясняет ошибки по-русски. Это узнавание и выбор ответов, а не самостоятельное составление схемы."));
     k.appendChild(el("p", "nf-muted", "На экзамене это частое задание в GA1 и GA2: «Überführen Sie die Tabelle in die 3. Normalform», «Erstellen Sie ein relationales Datenmodell». Сценарии авторские, в духе экзамена."));
     const l = el("div", "nf-liste");
     szenarien().forEach(sz => {
@@ -511,6 +533,7 @@
   const STATUS_TEXT = { ok: "верно", "ok-hilfe": "верно с подсказкой", fehler: "есть ошибки", gezeigt: "решение открыто", begonnen: "начат", offen: "не начат" };
   function szenarioAnsicht(w, sz) {
     const ss = szStand(sz.id), idx = ss.schritt || 0;
+    aktivSetzen(sz.id, idx);
     const kopf = karte(w, null);
     kopf.appendChild(de("h2", null, sz.titel));
     kopf.appendChild(el("p", "nf-muted", sz.ru + " · " + fortschrittText(sz.id)));
@@ -669,9 +692,10 @@
       ergebnis.replaceChildren();
       if (aktuell) {
         const c = cur.check;
+        ergebnis.appendChild(el("span", "nf-muted", cur.familiar ? "Повтор знакомого примера: выбор ответов, не самостоятельное построение модели." : "Проверка выбора ответов; самостоятельное построение модели здесь не проверяется."));
         ergebnis.appendChild(el("span", c.voll ? "nf-ok" : "nf-fehler", c.voll ? "✓ Всё верно: " + c.correct + " из " + c.max + "." : "Верно " + c.correct + " из " + c.max + ". Объяснения — под пунктами с ✗. Исправь и проверь снова или нажми «Показать правильно»."));
         if (c.support !== "selbst") ergebnis.appendChild(el("span", "nf-muted", c.support === "loesung" ? "Проверено после открытого решения — в журнале как «с решением»." : "Повторная проверка после объяснений — в журнале как «с подсказкой»."));
-        else if (!c.voll) ergebnis.appendChild(el("span", "nf-muted", "Следующая проверка этого шага будет считаться «с подсказкой»: объяснения уже видны. Для чистой попытки — «Пройти шаг заново» в другой день."));
+        else if (!c.voll) ergebnis.appendChild(el("span", "nf-muted", "Следующая проверка этого шага будет считаться «с подсказкой»: объяснения уже видны. «Пройти шаг заново» оставляет отметку знакомства с ответом; для самостоятельного применения нужен другой пример."));
         r.hinweise.forEach(h => ergebnis.appendChild(el("span", "nf-muted", h)));
       } else if (cur.loesung) ergebnis.appendChild(el("span", "nf-muted", "Решение открыто. Сравни со своими ответами; проверка после этого записывается как «с решением»."));
     }
@@ -750,7 +774,7 @@
     if (root.GENSTART && root.GENSTART.kopfAktualisieren) root.GENSTART.kopfAktualisieren();
   }
 
-  const api = { SCHRITTE: clone(SCHRITTE), oeffnen: id => oeffnen(id), liste, stand: () => clone(state), fehler: () => readError || saveError,
+  const api = { SCHRITTE: clone(SCHRITTE), oeffnen: (id, schritt) => oeffnen(id, false, schritt), liste, stand: () => clone(state), fehler: () => readError || saveError,
     huelle, nf1Richtig, nf2Ziel, nf3Ziel, nf3Punkte, nf2Optionen, loesung, pruefen, satz, notation, beziehungText, projektion, gegenbeispiel,
     setzen, antworten, pruefenSpeichern, zeigen, zuruecksetzen, szZuruecksetzen, aktivSetzen, status, fortschritt };
   root.GENNORMAL = api;

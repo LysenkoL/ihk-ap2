@@ -210,7 +210,7 @@ r = G.pruefenSpeichern("kurs", "nf2");
 assert.deepStrictEqual([r.correct, r.max, r.support, r.neu], [2, 6, "selbst", true]);
 assert.strictEqual(events.length, 1);
 const e1 = events[0];
-assert.deepStrictEqual([e1.topic, e1.source, e1.task, e1.kind, e1.support, e1.correct, e1.max], ["normalisierung", "normal", "kurs:nf2", "auto", "selbst", 2, 6]);
+assert.deepStrictEqual([e1.topic, e1.source, e1.task, e1.kind, e1.support, e1.correct, e1.max], ["normalisierung", "normal", "kurs:nf2", "recognition", "selbst", 2, 6]);
 assert(/^normal:kurs:nf2:2000-/.test(e1.id) && e1.t === 2000 && e1.answers.Ort === "ganz");
 // Двойное нажатие без изменений — без дубля
 assert.strictEqual(G.pruefenSpeichern("kurs", "nf2").neu, false);
@@ -231,6 +231,7 @@ assert.strictEqual(G.status("kurs", "nf2"), "offen");
 Object.entries(N.loesung(kurs, "nf2")).forEach(([k, v]) => G.setzen("kurs", "nf2", k, v));
 now = 4000; r = G.pruefenSpeichern("kurs", "nf2");
 assert.deepStrictEqual([r.voll, r.support], [true, "selbst"]);
+assert.strictEqual(events[events.length - 1].familiar, true, "reset preserves familiarity");
 assert.strictEqual(G.status("kurs", "nf2"), "ok");
 // «Показать правильно» до проверки → support «loesung»
 G.setzen("kurs", "nf3", "Teilnehmer.Name", "direkt");
@@ -242,6 +243,21 @@ assert.strictEqual(events[events.length - 1].support, "loesung");
 assert.strictEqual(events[events.length - 1].task, "kurs:nf3");
 G = laden();
 assert.strictEqual(G.stand().sz.kurs.s.nf3.loesung, true, "открытое решение запомнено");
+// Late steps expose previous answers and preserve imported conflicts on reset.
+G.aktivSetzen("werkstatt", 5);
+G.setzen("werkstatt", "nf2", "Name", "ganz");
+now = 5500;
+assert.notStrictEqual(G.pruefenSpeichern("werkstatt", "nf2").support, "selbst");
+let imported = JSON.parse(memory["ap2:normal"]);
+imported.sz.kurs.s.nf2.konflikte = [{ a: { Name: "phone answer" }, t: 1 }];
+imported.extra = true;
+memory["ap2:normal"] = JSON.stringify(imported);
+G = laden(); G.zuruecksetzen("kurs", "nf2");
+assert.strictEqual(G.stand().sz.kurs.s.nf2.konflikte[0].a.Name, "phone answer");
+assert(G.stand().sz.kurs.s.nf2.historie.length >= 2, "previous checks remain in local history");
+assert.strictEqual(G.stand().extra, true);
+assert.strictEqual(G.stand().sz.kurs.s.nf2.t, now);
+assert(events.find(e => e.source === "normal").snapshot.question, "journal includes task context");
 // Сбой журнала: событие ждёт и повторяется с тем же id
 failRecord = true;
 G.setzen("termine", "anomalie", "0", "einfuege");

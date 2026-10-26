@@ -80,7 +80,8 @@ assert.strictEqual(C.support(a.id), "selbst"); assert.strictEqual(C.code(a.id), 
 assert.strictEqual(C.loesungZeigen(a.id).ok, false, "im neuen Versuch wieder erst nach Lauf");
 now = 6000; r = C.pruefen(a.id, a.loesung);
 assert.strictEqual(r.support, "selbst");
-assert.strictEqual(C.status(a.id).text, "все тесты пройдены");
+assert.strictEqual(r.eintrag.familiar, true, "reset preserves familiarity with the solution");
+assert(/знаком/.test(C.status(a.id).text), "known solution is labelled as familiar practice");
 assert.strictEqual(C.stand().aufgaben[a.id].historie[4].versuch, 2);
 
 /* Speicher voll: Text bleibt im Arbeitsspeicher, klare Meldung */
@@ -104,6 +105,17 @@ failRecord = false;
 now = 9000; C.pruefen(b.id, b.loesung);
 offen.forEach(id => assert(events.some(x => x.id === id), "nachgetragen: " + id));
 assert(C.stand().aufgaben[b.id].historie.every(h => h.erfasst), "alles erfasst");
+
+/* History and imported conflicting drafts survive subsequent saves. */
+let saved = JSON.parse(memory["ap2:code"]);
+saved.aufgaben[b.id].konflikte = [{ code: "phone draft", t: 500 }];
+saved.extra = { future: true };
+memory["ap2:code"] = JSON.stringify(saved);
+R = laden(); C = R.GENCODE;
+for (let i = 0; i < 45; i++) { now++; C.pruefen(b.id, b.loesung); }
+assert(C.stand().aufgaben[b.id].historie.length >= 48, "history is never silently trimmed");
+assert.strictEqual(C.stand().aufgaben[b.id].konflikte[0].code, "phone draft");
+assert.strictEqual(C.stand().extra.future, true);
 
 /* Kaputter Speicher: kein Absturz, Sicherung bleibt */
 memory["ap2:code"] = "{kaputt";

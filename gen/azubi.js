@@ -31,8 +31,8 @@
 
   const SK = "ap2:azubi:";
   const SK_UI = "ap2:azubi:ui";
-  const lies = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } };
-  const schreib = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
+  const lies = (k, d) => { try { const s = (root && root.localStorage) || (typeof localStorage !== "undefined" ? localStorage : null); const v = s ? JSON.parse(s.getItem(k)) : null; return v == null ? d : v; } catch (e) { return d; } };
+  const schreib = (k, v) => { try { const s = (root && root.localStorage) || (typeof localStorage !== "undefined" ? localStorage : null); if (!s) return true; s.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
 
   /* ======================================================================
      Bewertung — reine Funktionen (tests/azubi.test.js)
@@ -300,8 +300,8 @@
   /* ======================================================================
      Zustand je Modul
      ====================================================================== */
-  const leerZustand = () => ({ v: 1, modus: null, uhrArt: "aktiv", a: {}, auf: {}, p: {}, auto: {}, hilfe: {}, beobachtet: {}, zeit: 0, abgegeben: false,
-                               versuche: [], konflikte: [], start: 0, zuletzt: 0, pos: null, zeitAbgelaufen: false });
+  const leerZustand = () => ({ v: 1, modus: null, uhrArt: "aktiv", a: {}, auf: {}, p: {}, auto: {}, hilfe: {}, beobachtet: {}, pruefpunkte: {}, zeit: 0, abgegeben: false,
+                                versuche: [], konflikte: [], start: 0, zuletzt: 0, pos: null, zeitAbgelaufen: false });
   function zustand(id) {
     const z = lies(SK + id, null);
     const n = leerZustand();
@@ -326,7 +326,7 @@
     archivieren(m, alt, auswertung(m, alt));
     const n = ids ? alt : Object.assign(leerZustand(), { versuche: alt.versuche, konflikte: alt.konflikte || [] });
     if (ids) {
-      ids.forEach(id => ["a", "auf", "p", "auto", "hilfe", "beobachtet"].forEach(k => { if (n[k]) delete n[k][id]; }));
+      ids.forEach(id => ["a", "auf", "p", "auto", "hilfe", "beobachtet", "pruefpunkte"].forEach(k => { if (n[k]) delete n[k][id]; }));
       n.modus = "uebung"; n.uhrArt = "aktiv"; n.abgegeben = false; n.zeitAbgelaufen = false; n.start = Date.now(); n.zeit = 0;
       n.pos = ids[0] || null;
     }
@@ -1383,7 +1383,10 @@
     nochmal.type = "button";
     nochmal.onclick = () => {
       if (!neustart(m, z, [t.id], nochmal)) return;
-      /* PRUEFPUNKTE */ try { const alle = lies(PP_KEY(m.id), {}) || {}; if (alle[t.id]) { delete alle[t.id]; schreib(PP_KEY(m.id), alle); } } catch (e) { }
+      /* PRUEFPUNKTE */ try {
+        if (z && z.pruefpunkte && z.pruefpunkte[t.id]) { delete z.pruefpunkte[t.id]; schreib(SK + m.id, z); }
+        const alle = lies(PP_KEY(m.id), {}) || {}; if (alle[t.id]) { delete alle[t.id]; schreib(PP_KEY(m.id), alle); }
+      } catch (e) { }
       ersetzeKarte(m, t, z); leisteAktualisieren();
       const historie = $("azHistorie");
       if (historie) historie.replaceWith(historieZeichnen(m, z));
@@ -1395,8 +1398,16 @@
   /* Selbstbewertung nach Prüfpunkten (Teil.pruefpunkte: [{text, punkte}]).
      Häkchen je Modul unter ap2:pruefpunkte:<modul>, getrennt vom Bogenstand. */
   const PP_KEY = id => "ap2:pruefpunkte:" + id;
-  function pruefpunkteBox(m, t, setze) {
-    const an = new Set((() => { const a = (lies(PP_KEY(m.id), {}) || {})[t.id]; return Array.isArray(a) ? a : []; })());
+  function pruefpunkteBox(m, t, setze, z) {
+    const holePunkte = () => {
+      if (z && z.pruefpunkte && Array.isArray(z.pruefpunkte[t.id])) return z.pruefpunkte[t.id];
+      if (z && (!z.versuche || !z.versuche.length)) {
+        const legacy = (lies(PP_KEY(m.id), {}) || {})[t.id];
+        if (Array.isArray(legacy)) return legacy;
+      }
+      return [];
+    };
+    const an = new Set(holePunkte());
     const box = el("div", "az-pp");
     box.appendChild(el("p", "az-pp-titel", "Что есть в твоём ответе? Отметь только то, что написала сама."));
     const summe = el("p", "az-pp-summe");
@@ -1407,8 +1418,15 @@
       const l = el("label", "az-pp-zeile"), c = el("input"); c.type = "checkbox"; c.checked = an.has(i);
       c.onchange = () => {
         if (c.checked) an.add(i); else an.delete(i);
-        const alle = lies(PP_KEY(m.id), {}) || {}; alle[t.id] = Array.from(an).sort((a, b) => a - b);
-        if (!schreib(PP_KEY(m.id), alle)) summe.textContent = "Не удалось сохранить отметки: память заполнена.";
+        const gewaehlt = Array.from(an).sort((a, b) => a - b);
+        if (z) {
+          z.pruefpunkte = z.pruefpunkte || {};
+          z.pruefpunkte[t.id] = gewaehlt;
+          z.zuletzt = Date.now();
+          schreib(SK + m.id, z);
+        }
+        const alle = lies(PP_KEY(m.id), {}) || {}; alle[t.id] = gewaehlt;
+        if (!schreib(PP_KEY(m.id), alle) && !z) summe.textContent = "Не удалось сохранить отметки: память заполнена.";
         else zeige();
       };
       const sp = el("span", null, x.text); sp.lang = "de";
@@ -1436,7 +1454,7 @@
       ersetzeKarte(m, t, z);
       leisteAktualisieren();
     };
-    /* PRUEFPUNKTE */ if (Array.isArray(t.pruefpunkte) && t.pruefpunkte.length) box.appendChild(pruefpunkteBox(m, t, setze));
+    /* PRUEFPUNKTE */ if (Array.isArray(t.pruefpunkte) && t.pruefpunkte.length) box.appendChild(pruefpunkteBox(m, t, setze, z));
     const wahl = el("div", "az-pwahl");
     if (!Number.isInteger(max * 2)) {
       /* Bruchpunkte (WiSo 3,33): 0 · Vorschlag · alle */

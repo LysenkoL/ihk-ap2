@@ -2,7 +2,7 @@
    скопированное решение не закрывает самостоятельную ошибку. */
 "use strict";
 (function (root) {
-  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут" };
+  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK" };
   const HILFE = { selbst: "самостоятельно", hilfe: "с помощью", loesung: "с открытым решением" };
   const ART = { auto: "автопроверка", recognition: "узнавание ответа", selbst: "самооценка" };
   const MODI = { bubble: "Bubble Sort", selection: "Selection Sort", insertion: "Insertion Sort", binaer: "Binäre Suche", linear: "Lineare Suche" };
@@ -24,12 +24,16 @@
           typeof e.task !== "string" || !Number.isFinite(e.correct) || !Number.isFinite(e.max) || e.max <= 0 || e.correct < 0 || e.correct > e.max) return;
       const key = JSON.stringify([e.source, e.task, e.kind]);
       if (e.correct < e.max) offen.set(key, e);
-      else if (e.support === "selbst" && offen.has(key) && (e.t || 0) > (offen.get(key).t || 0)) offen.delete(key);
+      else if (e.support === "selbst" && !e.familiar && offen.has(key) && (e.t || 0) > (offen.get(key).t || 0)) offen.delete(key);
+      else if ((e.support !== "selbst" || e.familiar) && !offen.has(key)) offen.set(key, e);
     });
     return Array.from(offen.values()).map(e => {
       let titel = QUELLEN[e.source];
       try { titel = material(e).title || titel; } catch (error) { }
-      return { id: "ls:" + e.source + ":" + e.id, event: e, verlust: e.max - e.correct,
+      const pruefen = e.correct === e.max;
+      const d = new Date(e.t); d.setDate(d.getDate() + 1);
+      const faellig = pruefen ? d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0") : undefined;
+      return { id: "ls:" + e.source + ":" + e.id, event: e, verlust: e.max - e.correct, pruefen, faellig,
         titel, wo: QUELLEN[e.source] + " · " + ART[e.kind] + " · " + HILFE[e.support],
         punkte: e.correct + "/" + e.max + " · " + ART[e.kind] + " · " + HILFE[e.support] };
     });
@@ -52,6 +56,15 @@
   }
   function material(e) {
     const s = original(e);
+    if (["code", "normal", "operatoren"].includes(e.source) && s) return {
+      title: s.title || QUELLEN[e.source], question: s.question, code: s.signatur, solution: s.solution,
+      explanation: s.explanation, notice: s.notice
+    };
+    if (e.source === "code") {
+      const a = (root.AP2_CODE || []).find(a => a.id === e.task);
+      if (a) return { title: a.titel, question: a.kontext + "\n" + a.aufgabe, solution: a.loesung,
+        notice: "Текущая версия: условие прежней попытки не сохранено." };
+    }
     if (e.source === "sql") {
       if (s && s.type === "sql") return { title: s.title, question: s.question, solution: s.solution, explanation: s.explanation, schema: s.schema, code: s.before };
       const a = root.GENSQLDATEN && root.GENSQLDATEN.AUFGABEN.find(a => a.id === e.task);
@@ -93,6 +106,7 @@
   function frage(x, ziel) {
     const m = material(x.event);
     append(ziel, "h3", m.title); append(ziel, "p", m.notice, "wd-sub");
+    if (x.pruefen) append(ziel, "p", "Решено с помощью или уже знакомо. Проверь понимание без подсказок в другой день, затем на другом примере. Самооценка здесь не доказывает самостоятельное владение.", "wd-sub");
     append(ziel, "p", m.question); append(ziel, "pre", m.code);
     array(m.fields).forEach(label => append(ziel, "p", label));
     if (m.schema) { const d = document.createElement("details"); append(d, "summary", "Схема таблиц для этого задания"); append(d, "pre", m.schema); ziel.appendChild(d); }
@@ -107,11 +121,11 @@
     append(ziel, "pre", show(x.event.source === "sql" && x.event.answers && typeof x.event.answers.code === "string" ? x.event.answers.code : x.event.answers));
     append(ziel, "p", ART[x.event.kind] + "; " + HILFE[x.event.support] + ".", "wd-sub");
   }
-  function einordnen(x, wert) {
+  function einordnen(x, wert, stand, antwort) {
     if (!["gut", "halb", "nicht"].includes(wert) || !root.GENLERNSTAND) return;
     root.GENLERNSTAND.record({ topic: x.event.topic, source: "wiederholung", task: x.event.source + ":" + x.event.task,
       correct: wert === "gut" ? 1 : wert === "halb" ? 0.5 : 0, max: 1, kind: "selbst", support: "loesung",
-      answers: { wert, ursprung: x.event.id }, reason: "Самооценка после раскрытия разбора в очереди повторения." });
+      answers: { wert, ursprung: x.event.id, antwort: String(antwort || "") }, snapshot: material(x.event), reason: "Самооценка после раскрытия разбора в очереди повторения." });
   }
   function oeffnen(x) {
     const e = x.event;
@@ -122,6 +136,9 @@
     }
     if (e.source === "praxis" && root.GENPRAXIS) return root.GENPRAXIS.oeffnen(e.task);
     if (e.source === "lernweg" && root.GENLERNWEG) return root.GENLERNWEG.oeffnen(e.task);
+    if (e.source === "code" && root.GENCODE) return root.GENCODE.oeffnen(e.task);
+    if (e.source === "normal" && root.GENNORMAL) { const [id, step] = e.task.split(":"); return root.GENNORMAL.oeffnen(id, step); }
+    if (e.source === "operatoren" && root.GENOPUEB) return root.GENOPUEB.oeffnen({task:e.task,ref:(e.answers||{}).ref,event:e});
   }
   const api = { key: "lernstand", name: "Практика и учебный маршрут", rang: 7, sammeln, frage, loesung, einordnen, oeffnen };
   root.GENLERNSTANDWIEDER = api;
