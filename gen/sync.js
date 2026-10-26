@@ -434,7 +434,7 @@
       out = normalStand(l, f, lm, fm, b);
     } else if (k === "ap2:opueb" && istObj(l) && istObj(f)) {
       out = operatorenStand(l, f, lm, fm, b);
-    } else if (k === "ap2:ai:chats" && istObj(l) && istObj(f)) {
+    } else if ((k === "ap2:ai:chats" || k === "ap2:katalog2") && istObj(l) && istObj(f)) {
       out = jeEintrag(l, f, b, "t");
     } else if (LISTEN[k] && Array.isArray(l) && Array.isArray(f)) {
       const id = LISTEN[k], pos = {};

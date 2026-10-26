@@ -1,0 +1,81 @@
+/* gen/katalog-ap2.css — «Каталог AP2: что учить» (gen/katalog-ap2.js), префикс k2- */
+.k2-page{max-width:920px; margin:auto; padding:18px; box-sizing:border-box}
+.k2-wrap{display:grid; gap:14px; min-width:0}
+.k2-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:18px; line-height:1.55; min-width:0}
+.k2-card h2{margin:0 0 6px; font-size:21px; line-height:1.3}
+.k2-muted{display:block; color:var(--muted,#666); font-size:13px; line-height:1.5}
+.k2-alert{color:var(--red,#a62424); font-weight:600; margin:0}
+.k2-zahlen{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:12px 0 4px}
+.k2-zahl{display:flex; flex-direction:column; gap:2px; padding:8px 10px; border-radius:10px; background:var(--field,#f4f3f8); min-width:0}
+.k2-zahl b{font-size:20px; line-height:1.2; color:var(--ink)}
+.k2-zahl span{font-size:12px; line-height:1.3; color:var(--muted); overflow-wrap:anywhere}
+.k2-zahlen-text{grid-column:1/-1; margin:2px 0 0}
+.k2-info{margin:8px 0; border-top:1px solid var(--rule-soft,var(--rule))}
+.k2-info summary, .k2-mehr summary{cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:600}
+.k2-info p{margin:6px 0; font-size:14px}
+.k2-aend{padding-left:18px; margin:6px 0}
+.k2-aend li{margin:6px 0; font-size:14px}
+.k2-nr-knopf{margin:2px 4px 2px 0; min-height:36px; padding:4px 10px; font-family:var(--data,monospace)}
+.k2-op{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; margin:8px 0}
+.k2-op .btn{min-height:40px}
+.k2-filter{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 8px}
+.k2-chip{min-height:40px; padding:6px 12px; border-radius:20px; border:1px solid var(--rule,#ccc); background:var(--card,#fff);
+  color:var(--ink); font:inherit; font-size:13.5px; cursor:pointer}
+.k2-chip .k2-n{color:var(--muted); font-size:12px}
+.k2-chip.an{background:var(--pruefer,#5B2A86); border-color:var(--pruefer,#5B2A86); color:#fff}
+.k2-chip.an .k2-n{color:#fff; opacity:.85}
+.k2-suche{display:flex; flex-direction:column; gap:4px; margin:4px 0}
+.k2-suche input{box-sizing:border-box; width:100%; min-height:44px; padding:10px 12px; font:inherit; color:var(--ink);
+  background:var(--field,#fafafa); border:1px solid var(--rule,#ccc); border-radius:8px}
+.k2-treffer{display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; margin:8px 0 0; font-size:13.5px}
+.k2-filter-info{flex-basis:100%}
+.k2-liste{display:grid; gap:10px; min-width:0}
+.k2-bereich{margin:10px 2px 0; font-size:16px; display:flex; flex-direction:column; gap:2px}
+.k2-gruppe{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:12px; min-width:0}
+.k2-gruppe > summary{cursor:pointer; padding:12px 14px; display:flex; flex-direction:column; gap:3px; min-height:44px; list-style:none}
+.k2-gruppe > summary::-webkit-details-marker{display:none}
+.k2-g-titel::before{content:"▸"; display:inline-block; width:1em; color:var(--muted)}
+.k2-gruppe[open] .k2-g-titel::before{content:"▾"}
+.k2-g-titel{font-weight:700; font-size:15px; line-height:1.35; overflow-wrap:anywhere}
+.k2-g-nr{font-family:var(--data,monospace); color:var(--muted); margin-right:6px; font-weight:600}
+.k2-g-zahl{font-size:12.5px; color:var(--muted)}
+.k2-g-inhalt{display:grid; gap:0; padding:0 14px 6px}
+.k2-punkt{padding:12px 0; border-top:1px solid var(--rule-soft,var(--rule)); min-width:0}
+.k2-punkt.k2-zuletzt{box-shadow:inset 3px 0 0 var(--pruefer,#5B2A86); padding-left:10px}
+.k2-zeile{display:flex; flex-wrap:wrap; align-items:center; gap:4px 6px}
+.k2-nr{font-family:var(--data,monospace); font-size:13px; font-weight:700; color:var(--ink)}
+.k2-badge{font-size:11.5px; line-height:1.2; padding:3px 7px; border-radius:10px; background:var(--field,#f4f3f8); color:var(--muted); white-space:nowrap}
+.k2-badge.k2-neu{background:var(--pruefer-soft,#efe7f6); color:var(--pruefer,#5B2A86); font-weight:700}
+.k2-badge.k2-oft{background:var(--ok-soft,#e6f2ea); color:var(--ok,#1f6b3a)}
+.k2-titel{margin:6px 0 2px; font-size:15px; line-height:1.35; overflow-wrap:anywhere}
+.k2-ru{margin:0 0 4px; font-size:14px; color:var(--ink)}
+.k2-status{margin:4px 0; font-size:13.5px; line-height:1.45; color:var(--muted); overflow-wrap:anywhere}
+.k2-status b{color:var(--ink)}
+.k2-punkt-farbe{color:var(--muted)}
+.k2-st-fehler .k2-punkt-farbe{color:var(--red,#a62424)}
+.k2-st-begonnen .k2-punkt-farbe{color:var(--ok,#1f6b3a)}
+.k2-st-offen .k2-punkt-farbe{color:var(--warn,#b8860b)}
+.k2-st-nichts .k2-punkt-farbe, .k2-st-bogen .k2-punkt-farbe{color:var(--rule,#bbb)}
+.k2-luecke{margin:4px 0; font-size:13.5px; color:var(--warn,#8a5a00)}
+.k2-hinweis{margin:6px 0; font-size:13.5px}
+.k2-stich{margin:4px 0; padding-left:18px; font-size:13.5px}
+.k2-stich li{margin:2px 0; overflow-wrap:anywhere}
+.k2-zeilen{margin:6px 0; padding-left:18px; font-size:13px; color:var(--muted)}
+.k2-akt{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px}
+.k2-akt .btn{min-height:44px; white-space:normal; text-align:left; max-width:100%}
+.k2-marke{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:6px}
+.k2-marke .k2-muted{display:inline}
+.k2-mk{min-height:40px; padding:6px 12px; border-radius:8px; border:1px solid var(--rule,#ccc); background:var(--card,#fff);
+  color:var(--ink); font:inherit; font-size:13.5px; cursor:pointer}
+.k2-mk-kann.an{background:var(--ok,#1f6b3a); border-color:var(--ok,#1f6b3a); color:#fff}
+.k2-mk-wieder.an{background:var(--warn,#b8860b); border-color:var(--warn,#b8860b); color:#fff}
+.k2-mk-nicht.an{background:var(--red,#a62424); border-color:var(--red,#a62424); color:#fff}
+.k2-leer{text-align:center; color:var(--muted)}
+.k2-page :focus-visible{outline:3px solid var(--pruefer,#5B2A86); outline-offset:2px}
+@media(max-width:540px){
+  .k2-page{padding:10px}
+  .k2-card{padding:14px}
+  .k2-card h2{font-size:19px}
+  .k2-zahlen{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media print{.k2-page[hidden]{display:none} .k2-page button{display:none}}
