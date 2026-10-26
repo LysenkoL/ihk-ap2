@@ -28,7 +28,7 @@
 .gu-feld.falsch{border-color:var(--red,#a62424); background:var(--red-soft,#fbeaea)}
 .gu-f-label{font-weight:600; font-size:14px}
 .gu-f-zeile{display:flex; align-items:center; gap:8px; min-width:0}
-.gu-f-zeile input, .gu-f-zeile select{flex:1 1 auto; min-width:0; box-sizing:border-box; min-height:44px; padding:8px 10px; font:inherit; font-size:16px;
+.gu-f-zeile input, .gu-f-zeile select{flex:1 1 0; width:0; min-width:0; max-width:100%; text-overflow:ellipsis; box-sizing:border-box; min-height:44px; padding:8px 10px; font:inherit; font-size:16px;
   color:var(--ink); background:var(--field,#fafafa); border:1px solid var(--rule,#ccc); border-radius:8px}
 .gu-einheit{flex:0 0 auto; font-size:14px; color:var(--muted); white-space:nowrap}
 .gu-marke{flex:0 0 auto; font-weight:800; font-size:18px}
