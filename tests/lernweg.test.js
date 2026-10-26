@@ -149,3 +149,13 @@ if(fs.existsSync(paketDatei)){
 const st=C.aufgabeStand({a:{"x-1a":"Antwort","x-1b":{"0":" "}},p:{"x-1a":3}},["x-1a","x-1b","x-1c"]);
 assert.strictEqual(JSON.stringify(st),JSON.stringify({beantwortet:1,bewertet:1,gesamt:3}));
 console.log("Lernweg recommendation and recovery verified");
+
+/* «Что тренировать»: Netzplan/Gantt bei Projektmanagement (Knöpfe des Arbeitsblatts) */
+{
+  const fs2 = require("fs"), path2 = require("path");
+  const html2 = fs2.readFileSync(path2.join(__dirname, "..", "index.html"), "utf8");
+  delete require.cache[require.resolve("../gen/lernweg-daten.js")];
+  const tr = require("../gen/lernweg-daten.js").training.find(t => t.id === "ga1-pm");
+  assert.ok(tr.diagramm && tr.diagramm.length === 2, "ga1-pm hat Netzplan und Gantt");
+  tr.diagramm.forEach(([id]) => assert.ok(html2.includes('id="' + id + '"'), "Knopf " + id + " in index.html"));
+}

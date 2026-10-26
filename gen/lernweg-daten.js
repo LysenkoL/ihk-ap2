@@ -124,7 +124,7 @@
     {id:"ga1-uml", bereich:"GA1", name:"UML-диаграммы", de:"Use-Case, Aktivität, Klassen, Sequenz, Zustand", pruef:10, punkte:41,
       units:["uml"], praxis:"uml-usecase", quiz:"oop", lern:["oop"]},
     {id:"ga1-pm", bereich:"GA1", name:"Управление проектом", de:"Projektmanagement, Netzplan, Vorgehensmodelle", pruef:10, punkte:31,
-      units:[], quiz:"vorgehen", satz:"Projektmanagement", lern:["vorgehen"]},
+      units:[], quiz:"vorgehen", satz:"Projektmanagement", diagramm:[["btnNetzZufall","Netzplan"],["btnGantt","Gantt-Diagramm"]], lern:["vorgehen"]},
     {id:"ga1-db", bereich:"GA1", name:"Базы данных: модель и нормализация", de:"ER-Modell, Normalisierung, Redundanz", pruef:8, punkte:23,
       units:["sql"], trainer:"normal", quiz:"integritaet", satz:"Daten", lern:["normalisierung","integritaet"]},
     {id:"ga1-sicher", bereich:"GA1", name:"ИТ-безопасность", de:"Verschlüsselung, Hash, Zugriffsschutz", pruef:8, punkte:20,
