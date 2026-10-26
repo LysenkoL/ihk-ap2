@@ -41,6 +41,6 @@ const html = fs.readFileSync(path.join(root, "index.html"), "utf8"), sw = fs.rea
 assert.ok(html.includes("gen/pruefungstag.js") && html.includes("gen/pruefungstag.css"));
 assert.ok(sw.includes("./gen/pruefungstag.js") && sw.includes("./gen/pruefungstag.css"));
 const zr = fs.readFileSync(path.join(root, "gen", "zurueck.js"), "utf8");
-assert.ok(/scPruefTag: "scStart"/.test(zr) && /"scPruefTag"\]/.test(zr));
+assert.ok(/scPruefTag: "scStart"/.test(zr) && /"scPruefTag"[,\]]/.test(zr));
 console.log("pruefungstag: ok");
 assert.strictEqual(P.zahl(99.99999999999997), "100"); assert.strictEqual(P.zahl(61.25), "61,3");
