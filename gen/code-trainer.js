@@ -172,7 +172,8 @@
   }
   const karte = (w, titel, cls) => { const c = el("section", "cd-karte" + (cls ? " " + cls : "")); if (titel) c.appendChild(el("h2", null, titel)); w.appendChild(c); return c; };
   const zeit = t => { try { return new Date(t).toLocaleString("ru-RU", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }); } catch (e) { return ""; } };
-  const STUFEN = { 1: "Уровень 1 · один цикл и условие", 2: "Уровень 2 · объекты, строки, особые случаи", 3: "Уровень 3 · вложенные циклы, сортировка, периоды" };
+  const STUFEN = { 1: "Уровень 1 · один цикл и условие", 2: "Уровень 2 · объекты, строки, особые случаи", 3: "Уровень 3 · вложенные циклы, сортировка, периоды",
+    4: "Уровень 4 · switch, свои классы, Map", 5: "Найди ошибку в коде (код запускается, но считает неверно)" };
 
   let aktuell = null;       /* id der offenen Aufgabe */
   let ui = null;            /* Verweise auf Editor-Elemente */
@@ -235,12 +236,15 @@
       "Строки: length(), charAt(i), equals(…), equalsIgnoreCase, substring, toLowerCase, toUpperCase, contains, indexOf, trim, split.",
       "Math.max / min / abs / round / floor / ceil / sqrt / pow, Integer.MAX_VALUE, Integer.MIN_VALUE, Double.MAX_VALUE.",
       "Геттеры объектов из таблицы класса: m.getWert(), a.isErledigt().",
+      "switch (x) { case 1: … break; default: … } — с int, char и String.",
+      "Свой класс рядом с методом: поля, конструктор, методы, this.поле.",
+      "Map<String, Integer> m = new HashMap<>(); put, get, getOrDefault, containsKey, remove, size, keySet(), values(); TreeMap — ключи по порядку.",
       "System.out.println(x) — вывод показывается под результатом теста.",
       "Как в Java: int / int — целое деление (7 / 2 = 3); double в int — только явно: (int) x."
     ].forEach(t => ul.appendChild(el("li", null, t)));
     sp.appendChild(ul); intro.appendChild(sp);
 
-    [1, 2, 3].forEach(stufe => {
+    [1, 2, 3, 4, 5].forEach(stufe => {
       const liste = aufgaben().filter(a => a.stufe === stufe);
       if (!liste.length) return;
       const k = karte(w, STUFEN[stufe] || "Уровень " + stufe);

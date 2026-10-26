@@ -151,8 +151,9 @@
   const LANG = new Set(["long", "Long"]);
   const KOMMA = new Set(["double", "float", "Double", "Float"]);
   const LISTEN = new Set(["List", "ArrayList", "LinkedList", "Collection"]);
+  const MAPS = new Set(["Map", "HashMap", "TreeMap", "LinkedHashMap"]);
   const BEKANNT = ["int", "long", "double", "float", "boolean", "char", "byte", "short", "String", "Integer", "Long", "Double", "Float",
-    "Boolean", "Character", "Short", "Byte", "Object", "List", "ArrayList", "LinkedList", "Collection", "var"];
+    "Boolean", "Character", "Short", "Byte", "Object", "List", "ArrayList", "LinkedList", "Collection", "Map", "HashMap", "TreeMap", "LinkedHashMap", "var"];
   const WRAPPER = { int: "Integer", long: "Long", double: "Double", float: "Float", boolean: "Boolean", char: "Character", short: "Short", byte: "Byte" };
 
   /* ======================================================================
@@ -204,38 +205,38 @@
     const MODIF = new Set(["public", "private", "protected", "static", "final", "abstract"]);
     const modifikatoren = () => { while (tk().typ === "kw" && MODIF.has(tk().wert)) p++; };
 
+    /* Eine Klasse im Code: nur Methoden → Hülle (die Methoden gelten wie ohne Klasse).
+       Mit Feldern oder Konstruktor → eigene Klasse (Objekte mit new, Methoden mit this). */
     function programm() {
-      const methoden = [];
+      const methoden = [], eigene = [];
       while (tk().typ !== "eof") {
         modifikatoren();
         if (ist("import", "kw") || ist("package", "kw")) { while (!ist(";") && tk().typ !== "eof") p++; erwarte(";"); continue; }
         if (ist("class", "kw")) {
-          const k = tokens[p++]; name("имя класса");
+          const k = tokens[p++], kn = name("имя класса");
           const auf = erwarte("{");
+          const km = [], felder = [], konstr = [];
           for (;;) {
             modifikatoren();
             if (ist("}")) { p++; break; }
             if (tk().typ === "eof") throw new CodeFehler("класс не закрыт — не хватает `}`", auf.z || k.z, "syntax");
-            methoden.push(methode());
+            if (tk().typ === "id" && tk().wert === kn.wert && at(p + 1).wert === "(") { konstr.push(konstruktor(kn.wert)); continue; }
+            const r = versucheTyp(p);
+            if (r && at(r.ende).typ === "id" && at(r.ende + 1).wert !== "(") { const d = deklaration(); erwarte(";"); felder.push(d); continue; }
+            km.push(methode());
           }
+          if (felder.length || konstr.length) eigene.push({ name: kn.wert, felder, konstruktoren: konstr, methoden: km, z: kn.z });
+          else km.forEach(m => methoden.push(m));
           continue;
         }
         if (ist("}")) throw new CodeFehler("лишняя `}` — для неё нет открывающей `{`", tk().z, "syntax");
         if (tk().typ === "eof") break;
         methoden.push(methode());
       }
+      methoden.eigeneKlassen = eigene;
       return methoden;
     }
-    function methode() {
-      modifikatoren();
-      const start = tk(), r = versucheTyp(p);
-      if (!r || at(r.ende).typ !== "id" || at(r.ende + 1).wert !== "(") {
-        if (r && at(r.ende).typ === "id") throw new CodeFehler("здесь ожидалось объявление метода. Команды и переменные пишутся внутри метода: int summe(int[] werte) { … }", start.z, "syntax");
-        if (start.typ === "id" && at(p + 1).wert === "(") throw new CodeFehler("у метода " + start.wert + " не указан тип результата: например int " + start.wert + "(…) или void " + start.wert + "(…)", start.z, "syntax");
-        throw new CodeFehler("здесь ожидалось объявление метода, например: int summe(int[] werte) { … }. Весь код должен стоять внутри метода.", start.z, "syntax");
-      }
-      p = r.ende;
-      const nm = tokens[p++];
+    function parameterListe() {
       erwarte("(");
       const params = [];
       if (!ist(")")) for (;;) {
@@ -249,6 +250,26 @@
         break;
       }
       erwarte(")");
+      return params;
+    }
+    function konstruktor(kn) {
+      const start = tokens[p++];
+      const params = parameterListe();
+      if (!ist("{")) throw new CodeFehler("ожидалась `{` — тело конструктора " + kn, tk().z, "syntax");
+      const body = block();
+      return { name: kn, rueck: T("void"), params, body, z: start.z, ende: body.ende, konstruktor: true };
+    }
+    function methode() {
+      modifikatoren();
+      const start = tk(), r = versucheTyp(p);
+      if (!r || at(r.ende).typ !== "id" || at(r.ende + 1).wert !== "(") {
+        if (r && at(r.ende).typ === "id") throw new CodeFehler("здесь ожидалось объявление метода. Команды и переменные пишутся внутри метода: int summe(int[] werte) { … }", start.z, "syntax");
+        if (start.typ === "id" && at(p + 1).wert === "(") throw new CodeFehler("у метода " + start.wert + " не указан тип результата: например int " + start.wert + "(…) или void " + start.wert + "(…)", start.z, "syntax");
+        throw new CodeFehler("здесь ожидалось объявление метода, например: int summe(int[] werte) { … }. Весь код должен стоять внутри метода.", start.z, "syntax");
+      }
+      p = r.ende;
+      const nm = tokens[p++];
+      const params = parameterListe();
       if (ist("throws", "kw")) { p++; name("имя исключения"); while (ist(",")) { p++; name("имя исключения"); } }
       if (ist(";")) throw new CodeFehler("после заголовка метода нужен блок { … }, а не `;`", tk().z, "syntax");
       if (!ist("{")) throw new CodeFehler("ожидалась `{` — тело метода " + nm.wert, tk().z, "syntax");
@@ -290,13 +311,13 @@
         case "return": { p++; let e = null; if (!ist(";")) e = ausdruck(); erwarte(";"); return { k: "return", e, z: t.z }; }
         case "break": case "continue": p++; erwarte(";"); return { k: t.wert, z: t.z };
         case "else": throw new CodeFehler("else без if — проверь фигурные скобки { } перед else", t.z, "syntax");
-        case "switch": case "case": case "default": throw new CodeFehler("switch в этом тренажёре не поддерживается — используй if / else if", t.z, "syntax");
+        case "switch": return switchAnweisung();
+        case "case": case "default": throw new CodeFehler(t.wert + " бывает только внутри switch { … }", t.z, "syntax");
         case "try": case "catch": case "throw": throw new CodeFehler("try / catch / throw в этих заданиях не нужны", t.z, "syntax");
         case "final": { p++; if (!istDeklaration()) throw new CodeFehler("после final ожидалось объявление переменной", tk().z, "syntax"); const d = deklaration(); erwarte(";"); return d; }
         case "class": throw new CodeFehler("класс внутри метода объявлять не нужно", t.z, "syntax");
         case "public": case "private": case "protected": case "static":
           throw new CodeFehler("«" + t.wert + "» внутри метода не пишется. Если это начало нового метода — выше не хватает `}`", t.z, "syntax");
-        case "this": throw new CodeFehler("this в этих заданиях не нужен — пиши просто имя переменной", t.z, "syntax");
       }
       const r = istDeklaration();
       if (r) {
@@ -314,6 +335,40 @@
         throw new CodeFehler("это выражение ничего не делает. Нужна команда: присваивание (x = …), вызов метода, ++ / -- или return", e.z || t.z, "syntax");
       erwarte(";");
       return { k: "expr", e, z: t.z };
+    }
+    /* switch (x) { case 1: …; break; case 2: case 3: …; default: … } — klassisch, mit Durchfallen */
+    function switchAnweisung() {
+      const t = tokens[p++];
+      erwarte("(", " — значение switch пишется в скобках: switch (x)"); const e = ausdruck(); erwarte(")");
+      erwarte("{");
+      const faelle = [];
+      let akt = null;
+      const label = () => {
+        const s = tk();
+        let neg = false;
+        if (s.typ === "op" && s.wert === "-") { neg = true; p++; }
+        const v = tk();
+        if (v.typ === "int" || v.typ === "long") { p++; return { t: v.typ, v: neg ? -v.wert : v.wert }; }
+        if (!neg && v.typ === "char") { p++; return { t: "char", v: v.wert }; }
+        if (!neg && v.typ === "str") { p++; return v.wert; }
+        throw new CodeFehler("после case ожидается постоянное значение: число, символ 'a' или строка \"…\"", v.z, "syntax");
+      };
+      while (!ist("}")) {
+        const s = tk();
+        if (s.typ === "eof") throw new CodeFehler("switch не закрыт — не хватает `}`", t.z, "syntax");
+        if (ist("case", "kw") || ist("default", "kw")) {
+          p++;
+          const f = { werte: [], standard: s.wert === "default", body: [], z: s.z };
+          if (!f.standard) { f.werte.push(label()); while (ist(",")) { p++; f.werte.push(label()); } }
+          if (ist("->")) throw new CodeFehler("форма case … -> здесь не поддерживается — пиши case …: команды; break;", tk().z, "syntax");
+          erwarte(":", " — после case-значения ставится двоеточие");
+          faelle.push(f); akt = f; continue;
+        }
+        if (!akt) throw new CodeFehler("в switch команды стоят после case …: или default:", s.z, "syntax");
+        akt.body.push(anweisung());
+      }
+      p++;
+      return { k: "switch", e, faelle, z: t.z };
     }
     function deklaration() {
       const r = versucheTyp(p), start = tk(); p = r.ende;
@@ -472,7 +527,8 @@
           if (t.wert === "true" || t.wert === "false") { p++; return { k: "lit", w: t.wert === "true", z: t.z }; }
           if (t.wert === "null") { p++; return { k: "lit", w: null, z: t.z }; }
           if (t.wert === "new") return neu();
-          if (t.wert === "this" || t.wert === "super") throw new CodeFehler(t.wert + " в этих заданиях не нужен — пиши просто имя", t.z, "syntax");
+          if (t.wert === "this") { p++; return { k: "this", z: t.z }; }
+          if (t.wert === "super") throw new CodeFehler("super в этих заданиях не нужен", t.z, "syntax");
           if (PRIM.has(t.wert)) throw new CodeFehler("здесь ожидалось значение, а стоит тип " + t.wert + ". Объявление переменной пишется отдельной командой", t.z, "syntax");
           throw new CodeFehler("здесь ожидалось значение, а стоит служебное слово «" + t.wert + "»", t.z, "syntax");
         case "op":
@@ -558,14 +614,18 @@
       const alle = BEKANNT.concat(Array.from(klassen.keys()));
       const s = aehnlich(n, alle.concat(["return", "if", "for", "while", "else"]));
       if (s && /^[a-z]/.test(s) && !PRIM.has(s) && s !== "var") throw new CodeFehler("непонятное слово «" + n + "» — может быть, " + s + "?", z, "typ");
-      if (["Map", "HashMap", "Set", "HashSet", "TreeMap", "Queue", "Stack", "Scanner", "Iterator"].includes(n)) throw new CodeFehler("тип " + n + " в этом тренажёре не поддерживается — обойдись массивом или List", z, "typ");
+      if (["Set", "HashSet", "TreeSet", "Queue", "Stack", "Scanner", "Iterator"].includes(n)) throw new CodeFehler("тип " + n + " в этом тренажёре не поддерживается — обойдись массивом, List или Map", z, "typ");
       throw new CodeFehler("неизвестный тип " + n + (s ? " — может быть, " + s + "?" : ". Известны: int, double, boolean, char, String, List<…>" + (klassen.size ? ", " + Array.from(klassen.keys()).join(", ") : "")), z, "typ");
     }
     if (t.args.length) {
-      if (!LISTEN.has(n)) throw new CodeFehler("у типа " + n + " не бывает <…>", z, "typ");
-      if (t.args.length > 1) throw new CodeFehler("у List в <…> указывается один тип", z, "typ");
+      if (!LISTEN.has(n) && !MAPS.has(n)) throw new CodeFehler("у типа " + n + " не бывает <…>", z, "typ");
+      if (LISTEN.has(n) && t.args.length > 1) throw new CodeFehler("у List в <…> указывается один тип", z, "typ");
+      if (MAPS.has(n) && t.args.length !== 2) throw new CodeFehler("у Map в <…> два типа: ключ и значение, например Map<String, Integer>", z, "typ");
       t.args.forEach(a => {
-        if (PRIM.has(a.name) && !a.dim) throw new CodeFehler("в List<…> нужен класс-обёртка: List<" + WRAPPER[a.name] + ">, а не List<" + a.name + ">", z, "typ");
+        if (PRIM.has(a.name) && !a.dim) {
+          const ersatz = T(n, t.args.map(x => PRIM.has(x.name) && !x.dim ? T(WRAPPER[x.name]) : x));
+          throw new CodeFehler("в " + n + "<…> нужен класс-обёртка: " + typStr(ersatz) + ", а не " + typStr(t), z, "typ");
+        }
         pruefeTyp(a, z, klassen);
       });
     }
@@ -580,6 +640,13 @@
       case "while": return !istWahr(s.c) || hatBreak(s.body);
       case "do": return istWahr(s.c) ? hatBreak(s.body) : true;
       case "for": return (s.c && !istWahr(s.c)) || hatBreak(s.body);
+      case "switch": {
+        /* ohne default oder mit break kann es weitergehen; sonst entscheidet der letzte Zweig (Durchfallen) */
+        if (!s.faelle.some(f => f.standard)) return true;
+        if (s.faelle.some(f => f.body.some(hatBreak))) return true;
+        const letzter = s.faelle[s.faelle.length - 1];
+        return letzter.body.every(kannEnden);
+      }
       default: return true;
     }
   }
@@ -595,32 +662,55 @@
   }
 
   function pruefeStatisch(methoden, klassen, warnungen) {
-    const nachName = new Map();
-    methoden.forEach(m => {
-      const l = nachName.get(m.name) || [];
-      if (l.some(x => x.params.length === m.params.length)) throw new CodeFehler("метод " + m.name + " с " + m.params.length + " " + plural(m.params.length, "параметром", "параметрами", "параметрами") + " объявлен дважды", m.z, "typ");
-      l.push(m); nachName.set(m.name, l);
+    const nachNameVon = liste => {
+      const nn = new Map();
+      liste.forEach(m => {
+        const l = nn.get(m.name) || [];
+        if (l.some(x => x.params.length === m.params.length)) throw new CodeFehler((m.konstruktor ? "конструктор " : "метод ") + m.name + " с " + m.params.length + " " + plural(m.params.length, "параметром", "параметрами", "параметрами") + " объявлен дважды", m.z, "typ");
+        l.push(m); nn.set(m.name, l);
+      });
+      return nn;
+    };
+    const oben = nachNameVon(methoden);
+    methoden.forEach(m => pruefeMethode(m, oben, null));
+    /* eigene Klassen: Felder sind in Methoden und Konstruktoren sichtbar, this ist erlaubt */
+    (methoden.eigeneKlassen || []).forEach(k => {
+      const felder = new Map();
+      k.felder.forEach(d => {
+        pruefeTyp(d.typ, d.z, klassen);
+        if (d.typ.name === "var") throw new CodeFehler("var для полей класса не бывает — укажи тип", d.z, "typ");
+        d.vars.forEach(v => { if (felder.has(v.name)) throw new CodeFehler("поле " + v.name + " объявлено дважды", v.z, "typ"); felder.set(v.name, v.z); });
+      });
+      const eigen = nachNameVon(k.methoden);
+      nachNameVon(k.konstruktoren);
+      k.methoden.concat(k.konstruktoren).forEach(m => pruefeMethode(m, eigen, { klasse: k.name, felder }));
     });
-    methoden.forEach(m => {
+    function pruefeMethode(m, nachName, kontext) {
       pruefeTyp(m.rueck, m.z, klassen, "void");
-      const scopes = [new Map()];
+      const scopes = [new Map(kontext ? kontext.felder : [])];
+      if (kontext) scopes.push(new Map());
       m.params.forEach(pa => {
         pruefeTyp(pa.typ, pa.z, klassen);
-        if (scopes[0].has(pa.name)) throw new CodeFehler("параметр " + pa.name + " указан дважды", pa.z, "typ");
-        scopes[0].set(pa.name, pa.z);
+        const ziel = scopes[scopes.length - 1];
+        if (ziel.has(pa.name)) throw new CodeFehler("параметр " + pa.name + " указан дважды", pa.z, "typ");
+        ziel.set(pa.name, pa.z);
       });
       const finde = n => scopes.some(s => s.has(n));
       const sichtbar = () => { const a = []; scopes.forEach(s => s.forEach((_, k) => a.push(k))); return a; };
       const deklariere = (n, z) => {
-        for (const s of scopes) if (s.has(n)) throw new CodeFehler("переменная " + n + " уже объявлена (строка " + s.get(n) + "). Повторно тип не пишут: просто " + n + " = …", z, "typ");
+        /* Felder (äußerster Bereich einer Klasse) dürfen von lokalen Variablen verdeckt werden */
+        for (const s of (kontext ? scopes.slice(1) : scopes)) if (s.has(n)) throw new CodeFehler("переменная " + n + " уже объявлена (строка " + s.get(n) + "). Повторно тип не пишут: просто " + n + " = …", z, "typ");
         scopes[scopes.length - 1].set(n, z);
       };
-      let schleifen = 0;
+      let schleifen = 0, schalter = 0;
       const istVoid = m.rueck.name === "void" && !m.rueck.dim;
       function ausdruck(e, rolle) {
         if (!e) return;
         switch (e.k) {
           case "lit": return;
+          case "this":
+            if (!kontext) throw new CodeFehler("this бывает только внутри собственного класса (в его методах и конструкторах)", e.z, "typ");
+            return;
           case "name":
             if (finde(e.name)) return;
             if (STATIK.has(e.name) && rolle === "obj") return;
@@ -682,6 +772,14 @@
           case "expr": ausdruck(s.e); return;
           case "if": ausdruck(s.c); scopes.push(new Map()); anw(s.dann); scopes.pop(); scopes.push(new Map()); anw(s.sonst); scopes.pop(); return;
           case "while": case "do": ausdruck(s.c); schleifen++; scopes.push(new Map()); anw(s.body); scopes.pop(); schleifen--; return;
+          case "switch": {
+            ausdruck(s.e);
+            const gesehen = new Set();
+            if (s.faelle.filter(f => f.standard).length > 1) throw new CodeFehler("default в switch может быть только один", s.z, "typ");
+            s.faelle.forEach(f => f.werte.forEach(w => { const k = typeof w === "string" ? "s:" + w : w.t[0] + ":" + w.v; if (gesehen.has(k)) throw new CodeFehler("значение case " + (typeof w === "string" ? "\"" + w + "\"" : w.t === "char" ? "'" + String.fromCharCode(w.v) + "'" : w.v) + " встречается дважды", f.z, "typ"); gesehen.add(k); }));
+            schalter++; scopes.push(new Map()); s.faelle.forEach(f => f.body.forEach(anw)); scopes.pop(); schalter--;
+            return;
+          }
           case "for":
             scopes.push(new Map());
             s.init.forEach(anw); ausdruck(s.c); s.upd.forEach(u => ausdruck(u));
@@ -694,7 +792,8 @@
             schleifen++; anw(s.body); schleifen--;
             scopes.pop(); return;
           case "break": case "continue":
-            if (!schleifen) throw new CodeFehler(s.k + " можно писать только внутри цикла", s.z, "typ");
+            if (s.k === "break" && !schleifen && !schalter) throw new CodeFehler("break можно писать только внутри цикла или switch", s.z, "typ");
+            if (s.k === "continue" && !schleifen) throw new CodeFehler("continue можно писать только внутри цикла", s.z, "typ");
             return;
           case "return":
             if (istVoid && s.e) throw new CodeFehler("метод " + m.name + " объявлен как void и ничего не возвращает — убери значение после return (или поменяй тип метода)", s.z, "typ");
@@ -705,7 +804,7 @@
       anw(m.body);
       if (!istVoid && kannEnden(m.body))
         throw new CodeFehler("метод " + m.name + " должен вернуть значение типа " + typStr(m.rueck) + " — в конце не хватает return", m.ende || m.z, "typ");
-    });
+    }
   }
 
   /* ======================================================================
@@ -721,6 +820,7 @@
     switch (w.t) {
       case "array": return typStr(w.et) + "[]";
       case "list": return w.et ? "List<" + typStr(w.et) + ">" : "List";
+      case "map": return w.kt ? "Map<" + typStr(w.kt) + ", " + typStr(w.vt) + ">" : "Map";
       case "obj": return w.klasse;
       case "out": return "PrintStream";
       default: return w.t;
@@ -733,6 +833,7 @@
     switch (w.t) {
       case "array": return T(w.et.name, w.et.args, w.et.dim + 1);
       case "list": return T("List", w.et ? [w.et] : []);
+      case "map": return T("Map", w.kt ? [w.kt, w.vt] : []);
       case "obj": return T(w.klasse);
       default: return T(w.t);
     }
@@ -757,9 +858,28 @@
       case "double": return dblStr(w.v);
       case "char": return String.fromCharCode(w.v);
       case "list": case "array": return "[" + w.a.map(str).join(", ") + "]";
+      case "map": return "{" + mapEintraege(w).map(([k, v]) => str(k) + "=" + str(v)).join(", ") + "}";
       case "obj": return w.klasse + "[" + Object.keys(w.f).map(k => k + "=" + str(w.f[k])).join(", ") + "]";
     }
     return "?";
+  }
+  /* ---- Map: Einträge nach kanonischem Schlüssel; TreeMap liefert sortiert ---- */
+  function mapSchluessel(k) {
+    if (k === null) return "null";
+    if (typeof k === "string") return "s:" + k;
+    if (typeof k === "boolean") return "b:" + k;
+    if (k && (k.t === "int" || k.t === "long" || k.t === "double")) return "n:" + k.v;
+    if (k && k.t === "char") return "c:" + k.v;
+    return k;                                   /* Objekte: nach Identität */
+  }
+  function mapVergleich(a, b) {
+    if (typeof a === "string" && typeof b === "string") return a < b ? -1 : a > b ? 1 : 0;
+    if (a && b && typeof a === "object" && typeof b === "object" && "v" in a && "v" in b) return a.v - b.v;
+    return 0;
+  }
+  function mapEintraege(m) {
+    const l = Array.from(m.e.values());
+    return m.sortiert ? l.sort((x, y) => mapVergleich(x[0], y[0])) : l;
   }
   function standardWert(t) {
     if (t.dim) return null;
@@ -795,6 +915,12 @@
       const et = t.args[0] || null;
       return { t: "list", et, a: x.map((y, i) => et ? vonJS(y, et, klassen, wo + "[" + i + "]") : y), mod: 0 };
     }
+    if (MAPS.has(n)) {
+      if (!x || typeof x !== "object" || Array.isArray(x)) throw new Error("Test: " + wo + " ist kein Objekt (Map)");
+      const kt = t.args[0] || T("String"), vt = t.args[1] || T("Object"), m = { t: "map", kt, vt, sortiert: n === "TreeMap", e: new Map() };
+      Object.keys(x).forEach(k => { const kw = vonJS(GANZ.has(kt.name) || LANG.has(kt.name) || KOMMA.has(kt.name) ? Number(k) : k, kt, klassen, wo + " (Schlüssel)"); m.e.set(mapSchluessel(kw), [kw, vonJS(x[k], vt, klassen, wo + "[" + k + "]")]); });
+      return m;
+    }
     const def = klassen.get(n);
     if (!def) throw new Error("Test: unbekannte Klasse " + n);
     const f = Object.create(null);
@@ -808,6 +934,7 @@
       case "int": case "long": case "double": return w.v;
       case "char": return String.fromCharCode(w.v);
       case "array": case "list": return w.a.map(zuJS);
+      case "map": { const o = {}; mapEintraege(w).forEach(([k, v]) => { o[String(zuJS(k))] = zuJS(v); }); return o; }
       case "obj": { const o = {}; Object.keys(w.f).forEach(k => { o[k] = zuJS(w.f[k]); }); return o; }
     }
     return null;
@@ -834,6 +961,16 @@
 
     function finde(sc, n) { for (let s = sc; s; s = s.eltern) { const v = s.vars.get(n); if (v) return v; } return null; }
     const scope = eltern => ({ vars: new Map(), eltern });
+    /* Bereich der Felder eines eigenen Objekts: Lesen/Schreiben geht direkt auf o.f */
+    function objektScope(o) {
+      const cache = new Map();
+      return { objekt: o, eltern: null, vars: { get(n) {
+        if (!hat(o.f, n)) return null;
+        if (!cache.has(n)) cache.set(n, { typ: o.def.felder[n], init: true, name: n, get w() { return o.f[n]; }, set w(x) { o.f[n] = x; } });
+        return cache.get(n);
+      }, set() { throw new Error("Feldbereich ist nur lesbar"); }, has(n) { return hat(o.f, n); } } };
+    }
+    function aktuellesObjekt(sc) { for (let s = sc; s; s = s.eltern) if (s.objekt) return s.objekt; return null; }
 
     function beispiel(t, n) {
       if (t.dim) return typStr(t) + " " + n + " = new " + t.name + "[…];";
@@ -882,6 +1019,14 @@
           const et = t.args[0];
           if (et && !w.et) { w.a = w.a.map(x => konvertiere(x, et, z, "элемент списка")); w.et = et; }
           else if (et && w.et && typStr(et) !== typStr(w.et) && !(KOMMA.has(et.name) && KOMMA.has(w.et.name)))
+            throw fehl("нельзя записать " + typName(w) + " в " + wo + " (тип " + typStr(t) + ")", z, "typ");
+          return w;
+        }
+      } else if (MAPS.has(n)) {
+        if (w.t === "map") {
+          const [kt, vt] = t.args;
+          if (kt && !w.kt) { w.kt = kt; w.vt = vt; Array.from(w.e.values()).forEach(x => { x[0] = konvertiere(x[0], kt, z, "ключ Map"); x[1] = konvertiere(x[1], vt, z, "значение Map"); }); }
+          else if (kt && w.kt && (typStr(kt) !== typStr(w.kt) || typStr(vt) !== typStr(w.vt)))
             throw fehl("нельзя записать " + typName(w) + " в " + wo + " (тип " + typStr(t) + ")", z, "typ");
           return w;
         }
@@ -1093,6 +1238,7 @@
           const q = wert(s.e, sc);
           if (q === null) throw npe("for-each по " + "значению null", s.z);
           if (typeof q === "string") throw fehl("for-each по строке не работает — используй for (int i = 0; i < s.length(); i++) и s.charAt(i) или s.toCharArray()", s.z, "typ");
+          if (q && q.t === "map") throw fehl("for-each по Map напрямую не работает — перебирай ключи: for (… k : map.keySet()) или значения: map.values()", s.z, "typ");
           if (!q || (q.t !== "array" && q.t !== "list")) throw fehl("for-each работает только с массивом или списком, а здесь " + typName(q), s.z, "typ");
           const alt = schleifenZeile; schleifenZeile = s.z;
           const mod = q.mod;
@@ -1109,6 +1255,30 @@
             }
             if (q.t === "list" && q.mod !== mod) throw fehl("список изменён внутри for-each (в Java — ConcurrentModificationException). Чтобы удалять или добавлять, используй обычный for с индексом или новый список", s.z);
           } finally { schleifenZeile = alt; }
+          return;
+        }
+        case "switch": {
+          const v = wert(s.e, sc);
+          if (v === null) throw npe("switch по значению null", s.z);
+          if (!(typeof v === "string" || (v && (v.t === "int" || v.t === "char" || v.t === "long")))) throw fehl("switch работает с int, char или String, а здесь " + typName(v), s.z, "typ");
+          const passt = w => {
+            if (typeof w === "string" || typeof v === "string") {
+              if (typeof w !== typeof v) throw fehl("case " + (typeof w === "string" ? "\"" + w + "\"" : str(w)) + " не подходит к значению типа " + typName(v), s.z, "typ");
+              return w === v;
+            }
+            return w.v === v.v;
+          };
+          let i = s.faelle.findIndex(f => f.werte.some(passt));
+          if (i < 0) i = s.faelle.findIndex(f => f.standard);
+          if (i < 0) return;
+          const inner = scope(sc);
+          for (let k = i; k < s.faelle.length; k++) {
+            for (const x of s.faelle[k].body) {
+              const r = ausf(x, inner);
+              if (r === BRK) return;
+              if (r) return r;
+            }
+          }
           return;
         }
         case "break": return BRK;
@@ -1138,7 +1308,7 @@
         if (o && o.t === "array" && e.name === "length") throw fehl("длину массива изменить нельзя", e.z, "typ");
         if (o && o.t === "obj" && hat(o.f, e.name)) {
           const gross = e.name[0].toUpperCase() + e.name.slice(1);
-          warn(e.z, "прямой доступ к полю " + e.name + " — в задании поля закрыты (private), используй set" + gross + "(…) и get" + gross + "()");
+          if (!o.def.eigen) warn(e.z, "прямой доступ к полю " + e.name + " — в задании поля закрыты (private), используй set" + gross + "(…) и get" + gross + "()");
           const ft = o.def.felder[e.name];
           return { typ: ft, wo: "поле " + e.name, lesen: () => o.f[e.name], schreiben: w => { o.f[e.name] = w; } };
         }
@@ -1158,6 +1328,7 @@
     function wert(e, sc) {
       switch (e.k) {
         case "lit": return e.w;
+        case "this": { const o = aktuellesObjekt(sc); if (!o) throw fehl("this бывает только внутри собственного класса", e.z, "typ"); return o; }
         case "name": {
           const v = finde(sc, e.name);
           if (!v) throw fehl("переменная " + e.name + " не объявлена", e.z, "typ");
@@ -1254,7 +1425,13 @@
         return l;
       }
       if (n === "String") { if (args.length === 0) return ""; if (typeof args[0] === "string") return args[0]; throw fehl("new String(…) ожидает строку", e.z, "typ"); }
+      if (n === "Map") throw fehl("Map — это интерфейс; создают так: new HashMap<>()", e.z, "typ");
+      if (MAPS.has(n)) {
+        if (args.length) throw fehl("new " + n + "<>() создаётся без аргументов", e.z, "typ");
+        return { t: "map", kt: e.typ.args[0] || null, vt: e.typ.args[1] || null, sortiert: n === "TreeMap", e: new Map() };
+      }
       const def = klassen.get(n);
+      if (def && def.eigen) return eigenesObjekt(def, args, e.z);
       if (def) {
         if (!def.konstruktor) throw fehl("в этом задании объекты " + n + " не создаются вручную — они уже приходят в метод готовыми", e.z, "typ");
         if (args.length !== def.konstruktor.length) throw fehl("конструктор " + n + "(…) ожидает " + def.konstruktor.length + " " + plural(def.konstruktor.length, "аргумент", "аргумента", "аргументов") + ": " + def.konstruktor.join(", "), e.z, "typ");
@@ -1266,6 +1443,22 @@
       if (PRIM.has(n)) throw fehl("new для " + n + " пишут только с массивом: new " + n + "[5]", e.z, "typ");
       throw fehl("класс " + n + " здесь недоступен", e.z, "typ");
     }
+    function eigenesObjekt(def, args, z) {
+      const f = Object.create(null);
+      Object.keys(def.felder).forEach(k => { f[k] = standardWert(def.felder[k]); });
+      const o = { t: "obj", klasse: def.name, def, f };
+      const osc = objektScope(o);
+      /* Feld-Initialisierer in der Reihenfolge der Deklaration */
+      def.eigen.felder.forEach(d => d.vars.forEach(v => {
+        if (v.init) f[v.name] = v.init.k === "arrlit" ? feldAusLiteral(v.init, d.typ, osc) : konvertiere(wert(v.init, osc), d.typ, v.z, "поле " + v.name);
+      }));
+      const ks = def.eigen.konstruktoren;
+      if (!ks.length) { if (args.length) throw fehl("у класса " + def.name + " нет конструктора с параметрами — объяви " + def.name + "(…) { … }", z, "typ"); return o; }
+      const k = ks.find(x => x.params.length === args.length);
+      if (!k) throw fehl("конструктор " + def.name + "(…) ожидает " + ks.map(x => x.params.length).join(" или ") + " " + plural(ks[0].params.length, "аргумент", "аргумента", "аргументов") + ", а передано " + args.length, z, "typ");
+      rufe(k, args, z, o);
+      return o;
+    }
     function feldLesen(e, sc) {
       if (e.e.k === "name" && !finde(sc, e.e.name) && STATIK.has(e.e.name)) return statischesFeld(e.e.name, e.name, e.z);
       const o = wert(e.e, sc), nm = e.e.k === "name" ? e.e.name : "x";
@@ -1275,7 +1468,9 @@
       if (typeof o === "boolean" || istZahl(o)) throw fehl("у простого значения " + typName(o) + " нет поля " + e.name, e.z, "typ");
       if (o.t === "array") { if (e.name === "length") return I(o.a.length); throw fehl("у массива есть только поле length, а не " + e.name, e.z, "typ"); }
       if (o.t === "list") throw fehl(e.name === "length" || e.name === "size" ? "размер списка — это метод: " + nm + ".size()" : "у списка нет поля " + e.name, e.z, "typ");
+      if (o.t === "map") throw fehl(e.name === "length" || e.name === "size" ? "размер Map — это метод: " + nm + ".size()" : "у Map нет поля " + e.name, e.z, "typ");
       if (o.t === "obj") {
+        if (hat(o.f, e.name) && o.def.eigen) return o.f[e.name];
         if (hat(o.f, e.name)) { warn(e.z, "прямой доступ к полю " + e.name + " — в задании поля закрыты (private), используй get" + e.name[0].toUpperCase() + e.name.slice(1) + "()"); return o.f[e.name]; }
         throw fehl("у объекта " + o.klasse + " нет поля " + e.name + " — используй методы из таблицы класса", e.z, "typ");
       }
@@ -1311,6 +1506,15 @@
 
     function aufruf(e, sc) {
       if (!e.obj) {
+        const self = aktuellesObjekt(sc);
+        if (self && self.def.eigen) {
+          const lm = self.def.eigen.methoden.filter(x => x.name === e.name);
+          if (lm.length) {
+            const m = lm.find(x => x.params.length === e.args.length);
+            if (!m) throw fehl("метод " + e.name + " ожидает " + lm[0].params.length + " " + plural(lm[0].params.length, "аргумент", "аргумента", "аргументов") + ", а передано " + e.args.length, e.z, "typ");
+            return rufe(m, e.args.map(a => wert(a, sc)), e.z, self);
+          }
+        }
         const l = methoden.get(e.name);
         if (l) {
           const m = l.find(x => x.params.length === e.args.length);
@@ -1336,6 +1540,7 @@
           if (e.name === "println" || e.name === "print") { ausgeben(args, e.name === "println", e.z); return undefined; }
           throw fehl("System.out." + e.name + " здесь не поддерживается — используй println", e.z, "typ");
         case "list": return listenMethode(o, e.name, args, e, nm || "liste");
+        case "map": return mapMethode(o, e.name, args, e, nm || "map");
         case "array": return feldMethode(o, e.name, args, e, nm || "werte");
         case "obj": return objektMethode(o, e.name, args, e);
       }
@@ -1473,6 +1678,34 @@
       const v = aehnlich(n, ["size", "get", "add", "set", "remove", "isEmpty", "contains", "indexOf", "clear", "addAll"]);
       throw fehl("у списка (List) нет метода " + n + "()" + (v ? " — может быть, " + v + "()?" : ""), z, "typ");
     }
+    function mapMethode(m, n, a, e, nm) {
+      const z = e.z;
+      const schl = w => { if (m.kt) w = konvertiere(w, m.kt, z, "ключ " + typName(m)); return w; };
+      const wertK = w => (m.vt ? konvertiere(w, m.vt, z, "значение " + typName(m)) : w);
+      const liste = (et, a2) => ({ t: "list", et, a: a2, mod: 0 });
+      switch (n) {
+        case "put": { anzahl(n, a, 2, z); const k = schl(a[0]), key = mapSchluessel(k), alt = m.e.get(key); if (!alt && m.e.size >= GRENZE.zellen) throw fehl("Map слишком большая для тренажёра", z, "limit"); m.e.set(key, [k, wertK(a[1])]); return alt ? alt[1] : null; }
+        case "get": { anzahl(n, a, 1, z); const x = m.e.get(mapSchluessel(a[0])); return x ? x[1] : null; }
+        case "getOrDefault": { anzahl(n, a, 2, z); const x = m.e.get(mapSchluessel(a[0])); return x ? x[1] : a[1]; }
+        case "containsKey": anzahl(n, a, 1, z); return m.e.has(mapSchluessel(a[0]));
+        case "containsValue": anzahl(n, a, 1, z); return Array.from(m.e.values()).some(x => gleichWert(x[1], a[0]) || (typeof x[1] === "string" && x[1] === a[0]));
+        case "remove": { anzahl(n, a, 1, z); const key = mapSchluessel(a[0]), x = m.e.get(key); if (!x) return null; m.e.delete(key); return x[1]; }
+        case "putIfAbsent": { anzahl(n, a, 2, z); const k = schl(a[0]), key = mapSchluessel(k), x = m.e.get(key); if (x && x[1] !== null) return x[1]; m.e.set(key, [k, wertK(a[1])]); return null; }
+        case "size": anzahl(n, a, 0, z); return I(m.e.size);
+        case "isEmpty": anzahl(n, a, 0, z); return m.e.size === 0;
+        case "clear": anzahl(n, a, 0, z); m.e.clear(); return undefined;
+        case "keySet": anzahl(n, a, 0, z); return liste(m.kt, mapEintraege(m).map(x => x[0]));
+        case "values": anzahl(n, a, 0, z); return liste(m.vt, mapEintraege(m).map(x => x[1]));
+        case "toString": anzahl(n, a, 0, z); return str(m);
+        case "entrySet": throw fehl("entrySet() здесь не поддерживается — перебирай ключи: for (String k : " + nm + ".keySet()) и бери значение через " + nm + ".get(k)", z, "typ");
+        case "merge": case "compute": case "forEach":
+          throw fehl(nm + "." + n + "(…) здесь не поддерживается — пиши так: " + nm + ".put(k, " + nm + ".getOrDefault(k, 0) + 1)", z, "typ");
+        case "add": throw fehl("у Map нет add — пара ключ-значение добавляется через " + nm + ".put(ключ, значение)", z, "typ");
+        case "length": throw fehl("размер Map — " + nm + ".size()", z, "typ");
+      }
+      const v = aehnlich(n, ["put", "get", "getOrDefault", "containsKey", "containsValue", "remove", "size", "isEmpty", "keySet", "values", "putIfAbsent", "clear"]);
+      throw fehl("у Map нет метода " + n + "()" + (v ? " — может быть, " + v + "()?" : ""), z, "typ");
+    }
     function feldMethode(f, n, a, e, nm) {
       const z = e.z;
       switch (n) {
@@ -1500,6 +1733,18 @@
     }
     function objektMethode(o, n, a, e) {
       const z = e.z, def = o.def;
+      if (def.eigen) {
+        const lm = def.eigen.methoden.filter(x => x.name === n);
+        if (lm.length) {
+          const m = lm.find(x => x.params.length === a.length);
+          if (!m) throw fehl("метод " + n + " класса " + o.klasse + " ожидает " + lm[0].params.length + " " + plural(lm[0].params.length, "аргумент", "аргумента", "аргументов") + ", а передано " + a.length, z, "typ");
+          return rufe(m, a, z, o);
+        }
+        if (n === "equals") { anzahl(n, a, 1, z); return o === a[0]; }
+        if (n === "toString") { anzahl(n, a, 0, z); return str(o); }
+        const v = aehnlich(n, def.eigen.methoden.map(x => x.name));
+        throw fehl("у класса " + o.klasse + " нет метода " + n + "() — объяви его в классе" + (v ? " (может быть, " + v + "()?)" : ""), z, "typ");
+      }
       if (n === "equals") { anzahl(n, a, 1, z); return o === a[0]; }
       if (n === "toString") { anzahl(n, a, 0, z); return str(o); }
       const m = /^(get|is|set)(.+)$/.exec(n);
@@ -1587,11 +1832,11 @@
       throw fehl("метод " + k + "." + n + "(…) в этом тренажёре не поддерживается", z, "typ");
     }
 
-    function rufe(m, args, z) {
+    function rufe(m, args, z, objekt) {
       if (++tiefe > GRENZE.tiefe) { tiefe--; throw fehl("слишком глубокая рекурсия: метод " + m.name + " вызывается больше " + GRENZE.tiefe + " раз подряд. Нет условия выхода?", z, "limit"); }
       try {
         schritt(z);
-        const sc = scope(null);
+        const sc = scope(objekt ? objektScope(objekt) : null);
         m.params.forEach((p, i) => sc.vars.set(p.name, { typ: p.typ, w: konvertiere(args[i], p.typ, z, "параметр " + p.name + " метода " + m.name), init: true, name: p.name }));
         const r = ausf(m.body, sc);
         if (m.rueck.name === "void" && !m.rueck.dim) return undefined;
@@ -1615,14 +1860,29 @@
     try {
       const tokens = lexer(String(quelltext == null ? "" : quelltext));
       const methoden = parse(tokens).programm();
-      if (!methoden.length) throw new CodeFehler("код пустой — напиши метод целиком: заголовок и тело в { }", 1, "syntax");
-      pruefeStatisch(methoden, klassen, []);
-      return { ok: true, programm: { methoden }, klassen };
+      if (!methoden.length && !(methoden.eigeneKlassen || []).length) throw new CodeFehler("код пустой — напиши метод целиком: заголовок и тело в { }", 1, "syntax");
+      const alle = eigeneKlassenEintragen(klassen, methoden.eigeneKlassen || []);
+      pruefeStatisch(methoden, alle, []);
+      return { ok: true, programm: { methoden }, klassen: alle };
     } catch (e) {
       if (e instanceof CodeFehler) return { ok: false, fehler: info(e) };
       if (e instanceof RangeError) return { ok: false, fehler: { text: "код слишком глубоко вложен", zeile: 0, meldung: "Код слишком глубоко вложен.", art: "limit" } };
       throw e;
     }
+  }
+
+  /* Eigene Klassen aus dem Code zu den Klassen der Aufgabe hinzufügen (Kopie der Map) */
+  function eigeneKlassenEintragen(klassen, eigene) {
+    if (!eigene.length) return klassen;
+    const alle = new Map(klassen);
+    eigene.forEach(k => {
+      if (alle.has(k.name)) throw new CodeFehler("класс " + k.name + " уже дан в задании — объявлять его заново не нужно", k.z, "typ");
+      if (BEKANNT.includes(k.name)) throw new CodeFehler("имя " + k.name + " уже занято стандартным типом Java", k.z, "typ");
+      const felder = Object.create(null);
+      k.felder.forEach(d => d.vars.forEach(v => { felder[v.name] = d.typ; }));
+      alle.set(k.name, { name: k.name, felder, konstruktor: null, eigen: k });
+    });
+    return alle;
   }
 
   /* Eine Methode mit JS-Werten aufrufen. optionen: {methode, args, klassen, signatur?, maxSchritte?} */
@@ -1682,6 +1942,7 @@
     if (n === "String") return JSON.stringify(String(x));
     if (n === "boolean" || n === "Boolean") return String(x);
     if (LISTEN.has(n)) return Array.isArray(x) ? "[" + x.map(y => formatiere(y, t.args[0] || null, klassen)).join(", ") + "]" : String(x);
+    if (MAPS.has(n)) return x && typeof x === "object" ? "{" + Object.keys(x).map(k => formatiere(GANZ.has((t.args[0] || {}).name) ? Number(k) : k, t.args[0] || null, klassen) + "=" + formatiere(x[k], t.args[1] || null, klassen)).join(", ") + "}" : String(x);
     const def = klassen.get(n);
     if (def && x && typeof x === "object") return n + "(" + Object.keys(def.felder).map(k => k + "=" + formatiere(x[k], def.felder[k], klassen)).join(", ") + ")";
     return JSON.stringify(x);
@@ -1697,6 +1958,7 @@
       case "char": return "'" + String.fromCharCode(w.v) + "'";
       case "array": return "{" + w.a.map(y => formatiereRoh(y, klassen)).join(", ") + "}";
       case "list": return "[" + w.a.map(y => formatiereRoh(y, klassen)).join(", ") + "]";
+      case "map": return "{" + mapEintraege(w).map(([k, v]) => formatiereRoh(k, klassen) + "=" + formatiereRoh(v, klassen)).join(", ") + "}";
       case "obj": return w.klasse + "(" + Object.keys(w.f).map(k => k + "=" + formatiereRoh(w.f[k], klassen)).join(", ") + ")";
     }
     return "?";
@@ -1733,7 +1995,7 @@
     if (sigText !== ihrText) warnungen.set("sig", { zeile: m.z, text: "заголовок метода отличается от задания: нужно " + aufgabe.signatur, meldung: "Строка " + m.z + ": заголовок метода отличается от задания: нужно " + aufgabe.signatur });
     let ersterFehler = null;
     const ergebnisse = tests.map((t, i) => {
-      const r = starte(u.programm, klassen, { methode: sig.name, args: t.eingabe, signatur: sig, maxSchritte: optionen && optionen.maxSchritte });
+      const r = starte(u.programm, u.klassen, { methode: sig.name, args: t.eingabe, signatur: sig, maxSchritte: optionen && optionen.maxSchritte });
       (r.warnungen || []).forEach(w => warnungen.set(w.meldung, w));
       const e = Object.assign(basis(t, i), { gelaufen: true, ausgabe: r.ausgabe || "" });
       if (!r.ok) { e.ok = false; e.fehler = r.fehler; if (!ersterFehler) ersterFehler = r.fehler; return e; }
@@ -1857,10 +2119,12 @@
         case "if": liste.push(s); geh(s.dann); geh(s.sonst); return;
         case "while": case "do": case "foreach": liste.push(s); geh(s.body); return;
         case "for": liste.push(s); s.init.forEach(i => init.add(i)); geh(s.body); return;
+        case "switch": liste.push(s); s.faelle.forEach(f => f.body.forEach(geh)); return;
         default: liste.push(s);
       }
     };
     programm.methoden.forEach(m => geh(m.body));
+    (programm.methoden.eigeneKlassen || []).forEach(k => k.methoden.concat(k.konstruktoren).forEach(m => geh(m.body)));
     const schleife = z => liste.some(s => s.z === z && ["for", "foreach", "while", "do"].includes(s.k));
     const pruefung = z => liste.some(s => (s.k === "do" ? s.zw === z : s.z === z && (s.k === "if" || s.k === "while" || (s.k === "for" && s.c))));
     const anweisung = z => liste.some(s => s.z === z);
