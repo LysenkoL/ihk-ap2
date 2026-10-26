@@ -25,7 +25,7 @@
 /* Bei jeder Veröffentlichung hochzählen — dann wirft der Worker den alten
    Programm-Cache weg und holt alles frisch. Die Bilder bleiben davon
    unberührt.                                                              */
-const VERSION   = "ihk-ap2-v34";
+const VERSION   = "ihk-ap2-v35";
 const CACHE_APP = VERSION + "-app";
 const CACHE_BILD = "ihk-ap2-bilder";       /* ohne Version — bleibt bestehen */
 /* Große Bibliotheken (SQL-Datenbank, 0,7 MB) tragen die Version im Pfad
@@ -108,6 +108,7 @@ const GRUNDGERUEST = [
   "./gen/marken.css",
   "./gen/muendlich.css",
   "./gen/pruefungstag.css",
+  "./gen/radar-ap2.css",
   "./gen/code-trainer.css",
   "./gen/trace-trainer.css",
   "./gen/katalog-ap2.css",
@@ -117,6 +118,7 @@ const GRUNDGERUEST = [
   "./gen/marken.js",
   "./gen/muendlich.js",
   "./gen/pruefungstag.js",
+  "./gen/radar-ap2.js",
   "./gen/vorlesen.js",
   "./gen/code-lauf.js",
   "./gen/code-daten.js",

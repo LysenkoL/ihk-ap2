@@ -674,6 +674,7 @@ window.GENSTART = (function () {
     kachel("Meine Prüfungsbögen", "WiSo · GA1/GA2 при наличии материалов",
       () => (window.GENAZUBI ? window.GENAZUBI.oeffnen(null) : oeffneBlock("azubi")), "pruefung");
     if (window.GENMARKEN && window.GENMARKEN.oeffnen) { const n = window.GENMARKEN.anzahl(); kachel("Мои отметки", n ? n + " заданий · ★ ⏳ ❓ ⚠ ✎" : "★ ⏳ ❓ ⚠ ✎ в бланках", () => window.GENMARKEN.oeffnen(), "check"); }
+    if (window.GENRADARAP2 && window.GENRADARAP2.oeffnen) kachel("Радар тем AP2", "как часто тема в GA1 · GA2 · WiSo", () => window.GENRADARAP2.oeffnen(), "radar");
     if (window.GENPRUEFTAG && window.GENPRUEFTAG.oeffnen) kachel("Prüfungstag", "GA1 + GA2 + WiSo · 240 мин", () => window.GENPRUEFTAG.oeffnen(), "pruefung");
     if (window.GENMUENDLICH && window.GENMUENDLICH.oeffnen) kachel("Mündliche Ergänzung", "3 минуты вслух · 2 : 1", () => window.GENMUENDLICH.oeffnen(), "sim");
     kachel("Arbeitsblatt", z.vorlagen + " Aufgabentypen", assistent, "blatt");
