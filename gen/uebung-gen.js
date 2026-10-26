@@ -8,7 +8,7 @@
        id: "rechnen", titel: "Rechen-Trainer AP2", ru: "…", topic: "rechnen",
        kachel: { name, unten, ikon }, gruppen: [{ id, titel, ru }],
        (Aufgabe darf zusätzlich bild: "<svg …>" liefern — vom Generator gebaut, z. B. ein UML-Diagramm)
-       aufgaben: [{ id, gruppe, titel, ru, gen: R => ({
+       aufgaben: [{ id, gruppe, titel, ru, topic? (Thema fürs Journal, sonst das der Sammlung), gen: R => ({
          situation?, frage, gegeben?: [[Name, Wert]], felder: [Feld], weg: [Schritt], ru?, merke? }) }]
      })
      Feld = { id, label, soll, art: "zahl" | "wahl", einheit?, tol? (absolut), rel? (relativ),
@@ -102,7 +102,7 @@
       if (f.art === "wahl" ? !(Array.isArray(f.optionen) && Number.isInteger(f.soll) && f.soll >= 0 && f.soll < f.optionen.length) : !Number.isFinite(f.soll))
         throw new Error("Aufgabe " + a.id + ": Feld " + f.id + " ungültig");
     });
-    return Object.assign({ sammlung: s.id, aufgabe: a.id, titel: a.titel, seed: sd, weg: [], gegeben: [] }, x);
+    return Object.assign({ sammlung: s.id, aufgabe: a.id, titel: a.titel, topic: a.topic, seed: sd, weg: [], gegeben: [] }, x);
   }
 
   function sammlung(def) {
@@ -292,7 +292,7 @@
       r.gespeichert = merken(S.id, a.aufgabe, r.correct === r.max && sup === "selbst");
       if (root.GENLERNSTAND) {
         try {
-          root.GENLERNSTAND.record({ topic: S.topic || S.id, source: "gen:" + S.id, task: a.aufgabe + ":" + a.seed, correct: r.correct, max: r.max,
+          root.GENLERNSTAND.record({ topic: a.topic || S.topic || S.id, source: "gen:" + S.id, task: a.aufgabe + ":" + a.seed, correct: r.correct, max: r.max,
             support: sup, kind: "auto", answers: Object.assign({}, LAUF.antworten),
             snapshot: { type: "gen", sammlung: S.id, aufgabe: a.aufgabe, seed: a.seed, title: a.titel,
               question: [a.situation, (a.gegeben || []).map(([k, v]) => k + ": " + v).join("\n"), a.frage].filter(Boolean).join("\n"),

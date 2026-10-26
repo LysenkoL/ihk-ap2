@@ -25,7 +25,7 @@
 /* Bei jeder Veröffentlichung hochzählen — dann wirft der Worker den alten
    Programm-Cache weg und holt alles frisch. Die Bilder bleiben davon
    unberührt.                                                              */
-const VERSION   = "ihk-ap2-v32";
+const VERSION   = "ihk-ap2-v33";
 const CACHE_APP = VERSION + "-app";
 const CACHE_BILD = "ihk-ap2-bilder";       /* ohne Version — bleibt bestehen */
 /* Große Bibliotheken (SQL-Datenbank, 0,7 MB) tragen die Version im Pfad
@@ -134,6 +134,7 @@ const GRUNDGERUEST = [
   "./gen/tickets-daten.js",
   "./gen/cps-daten.js",
   "./gen/uml-lesen-daten.js",
+  "./gen/wiso-gen-daten.js",
   "./gen/englisch-daten.js",
   "./gen/englisch.js",
   "./gen/niveau.js",
