@@ -188,7 +188,7 @@
     return a.slice(0,5);
   }
   /* Время на задание: как на экзамене — 90 минут на 100 баллов. */
-  const minutenFuer=p=>Math.round(p*0.9);
+  const minutenFuer=(p,bereich)=>Math.round(p*(bereich==="WiSo"?0.6:0.9));
   const minutenWort=n=>{const a=n%10,b=n%100;return a===1&&b!==11?"минута":a>=2&&a<=4&&(b<12||b>14)?"минуты":"минут";};
   /* Состояние задания экзамена по частям: [ответов, оценено, всего]. */
   function aufgabeStand(z,teile){
@@ -201,7 +201,8 @@
     if(!t){overview(w);return;}
     const c=card(w,t.name+" · "+t.bereich+": задания из экзаменов");
     const de=el("p","lw-muted",t.de);de.lang="de";c.appendChild(de);
-    c.appendChild(el("p",null,"Каждое задание — часть настоящего экзамена. Решай в режиме «Übung»: сначала сама, потом «Lösung zeigen» и поставь себе баллы. Время как на экзамене: 0,9 минуты на балл."));
+    c.appendChild(el("p",null,"Каждое задание — часть настоящего экзамена. Решай в режиме «Übung»: сначала сама, потом «Lösung zeigen» и поставь себе баллы. Время как на экзамене: "+(t.bereich==="WiSo"?"0,6 минуты на балл (60 минут на 100 баллов).":"0,9 минуты на балл.")));
+    if(t.themen&&t.themen.length){const th=el("p","lw-muted","Темы в бланках: "+t.themen.join(", "));th.lang="de";c.appendChild(th);}
     c.appendChild(button("← Что тренировать",()=>oeffnen(null,false,"lwTrain")));
     const liste=el("div");c.appendChild(liste);
     const A=root.GENAZUBI;
@@ -218,7 +219,7 @@
         const row=el("div","lw-result"+(fertig?" lw-fertig":""));
         row.appendChild(el("b",null,(m.kurz||mid)+" · Aufgabe "+nr));
         if(auf.titel){const ti=el("span","lw-muted",auf.titel);ti.lang="de";row.appendChild(ti);}
-        row.appendChild(el("span","lw-muted",punkte+" "+balle(punkte)+" · ≈ "+minutenFuer(punkte)+" "+minutenWort(minutenFuer(punkte))+" · "+quelle(m).text));
+        const pz=Math.round(punkte*10)/10,mn=Math.max(1,minutenFuer(punkte,t.bereich));row.appendChild(el("span","lw-muted",String(pz).replace(".",",")+" "+balle(Math.round(punkte))+" · ≈ "+mn+" "+minutenWort(mn)+" · "+quelle(m).text));
         row.appendChild(el("p",null,fertig?"✓ оценено: все "+st.gesamt+" "+teileWort(st.gesamt):st.beantwortet||st.bewertet?"начато: ответ в "+st.beantwortet+" из "+st.gesamt+", оценено "+st.bewertet+" из "+st.gesamt:"ещё не решала"));
         row.appendChild(button(fertig?"Повторить":st.beantwortet?"Продолжить":"Решать",()=>A.oeffnen(mid,{ziel:teile[0]}),!fertig&&offen===1));
         liste.appendChild(row);
@@ -296,7 +297,7 @@
         const i=themaInfo(t,obs),row=el("div","lw-result");
         row.appendChild(el("b",null,(haupt?(i.fehler?"Есть ошибки: ":i.offen.length?"Частая тема, занятие не разобрано: ":"Частая тема, ещё не тренировала: "):"")+t.name+" · "+t.bereich));
         const de=el("span","lw-muted",t.de);de.lang="de";row.appendChild(de);
-        row.appendChild(el("span","lw-muted","В "+t.pruef+" из 10 экзаменов "+t.bereich+" · задания с этой темой ≈ "+t.punkte+" "+balle(t.punkte)+" из 100"));
+        row.appendChild(el("span","lw-muted","В "+t.pruef+" из "+(t.von||10)+" экзаменов "+t.bereich+" · задания с этой темой ≈ "+t.punkte+" "+balle(t.punkte)+" из 100"));
         const st=[];
         if((t.units||[]).length)st.push(i.offen.length?"занятие ещё не разобрано":"занятие разобрано ✓");
         if((t.lern||[]).length)st.push(i.versuche?"попыток: "+i.versuche+(i.fehler?" · с ошибками: "+i.fehler:" · без ошибок"):"ещё не тренировала");
@@ -308,11 +309,11 @@
       };
       const start=startThema(T,obs);
       if(start)box.appendChild(zeile(start,true));
-      ["GA1","GA2"].forEach(b=>{
+      ["GA1","GA2","WiSo"].forEach(b=>{
         const d=el("details","lw-train-gruppe");d.appendChild(el("summary",null,b+": все частые темы"));
         T.filter(t=>t.bereich===b).forEach(t=>d.appendChild(zeile(t,false)));box.appendChild(d);
       });
-      box.appendChild(el("p","lw-muted","Баллы — сумма баллов заданий с этой темой, делённая на 10 экзаменов; одно задание может относиться к двум темам."));
+      box.appendChild(el("p","lw-muted","Баллы — сумма баллов заданий с этой темой, делённая на число экзаменов (GA — 10, WiSo — 9); в GA одно задание может относиться к двум темам."));
     }
     /* 3. Пробные экзамены */
     box.appendChild(el("h3",null,"Пробные экзамены"));
