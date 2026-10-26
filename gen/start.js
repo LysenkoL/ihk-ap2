@@ -685,6 +685,7 @@ window.GENSTART = (function () {
     if (window.GENOPUEB) kachel("Что от меня хотят?", "Operatoren: nennen, erläutern …", () => window.GENOPUEB.oeffnen(), "check");
     /* Übungen mit neuen Zahlen (gen/uebung-gen.js): eine Kachel je Sammlung */
     if (window.GENUEBGEN && window.GENUEBGEN.oeffnen) window.GENUEBGEN.sammlungen().forEach(s => { if (s.kachel) kachel(s.kachel.name, s.kachel.unten, () => window.GENUEBGEN.oeffnen(s.id), s.kachel.ikon || "rechnen"); });
+    if (window.GENENGL && window.GENENGL.oeffnen) kachel("Английский текст GA1", "8 текстов · ответы по-немецки", () => window.GENENGL.oeffnen(), "lernen");
     if (window.GENWORTKARTEN && window.GENWORTKARTEN.oeffnen) kachel("Карточки слов", "DE ↔ RU · 5 минут · Leitner", () => window.GENWORTKARTEN.oeffnen(), "satz");
     if (window.GENSATZ) kachel("Kurzfragen", z.satzKarten ? z.satzKarten + " Fragen · 5 Min." : "5 Minuten", satzbau, "satz");
     if (z.analyseOffen != null) kachel("Fehler durchgehen", z.analyseOffen ? z.analyseOffen + " offen" : "nichts offen", journal, "journal", z.analyseOffen >= 5);

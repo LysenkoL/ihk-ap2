@@ -180,6 +180,7 @@
     if(t.trainer==="sql"&&root.GENSQL)a.push(["SQL-тренажёр",()=>root.GENSQL.oeffnen()]);
     if(t.trainer==="code"&&root.GENCODE)a.push(["Код с проверкой",()=>root.GENCODE.oeffnen()]);
     if(t.trace&&root.GENTRACE)a.push(["Schreibtischtest",()=>root.GENTRACE.oeffnen()]);
+    if(t.engl&&root.GENENGL)a.push(["Английский текст",()=>root.GENENGL.oeffnen()]);
     if(t.trainer==="normal"&&root.GENNORMAL)a.push(["Нормализация",()=>root.GENNORMAL.oeffnen()]);
     if(t.praxis&&root.GENPRAXIS)a.push(["Практика",()=>root.GENPRAXIS.oeffnen(t.praxis)]);
     if(t.quiz&&root.GENLERNEN)a.push(["Квиз",()=>root.GENLERNEN.oeffnen(t.quiz)]);

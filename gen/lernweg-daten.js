@@ -134,7 +134,7 @@
     {id:"ga1-oop", bereich:"GA1", name:"Программирование и ООП", de:"Klassen, Vererbung, Entwurfsmuster", pruef:7, punkte:18,
       units:["oop"], praxis:"oop-kapselung", quiz:"oop", satz:"Programmierung", lern:["oop","muster"]},
     {id:"ga1-englisch", bereich:"GA1", name:"Английский текст", de:"englischer Text → Antworten auf Deutsch", pruef:6, punkte:15,
-      units:[], hinweis:"Отдельного тренажёра нет. Тренируй на оригинальных бланках GA1: прочитай английский текст, выпиши 3–5 ключевых слов и отвечай короткими немецкими предложениями."},
+      units:[], engl:true, lern:["englisch"], hinweis:"Тренажёр «Английский текст GA1»: 8 авторских текстов. Потом — оригинальные бланки: прочитай английский текст, выпиши 3–5 ключевых слов и отвечай короткими немецкими предложениями."},
     {id:"ga1-ergo", bereich:"GA1", name:"Эргономика и доступность", de:"Softwareergonomie, Usability, Barrierefreiheit", pruef:6, punkte:14,
       units:[], quiz:"ergonomie", lern:["ergonomie"]},
     {id:"ga2-algo", bereich:"GA2", name:"Алгоритмы и псевдокод", de:"Pseudocode, Schleifen, Arrays, Rückgabewert", pruef:10, punkte:34,

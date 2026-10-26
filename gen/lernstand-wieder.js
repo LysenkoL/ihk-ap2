@@ -2,7 +2,7 @@
    скопированное решение не закрывает самостоятельную ошибку. */
 "use strict";
 (function (root) {
-  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK", trace: "Schreibtischtest" };
+  const QUELLEN = { sql: "SQL", algo: "Алгоритмы", praxis: "Практика", lernweg: "Учебный маршрут", code: "Код", normal: "Нормализация", operatoren: "Операторы IHK", trace: "Schreibtischtest", englisch: "Английский текст" };
   /* Übungen mit neuen Zahlen (gen/uebung-gen.js): source "gen:<sammlung>" */
   const quelleName = s => Object.prototype.hasOwnProperty.call(QUELLEN, s) ? QUELLEN[s]
     : /^gen:/.test(String(s)) ? (((root.GENUEBGEN && root.GENUEBGEN.sammlungen().find(x => "gen:" + x.id === s)) || {}).titel || "Упражнение") : null;
@@ -103,6 +103,7 @@
       if (v) return { title: v.title, question: v.control, solution: v.answer, rubric: v.rubric,
         notice: s ? "Разбор сохранён вместе с твоей самооценкой. Это не автоматическая проверка смысла ответа." : "Текущая версия занятия: снимок прежнего условия не сохранён." };
     }
+    if (e.source === "englisch" && s && s.type === "englisch") return { title: s.title, question: s.question, solution: s.solution };
     if (/^gen:/.test(e.source) && s && s.type === "gen") return { title: s.title, question: s.question, solution: s.solution, explanation: s.explanation,
       notice: "Тот же вариант (те же числа) можно открыть снова и решить без подсказки." };
     return { title: quelleName(e.source), question: "Условие этой попытки здесь недоступно. Сохранившийся ответ можно сравнить с новой задачей в тренажёре.",
@@ -147,6 +148,7 @@
     if (e.source === "lernweg" && root.GENLERNWEG) return root.GENLERNWEG.oeffnen(e.task);
     if (e.source === "code" && root.GENCODE) return root.GENCODE.oeffnen(e.task);
     if (e.source === "trace" && root.GENTRACE) return root.GENTRACE.oeffnen(e.task);
+    if (e.source === "englisch" && root.GENENGL) return root.GENENGL.oeffnen(String(e.task).split(":")[0]);
     if (/^gen:/.test(e.source) && root.GENUEBGEN) { const s = e.snapshot || {}, [aid, seed] = String(e.task).split(":"); return root.GENUEBGEN.oeffnen(s.sammlung || e.source.slice(4), s.aufgabe || aid, s.seed || Number(seed) || undefined); }
     if (e.source === "normal" && root.GENNORMAL) { const [id, step] = e.task.split(":"); return root.GENNORMAL.oeffnen(id, step); }
     if (e.source === "operatoren" && root.GENOPUEB) return root.GENOPUEB.oeffnen({task:e.task,ref:(e.answers||{}).ref,event:e});
