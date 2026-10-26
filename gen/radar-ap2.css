@@ -1,0 +1,32 @@
+/* gen/radar-ap2.css — Радар тем AP2 (gen/radar-ap2.js), префикс ra- */
+.ra-page{max-width:760px; margin:auto; padding:18px; box-sizing:border-box}
+.ra-wrap{display:grid; gap:12px; min-width:0}
+.ra-card{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-radius:14px; padding:16px; line-height:1.55; min-width:0}
+.ra-card h2{margin:0 0 8px; font-size:20px}
+.ra-card p{margin:6px 0}
+.ra-muted{display:block; color:var(--muted,#666); font-size:13px}
+.ra-filter{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.ra-chip{min-height:40px; padding:6px 14px; border-radius:20px; border:1px solid var(--rule,#ccc); background:var(--card,#fff); color:var(--ink); font:inherit; font-weight:600; cursor:pointer}
+.ra-chip.an{background:var(--pruefer,#5B2A86); border-color:var(--pruefer,#5B2A86); color:#fff}
+.ra-liste{display:grid; gap:10px}
+.ra-thema{background:var(--card,#fff); border:1px solid var(--rule,#ddd); border-left:5px solid var(--rule,#ccc); border-radius:12px; padding:12px 14px; min-width:0}
+.ra-thema.ra-immer{border-left-color:var(--pruefer,#5B2A86)} .ra-thema.ra-oft{border-left-color:#8a63b0} .ra-thema.ra-manch{border-left-color:#b9a6cc}
+.ra-thema.ra-prio{box-shadow:0 0 0 2px #c48a00 inset}
+.ra-kopf{display:flex; justify-content:space-between; align-items:flex-start; gap:8px}
+.ra-titel{min-width:0}
+.ra-titel b{display:block}
+.ra-de{display:block; color:var(--muted,#666); font-size:13px; overflow-wrap:anywhere}
+.ra-kat{flex:none; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--pruefer,#5B2A86); white-space:nowrap}
+.ra-reihe{display:flex; gap:3px; margin:10px 0 2px}
+.ra-zelle{flex:1 1 0; height:18px; max-width:30px; border-radius:4px; background:var(--rule-soft,#ebe9f0)}
+.ra-zelle.an{background:rgba(91,42,134,var(--a,1))}
+.ra-achse{display:flex; justify-content:space-between; font-size:11px; color:var(--muted,#666); max-width:calc(30px * 10 + 27px)}
+.ra-info{font-size:13px; margin:6px 0 2px}
+.ra-stand{font-size:14px; font-weight:600; margin:4px 0}
+.ra-stand.rot{color:var(--red,#a62424)} .ra-stand.gelb{color:#9a6b00} .ra-stand.gruen{color:var(--ok,#1f6b3a)}
+.ra-prio-text{font-size:13px; color:#9a6b00; font-weight:600; margin:2px 0}
+.ra-thema .btn{min-height:44px; margin-top:6px}
+.ra-fuss{padding:0 4px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .ra-zelle.an{background:rgba(185,150,230,var(--a,1))}}
+:root[data-theme="dark"] .ra-zelle.an{background:rgba(185,150,230,var(--a,1))}
+@media(max-width:540px){.ra-page{padding:10px}.ra-card{padding:14px}}
