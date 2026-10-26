@@ -179,6 +179,10 @@
         knopf: "Начать"
       });
     }
+    if (o.worte) {
+      const m = Math.min(5, Math.floor(Math.max(0, o.worte.sek | 0) / 60));
+      L.push({ key: "worte", titel: "Слова: " + m + "/5 минут", unter: "Карточки DE ↔ RU", fertig: !!o.worte.fertig, knopf: "Начать" });
+    }
     if (min >= 40 && o.exam) L.push({ key: "exam", titel: "Задание из экзамена", unter: "бланк GA1 · GA2 · WiSo", fertig: !!o.examFertig, knopf: "Выбрать" });
     return { minuten: min, liste: L, fertig: L.filter(x => x.fertig).length, gesamt: L.length };
   }
@@ -304,6 +308,7 @@
         minuten: prof.minuten, wieder, lern,
         lernFertig: aufgabeFertig(lern&&lern.ziel,events.concat(histories),jetzt),
         satz: !!(R.GENSATZ && R.GENSATZ.starten), satzAnzahl:Object.values(satz||{}).filter(x=>x&&heuteDa([x.t],jetzt)).length,
+        worte: R.GENWORTKARTEN && R.GENWORTKARTEN.heute ? versuch(() => { const u = R.GENWORTKARTEN.heute(); return { sek: u.heuteSek, fertig: u.fertig }; }, null) : null,
         exam: !!(R.GENLERNWEG && R.GENLERNWEG.oeffnen), examFertig:events.some(e=>e.source==="azubi"&&e.max>0&&e.correct===e.max&&heuteDa([e.t],jetzt))
       });
       return {
@@ -320,6 +325,7 @@
         if (key === "wieder" && R.GENWIEDER) R.GENWIEDER.starten(R.GENWIEDER.faellig().slice(0,3));
         else if (key === "lern" && d.lern && typeof d.lern.tun === "function") d.lern.tun();
         else if (key === "satz" && R.GENSATZ) R.GENSATZ.starten(null, { anzahl: 5 });
+        else if (key === "worte" && R.GENWORTKARTEN) R.GENWORTKARTEN.starten();
         else if (key === "exam" && R.GENLERNWEG) R.GENLERNWEG.oeffnen(null, false, "lwTrain");
       } catch (e) { console.error("Heute:", e); }
     }
