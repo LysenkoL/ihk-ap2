@@ -26,8 +26,6 @@
 
 Перед началом проверь, что задачу никто не делает локально: нет пометки «занято». После Merge отметь [x] и перенеси в «Сделано».
 
-2. [x] **SQL по Beiblatt** — сделано в облаке 26.10, ждёт Merge.
-3. [ ] **Schreibtischtest** — доделать черновик `entwuerfe/schreibtischtest/`: тест, браузер, подключить. M.
 4. [ ] **Чек-лист каталога 2025** — доделать черновик `entwuerfe/katalog/`: CSS, тест, браузер, подключить. M. Содержание сверено с каталогом; повторная сверка — только локально.
 5. [ ] **Темы после расширения до 35.** S–M.
    - фильтр или группы по частям (GA1 / GA2 / WiSo) в списке тем (`gen/lernen.js`);
@@ -78,6 +76,7 @@
 
 ## Сделано
 
+- [x] 26.10 (облако) — Schreibtischtest: 12 задач (Wertetabelle, Fehler finden, Was wird ausgegeben?), эталон считает исполнитель (`verfolgen()`), тест с ручными значениями; плитка, «Что тренировать» у GA2-тестов, очередь «Fehler wiederholen»; PWA v17.
 - [x] 26.10 (облако) — SQL по Beiblatt подключён: 76 задач (было 48), функции Beiblatt, права по образцу, 10 «Vorhersage»; черновик `entwuerfe/sql/` удалён; PWA v16.
 - [x] 26.10 (облако) — «Мой уровень по частям»: карточка на главной и экран (`gen/niveau.*`, тест `tests/niveau.test.js`); PWA v15. Идея на потом: плитка в сетке главной и история балла по неделям.
 - [x] 26.10 — 10 новых тем по каталогу 2025: архитектура, тесты, качество, угрозы, EPK/BPMN, скрипты, CPS, сети, IT-Betrieb, хранение данных. 10 тем WiSo: Ausbildung, Arbeitsrecht, Sozialpartner, Entgelt, Weiterbildung, Rechtsformen, Unternehmen, Arbeitsschutz, Umwelt, Digitalisierung. Всего 201 новый вопрос квиза и 40 Kurzfragen.

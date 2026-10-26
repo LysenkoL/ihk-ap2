@@ -14,35 +14,6 @@
 
 ---
 
-## schreibtischtest/ — тренажёр «Schreibtischtest»
-
-**Файлы:**
-- `gen/code-lauf.js` — новая версия существующего файла: **добавлен** API трассировки, старые функции не должны меняться;
-- `gen/trace-daten.js` — `AP2_TRACE_AUFGABEN`, 12 авторских задач;
-- `gen/trace-trainer.js` — экран `scTrace`, `GENTRACE.oeffnen(id?)`, `liste()`, ключ `ap2:trace`;
-- `gen/trace-trainer.css` — префикс `tr-`.
-
-**Задача (кратко):**
-- 6 задач «Wertetabelle» — заполнить таблицу значений по проходам цикла; эталон вычисляет исполнитель, вручную не хранится;
-- 4 задачи «Fehler finden» — отметить строки с 1–2 смысловыми ошибками и исправить; исправленный код должен пройти тесты исполнителя;
-- 2 задачи «Was wird ausgegeben?»;
-- к каждой — свёрнутое объяснение по-русски и немецкие термины (Schreibtischtest, Wertetabelle, Durchlauf, Schleifenbedingung, Zuweisung, semantischer Fehler);
-- поддержка «Подсказка» → `support:"hilfe"`, «Показать правильно» → `"loesung"`;
-- журнал: `GENLERNSTAND.record({topic:"tests", source:"trace", …})`;
-- телефон: таблица и код прокручиваются внутри своего блока, а не вся страница; черновик ответов сохраняется.
-
-**Осталось:**
-- [ ] `tests/trace.test.js`:
-  - трассировка (точки наблюдения, вложенные циклы, while, вывод);
-  - для каждой задачи эталонная таблица совпадает с ожидаемой (ожидаемые значения вписать вручную);
-  - «Fehler finden»: исходный код падает на тестах, исправление проходит;
-  - сохранение;
-- [ ] убедиться, что `tests/code-lauf.test.js` и `tests/code-trainer.test.js` зелёные с новой `code-lauf.js`;
-- [ ] браузер 390 px: все три типа, перезагрузка;
-- [ ] подключить: `index.html`, `sw.js`, плитка, `zurueck.js`; источник `trace` — в очередь «Fehler wiederholen» (`gen/lernstand-wieder.js`), как `code`/`normal`.
-
----
-
 ## katalog/ — чек-лист «Prüfungskatalog AP2» (2. Auflage 2024, действует с лета 2025)
 
 **Файлы:**

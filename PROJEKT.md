@@ -9,8 +9,8 @@
 | Где | Что |
 |---|---|
 | `index.html` | оболочка, все экраны |
-| `gen/` | модули JS/CSS. Для AP2 главные: `start.js` (главная), `lernweg*` (13 занятий), `praxis*` (16 задач), `lernen*` (35 тем GA1/GA2/WiSo + 332 вопроса квиза; с 26.10 ещё `lernen-katalog-daten.js`, `lernen-wiso-daten.js`), `algo*` (сортировка/поиск), `sql*` (76 SQL-задач по Beiblatt, из них 10 «Vorhersage»), `satzbau.js` + `satzbausteine-ap2.js` + `satzbausteine-katalog.js` (206 Kurzfragen), `glossar*`, `azubi.*` (плеер экзаменов), `wiederholen.js` + `lernstand*.js` (повторение ошибок), `sync.js` (перенос прогресса), `pwa.js`, `auth.js` (PIN). С 10.10: `heute.*` (карточка «Сегодня»), `code-lauf.js` + `code-daten.js` + `code-trainer.*` (код с автопроверкой), `normal*` (нормализация), `operatoren-uebung.*` (тренажёр операторов), `fotos.*` (фото ответа), `vorlesen.js` (озвучка). С 26.10: `niveau.*` («Мой уровень по частям»). Остальное унаследовано из AP1, часть скрыта |
-| `sw.js`, `manifest.webmanifest`, иконки | PWA и офлайн (кэш `ihk-ap2-v16`) |
+| `gen/` | модули JS/CSS. Для AP2 главные: `start.js` (главная), `lernweg*` (13 занятий), `praxis*` (16 задач), `lernen*` (35 тем GA1/GA2/WiSo + 332 вопроса квиза; с 26.10 ещё `lernen-katalog-daten.js`, `lernen-wiso-daten.js`), `algo*` (сортировка/поиск), `sql*` (76 SQL-задач по Beiblatt, из них 10 «Vorhersage»), `satzbau.js` + `satzbausteine-ap2.js` + `satzbausteine-katalog.js` (206 Kurzfragen), `glossar*`, `azubi.*` (плеер экзаменов), `wiederholen.js` + `lernstand*.js` (повторение ошибок), `sync.js` (перенос прогресса), `pwa.js`, `auth.js` (PIN). С 10.10: `heute.*` (карточка «Сегодня»), `code-lauf.js` + `code-daten.js` + `code-trainer.*` (код с автопроверкой; `verfolgen()` — трассировка), `trace-daten.js` + `trace-trainer.*` (Schreibtischtest), `normal*` (нормализация), `operatoren-uebung.*` (тренажёр операторов), `fotos.*` (фото ответа), `vorlesen.js` (озвучка). С 26.10: `niveau.*` («Мой уровень по частям»). Остальное унаследовано из AP1, часть скрыта |
+| `sw.js`, `manifest.webmanifest`, иконки | PWA и офлайн (кэш `ihk-ap2-v17`) |
 | `vendor/sqljs-1.14.2/` | SQLite в браузере |
 | `tests/` | проверки: `node tests/alle.js` |
 | `tools/` | `paket_bauen.py` (сборка пакета экзаменов), `bilder_schneiden.py` (вырезки схем), `GA-ABSCHREIBEN.md` (как переписывать экзамены). Остальное — старые инструменты AP1 |
@@ -84,13 +84,13 @@
 - Маршрут из 13 занятий: статус «✓ Разобрано», кнопка «Отметить разобранным», озвучка немецких образцов.
 - «Что тренировать»: ошибки и Kurzfragen к повторению, частые темы GA1/GA2 со статусом и кнопками, «Из экзаменов (N)» — все задания 20 GA по теме, следующий пробный экзамен и «начато X из Y».
 - Темы с квизами: 35 (GA1 5, GA2 4, GA1+GA2 16, WiSo 10), 332 вопроса. С 26.10 добавлены 10 тем по каталогу 2025 и 10 тем WiSo.
-- Тренажёры: практика (16 задач), SQL (76, по Beiblatt 2024-10-07: DATEDIFF/DATEADD с Datumsteil, WEEKDAY, STDDEV/VARIANCE/CORR, права по образцу, «предскажи результат»), сортировка и поиск, Kurzfragen (206), глоссарий (598), код с автопроверкой (10), нормализация (4 сценария), операторы.
+- Тренажёры: практика (16 задач), SQL (76, по Beiblatt 2024-10-07: DATEDIFF/DATEADD с Datumsteil, WEEKDAY, STDDEV/VARIANCE/CORR, права по образцу, «предскажи результат»), сортировка и поиск, Kurzfragen (206), глоссарий (598), код с автопроверкой (10), Schreibtischtest (12: Wertetabelle, Fehler finden, Ausgabe), нормализация (4 сценария), операторы.
 - Плеер экзаменов: 29 экзаменов (10 GA1, 10 GA2, 9 WiSo); таймеры, частичные баллы, история; фото ответа к GA; самооценка по пунктам (W23/24); перевод слова и маркер в бланках.
 - Обсуждение ответа с ИИ (ChatGPT/Claude, без API), критерии самооценки по попыткам, адаптивный день (Codex 14.10–26.10).
-- Перенос прогресса между устройствами, офлайн (PWA v16). Тесты 26.10: 41 пройдено, 0 ошибок, 6 отложено.
+- Перенос прогресса между устройствами, офлайн (PWA v17). Тесты 26.10: 42 пройдено, 0 ошибок, 6 отложено.
 
 **В работе**
-- Черновики в `entwuerfe/`: Schreibtischtest (нужен тест), чек-лист каталога (нужны CSS и тест).
+- Черновики в `entwuerfe/`: чек-лист каталога (нужны CSS и тест).
 - Из задачи Codex 14.10 осталось одно: «Личные отметки» (пункт 15 очереди в IDEEN.md).
 
 **Не сделано**
